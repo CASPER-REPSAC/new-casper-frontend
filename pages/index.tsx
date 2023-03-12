@@ -1,15 +1,15 @@
 import styled from "styled-components";
-import Header from "../components/Header";
 import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { HiLightBulb } from "react-icons/hi";
 import { motion, Variants } from "framer-motion";
-import Footer from "../components/Footer";
+import { useState } from "react";
+import Header from "@/components/Header";
 
-const Background = styled.div`
+const Background = styled.div<{ bgurl: string }>`
   position: fixed;
   width: 100vw;
   height: 100vh;
-  background-image: url("background.jpg");
+  background-image: url(${(props) => props.bgurl});
   background-position: center;
   background-size: cover;
   filter: brightness(50%);
@@ -23,6 +23,9 @@ const Body = styled.div`
   position: absolute;
   top: 25vh;
   left: 160px;
+  @media screen and (max-width: 1300px) {
+    left: 40px;
+  }
 `;
 
 const Notice = styled.div`
@@ -30,33 +33,39 @@ const Notice = styled.div`
   align-items: center;
   height: 40px;
   width: 500px;
-  font-size: 1.2rem;
+  font-size: 2.5rem;
 `;
 
 const Title = styled.div`
   display: flex;
   flex-direction: column;
+  width: 70%;
 `;
 const H1 = styled.div`
-  font-size: 4rem;
+  font-size: 6rem;
   font-weight: bold;
   line-height: 0.9em;
   margin-bottom: 0.2em;
 `;
 const H2 = styled.div`
-  font-size: 1.5rem;
+  font-size: 2.5rem;
   opacity: 0.8;
   font-weight: lighter;
 `;
-const Bar = styled.div`
+const PageBar = styled.div`
+  display: flex;
   height: 3px;
   width: 210px;
   background-color: rgba(255, 255, 255, 0.4);
   margin-right: 2em;
 `;
-const CurBar = styled.div`
+const CurPageBar = styled(motion.div)`
   height: 3px;
-  width: 70px;
+  width: 100%;
+`;
+const White = styled(motion.div)`
+  width: 100%;
+  height: 100%;
   background-color: white;
 `;
 const Page = styled.div`
@@ -65,11 +74,11 @@ const Page = styled.div`
   margin-bottom: 1em;
 `;
 const All = styled.div`
-  font-size: 1.5rem;
+  font-size: 2rem;
   opacity: 0.4;
 `;
 const Cur = styled.div`
-  font-size: 1.8rem;
+  font-size: 2.5rem;
   margin-right: 0.3em;
 `;
 const Col = styled.div`
@@ -98,34 +107,69 @@ const buttonVars: Variants = {
 };
 
 export default function Home() {
+  const [page, setPage] = useState(1);
+  const [allPage, setAllPage] = useState(5);
+  const [bgImgs, setBgImgs] = useState(["background1.jpg", "background2.jpg"]);
+
+  const bg = () => {
+    switch (page) {
+      case 1:
+        return bgImgs[0];
+      case 2:
+        return bgImgs[1];
+
+      default:
+        return bgImgs[0];
+    }
+  };
+
+  const nextPage = () => {
+    setPage((curPage) => {
+      return curPage === allPage ? allPage : curPage + 1;
+    });
+  };
+  const prevPage = () => {
+    setPage((curPage) => {
+      return curPage === 1 ? 1 : curPage - 1;
+    });
+  };
+  const renderPageBar = () => {
+    const result = [];
+    for (let i = 0; i < allPage; i++) {
+      result.push(
+        <CurPageBar key={i}>
+          {page === i + 1 ? <White layoutId="white" /> : null}
+        </CurPageBar>
+      );
+    }
+    return result;
+  };
+
   return (
     <>
-      <Background />
+      <Header bgColor="transparent" />
+      <Background bgurl={bg()} />
       <Body>
         <Notice>
           <HiLightBulb size={40} color="yellow" />
           신입생 모집 기간입니다.
         </Notice>
         <Title>
-          <H1>
-            THE CENTER OF
-            <br /> SECURITY
-          </H1>
+          <H1>THE CENTER OF SECURITY</H1>
           <H2>정보 보안 동아리 CASPER</H2>
         </Title>
         <Col>
           <Page>
-            <Cur>1 </Cur>
-            <All>/3</All>
+            <Cur>{page}</Cur>
+            <All>/{allPage}</All>
           </Page>
           <Row>
-            <Bar>
-              <CurBar />
-            </Bar>
+            <PageBar>{renderPageBar()}</PageBar>
             <LeftButton
               variants={buttonVars}
               initial="initial"
               whileHover="animate"
+              onClick={prevPage}
             >
               <MdArrowBackIos size={25} />
             </LeftButton>
@@ -133,6 +177,7 @@ export default function Home() {
               variants={buttonVars}
               initial="initial"
               whileHover="animate"
+              onClick={nextPage}
             >
               <MdArrowForwardIos size={25} />
             </RightButton>

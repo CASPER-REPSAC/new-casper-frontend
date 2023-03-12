@@ -15,10 +15,10 @@ const Wrapper = styled.div`
 `;
 
 const Title = styled.div`
-  font-size: 3rem;
+  font-size: 4.8rem;
 `;
 const Sub = styled.div`
-  font-size: 1rem;
+  font-size: 1.6rem;
   font-weight: lighter;
 `;
 
@@ -30,7 +30,7 @@ function PageTitle({ pageTitle }: pageTitleProps) {
     <Wrapper>
       <Title>{pageTitle}</Title>
       <Sub>
-        홈 {">"} Members {">"} 활동 중
+        홈 {">"} {pageTitle}
       </Sub>
     </Wrapper>
   );

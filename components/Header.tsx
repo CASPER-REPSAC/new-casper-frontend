@@ -1,5 +1,6 @@
 import { motion, Variants } from "framer-motion";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const Wrapper = styled.div<{ bgColor?: string }>`
@@ -12,28 +13,40 @@ const Wrapper = styled.div<{ bgColor?: string }>`
   background-color: ${(props) =>
     props.bgColor ? props.bgColor : props.theme.bgColor};
   z-index: 10;
+  font-size: 2.4rem;
 `;
 const Body = styled.div`
   display: flex;
   align-items: center;
   margin-left: 160px;
   margin-right: 160px;
-  font-size: 1.5rem;
+  @media screen and (max-width: 1300px) {
+    margin-left: 40px;
+    margin-right: 40px;
+  }
 `;
 const Img = styled.img`
   width: 170px;
   height: 36px;
-  margin-right: auto;
   cursor: pointer;
 `;
 const Items = styled.div`
   display: flex;
+  margin-left: auto;
 `;
 const Item = styled(motion(Link))`
+  position: relative;
   text-decoration: none;
   color: ${(props) => props.theme.textColor};
   margin-left: 1em;
   cursor: pointer;
+`;
+const UnderLine = styled(motion.div)`
+  position: absolute;
+  bottom: 15px;
+  width: 100%;
+  height: 2px;
+  background-color: white;
 `;
 
 const itemVars: Variants = {
@@ -50,11 +63,10 @@ interface headerProps {
 }
 
 export default function Header({ bgColor }: headerProps) {
-  //   const navigate = useNavigate();
+  const navigate = useRouter();
   const goHome = () => {
-    // navigate("/");
+    navigate.push("/");
   };
-
   return (
     <Wrapper bgColor={bgColor ? bgColor : undefined}>
       <Body>
@@ -68,6 +80,9 @@ export default function Header({ bgColor }: headerProps) {
             initial="initial"
           >
             Members
+            {navigate.pathname === "/members" ? (
+              <UnderLine layoutId="underline" />
+            ) : null}
           </Item>
           <Item
             href="/album"
@@ -76,6 +91,9 @@ export default function Header({ bgColor }: headerProps) {
             initial="initial"
           >
             Album
+            {navigate.pathname === "/album" ? (
+              <UnderLine layoutId="underline" />
+            ) : null}
           </Item>
           <Item
             href="/boards"
@@ -84,6 +102,9 @@ export default function Header({ bgColor }: headerProps) {
             initial="initial"
           >
             Boards
+            {navigate.pathname === "/boards" ? (
+              <UnderLine layoutId="underline" />
+            ) : null}
           </Item>
           <Item
             href="/intranet"
@@ -92,6 +113,9 @@ export default function Header({ bgColor }: headerProps) {
             initial="initial"
           >
             Intranet
+            {navigate.pathname === "/intranet" ? (
+              <UnderLine layoutId="underline" />
+            ) : null}
           </Item>
           <Item
             href="/mypage"
@@ -100,6 +124,9 @@ export default function Header({ bgColor }: headerProps) {
             initial="initial"
           >
             MyPage
+            {navigate.pathname === "/mypage" ? (
+              <UnderLine layoutId="underline" />
+            ) : null}
           </Item>
         </Items>
       </Body>
