@@ -1,7 +1,5 @@
-import SideBar from "@/components/SideBar";
+import SideBar from "../components/SideBar";
 import styled from "styled-components";
-import Footer from "../components/Footer";
-import Header from "../components/Header";
 import PageTitle from "../components/PageTitle";
 
 const Wrapper = styled.div`
@@ -14,7 +12,7 @@ const Body = styled.div`
   padding: 100px 160px 0 160px;
   width: 100vw;
   box-sizing: border-box;
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1440px) {
     padding: 50px 40px 0 40px;
   }
 `;
@@ -41,7 +39,6 @@ const MemberCard = styled.div`
 function Members() {
   return (
     <>
-      <Header />
       <Wrapper>
         <PageTitle pageTitle="Members" />
         <Body>

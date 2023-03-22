@@ -3,10 +3,12 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { HiLightBulb } from "react-icons/hi";
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
-import Header from "@/components/Header";
+import { useRecoilValue } from "recoil";
+import { isDarkState } from "@src/atoms";
 
-const Background = styled.div<{ bgurl: string }>`
+const Background = styled.div<{ bgurl: string; isdark: string }>`
   position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
   background-image: url(${(props) => props.bgurl});
@@ -23,11 +25,11 @@ const Body = styled.div`
   position: absolute;
   top: 25vh;
   left: 160px;
-  @media screen and (max-width: 1300px) {
+  color: white;
+  @media screen and (max-width: 1440px) {
     left: 40px;
   }
 `;
-
 const Notice = styled.div`
   display: flex;
   align-items: center;
@@ -35,7 +37,6 @@ const Notice = styled.div`
   width: 500px;
   font-size: 2.5rem;
 `;
-
 const Title = styled.div`
   display: flex;
   flex-direction: column;
@@ -110,6 +111,7 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [allPage, setAllPage] = useState(5);
   const [bgImgs, setBgImgs] = useState(["background1.jpg", "background2.jpg"]);
+  const isDark = useRecoilValue(isDarkState);
 
   const bg = () => {
     switch (page) {
@@ -147,8 +149,7 @@ export default function Home() {
 
   return (
     <>
-      <Header bgColor="transparent" />
-      <Background bgurl={bg()} />
+      <Background bgurl={bg()} isdark={String(isDark)} />
       <Body>
         <Notice>
           <HiLightBulb size={40} color="yellow" />

@@ -15,6 +15,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 50px;
   background-color: ${(props) => props.theme.color2};
+  color: white;
 `;
 
 const Sns = styled.div`
@@ -22,7 +23,7 @@ const Sns = styled.div`
   justify-content: space-between;
   margin-left: 160px;
   width: 100px;
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1440px) {
     margin-left: 40px;
   }
 `;
@@ -33,7 +34,7 @@ const Info = styled.div`
   display: flex;
   text-align: right;
   flex-direction: column;
-  @media screen and (max-width: 1300px) {
+  @media screen and (max-width: 1440px) {
     margin-right: 40px;
   }
 `;
