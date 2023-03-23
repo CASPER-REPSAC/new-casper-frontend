@@ -22,6 +22,7 @@ const Cards = styled.div`
   height: 23vw;
   width: 100%;
   display: grid;
+  gap: 3px;
   grid-template-columns: repeat(6, 1fr);
   box-sizing: border-box;
 `;
@@ -29,8 +30,7 @@ const MemberCard = styled.div`
   transform: skewX(-18deg);
   height: 100%;
   width: 100%;
-  border-right: 1px solid #787d82;
-  border-left: 1px solid #787d82;
+
   background-color: ${(props) => props.theme.color1};
   opacity: 0.4;
   margin: 0;
