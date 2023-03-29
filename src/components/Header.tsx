@@ -12,7 +12,6 @@ const Wrapper = styled.div<{ isdark: string }>`
   height: 70px;
   line-height: 70px;
   border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-
   background-color: rgba(255, 255, 255, 0);
   z-index: 10;
   font-size: 2.4rem;
@@ -58,17 +57,16 @@ const Switch = styled(motion.div)<{ isdark: String; ishome: string }>`
   align-items: center;
   justify-content: ${(props) =>
     props.isdark === "true" ? "flex-start" : "flex-end"};
-  width: 40px;
-  height: 30px;
-  padding-left: 10px;
-  padding-right: 10px;
-
-  border: 1px solid
+  width: 60px;
+  height: 0px;
+  border-top: 1px solid
+    ${(props) => (props.ishome === "true" ? "white" : props.theme.textColor)};
+  border-bottom: 1px solid
     ${(props) => (props.ishome === "true" ? "white" : props.theme.textColor)};
   cursor: pointer;
 `;
 
-const Circle = styled(motion.div)<{ ishome: string }>`
+const Rect = styled(motion.div)<{ ishome: string }>`
   width: 20px;
   height: 20px;
   background-color: ${(props) =>
@@ -109,9 +107,9 @@ export default function Header({ bgColor }: headerProps) {
     <Wrapper isdark={String(!(isDark || isHome))}>
       <Body>
         {isDarkHome ? (
-          <Img src="casper_logo_white.png" onClick={goHome} />
+          <Img src="/casper_logo_white.png" onClick={goHome} />
         ) : (
-          <Img src="casper_logo_black.png" onClick={goHome} />
+          <Img src="/casper_logo_black.png" onClick={goHome} />
         )}
         <Items>
           <Switch
@@ -119,7 +117,7 @@ export default function Header({ bgColor }: headerProps) {
             ishome={String(isHome)}
             onClick={() => setIsDark((cur) => !cur)}
           >
-            <Circle layout transition={spring} ishome={String(isHome)} />
+            <Rect layout transition={spring} ishome={String(isHome)} />
           </Switch>
           {paths.map((path, idx) => (
             <Item

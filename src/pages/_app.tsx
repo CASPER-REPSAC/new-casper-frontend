@@ -8,7 +8,7 @@ import Theme from "@src/components/Theme";
 
 const Wrapper = styled.div`
   position: relative;
-  height: 100vh;
+  min-height: 100vh;
 `;
 
 export default function App({ Component, pageProps }: AppProps) {
