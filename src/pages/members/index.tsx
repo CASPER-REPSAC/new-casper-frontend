@@ -1,6 +1,7 @@
-import SideBar from "../components/SideBar";
+import SideBar from "../../components/SideBar";
 import styled from "styled-components";
-import PageTitle from "../components/PageTitle";
+import PageTitle from "../../components/PageTitle";
+import { useRouter } from "next/router";
 
 const Wrapper = styled.div`
   position: relative;
@@ -37,25 +38,27 @@ const MemberCard = styled.div`
 `;
 
 function Members() {
+  const router = useRouter();
+  router.push("/members/활동");
+
   return (
-    <>
-      <Wrapper>
-        <PageTitle pageTitle="Members" />
-        <Body>
-          <SideBar menus={["활동", "휴학생", "졸업생"]} />
-          <Cards>
-            <MemberCard />
-            <MemberCard />
-            <MemberCard />
-            <MemberCard />
-            <MemberCard />
-            <MemberCard />
-            <MemberCard />
-            <MemberCard />
-          </Cards>
-        </Body>
-      </Wrapper>
-    </>
+    <Wrapper>
+      <PageTitle pageTitle="Members" />
+      <Body>
+        <SideBar menus={["활동", "휴학생", "졸업생"]} basePath="/members" />
+
+        <Cards>
+          <MemberCard />
+          <MemberCard />
+          <MemberCard />
+          <MemberCard />
+          <MemberCard />
+          <MemberCard />
+          <MemberCard />
+          <MemberCard />
+        </Cards>
+      </Body>
+    </Wrapper>
   );
 }
 
