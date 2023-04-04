@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  height: 100%;
   min-width: 230px;
   border-right: 1px solid ${(props) => props.theme.color2};
   border-left: 1px solid ${(props) => props.theme.color2};
@@ -15,7 +16,7 @@ const Item = styled.div`
   position: relative;
   display: flex;
   padding: 1em;
-  height: 50px;
+  height: 30px;
   font-size: 2rem;
   align-items: center;
 `;
@@ -42,13 +43,21 @@ function SideBar({ menus, basePath }: SideBarProps) {
   const router = useRouter();
   const { status } = router.query;
 
+  const menuToUrl: { [key: string]: string } = {
+    "활동 중": "active",
+    휴학생: "rest",
+    졸업생: "graduate",
+  };
+
   return (
     <Wrapper>
       {menus.map((menu, idx) => (
-        <StyledLink key={idx} href={`${basePath}/${menu}`}>
+        <StyledLink key={idx} href={`${basePath}/${menuToUrl[menu]}`}>
           <Item>
             {menu}
-            {status === menu ? <Highlight layoutId="highlight" /> : null}
+            {status === menuToUrl[menu] ? (
+              <Highlight layoutId="highlight" />
+            ) : null}
           </Item>
         </StyledLink>
       ))}

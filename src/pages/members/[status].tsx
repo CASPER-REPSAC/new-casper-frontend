@@ -45,7 +45,7 @@ function Members() {
     <Wrapper>
       <PageTitle pageTitle="Members" />
       <Body>
-        <SideBar menus={["활동", "휴학생", "졸업생"]} basePath="/members" />
+        <SideBar menus={["활동 중", "휴학생", "졸업생"]} basePath="/members" />
         <Cards>
           <MemberCard />
           <MemberCard />

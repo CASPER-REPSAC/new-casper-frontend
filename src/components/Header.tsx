@@ -98,6 +98,7 @@ export default function Header({ bgColor }: headerProps) {
   const paths = ["members", "album", "boards", "intranet", "mypage"];
   const isHome = navigate.pathname === "/";
   const isDarkHome = isDark || isHome;
+  const basePath = navigate.pathname.split("/")[1];
 
   const goHome = () => {
     navigate.push("/");
@@ -106,12 +107,15 @@ export default function Header({ bgColor }: headerProps) {
   return (
     <Wrapper isdark={String(!(isDark || isHome))}>
       <Body>
+        {/* 좌측 Logo */}
         {isDarkHome ? (
           <Img src="/casper_logo_white.png" onClick={goHome} />
         ) : (
           <Img src="/casper_logo_black.png" onClick={goHome} />
         )}
+
         <Items>
+          {/* 다크모드 버튼 */}
           <Switch
             isdark={String(isDark)}
             ishome={String(isHome)}
@@ -119,6 +123,8 @@ export default function Header({ bgColor }: headerProps) {
           >
             <Rect layout transition={spring} ishome={String(isHome)} />
           </Switch>
+
+          {/* 네비게이션 */}
           {paths.map((path, idx) => (
             <Item
               key={idx}
@@ -129,7 +135,7 @@ export default function Header({ bgColor }: headerProps) {
               ishome={String(isHome)}
             >
               {path}
-              {navigate.pathname === `/${path}` ? (
+              {basePath === `${path}` ? (
                 <UnderLine layoutId="underline" />
               ) : null}
             </Item>

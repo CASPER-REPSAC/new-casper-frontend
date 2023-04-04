@@ -8,8 +8,6 @@ const Wrapper = styled.div`
   width: 100vw;
 `;
 const Body = styled.div`
-  display: flex;
-  justify-content: space-between;
   padding: 100px 160px 0 160px;
   width: 100vw;
   box-sizing: border-box;

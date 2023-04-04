@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -25,11 +26,16 @@ interface pageTitleProps {
 }
 
 function PageTitle({ pageTitle }: pageTitleProps) {
+  const router = useRouter();
+
+  const path = router.asPath.replaceAll("/", " > ");
+
   return (
     <Wrapper>
       <Title>{pageTitle}</Title>
       <Sub>
-        홈 {">"} {pageTitle}
+        {"홈"}
+        {path}
       </Sub>
     </Wrapper>
   );
