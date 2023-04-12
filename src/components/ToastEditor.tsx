@@ -7,7 +7,7 @@ import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  height: 80vh;
+  height: 60vh;
 `;
 
 export default function ToastEditor() {
@@ -24,6 +24,7 @@ export default function ToastEditor() {
       editorElement?.classList.remove("toastui-editor-dark");
     }
     console.log(editorRef.current);
+    console.log(document.getElementsByClassName("ProseMirror"));
   }, [editorRef, isDark]);
 
   return (

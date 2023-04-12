@@ -38,24 +38,32 @@ interface SideBarProps {
   menus: string[];
   basePath: string;
 }
+interface ImenuToUrl {
+  [key: string]: string;
+}
 
 function SideBar({ menus, basePath }: SideBarProps) {
   const router = useRouter();
-  const { status } = router.query;
+  const { member_type, board_type } = router.query;
 
-  const menuToUrl: { [key: string]: string } = {
+  const menuToUrl: ImenuToUrl = {
     "활동 중": "active",
     휴학생: "rest",
     졸업생: "graduate",
+    공지사항: "notice_board",
+    "정회원 게시판": "full_member_board",
+    "준회원 게시판": "associate_member_board",
+    "졸업생 게시판": "graduate_board",
   };
 
   return (
     <Wrapper>
       {menus.map((menu, idx) => (
-        <StyledLink key={idx} href={`${basePath}/${menuToUrl[menu]}`}>
+        <StyledLink key={idx} href={`/${basePath}/${menuToUrl[menu]}`}>
           <Item>
             {menu}
-            {status === menuToUrl[menu] ? (
+            {member_type === menuToUrl[menu] ||
+            board_type === menuToUrl[menu] ? (
               <Highlight layoutId="highlight" />
             ) : null}
           </Item>

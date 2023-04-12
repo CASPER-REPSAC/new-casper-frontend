@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
+  background-color: ${({ theme }) => theme.color1};
   height: 120px;
   width: 100vw;
   border-top: 1px solid ${(props) => props.theme.textColor};
@@ -12,6 +13,10 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1em;
+  margin-bottom: 110px;
+  @media screen and (max-width: 1440px) {
+    margin-bottom: 50px;
+  }
 `;
 const Title = styled.div`
   font-size: 4.8rem;

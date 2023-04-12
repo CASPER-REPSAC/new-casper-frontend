@@ -8,11 +8,11 @@ const Wrapper = styled.div`
   width: 100vw;
 `;
 const Body = styled.div`
-  padding: 100px 160px 0 160px;
+  padding: 0 160px 0 160px;
   width: 100vw;
   box-sizing: border-box;
   @media screen and (max-width: 1440px) {
-    padding: 50px 40px 0 40px;
+    padding: 0 40px 0 40px;
   }
 `;
 const Cards = styled.div`

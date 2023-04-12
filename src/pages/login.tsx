@@ -1,4 +1,5 @@
 import { isDarkState } from "@src/atoms";
+import Button from "@src/components/Button";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useContext } from "react";
@@ -19,6 +20,7 @@ const Wrapper = styled.div`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 const Input = styled(motion.input)`
   :focus {
@@ -35,12 +37,7 @@ const Input = styled(motion.input)`
   font-size: 1.5rem;
   box-sizing: border-box;
 `;
-const InputButton = styled(Input)`
-  background-color: ${(props) => props.theme.color2};
-  margin-top: 2em;
-  padding: 0;
-  cursor: pointer;
-`;
+
 const Img = styled(Image)`
   height: auto !important;
   position: relative !important;
@@ -106,14 +103,12 @@ export default function Login() {
             {...register("pw", { required: true })}
           ></Input>
         </Row>
-
-        <InputButton
-          type={"submit"}
-          value="Login"
-          whileHover={{
-            filter: "brightness(0.9)",
-          }}
-        />
+        <Button
+          text="로그인"
+          width="400px"
+          height="50px"
+          onClick={() => {}}
+        ></Button>
       </Form>
     </Wrapper>
   );
