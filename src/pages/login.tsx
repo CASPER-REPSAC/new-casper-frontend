@@ -105,8 +105,7 @@ export default function Login() {
         </Row>
         <Button
           text="로그인"
-          width="400px"
-          height="50px"
+          style={{ width: "400px", height: "50px" }}
           onClick={() => {}}
         ></Button>
       </Form>

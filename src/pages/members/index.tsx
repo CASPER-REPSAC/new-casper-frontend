@@ -7,7 +7,7 @@ const Wrapper = styled.div`
   position: relative;
   width: 100vw;
 `;
-const Body = styled.div`
+const Main = styled.div`
   padding: 0 160px 0 160px;
   width: 100vw;
   box-sizing: border-box;
@@ -39,25 +39,7 @@ function Members() {
   const router = useRouter();
   router.push("/members/active");
 
-  return (
-    <Wrapper>
-      <PageTitle pageTitle="Members" />
-      <Body>
-        <SideBar menus={["활동 중", "휴학생", "졸업생"]} basePath="/members" />
-
-        <Cards>
-          <MemberCard />
-          <MemberCard />
-          <MemberCard />
-          <MemberCard />
-          <MemberCard />
-          <MemberCard />
-          <MemberCard />
-          <MemberCard />
-        </Cards>
-      </Body>
-    </Wrapper>
-  );
+  return <Wrapper></Wrapper>;
 }
 
 export default Members;

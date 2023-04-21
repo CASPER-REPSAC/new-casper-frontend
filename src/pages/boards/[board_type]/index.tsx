@@ -5,28 +5,22 @@ import Link from "next/link";
 import SideBar from "@src/components/SideBar";
 import { useRouter } from "next/router";
 import Button from "@src/components/Button";
+import PageWrapper from "@src/components/PageWrapper";
 
 // const Editor = dynamic(() => import("@src/components/ToastEditor"), {
 //   ssr: false,
 // });
 
 const Main = styled.div`
-  padding-left: 160px;
-  padding-right: 160px;
-  @media screen and (max-width: 1440px) {
-    padding-left: 40px;
-    padding-right: 40px;
-  }
   display: flex;
 `;
 
 const Table = styled.table`
-  width: 100%;
   font-size: 1.6rem;
+  width: 100%;
+  margin-bottom: 2em;
 `;
 const Board = styled.div`
-  display: flex;
-  flex-direction: column;
   width: 100%;
 `;
 const Thead = styled.thead`
@@ -38,6 +32,9 @@ const Thead = styled.thead`
 `;
 const Tbody = styled.tbody`
   font-size: 1.6rem;
+  Tr {
+    cursor: pointer;
+  }
 `;
 const Tr = styled.tr`
   height: 2.4em;
@@ -47,21 +44,26 @@ const Tr = styled.tr`
 const TdCenter = styled.td`
   text-align: center;
 `;
+const TableFooter = styled.div`
+  position: relative;
+  display: flex;
+  width: 100%;
+`;
 
-function Boards() {
+function BoardPage() {
   const router = useRouter();
   const { board_type } = router.query;
   const onClickWrite = () => {
     router.push(`/boards/${board_type}/posts`);
   };
   return (
-    <>
+    <PageWrapper>
       <PageTitle pageTitle="Boards"></PageTitle>
+      <SideBar
+        menus={["공지사항", "정회원 게시판", "준회원 게시판"]}
+        basePath="/boards"
+      ></SideBar>
       <Main>
-        <SideBar
-          menus={["공지사항", "정회원 게시판", "준회원 게시판"]}
-          basePath="boards"
-        ></SideBar>
         <Board>
           <Table>
             <Thead>
@@ -74,35 +76,33 @@ function Boards() {
               </Tr>
             </Thead>
             <Tbody>
-              <Tr>
-                <TdCenter>1</TdCenter>
-                <td>첫 번째 게시글 입니다.</td>
-                <TdCenter>박지성</TdCenter>
-                <TdCenter>2023.01.01</TdCenter>
-                <TdCenter>101</TdCenter>
-              </Tr>
-              <Tr>
-                <TdCenter>2</TdCenter>
-                <td>두 번째 게시글 입니다.</td>
-                <TdCenter>박지성</TdCenter>
-                <TdCenter>2023.01.01</TdCenter>
-                <TdCenter>101</TdCenter>
-              </Tr>
-              <Tr>
-                <TdCenter>3</TdCenter>
-                <td>세 번째 게시글 입니다.</td>
-                <TdCenter>박지성</TdCenter>
-                <TdCenter>2023.01.01</TdCenter>
-                <TdCenter>101</TdCenter>
-              </Tr>
+              {[1, 2, 3].map((val, idx) => (
+                <Tr
+                  key={idx}
+                  onClick={() => {
+                    router.push(`/boards/${board_type}/${val}`);
+                  }}
+                >
+                  <TdCenter>{val}</TdCenter>
+                  <td>{val}번째 게시글 입니다.</td>
+                  <TdCenter>박지성</TdCenter>
+                  <TdCenter>2023.01.01</TdCenter>
+                  <TdCenter>101</TdCenter>
+                </Tr>
+              ))}
             </Tbody>
-            <tfoot></tfoot>
           </Table>
-          <Button onClick={onClickWrite} text="작성"></Button>
+          <TableFooter>
+            <Button
+              onClick={onClickWrite}
+              text="작성"
+              style={{ position: "absolute", right: 0 }}
+            ></Button>
+          </TableFooter>
         </Board>
       </Main>
-    </>
+    </PageWrapper>
   );
 }
 
-export default Boards;
+export default BoardPage;

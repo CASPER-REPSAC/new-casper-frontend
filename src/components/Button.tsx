@@ -1,4 +1,4 @@
-import { Variants, motion } from "framer-motion";
+import { MotionStyle, Variants, motion } from "framer-motion";
 import { MouseEventHandler } from "react";
 import styled from "styled-components";
 
@@ -14,8 +14,7 @@ const Wrapper = styled(motion.button)`
 
 interface IButton {
   text: string;
-  width?: string;
-  height?: string;
+  style?: MotionStyle;
   onClick?: MouseEventHandler<HTMLButtonElement>;
 }
 const buttonVars: Variants = {
@@ -24,13 +23,13 @@ const buttonVars: Variants = {
   },
 };
 
-function Button({ text, width, height, onClick }: IButton) {
+function Button({ text, style, onClick }: IButton) {
   return (
     <Wrapper
       variants={buttonVars}
       onClick={onClick}
       whileHover={"hover"}
-      style={{ width, height }}
+      style={style}
     >
       {text}
     </Wrapper>

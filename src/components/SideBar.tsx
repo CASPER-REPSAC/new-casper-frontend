@@ -1,13 +1,16 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  display: flex;
+  display: inline;
   flex-direction: column;
+  float: left;
   height: 100%;
   min-width: 230px;
+  width: 230px;
   border-right: 1px solid ${(props) => props.theme.color2};
   border-left: 1px solid ${(props) => props.theme.color2};
   margin-right: 50px;
@@ -59,7 +62,7 @@ function SideBar({ menus, basePath }: SideBarProps) {
   return (
     <Wrapper>
       {menus.map((menu, idx) => (
-        <StyledLink key={idx} href={`/${basePath}/${menuToUrl[menu]}`}>
+        <StyledLink key={idx} href={`${basePath}/${menuToUrl[menu]}`}>
           <Item>
             {menu}
             {member_type === menuToUrl[menu] ||
@@ -73,4 +76,4 @@ function SideBar({ menus, basePath }: SideBarProps) {
   );
 }
 
-export default SideBar;
+export default React.memo(SideBar);

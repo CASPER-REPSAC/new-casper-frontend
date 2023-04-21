@@ -4,6 +4,7 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
+import NavItem from "./NavItem";
 
 const Wrapper = styled.div<{ isdark: string }>`
   position: relative;
@@ -36,21 +37,6 @@ const Items = styled.div`
   margin-left: auto;
   align-items: center;
 `;
-const Item = styled(motion(Link))<{ ishome: string }>`
-  position: relative;
-  text-decoration: none;
-  margin-left: 1em;
-  cursor: pointer;
-  color: ${(props) =>
-    props.ishome === "true" ? "white" : props.theme.textColor};
-`;
-const UnderLine = styled(motion.div)`
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  height: 2px;
-  background-color: ${(props) => props.theme.textColor};
-`;
 
 const Switch = styled(motion.div)<{ isdark: String; ishome: string }>`
   display: flex;
@@ -73,15 +59,6 @@ const Rect = styled(motion.div)<{ ishome: string }>`
     props.ishome === "true" ? "white" : props.theme.textColor};
 `;
 
-const itemVars: Variants = {
-  initial: {
-    opacity: 0.4,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
-
 interface headerProps {
   bgColor?: string;
 }
@@ -94,18 +71,17 @@ const spring = {
 
 export default function Header({ bgColor }: headerProps) {
   const [isDark, setIsDark] = useRecoilState(isDarkState);
-  const navigate = useRouter();
-  const paths = ["members", "album", "boards", "intranet", "mypage"];
-  const isHome = navigate.pathname === "/";
+  const router = useRouter();
+  const isHome = router.pathname === "/";
   const isDarkHome = isDark || isHome;
-  const basePath = navigate.pathname.split("/")[1];
+  const basePath = router.pathname.split("/")[1];
 
   const goHome = () => {
-    navigate.push("/");
+    router.push("/");
   };
 
   return (
-    <Wrapper isdark={String(!(isDark || isHome))}>
+    <Wrapper isdark={String(!isDarkHome)}>
       <Body>
         {/* 좌측 Logo */}
         {isDarkHome ? (
@@ -125,21 +101,12 @@ export default function Header({ bgColor }: headerProps) {
           </Switch>
 
           {/* 네비게이션 */}
-          {paths.map((path, idx) => (
-            <Item
-              key={idx}
-              href={`/${path}`}
-              variants={itemVars}
-              whileHover="animate"
-              initial="initial"
-              ishome={String(isHome)}
-            >
-              {path}
-              {basePath === `${path}` ? (
-                <UnderLine layoutId="underline" />
-              ) : null}
-            </Item>
-          ))}
+          <NavItem text="Members" path="/members/active" basePath={basePath} />
+          <NavItem
+            text="Boards"
+            path="/boards/notice_board"
+            basePath={basePath}
+          />
         </Items>
       </Body>
     </Wrapper>

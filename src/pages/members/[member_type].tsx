@@ -2,20 +2,11 @@ import SideBar from "../../components/SideBar";
 import styled from "styled-components";
 import PageTitle from "../../components/PageTitle";
 import { useRouter } from "next/router";
+import PageWrapper from "@src/components/PageWrapper";
 
-const Wrapper = styled.div`
-  position: relative;
-  width: 100vw;
-`;
-const Body = styled.div`
+const Main = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 160px 0 160px;
-  width: 100vw;
-  box-sizing: border-box;
-  @media screen and (max-width: 1440px) {
-    padding: 0 40px 0 40px;
-  }
 `;
 const Cards = styled.div`
   margin-left: 30px;
@@ -39,13 +30,12 @@ const MemberCard = styled.div`
 
 function Members() {
   const router = useRouter();
-  const { status } = router.query;
 
   return (
-    <Wrapper>
+    <PageWrapper>
       <PageTitle pageTitle="Members" />
-      <Body>
-        <SideBar menus={["활동 중", "휴학생", "졸업생"]} basePath="/members" />
+      <SideBar menus={["활동 중", "휴학생", "졸업생"]} basePath="/members" />
+      <Main>
         <Cards>
           <MemberCard />
           <MemberCard />
@@ -56,8 +46,8 @@ function Members() {
           <MemberCard />
           <MemberCard />
         </Cards>
-      </Body>
-    </Wrapper>
+      </Main>
+    </PageWrapper>
   );
 }
 
