@@ -16,7 +16,11 @@ const Wrapper = styled.div`
     padding-right: 40px;
   }
 `;
-const Form = styled.form``;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+`;
 const Label = styled.label`
   font-size: 2rem;
 `;
@@ -26,7 +30,7 @@ const Input = styled.input`
   background-color: inherit;
   width: 100%;
   color: ${({ theme }) => theme.textColor};
-  font-size: 2rem;
+  font-size: 3rem;
   height: 40px;
   margin-bottom: 20px;
 `;
@@ -36,13 +40,20 @@ function PostPage() {
   return (
     <Wrapper>
       <Form>
-        <Label htmlFor="title">제목</Label>
         <Input
           {...register("title", { required: true })}
           placeholder="제목을 입력해주세요."
         />
         <Editor />
-        <Button text="작성하기" />
+        <Button
+          text="작성하기"
+          style={{
+            alignSelf: "flex-end",
+            right: 0,
+            bottom: 0,
+            marginTop: "1em",
+          }}
+        />
       </Form>
     </Wrapper>
   );

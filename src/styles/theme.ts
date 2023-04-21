@@ -10,8 +10,8 @@ export const darkTheme: DefaultTheme = {
 
 export const lightTheme: DefaultTheme = {
   bgColor: "white",
-  color1: "rgb(247, 247,247)", // 진함
-  color2: "rgb(188, 188,188)", // 연함
+  color1: "rgb(247, 249,252)", // 진함
+  color2: "rgb(182, 220,247)", // 연함
   textColor: "rgb(55,55,55)",
   liquid: "rgba(55,55,55,0.4)",
 };
