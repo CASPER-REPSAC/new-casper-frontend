@@ -3,17 +3,18 @@ import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { Editor } from "@toast-ui/react-editor";
 import { useRecoilValue } from "recoil";
 import { isDarkState } from "@src/atoms";
-import { useEffect, useRef } from "react";
+import { forwardRef, useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
-  height: 60vh;
+  height: 100%;
 `;
 
-export default function ToastEditor() {
+function ToastEditor() {
   const isDark = useRecoilValue(isDarkState);
   const editorRef = useRef<Editor>(null);
 
+  // dark mode 제어
   useEffect(() => {
     const editorElement = editorRef.current
       ?.getRootElement()
@@ -23,8 +24,6 @@ export default function ToastEditor() {
     } else {
       editorElement?.classList.remove("toastui-editor-dark");
     }
-    console.log(editorRef.current);
-    console.log(document.getElementsByClassName("ProseMirror"));
   }, [editorRef, isDark]);
 
   return (
@@ -40,3 +39,5 @@ export default function ToastEditor() {
     </Wrapper>
   );
 }
+
+export default ToastEditor;

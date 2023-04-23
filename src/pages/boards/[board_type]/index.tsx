@@ -7,9 +7,9 @@ import { useRouter } from "next/router";
 import Button from "@src/components/Button";
 import PageWrapper from "@src/components/PageWrapper";
 
-// const Editor = dynamic(() => import("@src/components/ToastEditor"), {
-//   ssr: false,
-// });
+/**
+ *  게시판 메인 페이지
+ */
 
 const Main = styled.div`
   display: flex;
@@ -95,7 +95,7 @@ function BoardPage() {
           <TableFooter>
             <Button
               onClick={onClickWrite}
-              text="작성"
+              text="작성하기"
               style={{ position: "absolute", right: 0 }}
             ></Button>
           </TableFooter>
