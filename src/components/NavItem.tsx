@@ -29,13 +29,13 @@ const itemVars: Variants = {
 interface INavItem {
   text: string;
   path: string;
-  basePath: string;
 }
 
-function NavItem({ text, path, basePath }: INavItem) {
+function NavItem({ text, path }: INavItem) {
   const router = useRouter();
   const isHome = router.pathname === "/";
   const rootPath = path.split("/")[1]; // 루트 다음 최상위 경로
+  const basePath = router.pathname.split("/")[1];
 
   return (
     <Item

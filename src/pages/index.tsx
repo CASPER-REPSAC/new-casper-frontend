@@ -6,7 +6,7 @@ import { useState } from "react";
 import { useRecoilValue } from "recoil";
 import { isDarkState } from "@src/atoms";
 
-const Background = styled.div<{ bgurl: string; isdark: string }>`
+const Background = styled.div<{ bgurl: string }>`
   position: fixed;
   top: 0;
   width: 100vw;
@@ -111,19 +111,8 @@ export default function Home() {
   const [page, setPage] = useState(1);
   const [allPage, setAllPage] = useState(5);
   const [bgImgs, setBgImgs] = useState(["background1.jpg", "background2.jpg"]);
-  const isDark = useRecoilValue(isDarkState);
 
-  const bg = () => {
-    switch (page) {
-      case 1:
-        return bgImgs[0];
-      case 2:
-        return bgImgs[1];
-
-      default:
-        return bgImgs[0];
-    }
-  };
+  console.log(bgImgs[page - 1]);
 
   const nextPage = () => {
     setPage((curPage) => {
@@ -149,7 +138,7 @@ export default function Home() {
 
   return (
     <>
-      <Background bgurl={bg()} isdark={String(isDark)} />
+      <Background bgurl={bgImgs[page - 1]} />
       <Body>
         <Notice>
           <HiLightBulb size={40} color="yellow" />

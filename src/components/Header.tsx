@@ -5,8 +5,9 @@ import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";
 import styled from "styled-components";
 import NavItem from "./NavItem";
+import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 
-const Wrapper = styled.div<{ isdark: string }>`
+const Wrapper = styled.div`
   position: relative;
   top: 0;
   width: 100vw;
@@ -38,36 +39,16 @@ const Items = styled.div`
   align-items: center;
 `;
 
-const Switch = styled(motion.div)<{ isdark: String; ishome: string }>`
+const DarkModeButton = styled(motion.div)`
   display: flex;
   align-items: center;
-  justify-content: ${(props) =>
-    props.isdark === "true" ? "flex-start" : "flex-end"};
-  width: 60px;
-  height: 0px;
-  border-top: 1px solid
-    ${(props) => (props.ishome === "true" ? "white" : props.theme.textColor)};
-  border-bottom: 1px solid
-    ${(props) => (props.ishome === "true" ? "white" : props.theme.textColor)};
+  justify-content: center;
   cursor: pointer;
-`;
-
-const Rect = styled(motion.div)<{ ishome: string }>`
-  width: 20px;
-  height: 20px;
-  background-color: ${(props) =>
-    props.ishome === "true" ? "white" : props.theme.textColor};
 `;
 
 interface headerProps {
   bgColor?: string;
 }
-
-const spring = {
-  type: "spring",
-  stiffness: 700,
-  damping: 30,
-};
 
 export default function Header({ bgColor }: headerProps) {
   const [isDark, setIsDark] = useRecoilState(isDarkState);
@@ -81,7 +62,7 @@ export default function Header({ bgColor }: headerProps) {
   };
 
   return (
-    <Wrapper isdark={String(!isDarkHome)}>
+    <Wrapper>
       <Body>
         {/* 좌측 Logo */}
         {isDarkHome ? (
@@ -92,21 +73,18 @@ export default function Header({ bgColor }: headerProps) {
 
         <Items>
           {/* 다크모드 버튼 */}
-          <Switch
-            isdark={String(isDark)}
-            ishome={String(isHome)}
-            onClick={() => setIsDark((cur) => !cur)}
-          >
-            <Rect layout transition={spring} ishome={String(isHome)} />
-          </Switch>
+          <DarkModeButton onClick={() => setIsDark((cur) => !cur)}>
+            {isDark ? (
+              <BsFillMoonFill></BsFillMoonFill>
+            ) : (
+              <BsFillSunFill color={isHome ? "white" : "black"}></BsFillSunFill>
+            )}
+          </DarkModeButton>
 
           {/* 네비게이션 */}
-          <NavItem text="Members" path="/members/active" basePath={basePath} />
-          <NavItem
-            text="Boards"
-            path="/boards/notice_board"
-            basePath={basePath}
-          />
+          <NavItem text="Members" path="/members/active" />
+          <NavItem text="Boards" path="/boards/notice_board" />
+          <NavItem text="Login" path="/login" />
         </Items>
       </Body>
     </Wrapper>

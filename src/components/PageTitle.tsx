@@ -47,7 +47,7 @@ function PageTitle({ pageTitle }: pageTitleProps) {
         {path}
       </Sub>
     </Wrapper>
-  );
+);
 }
 
 export default PageTitle;
