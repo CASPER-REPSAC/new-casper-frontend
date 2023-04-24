@@ -1,11 +1,12 @@
 import PageTitle from "@src/components/PageTitle";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 import SideBar from "@src/components/SideBar";
 import { useRouter } from "next/router";
 import Button from "@src/components/Button";
 import PageWrapper from "@src/components/PageWrapper";
+import { Variants, motion } from "framer-motion";
 
 /**
  *  게시판 메인 페이지
@@ -36,7 +37,7 @@ const Tbody = styled.tbody`
     cursor: pointer;
   }
 `;
-const Tr = styled.tr`
+const Tr = styled(motion.tr)`
   height: 2.4em;
   line-height: 2.4em;
   border-bottom: 1px solid ${({ theme }) => theme.liquid};
@@ -50,12 +51,18 @@ const TableFooter = styled.div`
   width: 100%;
 `;
 
+const trVariants: Variants = {
+  hover: {},
+};
+
 function BoardPage() {
   const router = useRouter();
   const { board_type } = router.query;
   const onClickWrite = () => {
     router.push(`/boards/${board_type}/posts`);
   };
+  const theme = useTheme();
+
   return (
     <PageWrapper>
       <PageTitle pageTitle="Boards"></PageTitle>
@@ -78,6 +85,7 @@ function BoardPage() {
             <Tbody>
               {[1, 2, 3].map((val, idx) => (
                 <Tr
+                  whileHover={{ backgroundColor: theme.liquid }}
                   key={idx}
                   onClick={() => {
                     router.push(`/boards/${board_type}/${val}`);

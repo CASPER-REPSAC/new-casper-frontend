@@ -8,10 +8,26 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   //  임시 값, 수정필요
-  padding-left: 300px;
-  padding-right: 300px;
 `;
-const Title = styled.h1``;
+const Title = styled.h1`
+  font-size: 3rem;
+  margin-bottom: 0.4em;
+`;
+const Row = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+const Item = styled.div``;
+
+const Small = styled.small`
+  margin-right: 1em;
+  font-size: 1.4rem;
+`;
+const Hr = styled.hr`
+  background: ${({ theme }) => theme.color2};
+  border: 0;
+  height: 1px;
+`;
 
 function ToastViewer() {
   const isDark = useRecoilValue(isDarkState);
@@ -30,7 +46,18 @@ function ToastViewer() {
   return (
     <Wrapper>
       <Title>제목입니다.</Title>
-
+      <Row>
+        <Item>
+          <Small>박지성</Small>
+          <Small>2023.01.01 18:12</Small>
+          <Small>조회수: 10</Small>
+        </Item>
+        <Item>
+          <Small>수정</Small>
+          <Small>삭제</Small>
+        </Item>
+      </Row>
+      <Hr />
       <Viewer
         theme="dark"
         ref={viewerRef}

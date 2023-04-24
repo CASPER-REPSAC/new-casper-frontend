@@ -41,7 +41,6 @@ const Input = styled(motion.input)`
 const Img = styled(Image)`
   height: auto !important;
   position: relative !important;
-  box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 `;
 const ImageWrapper = styled.div<{ width: string }>`
   width: ${(props) => props.width};
