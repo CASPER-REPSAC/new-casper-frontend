@@ -64,8 +64,6 @@ export default function Login() {
 
   const { register, watch, handleSubmit } = useForm<IForm>();
   const theme = useContext(ThemeContext);
-  console.log(theme);
-  console.log(watch("id"));
 
   return (
     <Wrapper>

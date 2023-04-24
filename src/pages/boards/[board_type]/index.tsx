@@ -19,7 +19,7 @@ const Main = styled.div`
 const Table = styled.table`
   font-size: 1.6rem;
   width: 100%;
-  margin-bottom: 2em;
+  margin-bottom: 1em;
 `;
 const Board = styled.div`
   width: 100%;

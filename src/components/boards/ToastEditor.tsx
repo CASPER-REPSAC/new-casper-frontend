@@ -3,7 +3,7 @@ import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import { Editor } from "@toast-ui/react-editor";
 import { useRecoilValue } from "recoil";
 import { isDarkState } from "@src/atoms";
-import { forwardRef, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled.div`
@@ -30,7 +30,6 @@ function ToastEditor() {
     <Wrapper>
       <Editor
         ref={editorRef}
-        initialValue="hello react editor world!"
         previewStyle="vertical"
         height="100%"
         initialEditType="markdown"

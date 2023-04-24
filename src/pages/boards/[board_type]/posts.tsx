@@ -10,7 +10,7 @@ import PageWrapper from "@src/components/PageWrapper";
  *  글 작성 페이지
  */
 
-const Editor = dynamic(() => import("@src/components/ToastEditor"), {
+const Editor = dynamic(() => import("@src/components/boards/ToastEditor"), {
   ssr: false,
 });
 
@@ -64,8 +64,6 @@ const Select = styled.select`
 
 function PostPage() {
   const { register, watch } = useForm();
-  console.log(watch("category"));
-  console.log(watch("subCategory"));
 
   return (
     <PageWrapper>
