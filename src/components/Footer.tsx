@@ -47,8 +47,6 @@ const Span = styled.span`
 `;
 
 function Footer() {
-  const isDark = useRecoilValue(isDarkState);
-
   return (
     <Wrapper>
       <Sns>
