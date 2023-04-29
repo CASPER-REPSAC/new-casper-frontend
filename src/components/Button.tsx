@@ -3,8 +3,8 @@ import { MouseEventHandler } from "react";
 import styled from "styled-components";
 
 const Wrapper = styled(motion.button)`
-  width: 100px;
-  height: 40px;
+  width: 80px;
+  height: 30px;
   background-color: ${({ theme }) => theme.color2};
   border: 0;
   color: ${({ theme }) => theme.textColor};

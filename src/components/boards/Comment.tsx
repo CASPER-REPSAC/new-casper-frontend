@@ -14,6 +14,7 @@ const Avatar = styled.div`
 `;
 const Body = styled.div`
   display: flex;
+  width: 100%;
   flex-direction: column;
   padding: 5px 20px 5px 20px;
 `;
@@ -34,6 +35,17 @@ const Name = styled.div`
 const Date = styled.div`
   opacity: 0.8;
 `;
+const Buttons = styled.div`
+  margin-left: auto;
+`;
+
+const Button = styled.button`
+  font-size: 1.2rem;
+  color: ${({ theme }) => theme.textColor};
+  background-color: inherit;
+  border: 0;
+  cursor: pointer;
+`;
 
 interface CommentProps {
   name: string;
@@ -49,6 +61,10 @@ function Comment({ name, date, content }: CommentProps) {
         <Header>
           <Name>{name}</Name>
           <Date>{date}</Date>
+          <Buttons>
+            <Button>수정</Button>
+            <Button>삭제</Button>
+          </Buttons>
         </Header>
         <Content>{content}</Content>
       </Body>
