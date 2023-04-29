@@ -5,6 +5,8 @@ import {
   AiOutlineGithub,
   AiOutlineCopyrightCircle,
 } from "react-icons/ai";
+import { useRecoilValue } from "recoil";
+import { isDarkState } from "@src/atoms";
 
 const Wrapper = styled.div`
   display: flex;
@@ -15,7 +17,7 @@ const Wrapper = styled.div`
   width: 100%;
   height: 50px;
   background-color: ${(props) => props.theme.color2};
-  color: white;
+  color: ${(props) => props.theme.textColor};
 `;
 
 const Sns = styled.div`
@@ -29,7 +31,7 @@ const Sns = styled.div`
 `;
 const Info = styled.div`
   margin-right: 160px;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: lighter;
   display: flex;
   text-align: right;
@@ -45,6 +47,8 @@ const Span = styled.span`
 `;
 
 function Footer() {
+  const isDark = useRecoilValue(isDarkState);
+
   return (
     <Wrapper>
       <Sns>
