@@ -1,11 +1,10 @@
-import PageTitle from "@src/components/PageTitle";
-import PageWrapper from "@src/components/PageWrapper";
-import SideBar from "@src/components/SideBar";
+import PageTitle from "@src/components/layout/PageTitle";
+import PageWrapper from "@src/components/layout/PageWrapper";
+import SideBar from "@src/components/layout/SideBar";
 import dynamic from "next/dynamic";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import "@toast-ui/editor/dist/toastui-editor.css";
-
 import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
 import Comment from "@src/components/boards/Comment";
 /**

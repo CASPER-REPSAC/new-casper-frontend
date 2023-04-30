@@ -1,9 +1,4 @@
-import {
-  Variants,
-  motion,
-  useAnimation,
-  useAnimationControls,
-} from "framer-motion";
+import { motion, useAnimationControls } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { useEffect } from "react";

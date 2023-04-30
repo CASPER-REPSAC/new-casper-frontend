@@ -1,4 +1,4 @@
-import { isDarkState } from "../atoms";
+import { isDarkState } from "@src/atoms";
 import { motion } from "framer-motion";
 import { useRouter } from "next/router";
 import { useRecoilState } from "recoil";

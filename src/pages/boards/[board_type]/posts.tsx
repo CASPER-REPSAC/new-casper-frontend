@@ -1,10 +1,10 @@
-import PageTitle from "@src/components/PageTitle";
+import PageTitle from "@src/components/layout/PageTitle";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import { useForm } from "react-hook-form";
 import Button from "@src/components/Button";
 import { useRef } from "react";
-import PageWrapper from "@src/components/PageWrapper";
+import PageWrapper from "@src/components/layout/PageWrapper";
 
 /**
  *  글 작성 페이지

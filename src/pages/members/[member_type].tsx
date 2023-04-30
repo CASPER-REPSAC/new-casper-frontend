@@ -1,8 +1,8 @@
-import SideBar from "../../components/SideBar";
+import SideBar from "@src/components/layout/SideBar";
 import styled from "styled-components";
-import PageTitle from "../../components/PageTitle";
+import PageTitle from "@src/components/layout/PageTitle";
 import { useRouter } from "next/router";
-import PageWrapper from "@src/components/PageWrapper";
+import PageWrapper from "@src/components/layout/PageWrapper";
 
 const Main = styled.div`
   display: flex;

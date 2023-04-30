@@ -3,8 +3,6 @@ import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
 import { HiLightBulb } from "react-icons/hi";
 import { motion, Variants } from "framer-motion";
 import { useState } from "react";
-import { useRecoilValue } from "recoil";
-import { isDarkState } from "@src/atoms";
 
 const Background = styled.div<{ bgurl: string }>`
   position: fixed;

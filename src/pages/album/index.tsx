@@ -1,7 +1,7 @@
-import Header from "@src/components/Header";
-import PageTitle from "@src/components/PageTitle";
-import PageWrapper from "@src/components/PageWrapper";
-import SideBar from "@src/components/SideBar";
+import Header from "@src/components/layout/Header";
+import PageTitle from "@src/components/layout/PageTitle";
+import PageWrapper from "@src/components/layout/PageWrapper";
+import SideBar from "@src/components/layout/SideBar";
 
 function Album() {
   return (

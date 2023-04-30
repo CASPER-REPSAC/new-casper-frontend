@@ -1,11 +1,11 @@
-import PageTitle from "@src/components/PageTitle";
+import PageTitle from "@src/components/layout/PageTitle";
 import styled, { useTheme } from "styled-components";
 import dynamic from "next/dynamic";
 import Link from "next/link";
-import SideBar from "@src/components/SideBar";
+import SideBar from "@src/components/layout/SideBar";
 import { useRouter } from "next/router";
 import Button from "@src/components/Button";
-import PageWrapper from "@src/components/PageWrapper";
+import PageWrapper from "@src/components/layout/PageWrapper";
 import { Variants, motion } from "framer-motion";
 
 /**

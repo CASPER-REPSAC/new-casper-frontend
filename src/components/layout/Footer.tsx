@@ -5,8 +5,6 @@ import {
   AiOutlineGithub,
   AiOutlineCopyrightCircle,
 } from "react-icons/ai";
-import { useRecoilValue } from "recoil";
-import { isDarkState } from "@src/atoms";
 
 const Wrapper = styled.div`
   display: flex;
