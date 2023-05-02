@@ -24,6 +24,7 @@ const Form = styled.form`
 `;
 const Input = styled(motion.input)`
   :focus {
+    border-color: ${({ theme }) => theme.textColor};
     outline: none;
   }
   height: 50px;
@@ -82,8 +83,7 @@ export default function Login() {
           </Label>
           <Input
             placeholder="ID를 입력해주세요."
-            autoComplete="false"
-            whileFocus={{ border: "1px solid white" }}
+            autoComplete="off"
             {...register("id", { required: true })}
           ></Input>
         </Row>
@@ -94,9 +94,8 @@ export default function Login() {
           </Label>
           <Input
             placeholder="PW를 입력해주세요."
-            autoComplete="false"
+            autoComplete="off"
             type={"password"}
-            whileFocus={{ border: "1px solid white" }}
             {...register("pw", { required: true })}
           ></Input>
         </Row>

@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 const Wrapper = styled(motion.button)`
   width: 80px;
-  height: 30px;
+  height: 34px;
   background-color: ${({ theme }) => theme.color2};
   border: 0;
   color: ${({ theme }) => theme.textColor};
