@@ -7,5 +7,6 @@ declare module "styled-components" {
     color2: string;
     textColor: string;
     liquid: string;
+    boxShadow: string;
   }
 }

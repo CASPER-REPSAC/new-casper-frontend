@@ -6,6 +6,7 @@ import styled from "styled-components";
 import NavItem from "./NavItem";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { SlLogin } from "react-icons/sl";
+import { AiOutlineUser } from "react-icons/ai";
 
 const Wrapper = styled.div`
   position: relative;
@@ -49,18 +50,6 @@ const DarkModeButton = styled(motion.div)`
   top: 20px;
   left: 20px;
 `;
-const LoginButton = styled(motion.button)`
-  border: 0;
-  background-color: inherit;
-  cursor: pointer;
-  opacity: 0.4;
-`;
-const Div = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-`;
 
 interface headerProps {
   bgColor?: string;
@@ -89,16 +78,36 @@ export default function Header({ bgColor }: headerProps) {
 
         <Items>
           {/* 네비게이션 */}
-          <NavItem path="/members/active">Members</NavItem>
-          <NavItem path="/album">Album</NavItem>
-          <NavItem path="/boards/notice_board">Boards</NavItem>
-          <NavItem path="/intranet">Intranet</NavItem>
+          <NavItem
+            path="/members/active"
+            menus={["활동 중", "휴학생", "졸업생"]}
+          >
+            Members
+          </NavItem>
+          <NavItem path="/album" menus={["2023", "2022", "2021"]}>
+            Album
+          </NavItem>
+          <NavItem
+            path="/boards/notice_board"
+            menus={["공지사항", "정회원", "준회원"]}
+          >
+            Boards
+          </NavItem>
+          <NavItem path="/intranet" menus={["Nas", "Wiki", "recruit"]}>
+            Intranet
+          </NavItem>
           <NavItem path="/login">
             <SlLogin color={isDarkHome ? "white" : "black"} size={20}></SlLogin>
           </NavItem>
+          <NavItem path="/mypage">
+            <AiOutlineUser
+              color={isDarkHome ? "white" : "black"}
+              size={24}
+            ></AiOutlineUser>
+          </NavItem>
         </Items>
       </Body>
-      {/* 다크모드 버튼 */}
+      {/* 다크모드 버튼 (임시)*/}
       <DarkModeButton onClick={() => setIsDark((cur) => !cur)}>
         {isDark ? (
           <BsFillMoonFill></BsFillMoonFill>

@@ -6,6 +6,7 @@ export const darkTheme: DefaultTheme = {
   color2: "rgb(72, 84, 96)", // 연함
   textColor: "rgb(244,244,244)",
   liquid: "rgba(72, 84, 96,0.4)",
+  boxShadow: "rgb(11,11,11)",
 };
 
 export const lightTheme: DefaultTheme = {
@@ -14,4 +15,5 @@ export const lightTheme: DefaultTheme = {
   color2: "rgb(182, 220,247)", // 연함
   textColor: "rgb(55,55,55)",
   liquid: "rgba(182, 220,247,0.4)",
+  boxShadow: "rgb(122,155,177)",
 };

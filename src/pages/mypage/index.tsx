@@ -9,7 +9,7 @@ const Form = styled.form`
   flex-direction: column;
   justify-content: center;
   width: 750px;
-  height: 450px;
+  height: 400px;
   box-sizing: border-box;
   margin-left: auto;
   margin-right: auto;
@@ -136,14 +136,14 @@ function MyPage() {
                 id="github"
                 {...register("github", { required: true })}
                 type="text"
-                placeholder="https://github/example"
+                placeholder="http://github.com/example"
                 autoComplete={"off"}
               />
               <Input
                 id="blog"
                 {...register("blog", { required: true })}
                 type="text"
-                placeholder="https://example.blog"
+                placeholder="http://blog.example.com"
                 autoComplete={"off"}
               />
             </Div>
