@@ -7,6 +7,7 @@ export const darkTheme: DefaultTheme = {
   textColor: "rgb(244,244,244)",
   liquid: "rgba(72, 84, 96,0.4)",
   boxShadow: "rgb(11,11,11)",
+  toastBorder: "#494c56",
 };
 
 export const lightTheme: DefaultTheme = {
@@ -16,4 +17,5 @@ export const lightTheme: DefaultTheme = {
   textColor: "rgb(55,55,55)",
   liquid: "rgba(182, 220,247,0.4)",
   boxShadow: "rgb(122,155,177)",
+  toastBorder: "#dadde6",
 };

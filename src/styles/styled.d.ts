@@ -8,5 +8,6 @@ declare module "styled-components" {
     textColor: string;
     liquid: string;
     boxShadow: string;
+    toastBorder: string;
   }
 }
