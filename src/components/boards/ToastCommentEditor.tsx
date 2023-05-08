@@ -5,13 +5,15 @@ import { useRecoilValue } from "recoil";
 import { isDarkState } from "@src/atoms";
 import { forwardRef, useEffect, useRef } from "react";
 import styled from "styled-components";
-import Button from "../Button";
+import { DefaultButton } from "../Components";
 
 const Wrapper = styled.div`
   position: relative;
   height: 100%;
   margin-bottom: 100px;
 `;
+
+const Button = styled(DefaultButton)``;
 
 function ToastCommentEditor() {
   const isDark = useRecoilValue(isDarkState);
@@ -33,17 +35,16 @@ function ToastCommentEditor() {
     <Wrapper>
       <Editor
         ref={editorRef}
-        initialValue="hello react editor world!"
+        initialValue=""
         previewStyle="vertical"
         height="130px"
         initialEditType="wysiwyg"
         usageStatistics={false}
         hideModeSwitch={true}
       />
-      <Button
-        text="작성"
-        style={{ position: "absolute", right: 0, marginTop: "1em" }}
-      ></Button>
+      <Button style={{ position: "absolute", right: 0, marginTop: "1em" }}>
+        작성
+      </Button>
     </Wrapper>
   );
 }

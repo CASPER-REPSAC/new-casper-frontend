@@ -38,7 +38,7 @@ function PageTitle({ pageTitle }: pageTitleProps) {
   const router = useRouter();
 
   const path = router.asPath.replaceAll("/", " > ");
-
+  
   return (
     <Wrapper>
       <Title>{pageTitle}</Title>

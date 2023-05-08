@@ -1,5 +1,5 @@
 import { isDarkState } from "@src/atoms";
-import Button from "@src/components/Button";
+import { DefaultButton } from "@src/components/Components";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useContext } from "react";
@@ -54,6 +54,10 @@ const Label = styled.label`
   position: absolute;
   left: 15px;
 `;
+const Button = styled(DefaultButton)`
+  width: 400px;
+  height: 50px;
+`;
 
 interface IForm {
   id: string;
@@ -99,11 +103,7 @@ export default function Login() {
             {...register("pw", { required: true })}
           ></Input>
         </Row>
-        <Button
-          text="로그인"
-          style={{ width: "400px", height: "50px" }}
-          onClick={() => {}}
-        ></Button>
+        <Button onClick={() => {}}>로그인</Button>
       </Form>
     </Wrapper>
   );

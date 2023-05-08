@@ -1,4 +1,4 @@
-import Button from "@src/components/Button";
+import { DefaultButton, DefaultInput } from "@src/components/Components";
 import PageTitle from "@src/components/layout/PageTitle";
 import PageWrapper from "@src/components/layout/PageWrapper";
 import { useForm } from "react-hook-form";
@@ -26,19 +26,9 @@ const FlexRow = styled.div`
   justify-content: space-between;
   height: 100%;
 `;
-const Input = styled.input`
-  background-color: inherit;
-  border: 1px solid ${({ theme }) => theme.color2};
+const Input = styled(DefaultInput)`
   height: 34px;
   width: 400px;
-  color: ${({ theme }) => theme.textColor};
-  :focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.textColor};
-  }
-  padding-left: 10px;
-  padding-right: 10px;
-  box-sizing: border-box;
   font-size: 1.4rem;
 `;
 const IntroInput = styled.textarea`
@@ -76,6 +66,10 @@ const Label = styled.label`
 const Div = styled.div`
   display: flex;
   flex-direction: column;
+`;
+const Button = styled(DefaultButton)`
+  align-self: flex-end;
+  margin-top: 1em;
 `;
 
 function MyPage() {
@@ -149,10 +143,7 @@ function MyPage() {
             </Div>
           </FlexCol>
         </FlexRow>
-        <Button
-          text="저장"
-          style={{ alignSelf: "flex-end", marginTop: "1em" }}
-        ></Button>
+        <Button>저장</Button>
       </Form>
     </PageWrapper>
   );

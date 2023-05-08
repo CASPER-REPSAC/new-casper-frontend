@@ -2,11 +2,9 @@ import PageTitle from "@src/components/layout/PageTitle";
 import styled from "styled-components";
 import dynamic from "next/dynamic";
 import { useForm } from "react-hook-form";
-import Button from "@src/components/Button";
-import { useRef } from "react";
 import PageWrapper from "@src/components/layout/PageWrapper";
 import { useRouter } from "next/router";
-import { urlToTitle } from "@src/utils";
+import { DefaultButton, DefaultInput } from "@src/components/Components";
 
 /**
  *  글 작성 페이지
@@ -28,17 +26,13 @@ const H1 = styled.h1`
   margin-bottom: 0.5em;
 `;
 
-const Input = styled.input`
+const Input = styled(DefaultInput)`
   border: 0;
   border-bottom: 1px solid ${({ theme }) => theme.toastBorder};
-  background-color: inherit;
   width: 100%;
-  color: ${({ theme }) => theme.textColor};
   font-size: 3rem;
   height: 40px;
-  outline: none;
-  box-sizing: border-box;
-  padding: 0.3em 0.1em 0.3em 0.1em;
+  padding-bottom: 0.3em;
 `;
 
 const CheckInput = styled.input`
@@ -105,6 +99,9 @@ const ButtonSection = styled.div`
   justify-content: flex-end;
   margin-top: 2em;
 `;
+const Button = styled(DefaultButton)`
+  flex-shrink: 0;
+`;
 
 function PostPage() {
   const { register, watch } = useForm();
@@ -168,12 +165,7 @@ function PostPage() {
 
         {/* Footer */}
         <ButtonSection>
-          <Button
-            text="작성"
-            style={{
-              flexShrink: 0,
-            }}
-          />
+          <Button>작성</Button>
         </ButtonSection>
       </Form>
     </PageWrapper>
