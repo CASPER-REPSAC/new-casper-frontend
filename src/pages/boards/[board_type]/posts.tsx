@@ -17,12 +17,15 @@ const Editor = dynamic(() => import("@src/components/boards/ToastEditor"), {
 });
 
 const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  gap: 2em;
-  height: calc(100vh - 70px - 50px); // header, footer 뺀 값
+  position: relative;
+  height: calc(150vh - 70px - 50px); // header, footer 뺀 값
   padding-bottom: 10vh;
   box-sizing: border-box;
+`;
+
+const H1 = styled.h1`
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
 `;
 
 const Input = styled.input`
@@ -53,6 +56,7 @@ const Options = styled.div`
 const Header = styled.div`
   display: flex;
   align-items: center;
+  height: 40px;
 `;
 const Select = styled.select`
   background-color: inherit;
@@ -75,8 +79,31 @@ const FileInputLabel = styled.label`
   font-size: 2rem;
   border: 1px solid ${({ theme }) => theme.toastBorder};
 
+  border-radius: 4px;
   height: 100px;
   cursor: pointer;
+`;
+
+const TitleSection = styled.div`
+  margin-top: 2em;
+`;
+const ContentSection = styled.div`
+  margin-top: 2em;
+
+  display: flex;
+  flex-direction: column;
+  height: 80vh;
+`;
+const OptionSection = styled.div`
+  margin-top: 2em;
+`;
+const FileSection = styled.div`
+  margin-top: 2em;
+`;
+const ButtonSection = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2em;
 `;
 
 function PostPage() {
@@ -86,57 +113,68 @@ function PostPage() {
 
   return (
     <PageWrapper>
-      <PageTitle
-        pageTitle={urlToTitle[String(board_type)] + " 작성"}
-      ></PageTitle>
+      <PageTitle pageTitle="공지사항"></PageTitle>
       <Form>
         {/* header */}
-        <Header>
-          <Select {...register("subCategory", { required: true })}>
-            {/* Todo. board type에 따라 목록 변경 */}
-            <option value="1">c언어</option>
-            <option value="2">시스템</option>
-            <option value="3">파이썬</option>
-          </Select>
-          <Input
-            {...register("title", { required: true })}
-            placeholder="제목을 입력해주세요."
-          />
-        </Header>
-
-        {/* 옵션 */}
-        <Options>
-          <label htmlFor="secret">비밀글</label>
-          <CheckInput
-            {...register("secret")}
-            type="checkbox"
-            name="secret"
-            value={"secret"}
-          />
-          <label htmlFor="fix">고정글</label>
-          <CheckInput
-            {...register("fix")}
-            type="checkbox"
-            name="secret"
-            value={"secret"}
-          />
-        </Options>
+        <TitleSection>
+          <H1>제목</H1>
+          <Header>
+            <Select {...register("subCategory", { required: true })}>
+              {/* Todo. board type에 따라 목록 변경 */}
+              <option value="1">c언어</option>
+              <option value="2">시스템</option>
+              <option value="3">파이썬</option>
+            </Select>
+            <Input
+              {...register("title", { required: true })}
+              placeholder="제목을 입력해주세요."
+            />
+          </Header>
+        </TitleSection>
 
         {/* 에디터 */}
-        <Editor />
+        <ContentSection>
+          <H1>내용</H1>
+          <Editor />
+        </ContentSection>
+
+        {/* 옵션 */}
+        <OptionSection>
+          <H1>옵션</H1>
+          <Options>
+            <label htmlFor="secret">비밀글</label>
+            <CheckInput
+              {...register("secret")}
+              type="checkbox"
+              name="secret"
+              value={"secret"}
+            />
+            <label htmlFor="fix">고정글</label>
+            <CheckInput
+              {...register("fix")}
+              type="checkbox"
+              name="secret"
+              value={"secret"}
+            />
+          </Options>
+        </OptionSection>
 
         {/* 파일 첨부 */}
-        <FileInputLabel htmlFor="file">파일 첨부</FileInputLabel>
-        <FileInput type="file" id="file"></FileInput>
+        <FileSection>
+          <H1>파일</H1>
+          <FileInputLabel htmlFor="file">파일 첨부</FileInputLabel>
+          <FileInput type="file" id="file"></FileInput>
+        </FileSection>
 
         {/* Footer */}
-        <Button
-          text="작성"
-          style={{
-            alignSelf: "flex-end",
-            flexShrink: 0,
-          }}
-        />
+        <ButtonSection>
+          <Button
+            text="작성"
+            style={{
+              flexShrink: 0,
+            }}
+          />
+        </ButtonSection>
       </Form>
     </PageWrapper>
   );

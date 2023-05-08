@@ -41,7 +41,7 @@ function ToastCommentEditor() {
         hideModeSwitch={true}
       />
       <Button
-        text="작성하기"
+        text="작성"
         style={{ position: "absolute", right: 0, marginTop: "1em" }}
       ></Button>
     </Wrapper>

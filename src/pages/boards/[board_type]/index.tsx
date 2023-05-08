@@ -103,7 +103,7 @@ function BoardPage() {
           <TableFooter>
             <Button
               onClick={onClickWrite}
-              text="작성하기"
+              text="작성"
               style={{ position: "absolute", right: 0 }}
             ></Button>
           </TableFooter>
