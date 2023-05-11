@@ -81,19 +81,40 @@ export default function Header({ bgColor }: headerProps) {
           <NavItem
             path="/members/active"
             menus={["활동 중", "휴학생", "졸업생"]}
+            menus_url={[
+              "/members/active",
+              "/members/rest",
+              "/members/graduate",
+            ]}
           >
             Members
           </NavItem>
-          <NavItem path="/album" menus={["2023", "2022", "2021"]}>
+          <NavItem
+            path="/album"
+            menus={["2023", "2022", "2021"]}
+            menus_url={["/album/2023", "/album/2022", "/album/2021"]}
+          >
             Album
           </NavItem>
           <NavItem
             path="/boards/notice_board"
-            menus={["공지사항", "정회원", "준회원"]}
+            menus={["공지사항", "정회원 게시판", "준회원 게시판"]}
+            menus_url={[
+              "/boards/notice_board",
+              "/boards/full_member_board",
+              "/boards/associate_member_board",
+            ]}
           >
             Boards
           </NavItem>
-          <NavItem path="/intranet" menus={["Nas", "Wiki", "recruit"]}>
+          <NavItem
+            menus={["Nas", "Wiki", "Recruit"]}
+            atag_url={[
+              "https://nas.casper.or.kr/",
+              "https://www.casper.or.kr/dokuwiki/doku.php",
+              "https://recruit.casper.or.kr/",
+            ]}
+          >
             Intranet
           </NavItem>
           <NavItem path="/login">

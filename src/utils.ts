@@ -10,6 +10,12 @@ export const titleToUrl: ImenuToUrl = {
   "정회원 게시판": "full_member_board",
   "준회원 게시판": "associate_member_board",
   "졸업생 게시판": "graduate_board",
+  Nas: "test",
+  Wiki: "test",
+  Recruit: "test",
+  2022: "2022",
+  2023: "2023",
+  2021: "2021",
 };
 
 export const urlToTitle: ImenuToUrl = {

@@ -1,5 +1,4 @@
 import { motion } from "framer-motion";
-import { CSSProperties } from "react";
 import styled from "styled-components";
 
 export const DefaultInput = styled.input`
