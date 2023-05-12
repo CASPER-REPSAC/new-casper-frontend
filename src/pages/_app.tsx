@@ -16,7 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
     <RecoilRoot>
       <Theme>
         <Wrapper>
-          <Header bgColor="none" />
+          <Header />
           <Component {...pageProps} />
           <Footer />
         </Wrapper>

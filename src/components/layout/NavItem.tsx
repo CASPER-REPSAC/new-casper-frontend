@@ -1,10 +1,13 @@
-import { titleToUrl } from "@src/utils";
 import { motion, useAnimationControls } from "framer-motion";
 import Link from "next/link";
 import { useRouter } from "next/router";
+import React from "react";
 import { useEffect, useState } from "react";
 import styled from "styled-components";
 
+const Wrapper = styled.div`
+  display: flex;
+`;
 const Item = styled(motion.div)<{ ishome: string }>`
   position: relative;
   text-decoration: none;
@@ -25,54 +28,51 @@ const UnderLine = styled(motion.div)`
   height: 1px;
   background-color: ${(props) => props.theme.textColor};
 `;
-
 const NavSubMenu = styled(motion.div)`
   background-color: ${({ theme }) => theme.color1};
   position: absolute;
   top: 70px;
-
   color: ${({ theme }) => theme.textColor};
   box-shadow: 2px 3px 5px ${({ theme }) => theme.boxShadow};
   transform-origin: top;
   display: flex;
   flex-direction: column;
 `;
-const Li = styled(motion.li)``;
-
 const StyledLink = styled(motion(Link))`
   text-decoration: none;
-  color: white;
-  width: 7em;
-
-  height: 4rem;
+  color: ${({ theme }) => theme.textColor};
+  width: 100%;
+  height: 100%;
   line-height: 4rem;
   font-size: 1.6rem;
   padding-left: 1.2em;
   padding-right: 1.2em;
-
   &:hover {
     background-color: ${({ theme }) => theme.liquid};
   }
   border-bottom: 1px solid ${({ theme }) => theme.liquid};
   z-index: 100;
 `;
-
 const StyledA = styled(motion.a)`
   text-decoration: none;
-  color: white;
-  width: 7em;
-
-  height: 4rem;
+  color: ${({ theme }) => theme.textColor};
+  width: 100%;
+  height: 100%;
   line-height: 4rem;
   font-size: 1.6rem;
   padding-left: 1.2em;
   padding-right: 1.2em;
-
   &:hover {
     background-color: ${({ theme }) => theme.liquid};
   }
   border-bottom: 1px solid ${({ theme }) => theme.liquid};
   z-index: 100;
+`;
+const Div = styled.div`
+  display: flex;
+  width: 7em;
+  height: 4rem;
+  line-height: 4rem;
 `;
 
 interface INavItem {
@@ -98,7 +98,8 @@ function NavItem({ path, menus, menus_url, atag_url, children }: INavItem) {
     menus_url ? setLinkUrl(menus_url) : null;
     atag_url ? setALinkUrl(atag_url) : null;
   }, [menus_url, atag_url]);
-  // 현재 경로 흰색으로 표시
+
+  // 현재 경로 흰색으로 표시 (애니메이션)
   useEffect(() => {
     if (rootPath === basePath) {
       navItemControls.start({
@@ -149,25 +150,31 @@ function NavItem({ path, menus, menus_url, atag_url, children }: INavItem) {
   };
 
   return (
-    <Item
-      onClick={() => {
-        path ? router.push(path) : null;
-      }}
-      animate={navItemControls}
-      ishome={String(isHome)}
+    <Wrapper
       onMouseOver={itemMouseOverHandler}
       onMouseOut={itemMouseOutHandler}
     >
-      {children}
-      {basePath === `${rootPath}` ? <UnderLine layoutId="underline" /> : null}
+      {/* 메뉴 */}
+      <Item
+        onClick={() => {
+          path ? router.push(path) : null;
+        }}
+        animate={navItemControls}
+        ishome={String(isHome)}
+      >
+        {children}
 
+        {/* 현재 경로 밑줄 */}
+        {basePath === `${rootPath}` ? <UnderLine layoutId="underline" /> : null}
+      </Item>
+
+      {/* 서브 메뉴 */}
       <NavSubMenu animate={subMenuContainerControls} initial={{ scaleY: 0 }}>
         {menus?.map((menu, idx) => {
           return (
-            <>
+            <Div key={idx}>
               {linkUrl[idx] ? (
                 <StyledLink
-                  key={idx}
                   animate={liControls}
                   transition={{ delay: idx * 0.05 }}
                   initial={{ opacity: 0, x: -5 }}
@@ -179,12 +186,12 @@ function NavItem({ path, menus, menus_url, atag_url, children }: INavItem) {
               {aLinkUrl[idx] ? (
                 <StyledA href={aLinkUrl[idx]}>{menu}</StyledA>
               ) : null}
-            </>
+            </Div>
           );
         })}
       </NavSubMenu>
-    </Item>
+    </Wrapper>
   );
 }
 
-export default NavItem;
+export default React.memo(NavItem);

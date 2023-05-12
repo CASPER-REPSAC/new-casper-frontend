@@ -110,8 +110,6 @@ export default function Home() {
   const [allPage, setAllPage] = useState(5);
   const [bgImgs, setBgImgs] = useState(["background1.jpg", "background2.jpg"]);
 
-  console.log(bgImgs[page - 1]);
-
   const nextPage = () => {
     setPage((curPage) => {
       return curPage === allPage ? allPage : curPage + 1;

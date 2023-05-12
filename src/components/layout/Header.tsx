@@ -7,6 +7,7 @@ import NavItem from "./NavItem";
 import { BsFillMoonFill, BsFillSunFill } from "react-icons/bs";
 import { SlLogin } from "react-icons/sl";
 import { AiOutlineUser } from "react-icons/ai";
+import React from "react";
 
 const Wrapper = styled.div`
   position: relative;
@@ -36,7 +37,7 @@ const Img = styled.img`
   height: 36px;
   cursor: pointer;
 `;
-const Items = styled.div`
+const NavItems = styled.div`
   display: flex;
   align-items: center;
 `;
@@ -51,16 +52,11 @@ const DarkModeButton = styled(motion.div)`
   left: 20px;
 `;
 
-interface headerProps {
-  bgColor?: string;
-}
-
-export default function Header({ bgColor }: headerProps) {
+function Header() {
   const [isDark, setIsDark] = useRecoilState(isDarkState);
   const router = useRouter();
   const isHome = router.pathname === "/";
   const isDarkHome = isDark || isHome;
-  const basePath = router.pathname.split("/")[1];
 
   const goHome = () => {
     router.push("/");
@@ -76,7 +72,7 @@ export default function Header({ bgColor }: headerProps) {
           <Img src="/casper_logo_black.png" onClick={goHome} />
         )}
 
-        <Items>
+        <NavItems>
           {/* 네비게이션 */}
           <NavItem
             path="/members/active"
@@ -90,7 +86,7 @@ export default function Header({ bgColor }: headerProps) {
             Members
           </NavItem>
           <NavItem
-            path="/album"
+            path="/album/2023"
             menus={["2023", "2022", "2021"]}
             menus_url={["/album/2023", "/album/2022", "/album/2021"]}
           >
@@ -126,7 +122,7 @@ export default function Header({ bgColor }: headerProps) {
               size={24}
             ></AiOutlineUser>
           </NavItem>
-        </Items>
+        </NavItems>
       </Body>
       {/* 다크모드 버튼 (임시)*/}
       <DarkModeButton onClick={() => setIsDark((cur) => !cur)}>
@@ -139,3 +135,5 @@ export default function Header({ bgColor }: headerProps) {
     </Wrapper>
   );
 }
+
+export default React.memo(Header);

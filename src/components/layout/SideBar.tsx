@@ -45,7 +45,7 @@ interface SideBarProps {
 
 function SideBar({ menus, basePath }: SideBarProps) {
   const router = useRouter();
-  const { member_type, board_type } = router.query;
+  const { member_type, board_type, year } = router.query;
 
   return (
     <Wrapper>
@@ -54,7 +54,8 @@ function SideBar({ menus, basePath }: SideBarProps) {
           <Item>
             {menu}
             {member_type === titleToUrl[menu] ||
-            board_type === titleToUrl[menu] ? (
+            board_type === titleToUrl[menu] ||
+            year === titleToUrl[menu] ? (
               <Highlight layoutId="highlight" />
             ) : null}
           </Item>
