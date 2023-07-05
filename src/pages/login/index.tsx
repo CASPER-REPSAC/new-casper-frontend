@@ -1,63 +1,19 @@
 import { isDarkState } from "@src/atoms";
-import { DefaultButton } from "@src/components/Components";
-import { motion } from "framer-motion";
-import Image from "next/image";
 import { useContext } from "react";
 import { useForm } from "react-hook-form";
 import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
 import { useRecoilValue } from "recoil";
-import styled, { ThemeContext } from "styled-components";
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  flex-direction: column;
-`;
-const Form = styled.form`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
-const Input = styled(motion.input)`
-  :focus {
-    border-color: ${({ theme }) => theme.textColor};
-    outline: none;
-  }
-  height: 50px;
-  width: 400px;
-  background-color: ${(props) => props.theme.bgColor};
-  border: 1px solid ${(props) => props.theme.color2};
-  margin: 0.3em;
-  color: ${(props) => props.theme.textColor};
-  padding-left: 45px;
-  padding-right: 10px;
-  font-size: 1.5rem;
-  box-sizing: border-box;
-`;
-
-const Img = styled(Image)`
-  height: auto !important;
-  position: relative !important;
-`;
-const ImageWrapper = styled.div<{ width: string }>`
-  width: ${(props) => props.width};
-`;
-const Row = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const Label = styled.label`
-  position: absolute;
-  left: 15px;
-`;
-const Button = styled(DefaultButton)`
-  width: 400px;
-  height: 50px;
-`;
+import { ThemeContext } from "styled-components";
+import {
+  Button,
+  Form,
+  ImageWrapper,
+  Img,
+  Input,
+  Label,
+  Row,
+  Wrapper,
+} from "./login.style";
 
 interface IForm {
   id: string;

@@ -1,100 +1,25 @@
-import styled from "styled-components";
-import { MdArrowBackIos, MdArrowForwardIos } from "react-icons/md";
-import { HiLightBulb } from "react-icons/hi";
-import { motion, Variants } from "framer-motion";
-import { useState } from "react";
-
-const Background = styled.div<{ bgurl: string }>`
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  background-image: url(${(props) => props.bgurl});
-  background-position: center;
-  background-size: cover;
-  filter: brightness(50%);
-  z-index: -1;
-`;
-
-const Body = styled.div`
-  display: flex;
-  flex-direction: column;
-  gap: 10vh;
-  position: absolute;
-  top: 25vh;
-  left: 160px;
-  color: white;
-  @media screen and (max-width: 1440px) {
-    left: 40px;
-  }
-`;
-const Notice = styled.div`
-  display: flex;
-  align-items: center;
-  height: 40px;
-  width: 500px;
-  font-size: 2.5rem;
-`;
-const Title = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 70%;
-`;
-const H1 = styled.div`
-  font-size: 6rem;
-  font-weight: bold;
-  line-height: 0.9em;
-  margin-bottom: 0.2em;
-`;
-const H2 = styled.div`
-  font-size: 2.5rem;
-  opacity: 0.8;
-  font-weight: lighter;
-`;
-const PageBar = styled.div`
-  display: flex;
-  height: 3px;
-  width: 210px;
-  background-color: rgba(255, 255, 255, 0.4);
-  margin-right: 2em;
-`;
-const CurPageBar = styled(motion.div)`
-  height: 3px;
-  width: 100%;
-`;
-const White = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  background-color: white;
-`;
-const Page = styled.div`
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 1em;
-`;
-const All = styled.div`
-  font-size: 2rem;
-  opacity: 0.4;
-`;
-const Cur = styled.div`
-  font-size: 2.5rem;
-  margin-right: 0.3em;
-`;
-const Col = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const Row = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-const LeftButton = styled(motion.div)`
-  cursor: pointer;
-`;
-const RightButton = styled(motion.div)`
-  cursor: pointer;
-`;
+import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import { HiLightBulb } from 'react-icons/hi';
+import { Variants } from 'framer-motion';
+import { useState } from 'react';
+import {
+  All,
+  Background,
+  Body,
+  Col,
+  Cur,
+  CurPageBar,
+  H1,
+  H2,
+  LeftButton,
+  Notice,
+  Page,
+  PageBar,
+  RightButton,
+  Row,
+  Title,
+  White,
+} from './home.style';
 
 const buttonVars: Variants = {
   initial: {
@@ -108,7 +33,7 @@ const buttonVars: Variants = {
 export default function Home() {
   const [page, setPage] = useState(1);
   const [allPage, setAllPage] = useState(5);
-  const [bgImgs, setBgImgs] = useState(["background1.jpg", "background2.jpg"]);
+  const [bgImgs, setBgImgs] = useState(['background1.jpg', 'background2.jpg']);
 
   const nextPage = () => {
     setPage((curPage) => {
@@ -126,7 +51,7 @@ export default function Home() {
       result.push(
         <CurPageBar key={i}>
           {page === i + 1 ? <White layoutId="white" /> : null}
-        </CurPageBar>
+        </CurPageBar>,
       );
     }
     return result;
