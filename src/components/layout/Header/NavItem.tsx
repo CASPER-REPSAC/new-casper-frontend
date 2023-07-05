@@ -1,9 +1,9 @@
-import { motion, useAnimationControls } from "framer-motion";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
-import { useEffect, useState } from "react";
-import styled from "styled-components";
+import { motion, useAnimationControls } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: flex;
@@ -14,7 +14,7 @@ const Item = styled(motion.div)<{ ishome: string }>`
   cursor: pointer;
   margin: 0 1.5em 0 1.5em;
   color: ${(props) =>
-    props.ishome === "true" ? "white" : props.theme.textColor};
+    props.ishome === 'true' ? 'white' : props.theme.textColor};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -85,14 +85,14 @@ interface INavItem {
 
 function NavItem({ path, menus, menus_url, atag_url, children }: INavItem) {
   const router = useRouter();
-  const isHome = router.pathname === "/";
-  const rootPath = path?.split("/")[1]; // nav가 가리키는 경로
-  const basePath = router.pathname.split("/")[1]; // 현재 경로
+  const isHome = router.pathname === '/';
+  const rootPath = path?.split('/')[1]; // nav가 가리키는 경로
+  const basePath = router.pathname.split('/')[1]; // 현재 경로
   const navItemControls = useAnimationControls();
   const subMenuContainerControls = useAnimationControls();
   const liControls = useAnimationControls();
-  const [linkUrl, setLinkUrl] = useState([""]);
-  const [aLinkUrl, setALinkUrl] = useState([""]);
+  const [linkUrl, setLinkUrl] = useState(['']);
+  const [aLinkUrl, setALinkUrl] = useState(['']);
 
   useEffect(() => {
     menus_url ? setLinkUrl(menus_url) : null;

@@ -1,11 +1,11 @@
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
-import { Editor } from "@toast-ui/react-editor";
-import { useRecoilValue } from "recoil";
-import { isDarkState } from "@src/atoms";
-import { forwardRef, useEffect, useRef } from "react";
-import styled from "styled-components";
-import { DefaultButton } from "../Components";
+import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
+import { Editor } from '@toast-ui/react-editor';
+import { useRecoilValue } from 'recoil';
+import { isDarkState } from '@src/atoms';
+import { forwardRef, useEffect, useRef } from 'react';
+import styled from 'styled-components';
+import { DefaultButton } from '../Components';
 
 const Wrapper = styled.div`
   position: relative;
@@ -23,11 +23,11 @@ function ToastCommentEditor() {
   useEffect(() => {
     const editorElement = editorRef.current
       ?.getRootElement()
-      .getElementsByClassName("toastui-editor-defaultUI")[0];
+      .getElementsByClassName('toastui-editor-defaultUI')[0];
     if (isDark) {
-      editorElement?.classList.add("toastui-editor-dark");
+      editorElement?.classList.add('toastui-editor-dark');
     } else {
-      editorElement?.classList.remove("toastui-editor-dark");
+      editorElement?.classList.remove('toastui-editor-dark');
     }
   }, [editorRef, isDark]);
 
@@ -42,7 +42,7 @@ function ToastCommentEditor() {
         usageStatistics={false}
         hideModeSwitch={true}
       />
-      <Button style={{ position: "absolute", right: 0, marginTop: "1em" }}>
+      <Button style={{ position: 'absolute', right: 0, marginTop: '1em' }}>
         작성
       </Button>
     </Wrapper>

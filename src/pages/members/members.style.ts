@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Main = styled.div`
   display: flex;
@@ -19,7 +19,7 @@ export const MemberCard = styled.div`
   height: 100%;
   width: 100%;
 
-  background-color: ${(props) => props.theme.color1};
+  background-color: ${({ theme }) => theme.color1};
   opacity: 0.4;
   margin: 0;
 `;

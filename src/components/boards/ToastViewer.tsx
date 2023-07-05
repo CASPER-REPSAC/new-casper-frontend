@@ -1,10 +1,10 @@
-import { isDarkState } from "@src/atoms";
-import { Viewer } from "@toast-ui/react-editor";
-import { useEffect, useRef } from "react";
-import { useRecoilValue } from "recoil";
-import "@toast-ui/editor/dist/toastui-editor-viewer.css";
-import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
-import styled from "styled-components";
+import { isDarkState } from '@src/atoms';
+import { Viewer } from '@toast-ui/react-editor';
+import { useEffect, useRef } from 'react';
+import { useRecoilValue } from 'recoil';
+import '@toast-ui/editor/dist/toastui-editor-viewer.css';
+import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   //  임시 값, 수정필요
@@ -37,9 +37,9 @@ function ToastViewer() {
   useEffect(() => {
     const viewerElement = viewerRef.current?.getRootElement();
     if (isDark) {
-      viewerElement?.classList.add("toastui-editor-dark");
+      viewerElement?.classList.add('toastui-editor-dark');
     } else {
-      viewerElement?.classList.remove("toastui-editor-dark");
+      viewerElement?.classList.remove('toastui-editor-dark');
     }
   }, [viewerRef, isDark]);
 

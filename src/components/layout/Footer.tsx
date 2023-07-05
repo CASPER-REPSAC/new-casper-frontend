@@ -1,10 +1,10 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 import {
   AiOutlineInstagram,
   AiOutlineFacebook,
   AiOutlineGithub,
   AiOutlineCopyrightCircle,
-} from "react-icons/ai";
+} from 'react-icons/ai';
 
 const Wrapper = styled.div`
   display: flex;

@@ -1,10 +1,10 @@
-import Footer from "@src/components/layout/Footer";
-import Header from "@src/components/layout/Header";
-import "../styles/reset.css";
-import type { AppProps } from "next/app";
-import { RecoilRoot } from "recoil";
-import styled from "styled-components";
-import Theme from "@src/components/Theme";
+import Footer from '@src/components/layout/Footer';
+import Header from '@src/components/layout/Header/Header';
+import '../styles/reset.css';
+import type { AppProps } from 'next/app';
+import { RecoilRoot } from 'recoil';
+import styled from 'styled-components';
+import Theme from '@src/components/Theme';
 
 const Wrapper = styled.div`
   position: relative;

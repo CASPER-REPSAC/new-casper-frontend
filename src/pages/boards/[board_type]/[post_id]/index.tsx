@@ -1,24 +1,24 @@
-import PageTitle from "@src/components/layout/PageTitle";
-import PageWrapper from "@src/components/layout/PageWrapper";
-import SideBar from "@src/components/layout/SideBar";
-import dynamic from "next/dynamic";
-import { useRouter } from "next/router";
-import styled from "styled-components";
-import "@toast-ui/editor/dist/toastui-editor.css";
-import "@toast-ui/editor/dist/theme/toastui-editor-dark.css";
-import Comment from "@src/components/boards/Comment";
+import PageTitle from '@src/components/layout/PageTitle';
+import PageWrapper from '@src/components/layout/PageWrapper';
+import SideBar from '@src/components/layout/SideBar';
+import dynamic from 'next/dynamic';
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
+import '@toast-ui/editor/dist/toastui-editor.css';
+import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
+import Comment from '@src/components/boards/Comment';
 /**
  *  글 조회 페이지
  */
 
-const Viewer = dynamic(() => import("@src/components/boards/ToastViewer"), {
+const Viewer = dynamic(() => import('@src/components/boards/ToastViewer'), {
   ssr: false,
 });
 const CommentEditor = dynamic(
-  () => import("@src/components/boards/ToastCommentEditor"),
+  () => import('@src/components/boards/ToastCommentEditor'),
   {
     ssr: false,
-  }
+  },
 );
 
 const Main = styled.div`
@@ -70,10 +70,10 @@ function PostDetail() {
 
   return (
     <PageWrapper>
-      <PageTitle pageTitle={"Boards"} />
+      <PageTitle pageTitle={'Boards'} />
       <SideBar
-        menus={["공지사항", "정회원 게시판", "준회원 게시판"]}
-        basePath={"/boards"}
+        menus={['공지사항', '정회원 게시판', '준회원 게시판']}
+        basePath={'/boards'}
       />
       <Main>
         {/* 본문 */}

@@ -1,9 +1,9 @@
-import { titleToUrl } from "@src/utils";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { useRouter } from "next/router";
-import React from "react";
-import styled from "styled-components";
+import { titleToUrl } from '@src/utils';
+import { motion } from 'framer-motion';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import React from 'react';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   display: inline;

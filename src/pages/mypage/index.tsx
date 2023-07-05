@@ -1,6 +1,6 @@
-import PageTitle from "@src/components/layout/PageTitle";
-import PageWrapper from "@src/components/layout/PageWrapper";
-import { useForm } from "react-hook-form";
+import PageTitle from '@src/components/layout/PageTitle';
+import PageWrapper from '@src/components/layout/PageWrapper';
+import { useForm } from 'react-hook-form';
 import {
   Avatar,
   AvatarLabel,
@@ -12,7 +12,7 @@ import {
   Input,
   IntroInput,
   Label,
-} from "./mypage.style";
+} from './mypage.style';
 
 function MyPage() {
   const { register } = useForm();
@@ -28,7 +28,7 @@ function MyPage() {
               <Label htmlFor="introduce">소개글</Label>
               <IntroInput
                 id="introduce"
-                {...register("introduce", { required: true })}
+                {...register('introduce', { required: true })}
                 placeholder="소개글"
                 rows={4}
                 cols={33}
@@ -40,47 +40,47 @@ function MyPage() {
               <Label htmlFor="name">이름</Label>
               <Input
                 id="name"
-                {...register("name", { required: true })}
+                {...register('name', { required: true })}
                 type="text"
                 placeholder="이름"
-                autoComplete={"off"}
+                autoComplete={'off'}
               />
             </Div>
             <Div>
               <Label htmlFor="nickname">닉네임</Label>
               <Input
                 id="nickname"
-                {...register("nickname", { required: true })}
+                {...register('nickname', { required: true })}
                 type="text"
                 placeholder="닉네임"
-                autoComplete={"off"}
+                autoComplete={'off'}
               />
             </Div>
             <Div>
               <Label htmlFor="group">회원 그룹</Label>
               <Input
                 id="group"
-                {...register("group", { required: true })}
+                {...register('group', { required: true })}
                 type="text"
                 placeholder="회원그룹"
-                autoComplete={"off"}
+                autoComplete={'off'}
               />
             </Div>
             <Div>
               <Label htmlFor="github">소셜 정보</Label>
               <Input
                 id="github"
-                {...register("github", { required: true })}
+                {...register('github', { required: true })}
                 type="text"
                 placeholder="http://github.com/example"
-                autoComplete={"off"}
+                autoComplete={'off'}
               />
               <Input
                 id="blog"
-                {...register("blog", { required: true })}
+                {...register('blog', { required: true })}
                 type="text"
                 placeholder="http://blog.example.com"
-                autoComplete={"off"}
+                autoComplete={'off'}
               />
             </Div>
           </FlexCol>

@@ -1,5 +1,5 @@
-import { useRouter } from "next/router";
-import styled from "styled-components";
+import { useRouter } from 'next/router';
+import styled from 'styled-components';
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color1};
@@ -37,17 +37,17 @@ interface pageTitleProps {
 function PageTitle({ pageTitle }: pageTitleProps) {
   const router = useRouter();
 
-  const path = router.asPath.replaceAll("/", " > ");
-  
+  const path = router.asPath.replaceAll('/', ' > ');
+
   return (
     <Wrapper>
       <Title>{pageTitle}</Title>
       <Sub>
-        {"홈"}
+        {'홈'}
         {path}
       </Sub>
     </Wrapper>
-);
+  );
 }
 
 export default PageTitle;

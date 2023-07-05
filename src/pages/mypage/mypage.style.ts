@@ -1,5 +1,5 @@
-import { DefaultButton, DefaultInput } from "@src/components/Components";
-import styled from "styled-components";
+import { DefaultButton, DefaultInput } from '@src/components/Components';
+import styled from 'styled-components';
 
 export const Form = styled.form`
   display: flex;

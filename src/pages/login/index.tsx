@@ -1,9 +1,9 @@
-import { isDarkState } from "@src/atoms";
-import { useContext } from "react";
-import { useForm } from "react-hook-form";
-import { AiOutlineLock, AiOutlineUser } from "react-icons/ai";
-import { useRecoilValue } from "recoil";
-import { ThemeContext } from "styled-components";
+import { isDarkState } from '@src/atoms';
+import { useContext } from 'react';
+import { useForm } from 'react-hook-form';
+import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
+import { useRecoilValue } from 'recoil';
+import { ThemeContext } from 'styled-components';
 import {
   Button,
   Form,
@@ -13,7 +13,7 @@ import {
   Label,
   Row,
   Wrapper,
-} from "./login.style";
+} from './login.style';
 
 interface IForm {
   id: string;
@@ -44,7 +44,7 @@ export default function Login() {
           <Input
             placeholder="ID를 입력해주세요."
             autoComplete="off"
-            {...register("id", { required: true })}
+            {...register('id', { required: true })}
           ></Input>
         </Row>
 
@@ -55,8 +55,8 @@ export default function Login() {
           <Input
             placeholder="PW를 입력해주세요."
             autoComplete="off"
-            type={"password"}
-            {...register("pw", { required: true })}
+            type={'password'}
+            {...register('pw', { required: true })}
           ></Input>
         </Row>
         <Button onClick={() => {}}>로그인</Button>
