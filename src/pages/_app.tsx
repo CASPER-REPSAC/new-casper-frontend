@@ -1,4 +1,4 @@
-import Footer from '@src/components/layout/Footer';
+import Footer from '@src/components/layout/Footer/Footer';
 import Header from '@src/components/layout/Header/Header';
 import '../styles/reset.css';
 import type { AppProps } from 'next/app';

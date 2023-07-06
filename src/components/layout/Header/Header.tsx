@@ -1,56 +1,18 @@
 import { isDarkState } from '@src/atoms';
-import { motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
 import NavItem from './NavItem';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { SlLogin } from 'react-icons/sl';
 import { AiOutlineUser } from 'react-icons/ai';
 import React from 'react';
-
-const Wrapper = styled.div`
-  position: relative;
-  top: 0;
-  width: 100vw;
-  height: 70px;
-  line-height: 70px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-  background-color: rgba(255, 255, 255, 0);
-  z-index: 10;
-  font-size: 2rem;
-`;
-const Body = styled.div`
-  display: flex;
-  align-items: center;
-  margin-left: 160px;
-  margin-right: 160px;
-  justify-content: space-between;
-
-  @media screen and (max-width: 1440px) {
-    margin-left: 40px;
-    margin-right: 40px;
-  }
-`;
-const Img = styled.img`
-  width: 170px;
-  height: 36px;
-  cursor: pointer;
-`;
-const NavItems = styled.div`
-  display: flex;
-  align-items: center;
-`;
-
-const DarkModeButton = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  position: absolute;
-  top: 20px;
-  left: 20px;
-`;
+import {
+  Body,
+  DarkModeButton,
+  Img,
+  NavItems,
+  HeaderWrapper,
+} from './Header.style';
 
 function Header() {
   const [isDark, setIsDark] = useRecoilState(isDarkState);
@@ -63,7 +25,7 @@ function Header() {
   };
 
   return (
-    <Wrapper>
+    <HeaderWrapper>
       <Body>
         {/* 좌측 Logo */}
         {isDarkHome ? (
@@ -71,6 +33,15 @@ function Header() {
         ) : (
           <Img src="/casper_logo_black.png" onClick={goHome} />
         )}
+
+        {/* 다크모드 버튼 (임시)*/}
+        <DarkModeButton onClick={() => setIsDark((cur) => !cur)}>
+          {isDark ? (
+            <BsFillMoonFill></BsFillMoonFill>
+          ) : (
+            <BsFillSunFill color={isHome ? 'white' : 'black'}></BsFillSunFill>
+          )}
+        </DarkModeButton>
 
         <NavItems>
           {/* 네비게이션 */}
@@ -124,15 +95,7 @@ function Header() {
           </NavItem>
         </NavItems>
       </Body>
-      {/* 다크모드 버튼 (임시)*/}
-      <DarkModeButton onClick={() => setIsDark((cur) => !cur)}>
-        {isDark ? (
-          <BsFillMoonFill></BsFillMoonFill>
-        ) : (
-          <BsFillSunFill color={isHome ? 'white' : 'black'}></BsFillSunFill>
-        )}
-      </DarkModeButton>
-    </Wrapper>
+    </HeaderWrapper>
   );
 }
 

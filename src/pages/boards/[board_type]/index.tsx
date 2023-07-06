@@ -1,8 +1,8 @@
-import PageTitle from '@src/components/layout/PageTitle';
+import PageTitle from '@src/components/layout/PageTitle/PageTitle';
 import styled, { useTheme } from 'styled-components';
-import SideBar from '@src/components/layout/SideBar';
+import SideBar from '@src/components/layout/SideBar/SideBar';
 import { useRouter } from 'next/router';
-import PageWrapper from '@src/components/layout/PageWrapper';
+import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
 import { Variants, motion } from 'framer-motion';
 import { DefaultButton, DefaultInput } from '@src/components/Components';
 import { AiOutlineSearch } from 'react-icons/ai';

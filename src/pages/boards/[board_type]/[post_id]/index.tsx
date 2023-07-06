@@ -1,6 +1,6 @@
-import PageTitle from '@src/components/layout/PageTitle';
-import PageWrapper from '@src/components/layout/PageWrapper';
-import SideBar from '@src/components/layout/SideBar';
+import PageTitle from '@src/components/layout/PageTitle/PageTitle';
+import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
+import SideBar from '@src/components/layout/SideBar/SideBar';
 import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';

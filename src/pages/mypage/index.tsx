@@ -1,5 +1,5 @@
-import PageTitle from '@src/components/layout/PageTitle';
-import PageWrapper from '@src/components/layout/PageWrapper';
+import PageTitle from '@src/components/layout/PageTitle/PageTitle';
+import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
 import { useForm } from 'react-hook-form';
 import {
   Avatar,

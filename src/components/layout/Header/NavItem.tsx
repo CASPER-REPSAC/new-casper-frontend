@@ -1,85 +1,22 @@
-import { motion, useAnimationControls } from 'framer-motion';
-import Link from 'next/link';
+import { useAnimationControls } from 'framer-motion';
 import { useRouter } from 'next/router';
 import React from 'react';
 import { useEffect, useState } from 'react';
-import styled from 'styled-components';
-
-const Wrapper = styled.div`
-  display: flex;
-`;
-const Item = styled(motion.div)<{ ishome: string }>`
-  position: relative;
-  text-decoration: none;
-  cursor: pointer;
-  margin: 0 1.5em 0 1.5em;
-  color: ${(props) =>
-    props.ishome === 'true' ? 'white' : props.theme.textColor};
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 70px;
-  opacity: 0.4;
-`;
-const UnderLine = styled(motion.div)`
-  position: absolute;
-  bottom: 15px;
-  width: 100%;
-  height: 1px;
-  background-color: ${(props) => props.theme.textColor};
-`;
-const NavSubMenu = styled(motion.div)`
-  background-color: ${({ theme }) => theme.color1};
-  position: absolute;
-  top: 70px;
-  color: ${({ theme }) => theme.textColor};
-  box-shadow: 2px 3px 5px ${({ theme }) => theme.boxShadow};
-  transform-origin: top;
-  display: flex;
-  flex-direction: column;
-`;
-const StyledLink = styled(motion(Link))`
-  text-decoration: none;
-  color: ${({ theme }) => theme.textColor};
-  width: 100%;
-  height: 100%;
-  line-height: 4rem;
-  font-size: 1.6rem;
-  padding-left: 1.2em;
-  padding-right: 1.2em;
-  &:hover {
-    background-color: ${({ theme }) => theme.liquid};
-  }
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
-  z-index: 100;
-`;
-const StyledA = styled(motion.a)`
-  text-decoration: none;
-  color: ${({ theme }) => theme.textColor};
-  width: 100%;
-  height: 100%;
-  line-height: 4rem;
-  font-size: 1.6rem;
-  padding-left: 1.2em;
-  padding-right: 1.2em;
-  &:hover {
-    background-color: ${({ theme }) => theme.liquid};
-  }
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
-  z-index: 100;
-`;
-const Div = styled.div`
-  display: flex;
-  width: 7em;
-  height: 4rem;
-  line-height: 4rem;
-`;
+import {
+  Div,
+  Item,
+  NavItemWrapper,
+  NavSubMenu,
+  StyledA,
+  StyledLink,
+  UnderLine,
+} from './Header.style';
 
 interface INavItem {
   path?: string;
   menus?: string[];
-  menus_url?: string[];
-  atag_url?: string[];
+  menus_url?: string[]; // 내부 경로
+  atag_url?: string[]; // 외부 경로
   children?: React.ReactNode;
 }
 
@@ -150,7 +87,7 @@ function NavItem({ path, menus, menus_url, atag_url, children }: INavItem) {
   };
 
   return (
-    <Wrapper
+    <NavItemWrapper
       onMouseOver={itemMouseOverHandler}
       onMouseOut={itemMouseOutHandler}
     >
@@ -190,7 +127,7 @@ function NavItem({ path, menus, menus_url, atag_url, children }: INavItem) {
           );
         })}
       </NavSubMenu>
-    </Wrapper>
+    </NavItemWrapper>
   );
 }
 

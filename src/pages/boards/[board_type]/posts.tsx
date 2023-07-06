@@ -1,8 +1,8 @@
-import PageTitle from '@src/components/layout/PageTitle';
+import PageTitle from '@src/components/layout/PageTitle/PageTitle';
 import styled from 'styled-components';
 import dynamic from 'next/dynamic';
 import { useForm } from 'react-hook-form';
-import PageWrapper from '@src/components/layout/PageWrapper';
+import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
 import { useRouter } from 'next/router';
 import { DefaultButton, DefaultInput } from '@src/components/Components';
 

@@ -1,12 +1,6 @@
 import styled from 'styled-components';
-import {
-  AiOutlineInstagram,
-  AiOutlineFacebook,
-  AiOutlineGithub,
-  AiOutlineCopyrightCircle,
-} from 'react-icons/ai';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18,7 +12,7 @@ const Wrapper = styled.div`
   color: ${(props) => props.theme.textColor};
 `;
 
-const Sns = styled.div`
+export const Sns = styled.div`
   display: flex;
   justify-content: space-between;
   margin-left: 160px;
@@ -27,7 +21,7 @@ const Sns = styled.div`
     margin-left: 40px;
   }
 `;
-const Info = styled.div`
+export const Info = styled.div`
   margin-right: 160px;
   font-size: 1.2rem;
   font-weight: lighter;
@@ -38,29 +32,8 @@ const Info = styled.div`
     margin-right: 40px;
   }
 `;
-const Span = styled.span`
+export const Span = styled.span`
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
 `;
-
-function Footer() {
-  return (
-    <Wrapper>
-      <Sns>
-        <AiOutlineGithub size={30} />
-        <AiOutlineFacebook size={30} />
-        <AiOutlineInstagram size={30} />
-      </Sns>
-      <Info>
-        <Span>창원대학교 51호관 113호</Span>
-        <Span>
-          <AiOutlineCopyrightCircle />
-          2023. Casper All rights reserved.
-        </Span>
-      </Info>
-    </Wrapper>
-  );
-}
-
-export default Footer;
