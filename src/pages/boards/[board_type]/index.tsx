@@ -1,109 +1,31 @@
 import PageTitle from '@src/components/layout/PageTitle/PageTitle';
-import styled, { useTheme } from 'styled-components';
+import { useTheme } from 'styled-components';
 import SideBar from '@src/components/layout/SideBar/SideBar';
 import { useRouter } from 'next/router';
 import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
-import { Variants, motion } from 'framer-motion';
-import { DefaultButton, DefaultInput } from '@src/components/Components';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import {
+  Board,
+  Main,
+  PageButton,
+  PageButtonSection,
+  SearchIcon,
+  SearchInput,
+  Select,
+  SerachBar,
+  Table,
+  TableFooter,
+  TableHeader,
+  Tbody,
+  TdCenter,
+  Thead,
+  Tr,
+  WriteButton,
+} from './boards.style';
 
 /**
  *  게시판 메인 페이지
  */
-
-const Main = styled.div`
-  display: flex;
-`;
-
-const Table = styled.table`
-  font-size: 1.6rem;
-  width: 100%;
-  margin-bottom: 1em;
-`;
-const Board = styled.div`
-  width: 100%;
-`;
-const Thead = styled.thead`
-  background-color: ${({ theme }) => theme.color1};
-  border-bottom: 1px solid ${({ theme }) => theme.textColor};
-  border-top: 1px solid ${({ theme }) => theme.textColor};
-  height: 2.4em;
-  line-height: 2.4em;
-`;
-const Tbody = styled.tbody`
-  font-size: 1.6rem;
-  Tr {
-    cursor: pointer;
-  }
-`;
-const Tr = styled(motion.tr)`
-  height: 2.4em;
-  line-height: 2.4em;
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
-`;
-const TdCenter = styled.td`
-  text-align: center;
-`;
-const TableFooter = styled.div`
-  position: relative;
-  display: flex;
-  width: 100%;
-  flex-direction: column;
-`;
-const TableHeader = styled.div`
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 2.2em;
-  height: 35px;
-`;
-
-const Select = styled.select`
-  background-color: inherit;
-  height: 100%;
-  color: ${({ theme }) => theme.textColor};
-  font-size: 1.8rem;
-  margin-right: 1em;
-  width: 120px;
-  text-align: center;
-  border: 1px solid ${({ theme }) => theme.toastBorder};
-`;
-
-const SearchInput = styled(DefaultInput)`
-  width: 100%;
-  height: 100%;
-  padding-left: 45px;
-`;
-const SerachBar = styled.div`
-  display: flex;
-  width: 100%;
-  height: 100%;
-  position: relative;
-  align-items: center;
-`;
-const SearchIcon = styled(AiOutlineSearch)`
-  position: absolute;
-  left: 15px;
-`;
-const PageButton = styled(motion.button)`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  background-color: inherit;
-  border: 1px solid ${({ theme }) => theme.textColor};
-  color: ${({ theme }) => theme.textColor};
-  font-size: 1.6rem;
-  cursor: pointer;
-`;
-const PageButtonSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 2em;
-`;
-const WriteButton = styled(DefaultButton)`
-  align-self: flex-end;
-`;
 
 function BoardPage() {
   const router = useRouter();

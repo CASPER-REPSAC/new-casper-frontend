@@ -1,25 +1,12 @@
 import PageTitle from '@src/components/layout/PageTitle/PageTitle';
 import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
 import SideBar from '@src/components/layout/SideBar/SideBar';
-import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import '@toast-ui/editor/dist/toastui-editor.css';
-import '@toast-ui/editor/dist/theme/toastui-editor-dark.css';
-import Comment from '@src/components/boards/Comment';
+import Comment from '@src/components/editor/Comment';
 /**
  *  글 조회 페이지
  */
-
-const Viewer = dynamic(() => import('@src/components/boards/ToastViewer'), {
-  ssr: false,
-});
-const CommentEditor = dynamic(
-  () => import('@src/components/boards/ToastCommentEditor'),
-  {
-    ssr: false,
-  },
-);
 
 const Main = styled.div`
   display: flex;
@@ -77,7 +64,6 @@ function PostDetail() {
       />
       <Main>
         {/* 본문 */}
-        <Viewer />
 
         {/* 작성자 정보 */}
         <AuthorInfo>
@@ -91,7 +77,6 @@ function PostDetail() {
 
         {/* 댓글 */}
         <H1>댓글</H1>
-        <CommentEditor></CommentEditor>
         <Comment
           name="박지성"
           date="2021.12.12 14:12:15"
