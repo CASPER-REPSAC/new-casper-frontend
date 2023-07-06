@@ -1,12 +1,12 @@
-import PageTitle from "@src/components/layout/PageTitle";
-import styled, { useTheme } from "styled-components";
-import SideBar from "@src/components/layout/SideBar";
-import { useRouter } from "next/router";
-import PageWrapper from "@src/components/layout/PageWrapper";
-import { Variants, motion } from "framer-motion";
-import { DefaultButton, DefaultInput } from "@src/components/Components";
-import { AiOutlineSearch } from "react-icons/ai";
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
+import PageTitle from '@src/components/layout/PageTitle/PageTitle';
+import styled, { useTheme } from 'styled-components';
+import SideBar from '@src/components/layout/SideBar/SideBar';
+import { useRouter } from 'next/router';
+import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
+import { Variants, motion } from 'framer-motion';
+import { DefaultButton, DefaultInput } from '@src/components/Components';
+import { AiOutlineSearch } from 'react-icons/ai';
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 
 /**
  *  게시판 메인 페이지
@@ -117,7 +117,7 @@ function BoardPage() {
     <PageWrapper>
       <PageTitle pageTitle="Boards"></PageTitle>
       <SideBar
-        menus={["공지사항", "정회원 게시판", "준회원 게시판"]}
+        menus={['공지사항', '정회원 게시판', '준회원 게시판']}
         basePath="/boards"
       ></SideBar>
       <Main>

@@ -1,16 +1,16 @@
-import PageTitle from "@src/components/layout/PageTitle";
-import styled from "styled-components";
-import dynamic from "next/dynamic";
-import { useForm } from "react-hook-form";
-import PageWrapper from "@src/components/layout/PageWrapper";
-import { useRouter } from "next/router";
-import { DefaultButton, DefaultInput } from "@src/components/Components";
+import PageTitle from '@src/components/layout/PageTitle/PageTitle';
+import styled from 'styled-components';
+import dynamic from 'next/dynamic';
+import { useForm } from 'react-hook-form';
+import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
+import { useRouter } from 'next/router';
+import { DefaultButton, DefaultInput } from '@src/components/Components';
 
 /**
  *  글 작성 페이지
  */
 
-const Editor = dynamic(() => import("@src/components/boards/ToastEditor"), {
+const Editor = dynamic(() => import('@src/components/boards/ToastEditor'), {
   ssr: false,
 });
 
@@ -116,14 +116,14 @@ function PostPage() {
         <TitleSection>
           <H1>제목</H1>
           <Header>
-            <Select {...register("subCategory", { required: true })}>
+            <Select {...register('subCategory', { required: true })}>
               {/* Todo. board type에 따라 목록 변경 */}
               <option value="1">c언어</option>
               <option value="2">시스템</option>
               <option value="3">파이썬</option>
             </Select>
             <Input
-              {...register("title", { required: true })}
+              {...register('title', { required: true })}
               placeholder="제목을 입력해주세요."
             />
           </Header>
@@ -141,17 +141,17 @@ function PostPage() {
           <Options>
             <label htmlFor="secret">비밀글</label>
             <CheckInput
-              {...register("secret")}
+              {...register('secret')}
               type="checkbox"
               name="secret"
-              value={"secret"}
+              value={'secret'}
             />
             <label htmlFor="fix">고정글</label>
             <CheckInput
-              {...register("fix")}
+              {...register('fix')}
               type="checkbox"
               name="secret"
-              value={"secret"}
+              value={'secret'}
             />
           </Options>
         </OptionSection>

@@ -1,7 +1,6 @@
-import { useRouter } from "next/router";
-import styled from "styled-components";
+import styled from 'styled-components';
 
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.color1};
   height: 120px;
   width: 100vw;
@@ -22,32 +21,10 @@ const Wrapper = styled.div`
     left: -40px;
   }
 `;
-const Title = styled.div`
+export const Title = styled.div`
   font-size: 4.8rem;
 `;
-const Sub = styled.div`
+export const Sub = styled.div`
   font-size: 1.6rem;
   font-weight: lighter;
 `;
-
-interface pageTitleProps {
-  pageTitle: string;
-}
-
-function PageTitle({ pageTitle }: pageTitleProps) {
-  const router = useRouter();
-
-  const path = router.asPath.replaceAll("/", " > ");
-  
-  return (
-    <Wrapper>
-      <Title>{pageTitle}</Title>
-      <Sub>
-        {"홈"}
-        {path}
-      </Sub>
-    </Wrapper>
-);
-}
-
-export default PageTitle;
