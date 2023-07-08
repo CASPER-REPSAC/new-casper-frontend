@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { DefaultButton } from '@src/components/Components';
+import DefaultButton from '@src/components/Button/Button';
 
 export const Wrapper = styled.div`
   display: flex;

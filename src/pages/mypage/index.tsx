@@ -1,5 +1,5 @@
-import PageTitle from '@src/components/layout/PageTitle/PageTitle';
-import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
+import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
 import { useForm } from 'react-hook-form';
 import {
   Avatar,
@@ -9,10 +9,10 @@ import {
   FlexCol,
   FlexRow,
   Form,
-  Input,
   IntroInput,
   Label,
 } from './mypage.style';
+import Input from '@src/components/Input/Input';
 
 function MyPage() {
   const { register } = useForm();

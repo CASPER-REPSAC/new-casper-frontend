@@ -1,6 +1,6 @@
-import PageTitle from '@src/components/layout/PageTitle/PageTitle';
-import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
-import SideBar from '@src/components/layout/SideBar/SideBar';
+import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
+import SideBar from '@src/components/Layout/SideBar/SideBar';
 
 export default function Year() {
   return (

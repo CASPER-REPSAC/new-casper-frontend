@@ -1,8 +1,8 @@
-import PageTitle from '@src/components/layout/PageTitle/PageTitle';
+import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
 import { useTheme } from 'styled-components';
-import SideBar from '@src/components/layout/SideBar/SideBar';
+import SideBar from '@src/components/Layout/SideBar/SideBar';
 import { useRouter } from 'next/router';
-import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
+import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import {
   Board,
@@ -22,10 +22,18 @@ import {
   Tr,
   WriteButton,
 } from './boards.style';
+import { Variants } from 'framer-motion';
+import DefaultButton from '@src/components/Button/Button';
 
 /**
  *  게시판 메인 페이지
  */
+
+const buttonHover: Variants = {
+  hover: {
+    backgroundColor: 'white',
+  },
+};
 
 function BoardPage() {
   const router = useRouter();
@@ -85,7 +93,7 @@ function BoardPage() {
             </Tbody>
           </Table>
           <TableFooter>
-            <WriteButton onClick={onClickWrite}>작성</WriteButton>
+            <WriteButton onClick={onClickWrite}>작성 하기</WriteButton>
             <PageButtonSection>
               <MdKeyboardArrowLeft size={35}></MdKeyboardArrowLeft>
               <PageButton>1</PageButton>

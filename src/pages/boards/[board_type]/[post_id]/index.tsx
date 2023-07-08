@@ -1,59 +1,25 @@
-import PageTitle from '@src/components/layout/PageTitle/PageTitle';
-import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
-import SideBar from '@src/components/layout/SideBar/SideBar';
+import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
+import SideBar from '@src/components/Layout/SideBar/SideBar';
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import Comment from '@src/components/editor/Comment';
+import Comment from '@src/components/Editor/Comment';
+import {
+  AuthorInfo,
+  AuthorName,
+  Avatar,
+  Desc,
+  H1,
+  Hr,
+  Info,
+  Main,
+} from './post_id.style';
 /**
  *  글 조회 페이지
  */
 
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 200px;
-`;
-const Hr = styled.hr`
-  background: ${({ theme }) => theme.color2};
-  border: 0;
-  width: 100%;
-  height: 1px;
-  margin-top: 50px;
-
-  margin-bottom: 50px;
-`;
-const AuthorInfo = styled.div`
-  display: flex;
-  margin-top: 200px;
-  align-items: center;
-`;
-const Avatar = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: ${({ theme }) => theme.color1};
-  margin-right: 50px;
-`;
-const Info = styled.div`
-  display: flex;
-
-  flex-direction: column;
-`;
-const AuthorName = styled.h1`
-  font-size: 2.4rem;
-  margin-bottom: 0.5em;
-`;
-const Desc = styled.div`
-  font-size: 2rem;
-`;
-
-const H1 = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 1em;
-`;
-
 function PostDetail() {
-  const router = useRouter();
-  const { post_id } = router.query;
+  // const router = useRouter();
+  // const { post_id } = router.query;
 
   return (
     <PageWrapper>

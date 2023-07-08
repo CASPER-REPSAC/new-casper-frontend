@@ -1,10 +1,8 @@
-import PageTitle from '@src/components/layout/PageTitle/PageTitle';
 import { useForm } from 'react-hook-form';
-import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
+import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
 import { useRouter } from 'next/router';
-import QuillEditor from '@src/components/editor/QuillEditor';
+import QuillEditor from '@src/components/Editor/QuillEditor';
 import {
-  Button,
   ButtonSection,
   CheckInput,
   EditorSection,
@@ -19,7 +17,8 @@ import {
   Options,
   Select,
   TitleSection,
-} from './boards.style';
+  WriteButton,
+} from './new.style';
 
 /**
  *  글 작성 페이지
@@ -28,7 +27,7 @@ import {
 function PostPage() {
   const { register, watch } = useForm();
   const router = useRouter();
-  const { board_type } = router.query;
+  // const { board_type } = router.query;
 
   return (
     <PageWrapper>
@@ -83,7 +82,7 @@ function PostPage() {
 
         {/* Footer */}
         <ButtonSection>
-          <Button>작성</Button>
+          <WriteButton>작성 하기</WriteButton>
         </ButtonSection>
       </Form>
     </PageWrapper>

@@ -1,9 +1,7 @@
 import { isDarkState } from '@src/atoms';
-import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
-import { ThemeContext } from 'styled-components';
 import {
   Button,
   Form,
@@ -24,7 +22,7 @@ export default function Login() {
   const isDark = useRecoilValue(isDarkState);
 
   const { register, watch, handleSubmit } = useForm<IForm>();
-  const theme = useContext(ThemeContext);
+  // const theme = useContext(ThemeContext);
 
   return (
     <Wrapper>

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import 'react-quill/dist/quill.snow.css';
 import 'react-quill/dist/quill.bubble.css';
-import { QuillWrapper } from './editor.style';
+import { QuillWrapper } from './QuillEditor.style';
 import dynamic from 'next/dynamic';
 const ReactQuill = dynamic(() => import('react-quill'), { ssr: false });
 
