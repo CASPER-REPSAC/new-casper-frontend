@@ -7,7 +7,7 @@ import {
   Form,
   ImageWrapper,
   Img,
-  Input,
+  LoginInput,
   Label,
   Row,
   Wrapper,
@@ -39,23 +39,23 @@ export default function Login() {
           <Label htmlFor="id">
             <AiOutlineUser size={25} />
           </Label>
-          <Input
+          <LoginInput
             placeholder="ID를 입력해주세요."
             autoComplete="off"
             {...register('id', { required: true })}
-          ></Input>
+          ></LoginInput>
         </Row>
 
         <Row>
           <Label htmlFor="pw">
             <AiOutlineLock size={25} />
           </Label>
-          <Input
+          <LoginInput
             placeholder="PW를 입력해주세요."
             autoComplete="off"
             type={'password'}
             {...register('pw', { required: true })}
-          ></Input>
+          ></LoginInput>
         </Row>
         <Button onClick={() => {}}>로그인</Button>
       </Form>

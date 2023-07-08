@@ -12,4 +12,6 @@ export const InputWrapper = styled.input`
   padding-right: 10px;
   font-size: 1.5rem;
   box-sizing: border-box;
+  height: 50px;
+  width: 400px;
 `;
