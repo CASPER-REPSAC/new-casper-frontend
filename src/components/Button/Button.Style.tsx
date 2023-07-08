@@ -5,10 +5,11 @@ export const ButtonWrapper = styled.button`
   height: 40px;
   color: ${({ theme }) => theme.textColor};
   background-color: inherit;
-  border: 1px solid ${({ theme }) => theme.liquid};
+  border: 1px solid ${({ theme }) => theme.border};
   cursor: pointer;
   font-size: 1.6rem;
   :hover {
-    background-color: ${({ theme }) => theme.liquid};
+    background-color: ${({ theme }) => theme.color1};
+    border: 1px solid ${({ theme }) => theme.color2};
   }
 `;

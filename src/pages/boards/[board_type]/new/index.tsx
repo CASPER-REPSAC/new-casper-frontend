@@ -18,6 +18,7 @@ import {
   Select,
   TitleSection,
   WriteButton,
+  OptionLabel,
 } from './new.style';
 
 /**
@@ -28,6 +29,7 @@ function PostPage() {
   const { register, watch } = useForm();
   const router = useRouter();
   // const { board_type } = router.query;
+  console.log(watch('fix'));
 
   return (
     <PageWrapper>
@@ -54,31 +56,37 @@ function PostPage() {
 
         {/* 옵션 */}
         <OptionSection>
-          <H1>옵션</H1>
           <Options>
-            <label htmlFor="secret">비밀글</label>
-            <CheckInput
-              {...register('secret')}
-              type="checkbox"
-              name="secret"
-              value={'secret'}
-            />
-            <label htmlFor="fix">고정글</label>
-            <CheckInput
-              {...register('fix')}
-              type="checkbox"
-              name="secret"
-              value={'secret'}
-            />
+            <OptionLabel htmlFor="secret" selected={watch('secret')}>
+              <CheckInput
+                {...register('secret')}
+                type="checkbox"
+                id="secret"
+                name="secret"
+                value={'secret'}
+              />
+              <span>비밀글</span>
+            </OptionLabel>
+
+            <OptionLabel htmlFor="fix" selected={watch('fix')}>
+              <CheckInput
+                {...register('fix')}
+                id="fix"
+                type="checkbox"
+                name="fix"
+                value={'fix'}
+              />
+              <span>고정글</span>
+            </OptionLabel>
           </Options>
         </OptionSection>
 
         {/* 파일 첨부 */}
-        <FileSection>
+        {/* <FileSection>
           <H1>파일</H1>
           <FileInputLabel htmlFor="file">파일 첨부</FileInputLabel>
           <FileInput type="file" id="file"></FileInput>
-        </FileSection>
+        </FileSection> */}
 
         {/* Footer */}
         <ButtonSection>

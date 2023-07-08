@@ -22,24 +22,16 @@ import {
   Tr,
   WriteButton,
 } from './boards.style';
-import { Variants } from 'framer-motion';
-import DefaultButton from '@src/components/Button/Button';
 
 /**
  *  게시판 메인 페이지
  */
 
-const buttonHover: Variants = {
-  hover: {
-    backgroundColor: 'white',
-  },
-};
-
 function BoardPage() {
   const router = useRouter();
   const { board_type } = router.query;
   const onClickWrite = () => {
-    router.push(`/boards/${board_type}/posts`);
+    router.push(`/boards/${board_type}/new`);
   };
   const theme = useTheme();
 

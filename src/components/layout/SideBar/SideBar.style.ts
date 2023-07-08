@@ -24,7 +24,7 @@ export const Item = styled.div`
 export const Highlight = styled(motion.div)`
   position: absolute;
   left: -1px;
-  background-color: rgba(0, 0, 0, 0.2);
+  background-color: ${({ theme }) => theme.liquid};
   border-right: 1px solid ${(props) => props.theme.textColor};
   border-left: 1px solid ${(props) => props.theme.textColor};
   width: 100%;

@@ -32,7 +32,7 @@ export const Tbody = styled.tbody`
 export const Tr = styled(motion.tr)`
   height: 2.4em;
   line-height: 2.4em;
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
+  border-bottom: 1px solid ${({ theme }) => theme.border};
 `;
 export const TdCenter = styled.td`
   text-align: center;
@@ -103,7 +103,7 @@ export const H1 = styled.h1`
 
 export const TitleInput = styled(Input)`
   border: 0;
-  border-bottom: 0px solid ${({ theme }) => theme.toastBorder};
+  border-bottom: 0px solid ${({ theme }) => theme.liquid};
   width: 100%;
   padding-left: 15px;
   font-size: 3rem;
@@ -139,7 +139,7 @@ export const Select = styled.select`
   margin-right: 1em;
   width: 120px;
   text-align: center;
-  border: 1px solid ${({ theme }) => theme.toastBorder};
+  border: 1px solid ${({ theme }) => theme.liquid};
 `;
 
 export const FileInput = styled.input`
@@ -150,7 +150,7 @@ export const FileInputLabel = styled.label`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  border: 1px solid ${({ theme }) => theme.toastBorder};
+  border: 1px solid ${({ theme }) => theme.liquid};
 
   border-radius: 4px;
   height: 100px;
