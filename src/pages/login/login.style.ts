@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
-import DefaultButton from '@src/components/Button/Button';
+import Button from '@src/components/Button/Button';
+import Input from '@src/components/Input/Input';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -17,7 +18,7 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
 `;
-export const LoginInput = styled(motion.input)`
+export const LoginInput = styled(Input)`
   margin: 0.3em;
   padding-left: 45px;
 `;
@@ -37,7 +38,7 @@ export const Label = styled.label`
   position: absolute;
   left: 15px;
 `;
-export const Button = styled(DefaultButton)`
+export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;

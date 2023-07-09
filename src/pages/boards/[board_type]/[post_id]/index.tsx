@@ -1,7 +1,6 @@
 import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
-import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
+import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 import SideBar from '@src/components/Layout/SideBar/SideBar';
-import { useRouter } from 'next/router';
 import Comment from '@src/components/Editor/Comment';
 import {
   AuthorInfo,
@@ -22,7 +21,7 @@ function PostDetail() {
   // const { post_id } = router.query;
 
   return (
-    <PageWrapper>
+    <CommonCenterWrapper>
       <PageTitle pageTitle={'Boards'} />
       <SideBar
         menus={['공지사항', '정회원 게시판', '준회원 게시판']}
@@ -54,7 +53,7 @@ function PostDetail() {
           content="댓글 2번입니다."
         ></Comment>
       </Main>
-    </PageWrapper>
+    </CommonCenterWrapper>
   );
 }
 

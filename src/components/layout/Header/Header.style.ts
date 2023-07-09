@@ -17,11 +17,6 @@ export const Body = styled.div`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin: 0 160px 0 160px;
-  @media screen and (max-width: 1440px) {
-    margin-left: 40px;
-    margin-right: 40px;
-  }
 `;
 export const Img = styled.img`
   width: 170px;

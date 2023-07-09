@@ -4,10 +4,7 @@ import styled from 'styled-components';
 
 export const Form = styled.form`
   position: relative;
-  height: calc(150vh - 70px - 50px); // header, footer 뺀 값
-  padding-bottom: 10vh;
   box-sizing: border-box;
-  margin-top: 70px;
   margin: 0 auto;
   width: 700px;
 `;
@@ -55,10 +52,10 @@ export const OptionLabel = styled.label<{ selected: boolean }>`
   justify-content: center;
   align-items: center;
   color: ${(props) =>
-    props.selected ? props.theme.textColor : props.theme.liquid};
+    props.selected ? props.theme.textColor : props.theme.border};
 
   border: 1px solid
-    ${(props) => (props.selected ? props.theme.textColor : props.theme.liquid)};
+    ${(props) => (props.selected ? props.theme.textColor : props.theme.border)};
   background-color: ${(props) => (props.selected ? props.theme.color1 : null)};
   :hover {
     color: ${({ theme }) => theme.textColor};

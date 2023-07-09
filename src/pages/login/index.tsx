@@ -3,7 +3,6 @@ import { useForm } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
 import {
-  Button,
   Form,
   ImageWrapper,
   Img,
@@ -11,6 +10,7 @@ import {
   Label,
   Row,
   Wrapper,
+  LoginButton,
 } from './login.style';
 
 interface IForm {
@@ -57,7 +57,7 @@ export default function Login() {
             {...register('pw', { required: true })}
           ></LoginInput>
         </Row>
-        <Button onClick={() => {}}>로그인</Button>
+        <LoginButton onClick={() => {}}>로그인</LoginButton>
       </Form>
     </Wrapper>
   );

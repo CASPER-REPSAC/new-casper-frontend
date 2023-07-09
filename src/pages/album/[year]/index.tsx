@@ -1,12 +1,14 @@
 import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
-import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
 import SideBar from '@src/components/Layout/SideBar/SideBar';
+import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 
 export default function Year() {
   return (
-    <PageWrapper>
+    <>
       <PageTitle pageTitle="Album"></PageTitle>
-      <SideBar menus={['2023', '2022', '2021']} basePath="/album" />
-    </PageWrapper>
+      <CommonCenterWrapper>
+        <SideBar menus={['2023', '2022', '2021']} basePath="/album" />
+      </CommonCenterWrapper>
+    </>
   );
 }

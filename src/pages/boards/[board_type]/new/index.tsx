@@ -1,21 +1,15 @@
 import { useForm } from 'react-hook-form';
-import PageWrapper from '@src/components/Layout/PageWrapper/PageWrapper';
-import { useRouter } from 'next/router';
+import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 import QuillEditor from '@src/components/Editor/QuillEditor';
 import {
   ButtonSection,
   CheckInput,
   EditorSection,
-  FileInput,
-  FileInputLabel,
-  FileSection,
   Form,
-  H1,
   Header,
   TitleInput,
   OptionSection,
   Options,
-  Select,
   TitleSection,
   WriteButton,
   OptionLabel,
@@ -27,12 +21,10 @@ import {
 
 function PostPage() {
   const { register, watch } = useForm();
-  const router = useRouter();
   // const { board_type } = router.query;
-  console.log(watch('fix'));
 
   return (
-    <PageWrapper>
+    <CommonCenterWrapper>
       <Form>
         {/* header */}
         <TitleSection>
@@ -93,7 +85,7 @@ function PostPage() {
           <WriteButton>작성 하기</WriteButton>
         </ButtonSection>
       </Form>
-    </PageWrapper>
+    </CommonCenterWrapper>
   );
 }
 
