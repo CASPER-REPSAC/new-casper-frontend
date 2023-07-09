@@ -1,10 +1,11 @@
-import { InputHTMLAttributes } from 'react';
+import { ForwardedRef, InputHTMLAttributes } from 'react';
 import { InputWrapper } from './Input.style';
+import React from 'react';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
-function DefaultInput({ ...props }: Props) {
+function Input(props: Props, ref: ForwardedRef<HTMLInputElement>) {
   return <InputWrapper {...props} />;
 }
 
-export default DefaultInput;
+export default React.forwardRef(Input);

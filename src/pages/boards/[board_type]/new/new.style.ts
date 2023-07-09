@@ -5,8 +5,9 @@ import styled from 'styled-components';
 export const Form = styled.form`
   position: relative;
   box-sizing: border-box;
-  margin: 0 auto;
-  width: 700px;
+  margin: 80px auto 0;
+  width: 100%;
+  padding-bottom: 200px;
 `;
 
 export const H1 = styled.h1`
@@ -113,7 +114,8 @@ export const ButtonSection = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 2em;
-  padding: 24px;
+  padding-left: 24px;
+  padding-right: 24px;
 `;
 export const WriteButton = styled(Button)`
   width: 100%;

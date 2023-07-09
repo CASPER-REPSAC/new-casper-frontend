@@ -5,7 +5,6 @@ import {
   AiOutlineCopyrightCircle,
 } from 'react-icons/ai';
 import { Body, Info, Sns, Span, Wrapper } from './Footer.style';
-import CommonCenterWrapper from '../CommonCenterWrapper/CommonCenterWrapper';
 
 function Footer() {
   return (

@@ -14,6 +14,7 @@ import {
   WriteButton,
   OptionLabel,
 } from './new.style';
+import { KeyboardEvent } from 'react';
 
 /**
  *  글 작성 페이지
@@ -22,6 +23,16 @@ import {
 function PostPage() {
   const { register, watch } = useForm();
   // const { board_type } = router.query;
+
+  const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      const qlEditor = document.getElementsByClassName(
+        'ql-editor',
+      )[0] as HTMLDivElement;
+      qlEditor.focus();
+    }
+  };
 
   return (
     <CommonCenterWrapper>
@@ -37,6 +48,7 @@ function PostPage() {
             <TitleInput
               {...register('title', { required: true })}
               placeholder="제목을 입력해주세요."
+              onKeyDown={(e) => handleKeyDown(e)}
             />
           </Header>
         </TitleSection>
