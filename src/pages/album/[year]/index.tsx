@@ -6,9 +6,7 @@ export default function Year() {
   return (
     <>
       <PageTitle pageTitle="Album"></PageTitle>
-      <CommonCenterWrapper>
-        <SideBar menus={['2023', '2022', '2021']} basePath="/album" />
-      </CommonCenterWrapper>
+      <CommonCenterWrapper></CommonCenterWrapper>
     </>
   );
 }

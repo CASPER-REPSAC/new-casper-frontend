@@ -7,11 +7,16 @@ import { Cards, Main, MemberCard } from './members.style';
 function Members() {
   const router = useRouter();
 
+  const sideBarParam = {
+    '활동 중': '/members/active',
+    휴학생: '/members/rest',
+    졸업생: '/members/graduate',
+  };
   return (
     <>
       <PageTitle pageTitle="Members" />
       <CommonCenterWrapper>
-        <SideBar menus={['활동 중', '휴학생', '졸업생']} basePath="/members" />
+        <SideBar menu_path={sideBarParam} />
         <Main>
           <Cards>
             <MemberCard />

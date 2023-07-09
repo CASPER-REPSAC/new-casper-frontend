@@ -34,15 +34,16 @@ function BoardPage() {
     router.push(`/boards/${board_type}/new`);
   };
   const theme = useTheme();
-
+  const sideBarParmas = {
+    공지사항: '/boards/notice_board',
+    '정회원 게시판': '/boards/full_member_board',
+    '준회원 게시판': '/boards/associate_member_board',
+  };
   return (
     <>
       <PageTitle pageTitle="Boards"></PageTitle>
       <PageWrapper>
-        <SideBar
-          menus={['공지사항', '정회원 게시판', '준회원 게시판']}
-          basePath="/boards"
-        ></SideBar>
+        <SideBar menu_path={sideBarParmas}></SideBar>
         <Main>
           <Board>
             <TableHeader>
