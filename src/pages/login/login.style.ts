@@ -1,7 +1,8 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { DefaultButton } from '@src/components/Components';
+import Button from '@src/components/Button/Button';
+import Input from '@src/components/Input/Input';
 
 export const Wrapper = styled.div`
   display: flex;
@@ -17,21 +18,9 @@ export const Form = styled.form`
   flex-direction: column;
   align-items: center;
 `;
-export const Input = styled(motion.input)`
-  :focus {
-    border-color: ${({ theme }) => theme.textColor};
-    outline: none;
-  }
-  height: 50px;
-  width: 400px;
-  background-color: ${(props) => props.theme.bgColor};
-  border: 1px solid ${(props) => props.theme.color2};
+export const LoginInput = styled(Input)`
   margin: 0.3em;
-  color: ${(props) => props.theme.textColor};
   padding-left: 45px;
-  padding-right: 10px;
-  font-size: 1.5rem;
-  box-sizing: border-box;
 `;
 
 export const Img = styled(Image)`
@@ -49,7 +38,7 @@ export const Label = styled.label`
   position: absolute;
   left: 15px;
 `;
-export const Button = styled(DefaultButton)`
+export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;

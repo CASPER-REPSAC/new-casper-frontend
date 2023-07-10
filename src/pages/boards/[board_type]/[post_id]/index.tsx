@@ -1,94 +1,64 @@
-import PageTitle from '@src/components/layout/PageTitle/PageTitle';
-import PageWrapper from '@src/components/layout/PageWrapper/PageWrapper';
-import SideBar from '@src/components/layout/SideBar/SideBar';
-import { useRouter } from 'next/router';
-import styled from 'styled-components';
-import Comment from '@src/components/editor/Comment';
+import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
+import SideBar from '@src/components/Layout/SideBar/SideBar';
+import Comment from '@src/components/Editor/Comment';
+import {
+  AuthorInfo,
+  AuthorName,
+  Avatar,
+  Desc,
+  H1,
+  Hr,
+  Info,
+  Main,
+} from './post_id.style';
 /**
  *  글 조회 페이지
  */
 
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 200px;
-`;
-const Hr = styled.hr`
-  background: ${({ theme }) => theme.color2};
-  border: 0;
-  width: 100%;
-  height: 1px;
-  margin-top: 50px;
-
-  margin-bottom: 50px;
-`;
-const AuthorInfo = styled.div`
-  display: flex;
-  margin-top: 200px;
-  align-items: center;
-`;
-const Avatar = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: ${({ theme }) => theme.color1};
-  margin-right: 50px;
-`;
-const Info = styled.div`
-  display: flex;
-
-  flex-direction: column;
-`;
-const AuthorName = styled.h1`
-  font-size: 2.4rem;
-  margin-bottom: 0.5em;
-`;
-const Desc = styled.div`
-  font-size: 2rem;
-`;
-
-const H1 = styled.h1`
-  font-size: 3rem;
-  margin-bottom: 1em;
-`;
-
 function PostDetail() {
-  const router = useRouter();
-  const { post_id } = router.query;
+  // const router = useRouter();
+  // const { post_id } = router.query;
+
+  const sideBarParmas = {
+    공지사항: '/boards/notice_board',
+    '정회원 게시판': '/boards/full_member_board',
+    '준회원 게시판': '/boards/associate_member_board',
+  };
 
   return (
-    <PageWrapper>
+    <>
       <PageTitle pageTitle={'Boards'} />
-      <SideBar
-        menus={['공지사항', '정회원 게시판', '준회원 게시판']}
-        basePath={'/boards'}
-      />
-      <Main>
-        {/* 본문 */}
+      <CommonCenterWrapper>
+        <SideBar menu_path={sideBarParmas} />
+        <Main>
+          {/* 본문 */}
 
-        {/* 작성자 정보 */}
-        <AuthorInfo>
-          <Avatar></Avatar>
-          <Info>
-            <AuthorName>박지성</AuthorName>
-            <Desc>소개글소개글소개글소개글소개글</Desc>
-          </Info>
-        </AuthorInfo>
-        <Hr />
+          {/* 작성자 정보 */}
+          <AuthorInfo>
+            <Avatar></Avatar>
+            <Info>
+              <AuthorName>박지성</AuthorName>
+              <Desc>소개글소개글소개글소개글소개글</Desc>
+            </Info>
+          </AuthorInfo>
+          <Hr />
 
-        {/* 댓글 */}
-        <H1>댓글</H1>
-        <Comment
-          name="박지성"
-          date="2021.12.12 14:12:15"
-          content="댓글 1번입니다."
-        ></Comment>
-        <Comment
-          name="박지성"
-          date="2021.12.12 14:12:15"
-          content="댓글 2번입니다."
-        ></Comment>
-      </Main>
-    </PageWrapper>
+          {/* 댓글 */}
+          <H1>댓글</H1>
+          <Comment
+            name="박지성"
+            date="2021.12.12 14:12:15"
+            content="댓글 1번입니다."
+          ></Comment>
+          <Comment
+            name="박지성"
+            date="2021.12.12 14:12:15"
+            content="댓글 2번입니다."
+          ></Comment>
+        </Main>
+      </CommonCenterWrapper>
+    </>
   );
 }
 

@@ -1,7 +1,6 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
-export const DefaultInput = styled.input`
+export const InputWrapper = styled.input`
   :focus {
     border-color: ${({ theme }) => theme.textColor};
     outline: none;
@@ -13,14 +12,6 @@ export const DefaultInput = styled.input`
   padding-right: 10px;
   font-size: 1.5rem;
   box-sizing: border-box;
-`;
-
-export const DefaultButton = styled(motion.button)`
-  width: 80px;
-  height: 40px;
-  background-color: ${({ theme }) => theme.color2};
-  border: 0;
-  color: ${({ theme }) => theme.textColor};
-  cursor: pointer;
-  font-size: 1.6rem;
+  height: 50px;
+  width: 400px;
 `;

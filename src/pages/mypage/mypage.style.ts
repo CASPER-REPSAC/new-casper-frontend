@@ -1,4 +1,5 @@
-import { DefaultButton, DefaultInput } from '@src/components/Components';
+import DefaultButton from '@src/components/Button/Button';
+import Input from '@src/components/Input/Input';
 import styled from 'styled-components';
 
 export const Form = styled.form`
@@ -23,11 +24,7 @@ export const FlexRow = styled.div`
   justify-content: space-between;
   height: 100%;
 `;
-export const Input = styled(DefaultInput)`
-  height: 34px;
-  width: 400px;
-  font-size: 1.4rem;
-`;
+
 export const IntroInput = styled.textarea`
   background-color: inherit;
   border: 1px solid ${({ theme }) => theme.color2};

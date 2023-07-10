@@ -13,10 +13,8 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 1em;
   margin-bottom: 110px;
-  position: relative;
-  left: -160px;
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1024px) {
     margin-bottom: 50px;
     left: -40px;
   }
