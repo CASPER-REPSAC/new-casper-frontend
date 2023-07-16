@@ -6,8 +6,8 @@ export const Wrapper = styled.div`
   bottom: 0;
   width: 100%;
   height: 50px;
-  background-color: ${(props) => props.theme.color2};
-  color: ${(props) => props.theme.textColor};
+  background-color: ${(props) => props.theme.surfaceAlt};
+  color: ${(props) => props.theme.textDefault};
 `;
 
 export const Body = styled(CommonCenterWrapper)`

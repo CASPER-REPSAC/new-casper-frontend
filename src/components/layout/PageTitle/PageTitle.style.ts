@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.color1};
+  background-color: ${({ theme }) => theme.surfacePointAlt};
   height: 120px;
   width: 100vw;
-  border-top: 1px solid ${(props) => props.theme.textColor};
-  border-bottom: 1px solid ${(props) => props.theme.textColor};
+  border-top: 1px solid ${(props) => props.theme.borderBold};
+  border-bottom: 1px solid ${(props) => props.theme.borderBold};
+  color: ${(props) => props.theme.textStrong};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;

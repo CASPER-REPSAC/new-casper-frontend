@@ -17,9 +17,9 @@ export const Board = styled.div`
   width: 100%;
 `;
 export const Thead = styled.thead`
-  background-color: ${({ theme }) => theme.color1};
-  border-bottom: 1px solid ${({ theme }) => theme.textColor};
-  border-top: 1px solid ${({ theme }) => theme.textColor};
+  background-color: ${({ theme }) => theme.surfacePointAlt};
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
+  border-top: 1px solid ${({ theme }) => theme.borderDefault};
   height: 2.4em;
   line-height: 2.4em;
 `;
@@ -32,7 +32,7 @@ export const Tbody = styled.tbody`
 export const Tr = styled(motion.tr)`
   height: 2.4em;
   line-height: 2.4em;
-  border-bottom: 1px solid ${({ theme }) => theme.border};
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 export const TdCenter = styled.td`
   text-align: center;
@@ -71,8 +71,8 @@ export const PageButton = styled(motion.button)`
   height: 30px;
   border-radius: 50%;
   background-color: inherit;
-  border: 1px solid ${({ theme }) => theme.textColor};
-  color: ${({ theme }) => theme.textColor};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  color: ${({ theme }) => theme.textWeek};
   font-size: 1.6rem;
   cursor: pointer;
 `;
@@ -103,14 +103,14 @@ export const H1 = styled.h1`
 
 export const TitleInput = styled(Input)`
   border: 0;
-  border-bottom: 0px solid ${({ theme }) => theme.liquid};
+  border-bottom: 0px solid ${({ theme }) => theme.borderDefault};
   width: 100%;
   padding-left: 15px;
   font-size: 3rem;
   height: 40px;
   ::placeholder {
     font-style: italic;
-    color: ${({ theme }) => theme.color2};
+    color: ${({ theme }) => theme.textWeek};
   }
 `;
 
@@ -134,12 +134,12 @@ export const Header = styled.div`
 export const Select = styled.select`
   background-color: inherit;
   height: 100%;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.textDefault};
   font-size: 1.8rem;
   margin-right: 1em;
   width: 120px;
   text-align: center;
-  border: 1px solid ${({ theme }) => theme.liquid};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 
 export const FileInput = styled.input`
@@ -150,7 +150,7 @@ export const FileInputLabel = styled.label`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  border: 1px solid ${({ theme }) => theme.liquid};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
 
   border-radius: 4px;
   height: 100px;

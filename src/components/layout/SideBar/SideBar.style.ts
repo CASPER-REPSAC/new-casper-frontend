@@ -9,8 +9,8 @@ export const Wrapper = styled.div`
   height: 100%;
   min-width: 230px;
   width: 230px;
-  border-right: 1px solid ${(props) => props.theme.color2};
-  border-left: 1px solid ${(props) => props.theme.color2};
+  border-right: 1px solid ${(props) => props.theme.borderDefault};
+  border-left: 1px solid ${(props) => props.theme.borderDefault};
   margin-right: 50px;
 `;
 export const Item = styled.div`
@@ -24,13 +24,14 @@ export const Item = styled.div`
 export const Highlight = styled(motion.div)`
   position: absolute;
   left: -1px;
-  background-color: ${({ theme }) => theme.liquid};
-  border-right: 1px solid ${(props) => props.theme.textColor};
-  border-left: 1px solid ${(props) => props.theme.textColor};
+  background-color: ${({ theme }) => theme.surfacePointAlt};
+  border-right: 1px solid ${(props) => props.theme.borderDefault};
+  border-left: 1px solid ${(props) => props.theme.borderDefault};
   width: 100%;
   height: 100%;
+  z-index: -1;
 `;
 export const StyledLink = styled(Link)`
   text-decoration: none;
-  color: ${(props) => props.theme.textColor};
+  color: ${(props) => props.theme.textDefault};
 `;

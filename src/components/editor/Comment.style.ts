@@ -3,11 +3,11 @@ import styled from 'styled-components';
 export const Wrapper = styled.div`
   display: flex;
   padding-bottom: 10px;
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   margin-bottom: 10px;
 `;
 export const Avatar = styled.div`
-  background-color: ${({ theme }) => theme.color1};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   width: 70px;
   height: 70px;
   flex-shrink: 0;
@@ -41,7 +41,7 @@ export const Buttons = styled.div`
 
 export const Button = styled.button`
   font-size: 1.2rem;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.textDefault};
   background-color: inherit;
   border: 0;
   cursor: pointer;
