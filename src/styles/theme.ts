@@ -9,9 +9,11 @@ export const darkTheme: DefaultTheme = {
   borderBold: '#FFFFFF',
   surfaceDefault: '#14212B',
   surfaceAlt: '#4B5966',
-
   surfacePointDefault: '#12171C',
   surfacePointAlt: '#12171C',
+  green100: '#57ab5a',
+  green200: '#2b6a30',
+  white: '#FFFFFF',
 };
 
 export const lightTheme: DefaultTheme = {
@@ -23,6 +25,9 @@ export const lightTheme: DefaultTheme = {
   borderBold: '#6E8091',
   surfaceDefault: '#FFFFFF',
   surfaceAlt: '#F5F7F9',
-  surfacePointDefault: '#4362D0',
-  surfacePointAlt: '#7890E7',
+  surfacePointDefault: '#E9E9E9',
+  surfacePointAlt: '#F5F7F9',
+  green100: '#73c92d',
+  green200: '#57ab5a',
+  white: '#FFFFFF',
 };

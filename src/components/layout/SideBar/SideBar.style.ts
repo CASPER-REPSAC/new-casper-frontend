@@ -24,7 +24,7 @@ export const Item = styled.div`
 export const Highlight = styled(motion.div)`
   position: absolute;
   left: -1px;
-  background-color: ${({ theme }) => theme.surfacePointAlt};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   border-right: 1px solid ${(props) => props.theme.borderDefault};
   border-left: 1px solid ${(props) => props.theme.borderDefault};
   width: 100%;

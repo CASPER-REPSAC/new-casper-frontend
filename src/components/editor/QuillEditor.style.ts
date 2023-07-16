@@ -73,4 +73,18 @@ export const QuillWrapper = styled.div`
   .ql-toolbar.ql-snow .ql-picker-label {
     border: none;
   }
+
+  .ql-picker-options {
+    background-color: ${({ theme }) => theme.surfaceAlt};
+    color: ${({ theme }) => theme.textWeek};
+  }
+  .ql-picker-options .ql-picker-item {
+    :hover {
+      color: ${({ theme }) => theme.textStrong};
+    }
+  }
+
+  .ql-selected {
+    color: ${({ theme }) => theme.textPoint} !important;
+  }
 `;

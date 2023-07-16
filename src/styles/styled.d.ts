@@ -12,5 +12,8 @@ declare module 'styled-components' {
     borderDefault: string;
     surfacePointDefault: string;
     surfacePointAlt: string;
+    green100: string;
+    green200: string;
+    white: string;
   }
 }
