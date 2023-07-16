@@ -10,7 +10,7 @@ export const darkTheme: DefaultTheme = {
   surfaceDefault: '#14212B',
   surfaceAlt: '#4B5966',
   surfacePointDefault: '#12171C',
-  surfacePointAlt: '#12171C',
+  surfacePointAlt: '#12171c82',
   green100: '#57ab5a',
   green200: '#2b6a30',
   white: '#FFFFFF',

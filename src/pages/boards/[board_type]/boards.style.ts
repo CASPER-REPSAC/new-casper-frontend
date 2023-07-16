@@ -1,6 +1,5 @@
 import DefaultButton from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
-import { motion } from 'framer-motion';
 import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
 
@@ -17,7 +16,7 @@ export const Board = styled.div`
   width: 100%;
 `;
 export const Thead = styled.thead`
-  background-color: ${({ theme }) => theme.surfacePointAlt};
+  background-color: ${({ theme }) => theme.surfacePointDefault};
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   border-top: 1px solid ${({ theme }) => theme.borderDefault};
   height: 2.4em;
@@ -27,9 +26,13 @@ export const Tbody = styled.tbody`
   font-size: 1.6rem;
   Tr {
     cursor: pointer;
+    :hover {
+      transition: 0.2s;
+      background-color: ${({ theme }) => theme.surfacePointAlt};
+    }
   }
 `;
-export const Tr = styled(motion.tr)`
+export const Tr = styled.tr`
   height: 2.4em;
   line-height: 2.4em;
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
@@ -66,7 +69,7 @@ export const SearchIcon = styled(AiOutlineSearch)`
   position: absolute;
   left: 15px;
 `;
-export const PageButton = styled(motion.button)`
+export const PageButton = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;

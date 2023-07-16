@@ -71,7 +71,6 @@ function BoardPage() {
               <Tbody>
                 {[1, 2, 3].map((val, idx) => (
                   <Tr
-                    whileHover={{ backgroundColor: theme.surfaceAlt }}
                     key={idx}
                     onClick={() => {
                       router.push(`/boards/${board_type}/${val}`);
