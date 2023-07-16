@@ -11,8 +11,8 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body{
-    background-color: ${(props) => props.theme.bgColor};
-    color: ${(props) => props.theme.textColor};
+    background-color: ${(props) => props.theme.surfaceDefault};
+    color: ${(props) => props.theme.textDefault};
     font-family: 'Noto Sans KR', sans-serif;
   }
 `;

@@ -2,12 +2,18 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
-    bgColor: string;
-    color1: string;
-    color2: string;
-    textColor: string;
-    liquid: string;
-    boxShadow: string;
-    border: string;
+    textStrong: string;
+    textWeek: string;
+    textDefault: string;
+    textPoint: string;
+    surfaceDefault: string;
+    surfaceAlt: string;
+    borderBold: string;
+    borderDefault: string;
+    surfacePointDefault: string;
+    surfacePointAlt: string;
+    green100: string;
+    green200: string;
+    white: string;
   }
 }

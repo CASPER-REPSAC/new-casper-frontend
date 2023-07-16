@@ -17,20 +17,19 @@ export const H1 = styled.h1`
 
 export const TitleInput = styled(Input)`
   border: 0;
-  border-bottom: 0px solid ${({ theme }) => theme.liquid};
   width: 100%;
   padding-left: 15px;
   font-size: 3rem;
   height: 40px;
   ::placeholder {
     font-style: italic;
-    color: ${({ theme }) => theme.color2};
+    color: ${({ theme }) => theme.textWeek};
   }
 `;
 
 export const CheckInput = styled.input`
   display: none;
-  border: 1px solid ${({ theme }) => theme.color1};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
 
   width: 20px;
   height: 20px;
@@ -53,14 +52,16 @@ export const OptionLabel = styled.label<{ selected: boolean }>`
   justify-content: center;
   align-items: center;
   color: ${(props) =>
-    props.selected ? props.theme.textColor : props.theme.border};
+    props.selected ? props.theme.textWeek : props.theme.textStrong};
 
   border: 1px solid
-    ${(props) => (props.selected ? props.theme.textColor : props.theme.border)};
-  background-color: ${(props) => (props.selected ? props.theme.color1 : null)};
+    ${(props) =>
+      props.selected ? props.theme.borderDefault : props.theme.borderDefault};
+  background-color: ${(props) =>
+    props.selected ? props.theme.surfacePointDefault : null};
   :hover {
-    color: ${({ theme }) => theme.textColor};
-    border: 1px solid ${(props) => props.theme.textColor};
+    color: ${({ theme }) => theme.textStrong};
+    border: 1px solid ${(props) => props.theme.borderBold};
   }
 `;
 
@@ -72,12 +73,12 @@ export const Header = styled.div`
 export const Select = styled.select`
   background-color: inherit;
   height: 100%;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.textDefault};
   font-size: 1.8rem;
   margin-right: 1em;
   width: 120px;
   text-align: center;
-  border: 1px solid ${({ theme }) => theme.liquid};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 
 export const FileInput = styled.input`
@@ -88,7 +89,7 @@ export const FileInputLabel = styled.label`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  border: 1px solid ${({ theme }) => theme.liquid};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
 
   border-radius: 4px;
   height: 100px;

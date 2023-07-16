@@ -121,7 +121,14 @@ function NavItem({ path, menus, menus_url, atag_url, children }: INavItem) {
                 </StyledLink>
               ) : null}
               {aLinkUrl[idx] ? (
-                <StyledA href={aLinkUrl[idx]}>{menu}</StyledA>
+                <StyledA
+                  animate={liControls}
+                  transition={{ delay: idx * 0.05 }}
+                  initial={{ opacity: 0, x: -5 }}
+                  href={aLinkUrl[idx]}
+                >
+                  {menu}
+                </StyledA>
               ) : null}
             </Div>
           );

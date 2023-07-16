@@ -45,7 +45,7 @@ export const Item = styled(motion.div)<{ ishome: string }>`
   cursor: pointer;
   margin: 0 1.5em 0 1.5em;
   color: ${(props) =>
-    props.ishome === 'true' ? 'white' : props.theme.textColor};
+    props.ishome === 'true' ? 'white' : props.theme.textDefault};
   display: flex;
   justify-content: center;
   align-items: center;
@@ -57,21 +57,20 @@ export const UnderLine = styled(motion.div)`
   bottom: 15px;
   width: 100%;
   height: 1px;
-  background-color: ${(props) => props.theme.textColor};
+  background-color: ${(props) => props.theme.borderBold};
 `;
 export const NavSubMenu = styled(motion.div)`
-  background-color: ${({ theme }) => theme.color1};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   position: absolute;
   top: 70px;
-  color: ${({ theme }) => theme.textColor};
-  box-shadow: 2px 3px 5px ${({ theme }) => theme.boxShadow};
+  color: ${({ theme }) => theme.textDefault};
   transform-origin: top;
   display: flex;
   flex-direction: column;
 `;
 export const StyledLink = styled(motion(Link))`
   text-decoration: none;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.textDefault};
   width: 100%;
   height: 100%;
   line-height: 4rem;
@@ -79,14 +78,14 @@ export const StyledLink = styled(motion(Link))`
   padding-left: 1.2em;
   padding-right: 1.2em;
   &:hover {
-    background-color: ${({ theme }) => theme.liquid};
+    background-color: ${({ theme }) => theme.surfacePointAlt};
   }
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   z-index: 100;
 `;
 export const StyledA = styled(motion.a)`
   text-decoration: none;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.textDefault};
   width: 100%;
   height: 100%;
   line-height: 4rem;
@@ -94,9 +93,9 @@ export const StyledA = styled(motion.a)`
   padding-left: 1.2em;
   padding-right: 1.2em;
   &:hover {
-    background-color: ${({ theme }) => theme.liquid};
+    background-color: ${({ theme }) => theme.surfacePointAlt};
   }
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   z-index: 100;
 `;
 export const Div = styled.div`
