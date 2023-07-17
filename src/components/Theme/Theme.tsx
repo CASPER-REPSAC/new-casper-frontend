@@ -1,8 +1,8 @@
-import { isDarkState } from '@src/atoms';
-import { darkTheme, lightTheme } from '@src/styles/theme';
+import React from 'react';
 import { useRecoilState } from 'recoil';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-
+import { isDarkState } from '../../atoms';
+import { darkTheme, lightTheme } from '../../styles/theme';
 const GlobalStyle = createGlobalStyle`
   html{
     font-size: 10px;
@@ -11,8 +11,8 @@ const GlobalStyle = createGlobalStyle`
     }
   }
   body{
-    background-color: ${(props) => props.theme.bgColor};
-    color: ${(props) => props.theme.textColor};
+    background-color: ${(props) => props.theme.surfaceDefault};
+    color: ${(props) => props.theme.textDefault};
     font-family: 'Noto Sans KR', sans-serif;
   }
 `;

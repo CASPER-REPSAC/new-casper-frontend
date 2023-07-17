@@ -1,5 +1,5 @@
-import { DefaultButton, DefaultInput } from '@src/components/Components';
-import { motion } from 'framer-motion';
+import DefaultButton from '@src/components/Button/Button';
+import Input from '@src/components/Input/Input';
 import { AiOutlineSearch } from 'react-icons/ai';
 import styled from 'styled-components';
 
@@ -16,9 +16,9 @@ export const Board = styled.div`
   width: 100%;
 `;
 export const Thead = styled.thead`
-  background-color: ${({ theme }) => theme.color1};
-  border-bottom: 1px solid ${({ theme }) => theme.textColor};
-  border-top: 1px solid ${({ theme }) => theme.textColor};
+  background-color: ${({ theme }) => theme.surfacePointDefault};
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
+  border-top: 1px solid ${({ theme }) => theme.borderDefault};
   height: 2.4em;
   line-height: 2.4em;
 `;
@@ -26,12 +26,16 @@ export const Tbody = styled.tbody`
   font-size: 1.6rem;
   Tr {
     cursor: pointer;
+    :hover {
+      transition: 0.2s;
+      background-color: ${({ theme }) => theme.surfacePointAlt};
+    }
   }
 `;
-export const Tr = styled(motion.tr)`
+export const Tr = styled.tr`
   height: 2.4em;
   line-height: 2.4em;
-  border-bottom: 1px solid ${({ theme }) => theme.liquid};
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 export const TdCenter = styled.td`
   text-align: center;
@@ -49,7 +53,7 @@ export const TableHeader = styled.div`
   height: 35px;
 `;
 
-export const SearchInput = styled(DefaultInput)`
+export const SearchInput = styled(Input)`
   width: 100%;
   height: 100%;
   padding-left: 45px;
@@ -65,13 +69,13 @@ export const SearchIcon = styled(AiOutlineSearch)`
   position: absolute;
   left: 15px;
 `;
-export const PageButton = styled(motion.button)`
+export const PageButton = styled.button`
   width: 30px;
   height: 30px;
   border-radius: 50%;
   background-color: inherit;
-  border: 1px solid ${({ theme }) => theme.textColor};
-  color: ${({ theme }) => theme.textColor};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  color: ${({ theme }) => theme.textWeek};
   font-size: 1.6rem;
   cursor: pointer;
 `;
@@ -100,16 +104,16 @@ export const H1 = styled.h1`
   margin-bottom: 0.5em;
 `;
 
-export const TitleInput = styled(DefaultInput)`
+export const TitleInput = styled(Input)`
   border: 0;
-  border-bottom: 0px solid ${({ theme }) => theme.toastBorder};
+  border-bottom: 0px solid ${({ theme }) => theme.borderDefault};
   width: 100%;
   padding-left: 15px;
   font-size: 3rem;
   height: 40px;
   ::placeholder {
     font-style: italic;
-    color: ${({ theme }) => theme.color2};
+    color: ${({ theme }) => theme.textWeek};
   }
 `;
 
@@ -133,12 +137,12 @@ export const Header = styled.div`
 export const Select = styled.select`
   background-color: inherit;
   height: 100%;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.textDefault};
   font-size: 1.8rem;
   margin-right: 1em;
   width: 120px;
   text-align: center;
-  border: 1px solid ${({ theme }) => theme.toastBorder};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 
 export const FileInput = styled.input`
@@ -149,7 +153,7 @@ export const FileInputLabel = styled.label`
   justify-content: center;
   align-items: center;
   font-size: 2rem;
-  border: 1px solid ${({ theme }) => theme.toastBorder};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
 
   border-radius: 4px;
   height: 100px;
@@ -161,22 +165,21 @@ export const TitleSection = styled.div`
 `;
 export const EditorSection = styled.div`
   margin-top: 2em;
-
-  display: flex;
-  flex-direction: column;
-  height: 70vh;
 `;
 export const OptionSection = styled.div`
   margin-top: 2em;
+  padding: 24px;
 `;
 export const FileSection = styled.div`
   margin-top: 2em;
+  padding: 24px;
 `;
 export const ButtonSection = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 2em;
+  padding: 24px;
 `;
 export const Button = styled(DefaultButton)`
-  flex-shrink: 0;
+  width: 100%;
 `;

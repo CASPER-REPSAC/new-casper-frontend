@@ -1,11 +1,12 @@
 import styled from 'styled-components';
 
 export const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.color1};
+  background-color: ${({ theme }) => theme.surfacePointDefault};
   height: 120px;
   width: 100vw;
-  border-top: 1px solid ${(props) => props.theme.textColor};
-  border-bottom: 1px solid ${(props) => props.theme.textColor};
+  border-top: 1px solid ${(props) => props.theme.borderDefault};
+  border-bottom: 1px solid ${(props) => props.theme.borderDefault};
+  color: ${(props) => props.theme.textStrong};
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
@@ -13,10 +14,8 @@ export const Wrapper = styled.div`
   align-items: center;
   gap: 1em;
   margin-bottom: 110px;
-  position: relative;
-  left: -160px;
 
-  @media screen and (max-width: 1440px) {
+  @media screen and (max-width: 1024px) {
     margin-bottom: 50px;
     left: -40px;
   }

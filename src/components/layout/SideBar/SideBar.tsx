@@ -1,34 +1,36 @@
 import { titleToUrl } from '@src/utils';
-import { motion } from 'framer-motion';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import React from 'react';
-import styled from 'styled-components';
 import { Highlight, Item, StyledLink, Wrapper } from './SideBar.style';
 
 interface SideBarProps {
-  menus: string[];
-  basePath: string;
+  menu_path: {
+    [key: string]: string;
+  };
 }
 
-function SideBar({ menus, basePath }: SideBarProps) {
+function SideBar({ menu_path }: SideBarProps) {
   const router = useRouter();
   const { member_type, board_type, year } = router.query;
 
   return (
     <Wrapper>
-      {menus.map((menu, idx) => (
-        <StyledLink key={idx} href={`${basePath}/${titleToUrl[menu]}`}>
-          <Item>
-            {menu}
-            {member_type === titleToUrl[menu] ||
-            board_type === titleToUrl[menu] ||
-            year === titleToUrl[menu] ? (
-              <Highlight layoutId="highlight" />
-            ) : null}
-          </Item>
-        </StyledLink>
-      ))}
+      {Object.entries(menu_path).map(([key, value], idx) => {
+        const menu = key;
+        const path = value;
+        return (
+          <StyledLink key={idx} href={path}>
+            <Item>
+              {menu}
+              {member_type === titleToUrl[menu] ||
+              board_type === titleToUrl[menu] ||
+              year === titleToUrl[menu] ? (
+                <Highlight />
+              ) : null}
+            </Item>
+          </StyledLink>
+        );
+      })}
     </Wrapper>
   );
 }

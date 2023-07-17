@@ -1,21 +1,33 @@
 import { DefaultTheme } from 'styled-components';
 
 export const darkTheme: DefaultTheme = {
-  bgColor: '#1E272E',
-  color1: '#12171C', // 진함
-  color2: 'rgb(72, 84, 96)', // 연함
-  textColor: 'rgb(244,244,244)',
-  liquid: 'rgba(72, 84, 96,0.4)',
-  boxShadow: 'rgb(11,11,11)',
-  toastBorder: '#494c56',
+  textDefault: '#FFFFFF',
+  textStrong: '#FFFFFF',
+  textWeek: '#D2DAE0',
+  textPoint: '#4362D0',
+  borderDefault: '#5F6E76',
+  borderBold: '#FFFFFF',
+  surfaceDefault: '#14212B',
+  surfaceAlt: '#4B5966',
+  surfacePointDefault: '#12171C',
+  surfacePointAlt: '#12171c82',
+  green100: '#57ab5a',
+  green200: '#2b6a30',
+  white: '#FFFFFF',
 };
 
 export const lightTheme: DefaultTheme = {
-  bgColor: 'white',
-  color1: 'rgb(247, 249,252)', // 진함
-  color2: 'rgb(182, 220,247)', // 연함
-  textColor: 'rgb(55,55,55)',
-  liquid: 'rgba(182, 220,247,0.4)',
-  boxShadow: 'rgb(122,155,177)',
-  toastBorder: '#dadde6',
+  textDefault: '#5F6E76',
+  textStrong: '#14212B',
+  textWeek: '#879298',
+  textPoint: '#4362D0',
+  borderDefault: '#D2DAE0',
+  borderBold: '#6E8091',
+  surfaceDefault: '#FFFFFF',
+  surfaceAlt: '#F5F7F9',
+  surfacePointDefault: '#E9E9E9',
+  surfacePointAlt: '#F5F7F9',
+  green100: '#73c92d',
+  green200: '#57ab5a',
+  white: '#FFFFFF',
 };
