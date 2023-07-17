@@ -14,7 +14,7 @@ import {
   Row,
   Wrapper,
   Register_link,
-} from './login.style';
+} from './register.style';
 
 interface IForm {
   id: string;
@@ -62,7 +62,7 @@ export default function Login() {
         </Row>
         <Button onClick={() => {}}>로그인</Button>
       </Form>
-      <Register_link href="/login/register">You don't have ID?</Register_link>
+      <Register_link href="/register">You don't have ID?</Register_link>
     </Wrapper>
   );
 }
