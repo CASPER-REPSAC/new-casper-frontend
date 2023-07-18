@@ -13,7 +13,7 @@ import {
 } from './login.style';
 import Image from 'next/image';
 
-export interface LoginFormProps {
+interface LoginFormProps {
   id: string;
   pw: string;
 }
