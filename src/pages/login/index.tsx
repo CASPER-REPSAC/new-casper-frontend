@@ -4,16 +4,16 @@ import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
 import {
   Form,
-  ImageWrapper,
-  Img,
   LoginInput,
   Label,
   Row,
   Wrapper,
   LoginButton,
+  LogoWrapper,
 } from './login.style';
+import Image from 'next/image';
 
-interface IForm {
+export interface LoginFormProps {
   id: string;
   pw: string;
 }
@@ -21,18 +21,18 @@ interface IForm {
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);
 
-  const { register, watch, handleSubmit } = useForm<IForm>();
+  const { register, watch, handleSubmit } = useForm<LoginFormProps>();
   // const theme = useContext(ThemeContext);
 
   return (
     <Wrapper>
-      <ImageWrapper width="300px">
+      <LogoWrapper>
         {isDark ? (
-          <Img layout="fill" src="/casper_logo_white.png" alt="logo" />
+          <Image src="/casper_logo_white.png" alt="logo" fill={true} />
         ) : (
-          <Img layout="fill" src="/casper_logo_black.png" alt="logo" />
+          <Image src="/casper_logo_black.png" alt="logo" fill={true} />
         )}
-      </ImageWrapper>
+      </LogoWrapper>
 
       <Form>
         <Row>
@@ -42,7 +42,7 @@ export default function Login() {
           <LoginInput
             placeholder="ID를 입력해주세요."
             autoComplete="off"
-            {...register('id', { required: true })}
+            register={register('id', { required: true })}
           ></LoginInput>
         </Row>
 
@@ -54,7 +54,7 @@ export default function Login() {
             placeholder="PW를 입력해주세요."
             autoComplete="off"
             type={'password'}
-            {...register('pw', { required: true })}
+            register={register('pw', { required: true })}
           ></LoginInput>
         </Row>
         <LoginButton onClick={() => {}}>로그인</LoginButton>
