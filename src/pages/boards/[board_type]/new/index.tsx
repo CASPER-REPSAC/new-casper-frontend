@@ -1,6 +1,6 @@
 import { useForm } from 'react-hook-form';
-import CommonCenterWrapper from '@src/components/Layout2/CommonCenterWrapper/CommonCenterWrapper';
-import QuillEditor from '@src/components/Editor2/QuillEditor';
+import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
+import QuillEditor from '@src/components/Editor/QuillEditor';
 import {
   ButtonSection,
   CheckInput,

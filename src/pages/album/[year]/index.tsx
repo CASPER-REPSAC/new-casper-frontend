@@ -1,6 +1,6 @@
-import PageTitle from '@src/components/Layout2/PageTitle/PageTitle';
-import SideBar from '@src/components/Layout2/SideBar/SideBar';
-import CommonCenterWrapper from '@src/components/Layout2/CommonCenterWrapper/CommonCenterWrapper';
+import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import SideBar from '@src/components/Layout/SideBar/SideBar';
+import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 
 export default function Year() {
   return (
