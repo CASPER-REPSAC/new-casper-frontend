@@ -1,8 +1,8 @@
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import PageTitle from '@src/components/Layout2/PageTitle/PageTitle';
 import { useTheme } from 'styled-components';
-import SideBar from '@src/components/Layout/SideBar/SideBar';
+import SideBar from '@src/components/Layout2/SideBar/SideBar';
 import { useRouter } from 'next/router';
-import PageWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
+import PageWrapper from '@src/components/Layout2/CommonCenterWrapper/CommonCenterWrapper';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import {
   Board,

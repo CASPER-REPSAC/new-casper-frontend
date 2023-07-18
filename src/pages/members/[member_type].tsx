@@ -1,7 +1,7 @@
-import SideBar from '@src/components/Layout/SideBar/SideBar';
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import SideBar from '@src/components/Layout2/SideBar/SideBar';
+import PageTitle from '@src/components/Layout2/PageTitle/PageTitle';
 import { useRouter } from 'next/router';
-import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
+import CommonCenterWrapper from '@src/components/Layout2/CommonCenterWrapper/CommonCenterWrapper';
 import { Cards, Main, MemberCard } from './members.style';
 
 function Members() {

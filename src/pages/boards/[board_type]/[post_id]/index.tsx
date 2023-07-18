@@ -1,7 +1,7 @@
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
-import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
-import SideBar from '@src/components/Layout/SideBar/SideBar';
-import Comment from '@src/components/Editor/Comment';
+import PageTitle from '@src/components/Layout2/PageTitle/PageTitle';
+import CommonCenterWrapper from '@src/components/Layout2/CommonCenterWrapper/CommonCenterWrapper';
+import SideBar from '@src/components/Layout2/SideBar/SideBar';
+import Comment from '@src/components/Editor2/Comment';
 import {
   AuthorInfo,
   AuthorName,
