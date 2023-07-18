@@ -1,32 +1,28 @@
 import { isDarkState } from '@src/atoms';
-import { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
-import { ThemeContext } from 'styled-components';
 import {
-  Button,
   Form,
   ImageWrapper,
   Img,
-  Input,
+  LoginInput,
   Label,
   Row,
   Wrapper,
-  Register_link,
+  LoginButton,
 } from './register.style';
 
 interface IForm {
   id: string;
   pw: string;
+  email: string;
 }
-
-export default function Login() {
+export default function Register() {
   const isDark = useRecoilValue(isDarkState);
-
-  const { register, watch, handleSubmit } = useForm<IForm>();
-  const theme = useContext(ThemeContext);
-
+  const { register, watch, handleSubmit} = useForm<IForm>();
+  // const theme = useContext(ThemeContext);
+  console.log(watch())
   return (
     <Wrapper>
       <ImageWrapper width="300px">
@@ -42,27 +38,56 @@ export default function Login() {
           <Label htmlFor="id">
             <AiOutlineUser size={25} />
           </Label>
-          <Input
+          <LoginInput
             placeholder="ID를 입력해주세요."
             autoComplete="off"
             {...register('id', { required: true })}
-          ></Input>
+          ></LoginInput>
         </Row>
 
         <Row>
           <Label htmlFor="pw">
             <AiOutlineLock size={25} />
           </Label>
-          <Input
+          <LoginInput
             placeholder="PW를 입력해주세요."
             autoComplete="off"
             type={'password'}
-            {...register('pw', { required: true })}
-          ></Input>
+            {...register("pw", { required: true })}
+          ></LoginInput>
         </Row>
-        <Button onClick={() => {}}>로그인</Button>
+        <Row>
+          <Label htmlFor="pw_check">
+            <AiOutlineCheckSquare size={25} />
+          </Label>
+          <LoginInput
+            placeholder="PW를 확인해 주세요."
+            autoComplete="off"
+            type={'password'}
+          ></LoginInput>
+        </Row>
+        <Row>
+          <Label htmlFor="email">
+            <AiOutlineMail size={25} />
+          </Label>
+          <LoginInput
+            placeholder="email을 입력해 주세요."
+            autoComplete="off"
+            {...register('email', { required: true })}
+          ></LoginInput>
+        </Row>
+        <Row>
+          <Label htmlFor="name">
+            <AiOutlineMail size={25} />
+          </Label>
+          <LoginInput
+            placeholder="이름을 입력해 주세요."
+            autoComplete="off"
+            {...register('name', { required: true })}
+          ></LoginInput>
+        </Row>
+        <LoginButton onClick={() => {}}>회원가입</LoginButton>
       </Form>
-      <Register_link href="/register">You don't have ID?</Register_link>
     </Wrapper>
   );
 }

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
-import { DefaultButton } from '@src/components/Components';
 import Link from 'next/link'
 import Button from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
