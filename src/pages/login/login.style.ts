@@ -1,6 +1,4 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
-import Image from 'next/image';
 import Button from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
 
@@ -23,12 +21,10 @@ export const LoginInput = styled(Input)`
   padding-left: 45px;
 `;
 
-export const Img = styled(Image)`
-  height: auto !important;
-  position: relative !important;
-`;
-export const ImageWrapper = styled.div<{ width: string }>`
-  width: ${(props) => props.width};
+export const LogoWrapper = styled.div`
+  position: relative;
+  width: 350px;
+  height: 84px;
 `;
 export const Row = styled.div`
   display: flex;
