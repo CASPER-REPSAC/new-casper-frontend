@@ -46,7 +46,7 @@ function PostPage() {
           </Select> */}
           <Header>
             <TitleInput
-              {...register('title', { required: true })}
+              register={register('title', { required: true })}
               placeholder="제목을 입력해주세요."
               onKeyDown={(e) => handleKeyDown(e)}
             />
