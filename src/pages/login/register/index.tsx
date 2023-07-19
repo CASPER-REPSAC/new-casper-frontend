@@ -1,6 +1,8 @@
 import { isDarkState } from '@src/atoms';
 import { useForm } from 'react-hook-form';
-import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare } from 'react-icons/ai';
+import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare, AiFillStar } from 'react-icons/ai';
+import {CgRename} from 'react-icons/Cg'
+import { FaBirthdayCake } from "react-icons/fa";
 import { useRecoilValue } from 'recoil';
 import {
   Form,
@@ -11,18 +13,22 @@ import {
   Row,
   Wrapper,
   LoginButton,
+  Pw_false,
 } from './register.style';
 
 interface IForm {
   id: string;
   pw: string;
+  pw_check : string;
   email: string;
+  name: string;
+  nickname: string;
+  birthday: string;
 }
 export default function Register() {
   const isDark = useRecoilValue(isDarkState);
   const { register, watch, handleSubmit} = useForm<IForm>();
   // const theme = useContext(ThemeContext);
-  console.log(watch())
   return (
     <Wrapper>
       <ImageWrapper width="300px">
@@ -41,7 +47,7 @@ export default function Register() {
           <LoginInput
             placeholder="ID를 입력해주세요."
             autoComplete="off"
-            {...register('id', { required: true })}
+              register={register('id', { required: true })}
           ></LoginInput>
         </Row>
 
@@ -53,7 +59,7 @@ export default function Register() {
             placeholder="PW를 입력해주세요."
             autoComplete="off"
             type={'password'}
-            {...register("pw", { required: true })}
+            register = {register("pw", { required: true })}
           ></LoginInput>
         </Row>
         <Row>
@@ -64,8 +70,10 @@ export default function Register() {
             placeholder="PW를 확인해 주세요."
             autoComplete="off"
             type={'password'}
+            register = {register("pw_check", { required: true })}
           ></LoginInput>
         </Row>
+        {watch('pw') !== watch ('pw_check') && <Pw_false>비밀번호가 일치하지 않습니다.</Pw_false>}
         <Row>
           <Label htmlFor="email">
             <AiOutlineMail size={25} />
@@ -73,17 +81,37 @@ export default function Register() {
           <LoginInput
             placeholder="email을 입력해 주세요."
             autoComplete="off"
-            {...register('email', { required: true })}
+            register = {register('email', { required: true })}
           ></LoginInput>
         </Row>
         <Row>
           <Label htmlFor="name">
-            <AiOutlineMail size={25} />
+            <CgRename size={25} />
           </Label>
           <LoginInput
             placeholder="이름을 입력해 주세요."
             autoComplete="off"
-            {...register('name', { required: true })}
+            register = {register("name", { required: true })}
+          ></LoginInput>
+        </Row>
+        <Row>
+          <Label htmlFor="nick">
+            <AiFillStar size={25} />
+          </Label>
+          <LoginInput
+            placeholder="닉네임을 입력해 주세요."
+            autoComplete="off"
+            register = {register("nickname", { required: true })}
+          ></LoginInput>
+        </Row>
+        <Row>
+          <Label htmlFor="nick">
+            <FaBirthdayCake size={25} />
+          </Label>
+          <LoginInput
+            placeholder="생일을 입력해 주세요."
+            autoComplete="off"
+            register = {register("birthday", { required: true })}
           ></LoginInput>
         </Row>
         <LoginButton onClick={() => {}}>회원가입</LoginButton>

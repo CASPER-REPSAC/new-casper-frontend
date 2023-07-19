@@ -43,13 +43,7 @@ export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;
-export const Register_link = styled(Link)`
-  margin-top: 1em;
-  font-size: 2rem;
-  text-decoration:none;
-  color:white;
-  &:hover{
-    cursor:pointer;
-    text-decoration:underline;
-  }
+export const Pw_false = styled.p`
+  color: red;
+  font-size:110%;
 `;
