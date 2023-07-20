@@ -23,11 +23,6 @@ export const LoginInput = styled(Input)`
   margin: 0.3em;
   padding-left: 45px;
 `;
-
-export const Img = styled(Image)`
-  height: auto !important;
-  position: relative !important;
-`;
 export const ImageWrapper = styled.div<{ width: string }>`
   width: ${(props) => props.width};
 `;
@@ -43,7 +38,35 @@ export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;
-export const Pw_false = styled.p`
+export const Pwfalse = styled.p`
   color: red;
   font-size:110%;
+`;
+export const Imglabel = styled.label`
+  height:200px;
+  margin-bottom:0.9em;
+`;
+export const Imgicon = styled.div`
+  position:absolute;
+  right:20%;
+  width:40px;
+  height:40px;
+  display: flex;
+  align-items: center;
+  border:solid 2px #485460;
+  transform: translate(0, -100%);
+  border-radius:50%;
+  justify-content: center;
+  &:hover{
+    background-color:#485460;
+  }
+`;
+export const Preimg = styled.img`
+  width:200px;
+  height: 200px;
+  border-radius:50%;
+  border:solid 2px white;
+`;
+export const Imginput = styled.input`
+  display:none;
 `;

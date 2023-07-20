@@ -1,45 +1,74 @@
 import { isDarkState } from '@src/atoms';
 import { useForm } from 'react-hook-form';
-import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare, AiFillStar } from 'react-icons/ai';
+import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare, AiFillStar, AiOutlineFileImage } from 'react-icons/ai';
 import {CgRename} from 'react-icons/Cg'
 import { FaBirthdayCake } from "react-icons/fa";
 import { useRecoilValue } from 'recoil';
+import { useState } from "react";
 import {
   Form,
   ImageWrapper,
-  Img,
+  Imginput,
   LoginInput,
   Label,
   Row,
   Wrapper,
   LoginButton,
-  Pw_false,
+  Pwfalse,
+  Imglabel,
+  Preimg,
+  Imgicon,
 } from './register.style';
 
 interface IForm {
   id: string;
   pw: string;
-  pw_check : string;
+  pwCheck : string;
   email: string;
   name: string;
   nickname: string;
   birthday: string;
+  profile:HTMLImageElement;
 }
 export default function Register() {
+  const [imageSrc, setImageSrc]: any = useState();
   const isDark = useRecoilValue(isDarkState);
   const { register, watch, handleSubmit} = useForm<IForm>();
+  
   // const theme = useContext(ThemeContext);
+
+  const onUpload = (e : any) =>{
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setImageSrc(reader.result);
+   };
+  }
   return (
     <Wrapper>
-      <ImageWrapper width="300px">
+      {/* <ImageWrapper width="300px">
         {isDark ? (
-          <Img layout="fill" src="/casper_logo_white.png" alt="logo" />
+          <Image layout="fill" src="/casper_logo_white.png" alt="logo" />
         ) : (
-          <Img layout="fill" src="/casper_logo_black.png" alt="logo" />
+          <Image layout="fill" src="/casper_logo_black.png" alt="logo" />
         )}
-      </ImageWrapper>
-
+      </ImageWrapper> */}
       <Form>
+        <Row>
+          <Imginput 
+            accept="image/*"
+            type="file" 
+            id="profile"
+            onChange={e => onUpload(e)}
+            ></Imginput>
+          <Imglabel htmlFor="profile">
+            <Preimg src={imageSrc ? imageSrc:'/defalutprofile.png'}></Preimg>
+            <Imgicon>
+              <AiOutlineFileImage size={25}/>
+            </Imgicon>          
+          </Imglabel>
+        </Row>
         <Row>
           <Label htmlFor="id">
             <AiOutlineUser size={25} />
@@ -47,7 +76,7 @@ export default function Register() {
           <LoginInput
             placeholder="ID를 입력해주세요."
             autoComplete="off"
-              register={register('id', { required: true })}
+            register={register('id', { required: true })}
           ></LoginInput>
         </Row>
 
@@ -70,10 +99,10 @@ export default function Register() {
             placeholder="PW를 확인해 주세요."
             autoComplete="off"
             type={'password'}
-            register = {register("pw_check", { required: true })}
+            register = {register("pwCheck", { required: true })}
           ></LoginInput>
         </Row>
-        {watch('pw') !== watch ('pw_check') && <Pw_false>비밀번호가 일치하지 않습니다.</Pw_false>}
+        {watch('pw') !== watch ('pwCheck') && <Pwfalse>비밀번호가 일치하지 않습니다.</Pwfalse>}
         <Row>
           <Label htmlFor="email">
             <AiOutlineMail size={25} />
@@ -114,8 +143,9 @@ export default function Register() {
             register = {register("birthday", { required: true })}
           ></LoginInput>
         </Row>
-        <LoginButton onClick={() => {}}>회원가입</LoginButton>
+        <LoginButton onClick={() => {}}>사진도 올리기</LoginButton>
       </Form>
+      
     </Wrapper>
   );
 }
