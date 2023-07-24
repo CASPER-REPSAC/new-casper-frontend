@@ -67,7 +67,7 @@ export const Preimg = styled.img`
   border-radius:50%;
   border:solid 2px white;
 `;
-export const Imginput = styled.input`
+export const ImgInput = styled.input`
   display:none;
 `;
 export const Profilelabel = styled.p`

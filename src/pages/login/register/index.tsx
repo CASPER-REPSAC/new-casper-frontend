@@ -8,7 +8,7 @@ import { useState } from "react";
 import {
   Form,
   ImageWrapper,
-  Imginput,
+  ImgInput,
   LoginInput,
   Label,
   Row,
@@ -61,13 +61,13 @@ export default function Register() {
       {/* <Form onSubmit={handleSubmit(onValid, onInvalid)}> */}
       <Form>
         <Row>
-          <Imginput 
+          <ImgInput 
             accept="image/*"
             type="file" 
             id="profile"
             register={register('profile')}
             onChange={e => onUpload(e)}
-            ></Imginput>
+            ></ImgInput>
           <Imglabel htmlFor="profile">
             <Preimg src={imageSrc ? imageSrc:'/defalutprofile.png'}></Preimg>
             <Imgicon>
