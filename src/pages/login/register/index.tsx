@@ -18,6 +18,7 @@ import {
   Imglabel,
   Preimg,
   Imgicon,
+  Profilelabel
 } from './register.style';
 
 interface IForm {
@@ -45,6 +46,9 @@ export default function Register() {
       setImageSrc(reader.result);
    };
   }
+
+  const onValid = (data) => console.log(data, "onvalid");
+  const onInvalid = (data) => console.log(data, "onInvalid");
   return (
     <Wrapper>
       {/* <ImageWrapper width="300px">
@@ -54,12 +58,14 @@ export default function Register() {
           <Image layout="fill" src="/casper_logo_black.png" alt="logo" />
         )}
       </ImageWrapper> */}
+      {/* <Form onSubmit={handleSubmit(onValid, onInvalid)}> */}
       <Form>
         <Row>
           <Imginput 
             accept="image/*"
             type="file" 
             id="profile"
+            register={register('profile')}
             onChange={e => onUpload(e)}
             ></Imginput>
           <Imglabel htmlFor="profile">
@@ -69,6 +75,7 @@ export default function Register() {
             </Imgicon>          
           </Imglabel>
         </Row>
+        <Profilelabel>이미지는 정방형으로 올려주세용!</Profilelabel>
         <Row>
           <Label htmlFor="id">
             <AiOutlineUser size={25} />
@@ -143,9 +150,8 @@ export default function Register() {
             register = {register("birthday", { required: true })}
           ></LoginInput>
         </Row>
-        <LoginButton onClick={() => {}}>사진도 올리기</LoginButton>
+        <LoginButton onClick={() => {}}>등록하기</LoginButton>
       </Form>
-      
     </Wrapper>
   );
 }

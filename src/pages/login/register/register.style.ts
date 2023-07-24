@@ -70,3 +70,6 @@ export const Preimg = styled.img`
 export const Imginput = styled.input`
   display:none;
 `;
+export const Profilelabel = styled.p`
+  font-size:130%;
+`;
