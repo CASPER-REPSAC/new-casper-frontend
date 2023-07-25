@@ -53,19 +53,19 @@ export const ImgIcon = styled.div`
   height:40px;
   display: flex;
   align-items: center;
-  border:solid 2px #485460;
+  border:solid 2px ${({ theme }) => theme.borderDefault};
   transform: translate(0, -100%);
   border-radius:50%;
   justify-content: center;
   &:hover{
-    background-color:#485460;
+    background-color:${({ theme }) => theme.borderDefault};
   }
 `;
 export const PreviewImg = styled.img`
   width:200px;
   height: 200px;
   border-radius:50%;
-  border:solid 2px white;
+  border:solid 2px ${({ theme }) => theme.borderDefault};
 `;
 export const ImgInput = styled.input`
   display:none;
