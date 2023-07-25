@@ -14,11 +14,11 @@ import {
   Row,
   Wrapper,
   LoginButton,
-  Pwfalse,
-  Imglabel,
-  Preimg,
-  Imgicon,
-  Profilelabel
+  PwFalse,
+  ImgLabel,
+  PreviewImg,
+  ImgIcon,
+  ProfileLabel
 } from './register.style';
 
 interface IForm {
@@ -68,14 +68,14 @@ export default function Register() {
             register={register('profile')}
             onChange={e => onUpload(e)}
             ></ImgInput>
-          <Imglabel htmlFor="profile">
-            <Preimg src={imageSrc ? imageSrc:'/defalutprofile.png'}></Preimg>
-            <Imgicon>
+          <ImgLabel htmlFor="profile">
+            <PreviewImg src={imageSrc ? imageSrc:'/defalutprofile.png'}></PreviewImg>
+            <ImgIcon>
               <AiOutlineFileImage size={25}/>
-            </Imgicon>          
-          </Imglabel>
+            </ImgIcon>          
+          </ImgLabel>
         </Row>
-        <Profilelabel>이미지는 정방형으로 올려주세용!</Profilelabel>
+        <ProfileLabel>이미지는 정방형으로 올려주세용!</ProfileLabel>
         <Row>
           <Label htmlFor="id">
             <AiOutlineUser size={25} />
@@ -109,7 +109,7 @@ export default function Register() {
             register = {register("pwCheck", { required: true })}
           ></LoginInput>
         </Row>
-        {watch('pw') !== watch ('pwCheck') && <Pwfalse>비밀번호가 일치하지 않습니다.</Pwfalse>}
+        {watch('pw') !== watch ('pwCheck') && <PwFalse>비밀번호가 일치하지 않습니다.</PwFalse>}
         <Row>
           <Label htmlFor="email">
             <AiOutlineMail size={25} />
