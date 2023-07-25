@@ -27,7 +27,7 @@ export default function Login() {
 
   return (
     <Wrapper>
-      관리자 페이지 입니다
+      관리자 페이지 입니다 test
     </Wrapper>
   );
 }
