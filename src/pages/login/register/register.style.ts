@@ -1,3 +1,4 @@
+import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link'
@@ -22,11 +23,8 @@ export const LoginInput = styled(Input)`
   margin: 0.3em;
   padding-left: 45px;
 `;
-
-export const LogoWrapper = styled.div`
-  position: relative;
-  width: 350px;
-  height: 84px;
+export const ImageWrapper = styled.div<{ width: string }>`
+  width: ${(props) => props.width};
 `;
 export const Row = styled.div`
   display: flex;
@@ -40,13 +38,38 @@ export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;
-export const Register_link = styled(Link)`
-  margin-top: 1em;
-  font-size: 2rem;
-  text-decoration:none;
-  color:white;
+export const PwFalse = styled.p`
+  color: red;
+  font-size:110%;
+`;
+export const ImgLabel = styled.label`
+  height:200px;
+  margin-bottom:0.9em;
+`;
+export const ImgIcon = styled.div`
+  position:absolute;
+  right:20%;
+  width:40px;
+  height:40px;
+  display: flex;
+  align-items: center;
+  border:solid 2px #485460;
+  transform: translate(0, -100%);
+  border-radius:50%;
+  justify-content: center;
   &:hover{
-    cursor:pointer;
-    text-decoration:underline;
+    background-color:#485460;
   }
+`;
+export const PreviewImg = styled.img`
+  width:200px;
+  height: 200px;
+  border-radius:50%;
+  border:solid 2px white;
+`;
+export const ImgInput = styled.input`
+  display:none;
+`;
+export const ProfileLabel = styled.p`
+  font-size:130%;
 `;

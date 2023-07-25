@@ -8,6 +8,7 @@ import {
   Label,
   Row,
   Wrapper,
+  Register_link,
   LoginButton,
   LogoWrapper,
 } from './login.style';
@@ -59,6 +60,7 @@ export default function Login() {
         </Row>
         <LoginButton onClick={() => {}}>로그인</LoginButton>
       </Form>
+      <Register_link href="/login/register">You don't have ID?</Register_link>
     </Wrapper>
   );
 }
