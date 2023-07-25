@@ -38,15 +38,15 @@ export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;
-export const Pwfalse = styled.p`
+export const PwFalse = styled.p`
   color: red;
   font-size:110%;
 `;
-export const Imglabel = styled.label`
+export const ImgLabel = styled.label`
   height:200px;
   margin-bottom:0.9em;
 `;
-export const Imgicon = styled.div`
+export const ImgIcon = styled.div`
   position:absolute;
   right:20%;
   width:40px;
@@ -61,7 +61,7 @@ export const Imgicon = styled.div`
     background-color:#485460;
   }
 `;
-export const Preimg = styled.img`
+export const PreviewImg = styled.img`
   width:200px;
   height: 200px;
   border-radius:50%;
@@ -70,6 +70,6 @@ export const Preimg = styled.img`
 export const ImgInput = styled.input`
   display:none;
 `;
-export const Profilelabel = styled.p`
+export const ProfileLabel = styled.p`
   font-size:130%;
 `;
