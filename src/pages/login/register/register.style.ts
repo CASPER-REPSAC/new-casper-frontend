@@ -67,7 +67,7 @@ export const PreviewImg = styled.img`
   border-radius:50%;
   border:solid 2px ${({ theme }) => theme.borderDefault};
 `;
-export const ImgInput = styled.input`
+export const ImgInput = styled(Input)`
   display:none;
 `;
 export const ProfileLabel = styled.p`

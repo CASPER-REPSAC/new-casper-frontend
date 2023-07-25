@@ -4,7 +4,7 @@ import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare, AiFi
 import {CgRename} from 'react-icons/Cg'
 import { FaBirthdayCake } from "react-icons/fa";
 import { useRecoilValue } from 'recoil';
-import { useState } from "react";
+import { useState, ChangeEvent } from "react";
 import {
   Form,
   ImageWrapper,
@@ -46,9 +46,6 @@ export default function Register() {
       setImageSrc(reader.result);
    };
   }
-
-  const onValid = (data) => console.log(data, "onvalid");
-  const onInvalid = (data) => console.log(data, "onInvalid");
   return (
     <Wrapper>
       {/* <ImageWrapper width="300px">
@@ -63,7 +60,7 @@ export default function Register() {
         <Row>
           <ImgInput 
             accept="image/*"
-            type="file" 
+            type="file"
             id="profile"
             register={register('profile')}
             onChange={e => onUpload(e)}
