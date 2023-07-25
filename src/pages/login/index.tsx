@@ -60,7 +60,9 @@ export default function Login() {
         </Row>
         <LoginButton onClick={() => {}}>로그인</LoginButton>
       </Form>
-      <Register_link href="/login/register">You don't have ID?</Register_link>
+      <Register_link href="/login/register">
+        You don&#39;t have ID?
+      </Register_link>
     </Wrapper>
   );
 }
