@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link'
+import Link from 'next/link';
 import Button from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
 
@@ -40,36 +40,36 @@ export const LoginButton = styled(Button)`
 `;
 export const PwFalse = styled.p`
   color: red;
-  font-size:110%;
+  font-size: 110%;
 `;
 export const ImgLabel = styled.label`
-  height:200px;
-  margin-bottom:0.9em;
+  height: 200px;
+  margin-bottom: 0.9em;
 `;
 export const ImgIcon = styled.div`
-  position:absolute;
-  right:20%;
-  width:40px;
-  height:40px;
+  position: absolute;
+  right: 20%;
+  width: 40px;
+  height: 40px;
   display: flex;
   align-items: center;
-  border:solid 2px ${({ theme }) => theme.borderDefault};
+  border: solid 2px ${({ theme }) => theme.borderDefault};
   transform: translate(0, -100%);
-  border-radius:50%;
+  border-radius: 50%;
   justify-content: center;
-  &:hover{
-    background-color:${({ theme }) => theme.borderDefault};
+  &:hover {
+    background-color: ${({ theme }) => theme.borderDefault};
   }
 `;
 export const PreviewImg = styled.img`
-  width:200px;
+  width: 200px;
   height: 200px;
-  border-radius:50%;
-  border:solid 2px ${({ theme }) => theme.borderDefault};
+  border-radius: 50%;
+  border: solid 2px ${({ theme }) => theme.borderDefault};
 `;
 export const ImgInput = styled(Input)`
-  display:none;
+  display: none;
 `;
 export const ProfileLabel = styled.p`
-  font-size:130%;
+  font-size: 130%;
 `;

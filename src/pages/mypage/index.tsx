@@ -16,6 +16,8 @@ import Input from '@src/components/Input/Input';
 
 function MyPage() {
   const { register } = useForm();
+  console.log('test');
+
   return (
     <>
       <PageTitle pageTitle="MyPage" />
@@ -24,7 +26,12 @@ function MyPage() {
           <FlexRow>
             <FlexCol>
               <AvatarLabel htmlFor="avatar">이미지 변경하기</AvatarLabel>
-              <Avatar type="file" name="avatar" id="avatar" />
+              <Avatar
+                register={register('avatar')}
+                type="file"
+                name="avatar"
+                id="avatar"
+              />
               <Div>
                 <Label htmlFor="introduce">소개글</Label>
                 <IntroInput
@@ -41,7 +48,7 @@ function MyPage() {
                 <Label htmlFor="name">이름</Label>
                 <Input
                   id="name"
-                  {...register('name', { required: true })}
+                  register={register('name', { required: true })}
                   type="text"
                   placeholder="이름"
                   autoComplete={'off'}
@@ -51,7 +58,7 @@ function MyPage() {
                 <Label htmlFor="nickname">닉네임</Label>
                 <Input
                   id="nickname"
-                  {...register('nickname', { required: true })}
+                  register={register('nickname', { required: true })}
                   type="text"
                   placeholder="닉네임"
                   autoComplete={'off'}
@@ -61,7 +68,7 @@ function MyPage() {
                 <Label htmlFor="group">회원 그룹</Label>
                 <Input
                   id="group"
-                  {...register('group', { required: true })}
+                  register={register('group', { required: true })}
                   type="text"
                   placeholder="회원그룹"
                   autoComplete={'off'}
@@ -71,14 +78,14 @@ function MyPage() {
                 <Label htmlFor="github">소셜 정보</Label>
                 <Input
                   id="github"
-                  {...register('github', { required: true })}
+                  register={register('github', { required: true })}
                   type="text"
                   placeholder="http://github.com/example"
                   autoComplete={'off'}
                 />
                 <Input
                   id="blog"
-                  {...register('blog', { required: true })}
+                  register={register('blog', { required: true })}
                   type="text"
                   placeholder="http://blog.example.com"
                   autoComplete={'off'}

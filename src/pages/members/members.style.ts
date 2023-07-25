@@ -19,7 +19,7 @@ export const MemberCard = styled.div`
   height: 100%;
   width: 100%;
 
-  background-color: ${({ theme }) => theme.color1};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   opacity: 0.4;
   margin: 0;
 `;
