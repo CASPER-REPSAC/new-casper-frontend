@@ -38,7 +38,7 @@ export default function Register() {
   
   // const theme = useContext(ThemeContext);
 
-  const onUpload = (e : any) =>{
+  const onUpload = (e : ChangeEvent<HTMLInputElement>) =>{
     const file = e.target.files[0];
     const reader = new FileReader();
     reader.readAsDataURL(file);
