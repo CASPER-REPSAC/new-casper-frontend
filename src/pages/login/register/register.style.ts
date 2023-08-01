@@ -1,9 +1,10 @@
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link'
 import Button from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
+
 
 export const Wrapper = styled.div`
   display: flex;
@@ -22,6 +23,7 @@ export const Form = styled.form`
 export const LoginInput = styled(Input)`
   margin: 0.3em;
   padding-left: 45px;
+  transition: all ease 0.3s;
 `;
 export const ImageWrapper = styled.div<{ width: string }>`
   width: ${(props) => props.width};
@@ -38,7 +40,7 @@ export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;
-export const PwFalse = styled.p`
+export const InputErrors = styled.p`
   color: red;
   font-size:110%;
 `;
