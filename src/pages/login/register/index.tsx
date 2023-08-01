@@ -51,7 +51,7 @@ export default function Register() {
   }, [ProfileImg])
 
   const onValid = (data: any) => {
-    const API = "http://build.casper.or.kr:5000/api/new"
+    const API = "http://build.casper.or.kr:5000/api/join"
     if(watch('pw') == watch ('pwCheck')){
         fetch(API, {
           method : 'POST',
