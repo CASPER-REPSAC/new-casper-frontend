@@ -31,7 +31,7 @@ export default function Login() {
         body : data,
         headers: { 'Content-Type': 'application/json' }
       })
-      .then(response => console.log(response))
+      .then(res=> console.log(res))
   };
   const onInvalid = (data: any) => {alert("입력값들을 확인해 주세요")};
   return (
