@@ -24,7 +24,16 @@ export default function Login() {
 
   const { register, watch, handleSubmit } = useForm<LoginFormProps>();
   // const theme = useContext(ThemeContext);
-
+  const onValid = (data: any) => {
+    const API = "http://build.casper.or.kr:5000/api/login"
+      fetch(API, {
+        method : 'POST',
+        body : data,
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => console.log(res))
+  };
+  const onInvalid = (data: any) => {alert("입력값들을 확인해 주세요")};
   return (
     <Wrapper>
       <LogoWrapper>
@@ -58,7 +67,7 @@ export default function Login() {
             register={register('pw', { required: true })}
           ></LoginInput>
         </Row>
-        <LoginButton onClick={() => {}}>로그인</LoginButton>
+        <LoginButton onClick={handleSubmit(onValid, onInvalid)}>로그인</LoginButton>
       </Form>
       <Register_link href="/login/register">You don't have ID?</Register_link>
     </Wrapper>

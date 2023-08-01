@@ -4,7 +4,7 @@ import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare, AiFi
 import {CgRename} from 'react-icons/Cg'
 import { FaBirthdayCake } from "react-icons/fa";
 import { useRecoilValue } from 'recoil';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   Form,
   ImageWrapper,
@@ -29,7 +29,7 @@ interface IForm {
   name: string;
   nickname: string;
   birthday: string;
-  profile: HTMLImageElement;
+  profile: FileList;
 }
 
 export default function Register() {
@@ -42,16 +42,15 @@ export default function Register() {
     formState : {errors},
   } = useForm<IForm>({mode:"onChange"});
 
-  const onUpload = (e : React.ChangeEvent<HTMLInputElement>) =>{
-    if (!e.target.files) return;
-    const file = e.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onloadend = () => {
-      setImageSrc(reader.result);
-   };
-  }
-  const onValid = data => {
+  const ProfileImg = watch("profile");
+  useEffect(() => {
+    if(ProfileImg && ProfileImg.length > 0){
+      const file = ProfileImg[0];
+        setImageSrc(URL.createObjectURL(file));
+    }
+  }, [ProfileImg])
+
+  const onValid = (data: any) => {
     const API = "http://build.casper.or.kr:5000/api/new"
     if(watch('pw') == watch ('pwCheck')){
         fetch(API, {
@@ -59,10 +58,10 @@ export default function Register() {
           body : data,
           headers: { 'Content-Type': 'application/json' }
         })
-        .then(res => console.log(res.text()))
+        .then(res => console.log(res))
     }
   };
-  const onInvalid = data => {alert("입력값들을 확인해 주세요")};
+  const onInvalid = (data: any) => {alert("입력값들을 확인해 주세요")};
   
   return (
     <Wrapper>
@@ -72,7 +71,7 @@ export default function Register() {
             accept="image/*"
             type="file" 
             id="profile"
-            onChange={e => onUpload(e)}
+            {...register('profile')}
             ></ImgInput>
           <ImgLabel htmlFor="profile">
             <PreviewImg src={imageSrc ? imageSrc:'/defalutprofile.png'}></PreviewImg>
