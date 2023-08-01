@@ -1,8 +1,15 @@
 import { isDarkState } from '@src/atoms';
 import { useForm } from 'react-hook-form';
-import { AiOutlineLock, AiOutlineUser, AiOutlineMail, AiOutlineCheckSquare, AiFillStar, AiOutlineFileImage } from 'react-icons/ai';
-import {CgRename} from 'react-icons/Cg'
-import { FaBirthdayCake } from "react-icons/fa";
+import {
+  AiOutlineLock,
+  AiOutlineUser,
+  AiOutlineMail,
+  AiOutlineCheckSquare,
+  AiFillStar,
+  AiOutlineFileImage,
+} from 'react-icons/ai';
+import { CgRename } from 'react-icons/Cg';
+import { FaBirthdayCake } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from "react";
 import {
@@ -18,13 +25,13 @@ import {
   ImgLabel,
   PreviewImg,
   ImgIcon,
-  ProfileLabel
+  ProfileLabel,
 } from './register.style';
 
 interface IForm {
   id: string;
   pw: string;
-  pwCheck : string;
+  pwCheck: string;
   email: string;
   name: string;
   nickname: string;
@@ -62,22 +69,23 @@ export default function Register() {
     }
   };
   const onInvalid = (data: any) => {alert("입력값들을 확인해 주세요")};
-  
   return (
     <Wrapper>
       <Form>
         <Row>
-          <ImgInput 
+          <ImgInput
             accept="image/*"
-            type="file" 
+            type="file"
             id="profile"
             {...register('profile')}
             ></ImgInput>
           <ImgLabel htmlFor="profile">
-            <PreviewImg src={imageSrc ? imageSrc:'/defalutprofile.png'}></PreviewImg>
+            <PreviewImg
+              src={imageSrc ? imageSrc : '/defalutprofile.png'}
+            ></PreviewImg>
             <ImgIcon>
-              <AiOutlineFileImage size={25}/>
-            </ImgIcon>          
+              <AiOutlineFileImage size={25} />
+            </ImgIcon>
           </ImgLabel>
         </Row>
         <ProfileLabel>이미지는 정방형으로 올려주세용!</ProfileLabel>
@@ -124,7 +132,7 @@ export default function Register() {
             placeholder="PW를 확인해 주세요."
             autoComplete="off"
             type={'password'}
-            register = {register("pwCheck", { required: true })}
+            register={register('pwCheck', { required: true })}
           ></LoginInput>
         </Row>
         {watch('pw') !== watch ('pwCheck') && <InputErrors>비밀번호가 일치하지 않습니다.</InputErrors>}

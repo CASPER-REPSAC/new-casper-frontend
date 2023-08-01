@@ -27,13 +27,14 @@ export const FlexRow = styled.div`
 
 export const IntroInput = styled.textarea`
   background-color: inherit;
-  border: 1px solid ${({ theme }) => theme.color2};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
   width: 290px;
-  color: ${({ theme }) => theme.textColor};
+  color: ${({ theme }) => theme.textDefault};
   :focus {
     outline: none;
-    border-color: ${({ theme }) => theme.textColor};
+    border-color: ${({ theme }) => theme.borderBold};
   }
+
   padding: 10px;
   box-sizing: border-box;
   font-size: 1.4rem;
@@ -45,7 +46,7 @@ export const AvatarLabel = styled.label`
   width: 290px;
   height: 290px;
   border-radius: 50%;
-  border: 1px solid ${({ theme }) => theme.color2};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
   display: flex;
   justify-content: center;
   align-items: center;
