@@ -26,7 +26,7 @@ export default function Login() {
   // const theme = useContext(ThemeContext);
   const onValid = (data: any) => {
     const API = "http://build.casper.or.kr:5000/api/login"
-      fetch(API, {
+      fetch('http://build.casper.or.kr:8080/api/login', {
         method : 'POST',
         body : data,
         headers: { 'Content-Type': 'application/json' }
