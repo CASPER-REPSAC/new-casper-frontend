@@ -4,6 +4,15 @@ const nextConfig = {
   compiler: {
     styledComponents: true,
   },
+  swcMinify: true,
+  async rewrites() {
+    return [
+      {
+        source: "/api/:path*",
+        destination: "http://build.casper.or.kr:8080/:path*",
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;

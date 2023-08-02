@@ -65,9 +65,9 @@ export default function Register() {
   }, [ProfileImg])
 
   const onValid:SubmitHandler<IForm> = (data:any) => {
-    const API = "http://build.casper.or.kr:80080/api/join"
+    // const API = "http://build.casper.or.kr:8080/api/join"
     if(watch('pw') == watch ('pwCheck')){
-        fetch('http://build.casper.or.kr:80080/api/join', {
+        fetch('/api/join', {
           method : 'POST',
           body : data,
           headers: { 'Content-Type': 'application/json' }
