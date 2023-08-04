@@ -1,5 +1,6 @@
 import { isDarkState } from '@src/atoms';
 import { useForm, SubmitHandler } from 'react-hook-form';
+import axios from 'axios';
 import {
   AiOutlineLock,
   AiOutlineUser,
@@ -54,7 +55,9 @@ export default function Register() {
     watch, 
     handleSubmit,
     formState : {errors},
-  } = useForm<IForm>({mode:"onChange"});
+  } = useForm<IForm>({
+    mode:"onChange",
+  });
 
   const ProfileImg = watch("profile");
   useEffect(() => {
@@ -65,14 +68,17 @@ export default function Register() {
   }, [ProfileImg])
 
   const onValid:SubmitHandler<IForm> = (data:any) => {
+    console.log(data);
     // const API = "http://build.casper.or.kr:8080/api/join"
     if(watch('pw') == watch ('pwCheck')){
-        fetch('/api/join', {
-          method : 'POST',
-          body : data,
-          headers: { 'Content-Type': 'application/json' }
-        })
-        .then(res => console.log(res))
+        // fetch(`/api/join`, {
+        //   method : 'POST',
+        //   body : data,
+        //   headers: { 'Content-Type': 'application/json' }
+        // })
+        // .then(res => console.log(res))
+        axios.post('/api/user/join', data).then((Response)=>{
+          alert("Response data = " + Response.data); }).catch((Error)=> {console.log(Error)});
     }
   };
 
@@ -227,3 +233,10 @@ export default function Register() {
     </Wrapper>
   );
 }
+// import axios from 'axios';
+
+// axios.get('http://localhost:8080/api/join').then((Response)=>{
+//     console.log(Response.data);
+// }).catch((Error)=>{
+//     console.log(Error);
+// })

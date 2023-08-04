@@ -2,6 +2,7 @@ import { isDarkState } from '@src/atoms';
 import { useForm } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
+import axios from 'axios';
 import {
   Form,
   LoginInput,
@@ -25,13 +26,15 @@ export default function Login() {
   const { register, watch, handleSubmit } = useForm<LoginFormProps>();
   // const theme = useContext(ThemeContext);
   const onValid = (data: any) => {
-    const API = "http://build.casper.or.kr:5000/api/login"
-      fetch('http://build.casper.or.kr:8080/api/login', {
-        method : 'POST',
-        body : data,
-        headers: { 'Content-Type': 'application/json' }
-      })
-      .then(res=> console.log(res))
+    // const API = "http://build.casper.or.kr:5000/api/login"
+    //   fetch('http://build.casper.or.kr:8080/api/login', {
+    //     method : 'POST',
+    //     body : data,
+    //     headers: { 'Content-Type': 'application/json' }
+    //   })
+    //   .then(res=> console.log(res))
+    axios.post('/api/user/login', data).then((Response)=>{
+      alert("Response data = " + Response.data); }).catch((Error)=> {console.log(Error)});
   };
   const onInvalid = (data: any) => {alert("입력값들을 확인해 주세요")};
   return (

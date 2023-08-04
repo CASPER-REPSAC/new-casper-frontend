@@ -8,8 +8,8 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/api/:path*",
-        destination: "http://build.casper.or.kr:8080/:path*",
+        destination: "http://build.casper.or.kr:8080/api/:path*",
+        source: '/api/:path*',
       },
     ];
   },
