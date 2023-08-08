@@ -12,7 +12,7 @@ import {
 import { CgRename } from 'react-icons/Cg';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 import {
   Form,
   ImageWrapper,
@@ -32,67 +32,81 @@ import {
 interface IForm {
   id: string;
   pw: string;
-  pwCheck: string;
   email: string;
   name: string;
   nickname: string;
   birthday: string;
-  profile: FileList;
+  imgfile: FileList;
 }
 
 // 정규표현식 선언
 const ID_Regex = /^[A-Za-z0-9]{3,19}$/;
-const Pw_Regex = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-const Email_Regex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
+const Pw_Regex =
+  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
+const Email_Regex =
+  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
 const Birthday_Regex = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;
-
 
 export default function Register() {
   const [imageSrc, setImageSrc]: any = useState();
   const isDark = useRecoilValue(isDarkState);
-  const { 
-    register, 
-    watch, 
+  const {
+    register,
+    watch,
     handleSubmit,
-    formState : {errors},
+    formState: { errors },
   } = useForm<IForm>({
-    mode:"onChange",
+    mode: 'onChange',
   });
 
-  const ProfileImg = watch("profile");
+  const ProfileImg = watch('imgfile');
   useEffect(() => {
-    if(ProfileImg && ProfileImg.length > 0){
+    if (ProfileImg && ProfileImg.length > 0) {
       const file = ProfileImg[0];
-        setImageSrc(URL.createObjectURL(file));
+      setImageSrc(URL.createObjectURL(file));
     }
-  }, [ProfileImg])
+  }, [ProfileImg]);
 
-  const onValid:SubmitHandler<IForm> = (data:any) => {
+  const onValid: SubmitHandler<IForm> = (data) => {
     console.log(data);
-    // const API = "http://build.casper.or.kr:8080/api/join"
-    if(watch('pw') == watch ('pwCheck')){
-        // fetch(`/api/join`, {
-        //   method : 'POST',
-        //   body : data,
-        //   headers: { 'Content-Type': 'application/json' }
-        // })
-        // .then(res => console.log(res))
-        axios.post('/api/user/join', data).then((Response)=>{
-          alert("Response data = " + Response.data); }).catch((Error)=> {console.log(Error)});
-    }
+    // if (watch('pw') == watch('pwCheck')) {
+    axios
+      .post('/api/user/join', data)
+      .then((Response) => {
+        alert('성공! 값 : Response data = ' + Response.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
+    // }
   };
 
   //에러 메세지 선언
-  const onInvalid = (data: any) => {alert("입력값들을 확인해 주세요")};
-  const IdErrorMessage = errors.id && <InputErrors>{errors.id.message}</InputErrors>;
-  const PwErrorMessage = errors.pw && <InputErrors>{errors.pw.message}</InputErrors>;
-  const PwcheckErrorMessage = watch('pw') !== watch ('pwCheck') && <InputErrors>비밀번호가 일치하지 않습니다.</InputErrors>;
-  const EmailErrorMessage = errors.email && <InputErrors>{errors.email.message}</InputErrors>;
-  const NameErrorMessage = errors.name && <InputErrors>{errors.name.message}</InputErrors>;
-  const NickNameErrorMessage = errors.nickname && <InputErrors>{errors.nickname.message}</InputErrors>;
-  const BirthdayErrorMessage = errors.birthday && <InputErrors>{errors.birthday.message}</InputErrors>;
-  
-  
+  const onInvalid: SubmitHandler<IForm> = (data) => {
+    alert('입력값들을 확인해 주세요');
+  };
+  const IdErrorMessage = errors.id && (
+    <InputErrors>{errors.id.message}</InputErrors>
+  );
+  const PwErrorMessage = errors.pw && (
+    <InputErrors>{errors.pw.message}</InputErrors>
+  );
+  // const PwcheckErrorMessage = watch('pw') !== watch('pwCheck') && (
+  //   <InputErrors>비밀번호가 일치하지 않습니다.</InputErrors>
+  // );
+  const EmailErrorMessage = errors.email && (
+    <InputErrors>{errors.email.message}</InputErrors>
+  );
+  const NameErrorMessage = errors.name && (
+    <InputErrors>{errors.name.message}</InputErrors>
+  );
+  const NickNameErrorMessage = errors.nickname && (
+    <InputErrors>{errors.nickname.message}</InputErrors>
+  );
+  const BirthdayErrorMessage = errors.birthday && (
+    <InputErrors>{errors.birthday.message}</InputErrors>
+  );
+
   return (
     <Wrapper>
       <Form>
@@ -101,7 +115,7 @@ export default function Register() {
             accept="image/*"
             type="file"
             id="profile"
-            {...register('profile')}
+            {...register('imgfile')}
           ></ImgInput>
           <ImgLabel htmlFor="profile">
             <PreviewImg
@@ -120,12 +134,12 @@ export default function Register() {
           <LoginInput
             placeholder="ID를 입력해주세요.[영문, 숫자만 가능]"
             autoComplete="off"
-            register={register('id', { 
-              required: "ID를 입력해 주세요.",
+            register={register('id', {
+              required: 'ID를 입력해 주세요.',
               pattern: {
-                value: ID_Regex, 
-                message: "ID 형식이 올바르지 않습니다.",
-              }
+                value: ID_Regex,
+                message: 'ID 형식이 올바르지 않습니다.',
+              },
             })}
           ></LoginInput>
         </Row>
@@ -138,12 +152,12 @@ export default function Register() {
             placeholder="PW를 입력해주세요.[8자리 이상 + 특수문자 1개 이상]"
             autoComplete="off"
             type={'password'}
-            register = {register("pw", { 
-              required: "PW를 입력해 주세요",
+            register={register('pw', {
+              required: 'PW를 입력해 주세요',
               pattern: {
-                value: Pw_Regex, 
-                message: "PW 형식이 올바르지 않습니다.",
-              }
+                value: Pw_Regex,
+                message: 'PW 형식이 올바르지 않습니다.',
+              },
             })}
           ></LoginInput>
         </Row>
@@ -153,13 +167,19 @@ export default function Register() {
             <AiOutlineCheckSquare size={25} />
           </Label>
           <LoginInput
-            placeholder="PW를 확인해 주세요."
+            placeholder="PW를 입력해주세요.[8자리 이상 + 특수문자 1개 이상]"
             autoComplete="off"
             type={'password'}
-            register={register('pwCheck', { required: true })}
+            register={register('pw', {
+              required: 'PW를 입력해 주세요',
+              pattern: {
+                value: Pw_Regex,
+                message: 'PW 형식이 올바르지 않습니다.',
+              },
+            })}
           ></LoginInput>
         </Row>
-        {PwcheckErrorMessage}
+        {/* {PwcheckErrorMessage} */}
         <Row>
           <Label htmlFor="email">
             <AiOutlineMail size={25} />
@@ -167,12 +187,12 @@ export default function Register() {
           <LoginInput
             placeholder="email을 입력해 주세요."
             autoComplete="off"
-            register = {register('email', { 
-              required: "이메일을 입력해 주세요",
+            register={register('email', {
+              required: '이메일을 입력해 주세요',
               pattern: {
-                value: Email_Regex, 
-                message: "이메일 형식이 올바르지 않습니다.",
-              }
+                value: Email_Regex,
+                message: '이메일 형식이 올바르지 않습니다.',
+              },
             })}
           ></LoginInput>
         </Row>
@@ -184,12 +204,12 @@ export default function Register() {
           <LoginInput
             placeholder="이름을 입력해 주세요."
             autoComplete="off"
-            register = {register("name", { 
-              required: "이름을 입력해 주세요",
-              pattern:{
-                value:  /^[가-힣]+$/,
-                message: "이름이 이상합니다."
-              }
+            register={register('name', {
+              required: '이름을 입력해 주세요',
+              pattern: {
+                value: /^[가-힣]+$/,
+                message: '이름이 이상합니다.',
+              },
             })}
           ></LoginInput>
         </Row>
@@ -201,12 +221,12 @@ export default function Register() {
           <LoginInput
             placeholder="닉네임을 입력해 주세요."
             autoComplete="off"
-            register = {register("nickname", { 
-              required: "닉네임을 입력해 주세요",
-              pattern:{
+            register={register('nickname', {
+              required: '닉네임을 입력해 주세요',
+              pattern: {
                 value: /^[\w\Wㄱ-ㅎㅏ-ㅣ가-힣]{2,20}$/,
-                message: "닉네임이 이상합니다."
-              }
+                message: '닉네임이 이상합니다.',
+              },
             })}
           ></LoginInput>
         </Row>
@@ -218,25 +238,20 @@ export default function Register() {
           <LoginInput
             placeholder="생일을 입력해 주세요.[YYYYMMDD]"
             autoComplete="off"
-            register = {register("birthday", { 
-              required: "생일을 입력해 주세요",
-              pattern:{
+            register={register('birthday', {
+              required: '생일을 입력해 주세요',
+              pattern: {
                 value: Birthday_Regex,
-                message: "생일 형식이 잘못되었습니다."
-              }
+                message: '생일 형식이 잘못되었습니다.',
+              },
             })}
           ></LoginInput>
         </Row>
         {BirthdayErrorMessage}
-        <LoginButton onClick={handleSubmit(onValid, onInvalid)}>등록하기</LoginButton>
+        <LoginButton onClick={handleSubmit(onValid, onInvalid)}>
+          등록하기
+        </LoginButton>
       </Form>
     </Wrapper>
   );
 }
-// import axios from 'axios';
-
-// axios.get('http://localhost:8080/api/join').then((Response)=>{
-//     console.log(Response.data);
-// }).catch((Error)=>{
-//     console.log(Error);
-// })
