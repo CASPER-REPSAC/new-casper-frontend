@@ -73,7 +73,7 @@ export default function Register() {
     console.log(data);
     // if (watch('pw') == watch('pwCheck')) {
     axios
-      .post('/api/join', data)
+      .post('/api/user/join', data)
       .then((Response) => {
         alert('성공! 값 : Response data = ' + Response.data);
       })
