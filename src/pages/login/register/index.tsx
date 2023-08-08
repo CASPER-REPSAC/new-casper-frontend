@@ -27,7 +27,6 @@ import {
   PreviewImg,
   ImgIcon,
   ProfileLabel,
-  PwInput,
 } from './register.style';
 
 interface IForm {
@@ -74,7 +73,7 @@ export default function Register() {
     console.log(data);
     // if (watch('pw') == watch('pwCheck')) {
     axios
-      .post('/api/user/join', data)
+      .post('/api/join', data)
       .then((Response) => {
         alert('성공! 값 : Response data = ' + Response.data);
       })
@@ -175,13 +174,13 @@ export default function Register() {
           <Label htmlFor="pw_check">
             <AiOutlineCheckSquare size={25} />
           </Label>
-          <PwInput
+          <LoginInput
             placeholder="PW를 한번 더 입력해주세요"
             autoComplete="off"
             type={'password'}
             value={passwordCheck}
             onChange={handlePw}
-          ></PwInput>
+          ></LoginInput>
         </Row>
         {PwcheckErrorMessage}
         <Row>

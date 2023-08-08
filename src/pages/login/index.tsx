@@ -26,17 +26,18 @@ export default function Login() {
   const { register, watch, handleSubmit } = useForm<LoginFormProps>();
   // const theme = useContext(ThemeContext);
   const onValid = (data: any) => {
-    // const API = "http://build.casper.or.kr:5000/api/login"
-    //   fetch('http://build.casper.or.kr:8080/api/login', {
-    //     method : 'POST',
-    //     body : data,
-    //     headers: { 'Content-Type': 'application/json' }
-    //   })
-    //   .then(res=> console.log(res))
-    axios.post('/api/user/login', data).then((Response)=>{
-      alert("Response data = " + Response.data); }).catch((Error)=> {console.log(Error)});
+    axios
+      .post('/api/user/login', data)
+      .then((Response) => {
+        alert('Response data = ' + Response.data);
+      })
+      .catch((Error) => {
+        console.log(Error);
+      });
   };
-  const onInvalid = (data: any) => {alert("입력값들을 확인해 주세요")};
+  const onInvalid = (data: any) => {
+    alert('입력값들을 확인해 주세요');
+  };
   return (
     <Wrapper>
       <LogoWrapper>
@@ -70,7 +71,9 @@ export default function Login() {
             register={register('pw', { required: true })}
           ></LoginInput>
         </Row>
-        <LoginButton onClick={handleSubmit(onValid, onInvalid)}>로그인</LoginButton>
+        <LoginButton onClick={handleSubmit(onValid, onInvalid)}>
+          로그인
+        </LoginButton>
       </Form>
       <Register_link href="/login/register">
         You don&#39;t have ID?
