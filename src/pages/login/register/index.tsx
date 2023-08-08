@@ -45,7 +45,7 @@ const Pw_Regex =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 const Email_Regex =
   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-const Birthday_Regex = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;
+const Birthday_Regex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
 
 export default function Register() {
   const [passwordCheck, setpasswordCheck] = useState('');
