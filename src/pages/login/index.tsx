@@ -29,7 +29,7 @@ export default function Login() {
     axios
       .post('/api/user/login', data)
       .then((Response) => {
-        alert('Response data = ' + Response.data);
+        alert('성공! : Response data = ' + Response.data);
       })
       .catch((Error) => {
         console.log(Error);

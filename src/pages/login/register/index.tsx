@@ -35,7 +35,7 @@ interface IForm {
   email: string;
   name: string;
   nickname: string;
-  birthday: string;
+  birthdate: Date;
   profile: FileList;
 }
 
@@ -45,7 +45,7 @@ const Pw_Regex =
   /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
 const Email_Regex =
   /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-const Birthday_Regex = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/;
+const Birthday_Regex = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;
 
 export default function Register() {
   const [passwordCheck, setpasswordCheck] = useState('');
@@ -111,8 +111,8 @@ export default function Register() {
   const NickNameErrorMessage = errors.nickname && (
     <InputErrors>{errors.nickname.message}</InputErrors>
   );
-  const BirthdayErrorMessage = errors.birthday && (
-    <InputErrors>{errors.birthday.message}</InputErrors>
+  const BirthdayErrorMessage = errors.birthdate && (
+    <InputErrors>{errors.birthdate.message}</InputErrors>
   );
 
   return (
@@ -241,7 +241,7 @@ export default function Register() {
           <LoginInput
             placeholder="생일을 입력해 주세요.[YYYYMMDD]"
             autoComplete="off"
-            register={register('birthday', {
+            register={register('birthdate', {
               required: '생일을 입력해 주세요',
               pattern: {
                 value: Birthday_Regex,
