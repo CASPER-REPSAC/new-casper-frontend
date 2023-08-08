@@ -25,6 +25,11 @@ export const LoginInput = styled(Input)`
   padding-left: 45px;
   transition: all ease 0.3s;
 `;
+export const PwInput = styled.input`
+  margin: 0.3em;
+  padding-left: 45px;
+  transition: all ease 0.3s;
+`;
 export const ImageWrapper = styled.div<{ width: string }>`
   width: ${(props) => props.width};
 `;

@@ -27,6 +27,7 @@ import {
   PreviewImg,
   ImgIcon,
   ProfileLabel,
+  PwInput,
 } from './register.style';
 
 interface IForm {
@@ -36,7 +37,7 @@ interface IForm {
   name: string;
   nickname: string;
   birthday: string;
-  imgfile: FileList;
+  profile: FileList;
 }
 
 // 정규표현식 선언
@@ -48,7 +49,9 @@ const Email_Regex =
 const Birthday_Regex = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;
 
 export default function Register() {
-  const [imageSrc, setImageSrc]: any = useState();
+  const [passwordCheck, setpasswordCheck] = useState('');
+  const [imageSrc, setImageSrc] = useState<string>();
+  const [passwordError, setPasswordError] = useState(false);
   const isDark = useRecoilValue(isDarkState);
   const {
     register,
@@ -59,7 +62,7 @@ export default function Register() {
     mode: 'onChange',
   });
 
-  const ProfileImg = watch('imgfile');
+  const ProfileImg = watch('profile');
   useEffect(() => {
     if (ProfileImg && ProfileImg.length > 0) {
       const file = ProfileImg[0];
@@ -81,8 +84,14 @@ export default function Register() {
     // }
   };
 
+  const handlePw = (e: { target: { value: string } }) => {
+    const { value } = { ...e.target };
+    setPasswordError(watch('pw') !== value);
+    setpasswordCheck(value);
+  };
+
   //에러 메세지 선언
-  const onInvalid: SubmitHandler<IForm> = (data) => {
+  const onInvalid: any = () => {
     alert('입력값들을 확인해 주세요');
   };
   const IdErrorMessage = errors.id && (
@@ -91,9 +100,9 @@ export default function Register() {
   const PwErrorMessage = errors.pw && (
     <InputErrors>{errors.pw.message}</InputErrors>
   );
-  // const PwcheckErrorMessage = watch('pw') !== watch('pwCheck') && (
-  //   <InputErrors>비밀번호가 일치하지 않습니다.</InputErrors>
-  // );
+  const PwcheckErrorMessage = passwordError && (
+    <InputErrors>비밀번호가 일치하지 않습니다.</InputErrors>
+  );
   const EmailErrorMessage = errors.email && (
     <InputErrors>{errors.email.message}</InputErrors>
   );
@@ -115,7 +124,7 @@ export default function Register() {
             accept="image/*"
             type="file"
             id="profile"
-            {...register('imgfile')}
+            {...register('profile')}
           ></ImgInput>
           <ImgLabel htmlFor="profile">
             <PreviewImg
@@ -166,20 +175,15 @@ export default function Register() {
           <Label htmlFor="pw_check">
             <AiOutlineCheckSquare size={25} />
           </Label>
-          <LoginInput
-            placeholder="PW를 입력해주세요.[8자리 이상 + 특수문자 1개 이상]"
+          <PwInput
+            placeholder="PW를 한번 더 입력해주세요"
             autoComplete="off"
             type={'password'}
-            register={register('pw', {
-              required: 'PW를 입력해 주세요',
-              pattern: {
-                value: Pw_Regex,
-                message: 'PW 형식이 올바르지 않습니다.',
-              },
-            })}
-          ></LoginInput>
+            value={passwordCheck}
+            onChange={handlePw}
+          ></PwInput>
         </Row>
-        {/* {PwcheckErrorMessage} */}
+        {PwcheckErrorMessage}
         <Row>
           <Label htmlFor="email">
             <AiOutlineMail size={25} />
