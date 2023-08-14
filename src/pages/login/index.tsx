@@ -1,5 +1,5 @@
 import { isDarkState } from '@src/atoms';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
 import axios from 'axios';
@@ -25,7 +25,8 @@ export default function Login() {
 
   const { register, watch, handleSubmit } = useForm<LoginFormProps>();
   // const theme = useContext(ThemeContext);
-  const onValid = (data: any) => {
+  const onValid: SubmitHandler<LoginFormProps> = (data) => {
+    console.log(data);
     axios
       .post('/api/user/login', data)
       .then((Response) => {

@@ -5,6 +5,24 @@ import Link from 'next/link';
 import Button from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
 
+export const PwInput = styled.input`
+  :focus {
+    border-color: ${({ theme }) => theme.borderBold};
+    outline: none;
+  }
+  background-color: ${({ theme }) => theme.surfaceDefault};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  color: ${({ theme }) => theme.textDefault};
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  height: 50px;
+  width: 400px;
+  margin: 0.3em;
+  padding-left: 45px;
+  transition: all ease 0.3s;
+`;
 
 export const Wrapper = styled.div`
   display: flex;
@@ -74,4 +92,25 @@ export const ImgInput = styled.input`
 `;
 export const ProfileLabel = styled.p`
   font-size: 130%;
+`;
+export const BirthdayInput = styled.input`
+:focus {
+  border-color: ${({ theme }) => theme.borderBold};
+  outline: none;
+}
+background-color: ${({ theme }) => theme.surfaceDefault};
+border: 1px solid ${({ theme }) => theme.borderDefault};
+color: ${({ theme }) => theme.textDefault};
+padding-left: 10px;
+padding-right: 10px;
+font-size: 1.5rem;
+box-sizing: border-box;
+height: 50px;
+width: 400px;
+margin: 0.3em;
+padding-left: 45px;
+transition: all ease 0.3s;
+&[type='date']{
+  color:white;
+}
 `;

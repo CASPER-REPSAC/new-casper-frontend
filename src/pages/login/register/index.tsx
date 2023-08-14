@@ -27,6 +27,8 @@ import {
   PreviewImg,
   ImgIcon,
   ProfileLabel,
+  PwInput,
+  BirthdayInput,
 } from './register.style';
 
 interface IForm {
@@ -71,7 +73,10 @@ export default function Register() {
 
   const onValid: SubmitHandler<IForm> = (data) => {
     console.log(data);
-    // if (watch('pw') == watch('pwCheck')) {
+    if (passwordError) {
+      alert('비밀번호 다르다고 짜샤 아오');
+      return;
+    }
     axios
       .post('/api/user/join', data)
       .then((Response) => {
@@ -80,7 +85,6 @@ export default function Register() {
       .catch((Error) => {
         console.log(Error);
       });
-    // }
   };
 
   const handlePw = (e: { target: { value: string } }) => {
@@ -90,7 +94,7 @@ export default function Register() {
   };
 
   //에러 메세지 선언
-  const onInvalid: any = () => {
+  const onInvalid = () => {
     alert('입력값들을 확인해 주세요');
   };
   const IdErrorMessage = errors.id && (
@@ -174,13 +178,13 @@ export default function Register() {
           <Label htmlFor="pw_check">
             <AiOutlineCheckSquare size={25} />
           </Label>
-          <LoginInput
+          <PwInput
             placeholder="PW를 한번 더 입력해주세요"
             autoComplete="off"
             type={'password'}
             value={passwordCheck}
             onChange={handlePw}
-          ></LoginInput>
+          ></PwInput>
         </Row>
         {PwcheckErrorMessage}
         <Row>
@@ -238,17 +242,14 @@ export default function Register() {
           <Label htmlFor="nick">
             <FaBirthdayCake size={25} />
           </Label>
-          <LoginInput
+          <BirthdayInput
             placeholder="생일을 입력해 주세요.[YYYYMMDD]"
             autoComplete="off"
-            register={register('birthdate', {
+            type="date"
+            {...register('birthdate', {
               required: '생일을 입력해 주세요',
-              pattern: {
-                value: Birthday_Regex,
-                message: '생일 형식이 잘못되었습니다.',
-              },
             })}
-          ></LoginInput>
+          ></BirthdayInput>
         </Row>
         {BirthdayErrorMessage}
         <LoginButton onClick={handleSubmit(onValid, onInvalid)}>
