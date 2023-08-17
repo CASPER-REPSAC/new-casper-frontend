@@ -5,7 +5,7 @@ import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import styled from 'styled-components';
 import Theme from '@src/components/Theme/Theme';
-
+import { CookiesProvider } from 'react-cookie';
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
@@ -14,13 +14,15 @@ const Wrapper = styled.div`
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-      <Theme>
-        <Wrapper>
-          <Header />
-          <Component {...pageProps} />
-          <Footer />
-        </Wrapper>
-      </Theme>
+      <CookiesProvider>
+        <Theme>
+          <Wrapper>
+            <Header />
+            <Component {...pageProps} />
+            <Footer />
+          </Wrapper>
+        </Theme>
+      </CookiesProvider>
     </RecoilRoot>
   );
 }

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
 import NavItem from './NavItem';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import { SlLogin } from 'react-icons/sl';
+import { SlLogin, SlLogout } from 'react-icons/sl';
 import { AiOutlineUser } from 'react-icons/ai';
 import React from 'react';
 import {

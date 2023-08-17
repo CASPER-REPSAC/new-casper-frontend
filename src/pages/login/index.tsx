@@ -2,6 +2,7 @@ import { isDarkState } from '@src/atoms';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
+import { setCookie } from '../../components/Utils/Cookies';
 import axios from 'axios';
 import {
   Form,
@@ -14,6 +15,7 @@ import {
   LogoWrapper,
 } from './login.style';
 import Image from 'next/image';
+import { accessSync } from 'fs';
 
 interface LoginFormProps {
   id: string;
@@ -22,18 +24,17 @@ interface LoginFormProps {
 
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);
-
   const { register, watch, handleSubmit } = useForm<LoginFormProps>();
-  // const theme = useContext(ThemeContext);
-  const onValid: SubmitHandler<LoginFormProps> = (data) => {
+  const onValid: SubmitHandler<LoginFormProps> = async (data) => {
     console.log(data);
-    axios
+    await axios
       .post('/api/user/login', data)
       .then((Response) => {
-        alert('성공! : Response data = ' + Response.data);
+        const accessToken = Response.data.token;
+        setCookie('istest', accessToken);
       })
       .catch((Error) => {
-        console.log(Error);
+        alert('ID 혹은 비밀번호를 확인하세요');
       });
   };
   const onInvalid = (data: any) => {
