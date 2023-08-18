@@ -1,11 +1,13 @@
 import { isDarkState } from '@src/atoms';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
+import { getCookie } from '@src/components/Utils/Cookies';
 import NavItem from './NavItem';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import { SlLogin, SlLogout } from 'react-icons/sl';
+import { SlLockOpen, SlLock } from 'react-icons/sl';
 import { AiOutlineUser } from 'react-icons/ai';
 import React from 'react';
+import { useEffect } from 'react';
 import {
   Body,
   DarkModeButton,
@@ -24,6 +26,7 @@ function Header() {
   const goHome = () => {
     router.push('/');
   };
+  const getToken = getCookie('is_login');
 
   return (
     <HeaderWrapper>
@@ -87,10 +90,10 @@ function Header() {
               Intranet
             </NavItem>
             <NavItem path="/login">
-              <SlLogin
+              <SlLockOpen
                 color={isDarkHome ? 'white' : 'black'}
                 size={20}
-              ></SlLogin>
+              ></SlLockOpen>
             </NavItem>
             <NavItem path="/mypage">
               <AiOutlineUser
