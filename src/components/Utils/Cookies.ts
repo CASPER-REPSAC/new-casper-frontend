@@ -11,7 +11,7 @@ export const getCookie = (name: string) => {
     }
 }
 
-export const setCookie = (name: string, value: Cookies, option?: CookieSetOptions) => {
+export const setCookie = (name: string, value: string, option?: CookieSetOptions) => {
     try {
         cookies.set(name, value, { ...option })
     } catch (error) {

@@ -2,8 +2,10 @@ import { isDarkState } from '@src/atoms';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
-import { setCookie } from '../../components/Utils/Cookies';
+import { setCookie, getCookie } from '@src/components/Utils/Cookies';
 import axios from 'axios';
+import { useEffect } from 'react';
+import router from 'next/router';
 import {
   Form,
   LoginInput,
@@ -16,6 +18,7 @@ import {
 } from './login.style';
 import Image from 'next/image';
 import { accessSync } from 'fs';
+import { type } from 'os';
 
 interface LoginFormProps {
   id: string;
@@ -23,23 +26,38 @@ interface LoginFormProps {
 }
 
 export default function Login() {
+  const getToken = getCookie('is_login');
   const isDark = useRecoilValue(isDarkState);
   const { register, watch, handleSubmit } = useForm<LoginFormProps>();
+
+  useEffect(() => {
+    if (getToken != undefined) {
+      alert('login 되어 있습니다.');
+      router.push('/');
+    }
+  });
+
   const onValid: SubmitHandler<LoginFormProps> = async (data) => {
-    console.log(data);
     await axios
-      .post('/api/user/login', data)
+      .post('/api/user/login', data, {
+        headers: {
+          Authorization: `Bearer.${getCookie('is_login')}`,
+        },
+      })
       .then((Response) => {
-        const accessToken = Response.data.token;
-        setCookie('istest', accessToken);
+        const APIToken = Response.data;
+        setCookie('is_login', APIToken);
+        alert('로그인 성공');
+        router.push('/');
       })
       .catch((Error) => {
-        alert('ID 혹은 비밀번호를 확인하세요');
+        alert('Error코드 :' + Error + 'ID 혹은 비밀번호를 확인하세요');
       });
   };
   const onInvalid = (data: any) => {
     alert('입력값들을 확인해 주세요');
   };
+
   return (
     <Wrapper>
       <LogoWrapper>

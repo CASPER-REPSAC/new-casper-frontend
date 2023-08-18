@@ -13,6 +13,7 @@ import { CgRename } from 'react-icons/Cg';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useState } from 'react';
+import router from 'next/router';
 import {
   Form,
   ImageWrapper,
@@ -80,7 +81,8 @@ export default function Register() {
     axios
       .post('/api/user/join', data)
       .then((Response) => {
-        alert('성공! 값 : Response data = ' + Response.data);
+        alert('회원가입이 완료되었습니다.');
+        router.push('/login');
       })
       .catch((Error) => {
         console.log(Error);
