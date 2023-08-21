@@ -31,6 +31,7 @@ import {
   PwInput,
   BirthdayInput,
 } from './register.style';
+import { detectContentType } from 'next/dist/server/image-optimizer';
 
 interface IForm {
   id: string;
@@ -100,8 +101,12 @@ export default function Register() {
       return;
     }
     const formData = new FormData();
-    formData.append('profile', imgFile ? imgFile : 'null');
-    formData.append('dto', JSON.stringify(data));
+    const img = imgFile ? imgFile : 'null';
+    formData.append('profile', img);
+    const blob = new Blob([JSON.stringify(data)], {
+      type: 'application/json',
+    });
+    formData.append('dto', blob);
     await axios
       .post('/api/user/join', formData, {
         headers: { 'Content-Type': 'multipart/form-data' },
