@@ -100,16 +100,11 @@ export default function Register() {
       return;
     }
     const formData = new FormData();
-    if (!imgFile?.length) {
-      formData.append('profile', 'null');
-    } else {
-      formData.append('profile', imgFile);
-    }
+    formData.append('profile', imgFile ? imgFile : 'null');
     formData.append('dto', JSON.stringify(data));
-    /* key 확인하기 */
     await axios
       .post('/api/user/join', formData, {
-        headers: { 'Content-Type': 'multipart/form-data', charset: 'utf-8' },
+        headers: { 'Content-Type': 'multipart/form-data' },
       })
       .then(() => {
         alert('회원가입이 완료되었습니다.');
@@ -154,7 +149,7 @@ export default function Register() {
 
   return (
     <Wrapper>
-      <Form>
+      <Form encType="multipart/form-data">
         <Row>
           <ImgInput
             accept="image/*"
