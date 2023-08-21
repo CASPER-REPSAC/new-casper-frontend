@@ -107,12 +107,10 @@ export default function Register() {
     }
     formData.append('dto', JSON.stringify(data));
     /* key 확인하기 */
-    await axios({
-      method: 'post',
-      url: '/api/user/join',
-      data: formData,
-      headers: { 'Content-Type': 'multipart/form-data' },
-    })
+    await axios
+      .post('/api/user/join', formData, {
+        headers: { 'Content-Type': 'multipart/form-data', charset: 'utf-8' },
+      })
       .then(() => {
         alert('회원가입이 완료되었습니다.');
         router.push('/login');
