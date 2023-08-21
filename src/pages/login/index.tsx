@@ -32,10 +32,10 @@ export default function Login() {
 
   useEffect(() => {
     if (getToken != undefined) {
-      alert('login 되어 있습니다.');
+      alert('login 되었습니다.');
       router.push('/');
     }
-  });
+  }, [getToken]);
 
   const onValid: SubmitHandler<LoginFormProps> = async (data) => {
     await axios
@@ -47,8 +47,7 @@ export default function Login() {
       .then((Response) => {
         const APIToken = Response.data;
         setCookie('is_login', APIToken);
-        alert('로그인 성공');
-        router.push('/');
+        location.reload();
       })
       .catch((Error) => {
         alert('Error코드 :' + Error + 'ID 혹은 비밀번호를 확인하세요');

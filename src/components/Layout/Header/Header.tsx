@@ -29,11 +29,12 @@ function Header() {
   useEffect(() => {
     const getToken = getCookie('is_login');
     getToken ? setLoginBool(true) : setLoginBool(false);
-  }, []);
+  }, [isLogin]);
 
   const LogoutFunc = () => {
     removeCookie('is_login');
     alert('로그아웃 되었습니다.');
+    location.reload();
   };
   return (
     <HeaderWrapper>
@@ -96,20 +97,23 @@ function Header() {
             >
               Intranet
             </NavItem>
-            <NavItem path="/login">
-              {isLogin ? (
+
+            {isLogin ? (
+              <NavItem>
                 <SlLock
                   color={isDarkHome ? 'white' : 'black'}
                   size={20}
                   onClick={LogoutFunc}
                 ></SlLock>
-              ) : (
+              </NavItem>
+            ) : (
+              <NavItem path="/login">
                 <SlLockOpen
                   color={isDarkHome ? 'white' : 'black'}
                   size={20}
                 ></SlLockOpen>
-              )}
-            </NavItem>
+              </NavItem>
+            )}
             <NavItem path="/mypage">
               <AiOutlineUser
                 color={isDarkHome ? 'white' : 'black'}
