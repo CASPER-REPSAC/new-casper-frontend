@@ -1,7 +1,7 @@
 import { isDarkState } from '@src/atoms';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
-import { getCookie } from '@src/components/Utils/Cookies';
+import { getCookie } from '@src/Utils/Cookies';
 import NavItem from './NavItem';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { SlLockOpen, SlLock } from 'react-icons/sl';

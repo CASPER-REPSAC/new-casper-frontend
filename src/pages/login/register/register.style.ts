@@ -23,7 +23,6 @@ export const PwInput = styled.input`
   padding-left: 45px;
   transition: all ease 0.3s;
 `;
-
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;

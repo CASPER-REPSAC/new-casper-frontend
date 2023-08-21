@@ -39,7 +39,7 @@ interface IForm {
   name: string;
   nickname: string;
   birthdate: Date;
-  profile: FileList;
+  // profile: FileList;
 }
 
 // 정규표현식 선언
@@ -63,41 +63,57 @@ export default function Register() {
     mode: 'onChange',
   });
 
-  // const [imgFilelist, setFilelist] = useState<File>();
-  // const ImgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const profileinput = e.target as HTMLInputElement;
-  //   if (!profileinput.files?.length) {
-  //     return;
-  //   }
-  //   const profile = profileinput.files[0];
-  //   console.log(profile);
-  //   setFilelist(profile)
-  // };
   const [imageSrc, setImageSrc] = useState<string>();
-  const ProfileImg = watch('profile');
-  useEffect(() => {
-    if (ProfileImg && ProfileImg.length > 0) {
-      const file = ProfileImg[0];
+  const [imgFile, setFilelist] = useState<File>();
+  const ImgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const profileinput = e.target as HTMLInputElement;
+    if (!profileinput.files?.length) {
+      return;
+    }
+    const profile = profileinput.files[0];
+    console.log(profile);
+    setFilelist(profile);
+    if (imgFile && imgFile.length > 0) {
+      const file = imgFile;
       setImageSrc(URL.createObjectURL(file));
     }
-  }, [ProfileImg]);
+  };
+  useEffect(() => {
+    if (imgFile && imgFile.length > 0) {
+      const file = imgFile;
+      setImageSrc(URL.createObjectURL(file));
+    }
+  }, [imgFile]);
 
-  const onValid: SubmitHandler<IForm> = (data) => {
-    console.log(data);
+  // const [imageSrc, setImageSrc] = useState<string>();
+  // const ProfileImg = watch('profile');
+  // useEffect(() => {
+  //   if (ProfileImg && ProfileImg.length > 0) {
+  //     const file = ProfileImg[0];
+  //     setImageSrc(URL.createObjectURL(file));
+  //   }
+  // }, [ProfileImg]);
+
+  const onValid: SubmitHandler<IForm> = async (data) => {
     if (passwordError) {
       alert('비밀번호 다르다고 짜샤 아오');
       return;
     }
-    // const formData = new FormData();
-    // formData.append('profile', imgFilelist);
-
-    axios
-      .post('/api/user/join', data, {
-        headers: {
-          'Content-Type': 'multipart/form-data',
-        },
-      })
-      .then((Response) => {
+    const formData = new FormData();
+    if (!imgFile?.length) {
+      formData.append('profile', 'null');
+    } else {
+      formData.append('profile', imgFile);
+    }
+    formData.append('dto', JSON.stringify(data));
+    /* key 확인하기 */
+    await axios({
+      method: 'post',
+      url: '/api/user/join',
+      data: formData,
+      headers: { 'Content-Type': 'multipart/form-data' },
+    })
+      .then(() => {
         alert('회원가입이 완료되었습니다.');
         router.push('/login');
       })
@@ -146,11 +162,13 @@ export default function Register() {
             accept="image/*"
             type="file"
             id="profile"
-            // onChange={ImgUpload}
-            {...register('profile')}
+            onChange={ImgUpload}
+            // {...register('profile')}
           ></ImgInput>
           <ImgLabel htmlFor="profile">
-            <PreviewImg src={'/defalutprofile.png'}></PreviewImg>
+            <PreviewImg
+              src={imageSrc ? imageSrc : '/defalutprofile.png'}
+            ></PreviewImg>
             <ImgIcon>
               <AiOutlineFileImage size={25} />
             </ImgIcon>

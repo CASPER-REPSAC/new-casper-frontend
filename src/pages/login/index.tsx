@@ -2,7 +2,7 @@ import { isDarkState } from '@src/atoms';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
-import { setCookie, getCookie } from '@src/components/Utils/Cookies';
+import { setCookie, getCookie } from '@src/Utils/Cookies';
 import axios from 'axios';
 import { useEffect } from 'react';
 import router from 'next/router';
@@ -54,7 +54,7 @@ export default function Login() {
         alert('Error코드 :' + Error + 'ID 혹은 비밀번호를 확인하세요');
       });
   };
-  const onInvalid = (data: any) => {
+  const onInvalid = () => {
     alert('입력값들을 확인해 주세요');
   };
 
