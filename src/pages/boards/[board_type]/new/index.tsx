@@ -45,10 +45,10 @@ function PostPage() {
     defaultValues: {
       boardId: typeboard,
       category: 0,
-      createdAt: currentDate,
-      modifiedAt: currentDate,
+      // createdAt: currentDate,
+      // modifiedAt: currentDate,
       file: false,
-      content: '.',
+      content: 'teastz',
     },
   });
 
@@ -68,7 +68,7 @@ function PostPage() {
     //   type: 'application/json',
     // });
     await axios
-      .post('/api/article/write', JSON.stringify(data), {
+      .post('/api/article/write', data, {
         headers: {
           Authorization: `Bearer.${getCookie('is_login')}`,
           'Content-Type': 'application/json',
