@@ -63,14 +63,22 @@ function PostPage() {
   };
   const onValid: SubmitHandler<newForm> = async (data) => {
     console.log(data);
+    // const formdata = new FormData();
+    // const blob = new Blob([JSON.stringify(data)], {
+    //   type: 'application/json',
+    // });
     await axios
-      .post('/api/article/write', data, {
+      .post('/api/article/write', JSON.stringify(data), {
         headers: {
           Authorization: `Bearer.${getCookie('is_login')}`,
+          'Content-Type': 'application/json',
         },
       })
       .then((res) => {
         alert('작성성공');
+      })
+      .catch((Error) => {
+        console.log(Error);
       });
   };
   const onInvalid = () => {
