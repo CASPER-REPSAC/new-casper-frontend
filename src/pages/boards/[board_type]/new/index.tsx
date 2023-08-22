@@ -39,11 +39,11 @@ function PostPage() {
   const router = useRouter();
   const { board_type } = router.query;
   const date = new Date();
+  const typeboard = { board_type }.board_type;
   const currentDate = date.toISOString();
-  const [boardId, setboardId] = useState();
   const { register, watch, handleSubmit } = useForm<newForm>({
     defaultValues: {
-      boardId: { board_type }.board_type,
+      boardId: typeboard,
       category: 0,
       createdAt: currentDate,
       modifiedAt: currentDate,
