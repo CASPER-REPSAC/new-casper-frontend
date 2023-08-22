@@ -63,11 +63,15 @@ function PostPage() {
   };
   const onValid: SubmitHandler<newForm> = async (data) => {
     console.log(data);
-    await axios.post('/api/article/write', data, {
-      headers: {
-        Authorization: `Bearer.${getCookie('is_login')}`,
-      },
-    });
+    await axios
+      .post('/api/article/write', data, {
+        headers: {
+          Authorization: `Bearer.${getCookie('is_login')}`,
+        },
+      })
+      .then((res) => {
+        alert('작성성공');
+      });
   };
   const onInvalid = () => {
     alert('입력값을 확인해 주세요');
