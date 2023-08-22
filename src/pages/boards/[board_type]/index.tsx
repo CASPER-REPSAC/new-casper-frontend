@@ -44,7 +44,9 @@ function BoardPage() {
 
   const [BoardData, SetBoardData] = useState([]);
   useEffect(() => {
-    axios.get('api/boards/{board_type}').then((res) => SetBoardData(res.data));
+    axios
+      .get('/api/article/boards/notice_board/0/1')
+      .then((res) => SetBoardData(res.data));
   }, []);
 
   return (
@@ -77,15 +79,15 @@ function BoardPage() {
                 </Tr>
               </Thead>
               <Tbody>
-                {[1, 2, 3].map((val, idx) => (
+                {BoardData.map((Data) => (
                   <Tr
-                    key={idx}
+                    key={Data}
                     onClick={() => {
-                      router.push(`/boards/${board_type}/${val}`);
+                      router.push(`/boards/${board_type}/${Data.idx}`);
                     }}
                   >
-                    <TdCenter>{val}</TdCenter>
-                    <td>{val}번째 게시글 입니다.</td>
+                    <TdCenter>{}</TdCenter>
+                    <td>{Data.title}</td>
                     <TdCenter>박지성</TdCenter>
                     <TdCenter>2023.01.01</TdCenter>
                     <TdCenter>101</TdCenter>

@@ -6,6 +6,7 @@ export const Form = styled.form`
   position: relative;
   box-sizing: border-box;
   margin: 80px auto 0;
+  height:70vh;
   width: 100%;
   padding-bottom: 200px;
 `;
@@ -18,12 +19,15 @@ export const H1 = styled.h1`
 export const TitleInput = styled(Input)`
   border: 0;
   width: 100%;
-  padding-left: 15px;
+  padding: 25px 20px 25px 20px;
   font-size: 3rem;
   height: 40px;
   ::placeholder {
     font-style: italic;
     color: ${({ theme }) => theme.textWeek};
+  }
+  :focus{
+    border: solid 1px ${({ theme }) => theme.textWeek};
   }
 `;
 

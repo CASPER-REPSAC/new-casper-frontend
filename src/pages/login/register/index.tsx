@@ -40,7 +40,6 @@ interface IForm {
   name: string;
   nickname: string;
   birthdate: Date;
-  // profile: FileList;
 }
 
 // 정규표현식 선언

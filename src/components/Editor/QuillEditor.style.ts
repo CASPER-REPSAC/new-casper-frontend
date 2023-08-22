@@ -5,13 +5,14 @@ export const QuillWrapper = styled.div`
     font-size: 2rem;
     color: ${({ theme }) => theme.textWeek};
   }
-
   .ql-editor {
-    height: 500px;
+    height: 50vh;
     max-height: 500px;
     overflow: auto;
+    :focus{
+      border: solid 1px ${({ theme }) => theme.textWeek};
+    }
   }
-
   .ql-container {
     font-size: 1.6rem;
     color: ${({ theme }) => theme.textDefault};

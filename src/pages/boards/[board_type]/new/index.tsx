@@ -1,6 +1,7 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 import QuillEditor from '@src/components/Editor/QuillEditor';
+import { useRouter } from 'next/router';
 import {
   ButtonSection,
   CheckInput,
@@ -14,15 +15,42 @@ import {
   WriteButton,
   OptionLabel,
 } from './new.style';
-import { KeyboardEvent } from 'react';
+import { KeyboardEvent, useEffect, useState } from 'react';
+import axios from 'axios';
+import { getCookie } from '@src/Utils/Cookies';
 
 /**
  *  글 작성 페이지
  */
 
+interface newForm {
+  boardId: String;
+  category: Number;
+  createdAt: string;
+  modifiedAt: string;
+  file: boolean;
+  hide: boolean;
+  notice: boolean;
+  title: String;
+  content: String;
+}
+
 function PostPage() {
-  const { register, watch } = useForm();
-  // const { board_type } = router.query;
+  const router = useRouter();
+  const { board_type } = router.query;
+  const date = new Date();
+  const currentDate = date.toISOString();
+  const [boardId, setboardId] = useState();
+  const { register, watch, handleSubmit } = useForm<newForm>({
+    defaultValues: {
+      boardId: { board_type }.board_type,
+      category: 0,
+      createdAt: currentDate,
+      modifiedAt: currentDate,
+      file: false,
+      content: '.',
+    },
+  });
 
   const handleKeyDown = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -32,6 +60,18 @@ function PostPage() {
       )[0] as HTMLDivElement;
       qlEditor.focus();
     }
+  };
+  const onValid: SubmitHandler<newForm> = async (data) => {
+    console.log(data);
+    await axios.post('/api/article/write', data, {
+      headers: {
+        Authorization: `Bearer.${getCookie('is_login')}`,
+      },
+    });
+  };
+  const onInvalid = () => {
+    alert('입력값을 확인해 주세요');
+    return;
   };
 
   return (
@@ -61,24 +101,24 @@ function PostPage() {
         {/* 옵션 */}
         <OptionSection>
           <Options>
-            <OptionLabel htmlFor="secret" selected={watch('secret')}>
+            <OptionLabel htmlFor="hide" selected={watch('hide')}>
               <CheckInput
-                {...register('secret')}
+                {...register('hide')}
                 type="checkbox"
-                id="secret"
-                name="secret"
-                value={'secret'}
+                id="hide"
+                name="hide"
+                value={'hide'}
               />
               <span>비밀글</span>
             </OptionLabel>
 
-            <OptionLabel htmlFor="fix" selected={watch('fix')}>
+            <OptionLabel htmlFor="notice" selected={watch('notice')}>
               <CheckInput
-                {...register('fix')}
-                id="fix"
+                {...register('notice')}
+                id="notice"
                 type="checkbox"
-                name="fix"
-                value={'fix'}
+                name="notice"
+                value={'notice'}
               />
               <span>고정글</span>
             </OptionLabel>
@@ -94,7 +134,9 @@ function PostPage() {
 
         {/* Footer */}
         <ButtonSection>
-          <WriteButton>작성 하기</WriteButton>
+          <WriteButton onClick={handleSubmit(onValid, onInvalid)}>
+            작성 하기
+          </WriteButton>
         </ButtonSection>
       </Form>
     </CommonCenterWrapper>
