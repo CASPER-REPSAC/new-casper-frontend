@@ -12,6 +12,8 @@ import {
   Info,
   Main,
 } from './post_id.style';
+import axios from 'axios';
+import { useEffect } from 'react';
 /**
  *  글 조회 페이지
  */
@@ -25,7 +27,12 @@ function PostDetail() {
     '정회원 게시판': '/boards/full_member_board',
     '준회원 게시판': '/boards/associate_member_board',
   };
+  useEffect(() => {
 
+    async fun
+
+
+  }, []);
   return (
     <>
       <PageTitle pageTitle={'Boards'} />
