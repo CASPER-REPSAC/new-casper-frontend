@@ -38,8 +38,8 @@ interface newForm {
 function PostPage() {
   const router = useRouter();
   const { board_type } = router.query;
-  const date = new Date();
   const typeboard = { board_type }.board_type;
+  const date = new Date();
   const currentDate = date.toISOString();
   const { register, watch, handleSubmit } = useForm<newForm>({
     defaultValues: {
@@ -74,7 +74,7 @@ function PostPage() {
       .then((res) => {
         if (res.status == 200) {
           alert('작성성공');
-          router.push('/' + typeboard);
+          router.push('/boards/' + typeboard);
         } else {
           alert('작성실패 관리자에게 문의 하세요');
           return;

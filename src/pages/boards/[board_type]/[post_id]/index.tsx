@@ -13,25 +13,32 @@ import {
   Main,
 } from './post_id.style';
 import axios from 'axios';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
+import router from 'next/router';
+import { type } from 'os';
 /**
  *  글 조회 페이지
  */
 
 function PostDetail() {
-  // const router = useRouter();
-  // const { post_id } = router.query;
-
+  const { board_type } = router.query;
+  const typeboard = { board_type }.board_type;
+  // const contentIndex = {board_type}.
   const sideBarParmas = {
     공지사항: '/boards/notice_board',
     '정회원 게시판': '/boards/full_member_board',
     '준회원 게시판': '/boards/associate_member_board',
   };
+  const [contentData, SetcontentData] = useState([]);
   useEffect(() => {
-
-    async fun
-
-
+    const showcontent = async () => {
+      await axios
+        .get('/api/article/boards/' + typeboard + '/' + '0' + '/' + '5')
+        .then((res) => {
+          SetcontentData(res.data);
+        });
+    };
+    showcontent();
   }, []);
   return (
     <>
@@ -45,8 +52,8 @@ function PostDetail() {
           <AuthorInfo>
             <Avatar></Avatar>
             <Info>
-              <AuthorName>박지성</AuthorName>
-              <Desc>소개글소개글소개글소개글소개글</Desc>
+              <AuthorName>{contentData.title}</AuthorName>
+              <Desc>test</Desc>
             </Info>
           </AuthorInfo>
           <Hr />
