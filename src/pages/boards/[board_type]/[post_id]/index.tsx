@@ -30,16 +30,17 @@ function PostDetail() {
     '준회원 게시판': '/boards/associate_member_board',
   };
   const [contentData, SetcontentData] = useState([]);
+  const idx = '1';
   useEffect(() => {
     const showcontent = async () => {
       await axios
-        .post('/api/article/boards/' + 'notice_board' + '/' + '0' + '/' + '1')
+        .post('/api/article/boards/' + 'notice_board' + '/' + '0' + '/' + idx)
         .then((res) => {
           SetcontentData(res.data);
         });
     };
     showcontent();
-  });
+  }, [idx]);
   return (
     <>
       <PageTitle pageTitle={'Boards'} />
@@ -53,7 +54,7 @@ function PostDetail() {
             <Avatar></Avatar>
             <Info>
               <AuthorName>{contentData.title}</AuthorName>
-              <Desc>test</Desc>
+              <Desc>{contentData.content}</Desc>
             </Info>
           </AuthorInfo>
           <Hr />
