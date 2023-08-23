@@ -33,7 +33,7 @@ function PostDetail() {
   useEffect(() => {
     const showcontent = async () => {
       await axios
-        .get('/api/article/boards/' + 'notice_board' + '/' + '0' + '/' + '5')
+        .post('/api/article/boards/' + 'notice_board' + '/' + '0' + '/' + '1')
         .then((res) => {
           SetcontentData(res.data);
         });
