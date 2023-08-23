@@ -43,11 +43,11 @@ function BoardPage() {
   };
 
   const [BoardData, SetBoardData] = useState([]);
-  useEffect(() => {
-    axios
-      .get('/api/article/boards/notice_board/0/1')
-      .then((res) => SetBoardData(res.data));
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get('/api/article/boards/notice_board/0/1')
+  //     .then((res) => SetBoardData(res.data));
+  // }, []);
 
   return (
     <>
