@@ -39,7 +39,7 @@ function PostDetail() {
         });
     };
     showcontent();
-  }, []);
+  });
   return (
     <>
       <PageTitle pageTitle={'Boards'} />
