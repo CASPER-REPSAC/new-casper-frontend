@@ -21,8 +21,8 @@ import { type } from 'os';
  */
 
 function PostDetail() {
-  const { board_type } = router.query;
-  const typeboard = { board_type }.board_type;
+  // const { board_type } = router.query;
+  // const typeboard = { board_type }.board_type;
   // const contentIndex = {board_type}.
   const sideBarParmas = {
     공지사항: '/boards/notice_board',
@@ -33,7 +33,7 @@ function PostDetail() {
   useEffect(() => {
     const showcontent = async () => {
       await axios
-        .get('/api/article/boards/' + typeboard + '/' + '0' + '/' + '5')
+        .get('/api/article/boards/' + 'notice_board' + '/' + '0' + '/' + '5')
         .then((res) => {
           SetcontentData(res.data);
         });
