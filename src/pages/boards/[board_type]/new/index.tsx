@@ -45,10 +45,10 @@ function PostPage() {
     defaultValues: {
       boardId: typeboard,
       category: 0,
-      // createdAt: currentDate,
-      // modifiedAt: currentDate,
+      createdAt: currentDate,
+      modifiedAt: currentDate,
       file: false,
-      content: 'teastz',
+      content: 'teast',
     },
   });
 
@@ -62,18 +62,13 @@ function PostPage() {
     }
   };
   const onValid: SubmitHandler<newForm> = async (data) => {
-    console.log(data);
     // const formdata = new FormData();
     // const blob = new Blob([JSON.stringify(data)], {
     //   type: 'application/json',
     // });
+    const headers = { Authorization: `Bearer.${getCookie('is_login')}` };
     await axios
-      .post('/api/article/write', data, {
-        headers: {
-          Authorization: `Bearer.${getCookie('is_login')}`,
-          'Content-Type': 'application/json',
-        },
-      })
+      .post('/api/article/write', data, { headers })
       .then((res) => {
         alert('작성성공');
       })
