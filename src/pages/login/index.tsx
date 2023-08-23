@@ -46,8 +46,13 @@ export default function Login() {
       })
       .then((Response) => {
         const APIToken = Response.data;
-        setCookie('is_login', APIToken);
-        location.reload();
+        if (APIToken === '로그인 아이디 또는 비밀번호가 틀렸습니다.') {
+          alert('로그인 아이디 또는 비밀번호가 틀렸습니다.');
+          return;
+        } else {
+          setCookie('is_login', APIToken);
+          location.reload();
+        }
       })
       .catch((Error) => {
         alert('Error코드 :' + Error + 'ID 혹은 비밀번호를 확인하세요');
