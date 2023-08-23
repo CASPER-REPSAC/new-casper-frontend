@@ -66,7 +66,9 @@ function PostPage() {
     // const blob = new Blob([JSON.stringify(data)], {
     //   type: 'application/json',
     // });
-    const headers = { Authorization: `Bearer.${getCookie('is_login')}` };
+    const headers = { Authorization: `Bearer ${getCookie('is_login')}` };
+    console.log(headers);
+    console.log(data);
     await axios
       .post('/api/article/write', data, { headers })
       .then((res) => {

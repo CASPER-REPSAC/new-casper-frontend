@@ -78,7 +78,7 @@ function BoardPage() {
                   <th>조회수</th>
                 </Tr>
               </Thead>
-              <Tbody>
+              {/* <Tbody>
                 {BoardData.map((Data) => (
                   <Tr
                     key={Data}
@@ -88,6 +88,22 @@ function BoardPage() {
                   >
                     <TdCenter>{}</TdCenter>
                     <td>{Data.title}</td>
+                    <TdCenter>박지성</TdCenter>
+                    <TdCenter>2023.01.01</TdCenter>
+                    <TdCenter>101</TdCenter>
+                  </Tr>
+                ))}
+              </Tbody> */}
+              <Tbody>
+                {[1, 2, 3].map((val, idx) => (
+                  <Tr
+                    key={idx}
+                    onClick={() => {
+                      router.push(`/boards/${board_type}/${val}`);
+                    }}
+                  >
+                    <TdCenter>{val}</TdCenter>
+                    <td>{val}번째 게시글 입니다.</td>
                     <TdCenter>박지성</TdCenter>
                     <TdCenter>2023.01.01</TdCenter>
                     <TdCenter>101</TdCenter>
