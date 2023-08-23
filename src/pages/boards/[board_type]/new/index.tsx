@@ -70,7 +70,13 @@ function PostPage() {
     await axios
       .post('/api/article/write', data, { headers })
       .then((res) => {
-        alert('작성성공');
+        if (res.status == 200) {
+          alert('작성성공');
+          router.push('/' + typeboard);
+        } else {
+          alert('작성실패 관리자에게 문의 하세요');
+          return;
+        }
       })
       .catch((Error) => {
         console.log(Error);
