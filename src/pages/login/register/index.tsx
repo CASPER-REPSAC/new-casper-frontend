@@ -12,7 +12,7 @@ import {
 import { CgRename } from 'react-icons/Cg';
 import { FaBirthdayCake } from 'react-icons/fa';
 import { useRecoilValue } from 'recoil';
-import { SetStateAction, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import router from 'next/router';
 import {
   Form,
@@ -31,8 +31,6 @@ import {
   PwInput,
   BirthdayInput,
 } from './register.style';
-import { detectContentType } from 'next/dist/server/image-optimizer';
-
 interface IForm {
   id: string;
   pw: string;
@@ -63,6 +61,7 @@ export default function Register() {
     mode: 'onChange',
   });
 
+  /*이미지 업로드*/
   const [imageSrc, setImageSrc] = useState<string>();
   const [imgFile, setFilelist] = useState<File>();
   const ImgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -71,28 +70,12 @@ export default function Register() {
       return;
     }
     const profile = profileinput.files[0];
-    console.log(profile);
     setFilelist(profile);
-    if (imgFile && imgFile.length > 0) {
-      const file = imgFile;
+    if (profile) {
+      const file = profile;
       setImageSrc(URL.createObjectURL(file));
     }
   };
-  useEffect(() => {
-    if (imgFile && imgFile.length > 0) {
-      const file = imgFile;
-      setImageSrc(URL.createObjectURL(file));
-    }
-  }, [imgFile]);
-
-  // const [imageSrc, setImageSrc] = useState<string>();
-  // const ProfileImg = watch('profile');
-  // useEffect(() => {
-  //   if (ProfileImg && ProfileImg.length > 0) {
-  //     const file = ProfileImg[0];
-  //     setImageSrc(URL.createObjectURL(file));
-  //   }
-  // }, [ProfileImg]);
 
   const onValid: SubmitHandler<IForm> = async (data) => {
     if (passwordError) {
@@ -160,7 +143,6 @@ export default function Register() {
             type="file"
             id="profile"
             onChange={ImgUpload}
-            // {...register('profile')}
           ></ImgInput>
           <ImgLabel htmlFor="profile">
             <PreviewImg

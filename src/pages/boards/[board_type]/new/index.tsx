@@ -62,10 +62,6 @@ function PostPage() {
     }
   };
   const onValid: SubmitHandler<newForm> = async (data) => {
-    // const formdata = new FormData();
-    // const blob = new Blob([JSON.stringify(data)], {
-    //   type: 'application/json',
-    // });
     const headers = { Authorization: `Bearer ${getCookie('is_login')}` };
     console.log(headers);
     console.log(data);

@@ -11,6 +11,7 @@ import {
   Hr,
   Info,
   Main,
+  Title,
 } from './post_id.style';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -20,6 +21,10 @@ import { type } from 'os';
  *  글 조회 페이지
  */
 
+interface contentResponse {
+  title: string;
+  content: string;
+}
 function PostDetail() {
   // const { board_type } = router.query;
   // const typeboard = { board_type }.board_type;
@@ -29,7 +34,7 @@ function PostDetail() {
     '정회원 게시판': '/boards/full_member_board',
     '준회원 게시판': '/boards/associate_member_board',
   };
-  const [contentData, SetcontentData] = useState([]);
+  const [contentData, SetcontentData] = useState<contentResponse>([]);
   const idx = '1';
   useEffect(() => {
     const showcontent = async () => {
@@ -48,7 +53,7 @@ function PostDetail() {
         <SideBar menu_path={sideBarParmas} />
         <Main>
           {/* 본문 */}
-
+          <Title>test</Title>
           {/* 작성자 정보 */}
           <AuthorInfo>
             <Avatar></Avatar>
