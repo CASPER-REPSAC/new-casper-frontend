@@ -45,9 +45,6 @@ interface contentResponse {
   ];
 }
 function PostDetail() {
-  // const { board_type } = router.query;
-  // const typeboard = { board_type }.board_type;
-  // const contentIndex = {board_type}.
   const sideBarParmas = {
     공지사항: '/boards/notice_board',
     '정회원 게시판': '/boards/full_member_board',
@@ -66,7 +63,7 @@ function PostDetail() {
     showcontent();
   }, [idx]);
 
-  if (!contentData) return <></>;
+  if (!contentData) return <> 서버 응답 없음 </>;
 
   return (
     <>

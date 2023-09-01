@@ -17,7 +17,7 @@ import {
 } from './new.style';
 import { KeyboardEvent, useEffect, useState } from 'react';
 import axios from 'axios';
-import { getCookie } from '@src/Utils/Cookies';
+import { getCookie } from '@src/utils/cookies';
 
 /**
  *  글 작성 페이지

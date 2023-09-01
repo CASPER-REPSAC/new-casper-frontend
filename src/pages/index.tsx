@@ -1,6 +1,5 @@
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 import { HiLightBulb } from 'react-icons/hi';
-import { Variants } from 'framer-motion';
 import { useState } from 'react';
 import {
   All,
@@ -21,15 +20,6 @@ import {
   White,
 } from './home.style';
 
-const buttonVars: Variants = {
-  initial: {
-    opacity: 0.4,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
-
 export default function Home() {
   const [page, setPage] = useState(1);
   const [allPage, setAllPage] = useState(5);
@@ -49,9 +39,7 @@ export default function Home() {
     const result = [];
     for (let i = 0; i < allPage; i++) {
       result.push(
-        <CurPageBar key={i}>
-          {page === i + 1 ? <White layoutId="white" /> : null}
-        </CurPageBar>,
+        <CurPageBar key={i}>{page === i + 1 ? <White /> : null}</CurPageBar>,
       );
     }
     return result;
@@ -76,20 +64,10 @@ export default function Home() {
           </Page>
           <Row>
             <PageBar>{renderPageBar()}</PageBar>
-            <LeftButton
-              variants={buttonVars}
-              initial="initial"
-              whileHover="animate"
-              onClick={prevPage}
-            >
+            <LeftButton onClick={prevPage}>
               <MdArrowBackIos size={25} />
             </LeftButton>
-            <RightButton
-              variants={buttonVars}
-              initial="initial"
-              whileHover="animate"
-              onClick={nextPage}
-            >
+            <RightButton onClick={nextPage}>
               <MdArrowForwardIos size={25} />
             </RightButton>
           </Row>

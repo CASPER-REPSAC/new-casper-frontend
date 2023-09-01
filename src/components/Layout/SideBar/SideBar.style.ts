@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -21,7 +20,7 @@ export const Item = styled.div`
   font-size: 2rem;
   align-items: center;
 `;
-export const Highlight = styled(motion.div)`
+export const Highlight = styled.div`
   position: absolute;
   left: -1px;
   background-color: ${({ theme }) => theme.surfacePointAlt};

@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import styled from 'styled-components';
 
 export const Background = styled.div<{ bgurl: string }>`
@@ -55,11 +54,11 @@ export const PageBar = styled.div`
   background-color: rgba(255, 255, 255, 0.4);
   margin-right: 2em;
 `;
-export const CurPageBar = styled(motion.div)`
+export const CurPageBar = styled.div`
   height: 3px;
   width: 100%;
 `;
-export const White = styled(motion.div)`
+export const White = styled.div`
   width: 100%;
   height: 100%;
   background-color: white;
@@ -86,9 +85,9 @@ export const Row = styled.div`
   flex-direction: row;
   align-items: center;
 `;
-export const LeftButton = styled(motion.div)`
+export const LeftButton = styled.div`
   cursor: pointer;
 `;
-export const RightButton = styled(motion.div)`
+export const RightButton = styled.div`
   cursor: pointer;
 `;
