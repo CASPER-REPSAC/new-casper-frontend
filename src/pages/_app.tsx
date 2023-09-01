@@ -4,7 +4,7 @@ import '../styles/reset.css';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';
 import styled from 'styled-components';
-import Theme from '@src/components/Theme/Theme';
+import Theme from '@src/components/Theme/index';
 import { CookiesProvider } from 'react-cookie';
 const Wrapper = styled.div`
   position: relative;
