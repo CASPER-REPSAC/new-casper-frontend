@@ -1,5 +1,5 @@
 import Footer from '@src/components/Layout/Footer/Footer';
-import Header from '@src/components/Layout/Header/Header';
+import Header from '@src/components/Layout/Header/index';
 import '../styles/reset.css';
 import type { AppProps } from 'next/app';
 import { RecoilRoot } from 'recoil';

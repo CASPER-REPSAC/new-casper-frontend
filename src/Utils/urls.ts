@@ -2,7 +2,7 @@ export const PATH = {
   home: {
     url: '/',
   },
-  board: {
+  boards: {
     notice: {
       name: '공지사항',
       url: '/boards/notice_board',
@@ -16,7 +16,7 @@ export const PATH = {
       url: '/boards/rest',
     },
   },
-  member: {
+  members: {
     active: {
       name: '활동 중',
       url: '/members/active',
