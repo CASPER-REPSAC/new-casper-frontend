@@ -15,15 +15,34 @@ import {
 } from './post_id.style';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-import router from 'next/router';
-import { type } from 'os';
 /**
  *  글 조회 페이지
  */
 
 interface contentResponse {
+  id: number;
   title: string;
   content: string;
+  author: string;
+  created_at: string;
+  views: number;
+  attachment_count: number;
+  attachments: [
+    {
+      id: number;
+      filename: string;
+      url: string;
+    },
+  ];
+  comment_count: number;
+  comments: [
+    {
+      id: number;
+      author: string;
+      created_at: string;
+      content: string;
+    },
+  ];
 }
 function PostDetail() {
   // const { board_type } = router.query;
@@ -34,7 +53,7 @@ function PostDetail() {
     '정회원 게시판': '/boards/full_member_board',
     '준회원 게시판': '/boards/associate_member_board',
   };
-  const [contentData, SetcontentData] = useState<contentResponse>([]);
+  const [contentData, SetcontentData] = useState<contentResponse | null>(null);
   const idx = '1';
   useEffect(() => {
     const showcontent = async () => {
@@ -46,6 +65,9 @@ function PostDetail() {
     };
     showcontent();
   }, [idx]);
+
+  if (!contentData) return <></>;
+
   return (
     <>
       <PageTitle pageTitle={'Boards'} />
