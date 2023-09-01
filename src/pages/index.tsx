@@ -2,6 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 import { HiLightBulb } from 'react-icons/hi';
+import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 
 export default function Home() {
   const [page, setPage] = useState(0);
@@ -25,31 +26,33 @@ export default function Home() {
   return (
     <>
       <Background src={bgImgs[page]} />
-      <Body>
-        <Notice>
-          <HiLightBulb size={40} color="yellow" />
-          신입생 모집 기간입니다.
-        </Notice>
-        <Title>
-          <H1>THE CENTER OF SECURITY</H1>
-          <H2>정보 보안 동아리 CASPER</H2>
-        </Title>
-        <PageInfoWrapper>
-          <Page>
-            <CurPage>{page + 1}</CurPage>
-            <MaxPage>/{maxPage}</MaxPage>
-          </Page>
-          <PageBarWapper>
-            <PageBarBackground>{PageBar}</PageBarBackground>
-            <LeftButton onClick={showPrevPage}>
-              <MdArrowBackIos size={25} />
-            </LeftButton>
-            <RightButton onClick={showNextPage}>
-              <MdArrowForwardIos size={25} />
-            </RightButton>
-          </PageBarWapper>
-        </PageInfoWrapper>
-      </Body>
+      <CommonCenterWrapper>
+        <Body>
+          <Notice>
+            <HiLightBulb size={40} color="yellow" />
+            신입생 모집 기간입니다.
+          </Notice>
+          <Title>
+            <H1>THE CENTER OF SECURITY</H1>
+            <H2>정보 보안 동아리 CASPER</H2>
+          </Title>
+          <PageInfoWrapper>
+            <Page>
+              <CurPage>{page + 1}</CurPage>
+              <MaxPage>/{maxPage}</MaxPage>
+            </Page>
+            <PageBarWapper>
+              <PageBarBackground>{PageBar}</PageBarBackground>
+              <LeftButton onClick={showPrevPage}>
+                <MdArrowBackIos size={25} />
+              </LeftButton>
+              <RightButton onClick={showNextPage}>
+                <MdArrowForwardIos size={25} />
+              </RightButton>
+            </PageBarWapper>
+          </PageInfoWrapper>
+        </Body>
+      </CommonCenterWrapper>
     </>
   );
 }
@@ -70,11 +73,7 @@ const Body = styled.div`
   gap: 10vh;
   position: absolute;
   top: 25vh;
-  left: 160px;
   color: white;
-  @media screen and (max-width: 1440px) {
-    left: 40px;
-  }
 `;
 const Notice = styled.div`
   display: flex;
