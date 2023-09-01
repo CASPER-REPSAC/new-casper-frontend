@@ -1,7 +1,11 @@
 import { isDarkState } from '@src/atoms';
-import { useForm } from 'react-hook-form';
+import { useForm, SubmitHandler } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilValue } from 'recoil';
+import { setCookie, getCookie } from '@src/Utils/Cookies';
+import axios from 'axios';
+import { useEffect } from 'react';
+import router from 'next/router';
 import {
   Form,
   LoginInput,
@@ -13,6 +17,8 @@ import {
   LogoWrapper,
 } from './login.style';
 import Image from 'next/image';
+import { accessSync } from 'fs';
+import { type } from 'os';
 
 interface LoginFormProps {
   id: string;
@@ -20,10 +26,41 @@ interface LoginFormProps {
 }
 
 export default function Login() {
+  const getToken = getCookie('is_login');
   const isDark = useRecoilValue(isDarkState);
-
   const { register, watch, handleSubmit } = useForm<LoginFormProps>();
-  // const theme = useContext(ThemeContext);
+
+  useEffect(() => {
+    if (getToken != undefined) {
+      alert('login 되었습니다.');
+      router.push('/');
+    }
+  }, [getToken]);
+
+  const onValid: SubmitHandler<LoginFormProps> = async (data) => {
+    await axios
+      .post('/api/user/login', data, {
+        headers: {
+          Authorization: `Bearer.${getCookie('is_login')}`,
+        },
+      })
+      .then((Response) => {
+        const APIToken = Response.data;
+        if (APIToken === '로그인 아이디 또는 비밀번호가 틀렸습니다.') {
+          alert('로그인 아이디 또는 비밀번호가 틀렸습니다.');
+          return;
+        } else {
+          setCookie('is_login', APIToken);
+          location.reload();
+        }
+      })
+      .catch((Error) => {
+        alert('Error코드 :' + Error + 'ID 혹은 비밀번호를 확인하세요');
+      });
+  };
+  const onInvalid = () => {
+    alert('입력값들을 확인해 주세요');
+  };
 
   return (
     <Wrapper>
@@ -58,7 +95,9 @@ export default function Login() {
             register={register('pw', { required: true })}
           ></LoginInput>
         </Row>
-        <LoginButton onClick={() => {}}>로그인</LoginButton>
+        <LoginButton onClick={handleSubmit(onValid, onInvalid)}>
+          로그인
+        </LoginButton>
       </Form>
       <Register_link href="/login/register">
         You don&#39;t have ID?

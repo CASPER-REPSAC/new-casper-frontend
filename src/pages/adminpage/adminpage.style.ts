@@ -8,8 +8,30 @@ export const Wrapper = styled.div`
   display: flex;
   align-items: center;
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  width:100%;
+  height:90%;
+`;
+export const SideBar = styled.div`
+  display: flex;
+  align-items: center;
+  position:absolute;
+  width:30%;
+  height:100%;
+  background-color:${({ theme }) => theme.borderDefault};
+  overflow:scroll;
+  // justify-content:center;
   flex-direction: column;
+`;
+export const SideBarRow = styled.div`
+  display: flex;
+  justify-content:center;
+  align-items: center;
+  border: solid 2px #808E9B;
+  width:100%;
+`;
+export const SideTitle = styled.h1`
+  padding:0.7em;
+`;
+export const OpenMenu = styled.div`
+  
 `;

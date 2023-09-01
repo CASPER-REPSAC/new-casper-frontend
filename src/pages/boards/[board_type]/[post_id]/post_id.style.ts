@@ -42,3 +42,7 @@ export const H1 = styled.h1`
   font-size: 3rem;
   margin-bottom: 1em;
 `;
+export const Title = styled.h1`
+  font-size:600%;
+  
+`;

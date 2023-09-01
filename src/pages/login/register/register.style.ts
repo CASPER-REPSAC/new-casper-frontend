@@ -1,10 +1,28 @@
 import { motion } from 'framer-motion';
-import styled from 'styled-components';
+import styled, {keyframes} from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
 import Button from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
 
+export const PwInput = styled.input`
+  :focus {
+    border-color: ${({ theme }) => theme.borderBold};
+    outline: none;
+  }
+  background-color: ${({ theme }) => theme.surfaceDefault};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  color: ${({ theme }) => theme.textDefault};
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  height: 50px;
+  width: 400px;
+  margin: 0.3em;
+  padding-left: 45px;
+  transition: all ease 0.3s;
+`;
 export const Wrapper = styled.div`
   display: flex;
   align-items: center;
@@ -22,6 +40,7 @@ export const Form = styled.form`
 export const LoginInput = styled(Input)`
   margin: 0.3em;
   padding-left: 45px;
+  transition: all ease 0.3s;
 `;
 export const ImageWrapper = styled.div<{ width: string }>`
   width: ${(props) => props.width};
@@ -38,7 +57,7 @@ export const LoginButton = styled(Button)`
   width: 400px;
   height: 50px;
 `;
-export const PwFalse = styled.p`
+export const InputErrors = styled.p`
   color: red;
   font-size: 110%;
 `;
@@ -67,9 +86,30 @@ export const PreviewImg = styled.img`
   border-radius: 50%;
   border: solid 2px ${({ theme }) => theme.borderDefault};
 `;
-export const ImgInput = styled(Input)`
+export const ImgInput = styled.input`
   display: none;
 `;
 export const ProfileLabel = styled.p`
   font-size: 130%;
+`;
+export const BirthdayInput = styled.input`
+:focus {
+  border-color: ${({ theme }) => theme.borderBold};
+  outline: none;
+}
+background-color: ${({ theme }) => theme.surfaceDefault};
+border: 1px solid ${({ theme }) => theme.borderDefault};
+color: ${({ theme }) => theme.textDefault};
+padding-left: 10px;
+padding-right: 10px;
+font-size: 1.5rem;
+box-sizing: border-box;
+height: 50px;
+width: 400px;
+margin: 0.3em;
+padding-left: 45px;
+transition: all ease 0.3s;
+&[type='date']{
+  color:white;
+}
 `;

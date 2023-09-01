@@ -1,11 +1,13 @@
 import { isDarkState } from '@src/atoms';
 import { useRouter } from 'next/router';
 import { useRecoilState } from 'recoil';
+import { getCookie, removeCookie } from '@src/Utils/Cookies';
 import NavItem from './NavItem';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import { SlLogin } from 'react-icons/sl';
+import { SlLockOpen, SlLock } from 'react-icons/sl';
 import { AiOutlineUser } from 'react-icons/ai';
 import React from 'react';
+import { useEffect, useState } from 'react';
 import {
   Body,
   DarkModeButton,
@@ -20,11 +22,20 @@ function Header() {
   const router = useRouter();
   const isHome = router.pathname === '/';
   const isDarkHome = isDark || isHome;
-
+  const [isLogin, setLoginBool] = useState(false);
   const goHome = () => {
     router.push('/');
   };
+  useEffect(() => {
+    const getToken = getCookie('is_login');
+    getToken ? setLoginBool(true) : setLoginBool(false);
+  }, [isLogin]);
 
+  const LogoutFunc = () => {
+    removeCookie('is_login');
+    alert('로그아웃 되었습니다.');
+    location.reload();
+  };
   return (
     <HeaderWrapper>
       <CommonCenterWrapper>
@@ -86,12 +97,23 @@ function Header() {
             >
               Intranet
             </NavItem>
-            <NavItem path="/login">
-              <SlLogin
-                color={isDarkHome ? 'white' : 'black'}
-                size={20}
-              ></SlLogin>
-            </NavItem>
+
+            {isLogin ? (
+              <NavItem>
+                <SlLock
+                  color={isDarkHome ? 'white' : 'black'}
+                  size={20}
+                  onClick={LogoutFunc}
+                ></SlLock>
+              </NavItem>
+            ) : (
+              <NavItem path="/login">
+                <SlLockOpen
+                  color={isDarkHome ? 'white' : 'black'}
+                  size={20}
+                ></SlLockOpen>
+              </NavItem>
+            )}
             <NavItem path="/mypage">
               <AiOutlineUser
                 color={isDarkHome ? 'white' : 'black'}

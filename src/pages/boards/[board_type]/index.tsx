@@ -2,8 +2,10 @@ import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
 import { useTheme } from 'styled-components';
 import SideBar from '@src/components/Layout/SideBar/SideBar';
 import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
 import PageWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
+import axios from 'axios';
 import {
   Board,
   Main,
@@ -39,6 +41,14 @@ function BoardPage() {
     '정회원 게시판': '/boards/full_member_board',
     '준회원 게시판': '/boards/associate_member_board',
   };
+
+  const [BoardData, SetBoardData] = useState([]);
+  // useEffect(() => {
+  //   axios
+  //     .get('/api/article/boards/notice_board/0/1')
+  //     .then((res) => SetBoardData(res.data));
+  // }, []);
+
   return (
     <>
       <PageTitle pageTitle="Boards"></PageTitle>
@@ -68,6 +78,22 @@ function BoardPage() {
                   <th>조회수</th>
                 </Tr>
               </Thead>
+              {/* <Tbody>
+                {BoardData.map((Data) => (
+                  <Tr
+                    key={Data}
+                    onClick={() => {
+                      router.push(`/boards/${board_type}/${Data.idx}`);
+                    }}
+                  >
+                    <TdCenter>{}</TdCenter>
+                    <td>{Data.title}</td>
+                    <TdCenter>박지성</TdCenter>
+                    <TdCenter>2023.01.01</TdCenter>
+                    <TdCenter>101</TdCenter>
+                  </Tr>
+                ))}
+              </Tbody> */}
               <Tbody>
                 {[1, 2, 3].map((val, idx) => (
                   <Tr
