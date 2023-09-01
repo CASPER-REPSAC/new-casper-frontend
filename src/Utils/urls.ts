@@ -36,4 +36,18 @@ export const PATH = {
       url: '/login',
     },
   },
+  extra: {
+    nas: {
+      name: 'Nas',
+      url: 'https://nas.casper.or.kr/',
+    },
+    wiki: {
+      name: 'Wiki',
+      url: 'https://www.casper.or.kr/dokuwiki/doku.php',
+    },
+    recruit: {
+      name: 'Recruit',
+      url: 'https://recruit.casper.or.kr/',
+    },
+  },
 };

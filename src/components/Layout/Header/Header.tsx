@@ -1,24 +1,25 @@
-import { isDarkState } from '@src/atoms';
+import { memo, useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
-import { useRecoilState } from 'recoil';
-import { getCookie, removeCookie } from '@src/utils/cookies';
-import NavItem from './NavItem';
-import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import React from 'react';
-import { useEffect, useState } from 'react';
-import CommonCenterWrapper from '../CommonCenterWrapper/CommonCenterWrapper';
-import { PATH } from '@src/utils/constants';
 import styled from 'styled-components';
+import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
+import { SlLockOpen, SlLock } from 'react-icons/sl';
+import { AiOutlineUser } from 'react-icons/ai';
+import { useRecoilState } from 'recoil';
+import { isDarkState } from '@src/atoms';
+import { getCookie, removeCookie } from '@src/utils/cookies';
+import { PATH } from '@src/utils/urls';
+import { useRedirect } from '@src/hooks/useRedirect';
+import CommonCenterWrapper from '../CommonCenterWrapper/CommonCenterWrapper';
+import NavItem from './NavItem';
 
 function Header() {
   const router = useRouter();
+  const redirect = useRedirect();
   const [isDark, setIsDark] = useRecoilState(isDarkState);
   const [isLogin, setLoginBool] = useState(false);
   const isHome = router.pathname === '/';
   const isDarkHome = isDark || isHome;
-  const redirectHome = () => {
-    router.push('/');
-  };
+
   useEffect(() => {
     const getToken = getCookie('is_login');
     getToken ? setLoginBool(true) : setLoginBool(false);
@@ -31,9 +32,9 @@ function Header() {
   };
 
   const CasperLogo = isDarkHome ? (
-    <Img src="/casper_logo_white.png" onClick={redirectHome} />
+    <Img src="/casper_logo_white.png" onClick={redirect(PATH.home.url)} />
   ) : (
-    <Img src="/casper_logo_black.png" onClick={redirectHome} />
+    <Img src="/casper_logo_black.png" onClick={redirect(PATH.home.url)} />
   );
   const DarkModeButton = isDark ? (
     <BsFillMoonFill />
@@ -47,42 +48,38 @@ function Header() {
         {DarkModeButton}
 
         <NavItems>
-          {/* 네비게이션 */}
-          <NavItem subMenuInfo={PATH.member}>Members</NavItem>
-          <NavItem subMenuInfo={PATH.board}>Boards</NavItem>
-          {/* <NavItem
-              menus={['Nas', 'Wiki', 'Recruit']}
-              atag_url={[
-                'https://nas.casper.or.kr/',
-                'https://www.casper.or.kr/dokuwiki/doku.php',
-                'https://recruit.casper.or.kr/',
-              ]}
-            >
-              Intranet
-            </NavItem> */}
+          <NavItem
+            onClick={redirect(PATH.member.active.url)}
+            subMenuInfo={PATH.member}
+          >
+            Members
+          </NavItem>
+          <NavItem
+            onClick={redirect(PATH.board.active.url)}
+            subMenuInfo={PATH.board}
+          >
+            Boards
+          </NavItem>
+          <NavItem subMenuInfo={PATH.extra}>Intranet</NavItem>
 
-          {/* {isLogin ? (
+          {isLogin ? (
+            <>
+              <NavItem onClick={redirect(PATH.user.login.url)}>
+                <SlLockOpen color={isDarkHome ? 'white' : 'black'} size={20} />
+              </NavItem>
               <NavItem>
                 <SlLock
                   color={isDarkHome ? 'white' : 'black'}
                   size={20}
                   onClick={LogoutFunc}
-                ></SlLock>
+                />
               </NavItem>
-            ) : (
-              <NavItem pathInfo={PATH.user.login}>
-                <SlLockOpen
-                  color={isDarkHome ? 'white' : 'black'}
-                  size={20}
-                ></SlLockOpen>
-              </NavItem>
-            )}
-            <NavItem path="/mypage">
-              <AiOutlineUser
-                color={isDarkHome ? 'white' : 'black'}
-                size={24}
-              ></AiOutlineUser>
-            </NavItem> */}
+            </>
+          ) : (
+            <NavItem onClick={redirect(PATH.user.login.url)}>
+              <AiOutlineUser color={isDarkHome ? 'white' : 'black'} size={24} />
+            </NavItem>
+          )}
         </NavItems>
       </Body>
     </HeaderWrapper>
@@ -120,4 +117,4 @@ const Img = styled.img`
   cursor: pointer;
 `;
 
-export default React.memo(Header);
+export default memo(Header);

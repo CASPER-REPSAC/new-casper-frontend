@@ -1,21 +1,19 @@
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import React, { HTMLAttributes, useState } from 'react';
 import styled from 'styled-components';
 import SubMenu from './SubMenu';
 
-type pathObject = {
-  [key: string]: {
-    name: string;
-    url: string;
+interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
+  subMenuInfo?: {
+    [key: string]: {
+      name: string;
+      url: string;
+    };
   };
-};
-
-interface INavItem {
-  subMenuInfo: pathObject;
   children?: React.ReactNode;
 }
 
-function NavItem({ subMenuInfo, children }: INavItem) {
+function NavItem({ subMenuInfo, ...props }: NavItemProps) {
   const [SubMenuOpen, setSubMenuOpen] = useState(false);
   const router = useRouter();
   const isHome = router.pathname === '/';
@@ -32,9 +30,10 @@ function NavItem({ subMenuInfo, children }: INavItem) {
       $ishome={isHome}
       onMouseOver={openSubMenu}
       onMouseOut={closeSubMenu}
+      {...props}
     >
-      {children}
-      <SubMenu subMenuInfo={subMenuInfo} open={SubMenuOpen} />
+      {props.children}
+      {subMenuInfo && <SubMenu subMenuInfo={subMenuInfo} open={SubMenuOpen} />}
     </Wrapper>
   );
 }
