@@ -1,15 +1,45 @@
-import { ButtonHTMLAttributes } from 'react';
-import styled from 'styled-components';
+import { HTMLAttributes } from 'react';
+import styled, { css } from 'styled-components';
 
-interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {}
-
-function Button({ ...props }: Props) {
-  return <ButtonWrapper {...props} />;
+type ButtonType = 'small' | 'medium' | 'large';
+interface ButtonWrapperProps {
+  $type: ButtonType;
+}
+interface Props extends HTMLAttributes<HTMLButtonElement> {
+  type?: ButtonType;
+}
+function Button({ type = 'medium', ...props }: Props) {
+  return (
+    <ButtonWrapper $type={type} onClick={props.onClick}>
+      {props.children}
+    </ButtonWrapper>
+  );
 }
 
-const ButtonWrapper = styled.button`
-  width: 90px;
-  height: 40px;
+const ButtonWrapper = styled.button<ButtonWrapperProps>`
+  ${({ $type }) => {
+    switch ($type) {
+      case 'small':
+        return css`
+          height: 30px;
+        `;
+      case 'medium':
+        return css`
+          height: 40px;
+        `;
+
+      case 'large':
+        return css`
+          height: 50px;
+        `;
+      default:
+        return css`
+          height: 40px;
+        `;
+    }
+  }}
+
+  width: 100%;
   color: ${({ theme }) => theme.white};
   background-color: ${({ theme }) => theme.green100};
   border: none;

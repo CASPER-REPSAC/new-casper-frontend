@@ -1,15 +1,16 @@
+import { useEffect, useState } from 'react';
+import styled from 'styled-components';
+import axios from 'axios';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import SideBar from '@src/components/common/SideBar';
 import Comment from '@src/components/Editor/Comment';
-import axios from 'axios';
-import { useEffect, useState } from 'react';
-import { PATH } from '@src/utils/urls';
+import PATH from '@src/utils/urls';
 /**
  *  글 조회 페이지
  */
 
-interface contentResponse {
+interface ContentResponse {
   id: number;
   title: string;
   content: string;
@@ -35,12 +36,12 @@ interface contentResponse {
   ];
 }
 function PostDetail() {
-  const [contentData, SetcontentData] = useState<contentResponse | null>(null);
+  const [contentData, SetcontentData] = useState<ContentResponse | null>(null);
   const idx = '1';
   useEffect(() => {
     const showcontent = async () => {
       await axios
-        .post('/api/article/boards/' + 'notice_board' + '/' + '0' + '/' + idx)
+        .post(`/api/article/boards/notice_board/0/${idx}`)
         .then((res) => {
           SetcontentData(res.data);
         });
@@ -52,7 +53,7 @@ function PostDetail() {
 
   return (
     <>
-      <PageTitle pageTitle={'Boards'} />
+      <PageTitle pageTitle="Boards" />
       <CommonCenterWrapper>
         <SideBar menus={PATH.boards} />
         <Main>
@@ -60,7 +61,7 @@ function PostDetail() {
           <Title>test</Title>
           {/* 작성자 정보 */}
           <AuthorInfo>
-            <Avatar></Avatar>
+            <Avatar />
             <Info>
               <AuthorName>{contentData.title}</AuthorName>
               <Desc>{contentData.content}</Desc>
@@ -74,19 +75,17 @@ function PostDetail() {
             name="박지성"
             date="2021.12.12 14:12:15"
             content="댓글 1번입니다."
-          ></Comment>
+          />
           <Comment
             name="박지성"
             date="2021.12.12 14:12:15"
             content="댓글 2번입니다."
-          ></Comment>
+          />
         </Main>
       </CommonCenterWrapper>
     </>
   );
 }
-
-import styled from 'styled-components';
 
 const Main = styled.div`
   display: flex;

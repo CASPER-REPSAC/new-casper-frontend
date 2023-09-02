@@ -1,4 +1,4 @@
-export const PAGE_TITLE = {
+export default {
   board: 'Boards',
   members: 'Members',
 };

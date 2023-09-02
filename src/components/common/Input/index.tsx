@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { InputHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import styled from 'styled-components';
@@ -23,7 +24,7 @@ const InputWrapper = styled.input`
   font-size: 1.5rem;
   box-sizing: border-box;
   height: 50px;
-  width: 400px;
+  width: 100%;
 `;
 
 export default Input;

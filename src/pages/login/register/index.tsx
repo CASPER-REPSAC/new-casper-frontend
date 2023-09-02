@@ -1,6 +1,6 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import router from 'next/router';
-import { useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
+import { useState } from 'react';
 import styled from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CgRename } from 'react-icons/Cg';
@@ -14,9 +14,9 @@ import {
   AiOutlineFileImage,
 } from 'react-icons/ai';
 import axios from 'axios';
-import { isDarkState } from '@src/atoms';
-import Button from '@src/components/common/Button';
 import Input from '@src/components/common/Input';
+import { EMAIL_REGEX, ID_REGEX, NAME_REGEX, PW_REGEX } from '@src/utils/regex';
+import Button from '@src/components/common/Button';
 
 interface IForm {
   id: string;
@@ -28,18 +28,9 @@ interface IForm {
   profile: FileList;
 }
 
-// 정규표현식 선언
-const ID_Regex = /^[A-Za-z0-9]{3,19}$/;
-const Pw_Regex =
-  /^(?=.*[A-Za-z])(?=.*\d)(?=.*[$@$!%*#?&])[A-Za-z\d$@$!%*#?&]{8,}$/;
-const Email_Regex =
-  /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/;
-const Birthday_Regex = /^[0-9]{4}[0-9]{2}[0-9]{2}$/;
-
 export default function Register() {
   const [passwordCheck, setpasswordCheck] = useState('');
   const [passwordError, setPasswordError] = useState(false);
-  const isDark = useRecoilValue(isDarkState);
   const {
     register,
     watch,
@@ -49,31 +40,8 @@ export default function Register() {
     mode: 'onChange',
   });
 
-  // const [imgFilelist, setFilelist] = useState<File>();
-  // const ImgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-  //   const profileinput = e.target as HTMLInputElement;
-  //   if (!profileinput.files?.length) {
-  //     return;
-  //   }
-  //   const profile = profileinput.files[0];
-  //   console.log(profile);
-  //   setFilelist(profile)
-  // };
-  const [imageSrc, setImageSrc] = useState<string>();
-  const ProfileImg = watch('profile');
-  useEffect(() => {
-    if (ProfileImg && ProfileImg.length > 0) {
-      const file = ProfileImg[0];
-      setImageSrc(URL.createObjectURL(file));
-    }
-  }, [ProfileImg]);
-
   const onValid: SubmitHandler<IForm> = (data) => {
-    console.log(data);
-    if (passwordError) {
-      alert('비밀번호 다르다고 짜샤 아오');
-      return;
-    }
+    if (passwordError) return;
     // const formData = new FormData();
     // formData.append('profile', imgFilelist);
 
@@ -83,12 +51,8 @@ export default function Register() {
           'Content-Type': 'multipart/form-data',
         },
       })
-      .then((Response) => {
-        alert('회원가입이 완료되었습니다.');
+      .then(() => {
         router.push('/login');
-      })
-      .catch((Error) => {
-        console.log(Error);
       });
   };
 
@@ -98,9 +62,8 @@ export default function Register() {
     setpasswordCheck(value);
   };
 
-  //에러 메세지 선언
   const onInvalid = () => {
-    alert('입력값들을 확인해 주세요');
+    // alert('입력값들을 확인해 주세요');
   };
   const IdErrorMessage = errors.id && (
     <InputErrors>{errors.id.message}</InputErrors>
@@ -134,9 +97,9 @@ export default function Register() {
             id="profile"
             // onChange={ImgUpload}
             {...register('profile')}
-          ></ImgInput>
+          />
           <ImgLabel htmlFor="profile">
-            <PreviewImg src={'/defalutprofile.png'}></PreviewImg>
+            <PreviewImg src="/defalutprofile.png" />
             <ImgIcon>
               <AiOutlineFileImage size={25} />
             </ImgIcon>
@@ -153,11 +116,11 @@ export default function Register() {
             register={register('id', {
               required: 'ID를 입력해 주세요.',
               pattern: {
-                value: ID_Regex,
+                value: ID_REGEX,
                 message: 'ID 형식이 올바르지 않습니다.',
               },
             })}
-          ></LoginInput>
+          />
         </Row>
         {IdErrorMessage}
         <Row>
@@ -167,15 +130,15 @@ export default function Register() {
           <LoginInput
             placeholder="PW를 입력해주세요.[8자리 이상 + 특수문자 1개 이상]"
             autoComplete="off"
-            type={'password'}
+            type="password"
             register={register('pw', {
               required: 'PW를 입력해 주세요',
               pattern: {
-                value: Pw_Regex,
+                value: PW_REGEX,
                 message: 'PW 형식이 올바르지 않습니다.',
               },
             })}
-          ></LoginInput>
+          />
         </Row>
         {PwErrorMessage}
         <Row>
@@ -185,10 +148,10 @@ export default function Register() {
           <PwInput
             placeholder="PW를 한번 더 입력해주세요"
             autoComplete="off"
-            type={'password'}
+            type="password"
             value={passwordCheck}
             onChange={handlePw}
-          ></PwInput>
+          />
         </Row>
         {PwcheckErrorMessage}
         <Row>
@@ -201,11 +164,11 @@ export default function Register() {
             register={register('email', {
               required: '이메일을 입력해 주세요',
               pattern: {
-                value: Email_Regex,
+                value: EMAIL_REGEX,
                 message: '이메일 형식이 올바르지 않습니다.',
               },
             })}
-          ></LoginInput>
+          />
         </Row>
         {EmailErrorMessage}
         <Row>
@@ -218,11 +181,11 @@ export default function Register() {
             register={register('name', {
               required: '이름을 입력해 주세요',
               pattern: {
-                value: /^[가-힣]+$/,
+                value: NAME_REGEX,
                 message: '이름이 이상합니다.',
               },
             })}
-          ></LoginInput>
+          />
         </Row>
         {NameErrorMessage}
         <Row>
@@ -239,7 +202,7 @@ export default function Register() {
                 message: '닉네임이 이상합니다.',
               },
             })}
-          ></LoginInput>
+          />
         </Row>
         {NickNameErrorMessage}
         <Row>
@@ -253,7 +216,7 @@ export default function Register() {
             {...register('birthdate', {
               required: '생일을 입력해 주세요',
             })}
-          ></BirthdayInput>
+          />
         </Row>
         {BirthdayErrorMessage}
         <LoginButton onClick={handleSubmit(onValid, onInvalid)}>
@@ -301,9 +264,7 @@ const LoginInput = styled(Input)`
   padding-left: 45px;
   transition: all ease 0.3s;
 `;
-const ImageWrapper = styled.div<{ width: string }>`
-  width: ${(props) => props.width};
-`;
+
 const Row = styled.div`
   display: flex;
   align-items: center;

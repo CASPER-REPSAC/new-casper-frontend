@@ -4,8 +4,8 @@ import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapp
 export default function Year() {
   return (
     <>
-      <PageTitle pageTitle="Album"></PageTitle>
-      <CommonCenterWrapper></CommonCenterWrapper>
+      <PageTitle pageTitle="Album" />
+      <CommonCenterWrapper />
     </>
   );
 }

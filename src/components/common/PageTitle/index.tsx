@@ -12,10 +12,7 @@ function PageTitle({ pageTitle }: Props) {
   return (
     <Wrapper>
       <Title>{pageTitle}</Title>
-      <Sub>
-        {'홈'}
-        {path}
-      </Sub>
+      <Sub>홈{path}</Sub>
     </Wrapper>
   );
 }

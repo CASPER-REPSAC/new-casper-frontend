@@ -15,8 +15,8 @@ interface SideBarProps {
 function SideBar({ menus }: SideBarProps) {
   const { asPath } = useRouter();
 
-  const Menus = Object.values(menus).map((menu, idx) => (
-    <StyledLink key={idx} href={menu.url}>
+  const Menus = Object.values(menus).map((menu) => (
+    <StyledLink key={menu.name} href={menu.url}>
       <Item>
         {menu.name}
         {menu.url === asPath && <Highlight />}

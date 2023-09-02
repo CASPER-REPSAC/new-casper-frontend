@@ -1,10 +1,9 @@
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import SideBar from '@src/components/common/SideBar';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import { PATH } from '@src/utils/urls';
 import { PAGE_TITLE } from '@src/utils/constants';
+import PATH from '@src/utils/urls';
 
 function Members() {
   return (

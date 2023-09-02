@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
-import { isDarkState } from '@src/atoms';
+import isDarkState from '@src/atoms';
 import styled from 'styled-components';
 import Button from '@src/components/common/Button';
 import Input from '@src/components/common/Input';
@@ -21,9 +21,9 @@ export default function Login() {
     <Wrapper>
       <LogoWrapper>
         {isDark ? (
-          <Image src="/casper_logo_white.png" alt="logo" fill={true} />
+          <Image src="/casper_logo_white.png" alt="logo" fill />
         ) : (
-          <Image src="/casper_logo_black.png" alt="logo" fill={true} />
+          <Image src="/casper_logo_black.png" alt="logo" fill />
         )}
       </LogoWrapper>
 
@@ -36,7 +36,7 @@ export default function Login() {
             placeholder="ID를 입력해주세요."
             autoComplete="off"
             register={register('id', { required: true })}
-          ></LoginInput>
+          />
         </Row>
 
         <Row>
@@ -46,16 +46,14 @@ export default function Login() {
           <LoginInput
             placeholder="PW를 입력해주세요."
             autoComplete="off"
-            type={'password'}
+            type="password"
             register={register('pw', { required: true })}
-          ></LoginInput>
+          />
         </Row>
         <LoginButton onClick={() => {}}>로그인</LoginButton>
       </Form>
 
-      <Register_link href="/login/register">
-        You don&#39;t have ID?
-      </Register_link>
+      <RegisterLink href="/login/register">You don&#39;t have ID?</RegisterLink>
     </Wrapper>
   );
 }
@@ -73,9 +71,10 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+  width: 400px;
 `;
 const LoginInput = styled(Input)`
-  margin: 0.3em;
+  margin-bottom: 0.3em;
   padding-left: 45px;
 `;
 
@@ -87,16 +86,17 @@ const LogoWrapper = styled.div`
 const Row = styled.div`
   display: flex;
   align-items: center;
+  width: 100%;
 `;
 const Label = styled.label`
   position: absolute;
   left: 15px;
 `;
 const LoginButton = styled(Button)`
-  width: 400px;
+  width: 100%;
   height: 50px;
 `;
-const Register_link = styled(Link)`
+const RegisterLink = styled(Link)`
   margin-top: 1em;
   font-size: 2rem;
   text-decoration: none;

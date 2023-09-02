@@ -19,8 +19,8 @@ export default function Home() {
       return curPage >= 0 ? 0 : curPage - 1;
     });
   };
-  const PageBar = bgImgs.map((_, idx) => (
-    <CurPageBar key={idx}>{page === idx ? <White /> : null}</CurPageBar>
+  const PageBar = bgImgs.map((bgImg, idx) => (
+    <CurPageBar key={bgImg}>{page === idx ? <White /> : null}</CurPageBar>
   ));
 
   return (

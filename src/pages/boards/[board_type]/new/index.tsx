@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-props-no-spreading */
 import { SubmitHandler, useForm } from 'react-hook-form';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import QuillEditor from '@src/components/Editor/QuillEditor';
@@ -14,26 +15,26 @@ import styled from 'styled-components';
  */
 
 interface NewForm {
-  boardId: String;
-  category: Number;
+  boardId: string;
+  category: number;
   createdAt: string;
   modifiedAt: string;
   file: boolean;
   hide: boolean;
   notice: boolean;
-  title: String;
-  content: String;
+  title: string;
+  content: string;
 }
 
 function PostPage() {
   const router = useRouter();
-  const { board_type } = router.query;
-  const typeboard = { board_type }.board_type;
+  const { board_type: boardType } = router.query;
+  const safeBoardType = Array.isArray(boardType) ? boardType[0] : boardType;
   const date = new Date();
   const currentDate = date.toISOString();
   const { register, watch, handleSubmit } = useForm<NewForm>({
     defaultValues: {
-      boardId: typeboard,
+      boardId: safeBoardType,
       category: 0,
       createdAt: currentDate,
       modifiedAt: currentDate,
@@ -53,26 +54,15 @@ function PostPage() {
   };
   const onValid: SubmitHandler<NewForm> = async (data) => {
     const headers = { Authorization: `Bearer ${getCookie('is_login')}` };
-    console.log(headers);
-    console.log(data);
-    await axios
-      .post('/api/article/write', data, { headers })
-      .then((res) => {
-        if (res.status == 200) {
-          alert('작성성공');
-          router.push('/boards/' + typeboard);
-        } else {
-          alert('작성실패 관리자에게 문의 하세요');
-          return;
-        }
-      })
-      .catch((Error) => {
-        console.log(Error);
-      });
+    const res = await axios.post('/api/article/write', data, { headers });
+
+    if (res.status === 200) {
+      router.push(`/boards/${safeBoardType}`);
+    }
   };
+
   const onInvalid = () => {
-    alert('입력값을 확인해 주세요');
-    return;
+    // alert('입력값을 확인해 주세요');
   };
 
   return (
@@ -102,24 +92,23 @@ function PostPage() {
         {/* 옵션 */}
         <OptionSection>
           <Options>
-            <OptionLabel htmlFor="hide" selected={watch('hide')}>
+            <OptionLabel htmlFor="hide" $selected={watch('hide')}>
               <CheckInput
                 {...register('hide')}
                 type="checkbox"
                 id="hide"
                 name="hide"
-                value={'hide'}
+                value="hide"
               />
               <span>비밀글</span>
             </OptionLabel>
 
-            <OptionLabel htmlFor="notice" selected={watch('notice')}>
+            <OptionLabel htmlFor="notice" $selected={watch('notice')}>
               <CheckInput
-                {...register('notice')}
                 id="notice"
                 type="checkbox"
-                name="notice"
-                value={'notice'}
+                value="notice"
+                {...register('notice')}
               />
               <span>고정글</span>
             </OptionLabel>
@@ -153,10 +142,10 @@ const Form = styled.form`
   padding-bottom: 200px;
 `;
 
-const H1 = styled.h1`
-  margin-top: 0.5em;
-  margin-bottom: 0.5em;
-`;
+// const H1 = styled.h1`
+//   margin-top: 0.5em;
+//   margin-bottom: 0.5em;
+// `;
 
 const TitleInput = styled(Input)`
   border: 0;
@@ -190,7 +179,7 @@ const Options = styled.div`
   gap: 14px;
   font-size: 1.6rem;
 `;
-const OptionLabel = styled.label<{ selected: boolean }>`
+const OptionLabel = styled.label<{ $selected: boolean }>`
   height: 50px;
   width: 100%;
   cursor: pointer;
@@ -198,13 +187,13 @@ const OptionLabel = styled.label<{ selected: boolean }>`
   justify-content: center;
   align-items: center;
   color: ${(props) =>
-    props.selected ? props.theme.textWeek : props.theme.textStrong};
+    props.$selected ? props.theme.textWeek : props.theme.textStrong};
 
   border: 1px solid
     ${(props) =>
-      props.selected ? props.theme.borderDefault : props.theme.borderDefault};
+      props.$selected ? props.theme.borderDefault : props.theme.borderDefault};
   background-color: ${(props) =>
-    props.selected ? props.theme.surfacePointDefault : null};
+    props.$selected ? props.theme.surfacePointDefault : null};
   :hover {
     color: ${({ theme }) => theme.textStrong};
     border: 1px solid ${(props) => props.theme.borderBold};
@@ -216,6 +205,8 @@ const Header = styled.div`
   align-items: center;
   height: 40px;
 `;
+
+/*
 const Select = styled.select`
   background-color: inherit;
   height: 100%;
@@ -236,11 +227,11 @@ const FileInputLabel = styled.label`
   align-items: center;
   font-size: 2rem;
   border: 1px solid ${({ theme }) => theme.borderDefault};
-
   border-radius: 4px;
   height: 100px;
   cursor: pointer;
 `;
+ */
 
 const TitleSection = styled.div`
   margin-top: 2em;
@@ -253,10 +244,13 @@ const OptionSection = styled.div`
   padding-left: 24px;
   padding-right: 24px;
 `;
+
+/*
 const FileSection = styled.div`
   margin-top: 2em;
   padding: 24px;
 `;
+*/
 const ButtonSection = styled.div`
   display: flex;
   justify-content: flex-end;

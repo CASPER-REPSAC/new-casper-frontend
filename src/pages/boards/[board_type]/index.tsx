@@ -9,7 +9,7 @@ import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import DefaultButton from '@src/components/common/Button';
 import Input from '@src/components/common/Input';
 import Custom404 from '@src/pages/Error/404';
-import { PATH } from '@src/utils/urls';
+import PATH from '@src/utils/urls';
 import { PAGE_TITLE } from '@src/utils/constants';
 
 /**
@@ -21,20 +21,14 @@ function BoardPage() {
   const router = useRouter();
   const {
     asPath,
-    query: { board_type },
+    query: { board_type: boardType },
   } = router;
 
-  const boardType = Array.isArray(board_type) ? board_type[0] : board_type;
+  const safeBoardType = Array.isArray(boardType) ? boardType[0] : boardType;
   const validBoradPathList = Object.values(PATH.boards).map(
     (board) => board.url,
   );
-  const isValidPath = !boardType || !validBoradPathList.includes(asPath);
-  const sideBarParmas = {
-    [PATH.boards.notice.name]: PATH.boards.notice.url,
-    [PATH.boards.full.name]: PATH.boards.full.url,
-    [PATH.boards.graduate.name]: PATH.boards.graduate.url,
-    [PATH.boards.associate.name]: PATH.boards.associate.url,
-  };
+  const isValidPath = !safeBoardType || !validBoradPathList.includes(asPath);
 
   const onClickWrite = () => {
     router.push(`${asPath}/new`);
@@ -59,7 +53,7 @@ function BoardPage() {
                 <SearchInput
                   register={register('search')}
                   placeholder="검색어를 입력해 주세요."
-                ></SearchInput>
+                />
                 <SearchIcon size={20} />
               </SerachBar>
             </TableHeader>
@@ -90,11 +84,11 @@ function BoardPage() {
                 ))}
               </Tbody> */}
               <Tbody>
-                {[1, 2, 3].map((val, idx) => (
+                {[1, 2, 3].map((val) => (
                   <Tr
-                    key={idx}
+                    key={val}
                     onClick={() => {
-                      router.push(`/boards/${board_type}/${val}`);
+                      router.push(`/boards/${safeBoardType}/${val}`);
                     }}
                   >
                     <TdCenter>{val}</TdCenter>
@@ -109,14 +103,14 @@ function BoardPage() {
             <TableFooter>
               <WriteButton onClick={onClickWrite}>작성 하기</WriteButton>
               <PageButtonSection>
-                <MdKeyboardArrowLeft size={35}></MdKeyboardArrowLeft>
+                <MdKeyboardArrowLeft size={35} />
                 <PageButton>1</PageButton>
                 <PageButton>2</PageButton>
                 <PageButton>3</PageButton>
                 <PageButton>4</PageButton>
                 <PageButton>5</PageButton>
                 <PageButton>6</PageButton>
-                <MdKeyboardArrowRight size={35}></MdKeyboardArrowRight>
+                <MdKeyboardArrowRight size={35} />
               </PageButtonSection>
             </TableFooter>
           </Board>
@@ -283,28 +277,28 @@ export const FileInputLabel = styled.label`
   cursor: pointer;
 `;
 
-const TitleSection = styled.div`
-  margin-top: 2em;
-`;
-const EditorSection = styled.div`
-  margin-top: 2em;
-`;
-const OptionSection = styled.div`
-  margin-top: 2em;
-  padding: 24px;
-`;
-const FileSection = styled.div`
-  margin-top: 2em;
-  padding: 24px;
-`;
-const ButtonSection = styled.div`
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 2em;
-  padding: 24px;
-`;
-const Button = styled(DefaultButton)`
-  width: 100%;
-`;
+// const TitleSection = styled.div`
+//   margin-top: 2em;
+// `;
+// const EditorSection = styled.div`
+//   margin-top: 2em;
+// `;
+// const OptionSection = styled.div`
+//   margin-top: 2em;
+//   padding: 24px;
+// `;
+// const FileSection = styled.div`
+//   margin-top: 2em;
+//   padding: 24px;
+// `;
+// const ButtonSection = styled.div`
+//   display: flex;
+//   justify-content: flex-end;
+//   margin-top: 2em;
+//   padding: 24px;
+// `;
+// const Button = styled(DefaultButton)`
+//   width: 100%;
+// `;
 
 export default BoardPage;

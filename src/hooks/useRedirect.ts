@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 
-export function useRedirect() {
+export default function useRedirect() {
   const { push } = useRouter();
   const redirect = (path: string) => () => {
     push(path);

@@ -5,10 +5,10 @@ import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { SlLockOpen, SlLock } from 'react-icons/sl';
 import { AiOutlineUser } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
-import { isDarkState } from '@src/atoms';
 import { getCookie, removeCookie } from '@src/utils/cookies';
-import { PATH } from '@src/utils/urls';
-import { useRedirect } from '@src/hooks/useRedirect';
+import useRedirect from '@src/hooks/useRedirect';
+import PATH from '@src/utils/urls';
+import isDarkState from '@src/atoms';
 import CommonCenterWrapper from '../CommonCenterWrapper';
 import NavItem from './NavItem';
 
@@ -16,19 +16,19 @@ function Header() {
   const router = useRouter();
   const redirect = useRedirect();
   const [isDark, setIsDark] = useRecoilState(isDarkState);
-  const [isLogin, setLoginBool] = useState(false);
+  const [isLogin, setIsLogin] = useState(false);
   const isHome = router.pathname === '/';
   const isDarkHome = isDark || isHome;
 
   useEffect(() => {
-    const getToken = getCookie('is_login');
-    getToken ? setLoginBool(true) : setLoginBool(false);
+    const token = getCookie('is_login');
+    if (token) setIsLogin(true);
+    else setIsLogin(false);
   }, [isLogin]);
 
   const logout = () => {
     removeCookie('is_login');
-    alert('로그아웃 되었습니다.');
-    location.reload();
+    router.replace(router.asPath);
   };
   const toggleDarkMode = () => {
     setIsDark((cur) => !cur);

@@ -1,4 +1,4 @@
-export const PATH = {
+const PATH = {
   home: {
     name: '홈',
     url: '/',
@@ -56,3 +56,5 @@ export const PATH = {
     },
   },
 };
+
+export default PATH;

@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-type pathObject = {
+type SubMenuInfoType = {
   [key: string]: {
     name: string;
     url: string;
@@ -9,18 +9,18 @@ type pathObject = {
 };
 
 interface Props {
-  subMenuInfo: pathObject;
+  subMenuInfo: SubMenuInfoType;
   open: boolean;
 }
 
 export default function SubMenu({ subMenuInfo, open }: Props) {
   const router = useRouter();
 
-  const SubMenus = Object.keys(subMenuInfo).map((key, idx) => {
+  const SubMenus = Object.keys(subMenuInfo).map((key) => {
     const subMenu = subMenuInfo[key];
     return (
       <SubMenuItem
-        key={idx}
+        key={subMenu.name}
         onClick={(e) => {
           router.push(subMenu.url);
           e.stopPropagation();
