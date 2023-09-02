@@ -1,6 +1,6 @@
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import PageTitle from '@src/components/Layout/PageTitle';
 import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
-import SideBar from '@src/components/Layout/SideBar/SideBar';
+import SideBar from '@src/components/Layout/SideBar';
 import Comment from '@src/components/Editor/Comment';
 import {
   AuthorInfo,
@@ -15,6 +15,7 @@ import {
 } from './post_id.style';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import { PATH } from '@src/utils/urls';
 /**
  *  글 조회 페이지
  */
@@ -45,11 +46,6 @@ interface contentResponse {
   ];
 }
 function PostDetail() {
-  const sideBarParmas = {
-    공지사항: '/boards/notice_board',
-    '정회원 게시판': '/boards/full_member_board',
-    '준회원 게시판': '/boards/associate_member_board',
-  };
   const [contentData, SetcontentData] = useState<contentResponse | null>(null);
   const idx = '1';
   useEffect(() => {
@@ -69,7 +65,7 @@ function PostDetail() {
     <>
       <PageTitle pageTitle={'Boards'} />
       <CommonCenterWrapper>
-        <SideBar menu_path={sideBarParmas} />
+        <SideBar menus={PATH.boards} />
         <Main>
           {/* 본문 */}
           <Title>test</Title>

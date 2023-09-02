@@ -6,7 +6,7 @@ export const Main = styled.div`
   padding-bottom: 200px;
 `;
 export const Hr = styled.hr`
-  background: ${({ theme }) => theme.color2};
+  background: ${({ theme }) => theme.borderDefault};
   border: 0;
   width: 100%;
   height: 1px;
@@ -22,7 +22,7 @@ export const AuthorInfo = styled.div`
 export const Avatar = styled.div`
   width: 100px;
   height: 100px;
-  background-color: ${({ theme }) => theme.color1};
+  background-color: ${({ theme }) => theme.borderDefault};
   margin-right: 50px;
 `;
 export const Info = styled.div`
@@ -43,6 +43,5 @@ export const H1 = styled.h1`
   margin-bottom: 1em;
 `;
 export const Title = styled.h1`
-  font-size:600%;
-  
+  font-size: 600%;
 `;

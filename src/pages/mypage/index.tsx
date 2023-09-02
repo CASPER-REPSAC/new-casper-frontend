@@ -1,8 +1,8 @@
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import PageTitle from '@src/components/Layout/PageTitle';
 import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 import { useForm } from 'react-hook-form';
 import { useEffect } from 'react';
-import  axios  from 'axios';
+import axios from 'axios';
 import {
   Avatar,
   AvatarLabel,

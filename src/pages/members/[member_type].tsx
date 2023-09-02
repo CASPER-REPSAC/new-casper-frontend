@@ -1,22 +1,18 @@
-import SideBar from '@src/components/Layout/SideBar/SideBar';
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
+import SideBar from '@src/components/Layout/SideBar';
+import PageTitle from '@src/components/Layout/PageTitle';
 import { useRouter } from 'next/router';
 import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 import { Cards, Main, MemberCard } from './members.style';
+import { PATH } from '@src/utils/urls';
 
 function Members() {
   const router = useRouter();
 
-  const sideBarParam = {
-    '활동 중': '/members/active',
-    휴학생: '/members/rest',
-    졸업생: '/members/graduate',
-  };
   return (
     <>
       <PageTitle pageTitle="Members" />
       <CommonCenterWrapper>
-        <SideBar menu_path={sideBarParam} />
+        <SideBar menus={PATH.members} />
         <Main>
           <Cards>
             <MemberCard />

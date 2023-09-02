@@ -4,29 +4,27 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
 interface SideBarProps {
-  menu_path: {
-    [key: string]: string;
+  menus: {
+    [key: string]: {
+      name: string;
+      url: string;
+    };
   };
 }
 
-function SideBar({ menu_path }: SideBarProps) {
+function SideBar({ menus }: SideBarProps) {
   const { asPath } = useRouter();
 
-  return (
-    <Wrapper>
-      {Object.entries(menu_path).map((entry, idx) => {
-        const [menu, path] = entry;
-        return (
-          <StyledLink key={idx} href={path}>
-            <Item>
-              {menu}
-              {path === asPath && <Highlight />}
-            </Item>
-          </StyledLink>
-        );
-      })}
-    </Wrapper>
-  );
+  const Menus = Object.values(menus).map((menu, idx) => (
+    <StyledLink key={idx} href={menu.url}>
+      <Item>
+        {menu.name}
+        {menu.url === asPath && <Highlight />}
+      </Item>
+    </StyledLink>
+  ));
+
+  return <Wrapper>{Menus}</Wrapper>;
 }
 
 const Wrapper = styled.div`

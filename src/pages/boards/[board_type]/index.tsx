@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
-import SideBar from '@src/components/Layout/SideBar/SideBar';
+import PageTitle from '@src/components/Layout/PageTitle';
+import SideBar from '@src/components/Layout/SideBar';
 import PageWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
 import DefaultButton from '@src/components/Button/Button';
 import Input from '@src/components/Input/Input';
@@ -44,7 +44,7 @@ function BoardPage() {
     <>
       <PageTitle pageTitle={boardType}></PageTitle>
       <PageWrapper>
-        <SideBar menu_path={sideBarParmas} />
+        <SideBar menus={PATH.boards} />
         <Main>
           <Board>
             <TableHeader>
