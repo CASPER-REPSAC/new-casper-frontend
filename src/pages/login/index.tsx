@@ -1,24 +1,12 @@
-import { isDarkState } from '@src/atoms';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
-import { useRecoilValue } from 'recoil';
-import { setCookie, getCookie } from '@src/Utils/Cookies';
-import axios from 'axios';
-import { useEffect } from 'react';
-import router from 'next/router';
-import {
-  Form,
-  LoginInput,
-  Label,
-  Row,
-  Wrapper,
-  Register_link,
-  LoginButton,
-  LogoWrapper,
-} from './login.style';
+import Link from 'next/link';
 import Image from 'next/image';
-import { accessSync } from 'fs';
-import { type } from 'os';
+import { useForm } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
+import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
+import { isDarkState } from '@src/atoms';
+import styled from 'styled-components';
+import Button from '@src/components/common/Button';
+import Input from '@src/components/common/Input';
 
 interface LoginFormProps {
   id: string;
@@ -26,41 +14,8 @@ interface LoginFormProps {
 }
 
 export default function Login() {
-  const getToken = getCookie('is_login');
   const isDark = useRecoilValue(isDarkState);
-  const { register, watch, handleSubmit } = useForm<LoginFormProps>();
-
-  useEffect(() => {
-    if (getToken != undefined) {
-      alert('login 되었습니다.');
-      router.push('/');
-    }
-  }, [getToken]);
-
-  const onValid: SubmitHandler<LoginFormProps> = async (data) => {
-    await axios
-      .post('/api/user/login', data, {
-        headers: {
-          Authorization: `Bearer.${getCookie('is_login')}`,
-        },
-      })
-      .then((Response) => {
-        const APIToken = Response.data;
-        if (APIToken === '로그인 아이디 또는 비밀번호가 틀렸습니다.') {
-          alert('로그인 아이디 또는 비밀번호가 틀렸습니다.');
-          return;
-        } else {
-          setCookie('is_login', APIToken);
-          location.reload();
-        }
-      })
-      .catch((Error) => {
-        alert('Error코드 :' + Error + 'ID 혹은 비밀번호를 확인하세요');
-      });
-  };
-  const onInvalid = () => {
-    alert('입력값들을 확인해 주세요');
-  };
+  const { register } = useForm<LoginFormProps>();
 
   return (
     <Wrapper>
@@ -95,13 +50,59 @@ export default function Login() {
             register={register('pw', { required: true })}
           ></LoginInput>
         </Row>
-        <LoginButton onClick={handleSubmit(onValid, onInvalid)}>
-          로그인
-        </LoginButton>
+        <LoginButton onClick={() => {}}>로그인</LoginButton>
       </Form>
+
       <Register_link href="/login/register">
         You don&#39;t have ID?
       </Register_link>
     </Wrapper>
   );
 }
+
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+`;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const LoginInput = styled(Input)`
+  margin: 0.3em;
+  padding-left: 45px;
+`;
+
+const LogoWrapper = styled.div`
+  position: relative;
+  width: 350px;
+  height: 84px;
+`;
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const Label = styled.label`
+  position: absolute;
+  left: 15px;
+`;
+const LoginButton = styled(Button)`
+  width: 400px;
+  height: 50px;
+`;
+const Register_link = styled(Link)`
+  margin-top: 1em;
+  font-size: 2rem;
+  text-decoration: none;
+  color: white;
+  &:hover {
+    cursor: pointer;
+    text-decoration: underline;
+  }
+`;

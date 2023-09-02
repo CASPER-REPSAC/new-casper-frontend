@@ -1,11 +1,12 @@
-import Footer from '@src/components/Layout/Footer/Footer';
-import Header from '@src/components/Layout/Header/index';
-import '../styles/reset.css';
 import type { AppProps } from 'next/app';
-import { RecoilRoot } from 'recoil';
 import styled from 'styled-components';
-import Theme from '@src/components/Theme/index';
 import { CookiesProvider } from 'react-cookie';
+import { RecoilRoot } from 'recoil';
+import '@src/styles/reset.css';
+import Footer from '@src/components/common/Layout/Footer';
+import Header from '@src/components/common/Layout/Header/index';
+import Theme from '@src/components/Theme/index';
+
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;

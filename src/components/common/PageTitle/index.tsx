@@ -1,11 +1,11 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-interface pageTitleProps {
+interface Props {
   pageTitle: string;
 }
 
-function PageTitle({ pageTitle }: pageTitleProps) {
+function PageTitle({ pageTitle }: Props) {
   const router = useRouter();
   const path = router.asPath.replaceAll('/', ' > ');
 
@@ -24,8 +24,6 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.surfacePointDefault};
   height: 120px;
   width: 100vw;
-  border-top: 1px solid ${(props) => props.theme.borderDefault};
-  border-bottom: 1px solid ${(props) => props.theme.borderDefault};
   color: ${(props) => props.theme.textStrong};
   box-sizing: border-box;
   display: flex;

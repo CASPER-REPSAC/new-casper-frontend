@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 
 export function useRedirect() {
-  const router = useRouter();
+  const { push } = useRouter();
   const redirect = (path: string) => () => {
-    router.push(path);
+    push(path);
   };
 
   return redirect;

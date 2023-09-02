@@ -1,29 +1,19 @@
 import { SubmitHandler, useForm } from 'react-hook-form';
-import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
+import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import QuillEditor from '@src/components/Editor/QuillEditor';
 import { useRouter } from 'next/router';
-import {
-  ButtonSection,
-  CheckInput,
-  EditorSection,
-  Form,
-  Header,
-  TitleInput,
-  OptionSection,
-  Options,
-  TitleSection,
-  WriteButton,
-  OptionLabel,
-} from './new.style';
-import { KeyboardEvent, useEffect, useState } from 'react';
+import { KeyboardEvent } from 'react';
 import axios from 'axios';
 import { getCookie } from '@src/utils/cookies';
+import Button from '@src/components/common/Button';
+import Input from '@src/components/common/Input';
+import styled from 'styled-components';
 
 /**
  *  글 작성 페이지
  */
 
-interface newForm {
+interface NewForm {
   boardId: String;
   category: Number;
   createdAt: string;
@@ -41,7 +31,7 @@ function PostPage() {
   const typeboard = { board_type }.board_type;
   const date = new Date();
   const currentDate = date.toISOString();
-  const { register, watch, handleSubmit } = useForm<newForm>({
+  const { register, watch, handleSubmit } = useForm<NewForm>({
     defaultValues: {
       boardId: typeboard,
       category: 0,
@@ -61,7 +51,7 @@ function PostPage() {
       qlEditor.focus();
     }
   };
-  const onValid: SubmitHandler<newForm> = async (data) => {
+  const onValid: SubmitHandler<NewForm> = async (data) => {
     const headers = { Authorization: `Bearer ${getCookie('is_login')}` };
     console.log(headers);
     console.log(data);
@@ -153,5 +143,129 @@ function PostPage() {
     </CommonCenterWrapper>
   );
 }
+
+const Form = styled.form`
+  position: relative;
+  box-sizing: border-box;
+  margin: 80px auto 0;
+  height: 70vh;
+  width: 100%;
+  padding-bottom: 200px;
+`;
+
+const H1 = styled.h1`
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+`;
+
+const TitleInput = styled(Input)`
+  border: 0;
+  width: 100%;
+  padding: 25px 20px 25px 20px;
+  font-size: 3rem;
+  height: 40px;
+  ::placeholder {
+    font-style: italic;
+    color: ${({ theme }) => theme.textWeek};
+  }
+  :focus {
+    border: solid 1px ${({ theme }) => theme.textWeek};
+  }
+`;
+
+const CheckInput = styled.input`
+  display: none;
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+
+  width: 20px;
+  height: 20px;
+  color: #000;
+  cursor: pointer;
+`;
+
+const Options = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 14px;
+  font-size: 1.6rem;
+`;
+const OptionLabel = styled.label<{ selected: boolean }>`
+  height: 50px;
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: ${(props) =>
+    props.selected ? props.theme.textWeek : props.theme.textStrong};
+
+  border: 1px solid
+    ${(props) =>
+      props.selected ? props.theme.borderDefault : props.theme.borderDefault};
+  background-color: ${(props) =>
+    props.selected ? props.theme.surfacePointDefault : null};
+  :hover {
+    color: ${({ theme }) => theme.textStrong};
+    border: 1px solid ${(props) => props.theme.borderBold};
+  }
+`;
+
+const Header = styled.div`
+  display: flex;
+  align-items: center;
+  height: 40px;
+`;
+const Select = styled.select`
+  background-color: inherit;
+  height: 100%;
+  color: ${({ theme }) => theme.textDefault};
+  font-size: 1.8rem;
+  margin-right: 1em;
+  width: 120px;
+  text-align: center;
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+`;
+
+const FileInput = styled.input`
+  display: none;
+`;
+const FileInputLabel = styled.label`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2rem;
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+
+  border-radius: 4px;
+  height: 100px;
+  cursor: pointer;
+`;
+
+const TitleSection = styled.div`
+  margin-top: 2em;
+`;
+const EditorSection = styled.div`
+  margin-top: 2em;
+`;
+const OptionSection = styled.div`
+  margin-top: 2em;
+  padding-left: 24px;
+  padding-right: 24px;
+`;
+const FileSection = styled.div`
+  margin-top: 2em;
+  padding: 24px;
+`;
+const ButtonSection = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 2em;
+  padding-left: 24px;
+  padding-right: 24px;
+`;
+const WriteButton = styled(Button)`
+  width: 100%;
+`;
 
 export default PostPage;

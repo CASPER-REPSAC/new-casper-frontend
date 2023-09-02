@@ -1,6 +1,13 @@
+import React, { HTMLAttributes } from 'react';
 import styled from 'styled-components';
 
-export const Wrapper = styled.div`
+interface CommonCenterWrapperProps extends HTMLAttributes<HTMLDivElement> {}
+
+function CommonCenterWrapper({ ...props }: CommonCenterWrapperProps) {
+  return <Wrapper {...props} />;
+}
+
+const Wrapper = styled.div`
   /* Mobile */
   width: 480px;
 
@@ -20,3 +27,5 @@ export const Wrapper = styled.div`
 
   margin: 0 auto;
 `;
+
+export default CommonCenterWrapper;

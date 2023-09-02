@@ -3,13 +3,14 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import { AiOutlineSearch } from 'react-icons/ai';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import PageTitle from '@src/components/Layout/PageTitle';
-import SideBar from '@src/components/Layout/SideBar';
-import PageWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
-import DefaultButton from '@src/components/Button/Button';
-import Input from '@src/components/Input/Input';
+import PageTitle from '@src/components/common/PageTitle';
+import SideBar from '@src/components/common/SideBar';
+import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
+import DefaultButton from '@src/components/common/Button';
+import Input from '@src/components/common/Input';
 import Custom404 from '@src/pages/Error/404';
 import { PATH } from '@src/utils/urls';
+import { PAGE_TITLE } from '@src/utils/constants';
 
 /**
  *  게시판 메인 페이지
@@ -42,7 +43,7 @@ function BoardPage() {
   if (isValidPath) return <Custom404 />;
   return (
     <>
-      <PageTitle pageTitle={boardType}></PageTitle>
+      <PageTitle pageTitle={PAGE_TITLE.board} />
       <PageWrapper>
         <SideBar menus={PATH.boards} />
         <Main>

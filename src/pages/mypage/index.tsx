@@ -1,27 +1,13 @@
-import PageTitle from '@src/components/Layout/PageTitle';
-import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
+import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import { useEffect } from 'react';
-import axios from 'axios';
-import {
-  Avatar,
-  AvatarLabel,
-  Button,
-  Div,
-  FlexCol,
-  FlexRow,
-  Form,
-  IntroInput,
-  Label,
-} from './mypage.style';
-import Input from '@src/components/Input/Input';
+import PageTitle from '@src/components/common/PageTitle';
+import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
+import DefaultButton from '@src/components/common/Button';
+import Input from '@src/components/common/Input';
 
 function MyPage() {
   const { register } = useForm();
-  // useEffect(() => {
-  //   axios.post('/api/mypage');
-  //   console.log("test");
-  // })
+
   return (
     <>
       <PageTitle pageTitle="MyPage" />
@@ -103,5 +89,70 @@ function MyPage() {
     </>
   );
 }
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 750px;
+  height: 400px;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+`;
+const FlexCol = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  flex-wrap: wrap;
+`;
+const FlexRow = styled.div`
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+`;
+
+const IntroInput = styled.textarea`
+  background-color: inherit;
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  width: 290px;
+  color: ${({ theme }) => theme.textDefault};
+  :focus {
+    outline: none;
+    border-color: ${({ theme }) => theme.borderBold};
+  }
+
+  padding: 10px;
+  box-sizing: border-box;
+  font-size: 1.4rem;
+`;
+const Avatar = styled(Input)`
+  display: none;
+`;
+const AvatarLabel = styled.label`
+  width: 290px;
+  height: 290px;
+  border-radius: 50%;
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  cursor: pointer;
+`;
+
+const Label = styled.label`
+  font-size: 1.4rem;
+  margin-bottom: 0.5em;
+`;
+const Div = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+const Button = styled(DefaultButton)`
+  align-self: flex-end;
+  margin-top: 1em;
+`;
 
 export default MyPage;

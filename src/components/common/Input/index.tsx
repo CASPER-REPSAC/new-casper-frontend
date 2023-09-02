@@ -1,6 +1,16 @@
+import { InputHTMLAttributes } from 'react';
+import { UseFormRegisterReturn } from 'react-hook-form';
 import styled from 'styled-components';
 
-export const InputWrapper = styled.input`
+interface Props extends InputHTMLAttributes<HTMLInputElement> {
+  register: UseFormRegisterReturn;
+}
+
+function Input({ register, ...props }: Props) {
+  return <InputWrapper {...props} {...register} />;
+}
+
+const InputWrapper = styled.input`
   :focus {
     border-color: ${({ theme }) => theme.borderBold};
     outline: none;
@@ -15,3 +25,5 @@ export const InputWrapper = styled.input`
   height: 50px;
   width: 400px;
 `;
+
+export default Input;

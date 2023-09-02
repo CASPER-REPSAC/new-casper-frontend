@@ -1,18 +1,7 @@
-import PageTitle from '@src/components/Layout/PageTitle';
-import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
-import SideBar from '@src/components/Layout/SideBar';
+import PageTitle from '@src/components/common/PageTitle';
+import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
+import SideBar from '@src/components/common/SideBar';
 import Comment from '@src/components/Editor/Comment';
-import {
-  AuthorInfo,
-  AuthorName,
-  Avatar,
-  Desc,
-  H1,
-  Hr,
-  Info,
-  Main,
-  Title,
-} from './post_id.style';
 import axios from 'axios';
 import { useEffect, useState } from 'react';
 import { PATH } from '@src/utils/urls';
@@ -96,5 +85,53 @@ function PostDetail() {
     </>
   );
 }
+
+import styled from 'styled-components';
+
+const Main = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 200px;
+`;
+const Hr = styled.hr`
+  background: ${({ theme }) => theme.borderDefault};
+  border: 0;
+  width: 100%;
+  height: 1px;
+  margin-top: 50px;
+
+  margin-bottom: 50px;
+`;
+const AuthorInfo = styled.div`
+  display: flex;
+  margin-top: 200px;
+  align-items: center;
+`;
+const Avatar = styled.div`
+  width: 100px;
+  height: 100px;
+  background-color: ${({ theme }) => theme.borderDefault};
+  margin-right: 50px;
+`;
+const Info = styled.div`
+  display: flex;
+
+  flex-direction: column;
+`;
+const AuthorName = styled.h1`
+  font-size: 2.4rem;
+  margin-bottom: 0.5em;
+`;
+const Desc = styled.div`
+  font-size: 2rem;
+`;
+
+const H1 = styled.h1`
+  font-size: 3rem;
+  margin-bottom: 1em;
+`;
+const Title = styled.h1`
+  font-size: 600%;
+`;
 
 export default PostDetail;

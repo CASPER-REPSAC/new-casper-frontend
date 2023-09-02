@@ -1,6 +1,10 @@
-import { isDarkState } from '@src/atoms';
+import router from 'next/router';
+import { useEffect, useState } from 'react';
+import { useRecoilValue } from 'recoil';
+import styled from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
-import axios from 'axios';
+import { CgRename } from 'react-icons/Cg';
+import { FaBirthdayCake } from 'react-icons/fa';
 import {
   AiOutlineLock,
   AiOutlineUser,
@@ -9,28 +13,11 @@ import {
   AiFillStar,
   AiOutlineFileImage,
 } from 'react-icons/ai';
-import { CgRename } from 'react-icons/Cg';
-import { FaBirthdayCake } from 'react-icons/fa';
-import { useRecoilValue } from 'recoil';
-import { useEffect, useState } from 'react';
-import router from 'next/router';
-import {
-  Form,
-  ImageWrapper,
-  ImgInput,
-  LoginInput,
-  Label,
-  Row,
-  Wrapper,
-  LoginButton,
-  InputErrors,
-  ImgLabel,
-  PreviewImg,
-  ImgIcon,
-  ProfileLabel,
-  PwInput,
-  BirthdayInput,
-} from './register.style';
+import axios from 'axios';
+import { isDarkState } from '@src/atoms';
+import Button from '@src/components/common/Button';
+import Input from '@src/components/common/Input';
+
 interface IForm {
   id: string;
   pw: string;
@@ -38,6 +25,7 @@ interface IForm {
   name: string;
   nickname: string;
   birthdate: Date;
+  profile: FileList;
 }
 
 // 정규표현식 선언
@@ -61,39 +49,41 @@ export default function Register() {
     mode: 'onChange',
   });
 
-  /*이미지 업로드*/
+  // const [imgFilelist, setFilelist] = useState<File>();
+  // const ImgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const profileinput = e.target as HTMLInputElement;
+  //   if (!profileinput.files?.length) {
+  //     return;
+  //   }
+  //   const profile = profileinput.files[0];
+  //   console.log(profile);
+  //   setFilelist(profile)
+  // };
   const [imageSrc, setImageSrc] = useState<string>();
-  const [imgFile, setFilelist] = useState<File>();
-  const ImgUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const profileinput = e.target as HTMLInputElement;
-    if (!profileinput.files?.length) {
-      return;
-    }
-    const profile = profileinput.files[0];
-    setFilelist(profile);
-    if (profile) {
-      const file = profile;
+  const ProfileImg = watch('profile');
+  useEffect(() => {
+    if (ProfileImg && ProfileImg.length > 0) {
+      const file = ProfileImg[0];
       setImageSrc(URL.createObjectURL(file));
     }
-  };
+  }, [ProfileImg]);
 
-  const onValid: SubmitHandler<IForm> = async (data) => {
+  const onValid: SubmitHandler<IForm> = (data) => {
+    console.log(data);
     if (passwordError) {
       alert('비밀번호 다르다고 짜샤 아오');
       return;
     }
-    const formData = new FormData();
-    const img = imgFile ? imgFile : 'null';
-    formData.append('profile', img);
-    const blob = new Blob([JSON.stringify(data)], {
-      type: 'application/json',
-    });
-    formData.append('dto', blob);
-    await axios
-      .post('/api/user/join', formData, {
-        headers: { 'Content-Type': 'multipart/form-data' },
+    // const formData = new FormData();
+    // formData.append('profile', imgFilelist);
+
+    axios
+      .post('/api/user/join', data, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
       })
-      .then(() => {
+      .then((Response) => {
         alert('회원가입이 완료되었습니다.');
         router.push('/login');
       })
@@ -136,18 +126,17 @@ export default function Register() {
 
   return (
     <Wrapper>
-      <Form encType="multipart/form-data">
+      <Form>
         <Row>
           <ImgInput
             accept="image/*"
             type="file"
             id="profile"
-            onChange={ImgUpload}
+            // onChange={ImgUpload}
+            {...register('profile')}
           ></ImgInput>
           <ImgLabel htmlFor="profile">
-            <PreviewImg
-              src={imageSrc ? imageSrc : '/defalutprofile.png'}
-            ></PreviewImg>
+            <PreviewImg src={'/defalutprofile.png'}></PreviewImg>
             <ImgIcon>
               <AiOutlineFileImage size={25} />
             </ImgIcon>
@@ -274,3 +263,112 @@ export default function Register() {
     </Wrapper>
   );
 }
+
+const PwInput = styled.input`
+  :focus {
+    border-color: ${({ theme }) => theme.borderBold};
+    outline: none;
+  }
+  background-color: ${({ theme }) => theme.surfaceDefault};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  color: ${({ theme }) => theme.textDefault};
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  height: 50px;
+  width: 400px;
+  margin: 0.3em;
+  padding-left: 45px;
+  transition: all ease 0.3s;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  flex-direction: column;
+`;
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+const LoginInput = styled(Input)`
+  margin: 0.3em;
+  padding-left: 45px;
+  transition: all ease 0.3s;
+`;
+const ImageWrapper = styled.div<{ width: string }>`
+  width: ${(props) => props.width};
+`;
+const Row = styled.div`
+  display: flex;
+  align-items: center;
+`;
+const Label = styled.label`
+  position: absolute;
+  left: 15px;
+`;
+const LoginButton = styled(Button)`
+  width: 400px;
+  height: 50px;
+`;
+const InputErrors = styled.p`
+  color: red;
+  font-size: 110%;
+`;
+const ImgLabel = styled.label`
+  height: 200px;
+  margin-bottom: 0.9em;
+`;
+const ImgIcon = styled.div`
+  position: absolute;
+  right: 20%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  border: solid 2px ${({ theme }) => theme.borderDefault};
+  transform: translate(0, -100%);
+  border-radius: 50%;
+  justify-content: center;
+  &:hover {
+    background-color: ${({ theme }) => theme.borderDefault};
+  }
+`;
+const PreviewImg = styled.img`
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  border: solid 2px ${({ theme }) => theme.borderDefault};
+`;
+const ImgInput = styled.input`
+  display: none;
+`;
+const ProfileLabel = styled.p`
+  font-size: 130%;
+`;
+const BirthdayInput = styled.input`
+  :focus {
+    border-color: ${({ theme }) => theme.borderBold};
+    outline: none;
+  }
+  background-color: ${({ theme }) => theme.surfaceDefault};
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  color: ${({ theme }) => theme.textDefault};
+  padding-left: 10px;
+  padding-right: 10px;
+  font-size: 1.5rem;
+  box-sizing: border-box;
+  height: 50px;
+  width: 400px;
+  margin: 0.3em;
+  padding-left: 45px;
+  transition: all ease 0.3s;
+  &[type='date'] {
+    color: white;
+  }
+`;

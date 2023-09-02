@@ -9,7 +9,7 @@ import { isDarkState } from '@src/atoms';
 import { getCookie, removeCookie } from '@src/utils/cookies';
 import { PATH } from '@src/utils/urls';
 import { useRedirect } from '@src/hooks/useRedirect';
-import CommonCenterWrapper from '../CommonCenterWrapper/CommonCenterWrapper';
+import CommonCenterWrapper from '../CommonCenterWrapper';
 import NavItem from './NavItem';
 
 function Header() {

@@ -3,7 +3,7 @@ import React, { HTMLAttributes, useState } from 'react';
 import styled from 'styled-components';
 import SubMenu from './SubMenu';
 
-interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
+interface Props extends HTMLAttributes<HTMLDivElement> {
   subMenuInfo?: {
     [key: string]: {
       name: string;
@@ -13,7 +13,7 @@ interface NavItemProps extends HTMLAttributes<HTMLDivElement> {
   children?: React.ReactNode;
 }
 
-function NavItem({ subMenuInfo, ...props }: NavItemProps) {
+function NavItem({ subMenuInfo, ...props }: Props) {
   const [SubMenuOpen, setSubMenuOpen] = useState(false);
   const router = useRouter();
   const isHome = router.pathname === '/';

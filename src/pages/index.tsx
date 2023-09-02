@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styled from 'styled-components';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 import { HiLightBulb } from 'react-icons/hi';
-import CommonCenterWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
+import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 
 export default function Home() {
   const [page, setPage] = useState(0);

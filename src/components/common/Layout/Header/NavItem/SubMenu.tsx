@@ -8,12 +8,12 @@ type pathObject = {
   };
 };
 
-interface SubMenuProps {
+interface Props {
   subMenuInfo: pathObject;
   open: boolean;
 }
 
-export default function SubMenu({ subMenuInfo, open }: SubMenuProps) {
+export default function SubMenu({ subMenuInfo, open }: Props) {
   const router = useRouter();
 
   const SubMenus = Object.keys(subMenuInfo).map((key, idx) => {
