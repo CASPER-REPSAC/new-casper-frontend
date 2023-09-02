@@ -59,7 +59,7 @@ function Header() {
             Members
           </NavItem>
           <NavItem
-            onClick={redirect(PATH.boards.active.url)}
+            onClick={redirect(PATH.boards.notice.url)}
             subMenuInfo={PATH.boards}
           >
             Boards

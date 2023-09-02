@@ -1,5 +1,4 @@
 import { useRouter } from 'next/router';
-import { useState } from 'react';
 import styled from 'styled-components';
 
 type pathObject = {
@@ -16,14 +15,17 @@ interface SubMenuProps {
 
 export default function SubMenu({ subMenuInfo, open }: SubMenuProps) {
   const router = useRouter();
-  const redirect = (path: string) => {
-    router.push(path);
-  };
 
   const SubMenus = Object.keys(subMenuInfo).map((key, idx) => {
     const subMenu = subMenuInfo[key];
     return (
-      <SubMenuItem key={idx} onClick={() => redirect(subMenu.url)}>
+      <SubMenuItem
+        key={idx}
+        onClick={(e) => {
+          router.push(subMenu.url);
+          e.stopPropagation();
+        }}
+      >
         {subMenu.name}
       </SubMenuItem>
     );

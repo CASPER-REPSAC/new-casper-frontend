@@ -1,5 +1,6 @@
 export const PATH = {
   home: {
+    name: '홈',
     url: '/',
   },
   boards: {
@@ -7,13 +8,17 @@ export const PATH = {
       name: '공지사항',
       url: '/boards/notice_board',
     },
-    active: {
+    full: {
       name: '정회원 게시판',
-      url: '/boards/active',
+      url: '/boards/full_member_board',
     },
-    rest: {
+    associate: {
+      name: '준회원 게시판',
+      url: '/boards/associate_member_board',
+    },
+    graduate: {
       name: '졸업생 게시판',
-      url: '/boards/rest',
+      url: '/boards/graduate_member_board',
     },
   },
   members: {
@@ -22,7 +27,7 @@ export const PATH = {
       url: '/members/active',
     },
     rest: {
-      name: '졸업생',
+      name: '휴학생',
       url: '/members/rest',
     },
     graduate: {
