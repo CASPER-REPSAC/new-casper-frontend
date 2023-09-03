@@ -20,6 +20,7 @@ import {
 } from '@src/utils/regex';
 import Button from '@src/components/common/DefaultButton';
 import LoginInput from '@src/components/pages/loginPage/LoginInput';
+import { INPUT_LABEL } from '@src/utils/constants';
 
 interface IForm {
   id: string;
@@ -28,7 +29,7 @@ interface IForm {
   email: string;
   name: string;
   nickname: string;
-  birthdate: Date;
+  birthday: Date;
   profile: FileList;
 }
 
@@ -100,7 +101,7 @@ export default function Register() {
       message: '닉네임이 이상합니다.',
     },
   });
-  const birthdayRegister = register('birthdate', {
+  const birthdayRegister = register('birthday', {
     required: '생일을 입력해 주세요',
   });
   return (
@@ -117,12 +118,14 @@ export default function Register() {
         </ImgLabel>
       </ImageWrapper>
       <LoginInput
+        label={INPUT_LABEL.id}
         labelIcon={<AiOutlineUser size={25} />}
         register={idRegister}
         placeholder="ID를 입력해주세요.[영문, 숫자만 가능]"
         errorMessage={errors.id?.message}
       />
       <LoginInput
+        label={INPUT_LABEL.pw}
         labelIcon={<AiOutlineCheckSquare size={25} />}
         register={pwRegister}
         placeholder="PW를 입력해주세요"
@@ -130,6 +133,7 @@ export default function Register() {
         errorMessage={errors.pw?.message}
       />
       <LoginInput
+        label={INPUT_LABEL.pwConfirm}
         labelIcon={<AiOutlineCheckSquare size={25} />}
         register={pwConfirmRegister}
         errorMessage={errors.pwConfirm?.message}
@@ -138,6 +142,7 @@ export default function Register() {
         type="password"
       />
       <LoginInput
+        label={INPUT_LABEL.email}
         labelIcon={<AiOutlineMail size={25} />}
         placeholder="email을 입력해 주세요."
         autoComplete="off"
@@ -145,6 +150,7 @@ export default function Register() {
         errorMessage={errors.email?.message}
       />
       <LoginInput
+        label={INPUT_LABEL.name}
         labelIcon={<CgRename size={25} />}
         placeholder="이름을 입력해 주세요."
         autoComplete="off"
@@ -152,6 +158,7 @@ export default function Register() {
         errorMessage={errors.name?.message}
       />
       <LoginInput
+        label={INPUT_LABEL.nickName}
         labelIcon={<AiFillStar size={25} />}
         placeholder="닉네임을 입력해 주세요."
         autoComplete="off"
@@ -159,14 +166,15 @@ export default function Register() {
         errorMessage={errors.nickname?.message}
       />
       <LoginInput
+        label={INPUT_LABEL.birthday}
         labelIcon={<FaBirthdayCake size={25} />}
         placeholder="생일을 입력해 주세요.[YYYYMMDD]"
         autoComplete="off"
         type="date"
         register={birthdayRegister}
-        errorMessage={errors.birthdate?.message}
+        errorMessage={errors.birthday?.message}
       />
-      <LoginButton onClick={handleSubmit(onValid, onInvalid)}>
+      <LoginButton full onClick={handleSubmit(onValid, onInvalid)}>
         등록하기
       </LoginButton>
     </Form>
@@ -186,7 +194,6 @@ const ImageWrapper = styled.div`
 `;
 
 const LoginButton = styled(Button)`
-  width: 400px;
   height: 50px;
 `;
 

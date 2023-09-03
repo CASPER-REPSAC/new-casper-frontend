@@ -7,7 +7,7 @@ import { KeyboardEvent } from 'react';
 import axios from 'axios';
 import { getCookie } from '@src/utils/cookies';
 import Button from '@src/components/common/DefaultButton';
-import Input from '@src/components/common/DefaultInput';
+import DefaultInput from '@src/components/common/DefaultInput';
 import styled from 'styled-components';
 
 /**
@@ -147,18 +147,15 @@ const Form = styled.form`
 //   margin-bottom: 0.5em;
 // `;
 
-const TitleInput = styled(Input)`
+const TitleInput = styled(DefaultInput)`
   border: 0;
   width: 100%;
-  padding: 25px 20px 25px 20px;
+  padding: 25px 20px;
   font-size: 3rem;
   height: 40px;
-  ::placeholder {
+  &::placeholder {
     font-style: italic;
     color: ${({ theme }) => theme.textWeek};
-  }
-  :focus {
-    border: solid 1px ${({ theme }) => theme.textWeek};
   }
 `;
 

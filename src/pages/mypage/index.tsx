@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import DefaultButton from '@src/components/common/DefaultButton';
-import Input from '@src/components/common/DefaultInput';
+import DefaultInput from '@src/components/common/DefaultInput';
 
 function MyPage() {
   const { register } = useForm();
@@ -39,7 +39,7 @@ function MyPage() {
           <FlexCol>
             <InputWrapper>
               <Label htmlFor="name">이름</Label>
-              <Input
+              <DefaultInput
                 id="name"
                 register={register('name', { required: true })}
                 type="text"
@@ -49,7 +49,7 @@ function MyPage() {
             </InputWrapper>
             <InputWrapper>
               <Label htmlFor="nickname">닉네임</Label>
-              <Input
+              <DefaultInput
                 id="nickname"
                 register={register('nickname', { required: true })}
                 type="text"
@@ -59,7 +59,7 @@ function MyPage() {
             </InputWrapper>
             <InputWrapper>
               <Label htmlFor="group">회원 그룹</Label>
-              <Input
+              <DefaultInput
                 id="group"
                 register={register('group', { required: true })}
                 type="text"
@@ -69,14 +69,14 @@ function MyPage() {
             </InputWrapper>
             <InputWrapper>
               <Label htmlFor="github">소셜 정보</Label>
-              <Input
+              <DefaultInput
                 id="github"
                 register={register('github', { required: true })}
                 type="text"
                 placeholder="http://github.com/example"
                 autoComplete="off"
               />
-              <Input
+              <DefaultInput
                 id="blog"
                 register={register('blog', { required: true })}
                 type="text"
@@ -123,7 +123,7 @@ const IntroInput = styled.textarea`
   border: 1px solid ${({ theme }) => theme.borderDefault};
   width: 100%;
   color: ${({ theme }) => theme.textDefault};
-  :focus {
+  &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.borderBold};
   }
@@ -131,7 +131,7 @@ const IntroInput = styled.textarea`
   font-size: 1.4rem;
   resize: none;
 `;
-const Avatar = styled(Input)`
+const Avatar = styled(DefaultInput)`
   display: none;
 `;
 const AvatarLabel = styled.label`

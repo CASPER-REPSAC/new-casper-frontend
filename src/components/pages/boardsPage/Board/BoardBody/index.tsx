@@ -55,12 +55,9 @@ const Thead = styled.thead`
 `;
 const Tbody = styled.tbody`
   font-size: 1.6rem;
-  Tr {
+  tr:hover td {
     cursor: pointer;
-    :hover {
-      transition: 0.2s;
-      background-color: ${({ theme }) => theme.surfacePointAlt};
-    }
+    background-color: ${({ theme }) => theme.surfacePointAlt};
   }
 `;
 const Tr = styled.tr`

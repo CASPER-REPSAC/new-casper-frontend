@@ -12,13 +12,14 @@ function DefaultInput({ register, ...props }: Props) {
 }
 
 const InputWrapper = styled.input`
-  :focus {
-    border-color: ${({ theme }) => theme.borderBold};
+  &:focus {
     outline: none;
+    border-color: ${({ theme }) => theme.borderBold};
   }
-  background-color: ${({ theme }) => theme.surfaceDefault};
+  background-color: ${({ theme }) => theme.surfacePointAlt};
   border: 1px solid ${({ theme }) => theme.borderDefault};
   color: ${({ theme }) => theme.textDefault};
+  border-radius: 3px;
   padding-left: 10px;
   padding-right: 10px;
   font-size: 1.5rem;

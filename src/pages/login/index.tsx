@@ -6,7 +6,7 @@ import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { isDarkState } from '@src/atoms';
 import styled from 'styled-components';
 import Button from '@src/components/common/DefaultButton';
-import Input from '@src/components/common/DefaultInput';
+import DefaultInput from '@src/components/common/DefaultInput';
 
 interface LoginFormProps {
   id: string;
@@ -46,7 +46,9 @@ export default function Login() {
             register={register('pw', { required: true })}
           />
         </InputWrapper>
-        <LoginButton onClick={() => {}}>로그인</LoginButton>
+        <LoginButton full onClick={() => {}}>
+          로그인
+        </LoginButton>
       </Form>
 
       <RegisterLink href="/login/register">You don&#39;t have ID?</RegisterLink>
@@ -69,7 +71,7 @@ const Form = styled.form`
   align-items: center;
   width: 400px;
 `;
-const LoginInput = styled(Input)`
+const LoginInput = styled(DefaultInput)`
   margin-bottom: 0.3em;
   padding-left: 45px;
 `;
@@ -89,8 +91,8 @@ const Label = styled.label`
   left: 15px;
 `;
 const LoginButton = styled(Button)`
-  width: 100%;
   height: 50px;
+  margin-top: 1em;
 `;
 const RegisterLink = styled(Link)`
   margin-top: 1em;
