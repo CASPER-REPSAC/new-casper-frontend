@@ -1,8 +1,12 @@
+/* eslint-disable import/prefer-default-export */
 import { atom } from 'recoil';
 
-const isDarkState = atom({
+export const isDarkState = atom({
   key: 'isDark',
   default: true,
 });
 
-export default isDarkState;
+export const isLoginState = atom({
+  key: 'isLogin',
+  default: false,
+});

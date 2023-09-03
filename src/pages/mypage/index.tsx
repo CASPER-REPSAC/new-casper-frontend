@@ -96,9 +96,7 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  box-sizing: border-box;
   margin: 0 auto;
-
   padding-bottom: 200px;
   width: 450px;
   @media screen and (min-width: 768px) {
@@ -129,10 +127,9 @@ const IntroInput = styled.textarea`
     outline: none;
     border-color: ${({ theme }) => theme.borderBold};
   }
-
   padding: 10px;
-  box-sizing: border-box;
   font-size: 1.4rem;
+  resize: none;
 `;
 const Avatar = styled(Input)`
   display: none;

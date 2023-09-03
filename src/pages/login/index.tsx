@@ -3,7 +3,7 @@ import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
-import isDarkState from '@src/atoms';
+import { isDarkState } from '@src/atoms';
 import styled from 'styled-components';
 import Button from '@src/components/common/Button';
 import Input from '@src/components/common/Input';
@@ -16,19 +16,16 @@ interface LoginFormProps {
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);
   const { register } = useForm<LoginFormProps>();
+  const logoSrc = isDark ? '/casper_logo_white.png' : '/casper_logo_black.png';
 
   return (
     <Wrapper>
       <LogoWrapper>
-        {isDark ? (
-          <Image src="/casper_logo_white.png" alt="logo" fill />
-        ) : (
-          <Image src="/casper_logo_black.png" alt="logo" fill />
-        )}
+        <Image src={logoSrc} alt="logo" fill />
       </LogoWrapper>
 
       <Form>
-        <Row>
+        <InputWrapper>
           <Label htmlFor="id">
             <AiOutlineUser size={25} />
           </Label>
@@ -37,9 +34,8 @@ export default function Login() {
             autoComplete="off"
             register={register('id', { required: true })}
           />
-        </Row>
-
-        <Row>
+        </InputWrapper>
+        <InputWrapper>
           <Label htmlFor="pw">
             <AiOutlineLock size={25} />
           </Label>
@@ -49,7 +45,7 @@ export default function Login() {
             type="password"
             register={register('pw', { required: true })}
           />
-        </Row>
+        </InputWrapper>
         <LoginButton onClick={() => {}}>로그인</LoginButton>
       </Form>
 
@@ -83,7 +79,7 @@ const LogoWrapper = styled.div`
   width: 350px;
   height: 84px;
 `;
-const Row = styled.div`
+const InputWrapper = styled.div`
   display: flex;
   align-items: center;
   width: 100%;

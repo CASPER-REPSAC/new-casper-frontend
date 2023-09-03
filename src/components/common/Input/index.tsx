@@ -7,7 +7,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegisterReturn;
 }
 
-function Input({ register, ...props }: Props) {
+function DefaultInput({ register, ...props }: Props) {
   return <InputWrapper {...props} {...register} />;
 }
 
@@ -27,4 +27,4 @@ const InputWrapper = styled.input`
   width: 100%;
 `;
 
-export default Input;
+export default DefaultInput;
