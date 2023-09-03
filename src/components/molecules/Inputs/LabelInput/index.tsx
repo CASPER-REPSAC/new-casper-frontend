@@ -1,19 +1,16 @@
 import { InputHTMLAttributes, ReactNode, useId } from 'react';
 import { css, styled } from 'styled-components';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import DefaultInput from '../../common/DefaultInput';
-
-/* id, labelIcon, placeholder, register, errorMessgae */
+import DefaultInput from '../../../common/DefaultInput';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label: string;
-  labelIcon: ReactNode;
   register: UseFormRegisterReturn;
-  placeholder: string;
-  errorMessage: string | undefined;
+  labelIcon?: ReactNode;
+  errorMessage?: string | undefined;
 }
 
-export default function LoginInput({
+function LabelInput({
   label,
   labelIcon,
   register,
@@ -22,31 +19,39 @@ export default function LoginInput({
 }: Props) {
   const uniqueId = useId();
   const hasError = !!errorMessage;
+  const hasIcon = !!labelIcon;
 
   return (
     <Wrapper>
       <Label htmlFor={uniqueId}>{label}</Label>
       <InputWrapper>
-        <Icon>{labelIcon}</Icon>
+        {labelIcon && <Icon>{labelIcon}</Icon>}
         <Input
+          $hasIcon={hasIcon}
           $hasError={hasError}
           id={uniqueId}
           register={register}
           {...props}
         />
       </InputWrapper>
-      <InputErrors $visible={hasError}>{errorMessage}</InputErrors>
     </Wrapper>
   );
 }
+export default LabelInput;
+
+interface InputProps {
+  $hasError: boolean;
+  $hasIcon: boolean;
+}
+
 const Wrapper = styled.div``;
-const Input = styled(DefaultInput)<{ $hasError: boolean }>`
+const Input = styled(DefaultInput)<InputProps>`
   ${({ $hasError }) =>
     $hasError &&
     css`
       border: 1px solid ${({ theme }) => theme.red};
     `}
-  padding-left: 45px;
+  padding-left: ${({ $hasIcon }) => ($hasIcon ? '50px' : 'none')};
 `;
 
 const InputWrapper = styled.div`
@@ -64,13 +69,4 @@ const Icon = styled.div`
   top: 50%;
   transform: translateY(-50%);
   z-index: 1;
-`;
-
-const InputErrors = styled.div<{ $visible: boolean }>`
-  visibility: ${({ $visible }) => ($visible ? 'visible' : 'hidden')};
-  height: 30px;
-  line-height: 30px;
-  color: ${({ theme }) => theme.red};
-  font-size: 1.5rem;
-  text-align: end;
 `;

@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { InputHTMLAttributes } from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegisterReturn;
@@ -11,7 +11,7 @@ function DefaultInput({ register, ...props }: Props) {
   return <InputWrapper {...props} {...register} />;
 }
 
-const InputWrapper = styled.input`
+export const DefaultInputStyle = css`
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.borderBold};
@@ -26,6 +26,10 @@ const InputWrapper = styled.input`
   box-sizing: border-box;
   height: 50px;
   width: 100%;
+`;
+
+export const InputWrapper = styled.input`
+  ${DefaultInputStyle}
 `;
 
 export default DefaultInput;

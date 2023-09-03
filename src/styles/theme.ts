@@ -5,7 +5,7 @@ export const darkTheme: DefaultTheme = {
   textStrong: '#FFFFFF',
   textWeek: '#D2DAE0',
   textPoint: '#4362D0',
-  borderDefault: '#5F6E76',
+  borderDefault: '#444C56',
   borderBold: '#FFFFFF',
   surfaceDefault: '#14212B',
   surfaceAlt: '#4B5966',
