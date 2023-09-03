@@ -1,61 +1,19 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import SideBar from '@src/components/common/SideBar';
-import Comment from '@src/components/Editor/Comment';
+import Comment from '@src/components/pages/boardsPage/Editor/Comment';
 import PATH from '@src/utils/urls';
+import SideMenu from '@src/components/common/SideMenu';
 /**
  *  글 조회 페이지
  */
 
-interface ContentResponse {
-  id: number;
-  title: string;
-  content: string;
-  author: string;
-  created_at: string;
-  views: number;
-  attachment_count: number;
-  attachments: [
-    {
-      id: number;
-      filename: string;
-      url: string;
-    },
-  ];
-  comment_count: number;
-  comments: [
-    {
-      id: number;
-      author: string;
-      created_at: string;
-      content: string;
-    },
-  ];
-}
 function PostDetail() {
-  const [contentData, SetcontentData] = useState<ContentResponse | null>(null);
-  const idx = '1';
-  useEffect(() => {
-    const showcontent = async () => {
-      await axios
-        .post(`/api/article/boards/notice_board/0/${idx}`)
-        .then((res) => {
-          SetcontentData(res.data);
-        });
-    };
-    showcontent();
-  }, [idx]);
-
-  if (!contentData) return <> 서버 응답 없음 </>;
-
   return (
     <>
       <PageTitle pageTitle="Boards" />
       <CommonCenterWrapper>
-        <SideBar menus={PATH.boards} />
+        <SideMenu menus={PATH.boards} />
         <Main>
           {/* 본문 */}
           <Title>test</Title>
@@ -63,8 +21,8 @@ function PostDetail() {
           <AuthorInfo>
             <Avatar />
             <Info>
-              <AuthorName>{contentData.title}</AuthorName>
-              <Desc>{contentData.content}</Desc>
+              <AuthorName>contentData.title</AuthorName>
+              <Desc>contentData.content</Desc>
             </Info>
           </AuthorInfo>
           <Hr />

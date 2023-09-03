@@ -5,8 +5,8 @@ import { useRecoilValue } from 'recoil';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { isDarkState } from '@src/atoms';
 import styled from 'styled-components';
-import Button from '@src/components/common/Button';
-import Input from '@src/components/common/Input';
+import Button from '@src/components/common/DefaultButton';
+import Input from '@src/components/common/DefaultInput';
 
 interface LoginFormProps {
   id: string;

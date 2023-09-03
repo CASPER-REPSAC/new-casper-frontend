@@ -22,13 +22,12 @@ const Wrapper = styled.div`
   height: 120px;
   width: 100vw;
   color: ${(props) => props.theme.textStrong};
-  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1em;
-  margin-bottom: 3%;
+  margin-bottom: 5em;
 
   @media screen and (max-width: 1024px) {
     margin-bottom: 50px;

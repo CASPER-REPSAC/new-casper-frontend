@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import SideBar from '@src/components/common/SideBar';
+import SideBar from '@src/components/common/SideMenu';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import { PAGE_TITLE } from '@src/utils/constants';

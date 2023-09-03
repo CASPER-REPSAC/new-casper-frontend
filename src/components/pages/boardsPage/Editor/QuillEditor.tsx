@@ -20,7 +20,7 @@ function QuillEditor() {
         { indent: '+1' },
       ],
       ['link', 'image'],
-      [{ align: [] }], // dropdown with defaults from theme
+      [{ align: [] }],
       ['clean'],
     ],
   };

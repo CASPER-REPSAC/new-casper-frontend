@@ -8,12 +8,9 @@ interface ButtonWrapperProps {
 interface Props extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
 }
-function Button({ type = 'medium', ...props }: Props) {
-  return (
-    <ButtonWrapper $type={type} onClick={props.onClick}>
-      {props.children}
-    </ButtonWrapper>
-  );
+
+function DefaultButton({ type = 'medium', ...props }: Props) {
+  return <ButtonWrapper $type={type} {...props} />;
 }
 
 const ButtonWrapper = styled.button<ButtonWrapperProps>`
@@ -50,4 +47,4 @@ const ButtonWrapper = styled.button<ButtonWrapperProps>`
   }
 `;
 
-export default Button;
+export default DefaultButton;

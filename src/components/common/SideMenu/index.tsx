@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
-interface SideBarProps {
+interface Props {
   menus: {
     [key: string]: {
       name: string;
@@ -12,7 +12,7 @@ interface SideBarProps {
   };
 }
 
-function SideBar({ menus }: SideBarProps) {
+function SideMenu({ menus }: Props) {
   const { asPath } = useRouter();
 
   const Menus = Object.values(menus).map((menu) => (
@@ -59,4 +59,4 @@ const StyledLink = styled(Link)`
   color: ${(props) => props.theme.textDefault};
 `;
 
-export default memo(SideBar);
+export default memo(SideMenu);

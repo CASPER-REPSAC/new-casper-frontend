@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
-interface CommentProps {
+interface Props {
   name: string;
   date: string;
   content: string;
 }
 
-function Comment({ name, date, content }: CommentProps) {
+function Comment({ name, date, content }: Props) {
   return (
     <Wrapper>
       <Avatar />

@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import DefaultButton from '@src/components/common/Button';
-import Input from '@src/components/common/Input';
+import DefaultButton from '@src/components/common/DefaultButton';
+import Input from '@src/components/common/DefaultInput';
 
 function MyPage() {
   const { register } = useForm();

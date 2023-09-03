@@ -18,8 +18,8 @@ import {
   NICKNAME_REGEX,
   PW_REGEX,
 } from '@src/utils/regex';
-import Button from '@src/components/common/Button';
-import LoginInput from '@src/components/login/LoginInput';
+import Button from '@src/components/common/DefaultButton';
+import LoginInput from '@src/components/pages/loginPage/LoginInput';
 
 interface IForm {
   id: string;

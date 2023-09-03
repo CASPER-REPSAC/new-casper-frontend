@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, ReactNode, useId } from 'react';
 import { styled } from 'styled-components';
 import { UseFormRegisterReturn } from 'react-hook-form';
-import DefaultInput from '../common/Input';
+import DefaultInput from '../../common/DefaultInput';
 
 /* id, labelIcon, placeholder, register, errorMessgae */
 

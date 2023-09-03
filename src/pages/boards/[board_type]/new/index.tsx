@@ -1,13 +1,13 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import { SubmitHandler, useForm } from 'react-hook-form';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import QuillEditor from '@src/components/Editor/QuillEditor';
+import QuillEditor from '@src/components/pages/boardsPage/Editor/QuillEditor';
 import { useRouter } from 'next/router';
 import { KeyboardEvent } from 'react';
 import axios from 'axios';
 import { getCookie } from '@src/utils/cookies';
-import Button from '@src/components/common/Button';
-import Input from '@src/components/common/Input';
+import Button from '@src/components/common/DefaultButton';
+import Input from '@src/components/common/DefaultInput';
 import styled from 'styled-components';
 
 /**
