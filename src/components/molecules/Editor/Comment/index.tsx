@@ -25,6 +25,8 @@ function Comment({ name, date, content }: Props) {
   );
 }
 
+export default Comment;
+
 const Wrapper = styled.div`
   display: flex;
   padding-bottom: 10px;
@@ -71,5 +73,3 @@ const Button = styled.button`
   border: 0;
   cursor: pointer;
 `;
-
-export default Comment;

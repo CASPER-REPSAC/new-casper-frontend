@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import Comment from '@src/components/pages/boardsPage/Editor/Comment';
+import Comment from '@src/components/molecules/Editor/Comment';
 import PATH from '@src/utils/urls';
 import SideMenu from '@src/components/common/SideMenu';
 /**

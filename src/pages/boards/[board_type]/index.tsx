@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Custom404 from '@src/pages/Error/404';
 import PageTitle from '@src/components/common/PageTitle';
 import SideBar from '@src/components/common/SideMenu';
-import Board from '@src/components/pages/boardsPage/Board';
+import Board from '@src/components/pages/boards/Board';
 import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import PATH from '@src/utils/urls';
 import { PAGE_TITLE } from '@src/utils/constants';

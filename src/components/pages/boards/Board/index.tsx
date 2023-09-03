@@ -1,7 +1,7 @@
+import BoardBody from '@src/components/molecules/Board/BoardBody';
+import BoardFooter from '@src/components/molecules/Board/BoardFooter';
+import BoardHeader from '@src/components/molecules/Board/BoardHeader';
 import { styled } from 'styled-components';
-import BoardBody from './BoardBody';
-import BoardFooter from './BoardFooter';
-import BoardHeader from './BoardHeader';
 
 function Board() {
   return (
