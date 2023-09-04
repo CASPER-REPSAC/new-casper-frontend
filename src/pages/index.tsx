@@ -1,100 +1,45 @@
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
-import { HiLightBulb } from 'react-icons/hi';
-import { Variants } from 'framer-motion';
 import { useState } from 'react';
-import {
-  All,
-  Background,
-  Body,
-  Col,
-  Cur,
-  CurPageBar,
-  H1,
-  H2,
-  LeftButton,
-  Notice,
-  Page,
-  PageBar,
-  RightButton,
-  Row,
-  Title,
-  White,
-} from './home.style';
+import styled from 'styled-components';
+import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
+import TitelSection from '@src/components/pages/home/TitleSection';
+import NoticeSection from '@src/components/pages/home/NoticeSection';
+import PageInfoSection from '@src/components/pages/home/PageInfoSection';
 
-const buttonVars: Variants = {
-  initial: {
-    opacity: 0.4,
-  },
-  animate: {
-    opacity: 1,
-  },
-};
-
-export default function Home() {
-  const [page, setPage] = useState(1);
-  const [allPage, setAllPage] = useState(5);
-  const [bgImgs, setBgImgs] = useState(['background1.jpg', 'background2.jpg']);
-
-  const nextPage = () => {
-    setPage((curPage) => {
-      return curPage === allPage ? allPage : curPage + 1;
-    });
-  };
-  const prevPage = () => {
-    setPage((curPage) => {
-      return curPage === 1 ? 1 : curPage - 1;
-    });
-  };
-  const renderPageBar = () => {
-    const result = [];
-    for (let i = 0; i < allPage; i++) {
-      result.push(
-        <CurPageBar key={i}>
-          {page === i + 1 ? <White layoutId="white" /> : null}
-        </CurPageBar>,
-      );
-    }
-    return result;
-  };
+function Home() {
+  const [page, setPage] = useState(0);
+  const bgImgs = ['background1.jpg', 'background2.jpg'];
+  const maxPage = bgImgs.length;
 
   return (
     <>
-      <Background bgurl={bgImgs[page - 1]} />
-      <Body>
-        <Notice>
-          <HiLightBulb size={40} color="yellow" />
-          신입생 모집 기간입니다.
-        </Notice>
-        <Title>
-          <H1>THE CENTER OF SECURITY</H1>
-          <H2>정보 보안 동아리 CASPER</H2>
-        </Title>
-        <Col>
-          <Page>
-            <Cur>{page}</Cur>
-            <All>/{allPage}</All>
-          </Page>
-          <Row>
-            <PageBar>{renderPageBar()}</PageBar>
-            <LeftButton
-              variants={buttonVars}
-              initial="initial"
-              whileHover="animate"
-              onClick={prevPage}
-            >
-              <MdArrowBackIos size={25} />
-            </LeftButton>
-            <RightButton
-              variants={buttonVars}
-              initial="initial"
-              whileHover="animate"
-              onClick={nextPage}
-            >
-              <MdArrowForwardIos size={25} />
-            </RightButton>
-          </Row>
-        </Col>
-      </Body>
+      <Background src={bgImgs[page]} />
+      <CommonCenterWrapper>
+        <Body>
+          <NoticeSection />
+          <TitelSection />
+          <PageInfoSection page={page} setPage={setPage} maxPage={maxPage} />
+        </Body>
+      </CommonCenterWrapper>
     </>
   );
 }
+export default Home;
+
+const Background = styled.img`
+  position: fixed;
+  top: 0;
+  width: 100vw;
+  height: 100vh;
+  filter: brightness(50%);
+  z-index: -1;
+  object-fit: cover;
+`;
+
+const Body = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 10vh;
+  position: absolute;
+  top: 25vh;
+  color: white;
+`;

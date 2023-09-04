@@ -1,11 +1,11 @@
-import Footer from '@src/components/Layout/Footer/Footer';
-import Header from '@src/components/Layout/Header/Header';
-import '../styles/reset.css';
 import type { AppProps } from 'next/app';
-import { RecoilRoot } from 'recoil';
 import styled from 'styled-components';
-import Theme from '@src/components/Theme/Theme';
-import { CookiesProvider } from 'react-cookie';
+import { RecoilRoot } from 'recoil';
+import '@src/styles/reset.css';
+import Footer from '@src/components/common/Layout/Footer';
+import Header from '@src/components/common/Layout/Header';
+import Theme from '@src/components/Theme';
+
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
@@ -14,15 +14,13 @@ const Wrapper = styled.div`
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <RecoilRoot>
-      <CookiesProvider>
-        <Theme>
-          <Wrapper>
-            <Header />
-            <Component {...pageProps} />
-            <Footer />
-          </Wrapper>
-        </Theme>
-      </CookiesProvider>
+      <Theme>
+        <Wrapper>
+          <Header />
+          <Component {...pageProps} />
+          <Footer />
+        </Wrapper>
+      </Theme>
     </RecoilRoot>
   );
 }

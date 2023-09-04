@@ -1,29 +1,12 @@
-import PageTitle from '@src/components/Layout/PageTitle/PageTitle';
-import { useTheme } from 'styled-components';
-import SideBar from '@src/components/Layout/SideBar/SideBar';
 import { useRouter } from 'next/router';
-import { useEffect, useState } from 'react';
-import PageWrapper from '@src/components/Layout/CommonCenterWrapper/CommonCenterWrapper';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import axios from 'axios';
-import {
-  Board,
-  Main,
-  PageButton,
-  PageButtonSection,
-  SearchIcon,
-  SearchInput,
-  Select,
-  SerachBar,
-  Table,
-  TableFooter,
-  TableHeader,
-  Tbody,
-  TdCenter,
-  Thead,
-  Tr,
-  WriteButton,
-} from './boards.style';
+import styled from 'styled-components';
+import Custom404 from '@src/pages/Error/404';
+import PageTitle from '@src/components/common/PageTitle';
+import SideBar from '@src/components/common/SideMenu';
+import Board from '@src/components/pages/boards/Board';
+import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
+import PATH from '@src/utils/urls';
+import { PAGE_TITLE } from '@src/utils/constants';
 
 /**
  *  게시판 메인 페이지
@@ -31,104 +14,33 @@ import {
 
 function BoardPage() {
   const router = useRouter();
-  const { board_type } = router.query;
-  const onClickWrite = () => {
-    router.push(`/boards/${board_type}/new`);
-  };
-  const theme = useTheme();
-  const sideBarParmas = {
-    공지사항: '/boards/notice_board',
-    '정회원 게시판': '/boards/full_member_board',
-    '준회원 게시판': '/boards/associate_member_board',
-  };
+  const {
+    asPath,
+    query: { board_type: boardType },
+  } = router;
 
-  const [BoardData, SetBoardData] = useState([]);
-  // useEffect(() => {
-  //   axios
-  //     .get('/api/article/boards/notice_board/0/1')
-  //     .then((res) => SetBoardData(res.data));
-  // }, []);
+  const safeBoardType = Array.isArray(boardType) ? boardType[0] : boardType;
+  const validBoradPathList = Object.values(PATH.boards).map(
+    (board) => board.url,
+  );
+  const isValidPath = !safeBoardType || !validBoradPathList.includes(asPath);
 
+  if (isValidPath) return <Custom404 />;
   return (
     <>
-      <PageTitle pageTitle="Boards"></PageTitle>
+      <PageTitle pageTitle={PAGE_TITLE.board} />
       <PageWrapper>
-        <SideBar menu_path={sideBarParmas}></SideBar>
+        <SideBar menus={PATH.boards} />
         <Main>
-          <Board>
-            <TableHeader>
-              <Select>
-                {/* Todo. board_type에 따라서 옵션 변경 */}
-                <option value="1">전체</option>
-                <option value="2">ex1</option>
-                <option value="3">ex2</option>
-              </Select>
-              <SerachBar>
-                <SearchInput placeholder="검색어를 입력해 주세요."></SearchInput>
-                <SearchIcon size={20} />
-              </SerachBar>
-            </TableHeader>
-            <Table>
-              <Thead>
-                <Tr>
-                  <th>번호</th>
-                  <th>제목</th>
-                  <th>작성자</th>
-                  <th>날짜</th>
-                  <th>조회수</th>
-                </Tr>
-              </Thead>
-              {/* <Tbody>
-                {BoardData.map((Data) => (
-                  <Tr
-                    key={Data}
-                    onClick={() => {
-                      router.push(`/boards/${board_type}/${Data.idx}`);
-                    }}
-                  >
-                    <TdCenter>{}</TdCenter>
-                    <td>{Data.title}</td>
-                    <TdCenter>박지성</TdCenter>
-                    <TdCenter>2023.01.01</TdCenter>
-                    <TdCenter>101</TdCenter>
-                  </Tr>
-                ))}
-              </Tbody> */}
-              <Tbody>
-                {[1, 2, 3].map((val, idx) => (
-                  <Tr
-                    key={idx}
-                    onClick={() => {
-                      router.push(`/boards/${board_type}/${val}`);
-                    }}
-                  >
-                    <TdCenter>{val}</TdCenter>
-                    <td>{val}번째 게시글 입니다.</td>
-                    <TdCenter>박지성</TdCenter>
-                    <TdCenter>2023.01.01</TdCenter>
-                    <TdCenter>101</TdCenter>
-                  </Tr>
-                ))}
-              </Tbody>
-            </Table>
-            <TableFooter>
-              <WriteButton onClick={onClickWrite}>작성 하기</WriteButton>
-              <PageButtonSection>
-                <MdKeyboardArrowLeft size={35}></MdKeyboardArrowLeft>
-                <PageButton>1</PageButton>
-                <PageButton>2</PageButton>
-                <PageButton>3</PageButton>
-                <PageButton>4</PageButton>
-                <PageButton>5</PageButton>
-                <PageButton>6</PageButton>
-                <MdKeyboardArrowRight size={35}></MdKeyboardArrowRight>
-              </PageButtonSection>
-            </TableFooter>
-          </Board>
+          <Board />
         </Main>
       </PageWrapper>
     </>
   );
 }
+
+const Main = styled.div`
+  display: flex;
+`;
 
 export default BoardPage;

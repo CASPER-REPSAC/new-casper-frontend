@@ -1,28 +1,23 @@
-import {Cookies} from "react-cookie"
-import { CookieSetOptions } from 'universal-cookie'
-
-const cookies = new Cookies()
+import { RequestCookie } from 'next/dist/compiled/@edge-runtime/cookies';
+import { cookies } from 'next/headers';
 
 export const getCookie = (name: string) => {
-    try {
-        return cookies.get(name)
-    } catch (error) {
-        console.error(error)
-    }
-}
+  const cookieStore = cookies();
+  return cookieStore.get(name);
+};
 
-export const setCookie = (name: string, value: string, option?: CookieSetOptions) => {
-    try {
-        cookies.set(name, value, { ...option })
-    } catch (error) {
-        console.error(error)
-    }
-}
+export const setCookie = (
+  name: string,
+  value: string,
+  option?: RequestCookie,
+) => {
+  cookies().set({
+    name,
+    value,
+    ...option,
+  });
+};
 
-export const removeCookie = (name: string, option?: CookieSetOptions) => {
-    try {
-        cookies.remove(name, { ...option })
-    } catch (error) {
-        console.error(error)
-    }
-}
+export const removeCookie = (name: string) => {
+  cookies().delete(name);
+};
