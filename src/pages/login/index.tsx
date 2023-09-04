@@ -12,7 +12,7 @@ export default function Login() {
   return (
     <Wrapper>
       <LogoWrapper>
-        <LogoImg src={logoSrc} alt="logo" fill />
+        <LogoImg src={logoSrc} alt="Casper logo" sizes="200px" fill priority />
       </LogoWrapper>
       <LoginForm />
       <RegisterLink href="/login/register">You don&#39;t have ID?</RegisterLink>

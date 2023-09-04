@@ -1,9 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: false,
-  compiler: {
-    styledComponents: true,
-  },
   swcMinify: true,
   async rewrites() {
     return [

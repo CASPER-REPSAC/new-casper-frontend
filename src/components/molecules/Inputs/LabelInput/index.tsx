@@ -4,7 +4,7 @@ import { UseFormRegisterReturn } from 'react-hook-form';
 import DefaultInput from '../../../common/DefaultInput';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   register: UseFormRegisterReturn;
   labelIcon?: ReactNode;
   errorMessage?: string | undefined;
@@ -23,7 +23,7 @@ function LabelInput({
 
   return (
     <Wrapper>
-      <Label htmlFor={uniqueId}>{label}</Label>
+      {label && <Label htmlFor={uniqueId}>{label}</Label>}
       <InputWrapper>
         {labelIcon && <Icon>{labelIcon}</Icon>}
         <Input
