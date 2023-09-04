@@ -5,9 +5,9 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
 import DefaultForm from '@src/components/common/DefaultForm';
 import DefaultInput from '@src/components/common/DefaultInput';
-import QuillEditor from '@src/components/molecules/Editor/QuillEditor';
 import Button from '@src/components/common/DefaultButton';
 import { getCookie } from '@src/utils/cookies';
+import VanillaEditor from '@src/components/molecules/Editor/VanillaEditor';
 
 interface PostFormData {
   title: string;
@@ -44,7 +44,7 @@ function PostForm() {
   };
 
   return (
-    <DefaultForm>
+    <Form>
       {/* header */}
       <TitleSection>
         <Header>
@@ -58,7 +58,7 @@ function PostForm() {
 
       {/* 에디터 */}
       <EditorSection>
-        <QuillEditor />
+        <VanillaEditor />
       </EditorSection>
 
       {/* 파일 첨부 */}
@@ -74,16 +74,28 @@ function PostForm() {
           작성 하기
         </WriteButton>
       </ButtonSection>
-    </DefaultForm>
+    </Form>
   );
 }
 
 export default PostForm;
 
+const Form = styled(DefaultForm)`
+  width: 450px;
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 800px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1000px;
+  }
+`;
+
 const TitleInput = styled(DefaultInput)`
   border: 0;
   width: 100%;
-  padding: 25px 20px;
   font-size: 3rem;
   height: 40px;
   &::placeholder {
@@ -108,8 +120,6 @@ const ButtonSection = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 2em;
-  padding-left: 24px;
-  padding-right: 24px;
 `;
 const WriteButton = styled(Button)`
   width: 100%;
