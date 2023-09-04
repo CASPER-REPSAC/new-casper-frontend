@@ -28,7 +28,7 @@ import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import AvatarInput from '@src/components/molecules/Inputs/AvatarInput';
 import DefaultForm from '@src/components/common/DefaultForm';
 
-interface IForm {
+interface RegisterFormData {
   id: string;
   pw: string;
   pwConfirm: string;
@@ -44,11 +44,11 @@ function RegisterForm() {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<IForm>({
+  } = useForm<RegisterFormData>({
     mode: 'onChange',
   });
 
-  const onValid: SubmitHandler<IForm> = (data) => {
+  const onValid: SubmitHandler<RegisterFormData> = (data) => {
     axios
       .post('/api/user/join', data, {
         headers: {

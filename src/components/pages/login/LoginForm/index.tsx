@@ -5,13 +5,13 @@ import { useForm } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import { styled } from 'styled-components';
 
-interface LoginFormProps {
+interface LoginFormData {
   id: string;
   pw: string;
 }
 
 function LoginForm() {
-  const { register } = useForm<LoginFormProps>();
+  const { register } = useForm<LoginFormData>();
 
   return (
     <Form>

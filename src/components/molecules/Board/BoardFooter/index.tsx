@@ -6,7 +6,7 @@ import { styled } from 'styled-components';
 function BoardFooter() {
   const router = useRouter();
   const onClickWrite = () => {
-    router.push(`${router.asPath}/new`);
+    router.push(`${router.asPath}/posts`);
   };
 
   return (
