@@ -2,8 +2,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { isDarkState } from '@src/atoms';
-import styled from 'styled-components';
 import LoginForm from '@src/components/pages/login/LoginForm';
+import styled from 'styled-components';
 
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);

@@ -11,7 +11,7 @@ function AvatarInput({ register }: Props) {
   const uniqueId = useId();
 
   return (
-    <AvatarLabel htmlFor="avatar">
+    <AvatarLabel htmlFor={uniqueId}>
       이미지 변경하기
       <Avatar id={uniqueId} register={register} type="file" />
     </AvatarLabel>
