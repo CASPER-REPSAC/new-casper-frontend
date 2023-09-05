@@ -7,7 +7,7 @@ type LabelSizeType = 'small' | 'medium' | 'large';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
-  labelSize: LabelSizeType;
+  labelSize?: LabelSizeType;
   register: UseFormRegisterReturn;
   labelIcon?: ReactNode;
   errorMessage?: string | undefined;

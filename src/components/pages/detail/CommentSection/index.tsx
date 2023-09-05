@@ -5,8 +5,6 @@ function CommentSection() {
   /*
   useEffect이용 댓글 불러오는거 만들어야 됨
   */
-
-
   return (
     <>
       <H1>댓글</H1>
