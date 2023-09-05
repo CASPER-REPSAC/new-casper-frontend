@@ -5,11 +5,11 @@ import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
 import DefaultForm from '@src/components/common/DefaultForm';
 import Button from '@src/components/common/DefaultButton';
-import { getCookie } from '@src/utils/cookies';
 import VanillaEditor from '@src/components/molecules/Editor/VanillaEditor';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
-import { INPUT_LABEL, PLACEHOLDER } from '@src/utils/constants';
 import FileInput from '@src/components/molecules/Inputs/FileInput';
+import { getCookie } from '@src/utils/cookies';
+import { INPUT_LABEL, PLACEHOLDER } from '@src/utils/constants';
 
 interface PostFormData {
   title: string;
@@ -76,7 +76,7 @@ function PostForm() {
       </FileSection>
 
       <ButtonSection>
-        <WriteButton onClick={handleSubmit(onValid, onInvalid)}>
+        <WriteButton type="large" onClick={handleSubmit(onValid, onInvalid)}>
           작성 하기
         </WriteButton>
       </ButtonSection>
