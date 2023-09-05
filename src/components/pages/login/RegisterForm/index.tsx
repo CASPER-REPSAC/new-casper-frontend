@@ -35,7 +35,6 @@ interface RegisterFormData {
   email: string;
   name: string;
   nickname: string;
-  birthday: Date;
   profile: FileList;
 }
 
@@ -106,9 +105,6 @@ function RegisterForm() {
       message: ERROR_MESSAGE.nickname,
     },
   });
-  const birthdayRegister = register('birthday', {
-    required: REQUIRED_MESSAGE.birthday,
-  });
   const avatarRegister = register('profile');
 
   return (
@@ -161,14 +157,6 @@ function RegisterForm() {
         autoComplete="off"
         register={nickNameRegister}
         errorMessage={errors.nickname?.message}
-      />
-      <LabelInput
-        label={INPUT_LABEL.birthday}
-        labelIcon={<FaBirthdayCake size={25} />}
-        autoComplete="off"
-        type="date"
-        register={birthdayRegister}
-        errorMessage={errors.birthday?.message}
       />
       <LoginButton full onClick={handleSubmit(onValid, onInvalid)}>
         등록하기
