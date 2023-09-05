@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { KeyboardEvent, useRef } from 'react';
+import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
@@ -18,11 +18,15 @@ interface PostFormData {
 }
 
 function PostForm() {
+  const [value, setValue] = useState('');
   const router = useRouter();
   const { board_type: boardType } = router.query;
   const safeBoardType = Array.isArray(boardType) ? boardType[0] : boardType;
   const { register, handleSubmit } = useForm<PostFormData>();
   const editorRef = useRef<HTMLTextAreaElement>(null);
+
+  const onChangeEditor = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    setValue(e.currentTarget.value);
 
   const focusEditor = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -59,7 +63,12 @@ function PostForm() {
       </TitleSection>
 
       <EditorSection>
-        <VanillaEditor ref={editorRef} placeholder={PLACEHOLDER.editor} />
+        <VanillaEditor
+          ref={editorRef}
+          placeholder={PLACEHOLDER.editor}
+          onChange={onChangeEditor}
+          value={value}
+        />
       </EditorSection>
 
       <FileSection>

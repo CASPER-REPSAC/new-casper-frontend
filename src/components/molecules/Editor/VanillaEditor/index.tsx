@@ -1,25 +1,20 @@
-import {
-  ForwardedRef,
-  TextareaHTMLAttributes,
-  forwardRef,
-  useState,
-} from 'react';
+import { ForwardedRef, TextareaHTMLAttributes, forwardRef } from 'react';
 import { css, styled } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
 
-interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
+  value: string;
+}
 
 function VanillaEditor(
-  { placeholder }: Props,
+  { placeholder, onChange, value }: Props,
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
-  const [value, setValue] = useState('');
-
   return (
     <Wrapper>
       <TextArea
         ref={ref}
-        onChange={(e) => setValue(e.currentTarget.value)}
+        onChange={onChange}
         value={value}
         placeholder={placeholder}
       />
