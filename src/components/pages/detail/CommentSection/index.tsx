@@ -1,6 +1,5 @@
 import { styled } from 'styled-components';
 import Comment from '@src/components/molecules/Editor/Comment';
-import { useEffect } from 'react';
 
 function CommentSection() {
   /*
