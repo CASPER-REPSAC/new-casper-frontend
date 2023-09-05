@@ -17,7 +17,3 @@ export const setCookie = (
     ...option,
   });
 };
-
-export const removeCookie = (name: string) => {
-  cookies().delete(name);
-};
