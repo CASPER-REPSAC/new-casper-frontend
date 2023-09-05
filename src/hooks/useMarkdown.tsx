@@ -38,15 +38,30 @@ function useMarkdown(text: string) {
     return result;
   };
 
+  const convertBacktick = (line: string) => {
+    const result: ReactNode[] = [];
+    console.log(line.endsWith('`') && line.startsWith('`'));
+    if (line.endsWith('`') && line.startsWith('`')) {
+      const extractedText = line.slice(1, -1);
+      result.push(<Backtick>{extractedText}</Backtick>);
+    } else {
+      return false;
+    }
+    return result;
+  };
+
   const convertToMarkdown = useCallback((line: string) => {
     const result: ReactNode[] = [];
 
     const hTag = convertHTag(line);
     const liTag = convertLiTag(line);
+    const backtick = convertBacktick(line);
     if (hTag) {
       result.push(hTag);
     } else if (liTag) {
       result.push(liTag);
+    } else if (backtick) {
+      result.push(backtick);
     } else {
       result.push(<P>{line}</P>);
     }
@@ -69,4 +84,10 @@ export default useMarkdown;
 const P = styled.p`
   line-height: 18px;
   height: 18px;
+`;
+
+const Backtick = styled.span`
+  background-color: ${({ theme }) => theme.surfaceAlt};
+  padding: 2px 8px;
+  border-radius: 3px;
 `;

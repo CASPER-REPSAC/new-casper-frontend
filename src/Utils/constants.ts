@@ -19,6 +19,7 @@ export const INPUT_LABEL = {
   group: '회원 그룹',
   social: '소셜 정보',
   introduce: '소개글',
+  title: '제목',
 };
 
 export const PLACEHOLDER = {
@@ -32,6 +33,8 @@ export const PLACEHOLDER = {
   social: 'https://blog.example.com',
   email: 'example@gmail.com',
   birthday: '생일을 입력해주세요.',
+  title: '제목을 입력해주세요.',
+  editor: '내용을 입력해주세요.',
 };
 
 export const ERROR_MESSAGE = {

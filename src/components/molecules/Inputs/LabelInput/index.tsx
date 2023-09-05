@@ -3,8 +3,11 @@ import { css, styled } from 'styled-components';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import DefaultInput from '../../../common/DefaultInput';
 
+type LabelSizeType = 'small' | 'medium' | 'large';
+
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  labelSize: LabelSizeType;
   register: UseFormRegisterReturn;
   labelIcon?: ReactNode;
   errorMessage?: string | undefined;
@@ -12,6 +15,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
 
 function LabelInput({
   label,
+  labelSize = 'small',
   labelIcon,
   register,
   errorMessage,
@@ -23,7 +27,11 @@ function LabelInput({
 
   return (
     <Wrapper>
-      {label && <Label htmlFor={uniqueId}>{label}</Label>}
+      {label && (
+        <Label $size={labelSize} htmlFor={uniqueId}>
+          {label}
+        </Label>
+      )}
       <InputWrapper>
         {labelIcon && <Icon>{labelIcon}</Icon>}
         <Input
@@ -58,9 +66,13 @@ const InputWrapper = styled.div`
   position: relative;
   width: 100%;
 `;
-const Label = styled.label`
+const Label = styled.label<{ $size: LabelSizeType }>`
+  font-size: ${({ $size }) => $size === 'small' && '1.4rem'};
+  font-size: ${({ $size }) => $size === 'medium' && '1.6rem'};
+  font-size: ${({ $size }) => $size === 'large' && '1.8rem'};
+
   display: inline-block;
-  font-size: 1.4rem;
+
   margin-bottom: 0.5em;
 `;
 const Icon = styled.div`
