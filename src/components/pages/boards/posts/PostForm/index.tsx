@@ -8,7 +8,7 @@ import Button from '@src/components/common/DefaultButton';
 import VanillaEditor from '@src/components/molecules/Editor/VanillaEditor';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import FileInput from '@src/components/molecules/Inputs/FileInput';
-import { getCookie } from '@src/utils/cookies';
+import { getCookie } from '@src/Utils2/cookies';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/utils/constants';
 
 interface PostFormData {
