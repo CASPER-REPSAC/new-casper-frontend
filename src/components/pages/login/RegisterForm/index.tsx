@@ -2,7 +2,6 @@ import router from 'next/router';
 import styled from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { CgRename } from 'react-icons/Cg';
-import { FaBirthdayCake } from 'react-icons/fa';
 import {
   AiOutlineUser,
   AiOutlineMail,

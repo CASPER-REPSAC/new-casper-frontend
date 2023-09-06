@@ -1,13 +1,15 @@
 import { useRouter } from 'next/router';
-import { KeyboardEvent } from 'react';
+import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
 import { styled } from 'styled-components';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import axios from 'axios';
 import DefaultForm from '@src/components/common/DefaultForm';
-import DefaultInput from '@src/components/common/DefaultInput';
-import QuillEditor from '@src/components/molecules/Editor/QuillEditor';
 import Button from '@src/components/common/DefaultButton';
+import VanillaEditor from '@src/components/molecules/Editor/VanillaEditor';
+import LabelInput from '@src/components/molecules/Inputs/LabelInput';
+import FileInput from '@src/components/molecules/Inputs/FileInput';
 import { getCookie } from '@src/utils/cookies';
+import { INPUT_LABEL, PLACEHOLDER } from '@src/utils/constants';
 
 interface PostFormData {
   title: string;
@@ -16,18 +18,20 @@ interface PostFormData {
 }
 
 function PostForm() {
+  const [value, setValue] = useState('');
   const router = useRouter();
   const { board_type: boardType } = router.query;
   const safeBoardType = Array.isArray(boardType) ? boardType[0] : boardType;
   const { register, handleSubmit } = useForm<PostFormData>();
+  const editorRef = useRef<HTMLTextAreaElement>(null);
+
+  const onChangeEditor = (e: ChangeEvent<HTMLTextAreaElement>) =>
+    setValue(e.currentTarget.value);
 
   const focusEditor = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
-      const qlEditor = document.getElementsByClassName(
-        'ql-editor',
-      )[0] as HTMLDivElement;
-      qlEditor.focus();
+      editorRef.current?.focus();
     }
   };
   const onValid: SubmitHandler<PostFormData> = async (data) => {
@@ -43,61 +47,68 @@ function PostForm() {
     // alert('입력값을 확인해 주세요');
   };
 
+  const titleRegister = register('title', { required: true });
+  const fileRegister = register('attachment');
+
   return (
-    <DefaultForm>
-      {/* header */}
+    <Form>
       <TitleSection>
-        <Header>
-          <TitleInput
-            register={register('title', { required: true })}
-            placeholder="제목을 입력해주세요."
-            onKeyDown={(e) => focusEditor(e)}
-          />
-        </Header>
+        <TitleInput
+          label={INPUT_LABEL.title}
+          labelSize="large"
+          register={titleRegister}
+          placeholder={PLACEHOLDER.title}
+          onKeyDown={(e) => focusEditor(e)}
+        />
       </TitleSection>
 
-      {/* 에디터 */}
       <EditorSection>
-        <QuillEditor />
+        <VanillaEditor
+          ref={editorRef}
+          placeholder={PLACEHOLDER.editor}
+          onChange={onChangeEditor}
+          value={value}
+        />
       </EditorSection>
 
-      {/* 파일 첨부 */}
-      {/* <FileSection>
-          <H1>파일</H1>
-          <FileInputLabel htmlFor="file">파일 첨부</FileInputLabel>
-          <FileInput type="file" id="file"></FileInput>
-        </FileSection> */}
+      <FileSection>
+        <FileInput register={fileRegister} />
+      </FileSection>
 
-      {/* Footer */}
       <ButtonSection>
-        <WriteButton onClick={handleSubmit(onValid, onInvalid)}>
+        <WriteButton type="large" onClick={handleSubmit(onValid, onInvalid)}>
           작성 하기
         </WriteButton>
       </ButtonSection>
-    </DefaultForm>
+    </Form>
   );
 }
 
 export default PostForm;
 
-const TitleInput = styled(DefaultInput)`
+const Form = styled(DefaultForm)`
+  width: 450px;
+  @media screen and (min-width: 768px) {
+    width: 500px;
+  }
+  @media screen and (min-width: 1024px) {
+    width: 800px;
+  }
+  @media screen and (min-width: 1440px) {
+    width: 1000px;
+  }
+  padding-bottom: 200px;
+`;
+const TitleInput = styled(LabelInput)`
   border: 0;
   width: 100%;
-  padding: 25px 20px;
   font-size: 3rem;
   height: 40px;
   &::placeholder {
     font-style: italic;
-    color: ${({ theme }) => theme.textWeek};
   }
+  padding: 1em 20px;
 `;
-
-const Header = styled.div`
-  display: flex;
-  align-items: center;
-  height: 40px;
-`;
-
 const TitleSection = styled.div`
   margin-top: 2em;
 `;
@@ -108,31 +119,10 @@ const ButtonSection = styled.div`
   display: flex;
   justify-content: flex-end;
   margin-top: 2em;
-  padding-left: 24px;
-  padding-right: 24px;
 `;
 const WriteButton = styled(Button)`
   width: 100%;
 `;
-
-/*
-
-const FileInput = styled.input`
-  display: none;
-`;
-const FileInputLabel = styled.label`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 2rem;
-  border: 1px solid ${({ theme }) => theme.borderDefault};
-  border-radius: 4px;
-  height: 100px;
-  cursor: pointer;
-`;
-
 const FileSection = styled.div`
   margin-top: 2em;
-  padding: 24px;
 `;
- */
