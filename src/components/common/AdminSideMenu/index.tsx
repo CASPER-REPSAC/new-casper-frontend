@@ -1,8 +1,8 @@
 import { HTMLAttributes } from 'react';
-
 import { styled } from 'styled-components';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
+
 function Menu({ ...props }: Props) {
   return <Wrapper {...props} />;
 }
