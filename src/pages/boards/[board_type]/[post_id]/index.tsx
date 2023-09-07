@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import PATH from '@src/utils/urls';
+import { PATH } from '@src/utils/urls';
 import SideMenu from '@src/components/common/SideMenu';
 import CommentSection from '@src/components/pages/detail/CommentSection';
 import ContentSection from '@src/components/pages/detail/ContentSection';

@@ -6,7 +6,7 @@ import { SlLockOpen, SlLock } from 'react-icons/sl';
 import { AiOutlineUser } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
 import useRedirect from '@src/hooks/useRedirect';
-import PATH from '@src/utils/urls';
+import { ADMIN_PATH, PATH } from '@src/utils/urls';
 import { isDarkState } from '@src/atoms';
 import CommonCenterWrapper from '../CommonCenterWrapper';
 import NavItem from './NavItem';
@@ -40,6 +40,9 @@ function Header() {
         </DarkModeButton>
 
         <NavItems>
+          <NavItem onClick={redirect(ADMIN_PATH.home.url)}>
+            {ADMIN_PATH.home.name}-임시
+          </NavItem>
           <NavItem
             onClick={redirect(PATH.members.active.url)}
             subMenuInfo={PATH.members}

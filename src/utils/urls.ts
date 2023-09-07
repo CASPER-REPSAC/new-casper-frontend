@@ -1,4 +1,45 @@
-const PATH = {
+export const ADMIN_PATH = {
+  home: {
+    name: '관리자',
+    url: '/admin',
+  },
+  dashboard: {
+    name: '대시보드',
+    url: '/admin/dashboard',
+  },
+  users: {
+    log: {
+      name: '로그',
+      url: '/admin/users/log',
+    },
+    list: {
+      name: '사용자 목록',
+      url: '/admin/users/list',
+    },
+    authority: {
+      name: '권한',
+      url: '/admin/users/authority',
+    },
+  },
+  boards: {
+    boards: { name: '게시판', url: '/admin/boards/list' },
+    posts: { name: '게시글 관리', url: '/admin/boards/posts' },
+    comments: { name: '게시글 관리', url: '/admin/boards/comments' },
+  },
+  files: {
+    name: '파일',
+    url: '/admin/files',
+  },
+  banner: {
+    name: '배너',
+    url: '/admin/banner',
+  },
+  menu: {
+    name: '메뉴',
+    url: '/admin/menu',
+  },
+};
+export const PATH = {
   home: {
     name: '홈',
     url: '/',
@@ -56,5 +97,3 @@ const PATH = {
     },
   },
 };
-
-export default PATH;
