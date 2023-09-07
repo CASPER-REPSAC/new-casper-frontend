@@ -18,12 +18,10 @@ function AdminSideMenu() {
 }
 
 const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
+  float: left;
   width: 260px;
   height: calc(100vh - 70px);
   overflow: scroll;
-  flex-direction: column;
   border-right: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 

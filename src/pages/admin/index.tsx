@@ -1,5 +1,5 @@
 function Admin() {
-  return <>.</>;
+  return <>test</>;
 }
 
 export default Admin;

@@ -1,17 +1,20 @@
 import type { AppProps } from 'next/app';
+import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { RecoilRoot } from 'recoil';
 import '@src/styles/reset.css';
 import Footer from '@src/components/common/Layout/Footer';
 import Header from '@src/components/common/Layout/Header';
 import Theme from '@src/components/Theme';
-import { useRouter } from 'next/router';
-import { ADMIN_PATH } from '@src/utils/urls';
 import AdminSideMenu from '@src/components/pages/admin/AdminSideMenu';
+import { ADMIN_PATH } from '@src/utils/urls';
 
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
+`;
+const AdminPageWrapper = styled.div`
+  display: flex;
 `;
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -22,9 +25,17 @@ export default function App({ Component, pageProps }: AppProps) {
       <Theme>
         <Wrapper>
           <Header />
-          {isAdminPage && <AdminSideMenu />}
-          <Component {...pageProps} />
-          {!isAdminPage && <Footer />}
+          {isAdminPage ? (
+            <AdminPageWrapper>
+              <AdminSideMenu />
+              <Component {...pageProps} />
+            </AdminPageWrapper>
+          ) : (
+            <>
+              <Component {...pageProps} />
+              <Footer />
+            </>
+          )}
         </Wrapper>
       </Theme>
     </RecoilRoot>
