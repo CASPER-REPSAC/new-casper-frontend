@@ -22,8 +22,9 @@ export const ADMIN_PATH = {
     },
   },
   boards: {
-    name: '게시판',
-    url: '/admin/boards',
+    boards: { name: '게시판', url: '/admin/boards/list' },
+    posts: { name: '게시글 관리', url: '/admin/boards/posts' },
+    comments: { name: '게시글 관리', url: '/admin/boards/comments' },
   },
   files: {
     name: '파일',
