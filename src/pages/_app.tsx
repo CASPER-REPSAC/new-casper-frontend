@@ -17,7 +17,6 @@ const Wrapper = styled.div`
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
   const isAdminPage = router.asPath.startsWith(ADMIN_PATH.home.url);
-  console.log(isAdminPage);
   return (
     <RecoilRoot>
       <Theme>
