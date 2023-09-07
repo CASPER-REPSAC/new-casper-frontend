@@ -1,3 +1,4 @@
+import BannerMenu from '@src/components/molecules/AdminSideMenu/BannerMenu';
 import BoardMenu from '@src/components/molecules/AdminSideMenu/BoardMenu';
 import DashboardMenu from '@src/components/molecules/AdminSideMenu/DashboardMenu';
 import FileMenu from '@src/components/molecules/AdminSideMenu/FileMenu';
@@ -11,6 +12,7 @@ function AdminSideMenu() {
       <UserMenu />
       <BoardMenu />
       <FileMenu />
+      <BannerMenu />
     </Wrapper>
   );
 }
