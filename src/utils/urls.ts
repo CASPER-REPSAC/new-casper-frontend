@@ -5,7 +5,7 @@ export const ADMIN_PATH = {
   },
   dashboard: {
     name: '대시보드',
-    url: '/admin/dashborad',
+    url: '/admin/dashboard',
   },
   users: {
     log: {

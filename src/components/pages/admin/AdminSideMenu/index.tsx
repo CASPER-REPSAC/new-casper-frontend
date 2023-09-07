@@ -21,10 +21,10 @@ const Wrapper = styled.div`
   display: flex;
   align-items: center;
   width: 260px;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.surfaceAlt};
+  height: calc(100vh - 70px);
   overflow: scroll;
   flex-direction: column;
+  border-right: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 
 export default AdminSideMenu;

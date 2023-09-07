@@ -11,15 +11,16 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  border-bottom: solid 1px ${({ theme }) => theme.borderDefault};
   width: 100%;
   cursor: pointer;
-  padding: 2em 8em;
-  gap: 1em;
 `;
 const MenuTitle = styled.div`
+  display: flex;
+  align-items: center;
   font-size: 2rem;
-  width: 100px;
+  width: 100%;
+  height: 60px;
+  padding-left: 60px;
 `;
 const SubMenuList = styled.ul`
   display: flex;
@@ -27,6 +28,7 @@ const SubMenuList = styled.ul`
   list-style: none;
   padding: 0;
   gap: 1em;
+  padding-left: 70px;
 `;
 const SubMenu = styled.li`
   font-size: 1.6rem;
