@@ -1,7 +1,5 @@
-import AdminSideMenu from '@src/components/common/AdminSideMenu';
-
 function Admin() {
-  return <AdminSideMenu />;
+  return <>.</>;
 }
 
 export default Admin;

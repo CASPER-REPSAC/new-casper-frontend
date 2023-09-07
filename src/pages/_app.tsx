@@ -7,6 +7,7 @@ import Header from '@src/components/common/Layout/Header';
 import Theme from '@src/components/Theme';
 import { useRouter } from 'next/router';
 import { ADMIN_PATH } from '@src/utils/urls';
+import AdminSideMenu from '@src/components/pages/admin/AdminSideMenu';
 
 const Wrapper = styled.div`
   position: relative;
@@ -15,15 +16,16 @@ const Wrapper = styled.div`
 
 export default function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
-  const isFooter = !router.asPath.startsWith(ADMIN_PATH.home.url);
-
+  const isAdminPage = router.asPath.startsWith(ADMIN_PATH.home.url);
+  console.log(isAdminPage);
   return (
     <RecoilRoot>
       <Theme>
         <Wrapper>
           <Header />
+          {isAdminPage && <AdminSideMenu />}
           <Component {...pageProps} />
-          {isFooter && <Footer />}
+          {!isAdminPage && <Footer />}
         </Wrapper>
       </Theme>
     </RecoilRoot>

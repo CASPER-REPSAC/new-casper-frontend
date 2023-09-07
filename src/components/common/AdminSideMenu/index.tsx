@@ -1,58 +1,40 @@
+import { HTMLAttributes } from 'react';
+
 import { styled } from 'styled-components';
-import Menu from './Menu';
 
-function AdminSideMenu() {
-  return (
-    <Wrapper>
-      <Menu>
-        <Menu.Title>대시보드</Menu.Title>
-        <Menu.SubMenuList>
-          <Menu.SubMenu>test</Menu.SubMenu>
-        </Menu.SubMenuList>
-      </Menu>
-      <Menu>
-        <Menu.Title>사용자</Menu.Title>
-        <Menu.SubMenuList>
-          <Menu.SubMenu>test</Menu.SubMenu>
-        </Menu.SubMenuList>
-      </Menu>
-      <Menu>
-        <Menu.Title>게시판</Menu.Title>
-        <Menu.SubMenuList>
-          <Menu.SubMenu>test</Menu.SubMenu>
-        </Menu.SubMenuList>
-      </Menu>
-      <Menu>
-        <Menu.Title>파일</Menu.Title>
-        <Menu.SubMenuList>
-          <Menu.SubMenu>test</Menu.SubMenu>
-        </Menu.SubMenuList>
-      </Menu>
-      <Menu>
-        <Menu.Title>배너</Menu.Title>
-        <Menu.SubMenuList>
-          <Menu.SubMenu>test</Menu.SubMenu>
-        </Menu.SubMenuList>
-      </Menu>
-      <Menu>
-        <Menu.Title>메뉴</Menu.Title>
-        <Menu.SubMenuList>
-          <Menu.SubMenu>test</Menu.SubMenu>
-        </Menu.SubMenuList>
-      </Menu>
-    </Wrapper>
-  );
+interface Props extends HTMLAttributes<HTMLDivElement> {}
+function Menu({ ...props }: Props) {
+  return <Wrapper {...props} />;
 }
-
-export default AdminSideMenu;
 
 const Wrapper = styled.div`
   display: flex;
-  align-items: center;
-  width: 260px;
-  height: 100vh;
-  background-color: ${({ theme }) => theme.surfaceAlt};
-  overflow: scroll;
-  // justify-content:center;
+  justify-content: center;
   flex-direction: column;
+  border-bottom: solid 1px ${({ theme }) => theme.borderDefault};
+  width: 100%;
+  cursor: pointer;
+  padding: 2em 8em;
+  gap: 1em;
 `;
+const MenuTitle = styled.div`
+  font-size: 2rem;
+  width: 100px;
+`;
+const SubMenuList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  padding: 0;
+  gap: 1em;
+`;
+const SubMenu = styled.li`
+  font-size: 1.6rem;
+  color: ${({ theme }) => theme.textWeek};
+`;
+
+Menu.SubMenuList = SubMenuList;
+Menu.SubMenu = SubMenu;
+Menu.Title = MenuTitle;
+
+export default Menu;

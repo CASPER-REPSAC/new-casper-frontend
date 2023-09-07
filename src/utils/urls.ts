@@ -10,15 +10,15 @@ export const ADMIN_PATH = {
   users: {
     log: {
       name: '로그',
-      url: 'admin/users/log',
+      url: '/admin/users/log',
     },
     list: {
       name: '사용자 목록',
-      url: 'admin/users/list',
+      url: '/admin/users/list',
     },
     authority: {
       name: '권한',
-      url: 'admin/users/authority',
+      url: '/admin/users/authority',
     },
   },
   boards: {
