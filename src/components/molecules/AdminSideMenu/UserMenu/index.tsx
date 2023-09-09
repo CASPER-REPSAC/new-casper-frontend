@@ -16,7 +16,7 @@ function UserMenu() {
       <Menu.Title onClick={toggle}>사용자</Menu.Title>
       {open && (
         <Menu.SubMenuList>
-          <Menu.SubMenu onClick={redirect(log.url)}>로그</Menu.SubMenu>
+          <Menu.SubMenu onClick={redirect(`${log.url}/1`)}>로그</Menu.SubMenu>
           <Menu.SubMenu onClick={redirect(list.url)}>사용자 목록</Menu.SubMenu>
           <Menu.SubMenu onClick={redirect(authority.url)}>
             권한 관리

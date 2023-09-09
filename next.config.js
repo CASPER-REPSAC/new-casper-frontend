@@ -7,6 +7,10 @@ const nextConfig = {
         destination: 'http://localhost:8080/api/:path*',
         source: '/api/:path*',
       },
+      {
+        source: '/admin/users/log',
+        destination: '/admin/users/log/1',
+      },
     ];
   },
 };
