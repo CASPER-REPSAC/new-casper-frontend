@@ -7,7 +7,6 @@ interface Props {
   children: ReactNode;
 }
 function AdminLayout({ children }: Props) {
-  console.log('admin Layout');
   return (
     <>
       <Header />
