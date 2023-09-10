@@ -1,6 +1,6 @@
 import AdminTable from '@src/components/common/AdminTable';
 
-function UserLogTable() {
+function UserListTable() {
   return (
     <AdminTable>
       <AdminTable.THead>
@@ -27,4 +27,4 @@ function UserLogTable() {
   );
 }
 
-export default UserLogTable;
+export default UserListTable;

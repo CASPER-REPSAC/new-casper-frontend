@@ -11,6 +11,10 @@ const nextConfig = {
         source: '/admin/users/log',
         destination: '/admin/users/log/1',
       },
+      {
+        source: '/admin/users/list',
+        destination: '/admin/users/list/1',
+      },
     ];
   },
 };
