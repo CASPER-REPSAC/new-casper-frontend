@@ -1,4 +1,4 @@
-import Menu from '@src/components/common/AdminSideMenu';
+import AdminSideMenu from '@src/components/common/AdminSideMenu';
 import useRedirect from '@src/hooks/useRedirect';
 import { ADMIN_PATH } from '@src/utils/urls';
 
@@ -6,11 +6,11 @@ function DashboardMenu() {
   const redirect = useRedirect();
 
   return (
-    <Menu>
-      <Menu.Title onClick={redirect(ADMIN_PATH.dashboard.url)}>
+    <AdminSideMenu>
+      <AdminSideMenu.Title onClick={redirect(ADMIN_PATH.dashboard.url)}>
         {ADMIN_PATH.dashboard.name}
-      </Menu.Title>
-    </Menu>
+      </AdminSideMenu.Title>
+    </AdminSideMenu>
   );
 }
 

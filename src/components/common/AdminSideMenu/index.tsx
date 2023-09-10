@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 
 interface Props extends HTMLAttributes<HTMLDivElement> {}
 
-function Menu({ ...props }: Props) {
+function AdminSideMenu({ ...props }: Props) {
   return <Wrapper {...props} />;
 }
 
@@ -13,6 +13,9 @@ const Wrapper = styled.div`
   flex-direction: column;
   width: 100%;
   cursor: pointer;
+  &:hover {
+    background-color: ${({ theme }) => theme.surfacePointAlt};
+  }
 `;
 const MenuTitle = styled.div`
   display: flex;
@@ -33,10 +36,13 @@ const SubMenuList = styled.ul`
 const SubMenu = styled.li`
   font-size: 1.6rem;
   color: ${({ theme }) => theme.textWeek};
+  &:hover {
+    color: ${({ theme }) => theme.textStrong};
+  }
 `;
 
-Menu.SubMenuList = SubMenuList;
-Menu.SubMenu = SubMenu;
-Menu.Title = MenuTitle;
+AdminSideMenu.SubMenuList = SubMenuList;
+AdminSideMenu.SubMenu = SubMenu;
+AdminSideMenu.Title = MenuTitle;
 
-export default Menu;
+export default AdminSideMenu;

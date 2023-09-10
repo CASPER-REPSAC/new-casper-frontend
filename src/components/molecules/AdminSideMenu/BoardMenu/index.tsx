@@ -1,4 +1,4 @@
-import Menu from '@src/components/common/AdminSideMenu';
+import AdminSideMenu from '@src/components/common/AdminSideMenu';
 import useRedirect from '@src/hooks/useRedirect';
 import { ADMIN_PATH } from '@src/utils/urls';
 import { useState } from 'react';
@@ -12,22 +12,22 @@ function BoardMenu() {
   };
 
   return (
-    <Menu>
-      <Menu.Title onClick={toggle}>게시판</Menu.Title>
+    <AdminSideMenu>
+      <AdminSideMenu.Title onClick={toggle}>게시판</AdminSideMenu.Title>
       {open && (
-        <Menu.SubMenuList>
-          <Menu.SubMenu onClick={redirect(boards.url)}>
+        <AdminSideMenu.SubMenuList>
+          <AdminSideMenu.SubMenu onClick={redirect(boards.url)}>
             {boards.name}
-          </Menu.SubMenu>
-          <Menu.SubMenu onClick={redirect(posts.url)}>
+          </AdminSideMenu.SubMenu>
+          <AdminSideMenu.SubMenu onClick={redirect(posts.url)}>
             {posts.name}
-          </Menu.SubMenu>
-          <Menu.SubMenu onClick={redirect(comments.url)}>
+          </AdminSideMenu.SubMenu>
+          <AdminSideMenu.SubMenu onClick={redirect(comments.url)}>
             {comments.name}
-          </Menu.SubMenu>
-        </Menu.SubMenuList>
+          </AdminSideMenu.SubMenu>
+        </AdminSideMenu.SubMenuList>
       )}
-    </Menu>
+    </AdminSideMenu>
   );
 }
 
