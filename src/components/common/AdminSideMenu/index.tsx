@@ -1,13 +1,15 @@
 import { HTMLAttributes } from 'react';
-import { styled } from 'styled-components';
+import { css, styled } from 'styled-components';
 
-interface Props extends HTMLAttributes<HTMLDivElement> {}
-
-function AdminSideMenu({ ...props }: Props) {
-  return <Wrapper {...props} />;
+interface Props extends HTMLAttributes<HTMLDivElement> {
+  highlight?: boolean;
 }
 
-const Wrapper = styled.div`
+function AdminSideMenu({ highlight = false, ...props }: Props) {
+  return <Wrapper $highlight={highlight} {...props} />;
+}
+
+const Wrapper = styled.div<{ $highlight: boolean }>`
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -16,6 +18,17 @@ const Wrapper = styled.div`
   &:hover {
     background-color: ${({ theme }) => theme.surfacePointAlt};
   }
+  box-sizing: content-box;
+
+  ${({ $highlight, theme }) =>
+    $highlight &&
+    css`
+      background-color: ${theme.surfacePointDefault};
+      &:hover {
+        background-color: ${theme.surfacePointDefault};
+      }
+      border-right: 1px solid ${theme.white};
+    `};
 `;
 const MenuTitle = styled.div`
   display: flex;
@@ -33,9 +46,10 @@ const SubMenuList = styled.ul`
   gap: 1em;
   padding-left: 70px;
 `;
-const SubMenu = styled.li`
+const SubMenu = styled.li<{ $highlight: boolean }>`
   font-size: 1.6rem;
-  color: ${({ theme }) => theme.textWeek};
+  color: ${({ theme, $highlight }) =>
+    $highlight ? theme.textStrong : theme.textWeek};
   &:hover {
     color: ${({ theme }) => theme.textStrong};
   }

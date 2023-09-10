@@ -1,28 +1,48 @@
 import AdminSideMenu from '@src/components/common/AdminSideMenu';
+import useHighlight from '@src/hooks/useHighlight';
 import useRedirect from '@src/hooks/useRedirect';
 import { ADMIN_PATH } from '@src/utils/urls';
 import { useState } from 'react';
 
 function BoardMenu() {
+  const {
+    name: title,
+    url: baseUrl,
+    children: { boards, posts, comments },
+  } = ADMIN_PATH.boards;
+
   const [open, setOpen] = useState(false);
   const redirect = useRedirect();
-  const { boards, posts, comments } = ADMIN_PATH.boards;
-  const toggle = () => {
+  const highlight = useHighlight(baseUrl);
+  const boardsHighlight = useHighlight(boards.url);
+  const postsHighlight = useHighlight(posts.url);
+  const commentsHighlight = useHighlight(comments.url);
+
+  const openToggle = () => {
     setOpen((cur) => !cur);
   };
 
   return (
-    <AdminSideMenu>
-      <AdminSideMenu.Title onClick={toggle}>게시판</AdminSideMenu.Title>
+    <AdminSideMenu highlight={highlight}>
+      <AdminSideMenu.Title onClick={openToggle}>{title}</AdminSideMenu.Title>
       {open && (
         <AdminSideMenu.SubMenuList>
-          <AdminSideMenu.SubMenu onClick={redirect(boards.url)}>
+          <AdminSideMenu.SubMenu
+            $highlight={boardsHighlight}
+            onClick={redirect(boards.url)}
+          >
             {boards.name}
           </AdminSideMenu.SubMenu>
-          <AdminSideMenu.SubMenu onClick={redirect(posts.url)}>
+          <AdminSideMenu.SubMenu
+            $highlight={postsHighlight}
+            onClick={redirect(posts.url)}
+          >
             {posts.name}
           </AdminSideMenu.SubMenu>
-          <AdminSideMenu.SubMenu onClick={redirect(comments.url)}>
+          <AdminSideMenu.SubMenu
+            $highlight={commentsHighlight}
+            onClick={redirect(comments.url)}
+          >
             {comments.name}
           </AdminSideMenu.SubMenu>
         </AdminSideMenu.SubMenuList>

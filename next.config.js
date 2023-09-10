@@ -1,4 +1,5 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   reactStrictMode: false,
   async rewrites() {
@@ -14,6 +15,10 @@ const nextConfig = {
       {
         source: '/admin/users/list',
         destination: '/admin/users/list/1',
+      },
+      {
+        source: '/admin',
+        destination: '/admin/dashboard',
       },
     ];
   },

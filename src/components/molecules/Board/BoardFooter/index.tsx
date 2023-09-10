@@ -10,6 +10,7 @@ interface Props {
 function BoardFooter({ maxPage, curPage }: Props) {
   const maxPageList = Array.from({ length: maxPage }, (_, idx) => idx + 1);
   const rediert = useRedirect();
+
   return (
     <TableFooter>
       <PageButtonSection>
