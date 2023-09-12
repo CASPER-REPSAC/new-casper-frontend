@@ -3,7 +3,7 @@ import BoardCategoryCard from '@src/components/molecules/BoardCategoryCard';
 import { useState } from 'react';
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import CheckBox from '../Inputs/ChechBox';
+import CheckInput from '../../common/CheckInput';
 
 interface Props {
   title: string;
@@ -12,7 +12,7 @@ interface Props {
 
 function BoardSettingTable({ title, categories }: Props) {
   const [isOpen, setIsOpen] = useState(false);
-  const { register, watch } = useForm();
+  const { register } = useForm();
 
   return (
     <Details open={isOpen} onToggle={() => setIsOpen((cur) => !cur)}>
@@ -39,48 +39,24 @@ function BoardSettingTable({ title, categories }: Props) {
           <SubTitle>읽기</SubTitle>
           <CheckBoxWrapper>
             {/* 권한 종류 만큼 생성 */}
-            <CheckBox
-              label="1"
-              register={register('1')}
-              selected={watch('1')}
-            />
-            <CheckBox
-              label="2"
-              register={register('2')}
-              selected={watch('2')}
-            />
+            <CheckInput label="1" register={register('1')} />
+            <CheckInput label="2" register={register('2')} />
           </CheckBoxWrapper>
         </Row>
         <Row>
           <SubTitle>쓰기</SubTitle>
           <CheckBoxWrapper>
             {/* 권한 종류 만큼 생성 */}
-            <CheckBox
-              label="3"
-              register={register('3')}
-              selected={watch('3')}
-            />
-            <CheckBox
-              label="4"
-              register={register('4')}
-              selected={watch('4')}
-            />
+            <CheckInput label="3" register={register('3')} />
+            <CheckInput label="4" register={register('4')} />
           </CheckBoxWrapper>
         </Row>
         <Row>
           <SubTitle>삭제</SubTitle>
           <CheckBoxWrapper>
             {/* 권한 종류 만큼 생성 */}
-            <CheckBox
-              label="5"
-              register={register('5')}
-              selected={watch('5')}
-            />
-            <CheckBox
-              label="6"
-              register={register('6')}
-              selected={watch('6')}
-            />
+            <CheckInput label="5" register={register('5')} />
+            <CheckInput label="6" register={register('6')} />
           </CheckBoxWrapper>
         </Row>
       </Section>
