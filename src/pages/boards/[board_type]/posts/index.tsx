@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-props-no-spreading */
 
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import PostForm from '@src/components/pages/boards/posts/PostForm';
+import PostForm from '@src/components/templates/boards/posts/PostForm';
 
 /**
  *  글 작성 페이지

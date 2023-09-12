@@ -1,6 +1,6 @@
 import AdminCenterWrapper from '@src/components/common/Layout/AdminCenterWrapper';
 import BoardFooter from '@src/components/molecules/Board/BoardFooter';
-import UserListTable from '@src/components/pages/admin/user/list/UserListTable';
+import UserListTable from '@src/components/templates/admin/user/list/UserListTable';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';

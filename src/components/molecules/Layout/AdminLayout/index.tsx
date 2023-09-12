@@ -1,5 +1,5 @@
 import Header from '@src/components/common/Layout/Header';
-import AdminSideMenu from '@src/components/pages/admin/AdminSideMenu';
+import AdminSideMenu from '@src/components/organism/AdminSideMenu';
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
