@@ -1,10 +1,10 @@
 import AdminCenterWrapper from '@src/components/common/Layout/AdminCenterWrapper';
-import NoticeBoardForm from '@src/components/pages/admin/boards/list/Notice';
+import NoticeSettingForm from '@src/components/organism/NoticeSettingForm';
 
 function BoardListPage() {
   return (
     <AdminCenterWrapper>
-      <NoticeBoardForm />
+      <NoticeSettingForm />
     </AdminCenterWrapper>
   );
 }
