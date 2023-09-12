@@ -1,9 +1,13 @@
+import { loginState } from '@src/atoms';
 import DefaultButton from '@src/components/common/DefaultButton';
 import DefaultForm from '@src/components/common/DefaultForm';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
+import loginUser from '@src/utils/apis/login';
 import { PLACEHOLDER } from '@src/utils/constants';
-import { useForm } from 'react-hook-form';
+import { useMutation } from '@tanstack/react-query';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
+import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 interface LoginFormData {
@@ -12,10 +16,20 @@ interface LoginFormData {
 }
 
 function LoginForm() {
-  const { register } = useForm<LoginFormData>();
-
+  const { register, handleSubmit } = useForm<LoginFormData>();
+  const setLogin = useSetRecoilState(loginState);
+  const { mutate } = useMutation({
+    mutationFn: loginUser,
+    onSuccess: () => {
+      setLogin(true);
+    },
+  });
   const idRegister = register('id', { required: true });
   const pwRegister = register('pw', { required: true });
+
+  const onValid: SubmitHandler<LoginFormData> = async (data) => {
+    mutate(data);
+  };
 
   return (
     <Form>
@@ -30,7 +44,9 @@ function LoginForm() {
         placeholder={PLACEHOLDER.pw}
         type="password"
       />
-      <LoginButton full>로그인</LoginButton>
+      <LoginButton full onClick={handleSubmit(onValid)}>
+        로그인
+      </LoginButton>
     </Form>
   );
 }
