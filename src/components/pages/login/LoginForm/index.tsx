@@ -28,10 +28,9 @@ function LoginForm() {
         labelIcon={<AiOutlineLock size={25} />}
         register={pwRegister}
         placeholder={PLACEHOLDER.pw}
+        type="password"
       />
-      <LoginButton full onClick={() => {}}>
-        로그인
-      </LoginButton>
+      <LoginButton full>로그인</LoginButton>
     </Form>
   );
 }

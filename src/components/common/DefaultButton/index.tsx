@@ -2,60 +2,100 @@ import { HTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
 type ButtonType = 'small' | 'medium' | 'large';
+type ButtonColor = 'red' | 'green';
 interface ButtonWrapperProps {
   $type: ButtonType;
   $full: boolean;
+  $color: ButtonColor;
 }
 interface Props extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   full?: boolean;
+  color?: ButtonColor;
 }
 
-function DefaultButton({ type = 'medium', full = false, ...props }: Props) {
-  return <ButtonWrapper $type={type} $full={full} {...props} />;
+function DefaultButton({
+  type = 'medium',
+  full = false,
+  color = 'green',
+  ...props
+}: Props) {
+  return <ButtonWrapper $type={type} $full={full} $color={color} {...props} />;
 }
 
-const ButtonWrapper = styled.button<ButtonWrapperProps>`
+const sizeCss = css<ButtonWrapperProps>`
   ${({ $type }) => {
     switch ($type) {
       case 'small':
         return css`
-          width: 80px;
-          height: 30px;
+          font-size: 1.4rem;
+          padding: 0.4em 0.6em;
         `;
       case 'medium':
         return css`
-          width: 100px;
-          height: 40px;
+          font-size: 1.6rem;
+          padding: 0.4em 0.8em;
         `;
-
       case 'large':
         return css`
-          width: 120px;
-          height: 50px;
+          font-size: 1.8rem;
+          padding: 0.8em 1em;
         `;
       default:
         return css`
-          width: 100px;
-          height: 40px;
+          font-size: 1.6rem;
+          padding: 0.4em 0.8em;
         `;
     }
   }}
+`;
+const fullCss = css<ButtonWrapperProps>`
   ${({ $full }) =>
     $full &&
     css`
       width: 100%;
     `}
+`;
+const colorCss = css<ButtonWrapperProps>`
+  ${({ $color }) => {
+    switch ($color) {
+      case 'green':
+        return css`
+          color: ${({ theme }) => theme.textWeek};
+          background-color: ${({ theme }) => theme.green100};
+          &:hover {
+            background-color: ${({ theme }) => theme.green200};
+          }
+        `;
+      case 'red':
+        return css`
+          background-color: ${({ theme }) => theme.red100};
+          color: ${({ theme }) => theme.textDefault};
+          &:hover {
+            background-color: ${({ theme }) => theme.red200};
+          }
+        `;
+      default:
+        return css`
+          background-color: ${({ theme }) => theme.green100};
+          &:hover {
+            background-color: ${({ theme }) => theme.green200};
+          }
+        `;
+    }
+  }};
+`;
 
-  color: ${({ theme }) => theme.white};
-  background-color: ${({ theme }) => theme.green100};
+const ButtonWrapper = styled.button<ButtonWrapperProps>`
+  ${sizeCss};
+  ${fullCss};
+  ${colorCss};
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border-radius: 3px;
-  border: none;
   cursor: pointer;
-  font-size: 1.6rem;
-  :hover {
-    background-color: ${({ theme }) => theme.green200};
-  }
 `;
 
 export default DefaultButton;
