@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import TitelSection from '@src/components/pages/home/TitleSection';
-import NoticeSection from '@src/components/pages/home/NoticeSection';
-import PageInfoSection from '@src/components/pages/home/PageInfoSection';
+import TitelSection from '@src/components/templates/home/TitleSection';
+import NoticeSection from '@src/components/templates/home/NoticeSection';
+import PageInfoSection from '@src/components/templates/home/PageInfoSection';
 
 function Home() {
   const [page, setPage] = useState(0);

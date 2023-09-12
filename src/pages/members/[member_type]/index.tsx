@@ -3,7 +3,7 @@ import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { PATH } from '@src/utils/urls';
-import MembersSection from '@src/components/pages/members/MembersSection';
+import MembersSection from '@src/components/templates/members/MembersSection';
 
 function Members() {
   return (

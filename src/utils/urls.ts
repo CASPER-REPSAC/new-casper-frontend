@@ -8,23 +8,31 @@ export const ADMIN_PATH = {
     url: '/admin/dashboard',
   },
   users: {
-    log: {
-      name: '로그',
-      url: '/admin/users/log',
-    },
-    list: {
-      name: '사용자 목록',
-      url: '/admin/users/list',
-    },
-    authority: {
-      name: '권한',
-      url: '/admin/users/authority',
+    url: '/admin/users',
+    name: '사용자',
+    children: {
+      log: {
+        name: '로그',
+        url: '/admin/users/log',
+      },
+      list: {
+        name: '사용자 목록',
+        url: '/admin/users/list',
+      },
+      authority: {
+        name: '권한',
+        url: '/admin/users/authority',
+      },
     },
   },
   boards: {
-    boards: { name: '게시판', url: '/admin/boards/list' },
-    posts: { name: '게시글 관리', url: '/admin/boards/posts' },
-    comments: { name: '게시글 관리', url: '/admin/boards/comments' },
+    url: '/admin/boards',
+    name: '게시판',
+    children: {
+      boards: { name: '게시판 관리', url: '/admin/boards/list' },
+      posts: { name: '게시글 관리', url: '/admin/boards/posts' },
+      comments: { name: '댓글 관리', url: '/admin/boards/comments' },
+    },
   },
   files: {
     name: '파일',

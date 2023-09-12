@@ -1,33 +1,53 @@
-import Menu from '@src/components/common/AdminSideMenu';
+import AdminSideMenu from '@src/components/common/AdminSideMenu';
+import useHighlight from '@src/hooks/useHighlight';
 import useRedirect from '@src/hooks/useRedirect';
 import { ADMIN_PATH } from '@src/utils/urls';
 import { useState } from 'react';
 
 function BoardMenu() {
+  const {
+    name: title,
+    url: baseUrl,
+    children: { boards, posts, comments },
+  } = ADMIN_PATH.boards;
+
   const [open, setOpen] = useState(false);
   const redirect = useRedirect();
-  const { boards, posts, comments } = ADMIN_PATH.boards;
-  const toggle = () => {
+  const highlight = useHighlight(baseUrl);
+  const boardsHighlight = useHighlight(boards.url);
+  const postsHighlight = useHighlight(posts.url);
+  const commentsHighlight = useHighlight(comments.url);
+
+  const openToggle = () => {
     setOpen((cur) => !cur);
   };
 
   return (
-    <Menu>
-      <Menu.Title onClick={toggle}>게시판</Menu.Title>
+    <AdminSideMenu highlight={highlight}>
+      <AdminSideMenu.Title onClick={openToggle}>{title}</AdminSideMenu.Title>
       {open && (
-        <Menu.SubMenuList>
-          <Menu.SubMenu onClick={redirect(boards.url)}>
+        <AdminSideMenu.SubMenuList>
+          <AdminSideMenu.SubMenu
+            $highlight={boardsHighlight}
+            onClick={redirect(boards.url)}
+          >
             {boards.name}
-          </Menu.SubMenu>
-          <Menu.SubMenu onClick={redirect(posts.url)}>
+          </AdminSideMenu.SubMenu>
+          <AdminSideMenu.SubMenu
+            $highlight={postsHighlight}
+            onClick={redirect(posts.url)}
+          >
             {posts.name}
-          </Menu.SubMenu>
-          <Menu.SubMenu onClick={redirect(comments.url)}>
+          </AdminSideMenu.SubMenu>
+          <AdminSideMenu.SubMenu
+            $highlight={commentsHighlight}
+            onClick={redirect(comments.url)}
+          >
             {comments.name}
-          </Menu.SubMenu>
-        </Menu.SubMenuList>
+          </AdminSideMenu.SubMenu>
+        </AdminSideMenu.SubMenuList>
       )}
-    </Menu>
+    </AdminSideMenu>
   );
 }
 

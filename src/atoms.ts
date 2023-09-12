@@ -6,7 +6,7 @@ export const isDarkState = atom({
   default: true,
 });
 
-export const isLoginState = atom({
-  key: 'isLogin',
+export const loginState = atom({
+  key: 'login',
   default: false,
 });

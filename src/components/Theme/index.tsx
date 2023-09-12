@@ -8,7 +8,7 @@ interface ThemeProps {
   children: ReactNode;
 }
 
-export default function Theme({ children }: ThemeProps) {
+function Theme({ children }: ThemeProps) {
   const isDark = useRecoilValue(isDarkState);
 
   return (
@@ -35,3 +35,5 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Noto Sans KR', sans-serif;
   }
 `;
+
+export default Theme;

@@ -1,29 +1,53 @@
-import Menu from '@src/components/common/AdminSideMenu';
+import AdminSideMenu from '@src/components/common/AdminSideMenu';
+import useHighlight from '@src/hooks/useHighlight';
 import useRedirect from '@src/hooks/useRedirect';
 import { ADMIN_PATH } from '@src/utils/urls';
 import { useState } from 'react';
 
 function UserMenu() {
+  const {
+    name: title,
+    url: baseUrl,
+    children: { log, list, authority },
+  } = ADMIN_PATH.users;
+
   const [open, setOpen] = useState(false);
+  const highlight = useHighlight(baseUrl);
+  const logHighlight = useHighlight(log.url);
+  const listHighlight = useHighlight(list.url);
+  const authorityHighlight = useHighlight(authority.url);
   const redirect = useRedirect();
-  const { log, list, authority } = ADMIN_PATH.users;
+
   const toggle = () => {
     setOpen((cur) => !cur);
   };
 
   return (
-    <Menu>
-      <Menu.Title onClick={toggle}>사용자</Menu.Title>
+    <AdminSideMenu highlight={highlight}>
+      <AdminSideMenu.Title onClick={toggle}>{title}</AdminSideMenu.Title>
       {open && (
-        <Menu.SubMenuList>
-          <Menu.SubMenu onClick={redirect(log.url)}>로그</Menu.SubMenu>
-          <Menu.SubMenu onClick={redirect(list.url)}>사용자 목록</Menu.SubMenu>
-          <Menu.SubMenu onClick={redirect(authority.url)}>
+        <AdminSideMenu.SubMenuList>
+          <AdminSideMenu.SubMenu
+            $highlight={logHighlight}
+            onClick={redirect(log.url)}
+          >
+            로그
+          </AdminSideMenu.SubMenu>
+          <AdminSideMenu.SubMenu
+            $highlight={listHighlight}
+            onClick={redirect(list.url)}
+          >
+            사용자 목록
+          </AdminSideMenu.SubMenu>
+          <AdminSideMenu.SubMenu
+            $highlight={authorityHighlight}
+            onClick={redirect(authority.url)}
+          >
             권한 관리
-          </Menu.SubMenu>
-        </Menu.SubMenuList>
+          </AdminSideMenu.SubMenu>
+        </AdminSideMenu.SubMenuList>
       )}
-    </Menu>
+    </AdminSideMenu>
   );
 }
 

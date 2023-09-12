@@ -2,7 +2,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
 import { isDarkState } from '@src/atoms';
-import LoginForm from '@src/components/pages/login/LoginForm';
+import LoginForm from '@src/components/templates/login/LoginForm';
 import styled from 'styled-components';
 
 export default function Login() {

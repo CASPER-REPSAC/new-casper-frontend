@@ -14,7 +14,8 @@ export const darkTheme: DefaultTheme = {
   green100: '#57ab5a',
   green200: '#2b6a30',
   white: '#FFFFFF',
-  red: '#E5534B',
+  red100: '#E5534B',
+  red200: '#af3f38',
 };
 
 export const lightTheme: DefaultTheme = {
@@ -31,5 +32,6 @@ export const lightTheme: DefaultTheme = {
   green100: '#73c92d',
   green200: '#57ab5a',
   white: '#FFFFFF',
-  red: '#CF222E',
+  red100: '#CF222E',
+  red200: '#af3f38',
 };
