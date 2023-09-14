@@ -1,34 +1,30 @@
-import { ForwardedRef, TextareaHTMLAttributes, forwardRef } from 'react';
+import { TextareaHTMLAttributes } from 'react';
 import { css, styled } from 'styled-components';
 import ReactMarkdown from 'react-markdown';
+import { useFormContext } from 'react-hook-form';
 
-interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
-  value: string;
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+
+interface EditorFormData {
+  content: string;
 }
 
-function VanillaEditor(
-  { placeholder, onChange, value }: Props,
-  ref: ForwardedRef<HTMLTextAreaElement>,
-) {
+function VanillaEditor({ placeholder }: Props) {
+  const { register, watch } = useFormContext<EditorFormData>();
   return (
     <Wrapper>
-      <TextArea
-        ref={ref}
-        onChange={onChange}
-        value={value}
-        placeholder={placeholder}
-      />
-      <MarkdownPreview>{value}</MarkdownPreview>
+      <TextArea placeholder={placeholder} {...register('content')} />
+      <MarkdownPreview>{watch('content')}</MarkdownPreview>
     </Wrapper>
   );
 }
 
-export default forwardRef<HTMLTextAreaElement, Props>(VanillaEditor);
+export default VanillaEditor;
 
 const Wrapper = styled.div`
   display: flex;
   width: 100%;
-  height: 500px;
+  height: 80vh;
   gap: 4px;
 `;
 

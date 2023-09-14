@@ -1,34 +1,44 @@
-import { loginState } from '@src/atoms';
+import { styled } from 'styled-components';
+import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
+import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
+
+import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import DefaultButton from '@src/components/common/DefaultButton';
 import DefaultForm from '@src/components/common/DefaultForm';
-import LabelInput from '@src/components/molecules/Inputs/LabelInput';
-import loginUser from '@src/utils/apis/login';
-import { PLACEHOLDER } from '@src/utils/constants';
-import { useMutation } from '@tanstack/react-query';
-import { SubmitHandler, useForm } from 'react-hook-form';
-import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
-import { useSetRecoilState } from 'recoil';
-import { styled } from 'styled-components';
-
-interface LoginFormData {
-  id: string;
-  pw: string;
-}
+import useLoginMutation, {
+  LoginRequest,
+} from '@src/hooks/apis/useLoginMutation';
+import usePopup from '@src/hooks/usePopup';
+import {
+  PLACEHOLDER,
+  POPUP_TIME,
+  REQUIRED_MESSAGE,
+} from '@src/utils/constants';
 
 function LoginForm() {
-  const { register, handleSubmit } = useForm<LoginFormData>();
-  const setLogin = useSetRecoilState(loginState);
-  const { mutate } = useMutation({
-    mutationFn: loginUser,
-    onSuccess: () => {
-      setLogin(true);
-    },
-  });
-  const idRegister = register('id', { required: true });
-  const pwRegister = register('pw', { required: true });
+  const { register, handleSubmit } = useForm<LoginRequest>();
+  const { mutate: mutateLogin } = useLoginMutation();
+  const { openAndDeletePopup } = usePopup();
+  const idRegister = register('id', { required: REQUIRED_MESSAGE.id });
+  const pwRegister = register('pw', { required: REQUIRED_MESSAGE.pw });
 
-  const onValid: SubmitHandler<LoginFormData> = async (data) => {
-    mutate(data);
+  const onValid: SubmitHandler<LoginRequest> = (data) => {
+    mutateLogin(data);
+  };
+  const onInvalid: SubmitErrorHandler<LoginRequest> = (errors) => {
+    if (errors.id && errors.id.message) {
+      openAndDeletePopup({
+        key: Date.now(),
+        message: errors.id.message,
+        time: POPUP_TIME.medium,
+      });
+    } else if (errors.pw && errors.pw.message) {
+      openAndDeletePopup({
+        key: Date.now(),
+        message: errors.pw.message,
+        time: POPUP_TIME.medium,
+      });
+    }
   };
 
   return (
@@ -44,7 +54,7 @@ function LoginForm() {
         placeholder={PLACEHOLDER.pw}
         type="password"
       />
-      <LoginButton full onClick={handleSubmit(onValid)}>
+      <LoginButton type="large" full onClick={handleSubmit(onValid, onInvalid)}>
         로그인
       </LoginButton>
     </Form>
@@ -57,6 +67,5 @@ const Form = styled(DefaultForm)`
   gap: 0.5em;
 `;
 const LoginButton = styled(DefaultButton)`
-  height: 50px;
   margin-top: 1em;
 `;

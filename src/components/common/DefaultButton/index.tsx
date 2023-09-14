@@ -8,7 +8,7 @@ interface ButtonWrapperProps {
   $full: boolean;
   $color: ButtonColor;
 }
-interface Props extends HTMLAttributes<HTMLButtonElement> {
+export interface DefaultButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   full?: boolean;
   color?: ButtonColor;
@@ -19,7 +19,7 @@ function DefaultButton({
   full = false,
   color = 'green',
   ...props
-}: Props) {
+}: DefaultButtonProps) {
   return <ButtonWrapper $type={type} $full={full} $color={color} {...props} />;
 }
 

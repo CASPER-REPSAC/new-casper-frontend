@@ -1,8 +1,8 @@
 import AdminCenterWrapper from '@src/components/common/Layout/AdminCenterWrapper';
-import CommentLogTable from '@src/components/templates/admin/Dashboard/CommentLogTable';
-import FileLogTable from '@src/components/templates/admin/Dashboard/FileLogTable';
-import LoginLogTable from '@src/components/templates/admin/Dashboard/LoginLogTable';
-import PostLogTable from '@src/components/templates/admin/Dashboard/PostLogTable';
+import CommentLogTable from '@src/components/templates/admin/dashboard/CommentLogTable';
+import FileLogTable from '@src/components/templates/admin/dashboard/FileLogTable';
+import LoginLogTable from '@src/components/templates/admin/dashboard/LoginLogTable';
+import PostLogTable from '@src/components/templates/admin/dashboard/PostLogTable';
 import { styled } from 'styled-components';
 
 function Dashboard() {

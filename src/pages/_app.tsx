@@ -13,6 +13,8 @@ import {
 } from '@tanstack/react-query';
 import styled from 'styled-components';
 import { useState } from 'react';
+import { CookiesProvider } from 'react-cookie';
+import PopupWrapper from '@src/components/molecules/PopupWrapper';
 
 function App({ Component, pageProps }: AppProps) {
   const router = useRouter();
@@ -23,19 +25,22 @@ function App({ Component, pageProps }: AppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <RecoilRoot>
-          <Theme>
-            <Wrapper>
-              {isAdminPage ? (
-                <AdminLayout>
-                  <Component {...pageProps} />
-                </AdminLayout>
-              ) : (
-                <CommonLayout>
-                  <Component {...pageProps} />
-                </CommonLayout>
-              )}
-            </Wrapper>
-          </Theme>
+          <CookiesProvider>
+            <Theme>
+              <PopupWrapper />
+              <Wrapper>
+                {isAdminPage ? (
+                  <AdminLayout>
+                    <Component {...pageProps} />
+                  </AdminLayout>
+                ) : (
+                  <CommonLayout>
+                    <Component {...pageProps} />
+                  </CommonLayout>
+                )}
+              </Wrapper>
+            </Theme>
+          </CookiesProvider>
         </RecoilRoot>
       </Hydrate>
     </QueryClientProvider>

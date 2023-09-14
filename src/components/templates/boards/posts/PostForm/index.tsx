@@ -1,15 +1,13 @@
-import { useRouter } from 'next/router';
-import { ChangeEvent, KeyboardEvent, useRef, useState } from 'react';
+import { KeyboardEvent } from 'react';
 import { styled } from 'styled-components';
-import { useForm, SubmitHandler } from 'react-hook-form';
-import axios from 'axios';
+import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
 import Button from '@src/components/common/DefaultButton';
-import VanillaEditor from '@src/components/molecules/Editor/VanillaEditor';
+import VanillaEditor from '@src/components/organism/Editor/VanillaEditor';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import FileInput from '@src/components/molecules/Inputs/FileInput';
-import { getCookie } from '@src/utils/cookies';
-import { INPUT_LABEL, PLACEHOLDER } from '@src/utils/constants';
+import { PLACEHOLDER } from '@src/utils/constants';
+import usePostArticle from '@src/hooks/apis/boards/usePostArticle';
 
 interface PostFormData {
   title: string;
@@ -18,29 +16,22 @@ interface PostFormData {
 }
 
 function PostForm() {
-  const [value, setValue] = useState('');
-  const router = useRouter();
-  const { board_type: boardType } = router.query;
-  const safeBoardType = Array.isArray(boardType) ? boardType[0] : boardType;
-  const { register, handleSubmit } = useForm<PostFormData>();
-  const editorRef = useRef<HTMLTextAreaElement>(null);
+  const methods = useForm<PostFormData>();
+  const { register, handleSubmit } = methods;
+  const { mutate } = usePostArticle();
 
-  const onChangeEditor = (e: ChangeEvent<HTMLTextAreaElement>) =>
-    setValue(e.currentTarget.value);
+  // const onChangeEditor = (e: ChangeEvent<HTMLTextAreaElement>) => {
+  //   setValue(e.currentTarget.value);
+  // };
 
   const focusEditor = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      e.preventDefault();
-      editorRef.current?.focus();
+      methods.setFocus('content');
     }
   };
   const onValid: SubmitHandler<PostFormData> = async (data) => {
-    const headers = { Authorization: `Bearer ${getCookie('is_login')}` };
-    const res = await axios.post('/api/article/write', data, { headers });
-
-    if (res.status === 200) {
-      router.push(`/boards/${safeBoardType}`);
-    }
+    console.log(data);
+    mutate(data);
   };
 
   const onInvalid = () => {
@@ -51,36 +42,32 @@ function PostForm() {
   const fileRegister = register('attachment');
 
   return (
-    <Form>
-      <TitleSection>
-        <TitleInput
-          label={INPUT_LABEL.title}
-          labelSize="large"
-          register={titleRegister}
-          placeholder={PLACEHOLDER.title}
-          onKeyDown={(e) => focusEditor(e)}
-        />
-      </TitleSection>
+    <FormProvider {...methods}>
+      <Form>
+        <TitleSection>
+          <TitleInput
+            labelSize="large"
+            register={titleRegister}
+            placeholder={PLACEHOLDER.title}
+            onKeyDown={(e) => focusEditor(e)}
+          />
+        </TitleSection>
 
-      <EditorSection>
-        <VanillaEditor
-          ref={editorRef}
-          placeholder={PLACEHOLDER.editor}
-          onChange={onChangeEditor}
-          value={value}
-        />
-      </EditorSection>
+        <EditorSection>
+          <VanillaEditor placeholder={PLACEHOLDER.editor} />
+        </EditorSection>
 
-      <FileSection>
-        <FileInput register={fileRegister} />
-      </FileSection>
+        <FileSection>
+          <FileInput register={fileRegister} />
+        </FileSection>
 
-      <ButtonSection>
-        <WriteButton type="large" onClick={handleSubmit(onValid, onInvalid)}>
-          작성 하기
-        </WriteButton>
-      </ButtonSection>
-    </Form>
+        <ButtonSection>
+          <WriteButton type="large" onClick={handleSubmit(onValid, onInvalid)}>
+            작성 하기
+          </WriteButton>
+        </ButtonSection>
+      </Form>
+    </FormProvider>
   );
 }
 
@@ -89,13 +76,13 @@ export default PostForm;
 const Form = styled(DefaultForm)`
   width: 450px;
   @media screen and (min-width: 768px) {
-    width: 500px;
+    width: 700px;
   }
   @media screen and (min-width: 1024px) {
-    width: 800px;
+    width: 1000px;
   }
   @media screen and (min-width: 1440px) {
-    width: 1000px;
+    width: 1400px;
   }
   padding-bottom: 200px;
 `;
