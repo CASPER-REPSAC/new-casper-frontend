@@ -2,16 +2,16 @@ import { memo } from 'react';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
-import { SlLockOpen, SlLock } from 'react-icons/sl';
-import { AiOutlineUser } from 'react-icons/ai';
+import { AiOutlineLogin, AiOutlineLogout, AiOutlineUser } from 'react-icons/ai';
 import { useRecoilState } from 'recoil';
 import useRedirect from '@src/hooks/useRedirect';
 import { ADMIN_PATH, PATH } from '@src/utils/urls';
-import { isDarkState } from '@src/atoms';
+import { isDarkState, loginState } from '@src/atoms';
 import CommonCenterWrapper from '../CommonCenterWrapper';
 import NavItem from './NavItem';
 
 function Header() {
+  const [login, setLogin] = useRecoilState(loginState);
   const router = useRouter();
   const redirect = useRedirect();
   const [isDark, setIsDark] = useRecoilState(isDarkState);
@@ -23,6 +23,10 @@ function Header() {
 
   const toggleDarkMode = () => {
     setIsDark((cur) => !cur);
+  };
+
+  const logout = () => {
+    setLogin(false);
   };
 
   const DarkModeButtonIcon = isDark ? (
@@ -56,15 +60,30 @@ function Header() {
             Boards
           </NavItem>
           <NavItem subMenuInfo={PATH.extra}>Intranet</NavItem>
-          <NavItem onClick={redirect(PATH.user.login.url)}>
-            <SlLockOpen color={isDarkHome ? 'white' : 'black'} size={20} />
-          </NavItem>
-          <NavItem>
-            <SlLock color={isDarkHome ? 'white' : 'black'} size={20} />
-          </NavItem>
-          <NavItem onClick={redirect(PATH.user.login.url)}>
-            <AiOutlineUser color={isDarkHome ? 'white' : 'black'} size={24} />
-          </NavItem>
+
+          {login ? (
+            <>
+              <NavItem onClick={redirect(PATH.user.mypage.url)}>
+                <AiOutlineUser
+                  color={isDarkHome ? 'white' : 'black'}
+                  size={24}
+                />
+              </NavItem>
+              <NavItem onClick={logout}>
+                <AiOutlineLogout
+                  color={isDarkHome ? 'white' : 'black'}
+                  size={20}
+                />
+              </NavItem>
+            </>
+          ) : (
+            <NavItem onClick={redirect(PATH.user.login.url)}>
+              <AiOutlineLogin
+                color={isDarkHome ? 'white' : 'black'}
+                size={20}
+              />
+            </NavItem>
+          )}
         </NavItems>
       </Body>
     </HeaderWrapper>

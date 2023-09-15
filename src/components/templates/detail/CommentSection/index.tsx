@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import Comment from '@src/components/molecules/Editor/Comment';
+import Comment from '@src/components/organism/Editor/Comment';
 
 function CommentSection() {
   /*

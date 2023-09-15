@@ -89,6 +89,10 @@ export const PATH = {
       name: '로그인',
       url: '/login',
     },
+    mypage: {
+      name: '마이페이지',
+      url: '/mypage',
+    },
   },
   extra: {
     nas: {

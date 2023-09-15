@@ -55,3 +55,9 @@ export const REQUIRED_MESSAGE = {
   email: '이메일을 입력해 주세요.',
   birthday: '생일을 입력해 주세요.',
 };
+
+export const POPUP_TIME = {
+  short: 3000,
+  medium: 5000,
+  long: 7000,
+};
