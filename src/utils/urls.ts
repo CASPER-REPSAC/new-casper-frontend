@@ -93,6 +93,10 @@ export const PATH = {
       name: '마이페이지',
       url: '/mypage',
     },
+    join: {
+      name: '회원가입',
+      url: '/join',
+    },
   },
   extra: {
     nas: {

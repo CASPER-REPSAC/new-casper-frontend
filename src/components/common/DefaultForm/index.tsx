@@ -7,13 +7,13 @@ const DefaultForm = styled.form`
   margin: 0 auto;
   width: 450px;
   @media screen and (min-width: 768px) {
-    width: 550px;
+    width: 450px;
   }
   @media screen and (min-width: 1024px) {
-    width: 600px;
+    width: 500px;
   }
   @media screen and (min-width: 1440px) {
-    width: 700px;
+    width: 550px;
   }
 `;
 
