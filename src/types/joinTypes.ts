@@ -6,6 +6,13 @@ export interface JoinFormData {
   name: string;
   nickname: string;
   profile: FileList;
+  agree: boolean;
 }
 
-export type StepType = 'email' | 'name' | 'id' | 'password' | 'finish';
+export type StepType =
+  | 'agree'
+  | 'email'
+  | 'name'
+  | 'id'
+  | 'password'
+  | 'finish';

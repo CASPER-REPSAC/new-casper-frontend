@@ -8,15 +8,19 @@ import NameForm from '@src/components/organism/join/NameForm';
 import { useEffect, useState } from 'react';
 import IdForm from '@src/components/organism/join/IdForm';
 import PasswordForm from '@src/components/organism/join/PasswrodForm';
+import AgreeForm from '@src/components/organism/join/AgreeForm';
 
 function JoinForm() {
-  const [step, setStep] = useState<StepType>('email');
+  const [step, setStep] = useState<StepType>('agree');
   const methods = useForm<JoinFormData>();
   const { query } = useRouter();
 
   useEffect(() => {
     const funnelStep = query['funnel-step'];
-    if (!funnelStep || funnelStep.includes('email')) {
+
+    if (!funnelStep || funnelStep.includes('agree')) {
+      setStep('agree');
+    } else if (funnelStep.includes('email')) {
       setStep('email');
     } else if (funnelStep.includes('name')) {
       setStep('name');
@@ -32,6 +36,7 @@ function JoinForm() {
   return (
     <FormProvider {...methods}>
       <Form>
+        {step === 'agree' && <AgreeForm />}
         {step === 'email' && <EmailForm />}
         {step === 'name' && <NameForm />}
         {step === 'id' && <IdForm />}
@@ -45,7 +50,7 @@ const Form = styled(DefaultForm)`
   gap: 2em;
   margin: 0;
   position: absolute;
-  top: 40%;
+  top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 `;
