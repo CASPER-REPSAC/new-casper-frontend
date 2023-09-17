@@ -5,7 +5,6 @@ import { styled } from 'styled-components';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   register: UseFormRegisterReturn;
   label?: string;
-  size?: 'small' | 'medium' | 'large';
 }
 
 function CheckInput({ register, label, ...props }: Props) {
