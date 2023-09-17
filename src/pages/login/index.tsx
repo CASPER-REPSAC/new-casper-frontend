@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { isDarkState } from '@src/atoms';
 import LoginForm from '@src/components/templates/login/LoginForm';
 import styled from 'styled-components';
+import { PATH } from '@src/utils/urls';
 
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);
@@ -15,7 +16,7 @@ export default function Login() {
         <LogoImg src={logoSrc} alt="Casper logo" sizes="200px" fill priority />
       </LogoWrapper>
       <LoginForm />
-      <RegisterLink href="/login/register">You don&#39;t have ID?</RegisterLink>
+      <RegisterLink href={PATH.user.join.url}>회원가입</RegisterLink>
     </Wrapper>
   );
 }
@@ -41,11 +42,11 @@ const LogoImg = styled(Image)`
 
 const RegisterLink = styled(Link)`
   margin-top: 1em;
-  font-size: 2rem;
+  font-size: 1.6rem;
   text-decoration: none;
   color: white;
   &:hover {
-    cursor: pointer;
     text-decoration: underline;
   }
+  cursor: pointer;
 `;

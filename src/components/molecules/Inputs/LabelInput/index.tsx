@@ -10,7 +10,7 @@ interface Props extends InputHTMLAttributes<HTMLInputElement> {
   labelSize?: LabelSizeType;
   register: UseFormRegisterReturn;
   labelIcon?: ReactNode;
-  errorMessage?: string | undefined;
+  hasError?: boolean;
 }
 
 function LabelInput({
@@ -18,11 +18,10 @@ function LabelInput({
   labelSize = 'small',
   labelIcon,
   register,
-  errorMessage,
+  hasError = false,
   ...props
 }: Props) {
   const uniqueId = useId();
-  const hasError = !!errorMessage;
   const hasIcon = !!labelIcon;
 
   return (
@@ -57,7 +56,10 @@ const Input = styled(DefaultInput)<InputProps>`
   ${({ $hasError }) =>
     $hasError &&
     css`
-      border: 1px solid ${({ theme }) => theme.red};
+      border: 1px solid ${({ theme }) => theme.red100};
+      &:focus {
+        border: 1px solid ${({ theme }) => theme.red100};
+      }
     `}
   padding-left: ${({ $hasIcon }) => ($hasIcon ? '50px' : 'none')};
 `;

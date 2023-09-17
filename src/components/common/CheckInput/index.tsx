@@ -18,9 +18,14 @@ function CheckInput({ register, label, ...props }: Props) {
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 1em;
+`;
 const Label = styled.label`
   cursor: pointer;
+  font-size: 1.4rem;
 `;
 const Input = styled.input`
   cursor: pointer;
