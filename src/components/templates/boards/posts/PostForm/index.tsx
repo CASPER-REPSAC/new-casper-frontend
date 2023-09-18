@@ -3,11 +3,15 @@ import { styled } from 'styled-components';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
 import Button from '@src/components/common/DefaultButton';
-import VanillaEditor from '@src/components/organism/Editor/VanillaEditor';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
-import FileInput from '@src/components/molecules/Inputs/FileInput';
 import { PLACEHOLDER } from '@src/utils/constants';
 import usePostArticle from '@src/hooks/apis/boards/usePostArticle';
+
+import dynamic from 'next/dynamic';
+
+const CKEditor = dynamic(() => import('@src/components/common/Editor'), {
+  ssr: false,
+});
 
 interface PostFormData {
   title: string;
@@ -38,7 +42,6 @@ function PostForm() {
   };
 
   const titleRegister = register('title', { required: true });
-  const fileRegister = register('attachment');
 
   return (
     <FormProvider {...methods}>
@@ -53,12 +56,8 @@ function PostForm() {
         </TitleSection>
 
         <EditorSection>
-          <VanillaEditor placeholder={PLACEHOLDER.editor} />
+          <CKEditor />
         </EditorSection>
-
-        <FileSection>
-          <FileInput register={fileRegister} />
-        </FileSection>
 
         <ButtonSection>
           <WriteButton type="large" onClick={handleSubmit(onValid, onInvalid)}>
@@ -108,7 +107,4 @@ const ButtonSection = styled.div`
 `;
 const WriteButton = styled(Button)`
   width: 100%;
-`;
-const FileSection = styled.div`
-  margin-top: 2em;
 `;
