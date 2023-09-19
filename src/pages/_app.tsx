@@ -1,10 +1,11 @@
 import '@src/styles/reset.css';
+import '@src/styles/editor.css';
+
 import type { AppContext, AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useMemo, useState } from 'react';
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import styled from 'styled-components';
-
 import {
   Hydrate,
   QueryClient,
