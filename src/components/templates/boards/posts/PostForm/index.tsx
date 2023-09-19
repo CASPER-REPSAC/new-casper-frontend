@@ -8,19 +8,27 @@ import { PLACEHOLDER } from '@src/utils/constants';
 import usePostArticle from '@src/hooks/apis/boards/usePostArticle';
 
 import dynamic from 'next/dynamic';
+import { PostReqData } from '@src/types/PostTypes';
 
 const CKEditor = dynamic(() => import('@src/components/common/Editor'), {
   ssr: false,
 });
 
-interface PostFormData {
-  title: string;
-  content: string;
-  attachment: boolean;
-}
-
 function PostForm() {
-  const methods = useForm<PostFormData>();
+  const methods = useForm<PostReqData>({
+    defaultValues: {
+      boardId: 'notice_board',
+      category: 0,
+      createdAt: '2023-01-01',
+      modifiedAt: '2023-01-01',
+      file: false,
+      hide: false,
+      notice: false,
+      nickname: 'test-name',
+      title: 'initial-title',
+      content: 'initial-content',
+    },
+  });
   const { register, handleSubmit } = methods;
   const { mutate } = usePostArticle();
 
@@ -33,7 +41,7 @@ function PostForm() {
       methods.setFocus('content');
     }
   };
-  const onValid: SubmitHandler<PostFormData> = async (data) => {
+  const onValid: SubmitHandler<PostReqData> = async (data) => {
     mutate(data);
   };
 
