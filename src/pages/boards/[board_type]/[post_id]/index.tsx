@@ -36,7 +36,6 @@ const Hr = styled.hr`
   width: 100%;
   height: 1px;
   margin-top: 50px;
-
   margin-bottom: 50px;
 `;
 

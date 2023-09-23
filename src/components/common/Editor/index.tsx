@@ -11,7 +11,7 @@ function Editor() {
     <Wrapper>
       <CKEditor
         editor={ClassicEditor}
-        data="<p>Hello from CKEditor&nbsp;5!</p>"
+        data=""
         onChange={(event, editor) => {
           setValue('content', editor.getData());
         }}
@@ -41,6 +41,9 @@ const Wrapper = styled.div`
   }
   a {
     color: ${({ theme }) => theme.textPoint};
+  }
+  p {
+    margin: 0.5em 0;
   }
   font-size: 1.8rem;
 
