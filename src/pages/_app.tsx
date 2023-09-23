@@ -16,7 +16,7 @@ import Theme from '@src/components/Theme';
 import AdminLayout from '@src/components/molecules/Layout/AdminLayout';
 import CommonLayout from '@src/components/molecules/Layout/CommonLayout';
 import PopupWrapper from '@src/components/molecules/PopupWrapper';
-import { loginState } from '@src/atoms';
+import { accessTokenState, loginState } from '@src/atoms';
 import { ADMIN_PATH } from '@src/utils/urls';
 
 interface MyAppProps extends AppProps {
@@ -36,8 +36,8 @@ function App({ Component, pageProps, loginData }: MyAppProps) {
       ({ set }: MutableSnapshot) => {
         if (loginData.accessToken) {
           set(loginState, true);
+          set(accessTokenState, loginData.accessToken);
         } else if (loginData.refreshToken) {
-          // Todo. 재발급 API 요청
           set(loginState, true);
         } else {
           set(loginState, false);

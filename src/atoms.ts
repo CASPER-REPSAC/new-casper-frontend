@@ -11,9 +11,9 @@ export const loginState = atom({
   default: false,
 });
 
-export const accessTokenState = atom({
+export const accessTokenState = atom<string | undefined>({
   key: 'accessToken',
-  default: '',
+  default: undefined,
 });
 
 export const popupListState = atom<{ key: Key; message: string }[]>({

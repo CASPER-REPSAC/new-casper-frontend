@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { BsFillMoonFill, BsFillSunFill } from 'react-icons/bs';
 import { AiOutlineLogin, AiOutlineLogout, AiOutlineUser } from 'react-icons/ai';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
+import useLogoutMutation from '@src/hooks/apis/useLogoutMutation';
 import useRedirect from '@src/hooks/useRedirect';
 import { ADMIN_PATH, PATH } from '@src/utils/urls';
 import { isDarkState, loginState } from '@src/atoms';
@@ -11,10 +12,11 @@ import CommonCenterWrapper from '../CommonCenterWrapper';
 import NavItem from './NavItem';
 
 function Header() {
-  const [login, setLogin] = useRecoilState(loginState);
+  const login = useRecoilValue(loginState);
+  const [isDark, setIsDark] = useRecoilState(isDarkState);
+  const { mutate } = useLogoutMutation();
   const router = useRouter();
   const redirect = useRedirect();
-  const [isDark, setIsDark] = useRecoilState(isDarkState);
   const isHome = router.pathname === '/';
   const isDarkHome = isDark || isHome;
   const logoSrc = isDarkHome
@@ -26,7 +28,7 @@ function Header() {
   };
 
   const logout = () => {
-    setLogin(false);
+    mutate();
   };
 
   const DarkModeButtonIcon = isDark ? (
