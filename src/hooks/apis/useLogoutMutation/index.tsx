@@ -28,7 +28,6 @@ function useLogoutMutation() {
       message: POPUP_MESSAGE.logoutError,
       time: POPUP_TIME.medium,
     });
-    console.log('?');
   };
 
   return useMutation({

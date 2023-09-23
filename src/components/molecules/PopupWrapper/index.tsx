@@ -5,7 +5,6 @@ import styled from 'styled-components';
 
 function PopupWrapper() {
   const popupList = useRecoilValue(popupListState);
-  console.log(popupList);
 
   return (
     <Wrapper>
