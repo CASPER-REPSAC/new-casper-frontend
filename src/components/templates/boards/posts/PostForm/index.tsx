@@ -16,7 +16,7 @@ const CKEditor = dynamic(() => import('@src/components/common/Editor'), {
 function PostForm() {
   const defaultValues: PostReqData = {
     boardId: 'notice_board',
-    category: 0,
+    category: 'all',
     createdAt: '2023-01-01',
     modifiedAt: '2023-01-01',
     file: false,
@@ -25,6 +25,7 @@ function PostForm() {
     nickname: 'test-name',
     title: 'initial-test-title',
     content: 'initial-test-content',
+    photo: 'test',
   };
 
   const methods = useForm<PostReqData>({

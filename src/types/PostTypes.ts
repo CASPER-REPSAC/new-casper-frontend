@@ -1,6 +1,6 @@
 export interface PostReqData {
   boardId: string;
-  category: 0;
+  category: string;
   createdAt: string;
   modifiedAt: string;
   file: boolean;
@@ -9,4 +9,5 @@ export interface PostReqData {
   nickname: string;
   title: string;
   content: string;
+  photo: string;
 }

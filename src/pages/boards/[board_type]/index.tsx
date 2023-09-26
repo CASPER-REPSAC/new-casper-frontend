@@ -6,6 +6,8 @@ import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import { PATH } from '@src/utils/urls';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
+import axios from 'axios';
+import { ARTICLE_LIST_API } from '@src/utils/apiUrl';
 
 /**
  *  게시판 메인 페이지
@@ -39,10 +41,13 @@ export const getStaticPaths: GetStaticPaths = () => {
   return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async () => {
-  // const bordType = params?.board_type;
-  // const res = await axios.get(`http://build.casper.or.kr${ARTICLE_LIST_API}/0`);
-  return { props: {} };
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const bordType = params?.board_type;
+  const res = await axios.get(
+    `http://build.casper.or.kr${ARTICLE_LIST_API}/${bordType}/all/0`,
+  );
+  const { data: articleList } = res;
+  return { props: { articleList } };
 };
 
 const Main = styled.div`
