@@ -14,7 +14,6 @@ interface Props {
 
 function SideMenu({ menus }: Props) {
   const { asPath } = useRouter();
-  console.log(asPath, menus);
 
   const Menus = Object.values(menus).map((menu) => (
     <StyledLink key={menu.name} href={menu.url}>

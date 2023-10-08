@@ -32,6 +32,7 @@ interface Props {
 }
 
 function BoardPage({ articleList }: Props) {
+  // eslint-disable-next-line no-console
   console.log(articleList);
   return (
     <>
