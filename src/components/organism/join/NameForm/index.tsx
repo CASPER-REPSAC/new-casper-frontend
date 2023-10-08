@@ -11,8 +11,8 @@ import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';
 import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
-import { CgRename } from 'react-icons/Cg';
 import { AiFillStar } from 'react-icons/ai';
+import { CgRename } from 'react-icons/Cg';
 
 function NameForm() {
   const {
