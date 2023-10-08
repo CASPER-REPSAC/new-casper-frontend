@@ -18,6 +18,7 @@ import CommonLayout from '@src/components/molecules/Layout/CommonLayout';
 import PopupWrapper from '@src/components/molecules/PopupWrapper';
 import { accessTokenState, loginState } from '@src/atoms';
 import { ADMIN_PATH } from '@src/utils/urls';
+import PageShadow from '@src/components/common/PageShadow';
 
 interface MyAppProps extends AppProps {
   loginData: {
@@ -52,6 +53,7 @@ function App({ Component, pageProps, loginData }: MyAppProps) {
         <RecoilRoot initializeState={initializer}>
           <Theme>
             <PopupWrapper />
+            <PageShadow />
             <Wrapper>
               {isAdminPage ? (
                 <AdminLayout>

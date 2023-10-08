@@ -20,3 +20,8 @@ export const popupListState = atom<{ key: Key; message: string }[]>({
   key: 'popupList',
   default: [],
 });
+
+export const pageShadowState = atom({
+  key: 'pageShadow',
+  default: false,
+});

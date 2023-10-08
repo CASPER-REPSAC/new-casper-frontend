@@ -1,5 +1,5 @@
 import Footer from '@src/components/common/Layout/Footer';
-import Header from '@src/components/common/Layout/Header';
+import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 
 interface Props {
