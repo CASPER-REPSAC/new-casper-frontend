@@ -14,6 +14,7 @@ interface Props {
 
 function SideMenu({ menus }: Props) {
   const { asPath } = useRouter();
+  console.log(asPath, menus);
 
   const Menus = Object.values(menus).map((menu) => (
     <StyledLink key={menu.name} href={menu.url}>
@@ -34,7 +35,6 @@ const Wrapper = styled.div`
   height: 100%;
   min-width: 230px;
   width: 230px;
-  border-right: 1px solid ${(props) => props.theme.borderDefault};
   margin-right: 50px;
 `;
 const Item = styled.div`
@@ -44,6 +44,9 @@ const Item = styled.div`
   height: 40px;
   font-size: 2rem;
   align-items: center;
+  &:hover {
+    background-color: ${({ theme }) => theme.sideMenuHover};
+  }
 `;
 const Highlight = styled.div`
   position: absolute;

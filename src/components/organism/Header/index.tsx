@@ -16,7 +16,7 @@ import { styled } from 'styled-components';
 
 function Header() {
   const [login] = useRecoilState(loginState);
-  const [isDark] = useRecoilState(isDarkState);
+  const [isDark, setIsDark] = useRecoilState(isDarkState);
   const setShadow = useSetRecoilState(pageShadowState);
   const router = useRouter();
   const { mutate: mutateLogout } = useLogoutMutation();
@@ -37,6 +37,10 @@ function Header() {
         <Logo onClick={() => router.push(PATH.home.url)}>
           <LogoImg src={logoSrc} alt="logo" fill />
         </Logo>
+
+        <button type="button" onClick={() => setIsDark(!isDark)}>
+          dark/light
+        </button>
 
         <NavSection>
           <NavItems

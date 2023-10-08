@@ -55,19 +55,19 @@ export const PATH = {
   boards: {
     notice: {
       name: '공지사항',
-      url: '/boards/notice_board/1',
+      url: '/boards/notice_board',
     },
     full: {
       name: '정회원 게시판',
-      url: '/boards/full_member_board/1',
+      url: '/boards/full_member_board',
     },
     associate: {
       name: '준회원 게시판',
-      url: '/boards/associate_member_board/1',
+      url: '/boards/associate_member_board',
     },
     graduate: {
       name: '졸업생 게시판',
-      url: '/boards/graduate_member_board/1',
+      url: '/boards/graduate_member_board',
     },
     posts: {
       name: '글 쓰기',

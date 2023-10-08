@@ -20,8 +20,8 @@ export const darkTheme: DefaultTheme = {
   menuActive: COLORS.gray900,
   subMenuHover: COLORS.gray200,
   subMenuActive: COLORS.gray400,
-  sideMenuHover: COLORS.gray300,
-  sideMenuActive: '',
+  sideMenuHover: COLORS.gray700,
+  sideMenuActive: COLORS.gray700,
   sideMenuHighlight: COLORS.gray500,
 
   /* 버튼 색상 */
