@@ -1,16 +1,7 @@
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { styled } from 'styled-components';
 
 function Editor() {
-  return (
-    <Wrapper>
-      <CKEditor
-        editor={ClassicEditor}
-        data="<p>Hello from CKEditor&nbsp;5!</p>"
-      />
-    </Wrapper>
-  );
+  return <Wrapper />;
 }
 
 const Wrapper = styled.div`
@@ -34,6 +25,9 @@ const Wrapper = styled.div`
   }
   a {
     color: ${({ theme }) => theme.textPoint};
+  }
+  p {
+    margin: 0.5em 0;
   }
   font-size: 1.8rem;
 

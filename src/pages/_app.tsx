@@ -16,8 +16,9 @@ import Theme from '@src/components/Theme';
 import AdminLayout from '@src/components/molecules/Layout/AdminLayout';
 import CommonLayout from '@src/components/molecules/Layout/CommonLayout';
 import PopupWrapper from '@src/components/molecules/PopupWrapper';
-import { loginState } from '@src/atoms';
+import { accessTokenState, loginState } from '@src/atoms';
 import { ADMIN_PATH } from '@src/utils/urls';
+import PageShadow from '@src/components/common/PageShadow';
 
 interface MyAppProps extends AppProps {
   loginData: {
@@ -36,8 +37,8 @@ function App({ Component, pageProps, loginData }: MyAppProps) {
       ({ set }: MutableSnapshot) => {
         if (loginData.accessToken) {
           set(loginState, true);
+          set(accessTokenState, loginData.accessToken);
         } else if (loginData.refreshToken) {
-          // Todo. 재발급 API 요청
           set(loginState, true);
         } else {
           set(loginState, false);
@@ -52,6 +53,7 @@ function App({ Component, pageProps, loginData }: MyAppProps) {
         <RecoilRoot initializeState={initializer}>
           <Theme>
             <PopupWrapper />
+            <PageShadow />
             <Wrapper>
               {isAdminPage ? (
                 <AdminLayout>

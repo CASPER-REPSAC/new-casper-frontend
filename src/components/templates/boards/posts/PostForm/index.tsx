@@ -1,39 +1,45 @@
 import { KeyboardEvent } from 'react';
+import dynamic from 'next/dynamic';
 import { styled } from 'styled-components';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
 import Button from '@src/components/common/DefaultButton';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
+import usePostArticleMutation from '@src/hooks/apis/boards/usePostArticleMutation';
+import { PostReqData } from '@src/types/PostTypes';
 import { PLACEHOLDER } from '@src/utils/constants';
-import usePostArticle from '@src/hooks/apis/boards/usePostArticle';
-
-import dynamic from 'next/dynamic';
 
 const CKEditor = dynamic(() => import('@src/components/common/Editor'), {
   ssr: false,
 });
 
-interface PostFormData {
-  title: string;
-  content: string;
-  attachment: boolean;
-}
-
 function PostForm() {
-  const methods = useForm<PostFormData>();
-  const { register, handleSubmit } = methods;
-  const { mutate } = usePostArticle();
+  const defaultValues: PostReqData = {
+    boardId: 'notice_board',
+    category: 'all',
+    createdAt: '2023-01-01',
+    modifiedAt: '2023-01-01',
+    file: false,
+    hide: false,
+    notice: false,
+    nickname: 'test-name',
+    title: 'initial-test-title',
+    content: 'initial-test-content',
+    photo: 'test',
+  };
 
-  // const onChangeEditor = (e: ChangeEvent<HTMLTextAreaElement>) => {
-  //   setValue(e.currentTarget.value);
-  // };
+  const methods = useForm<PostReqData>({
+    defaultValues,
+  });
+  const { register, handleSubmit } = methods;
+  const { mutate } = usePostArticleMutation();
 
   const focusEditor = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       methods.setFocus('content');
     }
   };
-  const onValid: SubmitHandler<PostFormData> = async (data) => {
+  const onValid: SubmitHandler<PostReqData> = async (data) => {
     mutate(data);
   };
 

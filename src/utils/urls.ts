@@ -69,6 +69,10 @@ export const PATH = {
       name: '졸업생 게시판',
       url: '/boards/graduate_member_board',
     },
+    posts: {
+      name: '글 쓰기',
+      url: '/boards/posts',
+    },
   },
   members: {
     active: {

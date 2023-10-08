@@ -19,11 +19,10 @@ const Wrapper = styled.div`
   position: fixed;
   right: 0;
   top: 70px;
-
+  z-index: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: red;
 `;
 
 export default PopupWrapper;

@@ -10,12 +10,23 @@ declare module 'styled-components' {
     surfaceAlt: string;
     borderBold: string;
     borderDefault: string;
-    surfacePointDefault: string;
-    surfacePointAlt: string;
-    green100: string;
-    green200: string;
     white: string;
-    red100: string;
-    red200: string;
+    subMenuHover: string;
+    subMenuActive: string;
+    menuHover: string;
+    menuActive: string;
+    greenButton: string;
+    greenHover: string;
+    greenActive: string;
+    redButton: string;
+    redHover: string;
+    redActive: string;
+    pageTitleSurface: string;
+    sideMenuHover: string;
+    sideMenuActive: string;
+    sideMenuHighlight: string;
+    boardHover: string;
+    boardActive: string;
+    inputSurface: string;
   }
 }

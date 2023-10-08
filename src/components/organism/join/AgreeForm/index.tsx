@@ -45,7 +45,7 @@ function AgreeForm() {
 }
 
 const Info = styled.div`
-  background-color: ${({ theme }) => theme.surfacePointAlt};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   border: 1px solid ${({ theme }) => theme.borderDefault};
   border-radius: 3px;
   padding: 1em;

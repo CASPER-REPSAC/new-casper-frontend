@@ -19,7 +19,7 @@ function SideMenu({ menus }: Props) {
     <StyledLink key={menu.name} href={menu.url}>
       <Item>
         {menu.name}
-        {menu.url === asPath && <Highlight />}
+        {asPath.startsWith(menu.url) && <Highlight />}
       </Item>
     </StyledLink>
   ));
@@ -34,8 +34,6 @@ const Wrapper = styled.div`
   height: 100%;
   min-width: 230px;
   width: 230px;
-  border-right: 1px solid ${(props) => props.theme.borderDefault};
-  border-left: 1px solid ${(props) => props.theme.borderDefault};
   margin-right: 50px;
 `;
 const Item = styled.div`
@@ -45,14 +43,19 @@ const Item = styled.div`
   height: 40px;
   font-size: 2rem;
   align-items: center;
+  &:hover {
+    background-color: ${({ theme }) => theme.sideMenuHover};
+  }
 `;
 const Highlight = styled.div`
   position: absolute;
   left: 0px;
-  background-color: ${({ theme }) => theme.surfacePointAlt};
+  background-color: ${({ theme }) => theme.surfaceAlt};
+  border-right: 3px solid ${({ theme }) => theme.purple};
   width: 100%;
   height: 100%;
   z-index: -1;
+  margin-left: 2px;
 `;
 const StyledLink = styled(Link)`
   text-decoration: none;

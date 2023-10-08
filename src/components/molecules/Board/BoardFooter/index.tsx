@@ -48,7 +48,7 @@ const PageButton = styled.button<{ $highlight: boolean }>`
   ${({ $highlight, theme }) => {
     if ($highlight) {
       return css`
-        background-color: ${theme.surfacePointDefault};
+        background-color: ${theme.surfaceAlt};
         border: 1px solid ${theme.borderBold};
       `;
     }
