@@ -2,13 +2,14 @@ import DefaultButton from '@src/components/common/DefaultButton';
 import BoardBody from '@src/components/molecules/Board/BoardBody';
 import BoardFooter from '@src/components/molecules/Board/BoardFooter';
 import BoardHeader from '@src/components/molecules/Board/BoardHeader';
+import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
 function Board() {
   const router = useRouter();
   const onClickWrite = () => {
-    router.push(`${router.asPath}/posts`);
+    router.push(PATH.boards.posts.url);
   };
 
   return (

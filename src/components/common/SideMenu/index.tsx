@@ -19,7 +19,7 @@ function SideMenu({ menus }: Props) {
     <StyledLink key={menu.name} href={menu.url}>
       <Item>
         {menu.name}
-        {menu.url === asPath && <Highlight />}
+        {asPath.startsWith(menu.url) && <Highlight />}
       </Item>
     </StyledLink>
   ));
