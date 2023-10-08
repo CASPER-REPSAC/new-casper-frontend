@@ -11,8 +11,7 @@ import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';
 import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
-import { AiFillStar } from 'react-icons/ai';
-import { CgRename } from 'react-icons/Cg';
+import { AiFillStar, AiOutlineUser } from 'react-icons/ai';
 
 function NameForm() {
   const {
@@ -50,7 +49,7 @@ function NameForm() {
     <>
       <LabelInput
         label={INPUT_LABEL.name}
-        labelIcon={<CgRename size={25} />}
+        labelIcon={<AiOutlineUser size={25} />}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
         register={nameRegister}
