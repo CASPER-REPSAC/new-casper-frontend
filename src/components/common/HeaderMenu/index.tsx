@@ -28,10 +28,10 @@ const Wrapper = styled.div`
   width: 140px;
   position: relative;
   &:hover {
-    background-color: ${({ theme }) => theme.surfacePointAlt};
+    background-color: ${({ theme }) => theme.menuHover};
   }
   &:active {
-    background-color: ${({ theme }) => theme.surfacePointDefault};
+    background-color: ${({ theme }) => theme.menuActive};
   }
   cursor: pointer;
   padding: 0 1rem;

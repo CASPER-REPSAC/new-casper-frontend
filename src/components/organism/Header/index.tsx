@@ -71,7 +71,7 @@ const Wrapper = styled.div`
 
   width: 100vw;
   height: 60px;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 
 const CenterWrapper = styled(CommonCenterWrapper)`

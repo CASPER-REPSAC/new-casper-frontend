@@ -61,10 +61,13 @@ const colorCss = css<ButtonWrapperProps>`
     switch ($color) {
       case 'green':
         return css`
-          color: ${({ theme }) => theme.textWeek};
-          background-color: ${({ theme }) => theme.green100};
+          color: ${({ theme }) => theme.textDefault};
+          background-color: ${({ theme }) => theme.greenButton};
           &:hover {
-            background-color: ${({ theme }) => theme.green200};
+            background-color: ${({ theme }) => theme.greenHover};
+          }
+          &:active {
+            background-color: ${({ theme }) => theme.greenActive};
           }
         `;
       case 'red':

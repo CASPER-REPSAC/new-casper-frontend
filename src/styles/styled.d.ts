@@ -17,5 +17,14 @@ declare module 'styled-components' {
     white: string;
     red100: string;
     red200: string;
+    subMenuHover: string;
+    subMenuActive: string;
+    menuHover: string;
+    menuActive: string;
+
+    greenButton: string;
+    greenHover: string;
+    greenActive: string;
+    pageTitleBg: string;
   }
 }

@@ -7,20 +7,28 @@ export const darkTheme: DefaultTheme = {
   red100: COLORS.red100,
   red200: COLORS.red200,
 
-  textDefault: '#FFFFFF',
-  textStrong: '#FFFFFF',
-  textWeek: '#D2DAE0',
-  textPoint: '#4362D0',
+  textDefault: COLORS.white,
+  textStrong: COLORS.white,
+  textWeek: COLORS.gray50,
+  textPoint: COLORS.white,
 
-  subMenuHover: '',
-  subMenuActive: '',
-
-  borderDefault: '#444C56',
-  borderBold: '#FFFFFF',
-  surfaceDefault: '#14212B',
-  surfaceAlt: '#4B5966',
+  borderDefault: COLORS.gray600,
+  borderBold: COLORS.gray400,
+  surfaceDefault: COLORS.gray800,
+  surfaceAlt: COLORS.gray900,
   surfacePointDefault: '#12171C',
   surfacePointAlt: '#12171c82',
+
+  menuHover: COLORS.gray800,
+  menuActive: COLORS.gray900,
+  subMenuHover: COLORS.gray200,
+  subMenuActive: COLORS.gray400,
+
+  greenButton: COLORS.green400,
+  greenHover: COLORS.green300,
+  greenActive: COLORS.green500,
+
+  pageTitleBg: COLORS.gray900,
 
   white: '#FFFFFF',
 };
@@ -41,4 +49,14 @@ export const lightTheme: DefaultTheme = {
   white: '#FFFFFF',
   red100: '#CF222E',
   red200: '#af3f38',
+
+  // 아직 미지정
+  subMenuHover: COLORS.blueGrey200,
+  subMenuActive: COLORS.blueGrey600,
+  menuHover: '',
+  menuActive: '',
+  greenButton: '',
+  greenHover: '',
+  greenActive: '',
+  pageTitleBg: COLORS.gray900,
 };

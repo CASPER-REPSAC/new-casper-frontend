@@ -23,15 +23,15 @@ const Item = styled(Link)`
   font-size: 1.8rem;
   width: 100%;
   text-decoration: none;
-  color: white;
+  color: ${({ theme }) => theme.textDefault};
   padding: 1rem 1rem;
   box-sizing: border-box;
 
   &:hover {
-    color: ${({ theme }) => theme.textPoint};
+    color: ${({ theme }) => theme.subMenuHover};
   }
   &:active {
-    color: ${({ theme }) => theme.textStrong};
+    color: ${({ theme }) => theme.subMenuActive};
   }
 `;
 
