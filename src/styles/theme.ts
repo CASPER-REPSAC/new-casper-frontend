@@ -1,21 +1,28 @@
 import { DefaultTheme } from 'styled-components';
+import COLORS from './colors';
 
 export const darkTheme: DefaultTheme = {
+  green100: COLORS.green100,
+  green200: COLORS.green200,
+  red100: COLORS.red100,
+  red200: COLORS.red200,
+
   textDefault: '#FFFFFF',
   textStrong: '#FFFFFF',
   textWeek: '#D2DAE0',
   textPoint: '#4362D0',
+
+  subMenuHover: '',
+  subMenuActive: '',
+
   borderDefault: '#444C56',
   borderBold: '#FFFFFF',
   surfaceDefault: '#14212B',
   surfaceAlt: '#4B5966',
   surfacePointDefault: '#12171C',
   surfacePointAlt: '#12171c82',
-  green100: '#57ab5a',
-  green200: '#2b6a30',
+
   white: '#FFFFFF',
-  red100: '#E5534B',
-  red200: '#af3f38',
 };
 
 export const lightTheme: DefaultTheme = {

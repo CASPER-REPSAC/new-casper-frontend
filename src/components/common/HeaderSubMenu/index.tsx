@@ -31,7 +31,7 @@ const Item = styled(Link)`
     color: ${({ theme }) => theme.textPoint};
   }
   &:active {
-    background-color: ${({ theme }) => theme.surfacePointDefault};
+    color: ${({ theme }) => theme.textStrong};
   }
 `;
 

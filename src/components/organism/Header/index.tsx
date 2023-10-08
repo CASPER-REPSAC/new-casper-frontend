@@ -1,23 +1,35 @@
-import { isDarkState, pageShadowState } from '@src/atoms';
+import { isDarkState, loginState, pageShadowState } from '@src/atoms';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import NavItems from '@src/components/molecules/NavItems';
+import useLogoutMutation from '@src/hooks/apis/useLogoutMutation';
 import { PATH } from '@src/utils/urls';
 import Z_INDEX from '@src/utils/zIndex';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
+import {
+  AiOutlineLogout as LogoutIcon,
+  AiOutlineLogin as LoginIcon,
+  AiOutlineUser as UserIcon,
+} from 'react-icons/ai';
 import { useRecoilState, useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 function Header() {
+  const [login] = useRecoilState(loginState);
   const [isDark] = useRecoilState(isDarkState);
   const setShadow = useSetRecoilState(pageShadowState);
   const router = useRouter();
+  const { mutate: mutateLogout } = useLogoutMutation();
 
   const isHome = router.pathname === '/';
   const isDarkHome = isDark || isHome;
   const logoSrc = isDarkHome
     ? '/casper_logo_white.png'
     : '/casper_logo_black.png';
+
+  const logout = () => mutateLogout();
+  const redirectMypage = () => router.push(PATH.user.mypage.url);
+  const redirectLoginPage = () => router.push(PATH.user.login.url);
 
   return (
     <Wrapper>
@@ -26,10 +38,27 @@ function Header() {
           <LogoImg src={logoSrc} alt="logo" fill />
         </Logo>
 
-        <NavItems
-          onMouseOver={() => setShadow(true)}
-          onMouseOut={() => setShadow(false)}
-        />
+        <NavSection>
+          <NavItems
+            onMouseOver={() => setShadow(true)}
+            onMouseOut={() => setShadow(false)}
+          />
+
+          {login ? (
+            <>
+              <IconWrapper onClick={redirectMypage}>
+                <StyledUserIcon size={20} />
+              </IconWrapper>
+              <IconWrapper onClick={logout}>
+                <StyledLogoutIcon size={20} />
+              </IconWrapper>
+            </>
+          ) : (
+            <IconWrapper onClick={redirectLoginPage}>
+              <StyledLoginIcon size={20} />
+            </IconWrapper>
+          )}
+        </NavSection>
       </CenterWrapper>
     </Wrapper>
   );
@@ -48,6 +77,8 @@ const Wrapper = styled.div`
 const CenterWrapper = styled(CommonCenterWrapper)`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  height: 100%;
 `;
 const Logo = styled.div`
   position: relative;
@@ -57,6 +88,25 @@ const Logo = styled.div`
 `;
 const LogoImg = styled(Image)`
   object-fit: contain;
+`;
+const NavSection = styled.div`
+  display: flex;
+  height: 100%;
+`;
+const IconWrapper = styled.div`
+  display: flex;
+
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  cursor: pointer;
+`;
+const StyledUserIcon = styled(UserIcon)``;
+const StyledLoginIcon = styled(LoginIcon)`
+  cursor: pointer;
+`;
+const StyledLogoutIcon = styled(LogoutIcon)`
+  cursor: pointer;
 `;
 
 export default Header;

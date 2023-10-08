@@ -26,7 +26,7 @@ const Wrapper = styled.div<{ $visible: boolean }>`
   left: 0;
   width: 100vw;
   height: 100vh;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.7);
   transition: all 0.3s ease;
 `;
 export default PageShadow;
