@@ -18,7 +18,7 @@ function PageTitle({ pageTitle }: Props) {
 }
 
 const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.pageTitleBg};
+  background-color: ${({ theme }) => theme.pageTitleSurface};
   height: 120px;
   width: 100vw;
   color: ${(props) => props.theme.textStrong};

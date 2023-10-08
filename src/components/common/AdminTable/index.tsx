@@ -36,7 +36,7 @@ const TBody = styled.tbody`
   tr {
     border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
     &:hover {
-      background-color: ${({ theme }) => theme.surfacePointAlt};
+      background-color: ${({ theme }) => theme.surfaceAlt};
     }
   }
 `;

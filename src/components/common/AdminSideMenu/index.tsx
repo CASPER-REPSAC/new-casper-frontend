@@ -16,16 +16,16 @@ const Wrapper = styled.div<{ $highlight: boolean }>`
   width: 100%;
   cursor: pointer;
   &:hover {
-    background-color: ${({ theme }) => theme.surfacePointAlt};
+    background-color: ${({ theme }) => theme.surfaceAlt};
   }
   box-sizing: content-box;
 
   ${({ $highlight, theme }) =>
     $highlight &&
     css`
-      background-color: ${theme.surfacePointDefault};
+      background-color: ${theme.sideMenuHighlight};
       &:hover {
-        background-color: ${theme.surfacePointDefault};
+        background-color: ${theme.sideMenuHighlight};
       }
       border-right: 1px solid ${theme.white};
     `};

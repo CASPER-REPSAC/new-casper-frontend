@@ -1,16 +1,18 @@
-import { ReactNode, useState } from 'react';
+import { MouseEventHandler, ReactNode, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {
-  children: ReactNode;
   title: string;
+  children?: ReactNode;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function HeaderMenu({ children, title }: Props) {
+function HeaderMenu({ children, title, onClick }: Props) {
   const [subMenuVisible, setSubMenuVisible] = useState(false);
 
   return (
     <Wrapper
+      onClick={onClick}
       onMouseOver={() => setSubMenuVisible(true)}
       onMouseOut={() => setSubMenuVisible(false)}
     >

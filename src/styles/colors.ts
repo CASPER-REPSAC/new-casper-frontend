@@ -9,7 +9,9 @@ const COLORS = {
   gray600: '#454c55',
   gray700: '#383e46',
   gray800: '#2e333a',
+  gray850: '#282d33',
   gray900: '#22262d',
+  gray950: '#0f0f0f',
 
   green50: '#cbd4df',
   green100: '#a0d994',
@@ -32,6 +34,11 @@ const COLORS = {
   red700: '#862d28',
   red800: '#6e221f',
   red900: '#551715',
+
+  purple600: '#6546b5',
+  purple700: '#54389c',
+  purple800: '#432d7d',
+  purple900: '#33225d',
 
   blueGrey50: '#ECEFF1',
   blueGrey100: '#CFD8DC',

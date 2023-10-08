@@ -71,7 +71,7 @@ const Summary = styled.summary`
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background-color: ${({ theme }) => theme.surfacePointDefault};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   font-size: 2.4rem;
   padding: 0 1.2em;
   height: 60px;

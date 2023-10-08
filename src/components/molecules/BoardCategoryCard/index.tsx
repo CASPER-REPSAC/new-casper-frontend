@@ -19,7 +19,7 @@ function BoardCategoryCard({ title }: Props) {
 
 const CategoryItem = styled.li`
   list-style: none;
-  background-color: ${({ theme }) => theme.surfacePointDefault};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   padding: 0.4em 1em;
   display: flex;
   align-items: center;

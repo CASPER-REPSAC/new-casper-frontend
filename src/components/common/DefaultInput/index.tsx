@@ -16,7 +16,7 @@ export const DefaultInputStyle = css`
     outline: none;
     border-color: ${({ theme }) => theme.borderBold};
   }
-  background-color: ${({ theme }) => theme.surfacePointAlt};
+  background-color: ${({ theme }) => theme.inputSurface};
   border: 1px solid ${({ theme }) => theme.borderDefault};
   color: ${({ theme }) => theme.textDefault};
   border-radius: 3px;

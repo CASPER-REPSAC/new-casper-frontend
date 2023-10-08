@@ -1,6 +1,7 @@
 import HeaderMenu from '@src/components/common/HeaderMenu';
 import HeaderSubMenu from '@src/components/common/HeaderSubMenu';
-import { PATH } from '@src/utils/urls';
+import { ADMIN_PATH, PATH } from '@src/utils/urls';
+import { useRouter } from 'next/router';
 import { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 
@@ -10,8 +11,13 @@ interface Props {
 }
 
 function NavItems({ onMouseOver, onMouseOut }: Props) {
+  const router = useRouter();
   return (
     <Wrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+      <HeaderMenu
+        title="관리자-임시"
+        onClick={() => router.push(ADMIN_PATH.home.url)}
+      />
       <HeaderMenu title="Members">
         <HeaderSubMenu>
           <HeaderSubMenu.Item href={PATH.members.active.url}>
@@ -25,7 +31,6 @@ function NavItems({ onMouseOver, onMouseOut }: Props) {
           </HeaderSubMenu.Item>
         </HeaderSubMenu>
       </HeaderMenu>
-
       <HeaderMenu title="Boards">
         <HeaderSubMenu>
           <HeaderSubMenu.Item href={PATH.boards.notice.url}>
@@ -42,7 +47,6 @@ function NavItems({ onMouseOver, onMouseOut }: Props) {
           </HeaderSubMenu.Item>
         </HeaderSubMenu>
       </HeaderMenu>
-
       <HeaderMenu title="Intranet">
         <HeaderSubMenu>
           <HeaderSubMenu.Item href={PATH.extra.nas.url}>

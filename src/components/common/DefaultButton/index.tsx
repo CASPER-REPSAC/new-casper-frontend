@@ -72,10 +72,13 @@ const colorCss = css<ButtonWrapperProps>`
         `;
       case 'red':
         return css`
-          background-color: ${({ theme }) => theme.red100};
+          background-color: ${({ theme }) => theme.redButton};
           color: ${({ theme }) => theme.textDefault};
           &:hover {
-            background-color: ${({ theme }) => theme.red200};
+            background-color: ${({ theme }) => theme.redHover};
+          }
+          &:active {
+            background-color: ${({ theme }) => theme.redActive};
           }
         `;
       default:

@@ -47,7 +47,7 @@ const Table = styled.table`
 `;
 
 const Thead = styled.thead`
-  background-color: ${({ theme }) => theme.surfacePointDefault};
+  background-color: ${({ theme }) => theme.surfaceAlt};
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   border-top: 1px solid ${({ theme }) => theme.borderDefault};
   height: 2.4em;
@@ -57,7 +57,11 @@ const Tbody = styled.tbody`
   font-size: 1.6rem;
   tr:hover td {
     cursor: pointer;
-    background-color: ${({ theme }) => theme.surfacePointAlt};
+    background-color: ${({ theme }) => theme.boardHover};
+  }
+  tr:active td {
+    cursor: pointer;
+    background-color: ${({ theme }) => theme.boardActive};
   }
 `;
 const Tr = styled.tr`
