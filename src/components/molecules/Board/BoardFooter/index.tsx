@@ -1,6 +1,7 @@
+import PageCircleButton from '@src/components/common/PageCircleButton';
 import useRedirect from '@src/hooks/useRedirect';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
-import { css, styled } from 'styled-components';
+import { styled } from 'styled-components';
 
 interface Props {
   maxPage: number;
@@ -16,13 +17,13 @@ function BoardFooter({ maxPage, curPage }: Props) {
       <PageButtonSection>
         <MdKeyboardArrowLeft size={35} />
         {maxPageList.map((page) => (
-          <PageButton
+          <PageCircleButton
             key={page}
             $highlight={page === curPage}
             onClick={rediert(`${page}`)}
           >
             {page}
-          </PageButton>
+          </PageCircleButton>
         ))}
         <MdKeyboardArrowRight size={35} />
       </PageButtonSection>
@@ -36,27 +37,7 @@ const TableFooter = styled.div`
   width: 100%;
   flex-direction: column;
 `;
-const PageButton = styled.button<{ $highlight: boolean }>`
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
 
-  color: ${({ theme }) => theme.textWeek};
-  font-size: 1.6rem;
-  cursor: pointer;
-
-  ${({ $highlight, theme }) => {
-    if ($highlight) {
-      return css`
-        background-color: ${theme.surfaceAlt};
-        border: 1px solid ${theme.borderBold};
-      `;
-    }
-    return css`
-      border: 1px solid ${theme.borderDefault};
-    `;
-  }}
-`;
 const PageButtonSection = styled.div`
   display: flex;
   align-items: center;
