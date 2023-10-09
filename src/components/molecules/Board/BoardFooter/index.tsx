@@ -1,5 +1,5 @@
 import PageCircleButton from '@src/components/common/PageCircleButton';
-import useRedirect from '@src/hooks/useRedirect';
+import { useRouter } from 'next/router';
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { styled } from 'styled-components';
 
@@ -10,7 +10,8 @@ interface Props {
 
 function BoardFooter({ maxPage, curPage }: Props) {
   const maxPageList = Array.from({ length: maxPage }, (_, idx) => idx + 1);
-  const rediert = useRedirect();
+
+  const { push, asPath } = useRouter();
 
   return (
     <TableFooter>
@@ -20,7 +21,7 @@ function BoardFooter({ maxPage, curPage }: Props) {
           <PageCircleButton
             key={page}
             $highlight={page === curPage}
-            onClick={rediert(`${page}`)}
+            onClick={() => push(`${asPath}/../${page}`)}
           >
             {page}
           </PageCircleButton>
