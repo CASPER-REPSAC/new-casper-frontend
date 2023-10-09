@@ -16,7 +16,7 @@ function SideMenu({ menus }: Props) {
   const { asPath } = useRouter();
 
   const Menus = Object.values(menus).map((menu) => (
-    <StyledLink key={menu.name} href={menu.url}>
+    <StyledLink key={menu.name} href={`${menu.url}/1`}>
       <Item>
         {menu.name}
         {asPath.startsWith(menu.url) && <Highlight />}

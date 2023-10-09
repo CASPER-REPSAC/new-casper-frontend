@@ -25,6 +25,15 @@ const nextConfig = {
       },
     ];
   },
+  async redirects() {
+    return [
+      {
+        source: '/boards/:board_type',
+        destination: '/boards/:board_type/1',
+        permanent: true,
+      },
+    ];
+  },
 };
 
 module.exports = nextConfig;
