@@ -2,12 +2,17 @@ import DefaultButton from '@src/components/common/DefaultButton';
 import BoardBody from '@src/components/molecules/Board/BoardBody';
 import BoardFooter from '@src/components/molecules/Board/BoardFooter';
 import BoardHeader from '@src/components/molecules/Board/BoardHeader';
+import { ArticleData } from '@src/types/articleTypes';
 import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
-function Board() {
+interface Props {
+  articleList: ArticleData[];
+}
+
+function Board({ articleList }: Props) {
   const [curPage, setCurpage] = useState(1);
   const { push, query, isReady } = useRouter();
   const onClickWrite = () => {
@@ -26,7 +31,7 @@ function Board() {
   return (
     <Wrapper>
       <BoardHeader />
-      <BoardBody />
+      <BoardBody articleList={articleList} />
       <WriteButton type="small" onClick={onClickWrite}>
         작성 하기
       </WriteButton>

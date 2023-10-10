@@ -26,7 +26,7 @@ function BoardPage({ articleList }: Props) {
       <PageWrapper>
         <SideBar menus={PATH.boards} />
         <Main>
-          <Board />
+          <Board articleList={articleList} />
         </Main>
       </PageWrapper>
     </>
