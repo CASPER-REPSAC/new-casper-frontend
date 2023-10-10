@@ -1,5 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
-
 import styled from 'styled-components';
 import PageTitle from '@src/components/common/PageTitle';
 import SideBar from '@src/components/common/SideMenu';
@@ -9,45 +7,33 @@ import { PATH } from '@src/utils/urls';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
-import { API_URL, ARTICLE_LIST_API } from '@src/utils/apiUrl';
-import { ParsedUrlQuery } from 'querystring';
+import { ARTICLE_LIST_API } from '@src/utils/apiUrl';
+import { ArticleData } from '@src/types/articleTypes';
 
 /**
  *  게시판 메인 페이지
  */
 
-interface articleData {
-  file: boolean;
-  title: string;
-  createdAt: string;
-  articleId: number;
-  view: number;
-  hide: boolean;
-  numOfComments: number;
-  nickname: string;
-}
-
 interface Props {
-  articleList: articleData[];
+  articleList: ArticleData[];
 }
 
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function BoardPage({ articleList }: Props) {
-  // eslint-disable-next-line no-console
-  console.log(articleList);
   return (
     <>
       <PageTitle pageTitle={PAGE_TITLE.board} />
       <PageWrapper>
         <SideBar menus={PATH.boards} />
         <Main>
-          <Board />
+          <Board articleList={articleList} />
         </Main>
       </PageWrapper>
     </>
   );
 }
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = () => {
   const boardTypes = [
     'notice_board',
     'full_member_board',
@@ -55,19 +41,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
     'associate_member_board',
   ];
 
-  // todo max page api 호출
-  const maxPage = 7;
-  const paths: (
-    | string
-    | {
-        params: ParsedUrlQuery;
-        locale?: string | undefined;
-      }
-  )[] = [];
+  const paths: {
+    params: { [key: string]: string[] };
+  }[] = [];
+
   boardTypes.forEach((boardType) => {
-    for (let i = 0; i < maxPage; i += 1) {
-      const params = { board_type: boardType, page: String(i) };
-      paths.push({ params });
+    const maxPage = 5; // 임시
+    for (let page = 1; page < maxPage + 1; page += 1) {
+      paths.push({
+        params: {
+          board_params: [boardType, String(page)],
+        },
+      });
     }
   });
 
@@ -75,11 +60,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const bordType = params?.board_type;
-  const page = params?.page;
+  const boardParmas = params?.board_params;
 
+  if (
+    !boardParmas ||
+    typeof boardParmas === 'string' ||
+    boardParmas.length < 1
+  ) {
+    return { props: { articleList: null } };
+  }
+
+  const [boardType, page] = boardParmas;
   const res = await axios.get(
-    `${API_URL}${ARTICLE_LIST_API}/${bordType}/all/${page}`,
+    `http://build.casper.or.kr${ARTICLE_LIST_API}/${boardType}/all/${page}`,
   );
   const { data: articleList } = res;
   return { props: { articleList } };
@@ -90,23 +83,3 @@ const Main = styled.div`
 `;
 
 export default BoardPage;
-
-/**
- * 
- * 
-  paths: [
-    {
-      params: {
-        board_type: 'notice',
-        page: 1
-      },
-    },
-    {
-      params: {
-        board_type: 'notice',
-        page: 2
-      },
-    },
-  ],
-
- */

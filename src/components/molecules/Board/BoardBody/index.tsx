@@ -1,14 +1,20 @@
+import { ArticleData } from '@src/types/articleTypes';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
-function BoardBody() {
-  const router = useRouter();
-  const {
-    query: { board_type: boardType },
-  } = router;
+interface Props {
+  articleList: ArticleData[];
+}
 
-  const safeBoardType = Array.isArray(boardType) ? boardType[0] : boardType;
+interface ArticleProps {
+  articleId: number;
+  title: string;
+  view: number;
+  nickname: string;
+  createdAt: string;
+}
 
+function BoardBody({ articleList }: Props) {
   return (
     <Table>
       <Thead>
@@ -22,24 +28,48 @@ function BoardBody() {
       </Thead>
 
       <Tbody>
-        {[1, 2, 3].map((val) => (
-          <Tr
-            key={val}
-            onClick={() => {
-              router.push(`/boards/${safeBoardType}/${val}`);
-            }}
-          >
-            <TdCenter>{val}</TdCenter>
-            <td>{val}번째 게시글 입니다.</td>
-            <TdCenter>박지성</TdCenter>
-            <TdCenter>2023.01.01</TdCenter>
-            <TdCenter>101</TdCenter>
-          </Tr>
-        ))}
+        {articleList.map(
+          ({ article_id, title, view, nickname, created_at }) => (
+            <Article
+              key={article_id}
+              articleId={article_id}
+              title={title}
+              view={view}
+              nickname={nickname}
+              createdAt={created_at}
+            />
+          ),
+        )}
       </Tbody>
     </Table>
   );
 }
+
+function Article({
+  articleId,
+  title,
+  view,
+  nickname,
+  createdAt,
+}: ArticleProps) {
+  const router = useRouter();
+
+  const createdTime = new Date(createdAt).toLocaleDateString();
+  const redirectToDetailPage = () => {
+    router.push(`/boards/detail/${articleId}`);
+  };
+
+  return (
+    <Tr key={articleId} onClick={redirectToDetailPage}>
+      <TdCenter>{articleId}</TdCenter>
+      <td>{title}</td>
+      <TdCenter>{nickname}</TdCenter>
+      <TdCenter>{createdTime}</TdCenter>
+      <TdCenter>{view}</TdCenter>
+    </Tr>
+  );
+}
+
 const Table = styled.table`
   font-size: 1.6rem;
   width: 100%;
