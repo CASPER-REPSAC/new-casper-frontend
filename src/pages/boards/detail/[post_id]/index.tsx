@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import { PATH } from '@src/utils/urls';
-import SideMenu from '@src/components/common/SideMenu';
+import SideMenu from '@src/components/organism/BoardSideMenu';
 import CommentSection from '@src/components/templates/detail/CommentSection';
 import ContentSection from '@src/components/templates/detail/ContentSection';
 /**

@@ -1,14 +1,13 @@
 import styled from 'styled-components';
 import PageTitle from '@src/components/common/PageTitle';
-import SideBar from '@src/components/common/SideMenu';
 import Board from '@src/components/templates/boards/Board';
 import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import { PATH } from '@src/utils/urls';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
 import { ARTICLE_LIST_API } from '@src/utils/apiUrl';
 import { ArticleData } from '@src/types/articleTypes';
+import SideMenu from '@src/components/organism/BoardSideMenu';
 
 /**
  *  게시판 메인 페이지
@@ -24,7 +23,7 @@ function BoardPage({ articleList }: Props) {
     <>
       <PageTitle pageTitle={PAGE_TITLE.board} />
       <PageWrapper>
-        <SideBar menus={PATH.boards} />
+        <SideMenu />
         <Main>
           <Board articleList={articleList} />
         </Main>
