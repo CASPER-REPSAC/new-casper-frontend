@@ -54,7 +54,7 @@ function Article({
 }: ArticleProps) {
   const router = useRouter();
 
-  const createdTime = new Date(createdAt).toLocaleDateString();
+  const [createDate] = createdAt.split('T');
   const redirectToDetailPage = () => {
     router.push(`/boards/detail/${articleId}`);
   };
@@ -64,7 +64,7 @@ function Article({
       <TdCenter>{articleId}</TdCenter>
       <td>{title}</td>
       <TdCenter>{nickname}</TdCenter>
-      <TdCenter>{createdTime}</TdCenter>
+      <TdCenter>{createDate}</TdCenter>
       <TdCenter>{view}</TdCenter>
     </Tr>
   );
