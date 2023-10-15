@@ -9,7 +9,7 @@ import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 interface Props {
-  articleList: ArticleData[];
+  articleList: ArticleData[] | null;
 }
 
 function Board({ articleList }: Props) {

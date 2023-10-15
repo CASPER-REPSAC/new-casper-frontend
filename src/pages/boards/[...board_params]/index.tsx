@@ -8,13 +8,14 @@ import axios from 'axios';
 import { ARTICLE_LIST_API } from '@src/utils/apiUrl';
 import { ArticleData } from '@src/types/articleTypes';
 import BoardSideMenu from '@src/components/organism/BoardSideMenu';
+import { ParsedUrlQuery } from 'querystring';
 
 /**
  *  게시판 메인 페이지
  */
 
 interface Props {
-  articleList: ArticleData[];
+  articleList: ArticleData[] | null;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -55,22 +56,22 @@ export const getStaticPaths: GetStaticPaths = () => {
     }
   });
 
-  return { paths, fallback: true };
+  return { paths, fallback: false };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const boardParmas = params?.board_params;
-  const isValidParmas =
-    !boardParmas || typeof boardParmas === 'string' || boardParmas.length < 1;
-  if (isValidParmas) {
-    return { props: { articleList: null } };
-  }
+interface IParams extends ParsedUrlQuery {
+  board_params: string[];
+}
 
-  const [boardType, page] = boardParmas;
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { board_params: boardParams } = params as IParams;
+  const [boardType, page] = boardParams;
+
   const res = await axios.get(
     `http://build.casper.or.kr${ARTICLE_LIST_API}/${boardType}/all/${page}`,
   );
   const { data: articleList } = res;
+
   return { props: { articleList } };
 };
 
