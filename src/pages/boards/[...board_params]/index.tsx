@@ -7,7 +7,7 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
 import { ARTICLE_LIST_API } from '@src/utils/apiUrl';
 import { ArticleData } from '@src/types/articleTypes';
-import SideMenu from '@src/components/organism/BoardSideMenu';
+import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 
 /**
  *  게시판 메인 페이지
@@ -23,7 +23,7 @@ function BoardPage({ articleList }: Props) {
     <>
       <PageTitle pageTitle={PAGE_TITLE.board} />
       <PageWrapper>
-        <SideMenu />
+        <BoardSideMenu />
         <Main>
           <Board articleList={articleList} />
         </Main>
@@ -55,17 +55,14 @@ export const getStaticPaths: GetStaticPaths = () => {
     }
   });
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const boardParmas = params?.board_params;
-
-  if (
-    !boardParmas ||
-    typeof boardParmas === 'string' ||
-    boardParmas.length < 1
-  ) {
+  const isValidParmas =
+    !boardParmas || typeof boardParmas === 'string' || boardParmas.length < 1;
+  if (isValidParmas) {
     return { props: { articleList: null } };
   }
 

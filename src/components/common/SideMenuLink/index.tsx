@@ -6,7 +6,7 @@ interface Props {
   highlight: boolean;
   href: string;
 }
-function SideMenuItem({ name, highlight, href }: Props) {
+function SideMenuLink({ name, highlight, href }: Props) {
   return (
     <Wrapper href={href}>
       {name}
@@ -40,4 +40,4 @@ const Highlight = styled.div`
   margin-left: 2px;
 `;
 
-export default SideMenuItem;
+export default SideMenuLink;

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import { PATH } from '@src/utils/urls';
-import SideMenu from '@src/components/organism/BoardSideMenu';
 import CommentSection from '@src/components/templates/detail/CommentSection';
 import ContentSection from '@src/components/templates/detail/ContentSection';
+import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 /**
  *  글 조회 페이지
  */
@@ -14,7 +13,7 @@ function PostDetail() {
     <>
       <PageTitle pageTitle="Boards" />
       <CommonCenterWrapper>
-        <SideMenu menus={PATH.boards} />
+        <BoardSideMenu />
         <Main>
           <ContentSection />
           <Hr />
