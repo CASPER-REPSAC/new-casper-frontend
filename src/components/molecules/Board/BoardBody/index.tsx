@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
 interface Props {
-  articleList: ArticleData[];
+  articleList: ArticleData[] | null;
 }
 
 interface ArticleProps {
@@ -28,18 +28,19 @@ function BoardBody({ articleList }: Props) {
       </Thead>
 
       <Tbody>
-        {articleList.map(
-          ({ article_id, title, view, nickname, created_at }) => (
-            <Article
-              key={article_id}
-              articleId={article_id}
-              title={title}
-              view={view}
-              nickname={nickname}
-              createdAt={created_at}
-            />
-          ),
-        )}
+        {articleList &&
+          articleList.map(
+            ({ article_id, title, view, nickname, created_at }) => (
+              <Article
+                key={article_id}
+                articleId={article_id}
+                title={title}
+                view={view}
+                nickname={nickname}
+                createdAt={created_at}
+              />
+            ),
+          )}
       </Tbody>
     </Table>
   );
@@ -54,7 +55,7 @@ function Article({
 }: ArticleProps) {
   const router = useRouter();
 
-  const createdTime = new Date(createdAt).toLocaleDateString();
+  const [createDate] = createdAt.split('T');
   const redirectToDetailPage = () => {
     router.push(`/boards/detail/${articleId}`);
   };
@@ -64,7 +65,7 @@ function Article({
       <TdCenter>{articleId}</TdCenter>
       <td>{title}</td>
       <TdCenter>{nickname}</TdCenter>
-      <TdCenter>{createdTime}</TdCenter>
+      <TdCenter>{createDate}</TdCenter>
       <TdCenter>{view}</TdCenter>
     </Tr>
   );

@@ -1,21 +1,21 @@
 import styled from 'styled-components';
 import PageTitle from '@src/components/common/PageTitle';
-import SideBar from '@src/components/common/SideMenu';
 import Board from '@src/components/templates/boards/Board';
 import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import { PATH } from '@src/utils/urls';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
 import { ARTICLE_LIST_API } from '@src/utils/apiUrl';
 import { ArticleData } from '@src/types/articleTypes';
+import BoardSideMenu from '@src/components/organism/BoardSideMenu';
+import { ParsedUrlQuery } from 'querystring';
 
 /**
  *  게시판 메인 페이지
  */
 
 interface Props {
-  articleList: ArticleData[];
+  articleList: ArticleData[] | null;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -24,7 +24,7 @@ function BoardPage({ articleList }: Props) {
     <>
       <PageTitle pageTitle={PAGE_TITLE.board} />
       <PageWrapper>
-        <SideBar menus={PATH.boards} />
+        <BoardSideMenu />
         <Main>
           <Board articleList={articleList} />
         </Main>
@@ -59,22 +59,19 @@ export const getStaticPaths: GetStaticPaths = () => {
   return { paths, fallback: false };
 };
 
+interface IParams extends ParsedUrlQuery {
+  board_params: string[];
+}
+
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const boardParmas = params?.board_params;
+  const { board_params: boardParams } = params as IParams;
+  const [boardType, page] = boardParams;
 
-  if (
-    !boardParmas ||
-    typeof boardParmas === 'string' ||
-    boardParmas.length < 1
-  ) {
-    return { props: { articleList: null } };
-  }
-
-  const [boardType, page] = boardParmas;
   const res = await axios.get(
     `http://build.casper.or.kr${ARTICLE_LIST_API}/${boardType}/all/${page}`,
   );
   const { data: articleList } = res;
+
   return { props: { articleList } };
 };
 
