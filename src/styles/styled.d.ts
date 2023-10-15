@@ -29,5 +29,6 @@ declare module 'styled-components' {
     boardActive: string;
     inputSurface: string;
     notAllowedCorsor: string;
+    redError: string;
   }
 }

@@ -18,6 +18,7 @@ function EmailForm() {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useFormContext<JoinFormData>();
   const router = useRouter();
@@ -38,6 +39,12 @@ function EmailForm() {
     });
   };
 
+  const buttonActive = !(
+    Object.keys(errors).includes('email') ||
+    errors === undefined ||
+    getValues('email') === ''
+  );
+
   return (
     <>
       <LabelInput
@@ -53,7 +60,11 @@ function EmailForm() {
           <li>{errors.email.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton type="large" onClick={handleSubmit(onValid)}>
+      <DefaultButton
+        type="large"
+        onClick={handleSubmit(onValid)}
+        active={buttonActive}
+      >
         다음 단계
       </DefaultButton>
     </>

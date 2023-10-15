@@ -39,6 +39,8 @@ export const darkTheme: DefaultTheme = {
   boardActive: COLORS.gray600,
 
   notAllowedCorsor: COLORS.gray100,
+
+  redError: COLORS.red400,
 };
 
 export const lightTheme: DefaultTheme = {
@@ -75,4 +77,5 @@ export const lightTheme: DefaultTheme = {
   redHover: '',
   redActive: '',
   notAllowedCorsor: COLORS.gray100,
+  redError: COLORS.red400,
 };

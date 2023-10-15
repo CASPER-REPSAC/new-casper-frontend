@@ -56,9 +56,9 @@ const Input = styled(DefaultInput)<InputProps>`
   ${({ $hasError }) =>
     $hasError &&
     css`
-      border: 1px solid ${({ theme }) => theme.red100};
+      border: 1px solid ${({ theme }) => theme.redError};
       &:focus {
-        border: 1px solid ${({ theme }) => theme.red100};
+        border: 1px solid ${({ theme }) => theme.redError};
       }
     `}
   padding-left: ${({ $hasIcon }) => ($hasIcon ? '50px' : 'none')};
@@ -72,9 +72,7 @@ const Label = styled.label<{ $size: LabelSizeType }>`
   font-size: ${({ $size }) => $size === 'small' && '1.4rem'};
   font-size: ${({ $size }) => $size === 'medium' && '1.6rem'};
   font-size: ${({ $size }) => $size === 'large' && '1.8rem'};
-
   display: inline-block;
-
   margin-bottom: 0.5em;
 `;
 const Icon = styled.div`
