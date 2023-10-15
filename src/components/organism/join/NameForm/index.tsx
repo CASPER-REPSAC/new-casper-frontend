@@ -17,6 +17,7 @@ function NameForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useFormContext<JoinFormData>();
   const router = useRouter();
@@ -45,6 +46,12 @@ function NameForm() {
     });
   };
 
+  const buttonActive =
+    !errors.name &&
+    !errors.nickname &&
+    !(watch('name') === '') &&
+    !(watch('nickname') === '');
+
   return (
     <>
       <LabelInput
@@ -63,7 +70,11 @@ function NameForm() {
         register={nickNameRegister}
         hasError={!!errors.nickname}
       />
-      <DefaultButton type="large" onClick={handleSubmit(onValid)}>
+      <DefaultButton
+        type="large"
+        onClick={handleSubmit(onValid)}
+        active={buttonActive}
+      >
         다음 단계
       </DefaultButton>
     </>
