@@ -20,6 +20,8 @@ function AgreeForm() {
     });
   };
 
+  const buttonActive = watch('agree') === true && watch('agree') !== undefined;
+
   return (
     <>
       <CheckInput
@@ -40,7 +42,7 @@ function AgreeForm() {
       <DefaultButton
         type="large"
         onClick={handleSubmit(onValid)}
-        active={watch('agree')}
+        active={buttonActive}
       >
         다음 단계
       </DefaultButton>

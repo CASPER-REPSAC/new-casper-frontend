@@ -18,7 +18,7 @@ function EmailForm() {
   const {
     register,
     handleSubmit,
-    getValues,
+    watch,
     formState: { errors },
   } = useFormContext<JoinFormData>();
   const router = useRouter();
@@ -39,11 +39,8 @@ function EmailForm() {
     });
   };
 
-  const buttonActive = !(
-    Object.keys(errors).includes('email') ||
-    errors === undefined ||
-    getValues('email') === ''
-  );
+  const buttonActive =
+    !errors.email && watch('email') !== '' && watch('email') !== undefined;
 
   return (
     <>

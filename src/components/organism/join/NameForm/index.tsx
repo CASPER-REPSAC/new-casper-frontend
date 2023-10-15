@@ -49,8 +49,10 @@ function NameForm() {
   const buttonActive =
     !errors.name &&
     !errors.nickname &&
-    !(watch('name') === '') &&
-    !(watch('nickname') === '');
+    watch('name') !== '' &&
+    watch('nickname') !== '' &&
+    watch('name') !== undefined &&
+    watch('nickname') !== undefined;
 
   return (
     <>

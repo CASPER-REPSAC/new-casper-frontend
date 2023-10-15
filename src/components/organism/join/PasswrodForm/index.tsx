@@ -17,6 +17,7 @@ function PasswordForm() {
     register,
     handleSubmit,
     getValues,
+    watch,
     formState: { errors },
   } = useFormContext<JoinFormData>();
 
@@ -40,6 +41,15 @@ function PasswordForm() {
     // eslint-disable-next-line no-console
     console.log(data);
   };
+
+  const buttonActive =
+    !errors.pw &&
+    !errors.pwConfirm &&
+    watch('pw') !== '' &&
+    watch('pwConfirm') !== '' &&
+    watch('pw') !== undefined &&
+    watch('pwConfirm') !== undefined;
+
   return (
     <>
       <LabelInput
@@ -59,13 +69,17 @@ function PasswordForm() {
         autoComplete="off"
         type="password"
       />
-      {(errors.pw || errors.pwConfirm) && (
+      {!buttonActive && (
         <FormErrorWrapper>
           {errors.pw && <li>{errors.pw.message}</li>}
           {errors.pwConfirm && <li>{errors.pwConfirm.message}</li>}
         </FormErrorWrapper>
       )}
-      <DefaultButton type="large" onClick={handleSubmit(onValid)}>
+      <DefaultButton
+        type="large"
+        onClick={handleSubmit(onValid)}
+        active={buttonActive}
+      >
         완료
       </DefaultButton>
     </>
