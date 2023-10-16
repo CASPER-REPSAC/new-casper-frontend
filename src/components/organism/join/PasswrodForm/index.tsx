@@ -8,9 +8,14 @@ import {
   ERROR_MESSAGE,
   INPUT_LABEL,
   PLACEHOLDER,
+  POPUP_MESSAGE,
+  POPUP_TIME,
   REQUIRED_MESSAGE,
 } from '@src/utils/constants';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
+import useJoinMutation from '@src/hooks/apis/useJoinMutation';
+import { useCallback, useEffect } from 'react';
+import usePopup from '@src/hooks/usePopup';
 
 function PasswordForm() {
   const {
@@ -20,6 +25,8 @@ function PasswordForm() {
     watch,
     formState: { errors },
   } = useFormContext<JoinFormData>();
+  const { mutate, isSuccess } = useJoinMutation();
+  const { openAndDeletePopup } = usePopup();
 
   const pwRegister = register('pw', {
     required: REQUIRED_MESSAGE.pw,
@@ -38,9 +45,23 @@ function PasswordForm() {
   });
 
   const onValid: SubmitHandler<JoinFormData> = (data) => {
-    // eslint-disable-next-line no-console
-    console.log(data);
+    const { id, pw, email, name, nickname } = data;
+    mutate({ id, pw, email, name, nickname });
   };
+
+  // util 또는 hooks로 분리 할지 고민 필요한 함수
+  const redirectAndNotice = useCallback(() => {
+    if (!isSuccess) {
+      return;
+    }
+    openAndDeletePopup({
+      key: Date.now(),
+      message: POPUP_MESSAGE.succeedJoin,
+      time: POPUP_TIME.medium,
+    });
+  }, [isSuccess, openAndDeletePopup]);
+
+  useEffect(() => redirectAndNotice(), [redirectAndNotice]);
 
   const buttonActive =
     !errors.pw &&

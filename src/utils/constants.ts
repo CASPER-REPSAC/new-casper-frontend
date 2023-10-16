@@ -64,6 +64,7 @@ export const POPUP_TIME = {
 
 export const POPUP_MESSAGE = {
   succeedPost: '게시글 작성 완료.',
+  succeedJoin: '회원가입 되었습니다.',
   logout: '로그아웃 되었습니다.',
   logoutError: '로그아웃 실패.',
 };
