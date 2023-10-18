@@ -54,8 +54,6 @@ function NameForm() {
     watch('name') !== undefined &&
     watch('nickname') !== undefined;
 
-  console.log('nameForm');
-
   return (
     <>
       <LabelInput
