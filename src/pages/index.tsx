@@ -4,12 +4,15 @@ import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapp
 import TitelSection from '@src/components/templates/home/TitleSection';
 import NoticeSection from '@src/components/templates/home/NoticeSection';
 import PageInfoSection from '@src/components/templates/home/PageInfoSection';
+import { useRecoilState } from 'recoil';
+import { accessTokenState } from '@src/atoms';
 
 function Home() {
   const [page, setPage] = useState(0);
   const bgImgs = ['background1.jpg', 'background2.jpg'];
   const maxPage = bgImgs.length;
-
+  const [accessToken] = useRecoilState(accessTokenState);
+  console.log(accessToken);
   return (
     <>
       <Background src={bgImgs[page]} />

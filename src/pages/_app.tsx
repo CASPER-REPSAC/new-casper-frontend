@@ -19,6 +19,7 @@ import PopupWrapper from '@src/components/molecules/PopupWrapper';
 import { accessTokenState, loginState } from '@src/atoms';
 import { ADMIN_PATH } from '@src/utils/urls';
 import PageShadow from '@src/components/common/PageShadow';
+import axios from 'axios';
 
 interface MyAppProps extends AppProps {
   loginData: {
@@ -38,8 +39,10 @@ function App({ Component, pageProps, loginData }: MyAppProps) {
         if (loginData.accessToken) {
           set(loginState, true);
           set(accessTokenState, loginData.accessToken);
+          axios.defaults.headers.common.Authorization = `Bearer ${loginData.accessToken}`;
         } else if (loginData.refreshToken) {
           set(loginState, true);
+          axios.defaults.headers.common.Authorization = `Bearer ${loginData.accessToken}`;
         } else {
           set(loginState, false);
         }
