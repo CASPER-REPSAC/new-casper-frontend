@@ -4,7 +4,7 @@ const FormErrorWrapper = styled.ul`
   display: flex;
   flex-direction: column;
   gap: 0.6em;
-  color: ${({ theme }) => theme.red100};
+  color: ${({ theme }) => theme.redError};
   font-size: 1.4rem;
   margin: 0;
 `;

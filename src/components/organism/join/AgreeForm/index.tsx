@@ -7,7 +7,7 @@ import { SubmitHandler, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
 function AgreeForm() {
-  const { register, handleSubmit } = useFormContext<JoinFormData>();
+  const { register, handleSubmit, watch } = useFormContext<JoinFormData>();
   const router = useRouter();
   const agreeRegister = register('agree');
 
@@ -19,6 +19,8 @@ function AgreeForm() {
       query: { 'funnel-step': nextStep },
     });
   };
+
+  const buttonActive = watch('agree') === true && watch('agree') !== undefined;
 
   return (
     <>
@@ -37,7 +39,11 @@ function AgreeForm() {
           <Point>보유 및 이용기간:</Point> 회원 탈퇴 시 까지
         </Li>
       </Info>
-      <DefaultButton type="large" onClick={handleSubmit(onValid)}>
+      <DefaultButton
+        type="large"
+        onClick={handleSubmit(onValid)}
+        active={buttonActive}
+      >
         다음 단계
       </DefaultButton>
     </>

@@ -9,6 +9,22 @@ export interface JoinFormData {
   agree: boolean;
 }
 
+export interface JoinReqData {
+  id: string;
+  pw: string;
+  email: string;
+  name: string;
+  nickname: string;
+}
+
+export interface JoinResData {
+  id: string;
+  pw: string;
+  email: string;
+  name: string;
+  nickname: string;
+}
+
 export type StepType =
   | 'agree'
   | 'email'

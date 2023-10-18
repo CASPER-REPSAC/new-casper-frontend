@@ -18,6 +18,7 @@ function IdForm() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useFormContext<JoinFormData>();
   const router = useRouter();
@@ -38,6 +39,9 @@ function IdForm() {
     });
   };
 
+  const buttonActive =
+    !errors.id && watch('id') !== '' && watch('id') !== undefined;
+
   return (
     <>
       <LabelInput
@@ -52,7 +56,11 @@ function IdForm() {
           <li>{errors.id?.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton type="large" onClick={handleSubmit(onValid)}>
+      <DefaultButton
+        type="large"
+        onClick={handleSubmit(onValid)}
+        active={buttonActive}
+      >
         완료
       </DefaultButton>
     </>

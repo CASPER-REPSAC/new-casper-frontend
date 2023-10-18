@@ -37,6 +37,10 @@ export const darkTheme: DefaultTheme = {
   pageTitleSurface: COLORS.gray900,
   boardHover: COLORS.gray700,
   boardActive: COLORS.gray600,
+
+  notAllowedCorsor: COLORS.gray100,
+
+  redError: COLORS.red400,
 };
 
 export const lightTheme: DefaultTheme = {
@@ -72,4 +76,6 @@ export const lightTheme: DefaultTheme = {
   redButton: '',
   redHover: '',
   redActive: '',
+  notAllowedCorsor: COLORS.gray100,
+  redError: COLORS.red400,
 };

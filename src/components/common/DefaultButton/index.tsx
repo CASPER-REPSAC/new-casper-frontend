@@ -7,20 +7,31 @@ interface ButtonWrapperProps {
   $type: ButtonType;
   $full: boolean;
   $color: ButtonColor;
+  $active?: boolean;
 }
 export interface DefaultButtonProps extends HTMLAttributes<HTMLButtonElement> {
   type?: ButtonType;
   full?: boolean;
   color?: ButtonColor;
+  active?: boolean;
 }
 
 function DefaultButton({
   type = 'medium',
   full = false,
   color = 'green',
+  active = true,
   ...props
 }: DefaultButtonProps) {
-  return <ButtonWrapper $type={type} $full={full} $color={color} {...props} />;
+  return (
+    <ButtonWrapper
+      $type={type}
+      $full={full}
+      $color={color}
+      $active={active}
+      {...props}
+    />
+  );
 }
 
 const sizeCss = css<ButtonWrapperProps>`
@@ -56,7 +67,16 @@ const fullCss = css<ButtonWrapperProps>`
       width: 100%;
     `}
 `;
-const colorCss = css<ButtonWrapperProps>`
+
+const inActiveColorCss = css<ButtonWrapperProps>`
+  cursor: not-allowed;
+  background-color: ${({ theme }) => theme.notAllowedCorsor};
+  color: ${({ theme }) => theme.textWeek};
+`;
+
+const activeColorCss = css<ButtonWrapperProps>`
+  cursor: pointer;
+
   ${({ $color }) => {
     switch ($color) {
       case 'green':
@@ -91,6 +111,9 @@ const colorCss = css<ButtonWrapperProps>`
     }
   }};
 `;
+const colorCss = css<ButtonWrapperProps>`
+  ${({ $active }) => ($active ? activeColorCss : inActiveColorCss)}
+`;
 
 const ButtonWrapper = styled.button<ButtonWrapperProps>`
   ${sizeCss};
@@ -101,7 +124,6 @@ const ButtonWrapper = styled.button<ButtonWrapperProps>`
   justify-content: center;
   align-items: center;
   border-radius: 3px;
-  cursor: pointer;
 `;
 
 export default DefaultButton;
