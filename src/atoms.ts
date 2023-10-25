@@ -11,6 +11,11 @@ export const loginState = atom({
   default: false,
 });
 
+export const myProfile = atom({
+  key: 'myProfile',
+  default: '',
+});
+
 export const accessTokenState = atom<string | undefined>({
   key: 'accessToken',
   default: undefined,

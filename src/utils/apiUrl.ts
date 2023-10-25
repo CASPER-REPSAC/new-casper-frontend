@@ -9,3 +9,4 @@ export const BOARD_API = '/api/list/board/{num}';
 export const ARTICLE_LIST_API = '/api/article'; // + {boardID}/{articleID}
 export const POST_ARTICLE_API = '/api/article/write';
 export const COMMENT_WRITE_API = '/api/article/write';
+export const MEMBER_API = '/api/user/show';
