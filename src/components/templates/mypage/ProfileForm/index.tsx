@@ -21,7 +21,7 @@ function ProfileForm() {
   const { data, isLoading } = useProfile();
 
   if (isLoading) {
-    return 'loading';
+    return <>loading</>;
   }
 
   return (
