@@ -18,7 +18,6 @@ interface Props {
   articleList: ArticleData[] | null;
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 function BoardPage({ articleList }: Props) {
   return (
     <>
@@ -33,7 +32,7 @@ function BoardPage({ articleList }: Props) {
   );
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths: GetStaticPaths = async () => {
   const boardTypes = [
     'notice_board',
     'full_member_board',
@@ -66,11 +65,17 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { board_params: boardParams } = params as IParams;
   const [boardType, page] = boardParams;
+  let articleList: ArticleData | null;
 
-  const res = await axios.get(
-    `http://build.casper.or.kr${ARTICLE_LIST_API}/${boardType}/all/${page}`,
-  );
-  const { data: articleList } = res;
+  try {
+    const res = await axios.get(
+      `http://build.casper.or.kr${ARTICLE_LIST_API}/${boardType}/all/${page}`,
+    );
+    articleList = res.data;
+  } catch (e) {
+    articleList = null;
+    throw e;
+  }
 
   return { props: { articleList } };
 };

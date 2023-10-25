@@ -7,6 +7,7 @@ import { INPUT_LABEL, PLACEHOLDER } from '@src/utils/constants';
 import LabelTextarea from '@src/components/molecules/Inputs/LabelTextarea';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import DefaultForm from '@src/components/common/DefaultForm';
+import useProfile from '@src/hooks/apis/useProfile';
 
 function ProfileForm() {
   const { register } = useForm();
@@ -16,6 +17,12 @@ function ProfileForm() {
   const nicknameRegister = register('nickname', { required: true });
   const groupRegister = register('group', { required: true });
   const blogRegister = register('blog', { required: true });
+
+  const { data, isLoading } = useProfile();
+
+  if (isLoading) {
+    return <>loading</>;
+  }
 
   return (
     <Form>
@@ -32,18 +39,21 @@ function ProfileForm() {
         register={nameRegister}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
+        defaultValue={data?.data.name}
       />
       <LabelInput
         label={INPUT_LABEL.nickname}
         register={nicknameRegister}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
+        defaultValue={data?.data.nickname}
       />
       <LabelInput
         label={INPUT_LABEL.group}
         register={groupRegister}
         placeholder={PLACEHOLDER.group}
         autoComplete="off"
+        defaultValue={data?.data.role}
       />
       <LabelInput
         label={INPUT_LABEL.social}
