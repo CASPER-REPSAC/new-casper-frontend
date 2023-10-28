@@ -52,6 +52,10 @@ export const PATH = {
     name: '홈',
     url: '/',
   },
+  posts: {
+    name: '글 쓰기',
+    url: '/posts',
+  },
   boards: {
     notice: {
       name: '공지사항',
@@ -68,10 +72,6 @@ export const PATH = {
     graduate: {
       name: '졸업생 게시판',
       url: '/boards/graduate_member_board',
-    },
-    posts: {
-      name: '글 쓰기',
-      url: '/boards/posts',
     },
   },
   members: {

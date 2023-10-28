@@ -41,9 +41,21 @@ export const darkTheme: DefaultTheme = {
   notAllowedCorsor: COLORS.gray100,
 
   redError: COLORS.red400,
+
+  /* 에디터 색상 */
+  toolbarBg: COLORS.gray900,
+  toolbarBorder: COLORS.gray800,
+  toolbarHover: COLORS.gray200,
+  toolbarActive: COLORS.white,
+  toolbarDefault: COLORS.gray500,
+  editorBg: COLORS.gray900,
+  editorBorder: COLORS.gray700,
+  toolbarOptionBg: COLORS.gray400,
 };
 
 export const lightTheme: DefaultTheme = {
+  purple: COLORS.purple600,
+
   textDefault: '#5F6E76',
   textStrong: '#14212B',
   textWeek: '#879298',
@@ -78,4 +90,13 @@ export const lightTheme: DefaultTheme = {
   redActive: '',
   notAllowedCorsor: COLORS.gray100,
   redError: COLORS.red400,
+  /* 에디터 색상 */
+  toolbarBg: COLORS.gray900,
+  toolbarBorder: COLORS.gray800,
+  toolbarHover: COLORS.gray200,
+  toolbarActive: COLORS.white,
+  toolbarDefault: COLORS.gray500,
+  editorBg: COLORS.gray900,
+  editorBorder: COLORS.gray700,
+  toolbarOptionBg: COLORS.gray400,
 };
