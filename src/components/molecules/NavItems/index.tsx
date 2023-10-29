@@ -33,16 +33,16 @@ function NavItems({ onMouseOver, onMouseOut }: Props) {
       </HeaderMenu>
       <HeaderMenu title="Boards">
         <HeaderSubMenu>
-          <HeaderSubMenu.Item href={`${PATH.boards.notice.url}/1`}>
+          <HeaderSubMenu.Item href={`${PATH.boards.notice.url}/list/1`}>
             {PATH.boards.notice.name}
           </HeaderSubMenu.Item>
-          <HeaderSubMenu.Item href={`${PATH.boards.full.url}/1`}>
+          <HeaderSubMenu.Item href={`${PATH.boards.full.url}/list/1`}>
             {PATH.boards.full.name}
           </HeaderSubMenu.Item>
-          <HeaderSubMenu.Item href={`${PATH.boards.associate.url}/1`}>
+          <HeaderSubMenu.Item href={`${PATH.boards.associate.url}/list/1`}>
             {PATH.boards.associate.name}
           </HeaderSubMenu.Item>
-          <HeaderSubMenu.Item href={`${PATH.boards.graduate.url}/1`}>
+          <HeaderSubMenu.Item href={`${PATH.boards.graduate.url}/list/1`}>
             {PATH.boards.graduate.name}
           </HeaderSubMenu.Item>
         </HeaderSubMenu>

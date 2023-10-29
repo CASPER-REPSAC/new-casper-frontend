@@ -4,11 +4,12 @@ import Board from '@src/components/templates/boards/Board';
 import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import axios from 'axios';
 import { API_URL, ARTICLE_LIST_API } from '@src/utils/apiUrl';
 import { ArticleData } from '@src/types/articleTypes';
 import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 import { ParsedUrlQuery } from 'querystring';
+import { SsrError } from '@src/types/errorTypes';
+import Error from '@src/pages/_error';
 
 /**
  *  게시판 메인 페이지
@@ -16,9 +17,12 @@ import { ParsedUrlQuery } from 'querystring';
 
 interface Props {
   articleList: ArticleData[] | null;
+  error: SsrError | null;
 }
 
-function BoardPage({ articleList }: Props) {
+function BoardPage({ articleList, error }: Props) {
+  if (error) return <Error statusCode={error.statusCode} />;
+
   return (
     <>
       <PageTitle pageTitle={PAGE_TITLE.board} />
@@ -32,6 +36,11 @@ function BoardPage({ articleList }: Props) {
   );
 }
 
+interface PathParams extends ParsedUrlQuery {
+  boardType: string;
+  page: string;
+}
+
 export const getStaticPaths: GetStaticPaths = async () => {
   const boardTypes = [
     'notice_board',
@@ -39,40 +48,37 @@ export const getStaticPaths: GetStaticPaths = async () => {
     'graduate_member_board',
     'associate_member_board',
   ];
-
-  const paths: {
-    params: { [key: string]: string[] };
-  }[] = [];
+  const paths: { params: PathParams }[] = [];
 
   boardTypes.forEach((boardType) => {
     const maxPage = 5; // 임시
     for (let page = 1; page < maxPage + 1; page += 1) {
       paths.push({
         params: {
-          board_params: [boardType, String(page)],
+          boardType,
+          page: String(page),
         },
       });
     }
   });
 
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
-interface IParams extends ParsedUrlQuery {
-  board_params: string[];
-}
-
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { board_params: boardParams } = params as IParams;
-  const [boardType, page] = boardParams;
+  const { boardType, page } = params as PathParams;
+  const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
 
-  const res = await axios.get<ArticleData>(
-    `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`,
-  );
+  const res = await fetch(onePageOfArticleListApiUrl);
+  const error: SsrError | null = res.ok
+    ? null
+    : {
+        message: '몰라',
+        statusCode: res.status,
+      };
+  const articleList: ArticleData = await res.json();
 
-  const articleList = res.data;
-
-  return { props: { articleList } };
+  return { props: { articleList, error } };
 };
 
 const Main = styled.div`

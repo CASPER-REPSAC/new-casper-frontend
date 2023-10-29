@@ -36,7 +36,6 @@ export default function useLoginMutation() {
 
     setAccessToken(data.accessToken);
     setLogin(true);
-    axios.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
     push(PATH.home.url);
   };
 

@@ -1,4 +1,5 @@
 import { ArticleData } from '@src/types/articleTypes';
+import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
@@ -57,7 +58,7 @@ function Article({
 
   const [createDate] = createdAt.split('T');
   const redirectToDetailPage = () => {
-    router.push(`/boards/detail/${articleId}`);
+    router.push(`${PATH.boards.notice.url}/detail/${articleId}`);
   };
 
   return (

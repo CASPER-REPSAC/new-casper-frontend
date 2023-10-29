@@ -20,12 +20,12 @@ function Board({ articleList }: Props) {
   };
 
   useEffect(() => {
-    const { board_params: boardParams } = query;
-    if (!isReady || !boardParams || typeof boardParams === 'string') {
+    const { page } = query;
+    if (!isReady || typeof page !== 'string') {
       return;
     }
-    const page = parseInt(boardParams[1], 10);
-    setCurpage(page);
+    const pageInt = parseInt(page, 10);
+    setCurpage(pageInt);
   }, [isReady, query]);
 
   return (

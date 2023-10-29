@@ -29,7 +29,7 @@ const nextConfig = {
     return [
       {
         source: '/boards/:board_type',
-        destination: '/boards/:board_type/1',
+        destination: '/boards/:board_type/list/1',
         permanent: true,
       },
     ];
