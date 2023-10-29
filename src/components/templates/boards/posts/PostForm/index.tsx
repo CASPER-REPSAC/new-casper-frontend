@@ -44,7 +44,6 @@ function PostForm() {
     }
   };
   const onValid: SubmitHandler<PostReqData> = async (data) => {
-    console.log(data);
     mutate(data);
   };
 

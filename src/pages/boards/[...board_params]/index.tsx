@@ -66,8 +66,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { board_params: boardParams } = params as IParams;
   const [boardType, page] = boardParams;
 
-  console.log(boardType, page);
-
   const res = await axios.get<ArticleData>(
     `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`,
   );
