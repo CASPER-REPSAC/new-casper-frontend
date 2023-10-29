@@ -19,6 +19,7 @@ import {
   LuItalic,
 } from 'react-icons/lu';
 import { InlineType } from '@src/types/toolbarTypes';
+import DraftTextStyle from '@src/components/common/DraftTextStyle';
 
 function DraftEditor() {
   const { setValue } = useFormContext<PostReqData>();
@@ -135,36 +136,25 @@ function DraftEditor() {
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(DraftTextStyle)`
   background-color: ${({ theme }) => theme.inputSurface};
   .DraftEditor-root {
-    width: 100%;
     height: 500px;
-    overflow-y: auto;
   }
-  .DraftEditor-editorContainer,
-  .public-DraftEditor-content {
-    box-sizing: border-box;
-
-    font-size: 2.6rem;
-    padding: 0 1rem;
-    div {
-      line-height: 1.4em;
-    }
-  }
+  padding: 1rem 4rem;
 `;
 
 const Toolbar = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  padding: 0 1rem;
   height: 50px;
+  gap: 1rem;
 `;
 const Hr = styled.div`
   height: 1px;
   background-color: ${({ theme }) => theme.borderDefault};
-  margin: 0 1rem 1rem 1rem;
+  margin: 1rem 0rem 3rem;
 `;
 const Vr = styled.div`
   width: 1px;

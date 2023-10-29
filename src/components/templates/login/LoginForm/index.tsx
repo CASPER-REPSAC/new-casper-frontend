@@ -11,7 +11,7 @@ import useLoginMutation, {
 import usePopup from '@src/hooks/usePopup';
 import {
   PLACEHOLDER,
-  POPUP_TIME,
+  POPUP_DURATION,
   REQUIRED_MESSAGE,
 } from '@src/utils/constants';
 
@@ -30,13 +30,13 @@ function LoginForm() {
       openAndDeletePopup({
         key: Date.now(),
         message: errors.id.message,
-        time: POPUP_TIME.medium,
+        duration: POPUP_DURATION.medium,
       });
     } else if (errors.pw && errors.pw.message) {
       openAndDeletePopup({
         key: Date.now(),
         message: errors.pw.message,
-        time: POPUP_TIME.medium,
+        duration: POPUP_DURATION.medium,
       });
     }
   };

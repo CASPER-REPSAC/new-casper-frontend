@@ -56,7 +56,7 @@ export const REQUIRED_MESSAGE = {
   birthday: '생일을 입력해 주세요.',
 };
 
-export const POPUP_TIME = {
+export const POPUP_DURATION = {
   short: 3000,
   medium: 5000,
   long: 7000,
@@ -67,4 +67,5 @@ export const POPUP_MESSAGE = {
   succeedJoin: '회원가입 되었습니다.',
   logout: '로그아웃 되었습니다.',
   logoutError: '로그아웃 실패.',
+  failedToLoadDetail: '상세 내용을 불러 올 수 없습니다.',
 };

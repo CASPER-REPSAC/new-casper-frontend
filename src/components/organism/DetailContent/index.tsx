@@ -1,13 +1,22 @@
+import DraftView from '@src/components/molecules/Editor/DraftView';
+import { ArticleDetail } from '@src/types/articleTypes';
 import { styled } from 'styled-components';
 
-function ContentSection() {
+interface Props {
+  articleDetail: ArticleDetail;
+}
+
+function DetailContent({ articleDetail }: Props) {
+  const { title, nickname, content } = articleDetail;
+
   return (
     <>
-      <Title>test</Title>
+      <Title>{title}</Title>
+      <DraftView content={content} />
       <AuthorInfo>
         <Avatar />
         <Info>
-          <AuthorName>이름</AuthorName>
+          <AuthorName>{nickname}</AuthorName>
           <Desc>소개글</Desc>
         </Info>
       </AuthorInfo>
@@ -15,7 +24,7 @@ function ContentSection() {
   );
 }
 
-export default ContentSection;
+export default DetailContent;
 
 const Title = styled.h1`
   font-size: 600%;

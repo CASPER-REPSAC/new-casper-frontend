@@ -2,7 +2,7 @@ import { accessTokenState } from '@src/atoms';
 import usePopup from '@src/hooks/usePopup';
 import { PostReqData } from '@src/types/PostTypes';
 import { POST_ARTICLE_API } from '@src/utils/apiUrl';
-import { POPUP_MESSAGE, POPUP_TIME } from '@src/utils/constants';
+import { POPUP_MESSAGE, POPUP_DURATION } from '@src/utils/constants';
 import { PATH } from '@src/utils/urls';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -25,7 +25,7 @@ export default function usePostArticleMutation() {
     openAndDeletePopup({
       key: Date.now(),
       message: POPUP_MESSAGE.succeedPost,
-      time: POPUP_TIME.medium,
+      duration: POPUP_DURATION.medium,
     });
     push(PATH.boards.notice.url);
   };

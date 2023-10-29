@@ -7,15 +7,7 @@ import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import usePostArticleMutation from '@src/hooks/apis/boards/usePostArticleMutation';
 import { PostReqData } from '@src/types/PostTypes';
 import { PLACEHOLDER } from '@src/utils/constants';
-import dynamic from 'next/dynamic';
-import 'draft-js/dist/Draft.css';
-
-const Editor = dynamic(
-  async () => import('@src/components/organism/Editor/DraftEditor'),
-  {
-    ssr: false,
-  },
-);
+import DraftEditor from '@src/components/molecules/Editor/DraftEditor';
 
 function PostForm() {
   const defaultValues: PostReqData = {
@@ -66,7 +58,7 @@ function PostForm() {
         </TitleSection>
 
         <EditorSection>
-          <Editor />
+          <DraftEditor />
         </EditorSection>
 
         <ButtonSection>
