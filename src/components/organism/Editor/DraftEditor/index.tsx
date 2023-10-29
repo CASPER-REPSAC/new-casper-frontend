@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import { MouseEvent, ReactNode, useEffect, useState } from 'react';
-import { EditorState, Editor, RichUtils, DraftBlockType } from 'draft-js';
+import {
+  EditorState,
+  Editor,
+  RichUtils,
+  DraftBlockType,
+  convertToRaw,
+} from 'draft-js';
 import { useFormContext } from 'react-hook-form';
 import { PostReqData } from '@src/types/PostTypes';
 import ToolbarButton from '@src/components/common/ToolbarButton/indx';
@@ -59,12 +65,16 @@ function DraftEditor() {
   ];
 
   const handleChange = (state: EditorState) => {
+    const content = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent()),
+    );
     setEditorState(state);
-    setValue('content', state);
+    setValue('content', content);
   };
 
   const handleInlineStyle = (e: MouseEvent, inlineStyle: string) => {
     e.preventDefault();
+    e.stopPropagation();
     const newEditorState = RichUtils.toggleInlineStyle(
       editorState,
       inlineStyle,
@@ -98,6 +108,7 @@ function DraftEditor() {
       <Toolbar>
         {blockButtons.map(({ icon, action }) => (
           <ToolbarButton
+            key={action}
             highlight={blockState === action}
             icon={icon}
             onClick={(e) => {
@@ -105,9 +116,10 @@ function DraftEditor() {
             }}
           />
         ))}
-
+        <Vr />
         {inlineButtons.map(({ icon, action }) => (
           <ToolbarButton
+            key={action}
             highlight={inlineState[action]}
             icon={icon}
             onClick={(e) => {
@@ -116,6 +128,7 @@ function DraftEditor() {
           />
         ))}
       </Toolbar>
+      <Hr />
 
       <Editor editorState={editorState} onChange={handleChange} />
     </Wrapper>
@@ -123,22 +136,41 @@ function DraftEditor() {
 }
 
 const Wrapper = styled.div`
+  background-color: ${({ theme }) => theme.inputSurface};
   .DraftEditor-root {
-    background-color: ${({ theme }) => theme.editorBg};
-    height: 500px;
     width: 100%;
+    height: 500px;
     overflow-y: auto;
   }
   .DraftEditor-editorContainer,
   .public-DraftEditor-content {
+    box-sizing: border-box;
+
     font-size: 2.6rem;
-    height: 100%;
-    padding: 1rem;
+    padding: 0 1rem;
+    div {
+      line-height: 1.4em;
+    }
   }
 `;
 
 const Toolbar = styled.div`
   display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1rem;
+  height: 50px;
+`;
+const Hr = styled.div`
+  height: 1px;
+  background-color: ${({ theme }) => theme.borderDefault};
+  margin: 0 1rem 1rem 1rem;
+`;
+const Vr = styled.div`
+  width: 1px;
+  margin: 0 1rem;
+  height: 60%;
+  background-color: ${({ theme }) => theme.borderDefault};
 `;
 
 export default DraftEditor;

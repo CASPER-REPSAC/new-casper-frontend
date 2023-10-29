@@ -1,5 +1,3 @@
-import { EditorState } from 'draft-js';
-
 export interface PostReqData {
   boardId: string;
   category: string;
@@ -10,6 +8,6 @@ export interface PostReqData {
   notice: boolean;
   nickname: string;
   title: string;
-  content: EditorState | null;
+  content: string | null;
   photo: string;
 }
