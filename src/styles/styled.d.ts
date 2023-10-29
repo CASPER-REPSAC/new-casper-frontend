@@ -2,6 +2,7 @@ import 'styled-components';
 
 declare module 'styled-components' {
   export interface DefaultTheme {
+    purple: string;
     textStrong: string;
     textWeek: string;
     textDefault: string;
@@ -30,5 +31,13 @@ declare module 'styled-components' {
     inputSurface: string;
     notAllowedCorsor: string;
     redError: string;
+    toolbarBg: string;
+    toolbarBorder: string;
+    toolbarHover: string;
+    toolbarActive: string;
+    toolbarDefault: string;
+    editorBg: string;
+    editorBorder: string;
+    toolbarOptionBg: string;
   }
 }

@@ -1,5 +1,4 @@
 import '@src/styles/reset.css';
-import '@src/styles/editor.css';
 
 import type { AppContext, AppProps } from 'next/app';
 import { useRouter } from 'next/router';

@@ -8,6 +8,6 @@ export interface PostReqData {
   notice: boolean;
   nickname: string;
   title: string;
-  content: string;
+  content: string | null;
   photo: string;
 }

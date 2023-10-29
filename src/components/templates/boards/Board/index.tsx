@@ -16,7 +16,7 @@ function Board({ articleList }: Props) {
   const [curPage, setCurpage] = useState(1);
   const { push, query, isReady } = useRouter();
   const onClickWrite = () => {
-    push(PATH.boards.posts.url);
+    push(PATH.posts.url);
   };
 
   useEffect(() => {

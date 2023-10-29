@@ -1,0 +1,176 @@
+import styled from 'styled-components';
+import { MouseEvent, ReactNode, useEffect, useState } from 'react';
+import {
+  EditorState,
+  Editor,
+  RichUtils,
+  DraftBlockType,
+  convertToRaw,
+} from 'draft-js';
+import { useFormContext } from 'react-hook-form';
+import { PostReqData } from '@src/types/PostTypes';
+import ToolbarButton from '@src/components/common/ToolbarButton/indx';
+
+import {
+  LuBold,
+  LuHeading1,
+  LuHeading2,
+  LuHeading3,
+  LuItalic,
+} from 'react-icons/lu';
+import { InlineType } from '@src/types/toolbarTypes';
+
+function DraftEditor() {
+  const { setValue } = useFormContext<PostReqData>();
+  const [editorState, setEditorState] = useState(() =>
+    EditorState.createEmpty(),
+  );
+  const [inlineState, setInlineState] = useState<{
+    [key in InlineType]: boolean;
+  }>({
+    BOLD: false,
+    ITALIC: false,
+  });
+  const [blockState, setBlockState] = useState('unstyled');
+
+  const inlineButtons: {
+    icon: ReactNode;
+    action: InlineType;
+  }[] = [
+    {
+      icon: <LuBold size={30} />,
+      action: 'BOLD',
+    },
+    {
+      icon: <LuItalic size={30} />,
+      action: 'ITALIC',
+    },
+  ];
+  const blockButtons: {
+    icon: ReactNode;
+    action: string;
+  }[] = [
+    {
+      icon: <LuHeading1 size={40} />,
+      action: 'header-one',
+    },
+    {
+      icon: <LuHeading2 size={40} />,
+      action: 'header-two',
+    },
+    {
+      icon: <LuHeading3 size={40} />,
+      action: 'header-three',
+    },
+  ];
+
+  const handleChange = (state: EditorState) => {
+    const content = JSON.stringify(
+      convertToRaw(editorState.getCurrentContent()),
+    );
+    setEditorState(state);
+    setValue('content', content);
+  };
+
+  const handleInlineStyle = (e: MouseEvent, inlineStyle: string) => {
+    e.preventDefault();
+    e.stopPropagation();
+    const newEditorState = RichUtils.toggleInlineStyle(
+      editorState,
+      inlineStyle,
+    );
+    setEditorState(newEditorState);
+  };
+
+  const handleBlockType = (e: MouseEvent, blockType: DraftBlockType) => {
+    e.preventDefault();
+    const newEditorState = RichUtils.toggleBlockType(editorState, blockType);
+    setEditorState(newEditorState);
+  };
+
+  useEffect(() => {
+    const currentSelection = editorState.getSelection();
+    const currentKey = currentSelection.getStartKey();
+    const currentBlock = editorState
+      .getCurrentContent()
+      .getBlockForKey(currentKey);
+    const currentBlockType = currentBlock.getType();
+
+    const bold = editorState.getCurrentInlineStyle().has('BOLD');
+    const italic = editorState.getCurrentInlineStyle().has('ITALIC');
+
+    setBlockState(currentBlockType);
+    setInlineState({ BOLD: bold, ITALIC: italic });
+  }, [editorState]);
+
+  return (
+    <Wrapper>
+      <Toolbar>
+        {blockButtons.map(({ icon, action }) => (
+          <ToolbarButton
+            key={action}
+            highlight={blockState === action}
+            icon={icon}
+            onClick={(e) => {
+              handleBlockType(e, action);
+            }}
+          />
+        ))}
+        <Vr />
+        {inlineButtons.map(({ icon, action }) => (
+          <ToolbarButton
+            key={action}
+            highlight={inlineState[action]}
+            icon={icon}
+            onClick={(e) => {
+              handleInlineStyle(e, action);
+            }}
+          />
+        ))}
+      </Toolbar>
+      <Hr />
+
+      <Editor editorState={editorState} onChange={handleChange} />
+    </Wrapper>
+  );
+}
+
+const Wrapper = styled.div`
+  background-color: ${({ theme }) => theme.inputSurface};
+  .DraftEditor-root {
+    width: 100%;
+    height: 500px;
+    overflow-y: auto;
+  }
+  .DraftEditor-editorContainer,
+  .public-DraftEditor-content {
+    box-sizing: border-box;
+
+    font-size: 2.6rem;
+    padding: 0 1rem;
+    div {
+      line-height: 1.4em;
+    }
+  }
+`;
+
+const Toolbar = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 0 1rem;
+  height: 50px;
+`;
+const Hr = styled.div`
+  height: 1px;
+  background-color: ${({ theme }) => theme.borderDefault};
+  margin: 0 1rem 1rem 1rem;
+`;
+const Vr = styled.div`
+  width: 1px;
+  margin: 0 1rem;
+  height: 60%;
+  background-color: ${({ theme }) => theme.borderDefault};
+`;
+
+export default DraftEditor;

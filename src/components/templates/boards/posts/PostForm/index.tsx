@@ -1,5 +1,4 @@
 import { KeyboardEvent } from 'react';
-import dynamic from 'next/dynamic';
 import { styled } from 'styled-components';
 import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
@@ -8,10 +7,15 @@ import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import usePostArticleMutation from '@src/hooks/apis/boards/usePostArticleMutation';
 import { PostReqData } from '@src/types/PostTypes';
 import { PLACEHOLDER } from '@src/utils/constants';
+import dynamic from 'next/dynamic';
+import 'draft-js/dist/Draft.css';
 
-const CKEditor = dynamic(() => import('@src/components/common/Editor'), {
-  ssr: false,
-});
+const Editor = dynamic(
+  async () => import('@src/components/organism/Editor/DraftEditor'),
+  {
+    ssr: false,
+  },
+);
 
 function PostForm() {
   const defaultValues: PostReqData = {
@@ -24,7 +28,7 @@ function PostForm() {
     notice: false,
     nickname: 'test-name',
     title: 'initial-test-title',
-    content: 'initial-test-content',
+    content: null,
     photo: 'test',
   };
 
@@ -62,7 +66,7 @@ function PostForm() {
         </TitleSection>
 
         <EditorSection>
-          <CKEditor />
+          <Editor />
         </EditorSection>
 
         <ButtonSection>

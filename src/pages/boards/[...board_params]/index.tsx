@@ -5,7 +5,7 @@ import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import axios from 'axios';
-import { ARTICLE_LIST_API } from '@src/utils/apiUrl';
+import { API_URL, ARTICLE_LIST_API } from '@src/utils/apiUrl';
 import { ArticleData } from '@src/types/articleTypes';
 import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 import { ParsedUrlQuery } from 'querystring';
@@ -65,17 +65,12 @@ interface IParams extends ParsedUrlQuery {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { board_params: boardParams } = params as IParams;
   const [boardType, page] = boardParams;
-  let articleList: ArticleData | null;
 
-  try {
-    const res = await axios.get(
-      `http://build.casper.or.kr${ARTICLE_LIST_API}/${boardType}/all/${page}`,
-    );
-    articleList = res.data;
-  } catch (e) {
-    articleList = null;
-    throw e;
-  }
+  const res = await axios.get<ArticleData>(
+    `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`,
+  );
+
+  const articleList = res.data;
 
   return { props: { articleList } };
 };
