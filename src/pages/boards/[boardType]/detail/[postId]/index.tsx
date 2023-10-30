@@ -50,7 +50,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths: { params: PathParams }[] = [];
 
   boardTypes.forEach((boardType) => {
-    const maxPage = 100; // 임시
+    const maxPage = 30; // 임시
     for (let page = 1; page < maxPage + 1; page += 1) {
       paths.push({
         params: {
