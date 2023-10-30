@@ -3,28 +3,32 @@ import { ArticleDetail } from '@src/types/articleTypes';
 import { styled } from 'styled-components';
 
 interface Props {
-  articleDetail: ArticleDetail;
+  articleDetail: ArticleDetail | null;
 }
 
 function DetailContent({ articleDetail }: Props) {
-  const { title, nickname, content } = articleDetail;
-
   return (
-    <>
-      <Title>{title}</Title>
-      <DraftView content={content} />
-      <AuthorInfo>
-        <Avatar />
-        <Info>
-          <AuthorName>{nickname}</AuthorName>
-          <Desc>소개글</Desc>
-        </Info>
-      </AuthorInfo>
-    </>
+    <Wrapper>
+      {articleDetail && (
+        <>
+          <Title>{articleDetail.title}</Title>
+          <DraftView content={articleDetail.content} />
+          <AuthorInfo>
+            <Avatar />
+            <Info>
+              <AuthorName>{articleDetail.nickname}</AuthorName>
+              <Desc>소개글</Desc>
+            </Info>
+          </AuthorInfo>
+        </>
+      )}
+    </Wrapper>
   );
 }
 
 export default DetailContent;
+
+const Wrapper = styled.div``;
 
 const Title = styled.h1`
   font-size: 600%;

@@ -15,7 +15,7 @@ import Error from '@src/pages/_error';
  */
 
 interface Props {
-  articleDetail: ArticleDetail;
+  articleDetail: ArticleDetail | null;
   error: SsrError | null;
 }
 

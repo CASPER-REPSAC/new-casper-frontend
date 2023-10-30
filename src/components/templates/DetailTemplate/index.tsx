@@ -4,7 +4,7 @@ import { ArticleDetail } from '@src/types/articleTypes';
 import styled from 'styled-components';
 
 interface Props {
-  articleDetail: ArticleDetail;
+  articleDetail: ArticleDetail | null;
 }
 
 function DetailTemplate({ articleDetail }: Props) {
