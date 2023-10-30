@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
-import { isDarkState } from '@src/atoms';
+import { isDarkState } from '@src/atoms/atoms';
 import LoginForm from '@src/components/templates/login/LoginForm';
 import styled from 'styled-components';
 import { PATH } from '@src/utils/urls';

@@ -1,4 +1,4 @@
-import { popupListState } from '@src/atoms';
+import { popupListState } from '@src/atoms/atoms';
 import ToastPopup from '@src/components/common/ToastPopup';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';

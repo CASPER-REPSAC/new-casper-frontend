@@ -3,8 +3,9 @@ import {
   isDarkState,
   loginState,
   pageShadowState,
-} from '@src/atoms';
+} from '@src/atoms/atoms';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
+import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
 import NavItems from '@src/components/molecules/NavItems';
 import useLogoutMutation from '@src/hooks/apis/useLogoutMutation';
 import { PATH } from '@src/utils/urls';
@@ -75,6 +76,7 @@ function Header() {
           )}
         </NavSection>
       </CenterWrapper>
+      <LoadingProgressBar />
     </Wrapper>
   );
 }
