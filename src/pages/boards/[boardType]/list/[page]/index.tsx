@@ -11,6 +11,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
 import Error from '@src/pages/_error';
 import axios from 'axios';
+import handleErrorStaticProps from '@src/utils/handleErrorStaticProps';
 
 /**
  *  게시판 메인 페이지
@@ -66,23 +67,15 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { boardType, page } = params as PathParams;
-  const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
-  const { data, status } = await axios.get<ArticleData>(
-    onePageOfArticleListApiUrl,
-  );
+export const getStaticProps: GetStaticProps = handleErrorStaticProps(
+  async ({ params }) => {
+    const { boardType, page } = params as PathParams;
+    const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
+    const { data } = await axios.get<ArticleData>(onePageOfArticleListApiUrl);
 
-  if (status < 200 || status >= 300) {
-    const error: SsrError = {
-      message: 'ss',
-      statusCode: status,
-    };
-    return { props: { articleList: null, error } };
-  }
-
-  return { props: { articleList: data } };
-};
+    return { props: { articleList: data }, revalidate: 5 };
+  },
+);
 
 const Main = styled.div`
   display: flex;

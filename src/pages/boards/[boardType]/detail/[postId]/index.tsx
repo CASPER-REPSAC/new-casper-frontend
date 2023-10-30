@@ -10,6 +10,7 @@ import { ArticleDetail } from '@src/types/articleTypes';
 import { SsrError } from '@src/types/errorTypes';
 import DetailTemplate from '@src/components/templates/DetailTemplate';
 import Error from '@src/pages/_error';
+import handleErrorStaticProps from '@src/utils/handleErrorStaticProps';
 /**
  *  글 조회 페이지
  */
@@ -64,22 +65,16 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const { postId } = params as PathParams;
-  const { data, status } = await axios.get<ArticleDetail>(
-    `${API_URL}${ARTICLE_DETAIL_API}/${postId}`,
-  );
+export const getStaticProps: GetStaticProps = handleErrorStaticProps(
+  async ({ params }) => {
+    const { postId } = params as PathParams;
+    const { data } = await axios.get<ArticleDetail>(
+      `${API_URL}${ARTICLE_DETAIL_API}/${postId}`,
+    );
 
-  if (status >= 400 || status < 200) {
-    const error: SsrError = {
-      message: '알 수 없는 오류',
-      statusCode: status,
-    };
-    return { props: { articleDetail: null, error } };
-  }
-
-  return { props: { articleDetail: data } };
-};
+    return { props: { articleDetail: data } };
+  },
+);
 
 const Main = styled.div`
   display: flex;
