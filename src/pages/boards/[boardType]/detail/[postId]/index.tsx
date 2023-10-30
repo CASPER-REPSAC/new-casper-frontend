@@ -1,12 +1,12 @@
+import { GetStaticPaths, GetStaticProps } from 'next';
 import styled from 'styled-components';
+import axios from 'axios';
+import { ParsedUrlQuery } from 'querystring';
 import PageTitle from '@src/components/common/PageTitle';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import BoardSideMenu from '@src/components/organism/BoardSideMenu';
-import { GetStaticPaths, GetStaticProps } from 'next';
 import { API_URL, ARTICLE_DETAIL_API } from '@src/utils/apiUrl';
 import { ArticleDetail } from '@src/types/articleTypes';
-import axios from 'axios';
-import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
 import DetailTemplate from '@src/components/templates/DetailTemplate';
 import Error from '@src/pages/_error';
@@ -21,6 +21,8 @@ interface Props {
 
 function PostDetail({ articleDetail, error }: Props) {
   if (error) return <Error statusCode={error.statusCode} />;
+
+  console.log(articleDetail);
   return (
     <>
       <PageTitle pageTitle="Boards" />
@@ -49,7 +51,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
   const paths: { params: PathParams }[] = [];
 
   boardTypes.forEach((boardType) => {
-    const maxPage = 10; // 임시
+    const maxPage = 100; // 임시
     for (let page = 1; page < maxPage + 1; page += 1) {
       paths.push({
         params: {
@@ -69,16 +71,15 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     `${API_URL}${ARTICLE_DETAIL_API}/${postId}`,
   );
 
-  if (status >= 200) {
-    return { props: { articleDetail: data } };
+  if (status >= 400 || status < 200) {
+    const error: SsrError = {
+      message: '알 수 없는 오류',
+      statusCode: status,
+    };
+    return { props: { articleDetail: null, error } };
   }
 
-  const error: SsrError = {
-    message: '알 수 없는 오류',
-    statusCode: status,
-  };
-
-  return { props: { articleDetail: data, error } };
+  return { props: { articleDetail: data } };
 };
 
 const Main = styled.div`

@@ -10,6 +10,7 @@ import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
 import Error from '@src/pages/_error';
+import axios from 'axios';
 
 /**
  *  게시판 메인 페이지
@@ -68,17 +69,19 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { boardType, page } = params as PathParams;
   const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
+  const { data, status } = await axios.get<ArticleData>(
+    onePageOfArticleListApiUrl,
+  );
 
-  const res = await fetch(onePageOfArticleListApiUrl);
-  const error: SsrError | null = res.ok
-    ? null
-    : {
-        message: '몰라',
-        statusCode: res.status,
-      };
-  const articleList: ArticleData = await res.json();
+  if (status < 200 || status >= 300) {
+    const error: SsrError = {
+      message: 'ss',
+      statusCode: status,
+    };
+    return { props: { articleList: null, error } };
+  }
 
-  return { props: { articleList, error } };
+  return { props: { articleList: data } };
 };
 
 const Main = styled.div`

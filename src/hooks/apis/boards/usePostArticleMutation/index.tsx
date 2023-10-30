@@ -14,6 +14,7 @@ export default function usePostArticleMutation() {
   const { push } = useRouter();
   const accessToken = useRecoilValue(accessTokenState);
   const mutationFn = (params: PostReqData) => {
+    console.log(JSON.parse(params.content));
     return axios.post(POST_ARTICLE_API, params, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
@@ -27,7 +28,7 @@ export default function usePostArticleMutation() {
       message: POPUP_MESSAGE.succeedPost,
       duration: POPUP_DURATION.medium,
     });
-    push(PATH.boards.notice.url);
+    push(`${PATH.boards.notice.url}/list/1`);
   };
 
   return useMutation({

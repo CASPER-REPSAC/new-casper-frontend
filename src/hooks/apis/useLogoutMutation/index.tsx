@@ -4,13 +4,16 @@ import { LOGOUT_API } from '@src/utils/apiUrl';
 import { POPUP_MESSAGE, POPUP_DURATION } from '@src/utils/constants';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { useSetRecoilState } from 'recoil';
+import { useRecoilState } from 'recoil';
 
 function useLogoutMutation() {
-  const setAcessToken = useSetRecoilState(accessTokenState);
+  const [accessToken, setAcessToken] = useRecoilState(accessTokenState);
   const { openAndDeletePopup } = usePopup();
 
-  const mutationFn = () => axios.post(LOGOUT_API);
+  const mutationFn = () =>
+    axios.post(LOGOUT_API, undefined, {
+      headers: { Authorization: `Bearer ${accessToken}` },
+    });
   const onSuccess = () => {
     setAcessToken(undefined);
     openAndDeletePopup({
