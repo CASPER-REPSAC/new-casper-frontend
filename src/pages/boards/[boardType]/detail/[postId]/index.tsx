@@ -22,7 +22,6 @@ interface Props {
 function PostDetail({ articleDetail, error }: Props) {
   if (error) return <Error statusCode={error.statusCode} />;
 
-  console.log(articleDetail);
   return (
     <>
       <PageTitle pageTitle="Boards" />

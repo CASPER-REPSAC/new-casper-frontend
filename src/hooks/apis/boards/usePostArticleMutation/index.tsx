@@ -13,14 +13,12 @@ export default function usePostArticleMutation() {
   const { openAndDeletePopup } = usePopup();
   const { push } = useRouter();
   const accessToken = useRecoilValue(accessTokenState);
-  const mutationFn = (params: PostReqData) => {
-    console.log(JSON.parse(params.content));
-    return axios.post(POST_ARTICLE_API, params, {
+  const mutationFn = (params: PostReqData) =>
+    axios.post(POST_ARTICLE_API, params, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
-  };
 
   const onSuccess = () => {
     openAndDeletePopup({
