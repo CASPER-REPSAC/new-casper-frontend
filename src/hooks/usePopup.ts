@@ -23,16 +23,16 @@ export default function usePopup() {
   const openAndDeletePopup = ({
     key,
     message,
-    time,
+    duration,
   }: {
     key: Key;
     message: string;
-    time: number;
+    duration: number;
   }) => {
     openPopup({ key, message });
     setTimeout(() => {
       deletePopup(key);
-    }, time);
+    }, duration);
   };
 
   return { openPopup, deletePopup, openAndDeletePopup };

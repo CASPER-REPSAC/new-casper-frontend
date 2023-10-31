@@ -36,6 +36,7 @@ const Wrapper = styled.div`
   height: 50px;
   background-color: ${(props) => props.theme.surfaceAlt};
   color: ${(props) => props.theme.textDefault};
+  margin-top: 100px;
 `;
 
 const Body = styled(CommonCenterWrapper)`

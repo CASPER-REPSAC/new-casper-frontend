@@ -9,7 +9,7 @@ import {
   INPUT_LABEL,
   PLACEHOLDER,
   POPUP_MESSAGE,
-  POPUP_TIME,
+  POPUP_DURATION,
   REQUIRED_MESSAGE,
 } from '@src/utils/constants';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
@@ -57,7 +57,7 @@ function PasswordForm() {
     openAndDeletePopup({
       key: Date.now(),
       message: POPUP_MESSAGE.succeedJoin,
-      time: POPUP_TIME.medium,
+      duration: POPUP_DURATION.medium,
     });
   }, [isSuccess, openAndDeletePopup]);
 

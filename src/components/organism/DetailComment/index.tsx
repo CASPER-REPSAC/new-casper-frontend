@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
-import Comment from '@src/components/organism/Editor/Comment';
+import Comment from '@src/components/molecules/Editor/Comment';
 
-function CommentSection() {
+function DetailComment() {
   /*
   useEffect이용 댓글 불러오는거 만들어야 됨
   */
@@ -16,7 +16,7 @@ function CommentSection() {
     </>
   );
 }
-export default CommentSection;
+export default DetailComment;
 
 const H1 = styled.h1`
   font-size: 3rem;

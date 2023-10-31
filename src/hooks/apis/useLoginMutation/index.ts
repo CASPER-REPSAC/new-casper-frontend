@@ -1,6 +1,7 @@
-import { accessTokenState, loginState } from '@src/atoms';
+import { accessTokenState } from '@src/atoms';
 import usePopup from '@src/hooks/usePopup';
 import { LOGINT_API } from '@src/utils/apiUrl';
+import { POPUP_DURATION } from '@src/utils/constants';
 import { PATH } from '@src/utils/urls';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
@@ -18,7 +19,6 @@ interface LoginResponse {
 }
 
 export default function useLoginMutation() {
-  const setLogin = useSetRecoilState(loginState);
   const setAccessToken = useSetRecoilState(accessTokenState);
   const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
@@ -31,12 +31,10 @@ export default function useLoginMutation() {
     openAndDeletePopup({
       key: Date.now(),
       message: '로그인 성공!',
-      time: 3000,
+      duration: POPUP_DURATION.medium,
     });
 
     setAccessToken(data.accessToken);
-    setLogin(true);
-    axios.defaults.headers.common.Authorization = `Bearer ${data.accessToken}`;
     push(PATH.home.url);
   };
 
@@ -48,14 +46,14 @@ export default function useLoginMutation() {
         openAndDeletePopup({
           key: Date.now(),
           message: '로그인 인증 실패.',
-          time: 3000,
+          duration: POPUP_DURATION.medium,
         });
         break;
       default:
         openAndDeletePopup({
           key: Date.now(),
           message: '알 수 없는 이유로 로그인 실패.',
-          time: 3000,
+          duration: POPUP_DURATION.medium,
         });
     }
   };

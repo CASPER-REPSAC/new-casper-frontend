@@ -10,22 +10,22 @@ function BoardSideMenu() {
   return (
     <Wrapper>
       <SideMenuLink
-        href={`${notice.url}/1`}
+        href={`${notice.url}/list/1`}
         name={notice.name}
         highlight={asPath.startsWith(notice.url)}
       />
       <SideMenuLink
-        href={`${full.url}/1`}
+        href={`${full.url}/list/1`}
         name={full.name}
         highlight={asPath.startsWith(full.url)}
       />
       <SideMenuLink
-        href={`${associate.url}/1`}
+        href={`${associate.url}/list/1`}
         name={associate.name}
         highlight={asPath.startsWith(associate.url)}
       />
       <SideMenuLink
-        href={`${graduate.url}/1`}
+        href={`${graduate.url}/list/1`}
         name={graduate.name}
         highlight={asPath.startsWith(graduate.url)}
       />
