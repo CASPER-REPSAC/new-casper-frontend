@@ -1,24 +1,19 @@
+import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
 import {
-  accessTokenState,
-  isDarkState,
-  loginState,
-  pageShadowState,
-} from '@src/atoms';
+  AiOutlineLogout as LogoutIcon,
+  AiOutlineLogin as LoginIcon,
+  AiOutlineUser as UserIcon,
+} from 'react-icons/ai';
+import { useRouter } from 'next/router';
+import Image from 'next/image';
+import { styled } from 'styled-components';
+import { isDarkState, loginState, pageShadowState } from '@src/atoms';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
 import NavItems from '@src/components/molecules/NavItems';
 import useLogoutMutation from '@src/hooks/apis/useLogoutMutation';
 import { PATH } from '@src/utils/urls';
 import Z_INDEX from '@src/utils/zIndex';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import {
-  AiOutlineLogout as LogoutIcon,
-  AiOutlineLogin as LoginIcon,
-  AiOutlineUser as UserIcon,
-} from 'react-icons/ai';
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import { styled } from 'styled-components';
 
 function Header() {
   const login = useRecoilValue(loginState);
@@ -26,8 +21,6 @@ function Header() {
   const setShadow = useSetRecoilState(pageShadowState);
   const router = useRouter();
   const { mutate: mutateLogout } = useLogoutMutation();
-
-  const accessToken = useRecoilValue(accessTokenState); // 임시로직
 
   const isHome = router.pathname === '/';
   const isDarkHome = isDark || isHome;
@@ -40,14 +33,13 @@ function Header() {
   const redirectLoginPage = () => router.push(PATH.user.login.url);
   const toggleDarkMode = () => {
     setIsDark(!isDark);
-    console.log(accessToken); // 임시로직
   };
 
   return (
     <Wrapper>
       <CenterWrapper>
         <Logo onClick={() => router.push(PATH.home.url)}>
-          <LogoImg src={logoSrc} alt="logo" fill />
+          <LogoImg src={logoSrc} alt="logo" fill sizes="200px" />
         </Logo>
 
         <button type="button" onClick={toggleDarkMode}>

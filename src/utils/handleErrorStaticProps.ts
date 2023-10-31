@@ -21,7 +21,6 @@ function handleErrorStaticProps(
         };
       }
 
-      console.error('unhandled error', e);
       throw e;
     }
   };

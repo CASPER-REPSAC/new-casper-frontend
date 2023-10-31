@@ -2,22 +2,19 @@ import DefaultButton from '@src/components/common/DefaultButton';
 import BoardBody from '@src/components/molecules/Board/BoardBody';
 import BoardFooter from '@src/components/molecules/Board/BoardFooter';
 import BoardHeader from '@src/components/molecules/Board/BoardHeader';
-import { ArticleData } from '@src/types/articleTypes';
+import { OnePageOfArticleList } from '@src/types/articleTypes';
 import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
 
 interface Props {
-  articleList: ArticleData[] | null;
+  onePageOfArticleList: OnePageOfArticleList | null;
 }
 
-function Board({ articleList }: Props) {
+function Board({ onePageOfArticleList }: Props) {
   const [curPage, setCurpage] = useState(1);
   const { push, query, isReady } = useRouter();
-  const onClickWrite = () => {
-    push(PATH.posts.url);
-  };
 
   useEffect(() => {
     const { page } = query;
@@ -28,15 +25,22 @@ function Board({ articleList }: Props) {
     setCurpage(pageInt);
   }, [isReady, query]);
 
+  if (!onePageOfArticleList) return <>onePageOfArticleList 없다.</>;
+
+  const onClickWrite = () => {
+    push(PATH.posts.url);
+  };
+
+  const maxPage = Math.ceil(onePageOfArticleList.maxPageNum / 10);
+
   return (
     <Wrapper>
       <BoardHeader />
-      <BoardBody articleList={articleList} />
+      <BoardBody articleList={onePageOfArticleList.articleList} />
       <WriteButton type="small" onClick={onClickWrite}>
         작성 하기
       </WriteButton>
-      {/* 리팩토링 필요 */}
-      <BoardFooter maxPage={10} curPage={curPage} />
+      <BoardFooter maxPage={maxPage} curPage={curPage} />
     </Wrapper>
   );
 }
@@ -45,6 +49,7 @@ const Wrapper = styled.div`
   width: 100%;
   display: flex;
   flex-direction: column;
+  align-items: center;
 `;
 const WriteButton = styled(DefaultButton)`
   align-self: flex-end;

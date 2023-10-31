@@ -17,6 +17,7 @@ import PopupWrapper from '@src/components/molecules/PopupWrapper';
 import { ADMIN_PATH } from '@src/utils/urls';
 import PageShadow from '@src/components/common/PageShadow';
 import PageLoadingPresence from '@src/components/utilComponents/PageLoadingPresence';
+import AutoLoginPresence from '@src/components/utilComponents/AutoLoginPresence';
 
 interface MyAppProps extends AppProps {
   loginData: {
@@ -34,23 +35,25 @@ function App({ Component, pageProps }: MyAppProps) {
     <QueryClientProvider client={queryClient}>
       <Hydrate state={pageProps.dehydratedState}>
         <RecoilRoot>
-          <Theme>
-            <PopupWrapper />
-            <PageShadow />
-            <PageLoadingPresence>
-              <Wrapper>
-                {isAdminPage ? (
-                  <AdminLayout>
-                    <Component {...pageProps} />
-                  </AdminLayout>
-                ) : (
-                  <CommonLayout>
-                    <Component {...pageProps} />
-                  </CommonLayout>
-                )}
-              </Wrapper>
-            </PageLoadingPresence>
-          </Theme>
+          <AutoLoginPresence>
+            <Theme>
+              <PopupWrapper />
+              <PageShadow />
+              <PageLoadingPresence>
+                <Wrapper>
+                  {isAdminPage ? (
+                    <AdminLayout>
+                      <Component {...pageProps} />
+                    </AdminLayout>
+                  ) : (
+                    <CommonLayout>
+                      <Component {...pageProps} />
+                    </CommonLayout>
+                  )}
+                </Wrapper>
+              </PageLoadingPresence>
+            </Theme>
+          </AutoLoginPresence>
         </RecoilRoot>
       </Hydrate>
     </QueryClientProvider>
@@ -60,6 +63,7 @@ function App({ Component, pageProps }: MyAppProps) {
 const Wrapper = styled.div`
   position: relative;
   min-height: 100vh;
+  padding-bottom: 200px;
 `;
 
 export default App;

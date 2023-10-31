@@ -5,7 +5,7 @@ import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { API_URL, ARTICLE_LIST_API } from '@src/utils/apiUrl';
-import { ArticleData } from '@src/types/articleTypes';
+import { OnePageOfArticleList } from '@src/types/articleTypes';
 import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
@@ -18,11 +18,11 @@ import handleErrorStaticProps from '@src/utils/handleErrorStaticProps';
  */
 
 interface Props {
-  articleList: ArticleData[] | null;
+  onePageOfArticleList: OnePageOfArticleList | null;
   error: SsrError | null;
 }
 
-function BoardPage({ articleList, error }: Props) {
+function BoardPage({ onePageOfArticleList, error }: Props) {
   if (error) return <Error statusCode={error.statusCode} />;
 
   return (
@@ -31,7 +31,7 @@ function BoardPage({ articleList, error }: Props) {
       <PageWrapper>
         <BoardSideMenu />
         <Main>
-          <Board articleList={articleList} />
+          <Board onePageOfArticleList={onePageOfArticleList} />
         </Main>
       </PageWrapper>
     </>
@@ -52,8 +52,18 @@ export const getStaticPaths: GetStaticPaths = async () => {
   ];
   const paths: { params: PathParams }[] = [];
 
-  boardTypes.forEach((boardType) => {
-    const maxPage = 5; // 임시
+  const maxPages = await Promise.all(
+    await boardTypes.map(async (boardType) => {
+      const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${1}`;
+      const { data } = await axios.get<OnePageOfArticleList>(
+        onePageOfArticleListApiUrl,
+      );
+      return Math.floor(data.maxPageNum / 10);
+    }),
+  );
+
+  boardTypes.forEach((boardType, idx) => {
+    const maxPage = maxPages[idx];
     for (let page = 1; page < maxPage + 1; page += 1) {
       paths.push({
         params: {
@@ -71,9 +81,11 @@ export const getStaticProps: GetStaticProps = handleErrorStaticProps(
   async ({ params }) => {
     const { boardType, page } = params as PathParams;
     const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
-    const { data } = await axios.get<ArticleData>(onePageOfArticleListApiUrl);
+    const { data } = await axios.get<OnePageOfArticleList>(
+      onePageOfArticleListApiUrl,
+    );
 
-    return { props: { articleList: data }, revalidate: 5 };
+    return { props: { onePageOfArticleList: data }, revalidate: 5 };
   },
 );
 

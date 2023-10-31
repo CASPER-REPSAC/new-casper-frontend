@@ -1,5 +1,6 @@
 import { accessTokenState } from '@src/atoms';
 import usePopup from '@src/hooks/usePopup';
+import { LoginRequest, LoginResponse } from '@src/types/loginTypes';
 import { LOGINT_API } from '@src/utils/apiUrl';
 import { POPUP_DURATION } from '@src/utils/constants';
 import { PATH } from '@src/utils/urls';
@@ -7,16 +8,6 @@ import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
-
-export interface LoginRequest {
-  id: string;
-  pw: string;
-}
-
-interface LoginResponse {
-  accessToken: string;
-  refreshToken: string;
-}
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);

@@ -30,6 +30,7 @@ const TableHeader = styled.div`
   justify-content: space-between;
   margin-bottom: 2.2em;
   height: 35px;
+  width: 100%;
 `;
 
 const SearchInput = styled(DefaultInput)`

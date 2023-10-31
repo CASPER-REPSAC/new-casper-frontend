@@ -7,23 +7,29 @@ import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import usePostArticleMutation from '@src/hooks/apis/boards/usePostArticleMutation';
 import { PostReqData } from '@src/types/PostTypes';
 import { PLACEHOLDER } from '@src/utils/constants';
-import DraftEditor from '@src/components/molecules/Editor/DraftEditor';
+import dynamic from 'next/dynamic';
+
+export const DraftEditor = dynamic(
+  () => import('@src/components/molecules/Editor/DraftEditor'),
+  {
+    ssr: false,
+  },
+);
 
 function PostForm() {
   const defaultValues: PostReqData = {
     boardId: 'notice_board',
     category: 'all',
-    createdAt: '2023-01-01',
-    modifiedAt: '2023-01-01',
+    createdAt: '1111-01-01',
+    modifiedAt: '1111-01-01',
     file: false,
     hide: false,
     notice: false,
     nickname: 'test-name',
-    title: 'initial-test-title',
+    title: '',
     content: null,
     photo: 'test',
   };
-
   const methods = useForm<PostReqData>({
     defaultValues,
   });

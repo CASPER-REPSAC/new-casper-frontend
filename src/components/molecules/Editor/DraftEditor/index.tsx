@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MouseEvent, ReactNode, useEffect, useState } from 'react';
+import { MouseEvent, ReactNode, useEffect, useId, useState } from 'react';
 import {
   EditorState,
   Editor,
@@ -22,17 +22,18 @@ import { InlineType } from '@src/types/toolbarTypes';
 import DraftTextStyle from '@src/components/common/DraftTextStyle';
 
 function DraftEditor() {
+  const editorKey = useId();
   const { setValue } = useFormContext<PostReqData>();
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty(),
   );
+  const [blockState, setBlockState] = useState('unstyled');
   const [inlineState, setInlineState] = useState<{
     [key in InlineType]: boolean;
   }>({
     BOLD: false,
     ITALIC: false,
   });
-  const [blockState, setBlockState] = useState('unstyled');
 
   const inlineButtons: {
     icon: ReactNode;
@@ -131,7 +132,11 @@ function DraftEditor() {
       </Toolbar>
       <Hr />
 
-      <Editor editorState={editorState} onChange={handleChange} />
+      <Editor
+        editorKey={editorKey}
+        editorState={editorState}
+        onChange={handleChange}
+      />
     </Wrapper>
   );
 }
