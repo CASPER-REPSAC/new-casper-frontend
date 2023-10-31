@@ -1,19 +1,17 @@
 import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
-
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import DefaultButton from '@src/components/common/DefaultButton';
 import DefaultForm from '@src/components/common/DefaultForm';
-import useLoginMutation, {
-  LoginRequest,
-} from '@src/hooks/apis/useLoginMutation';
 import usePopup from '@src/hooks/usePopup';
 import {
   PLACEHOLDER,
   POPUP_DURATION,
   REQUIRED_MESSAGE,
 } from '@src/utils/constants';
+import { LoginRequest } from '@src/types/loginTypes';
+import useLoginMutation from '@src/hooks/apis/useLoginMutation';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();
