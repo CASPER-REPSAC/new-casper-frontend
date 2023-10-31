@@ -1,47 +1,72 @@
-import { pageLoadingState } from '@src/atoms/pageLoadingState';
+import { isPageLoadingState } from '@src/atoms';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
 function LoadingProgressBar() {
-  const { isLoading } = useRecoilValue(pageLoadingState);
+  const isLoading = useRecoilValue(isPageLoadingState);
   const [percentage, setPercentage] = useState(0);
+  const [visible, setVisible] = useState(true);
   const rafRef = useRef<number>(0);
 
+  const calcInterval = (value: number) => {
+    if (value > 30) return 1;
+    if (value > 50) return (90 - value) * 0.1;
+    return 1;
+  };
+
   const animate = useCallback(() => {
-    setPercentage((prevPercentage) => prevPercentage + 0.1);
+    setVisible(true);
+    setPercentage((prevPercentage) => {
+      const interval = calcInterval(prevPercentage);
+      const nextPrecentage = prevPercentage + interval;
+      return nextPrecentage;
+    });
     rafRef.current = requestAnimationFrame(animate);
   }, [setPercentage]);
 
-  useEffect(() => {
-    if (!isLoading) {
-      return () => {
-        cancelAnimationFrame(rafRef.current);
-      };
+  const controlLoadingProgressAnimation = useCallback(() => {
+    if (isLoading) {
+      setVisible(true);
+      setPercentage(0);
+      rafRef.current = requestAnimationFrame(animate);
     }
-    rafRef.current = requestAnimationFrame(animate);
-
     return () => {
-      setPercentage(100);
       cancelAnimationFrame(rafRef.current);
-      setTimeout(() => {
-        setPercentage(0);
-      }, 200);
+      setPercentage(100);
     };
   }, [isLoading, animate]);
 
-  return <Wrapper $visible={isLoading} $percentage={percentage} />;
+  const finishLoadingProgressAnimation = useCallback(() => {
+    if (percentage >= 100) {
+      setTimeout(() => {
+        setVisible(false);
+        setPercentage(0);
+      }, 500);
+    }
+  }, [percentage]);
+
+  useEffect(controlLoadingProgressAnimation, [controlLoadingProgressAnimation]);
+  useEffect(finishLoadingProgressAnimation, [finishLoadingProgressAnimation]);
+
+  return (
+    <Wrapper
+      style={{
+        transform: `scaleX(${percentage / 100})`,
+        display: visible ? 'inline' : 'none',
+      }}
+    />
+  );
 }
 
-const Wrapper = styled.div<{ $visible: boolean; $percentage: number }>`
+const Wrapper = styled.div`
   position: absolute;
   bottom: -2px;
   height: 3px;
-  width: ${({ $percentage }) => `${$percentage}vw`};
+  width: 100vw;
+  transform-origin: left;
+  transition: transform ease 0.5s;
   background-color: ${({ theme }) => theme.purple};
-  transition-property: width, opacity;
-  transition-duration: 0.2s, 0.4s;
-  opacity: ${({ $visible }) => ($visible ? 1 : 0)};
 `;
 
 export default LoadingProgressBar;

@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { isDarkState } from '../../../atoms/atoms';
+import { isDarkState } from '../../../atoms';
 import { darkTheme, lightTheme } from '../../../styles/theme';
 
 interface ThemeProps {

@@ -3,7 +3,7 @@ import {
   isDarkState,
   loginState,
   pageShadowState,
-} from '@src/atoms/atoms';
+} from '@src/atoms';
 import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
 import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
 import NavItems from '@src/components/molecules/NavItems';

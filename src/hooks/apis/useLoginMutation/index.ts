@@ -1,4 +1,4 @@
-import { accessTokenState } from '@src/atoms/atoms';
+import { accessTokenState } from '@src/atoms';
 import usePopup from '@src/hooks/usePopup';
 import { LOGINT_API } from '@src/utils/apiUrl';
 import { POPUP_DURATION } from '@src/utils/constants';

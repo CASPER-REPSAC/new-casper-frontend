@@ -33,3 +33,8 @@ export const pageShadowState = atom({
   key: 'pageShadow',
   default: false,
 });
+
+export const isPageLoadingState = atom({
+  key: 'isPageLoading',
+  default: false,
+});

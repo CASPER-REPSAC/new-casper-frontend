@@ -1,4 +1,4 @@
-import { pageShadowState } from '@src/atoms/atoms';
+import { pageShadowState } from '@src/atoms';
 import Z_INDEX from '@src/utils/zIndex';
 import { useRecoilValue } from 'recoil';
 import styled, { css } from 'styled-components';
