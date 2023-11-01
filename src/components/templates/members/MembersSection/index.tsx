@@ -1,17 +1,40 @@
+import MemberCard from '@src/components/molecules/MemberCard';
+import DetailMemberPopup from '@src/components/organism/DetailMemberPopup';
+import { MemberProfile } from '@src/types/memberTypes';
+import { useState } from 'react';
 import { styled } from 'styled-components';
 
-function MembersSection() {
+interface Props {
+  memberList: MemberProfile[];
+}
+
+function MembersSection({ memberList }: Props) {
+  const [detailCardShow, setDetailMemberCardShow] = useState(false);
+  const [selectedMember, setSelecteMember] = useState<MemberProfile>();
+  const showDetail = (memberProfile: MemberProfile) => {
+    setDetailMemberCardShow(true);
+    setSelecteMember(memberProfile);
+  };
   return (
-    <Cards>
-      <MemberCard />
-      <MemberCard />
-      <MemberCard />
-      <MemberCard />
-      <MemberCard />
-      <MemberCard />
-      <MemberCard />
-      <MemberCard />
-    </Cards>
+    <>
+      {detailCardShow && selectedMember && (
+        <DetailMemberPopup
+          onClick={() => setDetailMemberCardShow(false)}
+          memberProfile={selectedMember}
+        />
+      )}
+      <Cards>
+        {memberList.map((memberProfile) => {
+          return (
+            <MemberCard
+              key={memberProfile.id}
+              onClick={() => showDetail(memberProfile)}
+              profile={memberProfile}
+            />
+          );
+        })}
+      </Cards>
+    </>
   );
 }
 
@@ -34,13 +57,4 @@ const Cards = styled.div`
   @media screen and (min-width: 1440px) {
     grid-template-columns: repeat(5, 1fr);
   }
-`;
-const MemberCard = styled.div`
-  transform: skewX(-18deg);
-  height: 200px;
-  width: 210px;
-
-  background-color: ${({ theme }) => theme.surfaceAlt};
-  opacity: 0.4;
-  margin: 0;
 `;

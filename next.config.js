@@ -3,6 +3,16 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const nextConfig = {
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'picsum.photos',
+        port: '',
+        pathname: '/**',
+      },
+    ],
+  },
   async rewrites() {
     return [
       {

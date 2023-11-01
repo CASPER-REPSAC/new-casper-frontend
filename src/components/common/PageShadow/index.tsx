@@ -1,25 +1,18 @@
-import { pageShadowState } from '@src/atoms';
 import Z_INDEX from '@src/utils/zIndex';
-import { useRecoilValue } from 'recoil';
-import styled, { css } from 'styled-components';
+import { MouseEventHandler, ReactElement } from 'react';
+import styled from 'styled-components';
 
-function PageShadow() {
-  const visible = useRecoilValue(pageShadowState);
-
-  return <Wrapper $visible={visible} />;
+interface Props {
+  children?: ReactElement;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-const Wrapper = styled.div<{ $visible: boolean }>`
-  ${({ $visible }) =>
-    $visible
-      ? css`
-          visibility: visible;
-          opacity: 1;
-        `
-      : css`
-          visibility: hidden;
-          opacity: 0;
-        `}
+function PageShadow({ children, onClick }: Props) {
+  return <Wrapper onClick={onClick}>{children}</Wrapper>;
+}
+
+const Wrapper = styled.div`
+  visibility: visible;
   position: fixed;
   z-index: ${Z_INDEX.pageShadow};
   top: 0;

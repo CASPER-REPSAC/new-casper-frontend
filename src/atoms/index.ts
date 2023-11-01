@@ -38,3 +38,8 @@ export const isPageLoadingState = atom({
   key: 'isPageLoading',
   default: false,
 });
+
+export const detailMemberCardShowState = atom({
+  key: 'detailMemberCardShow',
+  default: false,
+});

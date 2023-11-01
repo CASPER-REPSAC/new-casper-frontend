@@ -1,7 +1,7 @@
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import Footer from '@src/components/organism/Footer';
 import PageTitle from '@src/components/common/PageTitle';
-import BoardSideMenu from '@src/components/organism/BoardSideMenu';
+import MemberSideMenu from '@src/components/organism/MemberSideMenu';
 import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
@@ -10,14 +10,14 @@ import { PAGE_TITLE } from '@src/utils/constants';
 interface Props {
   children: ReactNode;
 }
-function BoardLayout({ children }: Props) {
+function MemberLayout({ children }: Props) {
   return (
     <>
       <Header />
-      <PageTitle pageTitle={PAGE_TITLE.board} />
+      <PageTitle pageTitle={PAGE_TITLE.members} />
       <CommonCenterWrapper>
         <Flex>
-          <BoardSideMenu />
+          <MemberSideMenu />
           <Main>{children}</Main>
         </Flex>
       </CommonCenterWrapper>
@@ -38,4 +38,4 @@ const Main = styled.main`
   width: 100%;
 `;
 
-export default BoardLayout;
+export default MemberLayout;

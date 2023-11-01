@@ -12,3 +12,4 @@ export const POST_ARTICLE_API = '/api/article/write';
 export const COMMENT_WRITE_API = '/api/article/write';
 export const MEMBER_API = '/api/user/show';
 export const AUTO_LOGIN_API = '/api/user/refresh';
+export const ALL_MEMEBER_API = '/api/user/showall';

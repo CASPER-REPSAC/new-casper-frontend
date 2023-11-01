@@ -1,13 +1,14 @@
-import { MouseEventHandler, ReactNode, useState } from 'react';
+import { MouseEventHandler, ReactElement, useState } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {
-  title: string;
-  children?: ReactNode;
+  title?: string;
+  icon?: ReactElement;
+  subMenus?: ReactElement;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function HeaderMenu({ children, title, onClick }: Props) {
+function HeaderMenu({ subMenus, title, icon, onClick }: Props) {
   const [subMenuVisible, setSubMenuVisible] = useState(false);
 
   return (
@@ -16,8 +17,11 @@ function HeaderMenu({ children, title, onClick }: Props) {
       onMouseOver={() => setSubMenuVisible(true)}
       onMouseOut={() => setSubMenuVisible(false)}
     >
-      <Title>{title}</Title>
-      <SubMenuSection $visible={subMenuVisible}>{children}</SubMenuSection>
+      {icon && <Icon>{icon}</Icon>}
+      {title && <Title>{title}</Title>}
+      {subMenus && (
+        <SubMenuSection $visible={subMenuVisible}>{subMenus}</SubMenuSection>
+      )}
     </Wrapper>
   );
 }
@@ -27,7 +31,7 @@ const Wrapper = styled.div`
   align-items: center;
   justify-content: center;
   height: 100%;
-  width: 140px;
+
   position: relative;
   &:hover {
     background-color: ${({ theme }) => theme.menuHover};
@@ -37,16 +41,23 @@ const Wrapper = styled.div`
   }
   cursor: pointer;
   padding: 0 1rem;
-  border-radius: 40px;
+  border-radius: 4px;
   transition: all 0.3s ease;
 `;
 const Title = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
   height: 100%;
+  padding: 0 3rem;
   font-size: 2rem;
+`;
+const Icon = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+  width: 50px;
 `;
 const SubMenuSection = styled.div<{ $visible: boolean }>`
   ${({ $visible }) =>

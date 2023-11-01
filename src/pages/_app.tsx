@@ -11,7 +11,6 @@ import {
 import Theme from '@src/components/utilComponents/Theme';
 import AdminLayout from '@src/components/Layout/AdminLayout';
 import PopupWrapper from '@src/components/molecules/PopupWrapper';
-import PageShadow from '@src/components/common/PageShadow';
 import PageLoadingPresence from '@src/components/utilComponents/PageLoadingPresence';
 import AutoLoginPresence from '@src/components/utilComponents/AutoLoginPresence';
 import DefaultLayout from '@src/components/Layout/DefaultLayout';
@@ -46,7 +45,6 @@ function App({ Component, pageProps }: MyAppProps) {
           <AutoLoginPresence>
             <Theme>
               <PopupWrapper />
-              <PageShadow />
               <PageLoadingPresence>
                 <MinHeightLayout>
                   {getLayout(<Component {...pageProps} />)}
