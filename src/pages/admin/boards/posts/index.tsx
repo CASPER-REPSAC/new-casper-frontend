@@ -1,4 +1,4 @@
-import AdminCenterWrapper from '@src/components/common/Layout/AdminCenterWrapper';
+import AdminCenterWrapper from '@src/components/common/AdminCenterWrapper';
 import PostTable from '@src/components/templates/admin/boards/posts/PostTable';
 
 function PostListPage() {

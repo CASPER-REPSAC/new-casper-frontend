@@ -8,7 +8,7 @@ export default function useProfile() {
   const queryKey = ['myProfile'];
 
   const queryFn = () => {
-    return axios.get<Profile>(`${MEMBER_API}/${myId}`);
+    return axios.get<Profile>(`${MEMBER_API}?id=${myId}`);
   };
 
   return useQuery({

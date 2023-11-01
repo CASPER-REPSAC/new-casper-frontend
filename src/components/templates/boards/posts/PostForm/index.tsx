@@ -1,77 +1,57 @@
 import { KeyboardEvent } from 'react';
 import { styled } from 'styled-components';
-import { useForm, SubmitHandler, FormProvider } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
-import Button from '@src/components/common/DefaultButton';
-import LabelInput from '@src/components/molecules/Inputs/LabelInput';
-import usePostArticleMutation from '@src/hooks/apis/boards/usePostArticleMutation';
 import { PostReqData } from '@src/types/PostTypes';
-import { PLACEHOLDER } from '@src/utils/constants';
-import DraftEditor from '@src/components/molecules/Editor/DraftEditor';
+import dynamic from 'next/dynamic';
+import BoardTypeSelectSection from '@src/components/organism/postForm/BoardTypeSelectSection';
+import TitleSection from '@src/components/organism/postForm/TitleSection';
+import WriteButtonSection from '@src/components/organism/postForm/WriteButtonSection';
+
+export const DraftEditor = dynamic(
+  () => import('@src/components/molecules/Editor/DraftEditor'),
+  {
+    ssr: false,
+  },
+);
 
 function PostForm() {
   const defaultValues: PostReqData = {
     boardId: 'notice_board',
     category: 'all',
-    createdAt: '2023-01-01',
-    modifiedAt: '2023-01-01',
+    createdAt: '1111-01-01',
+    modifiedAt: '1111-01-01',
     file: false,
     hide: false,
     notice: false,
     nickname: 'test-name',
-    title: 'initial-test-title',
+    title: '',
     content: null,
     photo: 'test',
   };
-
   const methods = useForm<PostReqData>({
     defaultValues,
   });
-  const { register, handleSubmit } = methods;
-  const { mutate } = usePostArticleMutation();
 
   const focusEditor = (e: KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       methods.setFocus('content');
     }
   };
-  const onValid: SubmitHandler<PostReqData> = async (data) => {
-    mutate(data);
-  };
-
-  const onInvalid = () => {
-    // alert('입력값을 확인해 주세요');
-  };
-
-  const titleRegister = register('title', { required: true });
 
   return (
     <FormProvider {...methods}>
       <Form>
-        <TitleSection>
-          <TitleInput
-            labelSize="large"
-            register={titleRegister}
-            placeholder={PLACEHOLDER.title}
-            onKeyDown={(e) => focusEditor(e)}
-          />
-        </TitleSection>
-
+        <BoardTypeSelectSection />
+        <TitleSection onKeyDown={(e) => focusEditor(e)} />
         <EditorSection>
           <DraftEditor />
         </EditorSection>
-
-        <ButtonSection>
-          <WriteButton type="large" onClick={handleSubmit(onValid, onInvalid)}>
-            작성 하기
-          </WriteButton>
-        </ButtonSection>
+        <WriteButtonSection />
       </Form>
     </FormProvider>
   );
 }
-
-export default PostForm;
 
 const Form = styled(DefaultForm)`
   width: 450px;
@@ -84,29 +64,11 @@ const Form = styled(DefaultForm)`
   @media screen and (min-width: 1440px) {
     width: 1400px;
   }
-  padding-bottom: 200px;
-`;
-const TitleInput = styled(LabelInput)`
-  border: 0;
-  width: 100%;
-  font-size: 3rem;
-  height: 40px;
-  &::placeholder {
-    font-style: italic;
-  }
-  padding: 1em 20px;
-`;
-const TitleSection = styled.div`
-  margin-top: 2em;
-`;
-const EditorSection = styled.div`
-  margin-top: 2em;
-`;
-const ButtonSection = styled.div`
+  padding-top: 50px;
   display: flex;
-  justify-content: flex-end;
-  margin-top: 2em;
+  flex-direction: column;
+  gap: 1.4rem;
 `;
-const WriteButton = styled(Button)`
-  width: 100%;
-`;
+const EditorSection = styled.div``;
+
+export default PostForm;

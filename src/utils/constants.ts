@@ -66,6 +66,15 @@ export const POPUP_MESSAGE = {
   succeedPost: '게시글 작성 완료.',
   succeedJoin: '회원가입 되었습니다.',
   logout: '로그아웃 되었습니다.',
-  logoutError: '로그아웃 실패.',
-  failedToLoadDetail: '상세 내용을 불러 올 수 없습니다.',
+  logoutError: '로그아웃 실패했어요.',
+  failedToLoadDetail: '상세 내용을 불러 올 수 없어요.',
+  autoLogin: '자동 로그인 되었어요.',
+  unknownError: '알 수 없는 에러',
+};
+
+export const BOARD_TYPE = {
+  notice: 'notice_board',
+  full: 'full_member_board',
+  associate: 'associate_member_board',
+  graduate: 'graduate_member_board',
 };

@@ -1,11 +1,17 @@
+export interface OnePageOfArticleList {
+  maxPageNum: number;
+  articleList: ArticleData[];
+}
+
 export interface ArticleData {
-  article_id: number;
-  title: string;
   file: boolean;
-  numOfComments: number;
-  nickname: string;
-  created_at: string;
   view: number;
+  title: string;
+  nickname: string;
+  numOfComments: number;
+  hide: boolean;
+  createdAt: string;
+  articleId: number;
 }
 
 export interface ArticleDetail {

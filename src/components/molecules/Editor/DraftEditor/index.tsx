@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { MouseEvent, ReactNode, useEffect, useState } from 'react';
+import { MouseEvent, ReactNode, useEffect, useId, useState } from 'react';
 import {
   EditorState,
   Editor,
@@ -20,19 +20,21 @@ import {
 } from 'react-icons/lu';
 import { InlineType } from '@src/types/toolbarTypes';
 import DraftTextStyle from '@src/components/common/DraftTextStyle';
+import DefaultHr from '@src/components/common/DefaultHr';
 
 function DraftEditor() {
+  const editorKey = useId();
   const { setValue } = useFormContext<PostReqData>();
   const [editorState, setEditorState] = useState(() =>
     EditorState.createEmpty(),
   );
+  const [blockState, setBlockState] = useState('unstyled');
   const [inlineState, setInlineState] = useState<{
     [key in InlineType]: boolean;
   }>({
     BOLD: false,
     ITALIC: false,
   });
-  const [blockState, setBlockState] = useState('unstyled');
 
   const inlineButtons: {
     icon: ReactNode;
@@ -131,7 +133,11 @@ function DraftEditor() {
       </Toolbar>
       <Hr />
 
-      <Editor editorState={editorState} onChange={handleChange} />
+      <Editor
+        editorKey={editorKey}
+        editorState={editorState}
+        onChange={handleChange}
+      />
     </Wrapper>
   );
 }
@@ -151,16 +157,13 @@ const Toolbar = styled.div`
   height: 50px;
   gap: 1rem;
 `;
-const Hr = styled.div`
-  height: 1px;
-  background-color: ${({ theme }) => theme.borderDefault};
+const Hr = styled(DefaultHr)`
   margin: 1rem 0rem 3rem;
 `;
-const Vr = styled.div`
+const Vr = styled(DefaultHr)`
+  height: 60%;
   width: 1px;
   margin: 0 1rem;
-  height: 60%;
-  background-color: ${({ theme }) => theme.borderDefault};
 `;
 
 export default DraftEditor;

@@ -1,10 +1,9 @@
 import { ArticleData } from '@src/types/articleTypes';
-import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
 interface Props {
-  articleList: ArticleData[] | null;
+  articleList: ArticleData[] | undefined;
 }
 
 interface ArticleProps {
@@ -20,28 +19,26 @@ function BoardBody({ articleList }: Props) {
     <Table>
       <Thead>
         <Tr>
-          <th>번호</th>
-          <th>제목</th>
-          <th>작성자</th>
-          <th>날짜</th>
-          <th>조회수</th>
+          <SmallTd>번호</SmallTd>
+          <LargeTd>제목</LargeTd>
+          <MediumTd>작성자</MediumTd>
+          <MediumTd>날짜</MediumTd>
+          <SmallTd>조회수</SmallTd>
         </Tr>
       </Thead>
 
       <Tbody>
         {articleList &&
-          articleList.map(
-            ({ article_id, title, view, nickname, created_at }) => (
-              <Article
-                key={article_id}
-                articleId={article_id}
-                title={title}
-                view={view}
-                nickname={nickname}
-                createdAt={created_at}
-              />
-            ),
-          )}
+          articleList.map(({ articleId, title, view, nickname, createdAt }) => (
+            <Article
+              key={articleId}
+              articleId={articleId}
+              title={title}
+              view={view}
+              nickname={nickname}
+              createdAt={createdAt}
+            />
+          ))}
       </Tbody>
     </Table>
   );
@@ -54,20 +51,21 @@ function Article({
   nickname,
   createdAt,
 }: ArticleProps) {
-  const router = useRouter();
+  const { push, query, isReady } = useRouter();
 
   const [createDate] = createdAt.split('T');
   const redirectToDetailPage = () => {
-    router.push(`${PATH.boards.notice.url}/detail/${articleId}`);
+    if (!isReady) return;
+    push(`/boards/${query.boardType}/detail/${articleId}`);
   };
 
   return (
-    <Tr key={articleId} onClick={redirectToDetailPage}>
-      <TdCenter>{articleId}</TdCenter>
-      <td>{title}</td>
-      <TdCenter>{nickname}</TdCenter>
-      <TdCenter>{createDate}</TdCenter>
-      <TdCenter>{view}</TdCenter>
+    <Tr onClick={redirectToDetailPage}>
+      <SmallTd>{articleId}</SmallTd>
+      <LargeTd>{title}</LargeTd>
+      <MediumTd>{nickname}</MediumTd>
+      <MediumTd>{createDate}</MediumTd>
+      <SmallTd>{view}</SmallTd>
     </Tr>
   );
 }
@@ -76,6 +74,7 @@ const Table = styled.table`
   font-size: 1.6rem;
   width: 100%;
   margin-bottom: 1em;
+  table-layout: fixed;
 `;
 
 const Thead = styled.thead`
@@ -101,8 +100,20 @@ const Tr = styled.tr`
   line-height: 2.4em;
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
 `;
-const TdCenter = styled.td`
+
+const SmallTd = styled.td`
+  width: 10%;
   text-align: center;
+`;
+const MediumTd = styled.td`
+  width: 20%;
+  text-align: center;
+`;
+const LargeTd = styled.td`
+  width: 19px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export default BoardBody;

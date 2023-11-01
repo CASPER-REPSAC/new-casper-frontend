@@ -1,11 +1,12 @@
-import Footer from '@src/components/common/Layout/Footer';
+import Footer from '@src/components/organism/Footer';
 import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 
 interface Props {
   children: ReactNode;
 }
-function CommonLayout({ children }: Props) {
+
+function DefaultLayout({ children }: Props) {
   return (
     <>
       <Header />
@@ -15,4 +16,4 @@ function CommonLayout({ children }: Props) {
   );
 }
 
-export default CommonLayout;
+export default DefaultLayout;
