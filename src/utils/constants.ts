@@ -71,3 +71,10 @@ export const POPUP_MESSAGE = {
   autoLogin: '자동 로그인 되었어요.',
   unknownError: '알 수 없는 에러',
 };
+
+export const BOARD_TYPE = {
+  notice: 'notice_board',
+  full: 'full_member_board',
+  associate: 'associate_member_board',
+  graduate: 'graduate_member_board',
+};

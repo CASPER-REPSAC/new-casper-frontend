@@ -1,3 +1,4 @@
+import useClient from '@src/hooks/useClient';
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
 
@@ -8,11 +9,16 @@ interface Props {
 function PageTitle({ pageTitle }: Props) {
   const router = useRouter();
   const path = router.asPath.replaceAll('/', ' > ');
+  const isClient = useClient();
 
   return (
     <Wrapper>
-      <Title>{pageTitle}</Title>
-      <Sub>홈{path}</Sub>
+      {isClient && (
+        <>
+          <Title>{pageTitle}</Title>
+          <Sub>홈{path}</Sub>
+        </>
+      )}
     </Wrapper>
   );
 }

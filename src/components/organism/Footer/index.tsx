@@ -5,8 +5,8 @@ import {
   AiOutlineGithub,
   AiOutlineCopyrightCircle,
 } from 'react-icons/ai';
+import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import { FOOTER } from '@src/utils/constants';
-import CommonCenterWrapper from '../CommonCenterWrapper';
 
 function Footer() {
   return (

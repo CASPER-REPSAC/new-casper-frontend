@@ -1,5 +1,4 @@
 import { ArticleData } from '@src/types/articleTypes';
-import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
@@ -52,15 +51,16 @@ function Article({
   nickname,
   createdAt,
 }: ArticleProps) {
-  const router = useRouter();
+  const { push, query, isReady } = useRouter();
 
   const [createDate] = createdAt.split('T');
   const redirectToDetailPage = () => {
-    router.push(`${PATH.boards.notice.url}/detail/${articleId}`);
+    if (!isReady) return;
+    push(`/boards/${query.boardType}/detail/${articleId}`);
   };
 
   return (
-    <Tr key={articleId} onClick={redirectToDetailPage}>
+    <Tr onClick={redirectToDetailPage}>
       <SmallTd>{articleId}</SmallTd>
       <LargeTd>{title}</LargeTd>
       <MediumTd>{nickname}</MediumTd>
@@ -74,6 +74,7 @@ const Table = styled.table`
   font-size: 1.6rem;
   width: 100%;
   margin-bottom: 1em;
+  table-layout: fixed;
 `;
 
 const Thead = styled.thead`
@@ -109,7 +110,10 @@ const MediumTd = styled.td`
   text-align: center;
 `;
 const LargeTd = styled.td`
-  width: 30%;
+  width: 19px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 `;
 
 export default BoardBody;

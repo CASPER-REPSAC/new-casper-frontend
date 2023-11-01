@@ -1,40 +1,29 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
-import styled from 'styled-components';
 import axios from 'axios';
 import { ParsedUrlQuery } from 'querystring';
-import PageTitle from '@src/components/common/PageTitle';
-import CommonCenterWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 import { API_URL, ARTICLE_DETAIL_API } from '@src/utils/apiUrl';
 import { ArticleDetail } from '@src/types/articleTypes';
 import { SsrError } from '@src/types/errorTypes';
-import DetailTemplate from '@src/components/templates/DetailTemplate';
+import DetailTemplate from '@src/components/templates/boards/DetailTemplate';
 import Error from '@src/pages/_error';
 import handleErrorStaticProps from '@src/utils/handleErrorStaticProps';
-/**
- *  글 조회 페이지
- */
+import BoardLayout from '@src/components/Layout/BoardLayout';
+import { ReactElement } from 'react';
 
 interface Props {
   articleDetail: ArticleDetail | null;
   error: SsrError | null;
 }
 
-function PostDetail({ articleDetail, error }: Props) {
+export default function PostDetail({ articleDetail, error }: Props) {
   if (error) return <Error statusCode={error.statusCode} />;
 
-  return (
-    <>
-      <PageTitle pageTitle="Boards" />
-      <CommonCenterWrapper>
-        <BoardSideMenu />
-        <Main>
-          <DetailTemplate articleDetail={articleDetail} />
-        </Main>
-      </CommonCenterWrapper>
-    </>
-  );
+  return <DetailTemplate articleDetail={articleDetail} />;
 }
+
+PostDetail.getLayout = function getLayout(page: ReactElement) {
+  return <BoardLayout>{page}</BoardLayout>;
+};
 
 interface PathParams extends ParsedUrlQuery {
   boardType: string;
@@ -75,11 +64,3 @@ export const getStaticProps: GetStaticProps = handleErrorStaticProps(
     return { props: { articleDetail: data } };
   },
 );
-
-const Main = styled.div`
-  display: flex;
-  flex-direction: column;
-  padding-bottom: 200px;
-`;
-
-export default PostDetail;

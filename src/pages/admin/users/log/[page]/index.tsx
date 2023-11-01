@@ -1,4 +1,4 @@
-import AdminCenterWrapper from '@src/components/common/Layout/AdminCenterWrapper';
+import AdminCenterWrapper from '@src/components/common/AdminCenterWrapper';
 import BoardFooter from '@src/components/molecules/Board/BoardFooter';
 import UserLogTable from '@src/components/templates/admin/user/log/UserLogTable';
 import { GetStaticPaths, GetStaticProps } from 'next';

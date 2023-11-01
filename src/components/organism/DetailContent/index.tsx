@@ -1,3 +1,4 @@
+import DefaultHr from '@src/components/common/DefaultHr';
 import DraftView from '@src/components/molecules/Editor/DraftView';
 import { ArticleDetail } from '@src/types/articleTypes';
 import { styled } from 'styled-components';
@@ -12,6 +13,7 @@ function DetailContent({ articleDetail }: Props) {
       {articleDetail && (
         <>
           <Title>{articleDetail.title}</Title>
+          <Hr />
           <DraftView content={articleDetail.content} />
           <AuthorInfo>
             <Avatar />
@@ -46,7 +48,6 @@ const Avatar = styled.div`
 `;
 const Info = styled.div`
   display: flex;
-
   flex-direction: column;
 `;
 const AuthorName = styled.h1`
@@ -55,4 +56,7 @@ const AuthorName = styled.h1`
 `;
 const Desc = styled.div`
   font-size: 2rem;
+`;
+const Hr = styled(DefaultHr)`
+  margin: 2rem 0;
 `;

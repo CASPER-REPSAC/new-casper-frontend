@@ -1,4 +1,4 @@
-export const ADMIN_PATH = {
+const ADMIN_PATH = {
   home: {
     name: '관리자',
     url: '/admin',
@@ -47,7 +47,7 @@ export const ADMIN_PATH = {
     url: '/admin/menu',
   },
 };
-export const PATH = {
+const PATH = {
   home: {
     name: '홈',
     url: '/',
@@ -117,3 +117,8 @@ export const PATH = {
     },
   },
 };
+
+Object.freeze(PATH);
+Object.freeze(ADMIN_PATH);
+
+export { PATH, ADMIN_PATH };

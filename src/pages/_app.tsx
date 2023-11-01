@@ -1,6 +1,4 @@
 import '@src/styles/reset.css';
-
-import type { AppProps } from 'next/app';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
@@ -11,15 +9,16 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import Theme from '@src/components/utilComponents/Theme';
-import AdminLayout from '@src/components/organism/Layout/AdminLayout';
-import CommonLayout from '@src/components/organism/Layout/CommonLayout';
+import AdminLayout from '@src/components/Layout/AdminLayout';
 import PopupWrapper from '@src/components/molecules/PopupWrapper';
-import { ADMIN_PATH } from '@src/utils/urls';
 import PageShadow from '@src/components/common/PageShadow';
 import PageLoadingPresence from '@src/components/utilComponents/PageLoadingPresence';
 import AutoLoginPresence from '@src/components/utilComponents/AutoLoginPresence';
+import DefaultLayout from '@src/components/Layout/DefaultLayout';
+import { AppPropsWithLayout } from '@src/types/layout';
+import { ADMIN_PATH } from '@src/utils/urls';
 
-interface MyAppProps extends AppProps {
+interface MyAppProps extends AppPropsWithLayout {
   loginData: {
     accessToken: string;
     refreshToken: string;
@@ -28,8 +27,17 @@ interface MyAppProps extends AppProps {
 
 function App({ Component, pageProps }: MyAppProps) {
   const router = useRouter();
-  const isAdminPage = router.asPath.startsWith(ADMIN_PATH.home.url);
   const [queryClient] = useState(() => new QueryClient());
+  const getLayout =
+    Component.getLayout ||
+    ((page) => {
+      const isAdminPage = router.asPath.startsWith(ADMIN_PATH.home.url);
+      return isAdminPage ? (
+        <AdminLayout>{page}</AdminLayout>
+      ) : (
+        <DefaultLayout>{page}</DefaultLayout>
+      );
+    });
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -40,17 +48,9 @@ function App({ Component, pageProps }: MyAppProps) {
               <PopupWrapper />
               <PageShadow />
               <PageLoadingPresence>
-                <Wrapper>
-                  {isAdminPage ? (
-                    <AdminLayout>
-                      <Component {...pageProps} />
-                    </AdminLayout>
-                  ) : (
-                    <CommonLayout>
-                      <Component {...pageProps} />
-                    </CommonLayout>
-                  )}
-                </Wrapper>
+                <MinHeightLayout>
+                  {getLayout(<Component {...pageProps} />)}
+                </MinHeightLayout>
               </PageLoadingPresence>
             </Theme>
           </AutoLoginPresence>
@@ -60,7 +60,7 @@ function App({ Component, pageProps }: MyAppProps) {
   );
 }
 
-const Wrapper = styled.div`
+const MinHeightLayout = styled.div`
   position: relative;
   min-height: 100vh;
   padding-bottom: 200px;

@@ -1,17 +1,14 @@
-import styled from 'styled-components';
-import PageTitle from '@src/components/common/PageTitle';
 import Board from '@src/components/templates/boards/Board';
-import PageWrapper from '@src/components/common/Layout/CommonCenterWrapper';
-import { PAGE_TITLE } from '@src/utils/constants';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { API_URL, ARTICLE_LIST_API } from '@src/utils/apiUrl';
 import { OnePageOfArticleList } from '@src/types/articleTypes';
-import BoardSideMenu from '@src/components/organism/BoardSideMenu';
 import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
 import Error from '@src/pages/_error';
 import axios from 'axios';
 import handleErrorStaticProps from '@src/utils/handleErrorStaticProps';
+import BoardLayout from '@src/components/Layout/BoardLayout';
+import { ReactElement } from 'react';
 
 /**
  *  게시판 메인 페이지
@@ -25,18 +22,12 @@ interface Props {
 function BoardPage({ onePageOfArticleList, error }: Props) {
   if (error) return <Error statusCode={error.statusCode} />;
 
-  return (
-    <>
-      <PageTitle pageTitle={PAGE_TITLE.board} />
-      <PageWrapper>
-        <BoardSideMenu />
-        <Main>
-          <Board onePageOfArticleList={onePageOfArticleList} />
-        </Main>
-      </PageWrapper>
-    </>
-  );
+  return <Board onePageOfArticleList={onePageOfArticleList} />;
 }
+
+BoardPage.getLayout = (page: ReactElement) => {
+  return <BoardLayout>{page}</BoardLayout>;
+};
 
 interface PathParams extends ParsedUrlQuery {
   boardType: string;
@@ -88,9 +79,5 @@ export const getStaticProps: GetStaticProps = handleErrorStaticProps(
     return { props: { onePageOfArticleList: data }, revalidate: 5 };
   },
 );
-
-const Main = styled.div`
-  display: flex;
-`;
 
 export default BoardPage;
