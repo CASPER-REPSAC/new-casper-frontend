@@ -28,6 +28,10 @@ function BoardLayout({ children }: Props) {
 const Flex = styled.div`
   display: flex;
   width: 100%;
+
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+  }
 `;
 const Main = styled.main`
   width: 100%;

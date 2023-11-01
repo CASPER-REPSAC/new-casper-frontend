@@ -27,7 +27,11 @@ function BoardFooter({ maxPage: articleNum, curPage }: Props) {
             <PageCircleButton
               key={page}
               $highlight={page === curPage}
-              onClick={() => push(`${asPath}/../${page}`)}
+              onClick={() =>
+                push(`${asPath}/../${page}`, undefined, {
+                  scroll: false,
+                })
+              }
             >
               {page}
             </PageCircleButton>
@@ -40,9 +44,14 @@ function BoardFooter({ maxPage: articleNum, curPage }: Props) {
 }
 
 const TableFooter = styled.div`
+  margin-top: 1rem;
   position: relative;
   display: flex;
-  width: 60%;
+  width: 100%;
+  max-width: 700px;
+  @media screen and (max-width: 1024px) {
+    width: 100%;
+  }
   justify-content: space-between;
 `;
 
@@ -50,7 +59,10 @@ const PageButtonSection = styled.div`
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 2em;
+  gap: 20px;
+  @media screen and (max-width: 1024px) {
+    gap: 10px;
+  }
 `;
 
 const PrevButton = styled(MdKeyboardArrowLeft)`
