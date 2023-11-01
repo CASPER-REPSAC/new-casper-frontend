@@ -1,12 +1,11 @@
-import { Dispatch, SetStateAction } from 'react';
 import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
 import { styled } from 'styled-components';
 
 interface Props {
   page: number;
   setPage: {
-    setNextPage: Dispatch<SetStateAction<number>>;
-    setPrevPage: Dispatch<SetStateAction<number>>;
+    setNextPage: () => void;
+    setPrevPage: () => void;
   };
   maxPage: number;
 }
