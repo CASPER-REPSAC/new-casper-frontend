@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import SideMenuLink from '@src/components/common/SideMenuLink';
 import { PATH } from '@src/utils/urls';
 import React, { useEffect, useState } from 'react';
 import { BOARD_TYPE } from '@src/utils/constants';
+import SideMenuWrapper from '@src/components/common/SideMenuWrapper';
 
 function BoardSideMenu() {
   const [highlight, setHighlight] = useState('notice_board');
@@ -16,7 +16,7 @@ function BoardSideMenu() {
   }, [setHighlight, query]);
 
   return (
-    <Wrapper>
+    <SideMenuWrapper>
       <SideMenuLink
         href={`${notice.url}/list/1`}
         name={notice.name}
@@ -37,17 +37,8 @@ function BoardSideMenu() {
         name={graduate.name}
         highlight={highlight === BOARD_TYPE.graduate}
       />
-    </Wrapper>
+    </SideMenuWrapper>
   );
 }
-
-const Wrapper = styled.div`
-  display: inline;
-  flex-direction: column;
-  height: 100%;
-  min-width: 230px;
-  width: 230px;
-  margin-right: 50px;
-`;
 
 export default React.memo(BoardSideMenu);

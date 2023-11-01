@@ -9,7 +9,8 @@ function CommonCenterWrapper({ ...props }: CommonCenterWrapperProps) {
 
 const Wrapper = styled.div`
   /* Mobile */
-  width: 480px;
+
+  width: 90vw;
 
   /* Tablet */
   @media screen and (min-width: 768px) {

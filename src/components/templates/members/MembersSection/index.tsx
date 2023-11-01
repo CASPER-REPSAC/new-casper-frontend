@@ -38,23 +38,25 @@ function MembersSection({ memberList }: Props) {
   );
 }
 
-export default MembersSection;
-
 const Cards = styled.div`
-  margin-left: 30px;
-  margin-right: 30px;
   display: grid;
-  gap: 3px;
-  grid-template-columns: repeat(2, 1fr);
-  box-sizing: border-box;
+  margin: 0 auto;
+  place-items: center;
+  grid-template-columns: repeat(1, 1fr);
+  gap: 20px 10px;
 
+  width: 400px;
   @media screen and (min-width: 768px) {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    width: 630px;
   }
   @media screen and (min-width: 1024px) {
     grid-template-columns: repeat(3, 1fr);
+    width: 630px;
   }
   @media screen and (min-width: 1440px) {
-    grid-template-columns: repeat(5, 1fr);
+    grid-template-columns: repeat(4, 1fr);
+    width: 840px;
   }
 `;
+export default MembersSection;

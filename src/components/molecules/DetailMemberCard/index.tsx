@@ -1,17 +1,19 @@
 import { MemberProfile } from '@src/types/memberTypes';
 import Image from 'next/image';
+import { MouseEventHandler } from 'react';
 import styled from 'styled-components';
 
 interface Props {
   memberProfile: MemberProfile;
+  onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function DetailMemberCard({ memberProfile }: Props) {
+function DetailMemberCard({ memberProfile, onClick }: Props) {
   const { image, name, introduce, nickname, role, homepage, email } =
     memberProfile;
 
   return (
-    <Wrapper>
+    <Wrapper onClick={onClick}>
       <ProfileImage>
         <StyledImage src={image} fill alt="profile image" />
       </ProfileImage>
@@ -22,7 +24,7 @@ function DetailMemberCard({ memberProfile }: Props) {
           <SmallText>{nickname}</SmallText>
           <SmallText>{role}</SmallText>
         </Row>
-        <PointText>소개글</PointText>
+        <PointText>소개</PointText>
 
         <MediumText>{introduce}</MediumText>
         <PointText>소셜 정보</PointText>
@@ -37,9 +39,9 @@ function DetailMemberCard({ memberProfile }: Props) {
 const Wrapper = styled.div`
   display: flex;
   align-items: center;
-
-  @media screen and (max-width: 1024px) {
-    flex-direction: column;
+  flex-direction: column;
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
   }
 `;
 const ProfileImage = styled.div`

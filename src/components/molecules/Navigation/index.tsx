@@ -105,9 +105,12 @@ function Navigation({ onMouseOver, onMouseOut }: Props) {
 }
 
 const Wrapper = styled.div`
+  display: none;
   position: relative;
-  display: flex;
   height: 100%;
+  @media screen and (min-width: 1024px) {
+    display: flex;
+  }
 `;
 
 const StyledUserIcon = styled(UserIcon)``;

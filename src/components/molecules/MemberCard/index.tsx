@@ -10,23 +10,35 @@ interface Props {
 
 function MemberCard({ profile, onClick }: Props) {
   const { image, name, introduce } = profile;
-
   return (
-    <Wrapper onClick={onClick}>
-      <ProfileImage src={image} alt="profile image" fill />
+    <Wrapper>
+      <Card onClick={onClick}>
+        <ProfileImage src={image} alt="profile image" fill />
+        <Detail>{introduce}</Detail>
+      </Card>
       <Name>{name}</Name>
-      <Detail>{introduce}</Detail>
     </Wrapper>
   );
 }
-
 const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+`;
+const Card = styled.div`
   position: relative;
-  transform: skewX(-18deg);
+  transform: skewX(-14deg);
   height: 200px;
-  width: 210px;
+  width: 200px;
   margin: 0;
   cursor: pointer;
+  border-radius: 4px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;
 
 const ProfileImage = styled(Image)`
@@ -40,11 +52,9 @@ const ProfileImage = styled(Image)`
 `;
 
 const Name = styled.div`
-  font-size: 3rem;
+  font-size: 2rem;
   color: ${({ theme }) => theme.textDefault};
-  position: absolute;
   text-align: center;
-  bottom: 0;
   pointer-events: none;
 `;
 

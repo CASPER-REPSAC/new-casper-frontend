@@ -1,14 +1,14 @@
 import { useRouter } from 'next/router';
-import styled from 'styled-components';
 import SideMenuLink from '@src/components/common/SideMenuLink';
 import { PATH } from '@src/utils/urls';
+import SideMenuWrapper from '@src/components/common/SideMenuWrapper';
 
 function MemberSideMenu() {
   const { asPath } = useRouter();
   const { active, rest, graduate } = PATH.members;
 
   return (
-    <Wrapper>
+    <SideMenuWrapper>
       <SideMenuLink
         href={active.url}
         name={active.name}
@@ -24,18 +24,8 @@ function MemberSideMenu() {
         name={graduate.name}
         highlight={asPath.startsWith(graduate.url)}
       />
-    </Wrapper>
+    </SideMenuWrapper>
   );
 }
-
-const Wrapper = styled.div`
-  display: inline;
-  flex-direction: column;
-  float: left;
-  height: 100%;
-  min-width: 230px;
-  width: 230px;
-  margin-right: 50px;
-`;
 
 export default MemberSideMenu;

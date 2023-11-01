@@ -32,7 +32,7 @@ function Footer() {
 const Wrapper = styled.div`
   position: absolute;
   bottom: 0;
-  width: 100%;
+  width: 100vw;
   height: 50px;
   background-color: ${(props) => props.theme.surfaceAlt};
   color: ${(props) => props.theme.textDefault};
@@ -41,9 +41,9 @@ const Wrapper = styled.div`
 
 const Body = styled(CommonCenterWrapper)`
   display: flex;
+  height: 100%;
   align-items: center;
   justify-content: space-between;
-  height: 100%;
 `;
 
 const Sns = styled.div`

@@ -10,12 +10,10 @@ function NoticeSection() {
   );
 }
 
-export default NoticeSection;
-
 const Notice = styled.div`
   display: flex;
   align-items: center;
-  height: 40px;
-  width: 500px;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
 `;
+
+export default NoticeSection;

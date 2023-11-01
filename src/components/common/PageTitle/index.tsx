@@ -25,7 +25,7 @@ function PageTitle({ pageTitle }: Props) {
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.pageTitleSurface};
-  height: 120px;
+  height: 100px;
   width: 100vw;
   color: ${(props) => props.theme.textStrong};
   display: flex;
@@ -33,11 +33,11 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   gap: 1em;
-  margin-bottom: 5em;
+  margin-bottom: 5rem;
 
-  @media screen and (max-width: 1024px) {
-    margin-bottom: 50px;
-    left: -40px;
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 4rem;
+    height: 120px;
   }
 `;
 const Title = styled.div`

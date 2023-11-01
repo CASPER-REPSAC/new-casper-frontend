@@ -1,4 +1,4 @@
-import AdminSideMenu from '@src/components/organism/AdminSideMenu';
+import AdminSideMenu from '@src/components/organism/sideMenu/AdminSideMenu';
 import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';

@@ -1,0 +1,124 @@
+{
+  "memberList": [
+    {
+      "id": 1,
+      "role": "준회원",
+      "name": "태정",
+      "nickname": "ine",
+      "email": "ine@ine.ine@",
+      "introduce": "나는 우태정",
+      "image": "https://picsum.photos/200",
+      "homepage": "https://github.com/u"
+    },
+    {
+      "id": 2,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 3,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 4,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 5,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 6,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 7,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 8,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 9,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 10,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 11,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    },
+    {
+      "id": 12,
+      "role": "정회원",
+      "name": "지성",
+      "nickname": "jijiseong",
+      "email": "ji@ko.ads",
+      "introduce": "나는 박지성",
+      "image": "https://picsum.photos/210",
+      "homepage": "https://github.com/@jijiseong"
+    }
+  ]
+}

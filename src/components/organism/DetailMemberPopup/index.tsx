@@ -13,7 +13,12 @@ function DetailMemberPopup({ memberProfile, onClick }: Props) {
   return (
     <PageShadow onClick={onClick}>
       <CenterWrapper>
-        <DetailMemberCard memberProfile={memberProfile} />
+        <DetailMemberCard
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+          memberProfile={memberProfile}
+        />
       </CenterWrapper>
     </PageShadow>
   );

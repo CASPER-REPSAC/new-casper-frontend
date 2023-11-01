@@ -1,7 +1,7 @@
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import Footer from '@src/components/organism/Footer';
 import PageTitle from '@src/components/common/PageTitle';
-import MemberSideMenu from '@src/components/organism/MemberSideMenu';
+import MemberSideMenu from '@src/components/organism/sideMenu/MemberSideMenu';
 import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
@@ -28,10 +28,13 @@ function MemberLayout({ children }: Props) {
 
 const Flex = styled.div`
   display: flex;
-  width: 100%;
+  flex-direction: column;
 
-  @media screen and (max-width: 1024px) {
-    flex-direction: column;
+  width: 100%;
+  gap: 40px;
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+    gap: 0px;
   }
 `;
 const Main = styled.main`

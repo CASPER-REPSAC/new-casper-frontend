@@ -4,22 +4,14 @@ import { styled } from 'styled-components';
 
 interface Props {
   page: number;
-  setPage: Dispatch<SetStateAction<number>>;
+  setPage: {
+    setNextPage: Dispatch<SetStateAction<number>>;
+    setPrevPage: Dispatch<SetStateAction<number>>;
+  };
   maxPage: number;
 }
 
 function PageInfoSection({ page, setPage, maxPage }: Props) {
-  const showNextPage = () => {
-    setPage((curPage) => {
-      return curPage >= maxPage - 1 ? maxPage - 1 : curPage + 1;
-    });
-  };
-  const showPrevPage = () => {
-    setPage((curPage) => {
-      return curPage >= 0 ? 0 : curPage - 1;
-    });
-  };
-
   const PageBar = [];
   for (let i = 0; i < maxPage; i += 1) {
     PageBar.push(
@@ -35,10 +27,10 @@ function PageInfoSection({ page, setPage, maxPage }: Props) {
       </Page>
       <PageBarWapper>
         <PageBarBackground>{PageBar}</PageBarBackground>
-        <LeftButton onClick={showPrevPage}>
+        <LeftButton onClick={setPage.setPrevPage}>
           <MdArrowBackIos size={25} />
         </LeftButton>
-        <RightButton onClick={showNextPage}>
+        <RightButton onClick={setPage.setNextPage}>
           <MdArrowForwardIos size={25} />
         </RightButton>
       </PageBarWapper>

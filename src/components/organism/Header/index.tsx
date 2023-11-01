@@ -10,6 +10,7 @@ import Z_INDEX from '@src/utils/zIndex';
 import PageShadow from '@src/components/common/PageShadow';
 import { useState } from 'react';
 import Navigation from '@src/components/molecules/Navigation';
+import HambergerNavigation from '@src/components/molecules/HambergerNavigation';
 
 function Header() {
   const [isDark, setIsDark] = useRecoilState(isDarkState);
@@ -33,8 +34,10 @@ function Header() {
       )}
       <Wrapper>
         <CenterWrapper>
+          <HambergerNavigation />
+
           <Logo onClick={() => router.push(PATH.home.url)}>
-            <LogoImg src={logoSrc} alt="logo" fill sizes="200px" />
+            <LogoImg src={logoSrc} alt="logo" fill />
           </Logo>
           <button type="button" onClick={toggleDarkMode}>
             dark/light

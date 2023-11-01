@@ -54,16 +54,8 @@ function PostForm() {
 }
 
 const Form = styled(DefaultForm)`
-  width: 450px;
-  @media screen and (min-width: 768px) {
-    width: 700px;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 1000px;
-  }
-  @media screen and (min-width: 1440px) {
-    width: 1400px;
-  }
+  width: 100%;
+
   padding-top: 50px;
   display: flex;
   flex-direction: column;
