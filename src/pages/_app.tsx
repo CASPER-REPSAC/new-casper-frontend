@@ -2,7 +2,6 @@ import '@src/styles/reset.css';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
-import styled from 'styled-components';
 import {
   Hydrate,
   QueryClient,
@@ -17,14 +16,7 @@ import DefaultLayout from '@src/components/Layout/DefaultLayout';
 import { AppPropsWithLayout } from '@src/types/layout';
 import { ADMIN_PATH } from '@src/utils/urls';
 
-interface MyAppProps extends AppPropsWithLayout {
-  loginData: {
-    accessToken: string;
-    refreshToken: string;
-  };
-}
-
-function App({ Component, pageProps }: MyAppProps) {
+function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
   const [queryClient] = useState(() => new QueryClient());
   const getLayout =
@@ -46,9 +38,7 @@ function App({ Component, pageProps }: MyAppProps) {
             <Theme>
               <PopupWrapper />
               <PageLoadingPresence>
-                <MinHeightLayout>
-                  {getLayout(<Component {...pageProps} />)}
-                </MinHeightLayout>
+                {getLayout(<Component {...pageProps} />)}
               </PageLoadingPresence>
             </Theme>
           </AutoLoginPresence>
@@ -57,11 +47,5 @@ function App({ Component, pageProps }: MyAppProps) {
     </QueryClientProvider>
   );
 }
-
-const MinHeightLayout = styled.div`
-  position: relative;
-  min-height: 100vh;
-  padding-bottom: 200px;
-`;
 
 export default App;

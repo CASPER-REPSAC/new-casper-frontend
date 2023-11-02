@@ -25,8 +25,11 @@ function BoardLayout({ children }: Props) {
     </Wrapper>
   );
 }
+
 const Wrapper = styled.div`
-  padding-top: 60px;
+  position: relative;
+  padding: 60px 0 160px;
+  min-height: 100vh;
 `;
 const Flex = styled.div`
   display: flex;

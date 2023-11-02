@@ -6,13 +6,14 @@ import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { PAGE_TITLE } from '@src/utils/constants';
+import DefaultPageWrapper from '@src/components/common/DefaultPageWrapper';
 
 interface Props {
   children: ReactNode;
 }
 function MemberLayout({ children }: Props) {
   return (
-    <Wrapper>
+    <DefaultPageWrapper>
       <Header />
       <PageTitle pageTitle={PAGE_TITLE.members} />
       <CommonCenterWrapper>
@@ -22,12 +23,10 @@ function MemberLayout({ children }: Props) {
         </Flex>
       </CommonCenterWrapper>
       <Footer />
-    </Wrapper>
+    </DefaultPageWrapper>
   );
 }
-const Wrapper = styled.div`
-  padding-top: 60px;
-`;
+
 const Flex = styled.div`
   display: flex;
   flex-direction: column;

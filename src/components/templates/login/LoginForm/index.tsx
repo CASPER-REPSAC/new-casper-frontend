@@ -59,12 +59,12 @@ function LoginForm() {
     </Form>
   );
 }
-export default LoginForm;
 
 const Form = styled(DefaultForm)`
-  width: 450px;
   gap: 0.5em;
 `;
 const LoginButton = styled(DefaultButton)`
   margin-top: 1em;
 `;
+
+export default LoginForm;
