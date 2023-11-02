@@ -10,7 +10,6 @@ interface Props {
 }
 
 function MemberCard({ profile, onClick }: Props) {
-  console.log('MEMBER CARD');
   const { image, name, introduce } = profile;
 
   return (
