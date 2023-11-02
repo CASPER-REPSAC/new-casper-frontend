@@ -55,12 +55,14 @@ function Header() {
 
 const Wrapper = styled.div`
   display: flex;
-  position: relative;
+  position: fixed;
+  top: 0;
   z-index: ${Z_INDEX.header};
-
   width: 100vw;
   height: 60px;
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 `;
 
 const CenterWrapper = styled(CommonCenterWrapper)`

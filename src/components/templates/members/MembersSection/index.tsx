@@ -1,38 +1,44 @@
+import {
+  detailedMemberPopupState,
+  selectedMemberState,
+} from '@src/atoms/memberCardAtoms';
 import MemberCard from '@src/components/molecules/MemberCard';
 import DetailMemberPopup from '@src/components/organism/DetailMemberPopup';
 import { MemberProfile } from '@src/types/memberTypes';
-import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
 
 interface Props {
-  memberList: MemberProfile[];
+  memberList: MemberProfile[] | null;
 }
 
 function MembersSection({ memberList }: Props) {
-  const [detailCardShow, setDetailMemberCardShow] = useState(false);
-  const [selectedMember, setSelecteMember] = useState<MemberProfile>();
-  const showDetail = (memberProfile: MemberProfile) => {
-    setDetailMemberCardShow(true);
-    setSelecteMember(memberProfile);
+  const setDetailedMemberPopupVisible = useSetRecoilState(
+    detailedMemberPopupState,
+  );
+  const setSelectedMember = useSetRecoilState(selectedMemberState);
+  const openDetailPopup = (memberProfile: MemberProfile) => {
+    setDetailedMemberPopupVisible(true);
+    setSelectedMember(memberProfile);
   };
+  const closeDetailPopup = () => {
+    setDetailedMemberPopupVisible(false);
+  };
+
   return (
     <>
-      {detailCardShow && selectedMember && (
-        <DetailMemberPopup
-          onClick={() => setDetailMemberCardShow(false)}
-          memberProfile={selectedMember}
-        />
-      )}
+      <DetailMemberPopup onClick={closeDetailPopup} />
       <Cards>
-        {memberList.map((memberProfile) => {
-          return (
-            <MemberCard
-              key={memberProfile.id}
-              onClick={() => showDetail(memberProfile)}
-              profile={memberProfile}
-            />
-          );
-        })}
+        {memberList &&
+          memberList.map((memberProfile) => {
+            return (
+              <MemberCard
+                key={memberProfile.id}
+                onClick={() => openDetailPopup(memberProfile)}
+                profile={memberProfile}
+              />
+            );
+          })}
       </Cards>
     </>
   );
@@ -44,8 +50,6 @@ const Cards = styled.div`
   place-items: center;
   grid-template-columns: repeat(1, 1fr);
   gap: 20px 10px;
-
-  width: 400px;
   @media screen and (min-width: 768px) {
     grid-template-columns: repeat(3, 1fr);
     width: 630px;

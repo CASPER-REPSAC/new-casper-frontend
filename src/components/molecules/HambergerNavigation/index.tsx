@@ -3,20 +3,26 @@ import { PATH } from '@src/utils/urls';
 import Link from 'next/link';
 import { useState } from 'react';
 import styled from 'styled-components';
-import {
-  AiOutlineMenu as MenuIcon,
-  AiOutlineClose as CloseIcon,
-  AiOutlineLogout as LogoutIcon,
-  AiOutlineLogin as LoginIcon,
-  AiOutlineUser as UserIcon,
-} from 'react-icons/ai';
+
 import { useRecoilValue } from 'recoil';
 import { loginState } from '@src/atoms';
+import useLogoutMutation from '@src/hooks/apis/useLogoutMutation';
+import {
+  CloseIcon,
+  LoginIcon,
+  LogoutIcon,
+  MenuIcon,
+  UserIcon,
+} from '@src/components/common/Icons';
 
 function HambergerNavigation() {
   const isLogin = useRecoilValue(loginState);
   const [isOpen, setIsOpen] = useState(false);
+  const { mutate: mutateLogout } = useLogoutMutation();
 
+  const logout = () => {
+    mutateLogout();
+  };
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
@@ -38,12 +44,12 @@ function HambergerNavigation() {
                 <Item href={`${PATH.user.mypage.url}`}>
                   <UserIcon />
                 </Item>
-                <Item href={`${PATH.user.mypage.url}`}>
+                <LogoutButton type="button" onClick={logout}>
                   <LogoutIcon />
-                </Item>
+                </LogoutButton>
               </>
             ) : (
-              <Item href={`${PATH.user.mypage.url}`}>
+              <Item href={`${PATH.user.login.url}`}>
                 <LoginIcon />
               </Item>
             )}
@@ -104,9 +110,11 @@ const Menu = styled.div`
   font-size: 2rem;
   padding: 0;
   padding-top: 40px;
-  background: rgba(0, 0, 0, 0.5);
-  backdrop-filter: blur(10px);
   gap: 20px;
+  position: fixed;
+  background: rgba(0, 0, 0, 0.9);
+  backdrop-filter: saturate(180%) blur(15px);
+  z-index: 3;
 `;
 const Item = styled(Link)`
   font-size: 2.4rem;
@@ -129,6 +137,10 @@ const PointText = styled.div`
 const Hr = styled(DefaultHr)`
   width: 20%;
   margin: 0;
+`;
+
+const LogoutButton = styled.button`
+  color: ${({ theme }) => theme.textDefault};
 `;
 
 export default HambergerNavigation;

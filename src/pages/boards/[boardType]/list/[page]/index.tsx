@@ -6,9 +6,10 @@ import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
 import Error from '@src/pages/_error';
 import axios from 'axios';
-import handleErrorStaticProps from '@src/utils/handleErrorStaticProps';
 import BoardLayout from '@src/components/Layout/BoardLayout';
 import { ReactElement } from 'react';
+import customAxios from '@src/utils/api';
+import { BOARD_TYPE } from '@src/utils/constants';
 
 /**
  *  게시판 메인 페이지
@@ -29,19 +30,14 @@ BoardPage.getLayout = (page: ReactElement) => {
   return <BoardLayout>{page}</BoardLayout>;
 };
 
-interface PathParams extends ParsedUrlQuery {
+interface Params extends ParsedUrlQuery {
   boardType: string;
   page: string;
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const boardTypes = [
-    'notice_board',
-    'full_member_board',
-    'graduate_member_board',
-    'associate_member_board',
-  ];
-  const paths: { params: PathParams }[] = [];
+  const boardTypes = Object.keys(BOARD_TYPE);
+  const paths: { params: Params }[] = [];
 
   const maxPages = await Promise.all(
     await boardTypes.map(async (boardType) => {
@@ -68,16 +64,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
   return { paths, fallback: true };
 };
 
-export const getStaticProps: GetStaticProps = handleErrorStaticProps(
-  async ({ params }) => {
-    const { boardType, page } = params as PathParams;
-    const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
-    const { data } = await axios.get<OnePageOfArticleList>(
-      onePageOfArticleListApiUrl,
-    );
+export const getStaticProps: GetStaticProps<Props, Params> = async (
+  context,
+) => {
+  const params = context.params!;
+  const { boardType, page } = params;
+  const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
+  const { data, error } = await customAxios<OnePageOfArticleList>({
+    url: onePageOfArticleListApiUrl,
+  });
 
-    return { props: { onePageOfArticleList: data }, revalidate: 5 };
-  },
-);
+  return { props: { onePageOfArticleList: data, error }, revalidate: 3 };
+};
 
 export default BoardPage;

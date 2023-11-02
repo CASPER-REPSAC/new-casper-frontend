@@ -1,26 +1,27 @@
 import styled from 'styled-components';
-import {
-  AiOutlineInstagram,
-  AiOutlineFacebook,
-  AiOutlineGithub,
-  AiOutlineCopyrightCircle,
-} from 'react-icons/ai';
+
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
-import { FOOTER } from '@src/utils/constants';
+import { FOOTER, ICON_SIZE } from '@src/utils/constants';
+import {
+  CopyrightIcon,
+  FacebookIcon,
+  GithubIcon,
+  InstagramIcon,
+} from '@src/components/common/Icons';
 
 function Footer() {
   return (
     <Wrapper>
       <Body>
         <Sns>
-          <AiOutlineGithub size={30} />
-          <AiOutlineFacebook size={30} />
-          <AiOutlineInstagram size={30} />
+          <GithubIcon size={ICON_SIZE.medium} />
+          <FacebookIcon size={ICON_SIZE.medium} />
+          <InstagramIcon size={ICON_SIZE.medium} />
         </Sns>
         <Info>
           <Span>{FOOTER.location}</Span>
           <Span>
-            <AiOutlineCopyrightCircle />
+            <CopyrightIcon />
             {FOOTER.copyRight}
           </Span>
         </Info>
@@ -32,7 +33,7 @@ function Footer() {
 const Wrapper = styled.div`
   position: absolute;
   bottom: 0;
-  width: 100vw;
+  width: 100%;
   height: 50px;
   background-color: ${(props) => props.theme.surfaceAlt};
   color: ${(props) => props.theme.textDefault};

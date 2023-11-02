@@ -1,5 +1,4 @@
 import { SubmitHandler, useFormContext } from 'react-hook-form';
-import { AiOutlineCheckSquare } from 'react-icons/ai';
 import DefaultButton from '@src/components/common/DefaultButton';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
@@ -11,11 +10,13 @@ import {
   POPUP_MESSAGE,
   POPUP_DURATION,
   REQUIRED_MESSAGE,
+  ICON_SIZE,
 } from '@src/utils/constants';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
 import useJoinMutation from '@src/hooks/apis/useJoinMutation';
 import { useCallback, useEffect } from 'react';
 import usePopup from '@src/hooks/usePopup';
+import { CheckSquareIcon } from '@src/components/common/Icons';
 
 function PasswordForm() {
   const {
@@ -75,7 +76,7 @@ function PasswordForm() {
     <>
       <LabelInput
         label={INPUT_LABEL.pw}
-        labelIcon={<AiOutlineCheckSquare size={25} />}
+        labelIcon={<CheckSquareIcon size={ICON_SIZE.small} />}
         register={pwRegister}
         placeholder={PLACEHOLDER.pw}
         type="password"
@@ -83,7 +84,7 @@ function PasswordForm() {
       />
       <LabelInput
         label={INPUT_LABEL.pwConfirm}
-        labelIcon={<AiOutlineCheckSquare size={25} />}
+        labelIcon={<CheckSquareIcon size={ICON_SIZE.small} />}
         register={pwConfirmRegister}
         hasError={!!errors.pwConfirm}
         placeholder={PLACEHOLDER.pwConfirm}

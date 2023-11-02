@@ -1,3 +1,4 @@
+import { UserIcon } from '@src/components/common/Icons';
 import { MemberProfile } from '@src/types/memberTypes';
 import Image from 'next/image';
 import { MouseEventHandler } from 'react';
@@ -9,11 +10,17 @@ interface Props {
 }
 
 function MemberCard({ profile, onClick }: Props) {
+  console.log('MEMBER CARD');
   const { image, name, introduce } = profile;
+
   return (
     <Wrapper>
       <Card onClick={onClick}>
-        <ProfileImage src={image} alt="profile image" fill />
+        {image ? (
+          <ProfileImage src={image} alt="profile image" fill />
+        ) : (
+          <StyledUserIcon size={100} />
+        )}
         <Detail>{introduce}</Detail>
       </Card>
       <Name>{name}</Name>
@@ -39,6 +46,7 @@ const Card = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: ${({ theme }) => theme.surfaceAlt};
 `;
 
 const ProfileImage = styled(Image)`
@@ -60,6 +68,10 @@ const Name = styled.div`
 
 const Detail = styled.div`
   font-size: 2rem;
+`;
+
+const StyledUserIcon = styled(UserIcon)`
+  color: ${({ theme }) => theme.surfaceDefault};
 `;
 
 export default MemberCard;

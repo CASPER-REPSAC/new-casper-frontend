@@ -6,6 +6,7 @@ const DefaultForm = styled.form`
   justify-content: center;
   margin: 0 auto;
   width: 100%;
+  max-width: 500px;
 `;
 
 export default DefaultForm;

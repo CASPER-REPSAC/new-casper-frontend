@@ -1,4 +1,5 @@
 import DefaultButton from '@src/components/common/DefaultButton';
+import { StarIcon, UserIcon } from '@src/components/common/Icons';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
 import {
@@ -11,7 +12,6 @@ import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';
 import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
-import { AiFillStar, AiOutlineUser } from 'react-icons/ai';
 
 function NameForm() {
   const {
@@ -58,7 +58,7 @@ function NameForm() {
     <>
       <LabelInput
         label={INPUT_LABEL.name}
-        labelIcon={<AiOutlineUser size={25} />}
+        labelIcon={<UserIcon size={25} />}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
         register={nameRegister}
@@ -66,7 +66,7 @@ function NameForm() {
       />
       <LabelInput
         label={INPUT_LABEL.nickname}
-        labelIcon={<AiFillStar size={25} />}
+        labelIcon={<StarIcon size={25} />}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
         register={nickNameRegister}

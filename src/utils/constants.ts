@@ -44,6 +44,7 @@ export const ERROR_MESSAGE = {
   name: '이름이 이상합니다.',
   nickname: '닉네임이 이상합니다.',
   email: '이메일 형식이 올바르지 않습니다.',
+  unknown: '알 수 없는 에러',
 };
 
 export const REQUIRED_MESSAGE = {
@@ -77,4 +78,16 @@ export const BOARD_TYPE = {
   full: 'full_member_board',
   associate: 'associate_member_board',
   graduate: 'graduate_member_board',
+};
+
+export const MEMBER_TYPE = {
+  active: 'active',
+  rest: 'rest',
+  graduate: 'graduate',
+};
+
+export const ICON_SIZE = {
+  large: 40,
+  medium: 30,
+  small: 20,
 };

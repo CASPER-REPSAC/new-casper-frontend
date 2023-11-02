@@ -1,8 +1,8 @@
+import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
 import PageCircleButton from '@src/components/common/PageCircleButton';
 import usePagination from '@src/hooks/usePagination';
 import useScreenWidth from '@src/hooks/useScreenWidth';
 import { useRouter } from 'next/router';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { styled } from 'styled-components';
 
 interface Props {
@@ -62,15 +62,16 @@ const PageButtonSection = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
+
   @media screen and (max-width: 1024px) {
     gap: 10px;
   }
 `;
 
-const PrevButton = styled(MdKeyboardArrowLeft)`
+const PrevButton = styled(LeftArrowIcon)`
   cursor: pointer;
 `;
-const NextButton = styled(MdKeyboardArrowRight)`
+const NextButton = styled(RightArrowIcon)`
   cursor: pointer;
 `;
 

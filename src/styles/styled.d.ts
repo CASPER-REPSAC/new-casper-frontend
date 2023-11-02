@@ -16,12 +16,16 @@ declare module 'styled-components' {
     subMenuActive: string;
     menuHover: string;
     menuActive: string;
+
+    defaultButtonHover: string;
+    defaultButtonActive: string;
     greenButton: string;
     greenHover: string;
     greenActive: string;
     redButton: string;
     redHover: string;
     redActive: string;
+
     pageTitleSurface: string;
     sideMenuHover: string;
     sideMenuActive: string;

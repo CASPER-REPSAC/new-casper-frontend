@@ -1,34 +1,37 @@
+import {
+  detailedMemberPopupState,
+  selectedMemberState,
+} from '@src/atoms/memberCardAtoms';
+import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import PageShadow from '@src/components/common/PageShadow';
 import DetailMemberCard from '@src/components/molecules/DetailMemberCard';
-import { MemberProfile } from '@src/types/memberTypes';
 import { MouseEventHandler } from 'react';
-import styled from 'styled-components';
+import { useRecoilValue } from 'recoil';
 
 interface Props {
-  memberProfile: MemberProfile;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function DetailMemberPopup({ memberProfile, onClick }: Props) {
+function DetailMemberPopup({ onClick }: Props) {
+  const visible = useRecoilValue(detailedMemberPopupState);
+  const selectedMember = useRecoilValue(selectedMemberState);
+
   return (
-    <PageShadow onClick={onClick}>
-      <CenterWrapper>
-        <DetailMemberCard
-          onClick={(e) => {
-            e.stopPropagation();
-          }}
-          memberProfile={memberProfile}
-        />
-      </CenterWrapper>
-    </PageShadow>
+    <>
+      {visible && selectedMember && (
+        <PageShadow onClick={onClick}>
+          <CommonCenterWrapper>
+            <DetailMemberCard
+              onClick={(e) => {
+                e.stopPropagation();
+              }}
+              memberProfile={selectedMember}
+            />
+          </CommonCenterWrapper>
+        </PageShadow>
+      )}
+    </>
   );
 }
-
-const CenterWrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-`;
 
 export default DetailMemberPopup;

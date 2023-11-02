@@ -1,4 +1,5 @@
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/utils/constants';
 import { styled } from 'styled-components';
 
 interface Props {
@@ -27,10 +28,10 @@ function PageInfoSection({ page, setPage, maxPage }: Props) {
       <PageBarWapper>
         <PageBarBackground>{PageBar}</PageBarBackground>
         <LeftButton onClick={setPage.setPrevPage}>
-          <MdArrowBackIos size={25} />
+          <LeftArrowIcon size={ICON_SIZE.small} />
         </LeftButton>
         <RightButton onClick={setPage.setNextPage}>
-          <MdArrowForwardIos size={25} />
+          <RightArrowIcon size={ICON_SIZE.small} />
         </RightButton>
       </PageBarWapper>
     </PageInfoWrapper>

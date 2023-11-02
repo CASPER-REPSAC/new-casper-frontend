@@ -26,7 +26,7 @@ function PageTitle({ pageTitle }: Props) {
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.pageTitleSurface};
   height: 100px;
-  width: 100vw;
+  width: 100%;
   color: ${(props) => props.theme.textStrong};
   display: flex;
   flex-direction: column;

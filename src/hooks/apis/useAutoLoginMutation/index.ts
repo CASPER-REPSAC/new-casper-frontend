@@ -32,11 +32,6 @@ function useAutoLoginMutation() {
         });
         break;
       default:
-        openAndDeletePopup({
-          key: Date.now(),
-          message: '알 수 없다..',
-          duration: POPUP_DURATION.medium,
-        });
         break;
     }
   };

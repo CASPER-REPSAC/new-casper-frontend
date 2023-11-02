@@ -1,5 +1,5 @@
 import DefaultButton from '@src/components/common/DefaultButton';
-import { AiOutlineClose } from 'react-icons/ai';
+import { CloseIcon } from '@src/components/common/Icons';
 import { styled } from 'styled-components';
 
 interface Props {
@@ -11,7 +11,7 @@ function BoardCategoryCard({ title }: Props) {
     <CategoryItem>
       <span>{title}</span>
       <DefaultButton type="small" color="red">
-        <AiOutlineClose />
+        <CloseIcon />
       </DefaultButton>
     </CategoryItem>
   );

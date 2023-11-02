@@ -31,6 +31,8 @@ export const darkTheme: DefaultTheme = {
   redButton: COLORS.red400,
   redHover: COLORS.red300,
   redActive: COLORS.red500,
+  defaultButtonHover: COLORS.gray900,
+  defaultButtonActive: COLORS.gray950,
 
   inputSurface: COLORS.gray850,
 
@@ -88,6 +90,9 @@ export const lightTheme: DefaultTheme = {
   redButton: '',
   redHover: '',
   redActive: '',
+  defaultButtonHover: COLORS.gray900,
+  defaultButtonActive: COLORS.gray950,
+
   notAllowedCorsor: COLORS.gray100,
   redError: COLORS.red400,
   /* 에디터 색상 */

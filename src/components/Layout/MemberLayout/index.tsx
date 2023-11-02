@@ -12,7 +12,7 @@ interface Props {
 }
 function MemberLayout({ children }: Props) {
   return (
-    <>
+    <Wrapper>
       <Header />
       <PageTitle pageTitle={PAGE_TITLE.members} />
       <CommonCenterWrapper>
@@ -22,10 +22,12 @@ function MemberLayout({ children }: Props) {
         </Flex>
       </CommonCenterWrapper>
       <Footer />
-    </>
+    </Wrapper>
   );
 }
-
+const Wrapper = styled.div`
+  padding-top: 60px;
+`;
 const Flex = styled.div`
   display: flex;
   flex-direction: column;

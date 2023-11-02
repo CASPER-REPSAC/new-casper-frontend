@@ -4,7 +4,7 @@ export interface MemberProfile {
   name: string;
   nickname: string;
   email: string;
-  introduce: string;
-  homepage: string;
-  image: string;
+  introduce: string | null;
+  homepage: string | null;
+  image: string | null;
 }

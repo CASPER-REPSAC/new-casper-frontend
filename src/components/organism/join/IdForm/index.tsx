@@ -1,5 +1,6 @@
 import DefaultButton from '@src/components/common/DefaultButton';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
+import { UserIcon } from '@src/components/common/Icons';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
 import {
@@ -12,7 +13,6 @@ import { ID_REGEX } from '@src/utils/regex';
 import { PATH } from '@src/utils/urls';
 import { useRouter } from 'next/router';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
-import { AiOutlineUser } from 'react-icons/ai';
 
 function IdForm() {
   const {
@@ -46,7 +46,7 @@ function IdForm() {
     <>
       <LabelInput
         label={INPUT_LABEL.id}
-        labelIcon={<AiOutlineUser size={25} />}
+        labelIcon={<UserIcon size={25} />}
         register={idRegister}
         placeholder={PLACEHOLDER.id}
         hasError={!!errors.id}

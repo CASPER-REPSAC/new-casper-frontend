@@ -31,7 +31,7 @@ function Board({ onePageOfArticleList }: Props) {
     push(PATH.posts.url);
   };
 
-  const maxPage = Math.ceil(onePageOfArticleList.maxPageNum / 10);
+  const maxPage = Math.ceil(onePageOfArticleList.maxPageNum);
 
   return (
     <Wrapper>
