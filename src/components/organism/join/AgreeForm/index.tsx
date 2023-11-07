@@ -1,7 +1,7 @@
 import CheckInput from '@src/components/common/CheckInput';
 import DefaultButton from '@src/components/common/DefaultButton';
 import { JoinFormData } from '@src/types/joinTypes';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
 import { useRouter } from 'next/router';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
@@ -40,7 +40,8 @@ function AgreeForm() {
         </Li>
       </Info>
       <DefaultButton
-        type="large"
+        size="large"
+        color="green"
         onClick={handleSubmit(onValid)}
         active={buttonActive}
       >

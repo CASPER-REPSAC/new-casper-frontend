@@ -1,6 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import { API_URL, ARTICLE_DETAIL_API } from '@src/utils/apiUrl';
+import { API_URL, ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
 import { ArticleDetail } from '@src/types/articleTypes';
 import { SsrError } from '@src/types/errorTypes';
 import DetailTemplate from '@src/components/templates/boards/DetailTemplate';

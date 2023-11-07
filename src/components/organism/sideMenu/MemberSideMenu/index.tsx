@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import SideMenuLink from '@src/components/common/SideMenuLink';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
 import SideMenuWrapper from '@src/components/common/SideMenuWrapper';
 
 function MemberSideMenu() {

@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
 import SideMenuLink from '@src/components/common/SideMenuLink';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
 import React, { useEffect, useState } from 'react';
-import { BOARD_TYPE } from '@src/utils/constants';
 import SideMenuWrapper from '@src/components/common/SideMenuWrapper';
+import { BOARD_TYPE } from '@src/constants/mock';
 
 function BoardSideMenu() {
   const [highlight, setHighlight] = useState('notice_board');

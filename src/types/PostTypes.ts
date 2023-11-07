@@ -6,7 +6,6 @@ export interface PostReqData {
   file: boolean;
   hide: boolean;
   notice: boolean;
-  nickname: string;
   title: string;
   content: string | null;
   photo: string;

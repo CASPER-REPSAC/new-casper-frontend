@@ -1,4 +1,4 @@
-import { ALL_MEMEBER_API } from '@src/utils/apiUrl';
+import { ALL_MEMEBER_API } from '@src/constants/apiUrl';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 

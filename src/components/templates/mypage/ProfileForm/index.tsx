@@ -3,11 +3,11 @@ import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
 import DefaultButton from '@src/components/common/DefaultButton';
 import AvatarInput from '@src/components/molecules/Inputs/AvatarInput';
-import { INPUT_LABEL, PLACEHOLDER } from '@src/utils/constants';
 import LabelTextarea from '@src/components/molecules/Inputs/LabelTextarea';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import DefaultForm from '@src/components/common/DefaultForm';
 import useProfile from '@src/hooks/apis/useProfile';
+import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 
 function ProfileForm() {
   const { register } = useForm();
@@ -61,7 +61,9 @@ function ProfileForm() {
         placeholder={PLACEHOLDER.social}
         autoComplete="off"
       />
-      <Button>저장</Button>
+      <Button full color="green">
+        저장
+      </Button>
     </Form>
   );
 }

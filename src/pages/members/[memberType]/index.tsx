@@ -1,6 +1,6 @@
 import MembersSection from '@src/components/templates/members/MembersSection';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { ALL_MEMEBER_API, API_URL } from '@src/utils/apiUrl';
+import { ALL_MEMEBER_API, API_URL } from '@src/constants/apiUrl';
 import { MemberProfile } from '@src/types/memberTypes';
 import MemberLayout from '@src/components/Layout/MemberLayout';
 import { ReactElement } from 'react';
@@ -8,7 +8,7 @@ import { ParsedUrlQuery } from 'querystring';
 import customAxios from '@src/utils/api';
 import { SsrError } from '@src/types/errorTypes';
 import Error from '@src/pages/_error';
-import { MEMBER_TYPE } from '@src/utils/constants';
+import { MEMBER_TYPE } from '@src/constants/mock';
 
 interface Props {
   memberList: MemberProfile[] | null;

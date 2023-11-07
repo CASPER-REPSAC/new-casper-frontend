@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
-import { FOOTER, ICON_SIZE } from '@src/utils/constants';
 import {
   CopyrightIcon,
   FacebookIcon,
   GithubIcon,
   InstagramIcon,
 } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/constants/size';
+import { FOOTER } from '@src/constants/label';
 
 function Footer() {
   return (

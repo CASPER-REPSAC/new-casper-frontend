@@ -1,5 +1,5 @@
+import BarNavigation from '@src/components/organism/Header';
 import AdminSideMenu from '@src/components/organism/sideMenu/AdminSideMenu';
-import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
 
@@ -9,7 +9,7 @@ interface Props {
 function AdminLayout({ children }: Props) {
   return (
     <>
-      <Header />
+      <BarNavigation />
       <AdminPageWrapper>
         <AdminSideMenu />
         {children}

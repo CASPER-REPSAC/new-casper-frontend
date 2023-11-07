@@ -4,15 +4,13 @@ import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import DefaultButton from '@src/components/common/DefaultButton';
 import DefaultForm from '@src/components/common/DefaultForm';
 import usePopup from '@src/hooks/usePopup';
-import {
-  ICON_SIZE,
-  PLACEHOLDER,
-  POPUP_DURATION,
-  REQUIRED_MESSAGE,
-} from '@src/utils/constants';
+import { REQUIRED_MESSAGE } from '@src/constants/message';
 import { LoginRequest } from '@src/types/loginTypes';
 import useLoginMutation from '@src/hooks/apis/useLoginMutation';
 import { LockIcon, UserIcon } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/constants/size';
+import { PLACEHOLDER } from '@src/constants/label';
+import { POPUP_DURATION } from '@src/constants/duration';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();
@@ -53,7 +51,12 @@ function LoginForm() {
         placeholder={PLACEHOLDER.pw}
         type="password"
       />
-      <LoginButton type="large" full onClick={handleSubmit(onValid, onInvalid)}>
+      <LoginButton
+        size="large"
+        color="green"
+        full
+        onClick={handleSubmit(onValid, onInvalid)}
+      >
         로그인
       </LoginButton>
     </Form>

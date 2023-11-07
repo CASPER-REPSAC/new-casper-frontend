@@ -1,19 +1,18 @@
-import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
-import Footer from '@src/components/organism/Footer';
-import PageTitle from '@src/components/common/PageTitle';
-import BoardSideMenu from '@src/components/organism/sideMenu/BoardSideMenu';
-import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { PAGE_TITLE } from '@src/utils/constants';
+import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
+import PageTitle from '@src/components/common/PageTitle';
+import BoardSideMenu from '@src/components/organism/sideMenu/BoardSideMenu';
+import { PAGE_TITLE } from '@src/constants/label';
+import DefaultLayout from '../DefaultLayout';
 
 interface Props {
   children: ReactNode;
 }
+
 function BoardLayout({ children }: Props) {
   return (
-    <Wrapper>
-      <Header />
+    <DefaultLayout>
       <PageTitle pageTitle={PAGE_TITLE.board} />
       <CommonCenterWrapper>
         <Flex>
@@ -21,16 +20,10 @@ function BoardLayout({ children }: Props) {
           <Main>{children}</Main>
         </Flex>
       </CommonCenterWrapper>
-      <Footer />
-    </Wrapper>
+    </DefaultLayout>
   );
 }
 
-const Wrapper = styled.div`
-  position: relative;
-  padding: 60px 0 160px;
-  min-height: 100vh;
-`;
 const Flex = styled.div`
   display: flex;
   width: 100%;

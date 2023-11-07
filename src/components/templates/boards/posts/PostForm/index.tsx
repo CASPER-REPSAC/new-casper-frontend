@@ -24,7 +24,6 @@ function PostForm() {
     file: false,
     hide: false,
     notice: false,
-    nickname: 'test-name',
     title: '',
     content: null,
     photo: 'test',
@@ -54,8 +53,6 @@ function PostForm() {
 }
 
 const Form = styled(DefaultForm)`
-  width: 100%;
-
   padding-top: 50px;
   display: flex;
   flex-direction: column;

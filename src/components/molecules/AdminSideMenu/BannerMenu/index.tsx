@@ -1,7 +1,7 @@
 import AdminSideMenu from '@src/components/common/AdminSideMenu';
 import useHighlight from '@src/hooks/useHighlight';
 import useRedirect from '@src/hooks/useRedirect';
-import { ADMIN_PATH } from '@src/utils/urls';
+import { ADMIN_PATH } from '@src/constants/urls';
 
 function BannerMenu() {
   const redirect = useRedirect();

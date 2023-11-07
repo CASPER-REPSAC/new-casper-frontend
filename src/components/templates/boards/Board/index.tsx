@@ -3,7 +3,7 @@ import BoardBody from '@src/components/molecules/Board/BoardBody';
 import BoardFooter from '@src/components/molecules/Board/BoardFooter';
 import BoardHeader from '@src/components/molecules/Board/BoardHeader';
 import { OnePageOfArticleList } from '@src/types/articleTypes';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
@@ -37,7 +37,7 @@ function Board({ onePageOfArticleList }: Props) {
     <Wrapper>
       <BoardHeader />
       <BoardBody articleList={onePageOfArticleList.articleList} />
-      <WriteButton type="small" onClick={onClickWrite}>
+      <WriteButton size="small" color="green" onClick={onClickWrite}>
         작성 하기
       </WriteButton>
       <BoardFooter maxPage={maxPage} curPage={curPage} />

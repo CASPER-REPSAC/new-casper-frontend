@@ -1,20 +1,17 @@
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
-import Footer from '@src/components/organism/Footer';
 import PageTitle from '@src/components/common/PageTitle';
 import MemberSideMenu from '@src/components/organism/sideMenu/MemberSideMenu';
-import Header from '@src/components/organism/Header';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { PAGE_TITLE } from '@src/utils/constants';
-import DefaultPageWrapper from '@src/components/common/DefaultPageWrapper';
+import { PAGE_TITLE } from '@src/constants/label';
+import DefaultLayout from '../DefaultLayout';
 
 interface Props {
   children: ReactNode;
 }
 function MemberLayout({ children }: Props) {
   return (
-    <DefaultPageWrapper>
-      <Header />
+    <DefaultLayout>
       <PageTitle pageTitle={PAGE_TITLE.members} />
       <CommonCenterWrapper>
         <Flex>
@@ -22,8 +19,7 @@ function MemberLayout({ children }: Props) {
           <Main>{children}</Main>
         </Flex>
       </CommonCenterWrapper>
-      <Footer />
-    </DefaultPageWrapper>
+    </DefaultLayout>
   );
 }
 

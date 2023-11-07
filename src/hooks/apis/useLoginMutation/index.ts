@@ -1,13 +1,14 @@
 import { accessTokenState } from '@src/atoms';
 import usePopup from '@src/hooks/usePopup';
 import { LoginRequest, LoginResponse } from '@src/types/loginTypes';
-import { LOGINT_API } from '@src/utils/apiUrl';
-import { POPUP_DURATION } from '@src/utils/constants';
-import { PATH } from '@src/utils/urls';
+import { LOGINT_API } from '@src/constants/apiUrl';
+import { PATH } from '@src/constants/urls';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';
 import { useSetRecoilState } from 'recoil';
+import { POPUP_DURATION } from '@src/constants/duration';
+import { POPUP_MESSAGE } from '@src/constants/message';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -21,7 +22,7 @@ export default function useLoginMutation() {
   const onLoinSuccess = ({ data }: AxiosResponse<LoginResponse>) => {
     openAndDeletePopup({
       key: Date.now(),
-      message: '로그인 성공!',
+      message: POPUP_MESSAGE.login,
       duration: POPUP_DURATION.medium,
     });
 

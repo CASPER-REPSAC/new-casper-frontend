@@ -1,6 +1,6 @@
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
+import { PLACEHOLDER } from '@src/constants/label';
 import { PostReqData } from '@src/types/PostTypes';
-import { PLACEHOLDER } from '@src/utils/constants';
 import { KeyboardEventHandler } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { styled } from 'styled-components';

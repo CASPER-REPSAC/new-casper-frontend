@@ -1,5 +1,5 @@
 import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
-import { ICON_SIZE } from '@src/utils/constants';
+import { ICON_SIZE } from '@src/constants/size';
 import { styled } from 'styled-components';
 
 interface Props {

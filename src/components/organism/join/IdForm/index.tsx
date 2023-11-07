@@ -1,18 +1,14 @@
+import { useRouter } from 'next/router';
 import DefaultButton from '@src/components/common/DefaultButton';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
 import { UserIcon } from '@src/components/common/Icons';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
-import {
-  ERROR_MESSAGE,
-  INPUT_LABEL,
-  PLACEHOLDER,
-  REQUIRED_MESSAGE,
-} from '@src/utils/constants';
-import { ID_REGEX } from '@src/utils/regex';
-import { PATH } from '@src/utils/urls';
-import { useRouter } from 'next/router';
+import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@src/constants/message';
+import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
+import { PATH } from '@src/constants/urls';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { ID_REGEX } from '@src/utils/regex';
 
 function IdForm() {
   const {
@@ -57,7 +53,8 @@ function IdForm() {
         </FormErrorWrapper>
       )}
       <DefaultButton
-        type="large"
+        size="large"
+        color="green"
         onClick={handleSubmit(onValid)}
         active={buttonActive}
       >

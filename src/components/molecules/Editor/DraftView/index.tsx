@@ -1,6 +1,7 @@
 import DraftTextStyle from '@src/components/common/DraftTextStyle';
+import { POPUP_DURATION } from '@src/constants/duration';
+import { POPUP_MESSAGE } from '@src/constants/message';
 import usePopup from '@src/hooks/usePopup';
-import { POPUP_DURATION, POPUP_MESSAGE } from '@src/utils/constants';
 import { Editor, EditorState, convertFromRaw } from 'draft-js';
 import { useId, useState } from 'react';
 import styled from 'styled-components';
@@ -8,6 +9,7 @@ import styled from 'styled-components';
 interface Props {
   content: string;
 }
+
 function DraftView({ content }: Props) {
   const viewEditorId = useId();
   const { openAndDeletePopup } = usePopup();

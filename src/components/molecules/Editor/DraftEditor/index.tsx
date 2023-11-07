@@ -35,34 +35,35 @@ function DraftEditor() {
     ITALIC: false,
   });
 
-  const inlineButtons: {
-    icon: ReactNode;
-    action: InlineType;
-  }[] = [
-    {
-      icon: <BoldIcon size={30} />,
-      action: 'BOLD',
-    },
-    {
-      icon: <ItalicIcon size={30} />,
-      action: 'ITALIC',
-    },
-  ];
   const blockButtons: {
     icon: ReactNode;
     action: string;
   }[] = [
     {
-      icon: <Heading1Icon size={40} />,
+      icon: <Heading1Icon size="100%" />,
       action: 'header-one',
     },
     {
-      icon: <Heading2Icon size={40} />,
+      icon: <Heading2Icon size="100%" />,
       action: 'header-two',
     },
     {
-      icon: <Heading3Icon size={40} />,
+      icon: <Heading3Icon size="100%" />,
       action: 'header-three',
+    },
+  ];
+
+  const inlineButtons: {
+    icon: ReactNode;
+    action: InlineType;
+  }[] = [
+    {
+      icon: <BoldIcon size="70%" />,
+      action: 'BOLD',
+    },
+    {
+      icon: <ItalicIcon size="70%" />,
+      action: 'ITALIC',
     },
   ];
 

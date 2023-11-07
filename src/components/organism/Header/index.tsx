@@ -1,55 +1,62 @@
-import { useRecoilState } from 'recoil';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { useState } from 'react';
+import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
-import { isDarkState } from '@src/atoms';
+import { pageShadowState } from '@src/atoms';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
-import { PATH } from '@src/utils/urls';
-import Z_INDEX from '@src/utils/zIndex';
-import PageShadow from '@src/components/common/PageShadow';
-import { useState } from 'react';
-import Navigation from '@src/components/molecules/Navigation';
-import HambergerNavigation from '@src/components/molecules/HambergerNavigation';
+import NavMenuSection from '@src/components/organism/Header/BarNavMenuSection';
+import DefaultButton from '@src/components/common/DefaultButton';
+import { MenuIcon } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/constants/size';
+import Z_INDEX from '@src/constants/zIndex';
+import SCREEN from '@src/constants/screenWidth';
+import useScreenWidth from '@src/hooks/useScreenWidth';
+import HambergerMenuSection from './HambergerMenuSection';
+import LogoSection from './LogoSection';
 
-function Header() {
-  const [isDark, setIsDark] = useRecoilState(isDarkState);
-  const router = useRouter();
+function Navigation() {
+  const setPageShadowShow = useSetRecoilState(pageShadowState);
+  const screenWidth = useScreenWidth();
+  const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
 
-  const isHome = router.pathname === '/';
-  const isDarkHome = isDark || isHome;
-  const logoSrc = isDarkHome
-    ? '/casper_logo_white.png'
-    : '/casper_logo_black.png';
-
-  const toggleDarkMode = () => {
-    setIsDark(!isDark);
+  const toggleMenu = () => {
+    setHambergerMenuOpen((cur) => !cur);
   };
-  const [pageShadowShow, setPageShadowShow] = useState(false);
 
+  const closeMenu = () => {
+    setHambergerMenuOpen(false);
+  };
+
+  const showPageShadow = () => {
+    setPageShadowShow(true);
+  };
+
+  const hidePageShadow = () => {
+    setPageShadowShow(false);
+  };
   return (
-    <>
-      {pageShadowShow && (
-        <PageShadow onClick={() => setPageShadowShow(false)} />
-      )}
-      <Wrapper>
-        <CenterWrapper>
-          <HambergerNavigation />
+    <Wrapper>
+      <CenterWrapper>
+        {screenWidth < SCREEN.tablet && (
+          <DefaultButton onClick={toggleMenu}>
+            <MenuIcon size={ICON_SIZE.large} />
+          </DefaultButton>
+        )}
+        {screenWidth < SCREEN.tablet && isHambergerMenuOpen && (
+          <HambergerMenuSection onClick={closeMenu} />
+        )}
 
-          <Logo onClick={() => router.push(PATH.home.url)}>
-            <LogoImg src={logoSrc} alt="logo" fill />
-          </Logo>
-          <button type="button" onClick={toggleDarkMode}>
-            dark/light
-          </button>
-          <Navigation
-            onMouseOver={() => setPageShadowShow(true)}
-            onMouseOut={() => setPageShadowShow(false)}
+        <LogoSection />
+
+        {screenWidth >= SCREEN.tablet && (
+          <NavMenuSection
+            onMouseOver={showPageShadow}
+            onMouseOut={hidePageShadow}
           />
-        </CenterWrapper>
-        <LoadingProgressBar />
-      </Wrapper>
-    </>
+        )}
+      </CenterWrapper>
+      <LoadingProgressBar />
+    </Wrapper>
   );
 }
 
@@ -71,14 +78,5 @@ const CenterWrapper = styled(CommonCenterWrapper)`
   align-items: center;
   height: 100%;
 `;
-const Logo = styled.div`
-  position: relative;
-  width: 100px;
-  height: 100%;
-  cursor: pointer;
-`;
-const LogoImg = styled(Image)`
-  object-fit: contain;
-`;
 
-export default Header;
+export default Navigation;

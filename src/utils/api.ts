@@ -1,6 +1,6 @@
+import { ERROR_MESSAGE } from '@src/constants/message';
 import { SsrError } from '@src/types/errorTypes';
 import axios, { AxiosRequestConfig, isAxiosError } from 'axios';
-import { ERROR_MESSAGE } from './constants';
 
 interface Response<T> {
   data: T | null;

@@ -1,6 +1,6 @@
 import DefaultInput from '@src/components/common/DefaultInput';
 import { SearchIcon } from '@src/components/common/Icons';
-import { ICON_SIZE } from '@src/utils/constants';
+import { ICON_SIZE } from '@src/constants/size';
 import { useForm } from 'react-hook-form';
 import { styled } from 'styled-components';
 

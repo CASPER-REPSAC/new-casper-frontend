@@ -1,5 +1,5 @@
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { isPageLoadingState } from '@src/atoms';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -71,4 +71,4 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.purple};
 `;
 
-export default LoadingProgressBar;
+export default memo(LoadingProgressBar);

@@ -4,7 +4,7 @@ import { useRecoilValue } from 'recoil';
 import { isDarkState } from '@src/atoms';
 import LoginForm from '@src/components/templates/login/LoginForm';
 import styled from 'styled-components';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 
 export default function Login() {

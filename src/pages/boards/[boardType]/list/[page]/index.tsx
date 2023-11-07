@@ -1,6 +1,6 @@
 import Board from '@src/components/templates/boards/Board';
 import { GetStaticPaths, GetStaticProps } from 'next';
-import { API_URL, ARTICLE_LIST_API } from '@src/utils/apiUrl';
+import { API_URL, ARTICLE_LIST_API } from '@src/constants/apiUrl';
 import { OnePageOfArticleList } from '@src/types/articleTypes';
 import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
@@ -9,7 +9,7 @@ import axios from 'axios';
 import BoardLayout from '@src/components/Layout/BoardLayout';
 import { ReactElement } from 'react';
 import customAxios from '@src/utils/api';
-import { BOARD_TYPE } from '@src/utils/constants';
+import { BOARD_TYPE } from '@src/constants/mock';
 
 /**
  *  게시판 메인 페이지

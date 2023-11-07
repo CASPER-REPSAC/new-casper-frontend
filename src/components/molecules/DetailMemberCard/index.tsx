@@ -1,7 +1,6 @@
 import { MouseEventHandler, ReactElement } from 'react';
 import Image from 'next/image';
 import { MemberProfile } from '@src/types/memberTypes';
-import { ICON_SIZE } from '@src/utils/constants';
 import styled from 'styled-components';
 import {
   CloseIcon,
@@ -11,6 +10,7 @@ import {
 } from '@src/components/common/Icons';
 import { detailedMemberPopupState } from '@src/atoms/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
+import { ICON_SIZE } from '@src/constants/size';
 
 interface Props {
   memberProfile: MemberProfile;

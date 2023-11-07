@@ -14,7 +14,8 @@ import PageLoadingPresence from '@src/components/utilComponents/PageLoadingPrese
 import AutoLoginPresence from '@src/components/utilComponents/AutoLoginPresence';
 import DefaultLayout from '@src/components/Layout/DefaultLayout';
 import { AppPropsWithLayout } from '@src/types/layout';
-import { ADMIN_PATH } from '@src/utils/urls';
+import { ADMIN_PATH } from '@src/constants/urls';
+import PageShadow from '@src/components/common/PageShadow';
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
@@ -36,6 +37,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
         <RecoilRoot>
           <AutoLoginPresence>
             <Theme>
+              <PageShadow />
               <PopupWrapper />
               <PageLoadingPresence>
                 {getLayout(<Component {...pageProps} />)}
