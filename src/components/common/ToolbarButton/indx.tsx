@@ -16,6 +16,9 @@ function ToolbarButton({ icon, highlight, onClick }: Props) {
 }
 
 const Wrapper = styled.button<{ $highlight: boolean }>`
+  width: 40px;
+  height: 40px;
+
   padding: 0;
   ${({ $highlight, theme }) =>
     $highlight

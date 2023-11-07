@@ -1,5 +1,5 @@
 import { Profile } from '@src/types/userTypes';
-import { MEMBER_API } from '@src/utils/apiUrl';
+import { MEMBER_API } from '@src/constants/apiUrl';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 

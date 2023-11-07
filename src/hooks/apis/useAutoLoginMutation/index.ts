@@ -4,10 +4,11 @@ import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { AutoLoginResponse } from '@src/types/loginTypes';
 import usePopup from '@src/hooks/usePopup';
-import { PATH } from '@src/utils/urls';
-import { POPUP_DURATION, POPUP_MESSAGE } from '@src/utils/constants';
-import { AUTO_LOGIN_API } from '@src/utils/apiUrl';
+import { PATH } from '@src/constants/urls';
+import { AUTO_LOGIN_API } from '@src/constants/apiUrl';
 import { accessTokenState } from '@src/atoms';
+import { POPUP_MESSAGE } from '@src/constants/message';
+import { POPUP_DURATION } from '@src/constants/duration';
 
 function useAutoLoginMutation() {
   const { push } = useRouter();
@@ -32,11 +33,6 @@ function useAutoLoginMutation() {
         });
         break;
       default:
-        openAndDeletePopup({
-          key: Date.now(),
-          message: '알 수 없다..',
-          duration: POPUP_DURATION.medium,
-        });
         break;
     }
   };

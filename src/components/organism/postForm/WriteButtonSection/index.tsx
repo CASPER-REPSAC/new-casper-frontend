@@ -17,7 +17,11 @@ function WriteButtonSection() {
 
   return (
     <Wrapper>
-      <WriteButton type="large" onClick={handleSubmit(onValid, onInvalid)}>
+      <WriteButton
+        size="large"
+        color="green"
+        onClick={handleSubmit(onValid, onInvalid)}
+      >
         작성 하기
       </WriteButton>
     </Wrapper>

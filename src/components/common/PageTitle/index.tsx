@@ -25,19 +25,19 @@ function PageTitle({ pageTitle }: Props) {
 
 const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.pageTitleSurface};
-  height: 120px;
-  width: 100vw;
+  height: 100px;
+  width: 100%;
   color: ${(props) => props.theme.textStrong};
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   gap: 1em;
-  margin-bottom: 5em;
+  margin-bottom: 5rem;
 
-  @media screen and (max-width: 1024px) {
-    margin-bottom: 50px;
-    left: -40px;
+  @media screen and (min-width: 1024px) {
+    margin-bottom: 4rem;
+    height: 120px;
   }
 `;
 const Title = styled.div`

@@ -1,6 +1,6 @@
 import { JoinReqData, JoinResData } from '@src/types/joinTypes';
-import { JOIN_API } from '@src/utils/apiUrl';
-import { PATH } from '@src/utils/urls';
+import { JOIN_API } from '@src/constants/apiUrl';
+import { PATH } from '@src/constants/urls';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosResponse } from 'axios';
 import { useRouter } from 'next/router';

@@ -1,6 +1,6 @@
 import RadioInput from '@src/components/common/RadioInput';
+import { BOARD_TYPE } from '@src/constants/mock';
 import { PostReqData } from '@src/types/PostTypes';
-import { BOARD_TYPE } from '@src/utils/constants';
 import { useFormContext } from 'react-hook-form';
 import { styled } from 'styled-components';
 

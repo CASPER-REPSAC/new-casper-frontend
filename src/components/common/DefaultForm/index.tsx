@@ -5,16 +5,8 @@ const DefaultForm = styled.form`
   flex-direction: column;
   justify-content: center;
   margin: 0 auto;
-  width: 450px;
-  @media screen and (min-width: 768px) {
-    width: 450px;
-  }
-  @media screen and (min-width: 1024px) {
-    width: 500px;
-  }
-  @media screen and (min-width: 1440px) {
-    width: 550px;
-  }
+  width: 100%;
+  max-width: 500px;
 `;
 
 export default DefaultForm;

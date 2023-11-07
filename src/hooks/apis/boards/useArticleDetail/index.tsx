@@ -1,5 +1,5 @@
 import { ArticleDetail } from '@src/types/articleTypes';
-import { ARTICLE_DETAIL_API } from '@src/utils/apiUrl';
+import { ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 

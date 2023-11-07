@@ -1,17 +1,16 @@
 import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { AiOutlineLock, AiOutlineUser } from 'react-icons/ai';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import DefaultButton from '@src/components/common/DefaultButton';
 import DefaultForm from '@src/components/common/DefaultForm';
 import usePopup from '@src/hooks/usePopup';
-import {
-  PLACEHOLDER,
-  POPUP_DURATION,
-  REQUIRED_MESSAGE,
-} from '@src/utils/constants';
+import { REQUIRED_MESSAGE } from '@src/constants/message';
 import { LoginRequest } from '@src/types/loginTypes';
 import useLoginMutation from '@src/hooks/apis/useLoginMutation';
+import { LockIcon, UserIcon } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/constants/size';
+import { PLACEHOLDER } from '@src/constants/label';
+import { POPUP_DURATION } from '@src/constants/duration';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();
@@ -42,28 +41,33 @@ function LoginForm() {
   return (
     <Form>
       <LabelInput
-        labelIcon={<AiOutlineUser size={25} />}
+        labelIcon={<UserIcon size={ICON_SIZE.small} />}
         register={idRegister}
         placeholder={PLACEHOLDER.id}
       />
       <LabelInput
-        labelIcon={<AiOutlineLock size={25} />}
+        labelIcon={<LockIcon size={ICON_SIZE.small} />}
         register={pwRegister}
         placeholder={PLACEHOLDER.pw}
         type="password"
       />
-      <LoginButton type="large" full onClick={handleSubmit(onValid, onInvalid)}>
+      <LoginButton
+        size="large"
+        color="green"
+        full
+        onClick={handleSubmit(onValid, onInvalid)}
+      >
         로그인
       </LoginButton>
     </Form>
   );
 }
-export default LoginForm;
 
 const Form = styled(DefaultForm)`
-  width: 450px;
   gap: 0.5em;
 `;
 const LoginButton = styled(DefaultButton)`
   margin-top: 1em;
 `;
+
+export default LoginForm;

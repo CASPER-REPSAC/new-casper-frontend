@@ -28,6 +28,7 @@
     "react/jsx-filename-extension": ["warn", { "extensions": [".ts", ".tsx"] }],
     "no-useless-catch": "off", // 불필요한 catch 못쓰게 하는 기능 끔
     "@typescript-eslint/no-use-before-define": "off",
+    "react/jsx-no-useless-fragment": "off",
     "react/jsx-props-no-spreading": 0, // props로 받은 것 바로 props로 넘기기 허용
     "react/require-default-props": 0,
     "@tanstack/query/exhaustive-deps": "error",

@@ -4,7 +4,8 @@ import { useRecoilValue } from 'recoil';
 import { isDarkState } from '@src/atoms';
 import LoginForm from '@src/components/templates/login/LoginForm';
 import styled from 'styled-components';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
+import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);
@@ -21,14 +22,14 @@ export default function Login() {
   );
 }
 
-const Wrapper = styled.div`
+const Wrapper = styled(CommonCenterWrapper)`
   display: flex;
   align-items: center;
+  flex-direction: column;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  flex-direction: column;
 `;
 
 const LogoWrapper = styled.div`

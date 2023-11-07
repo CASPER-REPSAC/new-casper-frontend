@@ -29,12 +29,12 @@ export const popupListState = atom<{ key: Key; message: string }[]>({
   default: [],
 });
 
-export const pageShadowState = atom({
-  key: 'pageShadow',
+export const isPageLoadingState = atom({
+  key: 'isPageLoading',
   default: false,
 });
 
-export const isPageLoadingState = atom({
-  key: 'isPageLoading',
+export const detailMemberCardShowState = atom({
+  key: 'detailMemberCardShow',
   default: false,
 });

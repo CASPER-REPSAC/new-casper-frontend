@@ -1,14 +1,14 @@
-import { useState } from 'react';
 import styled from 'styled-components';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import TitelSection from '@src/components/templates/home/TitleSection';
 import NoticeSection from '@src/components/templates/home/NoticeSection';
 import PageInfoSection from '@src/components/templates/home/PageInfoSection';
+import usePagination from '@src/hooks/usePagination';
 
 function Home() {
-  const [page, setPage] = useState(0);
   const bgImgs = ['background1.jpg', 'background2.jpg'];
   const maxPage = bgImgs.length;
+  const { setNextPage, setPrevPage, page } = usePagination(maxPage);
 
   return (
     <>
@@ -17,7 +17,11 @@ function Home() {
         <Body>
           <NoticeSection />
           <TitelSection />
-          <PageInfoSection page={page} setPage={setPage} maxPage={maxPage} />
+          <PageInfoSection
+            page={page}
+            setPage={{ setNextPage, setPrevPage }}
+            maxPage={maxPage}
+          />
         </Body>
       </CommonCenterWrapper>
     </>
@@ -36,10 +40,10 @@ const Background = styled.img`
 `;
 
 const Body = styled.div`
+  position: absolute;
   display: flex;
   flex-direction: column;
   gap: 10vh;
-  position: absolute;
   top: 25vh;
   color: white;
 `;

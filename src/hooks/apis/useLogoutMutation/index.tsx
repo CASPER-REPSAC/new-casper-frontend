@@ -1,10 +1,11 @@
 import { accessTokenState } from '@src/atoms';
 import usePopup from '@src/hooks/usePopup';
-import { LOGOUT_API } from '@src/utils/apiUrl';
-import { POPUP_MESSAGE, POPUP_DURATION } from '@src/utils/constants';
+import { LOGOUT_API } from '@src/constants/apiUrl';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRecoilState } from 'recoil';
+import { POPUP_MESSAGE } from '@src/constants/message';
+import { POPUP_DURATION } from '@src/constants/duration';
 
 function useLogoutMutation() {
   const [accessToken, setAcessToken] = useRecoilState(accessTokenState);

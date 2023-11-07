@@ -1,5 +1,5 @@
+import { memo, useCallback, useEffect, useRef, useState } from 'react';
 import { isPageLoadingState } from '@src/atoms';
-import { useCallback, useEffect, useRef, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -8,10 +8,11 @@ function LoadingProgressBar() {
   const [percentage, setPercentage] = useState(0);
   const [visible, setVisible] = useState(true);
   const rafRef = useRef<number>(0);
-
   const calcInterval = (value: number) => {
-    if (value > 30) return 1;
-    if (value > 50) return (90 - value) * 0.1;
+    if (value < 30) return 2;
+    if (value < 50) return 1;
+    if (value < 70) return 0.5;
+    if (value < 90) return (90 - value) * 0.1;
     return 1;
   };
 
@@ -19,6 +20,7 @@ function LoadingProgressBar() {
     setVisible(true);
     setPercentage((prevPercentage) => {
       const interval = calcInterval(prevPercentage);
+
       const nextPrecentage = prevPercentage + interval;
       return nextPrecentage;
     });
@@ -69,4 +71,4 @@ const Wrapper = styled.div`
   background-color: ${({ theme }) => theme.purple};
 `;
 
-export default LoadingProgressBar;
+export default memo(LoadingProgressBar);

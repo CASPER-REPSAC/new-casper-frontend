@@ -1,6 +1,7 @@
 import DefaultInput from '@src/components/common/DefaultInput';
+import { SearchIcon } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/constants/size';
 import { useForm } from 'react-hook-form';
-import { AiOutlineSearch } from 'react-icons/ai';
 import { styled } from 'styled-components';
 
 function BoardHeader() {
@@ -19,7 +20,7 @@ function BoardHeader() {
           register={register('search')}
           placeholder="검색어를 입력해 주세요."
         />
-        <SearchIcon size={20} />
+        <StyledSearchIcon size={ICON_SIZE.small} />
       </SerachBar>
     </TableHeader>
   );
@@ -45,7 +46,7 @@ const SerachBar = styled.div`
   position: relative;
   align-items: center;
 `;
-const SearchIcon = styled(AiOutlineSearch)`
+const StyledSearchIcon = styled(SearchIcon)`
   position: absolute;
   left: 15px;
 `;

@@ -1,86 +1,77 @@
-import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil';
-import {
-  AiOutlineLogout as LogoutIcon,
-  AiOutlineLogin as LoginIcon,
-  AiOutlineUser as UserIcon,
-} from 'react-icons/ai';
-import { useRouter } from 'next/router';
-import Image from 'next/image';
+import { useState } from 'react';
 import { styled } from 'styled-components';
-import { isDarkState, loginState, pageShadowState } from '@src/atoms';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
-import NavItems from '@src/components/molecules/NavItems';
-import useLogoutMutation from '@src/hooks/apis/useLogoutMutation';
-import { PATH } from '@src/utils/urls';
-import Z_INDEX from '@src/utils/zIndex';
+import NavMenuSection from '@src/components/organism/Header/BarNavMenuSection';
+import DefaultButton from '@src/components/common/DefaultButton';
+import { MenuIcon } from '@src/components/common/Icons';
+import PageShadow from '@src/components/common/PageShadow';
+import { ICON_SIZE } from '@src/constants/size';
+import Z_INDEX from '@src/constants/zIndex';
+import SCREEN from '@src/constants/screenWidth';
+import useScreenWidth from '@src/hooks/useScreenWidth';
+import HambergerMenuSection from './HambergerMenuSection';
+import LogoSection from './LogoSection';
 
-function Header() {
-  const login = useRecoilValue(loginState);
-  const [isDark, setIsDark] = useRecoilState(isDarkState);
-  const setShadow = useSetRecoilState(pageShadowState);
-  const router = useRouter();
-  const { mutate: mutateLogout } = useLogoutMutation();
+function Navigation() {
+  const [pageShadow, setPageShadowShow] = useState(false);
+  const screenWidth = useScreenWidth();
+  const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
 
-  const isHome = router.pathname === '/';
-  const isDarkHome = isDark || isHome;
-  const logoSrc = isDarkHome
-    ? '/casper_logo_white.png'
-    : '/casper_logo_black.png';
-
-  const logout = () => mutateLogout();
-  const redirectMypage = () => router.push(PATH.user.mypage.url);
-  const redirectLoginPage = () => router.push(PATH.user.login.url);
-  const toggleDarkMode = () => {
-    setIsDark(!isDark);
+  const toggleMenu = () => {
+    setHambergerMenuOpen((cur) => !cur);
   };
 
+  const closeMenu = () => {
+    setHambergerMenuOpen(false);
+  };
+
+  const showPageShadow = () => {
+    setPageShadowShow(true);
+  };
+
+  const hidePageShadow = () => {
+    setPageShadowShow(false);
+  };
   return (
-    <Wrapper>
-      <CenterWrapper>
-        <Logo onClick={() => router.push(PATH.home.url)}>
-          <LogoImg src={logoSrc} alt="logo" fill sizes="200px" />
-        </Logo>
-
-        <button type="button" onClick={toggleDarkMode}>
-          dark/light
-        </button>
-
-        <NavSection>
-          <NavItems
-            onMouseOver={() => setShadow(true)}
-            onMouseOut={() => setShadow(false)}
-          />
-
-          {login ? (
-            <>
-              <IconWrapper onClick={redirectMypage}>
-                <StyledUserIcon size={20} />
-              </IconWrapper>
-              <IconWrapper onClick={logout}>
-                <StyledLogoutIcon size={20} />
-              </IconWrapper>
-            </>
-          ) : (
-            <IconWrapper onClick={redirectLoginPage}>
-              <StyledLoginIcon size={20} />
-            </IconWrapper>
+    <>
+      {pageShadow && <PageShadow />}
+      <Wrapper>
+        <CenterWrapper>
+          {screenWidth < SCREEN.tablet && (
+            <DefaultButton onClick={toggleMenu}>
+              <MenuIcon size={ICON_SIZE.large} />
+            </DefaultButton>
           )}
-        </NavSection>
-      </CenterWrapper>
-      <LoadingProgressBar />
-    </Wrapper>
+          {screenWidth < SCREEN.tablet && isHambergerMenuOpen && (
+            <HambergerMenuSection onClick={closeMenu} />
+          )}
+
+          <LogoSection />
+
+          {screenWidth >= SCREEN.tablet && (
+            <NavMenuSection
+              onMouseOver={showPageShadow}
+              onMouseOut={hidePageShadow}
+            />
+          )}
+        </CenterWrapper>
+        <LoadingProgressBar />
+      </Wrapper>
+    </>
   );
 }
 
 const Wrapper = styled.div`
   display: flex;
-  position: relative;
+  position: fixed;
+  top: 0;
   z-index: ${Z_INDEX.header};
-
   width: 100vw;
   height: 60px;
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 `;
 
 const CenterWrapper = styled(CommonCenterWrapper)`
@@ -89,33 +80,5 @@ const CenterWrapper = styled(CommonCenterWrapper)`
   align-items: center;
   height: 100%;
 `;
-const Logo = styled.div`
-  position: relative;
-  width: 100px;
-  height: 100%;
-  cursor: pointer;
-`;
-const LogoImg = styled(Image)`
-  object-fit: contain;
-`;
-const NavSection = styled.div`
-  display: flex;
-  height: 100%;
-`;
-const IconWrapper = styled.div`
-  display: flex;
 
-  justify-content: center;
-  align-items: center;
-  width: 50px;
-  cursor: pointer;
-`;
-const StyledUserIcon = styled(UserIcon)``;
-const StyledLoginIcon = styled(LoginIcon)`
-  cursor: pointer;
-`;
-const StyledLogoutIcon = styled(LogoutIcon)`
-  cursor: pointer;
-`;
-
-export default Header;
+export default Navigation;

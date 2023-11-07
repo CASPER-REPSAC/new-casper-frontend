@@ -10,17 +10,16 @@ import {
 import { useFormContext } from 'react-hook-form';
 import { PostReqData } from '@src/types/PostTypes';
 import ToolbarButton from '@src/components/common/ToolbarButton/indx';
-
-import {
-  LuBold,
-  LuHeading1,
-  LuHeading2,
-  LuHeading3,
-  LuItalic,
-} from 'react-icons/lu';
 import { InlineType } from '@src/types/toolbarTypes';
 import DraftTextStyle from '@src/components/common/DraftTextStyle';
 import DefaultHr from '@src/components/common/DefaultHr';
+import {
+  BoldIcon,
+  Heading1Icon,
+  Heading2Icon,
+  Heading3Icon,
+  ItalicIcon,
+} from '@src/components/common/Icons';
 
 function DraftEditor() {
   const editorKey = useId();
@@ -36,34 +35,35 @@ function DraftEditor() {
     ITALIC: false,
   });
 
-  const inlineButtons: {
-    icon: ReactNode;
-    action: InlineType;
-  }[] = [
-    {
-      icon: <LuBold size={30} />,
-      action: 'BOLD',
-    },
-    {
-      icon: <LuItalic size={30} />,
-      action: 'ITALIC',
-    },
-  ];
   const blockButtons: {
     icon: ReactNode;
     action: string;
   }[] = [
     {
-      icon: <LuHeading1 size={40} />,
+      icon: <Heading1Icon size="100%" />,
       action: 'header-one',
     },
     {
-      icon: <LuHeading2 size={40} />,
+      icon: <Heading2Icon size="100%" />,
       action: 'header-two',
     },
     {
-      icon: <LuHeading3 size={40} />,
+      icon: <Heading3Icon size="100%" />,
       action: 'header-three',
+    },
+  ];
+
+  const inlineButtons: {
+    icon: ReactNode;
+    action: InlineType;
+  }[] = [
+    {
+      icon: <BoldIcon size="70%" />,
+      action: 'BOLD',
+    },
+    {
+      icon: <ItalicIcon size="70%" />,
+      action: 'ITALIC',
     },
   ];
 

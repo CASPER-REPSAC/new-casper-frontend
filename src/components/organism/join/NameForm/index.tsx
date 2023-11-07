@@ -1,17 +1,16 @@
 import DefaultButton from '@src/components/common/DefaultButton';
+import { StarIcon, UserIcon } from '@src/components/common/Icons';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
-import {
-  ERROR_MESSAGE,
-  INPUT_LABEL,
-  PLACEHOLDER,
-  REQUIRED_MESSAGE,
-} from '@src/utils/constants';
+
+import { REQUIRED_MESSAGE, ERROR_MESSAGE } from '@src/constants/message';
+
 import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
 import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
-import { AiFillStar, AiOutlineUser } from 'react-icons/ai';
+import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
+import { ICON_SIZE } from '@src/constants/size';
 
 function NameForm() {
   const {
@@ -58,7 +57,7 @@ function NameForm() {
     <>
       <LabelInput
         label={INPUT_LABEL.name}
-        labelIcon={<AiOutlineUser size={25} />}
+        labelIcon={<UserIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
         register={nameRegister}
@@ -66,14 +65,15 @@ function NameForm() {
       />
       <LabelInput
         label={INPUT_LABEL.nickname}
-        labelIcon={<AiFillStar size={25} />}
+        labelIcon={<StarIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
         register={nickNameRegister}
         hasError={!!errors.nickname}
       />
       <DefaultButton
-        type="large"
+        size="large"
+        color="green"
         onClick={handleSubmit(onValid)}
         active={buttonActive}
       >

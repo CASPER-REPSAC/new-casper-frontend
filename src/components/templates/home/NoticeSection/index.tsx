@@ -1,21 +1,20 @@
-import { HiLightBulb } from 'react-icons/hi';
+import { LightBulbIcon } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/constants/size';
 import { styled } from 'styled-components';
 
 function NoticeSection() {
   return (
     <Notice>
-      <HiLightBulb size={40} color="yellow" />
+      <LightBulbIcon size={ICON_SIZE.large} color="yellow" />
       신입생 모집 기간입니다.
     </Notice>
   );
 }
 
-export default NoticeSection;
-
 const Notice = styled.div`
   display: flex;
   align-items: center;
-  height: 40px;
-  width: 500px;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
 `;
+
+export default NoticeSection;

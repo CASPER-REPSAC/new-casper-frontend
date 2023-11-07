@@ -1,25 +1,17 @@
-import { Dispatch, SetStateAction } from 'react';
-import { MdArrowBackIos, MdArrowForwardIos } from 'react-icons/md';
+import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
+import { ICON_SIZE } from '@src/constants/size';
 import { styled } from 'styled-components';
 
 interface Props {
   page: number;
-  setPage: Dispatch<SetStateAction<number>>;
+  setPage: {
+    setNextPage: () => void;
+    setPrevPage: () => void;
+  };
   maxPage: number;
 }
 
 function PageInfoSection({ page, setPage, maxPage }: Props) {
-  const showNextPage = () => {
-    setPage((curPage) => {
-      return curPage >= maxPage - 1 ? maxPage - 1 : curPage + 1;
-    });
-  };
-  const showPrevPage = () => {
-    setPage((curPage) => {
-      return curPage >= 0 ? 0 : curPage - 1;
-    });
-  };
-
   const PageBar = [];
   for (let i = 0; i < maxPage; i += 1) {
     PageBar.push(
@@ -35,11 +27,11 @@ function PageInfoSection({ page, setPage, maxPage }: Props) {
       </Page>
       <PageBarWapper>
         <PageBarBackground>{PageBar}</PageBarBackground>
-        <LeftButton onClick={showPrevPage}>
-          <MdArrowBackIos size={25} />
+        <LeftButton onClick={setPage.setPrevPage}>
+          <LeftArrowIcon size={ICON_SIZE.small} />
         </LeftButton>
-        <RightButton onClick={showNextPage}>
-          <MdArrowForwardIos size={25} />
+        <RightButton onClick={setPage.setNextPage}>
+          <RightArrowIcon size={ICON_SIZE.small} />
         </RightButton>
       </PageBarWapper>
     </PageInfoWrapper>

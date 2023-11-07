@@ -17,7 +17,10 @@ const PageCircleButton = styled.button<{ $highlight: boolean }>`
     `}
 
   &:hover {
-    background-color: ${({ theme }) => theme.surfaceAlt};
+    background-color: ${({ theme }) => theme.defaultButtonHover};
+  }
+  &:active {
+    background-color: ${({ theme }) => theme.defaultButtonActive};
   }
 `;
 

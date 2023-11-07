@@ -1,31 +1,33 @@
 import { HTMLAttributes } from 'react';
 import styled, { css } from 'styled-components';
 
-type ButtonType = 'small' | 'medium' | 'large';
-type ButtonColor = 'red' | 'green';
+// todo. full, type -> size로 통일
+type ButtonSize = 'small' | 'medium' | 'large';
+type ButtonColor = 'red' | 'green' | 'default';
 interface ButtonWrapperProps {
-  $type: ButtonType;
+  $size: ButtonSize;
   $full: boolean;
   $color: ButtonColor;
   $active?: boolean;
 }
-export interface DefaultButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  type?: ButtonType;
+interface DefaultButtonProps extends HTMLAttributes<HTMLButtonElement> {
+  size?: ButtonSize;
   full?: boolean;
   color?: ButtonColor;
   active?: boolean;
 }
 
 function DefaultButton({
-  type = 'medium',
+  size = 'medium',
   full = false,
-  color = 'green',
+  color = 'default',
   active = true,
   ...props
 }: DefaultButtonProps) {
   return (
     <ButtonWrapper
-      $type={type}
+      type="button"
+      $size={size}
       $full={full}
       $color={color}
       $active={active}
@@ -35,8 +37,8 @@ function DefaultButton({
 }
 
 const sizeCss = css<ButtonWrapperProps>`
-  ${({ $type }) => {
-    switch ($type) {
+  ${({ $size }) => {
+    switch ($size) {
       case 'small':
         return css`
           font-size: 1.4rem;
@@ -76,12 +78,12 @@ const inActiveColorCss = css<ButtonWrapperProps>`
 
 const activeColorCss = css<ButtonWrapperProps>`
   cursor: pointer;
+  color: ${({ theme }) => theme.textDefault};
 
   ${({ $color }) => {
     switch ($color) {
       case 'green':
         return css`
-          color: ${({ theme }) => theme.textDefault};
           background-color: ${({ theme }) => theme.greenButton};
           &:hover {
             background-color: ${({ theme }) => theme.greenHover};
@@ -93,7 +95,6 @@ const activeColorCss = css<ButtonWrapperProps>`
       case 'red':
         return css`
           background-color: ${({ theme }) => theme.redButton};
-          color: ${({ theme }) => theme.textDefault};
           &:hover {
             background-color: ${({ theme }) => theme.redHover};
           }
@@ -101,11 +102,15 @@ const activeColorCss = css<ButtonWrapperProps>`
             background-color: ${({ theme }) => theme.redActive};
           }
         `;
+
       default:
         return css`
-          background-color: ${({ theme }) => theme.green100};
+          background-color: none;
           &:hover {
-            background-color: ${({ theme }) => theme.green200};
+            background-color: ${({ theme }) => theme.defaultButtonHover};
+          }
+          &:active {
+            background-color: ${({ theme }) => theme.defaultButtonActive};
           }
         `;
     }

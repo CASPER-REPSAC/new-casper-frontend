@@ -1,7 +1,8 @@
+import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
 import PageCircleButton from '@src/components/common/PageCircleButton';
 import usePagination from '@src/hooks/usePagination';
+import useScreenWidth from '@src/hooks/useScreenWidth';
 import { useRouter } from 'next/router';
-import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from 'react-icons/md';
 import { styled } from 'styled-components';
 
 interface Props {
@@ -10,19 +11,22 @@ interface Props {
 }
 
 function BoardFooter({ maxPage: articleNum, curPage }: Props) {
-  const maxPage = Math.ceil(articleNum / 10);
+  const screenWidth = useScreenWidth();
+
+  const pageInteval = screenWidth < 768 ? 5 : 10;
+  const maxPage = Math.ceil(articleNum / pageInteval);
   const { page: footerPage, setNextPage, setPrevPage } = usePagination(maxPage);
   const { push, asPath } = useRouter();
 
   const maxPageList = Array.from({ length: articleNum }, (_, idx) => idx + 1);
-  const start = footerPage * 10;
-  const curPageList = maxPageList.splice(start, start + 10);
+  const start = footerPage * pageInteval;
+  const pageList = maxPageList.slice(start, start + pageInteval);
 
   return (
     <TableFooter>
       <PrevButton size={35} onClick={setPrevPage} />
       <PageButtonSection>
-        {curPageList.map((page) => {
+        {pageList.map((page) => {
           return (
             <PageCircleButton
               key={page}
@@ -49,9 +53,7 @@ const TableFooter = styled.div`
   display: flex;
   width: 100%;
   max-width: 700px;
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-  }
+
   justify-content: space-between;
 `;
 
@@ -60,15 +62,16 @@ const PageButtonSection = styled.div`
   align-items: center;
   justify-content: flex-start;
   gap: 20px;
+
   @media screen and (max-width: 1024px) {
     gap: 10px;
   }
 `;
 
-const PrevButton = styled(MdKeyboardArrowLeft)`
+const PrevButton = styled(LeftArrowIcon)`
   cursor: pointer;
 `;
-const NextButton = styled(MdKeyboardArrowRight)`
+const NextButton = styled(RightArrowIcon)`
   cursor: pointer;
 `;
 

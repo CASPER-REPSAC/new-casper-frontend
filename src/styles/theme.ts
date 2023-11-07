@@ -25,6 +25,8 @@ export const darkTheme: DefaultTheme = {
   sideMenuHighlight: COLORS.gray500,
 
   /* 버튼 색상 */
+  defaultButtonHover: COLORS.gray900,
+  defaultButtonActive: COLORS.gray950,
   greenButton: COLORS.green400,
   greenHover: COLORS.green300,
   greenActive: COLORS.green500,
@@ -88,6 +90,9 @@ export const lightTheme: DefaultTheme = {
   redButton: '',
   redHover: '',
   redActive: '',
+  defaultButtonHover: COLORS.gray900,
+  defaultButtonActive: COLORS.gray950,
+
   notAllowedCorsor: COLORS.gray100,
   redError: COLORS.red400,
   /* 에디터 색상 */

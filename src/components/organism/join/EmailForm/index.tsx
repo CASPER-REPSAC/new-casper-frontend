@@ -1,18 +1,15 @@
 import DefaultButton from '@src/components/common/DefaultButton';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
+import { MailIcon } from '@src/components/common/Icons';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
-import {
-  ERROR_MESSAGE,
-  INPUT_LABEL,
-  PLACEHOLDER,
-  REQUIRED_MESSAGE,
-} from '@src/utils/constants';
+import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@src/constants/message';
+import { ICON_SIZE } from '@src/constants/size';
+import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 import { EMAIL_REGEX } from '@src/utils/regex';
-import { PATH } from '@src/utils/urls';
+import { PATH } from '@src/constants/urls';
 import { useRouter } from 'next/router';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
-import { AiOutlineMail } from 'react-icons/ai';
 
 function EmailForm() {
   const {
@@ -46,7 +43,7 @@ function EmailForm() {
     <>
       <LabelInput
         label={INPUT_LABEL.email}
-        labelIcon={<AiOutlineMail size={25} />}
+        labelIcon={<MailIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.email}
         autoComplete="off"
         register={emailRegister}
@@ -58,7 +55,8 @@ function EmailForm() {
         </FormErrorWrapper>
       )}
       <DefaultButton
-        type="large"
+        size="large"
+        color="green"
         onClick={handleSubmit(onValid)}
         active={buttonActive}
       >
