@@ -30,12 +30,9 @@ function DetailMemberCard({ memberProfile, onClick }: Props) {
 
   return (
     <Wrapper onClick={onClick}>
-      <DefaultButton>
-        <StyledCloseIcon
-          size={ICON_SIZE.medium}
-          onClick={closeDetailedMemberPopup}
-        />
-      </DefaultButton>
+      <CloseButton>
+        <CloseIcon size={ICON_SIZE.medium} onClick={closeDetailedMemberPopup} />
+      </CloseButton>
       <ProfileImage>
         {image ? (
           <StyledImage src={image} fill alt="profile image" />
@@ -107,18 +104,7 @@ const Wrapper = styled.div`
     max-width: 700px;
   }
 `;
-const StyledCloseIcon = styled(CloseIcon)`
-  position: absolute;
-  left: 0px;
-  top: 0px;
 
-  @media screen and (min-width: 768px) {
-    top: -50px;
-    right: 0px;
-    left: auto;
-  }
-  cursor: pointer;
-`;
 const ProfileImage = styled.div`
   display: flex;
   align-items: center;
@@ -173,6 +159,18 @@ const PointText = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.borderBold};
   padding-bottom: 4px;
   margin-bottom: 0.4em;
+`;
+
+const CloseButton = styled(DefaultButton)`
+  position: absolute;
+  left: 0px;
+  top: 0px;
+
+  @media screen and (min-width: 768px) {
+    top: -50px;
+    right: 0px;
+    left: auto;
+  }
 `;
 
 export default DetailMemberCard;
