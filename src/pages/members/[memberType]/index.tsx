@@ -52,8 +52,6 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     url: `${API_URL}${ALL_MEMEBER_API}?role=all`,
   });
 
-  console.log(data);
-
   return {
     props: {
       memberList: data ? data.memberList : null,
