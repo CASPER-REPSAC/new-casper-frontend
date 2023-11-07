@@ -1,8 +1,8 @@
-import MembersSection from '@src/components/templates/members/MembersSection';
+import MembersTemplate from '@src/components/templates/members/MembersTemplate';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ALL_MEMEBER_API, API_URL } from '@src/constants/apiUrl';
 import { MemberProfile } from '@src/types/memberTypes';
-import MemberLayout from '@src/components/Layout/MemberLayout';
+import MemberLayout from '@src/components/utilComponents/Layout/MemberLayout';
 import { ReactElement } from 'react';
 import { ParsedUrlQuery } from 'querystring';
 import customAxios from '@src/utils/api';
@@ -20,7 +20,7 @@ function Members({
   error,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   if (error) return <Error statusCode={error.statusCode} />;
-  return <MembersSection memberList={memberList} />;
+  return <MembersTemplate memberList={memberList} />;
 }
 
 Members.getLayout = (page: ReactElement) => <MemberLayout>{page}</MemberLayout>;
@@ -46,14 +46,17 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   context,
 ) => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const { memberType } = context.params!;
-  const { data, error } = await customAxios<MemberProfile[]>({
-    url: `${API_URL}${ALL_MEMEBER_API}?role=${memberType}`,
+  const { data, error } = await customAxios<{ memberList: MemberProfile[] }>({
+    url: `${API_URL}${ALL_MEMEBER_API}?role=all`,
   });
+
+  console.log(data);
 
   return {
     props: {
-      memberList: data,
+      memberList: data ? data.memberList : null,
       error,
     },
     revalidate: 300,

@@ -6,7 +6,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { SsrError } from '@src/types/errorTypes';
 import Error from '@src/pages/_error';
 import axios from 'axios';
-import BoardLayout from '@src/components/Layout/BoardLayout';
+import BoardLayout from '@src/components/utilComponents/Layout/BoardLayout';
 import { ReactElement } from 'react';
 import customAxios from '@src/utils/api';
 import { BOARD_TYPE } from '@src/constants/mock';

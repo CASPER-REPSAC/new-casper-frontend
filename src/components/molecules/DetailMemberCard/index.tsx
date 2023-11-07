@@ -11,6 +11,7 @@ import {
 import { detailedMemberPopupState } from '@src/atoms/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
 import { ICON_SIZE } from '@src/constants/size';
+import DefaultButton from '@src/components/common/DefaultButton';
 
 interface Props {
   memberProfile: MemberProfile;
@@ -28,51 +29,49 @@ function DetailMemberCard({ memberProfile, onClick }: Props) {
   };
 
   return (
-    <>
-      <Wrapper onClick={onClick}>
-        <div>
-          <StyledCloseIcon
-            size={ICON_SIZE.medium}
-            onClick={closeDetailedMemberPopup}
-          />
-        </div>
-        <ProfileImage>
-          {image ? (
-            <StyledImage src={image} fill alt="profile image" />
-          ) : (
-            <UserIcon size={100} color="black" />
-          )}
-        </ProfileImage>
-        <TextSection>
-          <DetailRow title="정보">
+    <Wrapper onClick={onClick}>
+      <DefaultButton>
+        <StyledCloseIcon
+          size={ICON_SIZE.medium}
+          onClick={closeDetailedMemberPopup}
+        />
+      </DefaultButton>
+      <ProfileImage>
+        {image ? (
+          <StyledImage src={image} fill alt="profile image" />
+        ) : (
+          <UserIcon size={100} color="black" />
+        )}
+      </ProfileImage>
+      <TextSection>
+        <DetailRow title="정보">
+          <Row>
+            <LargeText>{name}</LargeText>
+            <SmallText>{nickname}</SmallText>
+            <SmallText>{role}</SmallText>
+          </Row>
+        </DetailRow>
+
+        <DetailRow title="소개">
+          <MediumText>{introduce}</MediumText>
+        </DetailRow>
+
+        <DetailRow title="소셜 정보">
+          <>
             <Row>
-              <LargeText>{name}</LargeText>
-              <SmallText>{nickname}</SmallText>
-              <SmallText>{role}</SmallText>
+              <MailIcon size={ICON_SIZE.medium} />
+              <SmallText>{email}</SmallText>
             </Row>
-          </DetailRow>
-
-          <DetailRow title="소개">
-            <MediumText>{introduce}</MediumText>
-          </DetailRow>
-
-          <DetailRow title="소셜 정보">
-            <>
+            {homepage && (
               <Row>
-                <MailIcon size={ICON_SIZE.medium} />
-                <SmallText>{email}</SmallText>
+                <HomeIcon size={ICON_SIZE.medium} />
+                <LinkText href={homepage}>{homepage}</LinkText>
               </Row>
-              {homepage && (
-                <Row>
-                  <HomeIcon size={ICON_SIZE.medium} />
-                  <LinkText href={homepage}>{homepage}</LinkText>
-                </Row>
-              )}
-            </>
-          </DetailRow>
-        </TextSection>
-      </Wrapper>
-    </>
+            )}
+          </>
+        </DetailRow>
+      </TextSection>
+    </Wrapper>
   );
 }
 

@@ -29,11 +29,6 @@ export const popupListState = atom<{ key: Key; message: string }[]>({
   default: [],
 });
 
-export const pageShadowState = atom({
-  key: 'pageShadow',
-  default: false,
-});
-
 export const isPageLoadingState = atom({
   key: 'isPageLoading',
   default: false,

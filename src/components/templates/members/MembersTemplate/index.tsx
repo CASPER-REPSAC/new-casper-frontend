@@ -12,7 +12,7 @@ interface Props {
   memberList: MemberProfile[] | null;
 }
 
-function MembersSection({ memberList }: Props) {
+function MembersTemplate({ memberList }: Props) {
   const setDetailedMemberPopupVisible = useSetRecoilState(
     detailedMemberPopupState,
   );
@@ -63,4 +63,4 @@ const Cards = styled.div`
     width: 840px;
   }
 `;
-export default MembersSection;
+export default MembersTemplate;

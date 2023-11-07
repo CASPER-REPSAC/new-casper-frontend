@@ -5,7 +5,7 @@ import { ArticleDetail } from '@src/types/articleTypes';
 import { SsrError } from '@src/types/errorTypes';
 import DetailTemplate from '@src/components/templates/boards/DetailTemplate';
 import Error from '@src/pages/_error';
-import BoardLayout from '@src/components/Layout/BoardLayout';
+import BoardLayout from '@src/components/utilComponents/Layout/BoardLayout';
 import { ReactElement } from 'react';
 import customAxios from '@src/utils/api';
 

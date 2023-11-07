@@ -1,12 +1,11 @@
 import { useState } from 'react';
-import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
-import { pageShadowState } from '@src/atoms';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
 import NavMenuSection from '@src/components/organism/Header/BarNavMenuSection';
 import DefaultButton from '@src/components/common/DefaultButton';
 import { MenuIcon } from '@src/components/common/Icons';
+import PageShadow from '@src/components/common/PageShadow';
 import { ICON_SIZE } from '@src/constants/size';
 import Z_INDEX from '@src/constants/zIndex';
 import SCREEN from '@src/constants/screenWidth';
@@ -15,7 +14,7 @@ import HambergerMenuSection from './HambergerMenuSection';
 import LogoSection from './LogoSection';
 
 function Navigation() {
-  const setPageShadowShow = useSetRecoilState(pageShadowState);
+  const [pageShadow, setPageShadowShow] = useState(false);
   const screenWidth = useScreenWidth();
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
 
@@ -35,28 +34,31 @@ function Navigation() {
     setPageShadowShow(false);
   };
   return (
-    <Wrapper>
-      <CenterWrapper>
-        {screenWidth < SCREEN.tablet && (
-          <DefaultButton onClick={toggleMenu}>
-            <MenuIcon size={ICON_SIZE.large} />
-          </DefaultButton>
-        )}
-        {screenWidth < SCREEN.tablet && isHambergerMenuOpen && (
-          <HambergerMenuSection onClick={closeMenu} />
-        )}
+    <>
+      {pageShadow && <PageShadow />}
+      <Wrapper>
+        <CenterWrapper>
+          {screenWidth < SCREEN.tablet && (
+            <DefaultButton onClick={toggleMenu}>
+              <MenuIcon size={ICON_SIZE.large} />
+            </DefaultButton>
+          )}
+          {screenWidth < SCREEN.tablet && isHambergerMenuOpen && (
+            <HambergerMenuSection onClick={closeMenu} />
+          )}
 
-        <LogoSection />
+          <LogoSection />
 
-        {screenWidth >= SCREEN.tablet && (
-          <NavMenuSection
-            onMouseOver={showPageShadow}
-            onMouseOut={hidePageShadow}
-          />
-        )}
-      </CenterWrapper>
-      <LoadingProgressBar />
-    </Wrapper>
+          {screenWidth >= SCREEN.tablet && (
+            <NavMenuSection
+              onMouseOver={showPageShadow}
+              onMouseOut={hidePageShadow}
+            />
+          )}
+        </CenterWrapper>
+        <LoadingProgressBar />
+      </Wrapper>
+    </>
   );
 }
 
