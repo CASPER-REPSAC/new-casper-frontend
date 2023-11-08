@@ -25,13 +25,11 @@ function LoginForm() {
   const onInvalid: SubmitErrorHandler<LoginRequest> = (errors) => {
     if (errors.id && errors.id.message) {
       openAndDeletePopup({
-        key: Date.now(),
         message: errors.id.message,
         duration: POPUP_DURATION.medium,
       });
     } else if (errors.pw && errors.pw.message) {
       openAndDeletePopup({
-        key: Date.now(),
         message: errors.pw.message,
         duration: POPUP_DURATION.medium,
       });

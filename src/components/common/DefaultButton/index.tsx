@@ -42,7 +42,7 @@ const sizeCss = css<ButtonWrapperProps>`
       case 'small':
         return css`
           font-size: 1.4rem;
-          padding: 0.4em 0.6em;
+          padding: 0.2em 0.6em;
         `;
       case 'medium':
         return css`

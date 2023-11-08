@@ -20,7 +20,6 @@ function DraftView({ content }: Props) {
       initialEditorState = EditorState.createWithContent(contentState);
     } catch (e) {
       openAndDeletePopup({
-        key: Date.now(),
         message: POPUP_MESSAGE.failedToLoadDetail,
         duration: POPUP_DURATION.medium,
       });

@@ -16,6 +16,8 @@ export {
   AiOutlineCheckSquare as CheckSquareIcon,
 } from 'react-icons/ai';
 
+export { BsPencil as PencilIcon } from 'react-icons/bs';
+
 export {
   MdKeyboardArrowLeft as LeftArrowIcon,
   MdKeyboardArrowRight as RightArrowIcon,

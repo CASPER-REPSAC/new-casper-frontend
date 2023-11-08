@@ -23,8 +23,7 @@ export default function usePostArticleMutation() {
 
   const onSuccess = () => {
     openAndDeletePopup({
-      key: Date.now(),
-      message: POPUP_MESSAGE.succeedPost,
+      message: POPUP_MESSAGE.postSuccess,
       duration: POPUP_DURATION.medium,
     });
     push(`${PATH.boards.notice.url}/list/1`);
