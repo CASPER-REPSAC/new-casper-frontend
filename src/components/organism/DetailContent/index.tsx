@@ -1,62 +1,49 @@
-import DefaultHr from '@src/components/common/DefaultHr';
-import DraftView from '@src/components/molecules/Editor/DraftView';
-import { ArticleDetail } from '@src/types/articleTypes';
 import { styled } from 'styled-components';
+import DefaultButton from '@src/components/common/DefaultButton';
+import DraftView from '@src/components/molecules/Editor/DraftView';
+import useDeleteArticleMutation from '@src/hooks/apis/boards/useDeleteArticleMutation';
+import { ArticleDetail } from '@src/types/articleTypes';
+import TitleSection from './TitleSection';
+import AuthorSection from './AuthorSection';
 
 interface Props {
   articleDetail: ArticleDetail | null;
 }
 
 function DetailContent({ articleDetail }: Props) {
+  const { mutate: mutateDeletion } = useDeleteArticleMutation(articleDetail);
+
+  const deleteArticle = () => {
+    if (!articleDetail?.articleId) return;
+    mutateDeletion();
+  };
+
   return (
     <Wrapper>
       {articleDetail && (
         <>
-          <Title>{articleDetail.title}</Title>
-          <Hr />
+          <TitleSection
+            title={articleDetail.title}
+            buttons={
+              <>
+                <DefaultButton size="small">수정</DefaultButton>
+                <DefaultButton color="red" size="small" onClick={deleteArticle}>
+                  삭제
+                </DefaultButton>
+              </>
+            }
+          />
+
           <DraftView content={articleDetail.content} />
-          <AuthorInfo>
-            <Avatar />
-            <Info>
-              <AuthorName>{articleDetail.nickname}</AuthorName>
-              <Desc>소개글</Desc>
-            </Info>
-          </AuthorInfo>
+          <AuthorSection nickname={articleDetail.nickname} />
         </>
       )}
     </Wrapper>
   );
 }
 
+const Wrapper = styled.div`
+  position: relative;
+`;
+
 export default DetailContent;
-
-const Wrapper = styled.div``;
-
-const Title = styled.h1`
-  font-size: 600%;
-`;
-const AuthorInfo = styled.div`
-  display: flex;
-  margin-top: 200px;
-  align-items: center;
-`;
-const Avatar = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: ${({ theme }) => theme.borderDefault};
-  margin-right: 50px;
-`;
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const AuthorName = styled.h1`
-  font-size: 2.4rem;
-  margin-bottom: 0.5em;
-`;
-const Desc = styled.div`
-  font-size: 2rem;
-`;
-const Hr = styled(DefaultHr)`
-  margin: 2rem 0;
-`;

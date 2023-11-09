@@ -7,7 +7,7 @@ import usePopup from '@src/hooks/usePopup';
 import { PATH } from '@src/constants/urls';
 import { AUTO_LOGIN_API } from '@src/constants/apiUrl';
 import { accessTokenState } from '@src/atoms';
-import { POPUP_MESSAGE } from '@src/constants/message';
+import { ERROR_MESSAGE } from '@src/constants/message';
 import { POPUP_DURATION } from '@src/constants/duration';
 
 function useAutoLoginMutation() {
@@ -27,8 +27,7 @@ function useAutoLoginMutation() {
       case 403:
         push(PATH.user.login.url);
         openAndDeletePopup({
-          key: Date.now(),
-          message: POPUP_MESSAGE.logout,
+          message: ERROR_MESSAGE.unknown,
           duration: POPUP_DURATION.medium,
         });
         break;

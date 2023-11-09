@@ -55,8 +55,7 @@ function PasswordForm() {
       return;
     }
     openAndDeletePopup({
-      key: Date.now(),
-      message: POPUP_MESSAGE.succeedJoin,
+      message: POPUP_MESSAGE.joinSuccess,
       duration: POPUP_DURATION.medium,
     });
   }, [isSuccess, openAndDeletePopup]);

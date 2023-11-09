@@ -18,16 +18,14 @@ function useLogoutMutation() {
   const onSuccess = () => {
     setAcessToken(undefined);
     openAndDeletePopup({
-      key: Date.now(),
-      message: POPUP_MESSAGE.logout,
+      message: POPUP_MESSAGE.logoutSuccess,
       duration: POPUP_DURATION.medium,
     });
   };
 
   const onError = () => {
     openAndDeletePopup({
-      key: Date.now(),
-      message: POPUP_MESSAGE.logoutError,
+      message: POPUP_MESSAGE.failedToLogout,
       duration: POPUP_DURATION.medium,
     });
   };

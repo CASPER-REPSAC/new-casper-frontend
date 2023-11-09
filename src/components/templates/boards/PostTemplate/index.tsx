@@ -15,7 +15,7 @@ export const DraftEditor = dynamic(
   },
 );
 
-function PostForm() {
+function PostTemplate() {
   const defaultValues: PostReqData = {
     boardId: 'notice_board',
     category: 'all',
@@ -57,7 +57,8 @@ const Form = styled(DefaultForm)`
   display: flex;
   flex-direction: column;
   gap: 1.4rem;
+  max-width: none;
 `;
 const EditorSection = styled.div``;
 
-export default PostForm;
+export default PostTemplate;
