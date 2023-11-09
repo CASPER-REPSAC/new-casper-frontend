@@ -14,23 +14,26 @@ function DetailContent({ articleDetail }: Props) {
   const { mutate: mutateDeletion } = useDeleteArticleMutation(articleDetail);
 
   const deleteArticle = () => {
-    if (!articleDetail?.articleId) {
-      return;
-    }
+    if (!articleDetail?.articleId) return;
     mutateDeletion();
   };
 
   return (
     <Wrapper>
-      <Buttons>
-        <DefaultButton size="small">수정</DefaultButton>
-        <DefaultButton color="red" size="small" onClick={deleteArticle}>
-          삭제
-        </DefaultButton>
-      </Buttons>
       {articleDetail && (
         <>
-          <TitleSection title={articleDetail.title} />
+          <TitleSection
+            title={articleDetail.title}
+            buttons={
+              <>
+                <DefaultButton size="small">수정</DefaultButton>
+                <DefaultButton color="red" size="small" onClick={deleteArticle}>
+                  삭제
+                </DefaultButton>
+              </>
+            }
+          />
+
           <DraftView content={articleDetail.content} />
           <AuthorSection nickname={articleDetail.nickname} />
         </>
@@ -41,15 +44,6 @@ function DetailContent({ articleDetail }: Props) {
 
 const Wrapper = styled.div`
   position: relative;
-`;
-
-const Buttons = styled.div`
-  position: absolute;
-  right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  min-width: 100px;
 `;
 
 export default DetailContent;

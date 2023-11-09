@@ -29,14 +29,14 @@ const Flex = styled.div`
   width: 100%;
   flex-direction: column;
   gap: 40px;
-
   @media screen and (min-width: 1024px) {
     flex-direction: row;
     gap: 0px;
   }
 `;
 const Main = styled.main`
-  width: 100%;
+  flex: auto;
+  overflow: hidden;
 `;
 
 export default BoardLayout;
