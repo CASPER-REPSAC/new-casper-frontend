@@ -36,16 +36,18 @@ interface Params extends ParsedUrlQuery {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const boardTypes = Object.keys(BOARD_TYPE);
+  const boardTypes = Object.values(BOARD_TYPE);
   const paths: { params: Params }[] = [];
 
   const maxPages = await Promise.all(
     await boardTypes.map(async (boardType) => {
-      const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${1}`;
+      const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/1`;
+
       const { data } = await axios.get<OnePageOfArticleList>(
         onePageOfArticleListApiUrl,
       );
-      return Math.floor(data.maxPageNum / 10);
+      console.log(data);
+      return Math.floor(data.maxPageNum);
     }),
   );
 
