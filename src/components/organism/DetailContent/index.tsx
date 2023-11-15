@@ -1,13 +1,14 @@
+import '@blocknote/core/style.css';
 import { styled } from 'styled-components';
 import DefaultButton from '@src/components/common/DefaultButton';
-import DraftView from '@src/components/molecules/Editor/DraftView';
+import { ParsedArticleDetail } from '@src/types/articleTypes';
 import useDeleteArticleMutation from '@src/hooks/apis/boards/useDeleteArticleMutation';
-import { ArticleDetail } from '@src/types/articleTypes';
 import TitleSection from './TitleSection';
 import AuthorSection from './AuthorSection';
+import ContentSection from './ContentSection';
 
 interface Props {
-  articleDetail: ArticleDetail | null;
+  articleDetail: ParsedArticleDetail | null;
 }
 
 function DetailContent({ articleDetail }: Props) {
@@ -33,8 +34,7 @@ function DetailContent({ articleDetail }: Props) {
               </>
             }
           />
-
-          <DraftView content={articleDetail.content} />
+          <ContentSection content={articleDetail.content} />
           <AuthorSection nickname={articleDetail.nickname} />
         </>
       )}
@@ -44,6 +44,7 @@ function DetailContent({ articleDetail }: Props) {
 
 const Wrapper = styled.div`
   position: relative;
+  min-height: 100vh;
 `;
 
 export default DetailContent;

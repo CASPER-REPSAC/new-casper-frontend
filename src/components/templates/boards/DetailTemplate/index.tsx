@@ -1,10 +1,10 @@
 import DetailComment from '@src/components/organism/DetailComment';
 import DetailContent from '@src/components/organism/DetailContent';
-import { ArticleDetail } from '@src/types/articleTypes';
+import { ParsedArticleDetail } from '@src/types/articleTypes';
 import styled from 'styled-components';
 
 interface Props {
-  articleDetail: ArticleDetail | null;
+  articleDetail: ParsedArticleDetail | null;
 }
 
 function DetailTemplate({ articleDetail }: Props) {

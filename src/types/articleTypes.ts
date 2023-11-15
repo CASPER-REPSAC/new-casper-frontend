@@ -1,3 +1,5 @@
+import { Block } from '@blocknote/core';
+
 export interface OnePageOfArticleList {
   maxPageNum: number;
   articleList: ArticleData[];
@@ -14,7 +16,7 @@ export interface ArticleData {
   articleId: number;
 }
 
-export interface ArticleDetail {
+export interface DefaultArticleDetail {
   articleId: number;
   userId: string;
   boardId: string;
@@ -23,9 +25,16 @@ export interface ArticleDetail {
   modifiedAt: string;
   nickname: string;
   title: string;
-  content: string;
   hide: boolean;
   notice: boolean;
   view: number;
   file: boolean;
+}
+
+export interface ArticleDetail extends DefaultArticleDetail {
+  content: string;
+}
+
+export interface ParsedArticleDetail extends DefaultArticleDetail {
+  content: Block[];
 }
