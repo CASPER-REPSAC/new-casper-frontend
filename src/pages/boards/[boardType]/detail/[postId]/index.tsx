@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { API_URL, ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
-import { ArticleDetail } from '@src/types/articleTypes';
+import { ArticleDetail, ParsedArticleDetail } from '@src/types/articleTypes';
 import { SsrError } from '@src/types/errorTypes';
 import DetailTemplate from '@src/components/templates/boards/DetailTemplate';
 import Error from '@src/pages/_error';
@@ -10,7 +10,7 @@ import { ReactElement } from 'react';
 import customAxios from '@src/utils/api';
 
 interface Props {
-  articleDetail: ArticleDetail | null;
+  articleDetail: ParsedArticleDetail | null;
   error: SsrError | null;
 }
 
@@ -58,9 +58,19 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
 ) => {
   const params = context.params!;
   const { postId } = params;
+
   const { data, error } = await customAxios<ArticleDetail>({
     url: `${API_URL}${ARTICLE_DETAIL_API}/${postId}`,
   });
 
-  return { props: { articleDetail: data, error } };
+  if (!data || error) {
+    return { props: { articleDetail: null, error } };
+  }
+
+  const parsedContent = await JSON.parse(data.content);
+  const parsedData: ParsedArticleDetail = {
+    ...data,
+    content: parsedContent,
+  };
+  return { props: { articleDetail: parsedData, error } };
 };

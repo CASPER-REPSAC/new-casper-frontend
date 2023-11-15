@@ -3,17 +3,11 @@ import { styled } from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
 import { PostReqData } from '@src/types/PostTypes';
-import dynamic from 'next/dynamic';
 import BoardTypeSelectSection from '@src/components/organism/postForm/BoardTypeSelectSection';
 import TitleSection from '@src/components/organism/postForm/TitleSection';
 import WriteButtonSection from '@src/components/organism/postForm/WriteButtonSection';
 
-export const DraftEditor = dynamic(
-  () => import('@src/components/molecules/Editor/DraftEditor'),
-  {
-    ssr: false,
-  },
-);
+import EditorSection from '@src/components/organism/postForm/EditorSection';
 
 function PostTemplate() {
   const defaultValues: PostReqData = {
@@ -43,9 +37,7 @@ function PostTemplate() {
       <Form>
         <BoardTypeSelectSection />
         <TitleSection onKeyDown={(e) => focusEditor(e)} />
-        <EditorSection>
-          <DraftEditor />
-        </EditorSection>
+        <EditorSection />
         <WriteButtonSection />
       </Form>
     </FormProvider>
@@ -59,6 +51,5 @@ const Form = styled(DefaultForm)`
   gap: 1.4rem;
   max-width: none;
 `;
-const EditorSection = styled.div``;
 
 export default PostTemplate;
