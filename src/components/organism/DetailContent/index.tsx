@@ -18,7 +18,6 @@ function DetailContent({ articleDetail }: Props) {
     if (!articleDetail?.articleId) return;
     mutateDeletion();
   };
-  console.log(articleDetail?.content);
 
   return (
     <Wrapper>
