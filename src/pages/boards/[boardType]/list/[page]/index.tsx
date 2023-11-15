@@ -46,7 +46,6 @@ export const getStaticPaths: GetStaticPaths = async () => {
       const { data } = await axios.get<OnePageOfArticleList>(
         onePageOfArticleListApiUrl,
       );
-      console.log(data);
       return Math.floor(data.maxPageNum);
     }),
   );
