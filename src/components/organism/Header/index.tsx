@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react';
+import { memo, useState } from 'react';
 import { styled } from 'styled-components';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
@@ -8,29 +8,18 @@ import { MenuIcon } from '@src/components/common/Icons';
 import PageShadow from '@src/components/common/PageShadow';
 import { ICON_SIZE } from '@src/constants/size';
 import Z_INDEX from '@src/constants/zIndex';
-import SCREEN from '@src/constants/screenWidth';
+import SCREEN_SIZE from '@src/constants/screenWidth';
 import useWindowSize from '@src/hooks/useScreenWidth';
 import HambergerMenuSection from './HambergerMenuSection';
 import LogoSection from './LogoSection';
 
-function Navigation() {
-  console.log('[RENDER] Navigation');
+function Header() {
   const [pageShadow, setPageShadowShow] = useState(false);
   const { width } = useWindowSize();
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
   const toggleMenu = () => {
     setHambergerMenuOpen((cur) => !cur);
   };
-
-  useEffect(() => {
-    console.log('width changed');
-  }, [width]);
-  useEffect(() => {
-    console.log('pageShadow changed');
-  }, [pageShadow]);
-  useEffect(() => {
-    console.log('isHambergerMenuOpen changed');
-  }, [isHambergerMenuOpen]);
 
   const closeMenu = () => {
     setHambergerMenuOpen(false);
@@ -48,21 +37,21 @@ function Navigation() {
       {pageShadow && <PageShadow />}
       <Wrapper>
         <CenterWrapper>
-          {width < SCREEN.tablet && (
+          {width < SCREEN_SIZE.tablet && (
             <DefaultButton onClick={toggleMenu}>
               <MenuIcon size={ICON_SIZE.large} />
             </DefaultButton>
           )}
-          {width < SCREEN.tablet && isHambergerMenuOpen && (
+          {width < SCREEN_SIZE.tablet && isHambergerMenuOpen && (
             <HambergerMenuSection onClick={closeMenu} />
           )}
 
           <LogoSection />
 
-          {width >= SCREEN.tablet && (
+          {width >= SCREEN_SIZE.tablet && (
             <NavMenuSection
-              onMouseOver={showPageShadow}
-              onMouseOut={hidePageShadow}
+              onMouseEnter={showPageShadow}
+              onMouseLeave={hidePageShadow}
             />
           )}
         </CenterWrapper>
@@ -91,4 +80,4 @@ const CenterWrapper = styled(CommonCenterWrapper)`
   height: 100%;
 `;
 
-export default memo(Navigation);
+export default memo(Header);
