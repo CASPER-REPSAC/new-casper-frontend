@@ -4,7 +4,6 @@ import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import PageTitle from '@src/components/common/PageTitle';
 import BoardSideMenu from '@src/components/organism/sideMenu/BoardSideMenu';
 import { PAGE_TITLE } from '@src/constants/label';
-import DefaultLayout from '../DefaultLayout';
 
 interface Props {
   children: ReactNode;
@@ -12,7 +11,7 @@ interface Props {
 
 function BoardLayout({ children }: Props) {
   return (
-    <DefaultLayout>
+    <>
       <PageTitle pageTitle={PAGE_TITLE.board} />
       <CommonCenterWrapper>
         <Flex>
@@ -20,7 +19,7 @@ function BoardLayout({ children }: Props) {
           <Main>{children}</Main>
         </Flex>
       </CommonCenterWrapper>
-    </DefaultLayout>
+    </>
   );
 }
 

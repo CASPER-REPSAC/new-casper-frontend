@@ -23,11 +23,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
     Component.getLayout ||
     ((page) => {
       const isAdminPage = router.asPath.startsWith(ADMIN_PATH.home.url);
-      return isAdminPage ? (
-        <AdminLayout>{page}</AdminLayout>
-      ) : (
-        <DefaultLayout>{page}</DefaultLayout>
-      );
+      return isAdminPage ? <AdminLayout>{page}</AdminLayout> : <>{page}</>;
     });
 
   return (
@@ -38,7 +34,9 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
             <Theme>
               <PopupWrapper />
               <PageLoadingPresence>
-                {getLayout(<Component {...pageProps} />)}
+                <DefaultLayout>
+                  {getLayout(<Component {...pageProps} />)}
+                </DefaultLayout>
               </PageLoadingPresence>
             </Theme>
           </AutoLoginPresence>
