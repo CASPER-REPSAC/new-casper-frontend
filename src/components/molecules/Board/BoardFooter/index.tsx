@@ -1,7 +1,7 @@
 import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
 import PageCircleButton from '@src/components/common/PageCircleButton';
 import usePagination from '@src/hooks/usePagination';
-import useScreenWidth from '@src/hooks/useScreenWidth';
+import useWindowSize from '@src/hooks/useWindowSize';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
@@ -11,9 +11,9 @@ interface Props {
 }
 
 function BoardFooter({ maxPage: articleNum, curPage }: Props) {
-  const screenWidth = useScreenWidth();
+  const { width } = useWindowSize();
 
-  const pageInteval = screenWidth < 768 ? 5 : 10;
+  const pageInteval = width < 768 ? 5 : 10;
   const maxPage = Math.ceil(articleNum / pageInteval);
   const { page: footerPage, setNextPage, setPrevPage } = usePagination(maxPage);
   const { push, asPath } = useRouter();

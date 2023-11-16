@@ -9,14 +9,15 @@ import PageShadow from '@src/components/common/PageShadow';
 import { ICON_SIZE } from '@src/constants/size';
 import Z_INDEX from '@src/constants/zIndex';
 import SCREEN_SIZE from '@src/constants/screenWidth';
-import useWindowSize from '@src/hooks/useScreenWidth';
+import useWindowSize from '@src/hooks/useWindowSize';
 import HambergerMenuSection from './HambergerMenuSection';
 import LogoSection from './LogoSection';
 
 function Header() {
   const [pageShadow, setPageShadowShow] = useState(false);
-  const { width } = useWindowSize();
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
+  const { width } = useWindowSize();
+
   const toggleMenu = () => {
     setHambergerMenuOpen((cur) => !cur);
   };
