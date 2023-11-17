@@ -1,5 +1,5 @@
 import DefaultButton from '@src/components/common/DefaultButton';
-import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { styled } from 'styled-components';
 
 interface Props {
@@ -8,11 +8,15 @@ interface Props {
 }
 
 function SubMenu({ title, href }: Props) {
-  const { push } = useRouter();
-  const onClick = () => push(href);
-  return <Wrapper onClick={onClick}>{title}</Wrapper>;
+  return (
+    <Wrapper href={href}>
+      <DefaultButton>{title}</DefaultButton>
+    </Wrapper>
+  );
 }
 
-const Wrapper = styled(DefaultButton)``;
+const Wrapper = styled(Link)`
+  text-decoration-line: none;
+`;
 
 export default SubMenu;

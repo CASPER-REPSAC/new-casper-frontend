@@ -128,3 +128,6 @@ button {
   background-color: transparent;
   cursor: pointer;
 }
+a {
+  text-decoration-line: none;
+}

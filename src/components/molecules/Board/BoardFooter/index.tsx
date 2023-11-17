@@ -30,7 +30,7 @@ function BoardFooter({ maxPage, curPage }: Props) {
         {pageList.map((page) => {
           const href = `/boards/${query.boardType}/list/${page}`;
           return (
-            <Link href={href}>
+            <Link href={href} scroll={false}>
               <PageCircleButton key={page} $highlight={page === curPage}>
                 {page}
               </PageCircleButton>
