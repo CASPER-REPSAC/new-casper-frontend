@@ -1,5 +1,7 @@
 import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
 import PageCircleButton from '@src/components/common/PageCircleButton';
+import SCREEN_SIZE from '@src/constants/screenWidth';
+import { ICON_SIZE } from '@src/constants/size';
 import usePagination from '@src/hooks/usePagination';
 import useWindowSize from '@src/hooks/useWindowSize';
 import { useRouter } from 'next/router';
@@ -10,39 +12,40 @@ interface Props {
   curPage: number;
 }
 
-function BoardFooter({ maxPage: articleNum, curPage }: Props) {
+function BoardFooter({ maxPage, curPage }: Props) {
+  const { query, push, prefetch } = useRouter();
   const { width } = useWindowSize();
-
-  const pageInteval = width < 768 ? 5 : 10;
-  const maxPage = Math.ceil(articleNum / pageInteval);
   const { page: footerPage, setNextPage, setPrevPage } = usePagination(maxPage);
-  const { push, asPath } = useRouter();
 
-  const maxPageList = Array.from({ length: articleNum }, (_, idx) => idx + 1);
+  const fullPageList = Array.from({ length: maxPage }, (_, idx) => idx + 1);
+  const pageInteval = width < SCREEN_SIZE.mobile ? 5 : 10;
   const start = footerPage * pageInteval;
-  const pageList = maxPageList.slice(start, start + pageInteval);
+  const pageList = fullPageList.slice(start, start + pageInteval);
 
   return (
     <TableFooter>
-      <PrevButton size={35} onClick={setPrevPage} />
+      <PrevButton size={ICON_SIZE.medium} onClick={setPrevPage} />
       <PageButtonSection>
         {pageList.map((page) => {
+          const href = `/boards/${query.boardType}/list/${page}`;
+          const onClick = () =>
+            push(href, undefined, {
+              scroll: false,
+            });
+          const onMouseEnter = () => prefetch(href);
           return (
             <PageCircleButton
+              onMouseEnter={onMouseEnter}
+              onClick={onClick}
               key={page}
               $highlight={page === curPage}
-              onClick={() =>
-                push(`${asPath}/../${page}`, undefined, {
-                  scroll: false,
-                })
-              }
             >
               {page}
             </PageCircleButton>
           );
         })}
       </PageButtonSection>
-      <NextButton size={35} onClick={setNextPage} />
+      <NextButton size={ICON_SIZE.medium} onClick={setNextPage} />
     </TableFooter>
   );
 }
@@ -53,7 +56,6 @@ const TableFooter = styled.div`
   display: flex;
   width: 100%;
   max-width: 700px;
-
   justify-content: space-between;
 `;
 

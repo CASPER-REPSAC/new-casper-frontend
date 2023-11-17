@@ -51,16 +51,12 @@ function Article({
   nickname,
   createdAt,
 }: ArticleProps) {
-  const { push, query, isReady } = useRouter();
-
+  const { query, prefetch, push } = useRouter();
   const [createDate] = createdAt.split('T');
-  const redirectToDetailPage = () => {
-    if (!isReady) return;
-    push(`/boards/${query.boardType}/detail/${articleId}`);
-  };
+  const href = `/boards/${query.boardType}/detail/${articleId}`;
 
   return (
-    <Tr onClick={redirectToDetailPage}>
+    <Tr onMouseEnter={() => prefetch(href)} onClick={() => push(href)}>
       <SmallTd>{articleId}</SmallTd>
       <LargeTd>{title}</LargeTd>
       <MediumTd>{nickname}</MediumTd>
