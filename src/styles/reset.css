@@ -129,5 +129,6 @@ button {
   cursor: pointer;
 }
 a {
-  text-decoration-line: none;
+  color: inherit; /* 링크 색상을 부모 요소로 상속 */
+  text-decoration: none; /* 링크 밑줄 제거 */
 }

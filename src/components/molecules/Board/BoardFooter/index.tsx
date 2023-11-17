@@ -4,7 +4,6 @@ import SCREEN_SIZE from '@src/constants/screenWidth';
 import { ICON_SIZE } from '@src/constants/size';
 import usePagination from '@src/hooks/usePagination';
 import useWindowSize from '@src/hooks/useWindowSize';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 
@@ -14,7 +13,7 @@ interface Props {
 }
 
 function BoardFooter({ maxPage, curPage }: Props) {
-  const { query } = useRouter();
+  const { query, push, prefetch } = useRouter();
   const { width } = useWindowSize();
   const { page: footerPage, setNextPage, setPrevPage } = usePagination(maxPage);
 
@@ -29,12 +28,20 @@ function BoardFooter({ maxPage, curPage }: Props) {
       <PageButtonSection>
         {pageList.map((page) => {
           const href = `/boards/${query.boardType}/list/${page}`;
+          const onClick = () =>
+            push(href, undefined, {
+              scroll: false,
+            });
+          const onMouseEnter = () => prefetch(href);
           return (
-            <Link href={href} scroll={false}>
-              <PageCircleButton key={page} $highlight={page === curPage}>
-                {page}
-              </PageCircleButton>
-            </Link>
+            <PageCircleButton
+              onMouseEnter={onMouseEnter}
+              onClick={onClick}
+              key={page}
+              $highlight={page === curPage}
+            >
+              {page}
+            </PageCircleButton>
           );
         })}
       </PageButtonSection>
