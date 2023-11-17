@@ -16,7 +16,7 @@ function AutoLoginPresence({ children }: Props) {
     mutateAutoLogin();
   }, [accessToken, mutateAutoLogin]);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 }
 
 export default AutoLoginPresence;

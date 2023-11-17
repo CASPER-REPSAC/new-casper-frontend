@@ -4,14 +4,13 @@ import MemberSideMenu from '@src/components/organism/sideMenu/MemberSideMenu';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { PAGE_TITLE } from '@src/constants/label';
-import DefaultLayout from '../DefaultLayout';
 
 interface Props {
   children: ReactNode;
 }
 function MemberLayout({ children }: Props) {
   return (
-    <DefaultLayout>
+    <>
       <PageTitle pageTitle={PAGE_TITLE.members} />
       <CommonCenterWrapper>
         <Flex>
@@ -19,7 +18,7 @@ function MemberLayout({ children }: Props) {
           <Main>{children}</Main>
         </Flex>
       </CommonCenterWrapper>
-    </DefaultLayout>
+    </>
   );
 }
 

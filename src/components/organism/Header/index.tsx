@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { memo, useState } from 'react';
 import { styled } from 'styled-components';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
 import LoadingProgressBar from '@src/components/common/LoadingProgressBar';
@@ -8,15 +8,15 @@ import { MenuIcon } from '@src/components/common/Icons';
 import PageShadow from '@src/components/common/PageShadow';
 import { ICON_SIZE } from '@src/constants/size';
 import Z_INDEX from '@src/constants/zIndex';
-import SCREEN from '@src/constants/screenWidth';
-import useScreenWidth from '@src/hooks/useScreenWidth';
+import SCREEN_SIZE from '@src/constants/screenWidth';
+import useWindowSize from '@src/hooks/useWindowSize';
 import HambergerMenuSection from './HambergerMenuSection';
 import LogoSection from './LogoSection';
 
-function Navigation() {
+function Header() {
   const [pageShadow, setPageShadowShow] = useState(false);
-  const screenWidth = useScreenWidth();
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
+  const { width } = useWindowSize();
 
   const toggleMenu = () => {
     setHambergerMenuOpen((cur) => !cur);
@@ -38,21 +38,21 @@ function Navigation() {
       {pageShadow && <PageShadow />}
       <Wrapper>
         <CenterWrapper>
-          {screenWidth < SCREEN.tablet && (
+          {width < SCREEN_SIZE.tablet && (
             <DefaultButton onClick={toggleMenu}>
               <MenuIcon size={ICON_SIZE.large} />
             </DefaultButton>
           )}
-          {screenWidth < SCREEN.tablet && isHambergerMenuOpen && (
+          {width < SCREEN_SIZE.tablet && isHambergerMenuOpen && (
             <HambergerMenuSection onClick={closeMenu} />
           )}
 
           <LogoSection />
 
-          {screenWidth >= SCREEN.tablet && (
+          {width >= SCREEN_SIZE.tablet && (
             <NavMenuSection
-              onMouseOver={showPageShadow}
-              onMouseOut={hidePageShadow}
+              onMouseEnter={showPageShadow}
+              onMouseLeave={hidePageShadow}
             />
           )}
         </CenterWrapper>
@@ -81,4 +81,4 @@ const CenterWrapper = styled(CommonCenterWrapper)`
   height: 100%;
 `;
 
-export default Navigation;
+export default memo(Header);

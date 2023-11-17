@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { MouseEventHandler, useEffect } from 'react';
+import { MouseEventHandler } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 import useLogoutMutation from '@src/hooks/apis/useLogoutMutation';
@@ -10,11 +10,11 @@ import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/Icons';
 import BarNavMenu from '../../../molecules/BarNavMenu';
 
 interface Props {
-  onMouseOver: MouseEventHandler<HTMLDivElement>;
-  onMouseOut: MouseEventHandler<HTMLDivElement>;
+  onMouseEnter: MouseEventHandler<HTMLDivElement>;
+  onMouseLeave: MouseEventHandler<HTMLDivElement>;
 }
 
-function BarNavMenuSection({ onMouseOver, onMouseOut }: Props) {
+function BarNavMenuSection({ onMouseEnter, onMouseLeave }: Props) {
   const { push } = useRouter();
   const login = useRecoilValue(loginState);
   const { mutate: mutateLogout } = useLogoutMutation();
@@ -24,18 +24,8 @@ function BarNavMenuSection({ onMouseOver, onMouseOut }: Props) {
   const redirectLoginPage = () => push(PATH.user.login.url);
   const pushToListFirstPage = (path: string) => push(`${path}/list/1`);
 
-  useEffect(() => {
-    const a = () => {};
-
-    document.addEventListener('mouseover', a);
-
-    return () => {
-      document.removeEventListener('mouseover', a);
-    };
-  });
-
   return (
-    <Wrapper onMouseOver={onMouseOver} onMouseOut={onMouseOut}>
+    <Wrapper onMouseEnter={onMouseEnter} onMouseLeave={onMouseLeave}>
       <BarNavMenu onClick={() => push(ADMIN_PATH.home.url)} />
 
       <BarNavMenu>

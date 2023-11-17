@@ -1,5 +1,6 @@
 import { popupListState } from '@src/atoms';
 import ToastPopup from '@src/components/common/ToastPopup';
+import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import styled from 'styled-components';
 
@@ -25,4 +26,4 @@ const Wrapper = styled.div`
   align-items: center;
 `;
 
-export default PopupWrapper;
+export default memo(PopupWrapper);
