@@ -33,9 +33,12 @@ function JoinForm() {
     }
   }, [query]);
 
+  const onValid = () => {};
+  const onInvalid = () => {};
+
   return (
     <FormProvider {...methods}>
-      <Form>
+      <Form onSubmit={methods.handleSubmit(onValid, onInvalid)}>
         {step === 'agree' && <AgreeForm />}
         {step === 'email' && <EmailForm />}
         {step === 'name' && <NameForm />}
