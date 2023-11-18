@@ -51,6 +51,7 @@ function LoginForm() {
         autoComplete="off"
       />
       <LoginButton
+        type="submit"
         size="large"
         color="green"
         full
