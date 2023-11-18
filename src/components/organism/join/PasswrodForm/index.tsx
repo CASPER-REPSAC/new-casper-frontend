@@ -1,32 +1,21 @@
-import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import DefaultButton from '@src/components/common/DefaultButton';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
 import { PW_REGEX } from '@src/utils/regex';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
-import useJoinMutation from '@src/hooks/apis/useJoinMutation';
-import { useCallback, useEffect } from 'react';
-import usePopup from '@src/hooks/usePopup';
 import { CheckSquareIcon } from '@src/components/common/Icons';
-import {
-  ERROR_MESSAGE,
-  POPUP_MESSAGE,
-  REQUIRED_MESSAGE,
-} from '@src/constants/message';
+import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@src/constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
-import { POPUP_DURATION } from '@src/constants/duration';
 import { ICON_SIZE } from '@src/constants/size';
 
 function PasswordForm() {
   const {
     register,
-    handleSubmit,
     getValues,
     watch,
     formState: { errors },
   } = useFormContext<JoinFormData>();
-  const { mutate, isSuccess } = useJoinMutation();
-  const { openAndDeletePopup } = usePopup();
 
   const pwRegister = register('pw', {
     required: REQUIRED_MESSAGE.pw,
@@ -43,24 +32,6 @@ function PasswordForm() {
       },
     },
   });
-
-  const onValid: SubmitHandler<JoinFormData> = (data) => {
-    const { id, pw, email, name, nickname } = data;
-    mutate({ id, pw, email, name, nickname });
-  };
-
-  // util 또는 hooks로 분리 할지 고민 필요한 함수
-  const redirectAndNotice = useCallback(() => {
-    if (!isSuccess) {
-      return;
-    }
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.joinSuccess,
-      duration: POPUP_DURATION.medium,
-    });
-  }, [isSuccess, openAndDeletePopup]);
-
-  useEffect(() => redirectAndNotice(), [redirectAndNotice]);
 
   const buttonActive =
     !errors.pw &&
@@ -96,9 +67,9 @@ function PasswordForm() {
         </FormErrorWrapper>
       )}
       <DefaultButton
+        type="submit"
         size="large"
         color="green"
-        onClick={handleSubmit(onValid)}
         active={buttonActive}
       >
         완료
