@@ -18,7 +18,14 @@ function LogoSection() {
 
   return (
     <Logo onClick={() => router.push(PATH.home.url)}>
-      <LogoImg src={logoSrc} alt="logo" fill />
+      <LogoImg
+        src={logoSrc}
+        alt="casper logo"
+        fill
+        sizes="100%"
+        blurDataURL={logoSrc}
+        placeholder="blur"
+      />
     </Logo>
   );
 }
