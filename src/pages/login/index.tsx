@@ -6,6 +6,7 @@ import LoginForm from '@src/components/templates/login/LoginForm';
 import styled from 'styled-components';
 import { PATH } from '@src/constants/urls';
 import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
+import DefaultButton from '@src/components/common/DefaultButton';
 
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);
@@ -14,10 +15,21 @@ export default function Login() {
   return (
     <Wrapper>
       <LogoWrapper>
-        <LogoImg src={logoSrc} alt="Casper logo" sizes="200px" fill priority />
+        <LogoImg
+          src={logoSrc}
+          alt="casper logo"
+          sizes="100%"
+          fill
+          blurDataURL={logoSrc}
+          placeholder="blur"
+        />
       </LogoWrapper>
       <LoginForm />
-      <RegisterLink href={PATH.user.join.url}>회원가입</RegisterLink>
+      <LinkSection>
+        <Link href={PATH.user.join.url}>
+          <DefaultButton>회원가입</DefaultButton>
+        </Link>
+      </LinkSection>
     </Wrapper>
   );
 }
@@ -41,13 +53,6 @@ const LogoImg = styled(Image)`
   object-fit: contain;
 `;
 
-const RegisterLink = styled(Link)`
-  margin-top: 1em;
-  font-size: 1.6rem;
-  text-decoration: none;
-  color: white;
-  &:hover {
-    text-decoration: underline;
-  }
-  cursor: pointer;
+const LinkSection = styled.div`
+  margin-top: 1.4rem;
 `;
