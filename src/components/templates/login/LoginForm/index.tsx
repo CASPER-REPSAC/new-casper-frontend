@@ -48,6 +48,7 @@ function LoginForm() {
         register={pwRegister}
         placeholder={PLACEHOLDER.pw}
         type="password"
+        autoComplete="off"
       />
       <LoginButton
         size="large"

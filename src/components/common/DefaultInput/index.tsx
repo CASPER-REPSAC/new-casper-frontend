@@ -12,6 +12,13 @@ function DefaultInput({ register, ...props }: Props) {
 }
 
 export const DefaultInputStyle = css`
+  &:-webkit-autofill,
+  &:-webkit-autofill:hover,
+  &:-webkit-autofill:focus {
+    -webkit-text-fill-color: ${({ theme }) => theme.textDefault};
+    -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme.inputSurface}
+      inset;
+  }
   &:focus {
     outline: none;
     border-color: ${({ theme }) => theme.borderBold};
