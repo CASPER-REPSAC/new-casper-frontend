@@ -2,12 +2,9 @@ import { styled } from 'styled-components';
 import Comment from '@src/components/organism/Editor/Comment';
 
 function DetailComment() {
-  /*
-  useEffect이용 댓글 불러오는거 만들어야 됨
-  */
   return (
     <>
-      <H1>댓글</H1>
+      <H1>댓글 (정적 데이터)</H1>
       <Comment
         name="박지성"
         date="2021.12.12 14:12:15"

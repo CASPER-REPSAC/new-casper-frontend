@@ -1,12 +1,13 @@
 import { isDarkState } from '@src/atoms';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Theme, darkDefaultTheme, lightDefaultTheme } from '@blocknote/react';
 import { darkTheme } from '@src/styles/theme';
 
 function useBlockNoteTheme(editable: boolean) {
   const isDark = useRecoilValue(isDarkState);
-  const [theme] = useState<Theme>(() => {
+
+  const getTheme = useCallback(() => {
     if (isDark && editable) {
       return blockNotedarkTheme;
     }
@@ -20,7 +21,14 @@ function useBlockNoteTheme(editable: boolean) {
       return lightDefaultTheme;
     }
     return blockNotedarkTheme;
-  });
+  }, [isDark, editable]);
+
+  const [theme, setTheme] = useState<Theme>(getTheme);
+
+  useEffect(() => {
+    const newTheme = getTheme();
+    setTheme(newTheme);
+  }, [editable, setTheme, getTheme]);
 
   return theme;
 }

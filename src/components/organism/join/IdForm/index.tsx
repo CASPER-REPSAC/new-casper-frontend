@@ -44,11 +44,6 @@ function IdForm({ onNext }: Props) {
         register={idRegister}
         placeholder={PLACEHOLDER.id}
         hasError={!!errors.id}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') {
-            onNext();
-          }
-        }}
       />
       {errors.id && (
         <FormErrorWrapper>

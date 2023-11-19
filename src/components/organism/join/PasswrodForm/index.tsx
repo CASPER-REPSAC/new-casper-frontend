@@ -38,7 +38,7 @@ function PasswordForm({ onNext }: Props) {
     },
   });
 
-  const buttonActive =
+  const isValidValue =
     !errors.pw &&
     !errors.pwConfirm &&
     watch('pw') !== '' &&
@@ -66,7 +66,7 @@ function PasswordForm({ onNext }: Props) {
         autoComplete="off"
         type="password"
       />
-      {!buttonActive && (
+      {!isValidValue && (
         <FormErrorWrapper>
           {errors.pw && <li>{errors.pw.message}</li>}
           {errors.pwConfirm && <li>{errors.pwConfirm.message}</li>}
@@ -76,7 +76,7 @@ function PasswordForm({ onNext }: Props) {
         type="submit"
         size="large"
         color="green"
-        active={buttonActive}
+        active={isValidValue}
         onClick={handleSubmit(onNext)}
       >
         완료
