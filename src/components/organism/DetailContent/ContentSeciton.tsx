@@ -1,5 +1,4 @@
 import dynamic from 'next/dynamic';
-import { styled } from 'styled-components';
 import { BlockNoteEditor } from '@blocknote/core';
 import { ERROR_MESSAGE } from '@src/constants/message';
 import { POPUP_DURATION } from '@src/constants/duration';
@@ -34,19 +33,12 @@ function ContentSection({ editable = false, content }: Props) {
   };
 
   return (
-    <Wrapper>
-      <BlockNote
-        editable={editable}
-        initialContent={JSON.parse(content)}
-        onEditorContentChange={onEditorContentChange}
-      />
-    </Wrapper>
+    <BlockNote
+      editable={editable}
+      initialContent={JSON.parse(content)}
+      onEditorContentChange={onEditorContentChange}
+    />
   );
 }
-
-const Wrapper = styled.div`
-  min-height: 500px;
-  margin-top: 20px;
-`;
 
 export default ContentSection;
