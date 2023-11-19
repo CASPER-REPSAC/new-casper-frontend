@@ -23,7 +23,6 @@ function LabelInput({
 }: Props) {
   const uniqueId = useId();
   const hasIcon = !!labelIcon;
-
   return (
     <Wrapper>
       {label && (

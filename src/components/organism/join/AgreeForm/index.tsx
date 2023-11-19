@@ -9,11 +9,10 @@ interface Props {
 }
 
 function AgreeForm({ onNext }: Props) {
-  const NAME = 'agree';
-  const { register, watch } = useFormContext<JoinFormData>();
+  const { register, watch, handleSubmit } = useFormContext<JoinFormData>();
 
-  const agreeRegister = register(NAME);
-  const isValidValue = watch(NAME) === true && watch(NAME) !== undefined;
+  const agreeRegister = register('agree');
+  const isValidValue = watch('agree') === true && watch('agree') !== undefined;
 
   return (
     <>
@@ -33,9 +32,10 @@ function AgreeForm({ onNext }: Props) {
         </Li>
       </Info>
       <DefaultButton
+        type="submit"
         size="large"
         color="green"
-        onClick={onNext}
+        onClick={handleSubmit(onNext)}
         active={isValidValue}
       >
         다음 단계

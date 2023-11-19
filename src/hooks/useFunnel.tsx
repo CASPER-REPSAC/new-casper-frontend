@@ -5,28 +5,29 @@ import { useCallback, useEffect, useState } from 'react';
 function useFunnel<T extends string>(initialStep: T) {
   const QUERY_KEY = 'funnel-step';
   const { query, push } = useRouter();
-  const [funnelStep, setFunnelStep] = useState(initialStep);
+  const [funnelStep, setStep] = useState(initialStep);
 
   const controllFunnelStep = useCallback(() => {
     const funnelStepQuery: T = query[QUERY_KEY] as T;
 
     if (!funnelStepQuery || typeof funnelStepQuery === 'object') {
-      setFunnelStep(initialStep);
+      setStep(initialStep);
       return;
     }
 
-    setFunnelStep(funnelStepQuery);
+    setStep(funnelStepQuery);
   }, [query, initialStep]);
 
-  const controllRoute = useCallback(() => {
-    push({
+  const setFunnelStep = (step: T) => {
+    const nextUrl = {
       pathname: PATH.user.join.url,
-      query: { [QUERY_KEY]: funnelStep },
-    });
-  }, [funnelStep, push]);
+      query: { [QUERY_KEY]: step },
+    };
+    setStep(step);
+    push(nextUrl);
+  };
 
   useEffect(controllFunnelStep, [controllFunnelStep]);
-  useEffect(controllRoute, [controllRoute]);
 
   return { funnelStep, setFunnelStep };
 }

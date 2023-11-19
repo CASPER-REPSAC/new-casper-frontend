@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import DefaultButton from '@src/components/common/DefaultButton';
 import { StarIcon, UserIcon } from '@src/components/common/Icons';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
@@ -16,8 +17,10 @@ interface Props {
 function NameForm({ onNext }: Props) {
   const {
     register,
-    watch,
     formState: { errors },
+    setFocus,
+    getValues,
+    handleSubmit,
   } = useFormContext<JoinFormData>();
 
   const nameRegister = register('name', {
@@ -39,10 +42,14 @@ function NameForm({ onNext }: Props) {
   const isValidValue =
     !errors.name &&
     !errors.nickname &&
-    watch('name') !== '' &&
-    watch('name') !== undefined &&
-    watch('nickname') !== '' &&
-    watch('nickname') !== undefined;
+    getValues('name') !== '' &&
+    getValues('name') !== undefined &&
+    getValues('nickname') !== '' &&
+    getValues('nickname') !== undefined;
+
+  useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
 
   return (
     <>
@@ -69,9 +76,10 @@ function NameForm({ onNext }: Props) {
         </FormErrorWrapper>
       )}
       <DefaultButton
+        type="submit"
         size="large"
         color="green"
-        onClick={onNext}
+        onClick={handleSubmit(onNext)}
         active={isValidValue}
       >
         다음 단계

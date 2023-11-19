@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useForm, FormProvider, SubmitHandler } from 'react-hook-form';
+import { useForm, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
 import EmailForm from '@src/components/organism/join/EmailForm';
 import NameForm from '@src/components/organism/join/NameForm';
@@ -15,15 +15,9 @@ function JoinForm() {
   const { funnelStep, setFunnelStep } = useFunnel<StepType>('agree');
   const methods = useForm<JoinFormData>();
 
-  const onValid: SubmitHandler<JoinFormData> = (data) => {
-    const { id, pw, email, name, nickname } = data;
-    mutate({ id, pw, email, name, nickname });
-  };
-  const onInvalid = () => {};
-
   return (
     <FormProvider {...methods}>
-      <Form onSubmit={methods.handleSubmit(onValid, onInvalid)}>
+      <Form>
         {funnelStep === 'agree' && (
           <AgreeForm onNext={() => setFunnelStep('email')} />
         )}
@@ -36,7 +30,14 @@ function JoinForm() {
         {funnelStep === 'id' && (
           <IdForm onNext={() => setFunnelStep('password')} />
         )}
-        {funnelStep === 'password' && <PasswordForm />}
+        {funnelStep === 'password' && (
+          <PasswordForm
+            onNext={() => {
+              const { id, pw, name, email, nickname } = methods.getValues();
+              mutate({ id, pw, name, email, nickname });
+            }}
+          />
+        )}
       </Form>
     </FormProvider>
   );

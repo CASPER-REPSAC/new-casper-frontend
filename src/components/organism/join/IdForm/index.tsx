@@ -7,6 +7,7 @@ import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@src/constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 import { useFormContext } from 'react-hook-form';
 import { ID_REGEX } from '@src/utils/regex';
+import { useEffect } from 'react';
 
 interface Props {
   onNext: () => void;
@@ -17,6 +18,7 @@ function IdForm({ onNext }: Props) {
     register,
     watch,
     formState: { errors },
+    setFocus,
   } = useFormContext<JoinFormData>();
 
   const idRegister = register('id', {
@@ -30,6 +32,10 @@ function IdForm({ onNext }: Props) {
   const isValudValue =
     !errors.id && watch('id') !== '' && watch('id') !== undefined;
 
+  useEffect(() => {
+    setFocus('id');
+  }, [setFocus]);
+
   return (
     <>
       <LabelInput
@@ -38,6 +44,11 @@ function IdForm({ onNext }: Props) {
         register={idRegister}
         placeholder={PLACEHOLDER.id}
         hasError={!!errors.id}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') {
+            onNext();
+          }
+        }}
       />
       {errors.id && (
         <FormErrorWrapper>

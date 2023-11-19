@@ -9,12 +9,17 @@ import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@src/constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 import { ICON_SIZE } from '@src/constants/size';
 
-function PasswordForm() {
+interface Props {
+  onNext: () => void;
+}
+
+function PasswordForm({ onNext }: Props) {
   const {
     register,
     getValues,
     watch,
     formState: { errors },
+    handleSubmit,
   } = useFormContext<JoinFormData>();
 
   const pwRegister = register('pw', {
@@ -72,6 +77,7 @@ function PasswordForm() {
         size="large"
         color="green"
         active={buttonActive}
+        onClick={handleSubmit(onNext)}
       >
         완료
       </DefaultButton>

@@ -8,17 +8,19 @@ import { ICON_SIZE } from '@src/constants/size';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 import { EMAIL_REGEX } from '@src/utils/regex';
 import { useFormContext } from 'react-hook-form';
+import { useEffect } from 'react';
 
 interface Props {
   onNext: () => void;
 }
 
 function EmailForm({ onNext }: Props) {
-  const NAME = 'email';
   const {
     register,
     watch,
     formState: { errors },
+    setFocus,
+    handleSubmit,
   } = useFormContext<JoinFormData>();
 
   const emailRegister = register('email', {
@@ -32,6 +34,10 @@ function EmailForm({ onNext }: Props) {
   const isValidValue =
     !errors.email && watch('email') !== '' && watch('email') !== undefined;
 
+  useEffect(() => {
+    setFocus('email');
+  }, [setFocus]);
+
   return (
     <>
       <LabelInput
@@ -39,21 +45,19 @@ function EmailForm({ onNext }: Props) {
         labelIcon={<MailIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.email}
         autoComplete="off"
-        register={emailRegister}
         hasError={!!errors.email}
-        onKeyDown={(e) => {
-          if (e.key === 'Enter') onNext();
-        }}
+        register={emailRegister}
       />
-      {errors[NAME] && (
+      {!isValidValue && errors.email && (
         <FormErrorWrapper>
-          <li>{errors[NAME].message}</li>
+          <li>{errors.email.message}</li>
         </FormErrorWrapper>
       )}
       <DefaultButton
+        type="submit"
         size="large"
         color="green"
-        onClick={onNext}
+        onClick={handleSubmit(onNext)}
         active={isValidValue}
       >
         다음 단계
