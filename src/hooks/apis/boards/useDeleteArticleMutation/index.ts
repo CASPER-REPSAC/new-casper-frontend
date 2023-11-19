@@ -4,12 +4,12 @@ import { POPUP_MESSAGE } from '@src/constants/message';
 import { BOARD_TYPE } from '@src/constants/mock';
 import { PATH } from '@src/constants/urls';
 import usePopup from '@src/hooks/usePopup';
-import { ParsedArticleDetail } from '@src/types/articleTypes';
+import { ArticleDetail } from '@src/types/articleTypes';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-function useDeleteArticleMutation(article: ParsedArticleDetail | null) {
+function useDeleteArticleMutation(article: ArticleDetail | null) {
   const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
   const mutationFn = () => {

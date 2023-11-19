@@ -10,3 +10,8 @@ export interface PostReqData {
   content: string | null;
   photo: string;
 }
+
+export interface UpdateReqData {
+  title: string;
+  content: string;
+}

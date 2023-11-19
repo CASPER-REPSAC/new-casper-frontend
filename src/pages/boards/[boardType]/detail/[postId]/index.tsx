@@ -1,7 +1,7 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { ParsedUrlQuery } from 'querystring';
 import { API_URL, ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
-import { ArticleDetail, ParsedArticleDetail } from '@src/types/articleTypes';
+import { ArticleDetail } from '@src/types/articleTypes';
 import { SsrError } from '@src/types/errorTypes';
 import DetailTemplate from '@src/components/templates/boards/DetailTemplate';
 import Error from '@src/pages/_error';
@@ -10,12 +10,13 @@ import { ReactElement } from 'react';
 import customAxios from '@src/utils/api';
 
 interface Props {
-  articleDetail: ParsedArticleDetail | null;
+  articleDetail: ArticleDetail | null;
   error: SsrError | null;
 }
 
 export default function PostDetail({ articleDetail, error }: Props) {
   if (error) return <Error statusCode={error.statusCode} />;
+  if (!articleDetail) return <Error statusCode={-1} />;
 
   return <DetailTemplate articleDetail={articleDetail} />;
 }
@@ -67,10 +68,5 @@ export const getStaticProps: GetStaticProps<Props, Params> = async (
     return { props: { articleDetail: null, error } };
   }
 
-  const parsedContent = await JSON.parse(data.content);
-  const parsedData: ParsedArticleDetail = {
-    ...data,
-    content: parsedContent,
-  };
-  return { props: { articleDetail: parsedData, error } };
+  return { props: { articleDetail: data, error } };
 };
