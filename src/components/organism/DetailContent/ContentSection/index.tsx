@@ -6,16 +6,18 @@ import { POPUP_DURATION } from '@src/constants/duration';
 import usePopup from '@src/hooks/usePopup';
 import { useFormContext } from 'react-hook-form';
 
+const BlockNote = dynamic(
+  () => import('@src/components/organism/Editor/BlockNote'),
+  {
+    ssr: false,
+  },
+);
+
 interface Props {
   editable?: boolean;
   content: string;
 }
 function ContentSection({ editable = false, content }: Props) {
-  const BlockNote = dynamic(
-    () => import('@src/components/organism/Editor/BlockNote'),
-  );
-  const parsedContent = JSON.parse(content);
-
   const { setValue } = useFormContext();
   const { openAndDeletePopup } = usePopup();
 
@@ -35,7 +37,7 @@ function ContentSection({ editable = false, content }: Props) {
     <Wrapper>
       <BlockNote
         editable={editable}
-        initialContent={parsedContent}
+        initialContent={JSON.parse(content)}
         onEditorContentChange={onEditorContentChange}
       />
     </Wrapper>

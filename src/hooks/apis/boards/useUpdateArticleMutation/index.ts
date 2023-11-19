@@ -4,9 +4,13 @@ import { UPDATE_ARTICLE_API } from '@src/constants/apiUrl';
 import { useRecoilValue } from 'recoil';
 import { accessTokenState } from '@src/atoms';
 import { UpdateReqData } from '@src/types/PostTypes';
+import usePopup from '@src/hooks/usePopup';
+import { POPUP_MESSAGE } from '@src/constants/message';
+import { POPUP_DURATION } from '@src/constants/duration';
 
 function useUpdateArticleMutation(id: number) {
   const accessToken = useRecoilValue(accessTokenState);
+  const { openAndDeletePopup } = usePopup();
 
   const mutationFn = (data: UpdateReqData) =>
     axios.patch(`${UPDATE_ARTICLE_API}/${id}`, data, {
@@ -15,8 +19,24 @@ function useUpdateArticleMutation(id: number) {
       },
     });
 
+  const onSuccess = () => {
+    openAndDeletePopup({
+      message: POPUP_MESSAGE.updateSuccess,
+      duration: POPUP_DURATION.medium,
+    });
+  };
+
+  const onError = () => {
+    openAndDeletePopup({
+      message: POPUP_MESSAGE.failedToUpdate,
+      duration: POPUP_DURATION.medium,
+    });
+  };
+
   return useMutation({
     mutationFn,
+    onSuccess,
+    onError,
   });
 }
 

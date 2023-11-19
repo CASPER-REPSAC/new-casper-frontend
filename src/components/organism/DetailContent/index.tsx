@@ -16,18 +16,17 @@ interface Props {
 }
 
 function DetailContent({ articleDetail }: Props) {
-  console.log('DetailContent');
   const [editable, setEditable] = useState(false);
+  const { mutate: mutateDeletion } = useDeleteArticleMutation(articleDetail);
+  const { mutate: mutateUpdate } = useUpdateArticleMutation(
+    articleDetail.articleId,
+  );
   const methods = useForm<UpdateReqData>({
     defaultValues: {
       title: articleDetail.title,
       content: articleDetail.content,
     },
   });
-  const { mutate: mutateDeletion } = useDeleteArticleMutation(articleDetail);
-  const { mutate: mutateUpdate } = useUpdateArticleMutation(
-    articleDetail.articleId,
-  );
 
   const deleteArticle = () => {
     if (!articleDetail?.articleId) return;
