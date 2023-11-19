@@ -1,46 +1,43 @@
-import { useRouter } from 'next/router';
 import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
 import DefaultForm from '@src/components/common/DefaultForm';
-import { JoinFormData, StepType } from '@src/types/joinTypes';
 import EmailForm from '@src/components/organism/join/EmailForm';
 import NameForm from '@src/components/organism/join/NameForm';
-import { useEffect, useState } from 'react';
+import { JoinFormData, StepType } from '@src/types/joinTypes';
 import IdForm from '@src/components/organism/join/IdForm';
 import PasswordForm from '@src/components/organism/join/PasswrodForm';
 import AgreeForm from '@src/components/organism/join/AgreeForm';
+import useJoinMutation from '@src/hooks/apis/useJoinMutation';
+import useFunnel from '@src/hooks/useFunnel';
 
 function JoinForm() {
-  const [step, setStep] = useState<StepType>('agree');
+  const { mutate } = useJoinMutation();
+  const { funnelStep, setFunnelStep } = useFunnel<StepType>('agree');
   const methods = useForm<JoinFormData>();
-  const { query } = useRouter();
-
-  useEffect(() => {
-    const funnelStep = query['funnel-step'];
-
-    if (!funnelStep || funnelStep.includes('agree')) {
-      setStep('agree');
-    } else if (funnelStep.includes('email')) {
-      setStep('email');
-    } else if (funnelStep.includes('name')) {
-      setStep('name');
-    } else if (funnelStep.includes('id')) {
-      setStep('id');
-    } else if (funnelStep.includes('password')) {
-      setStep('password');
-    } else if (funnelStep.includes('finish')) {
-      setStep('finish');
-    }
-  }, [query]);
 
   return (
     <FormProvider {...methods}>
       <Form>
-        {step === 'agree' && <AgreeForm />}
-        {step === 'email' && <EmailForm />}
-        {step === 'name' && <NameForm />}
-        {step === 'id' && <IdForm />}
-        {step === 'password' && <PasswordForm />}
+        {funnelStep === 'agree' && (
+          <AgreeForm onNext={() => setFunnelStep('email')} />
+        )}
+        {funnelStep === 'email' && (
+          <EmailForm onNext={() => setFunnelStep('name')} />
+        )}
+        {funnelStep === 'name' && (
+          <NameForm onNext={() => setFunnelStep('id')} />
+        )}
+        {funnelStep === 'id' && (
+          <IdForm onNext={() => setFunnelStep('password')} />
+        )}
+        {funnelStep === 'password' && (
+          <PasswordForm
+            onNext={() => {
+              const { id, pw, name, email, nickname } = methods.getValues();
+              mutate({ id, pw, name, email, nickname });
+            }}
+          />
+        )}
       </Form>
     </FormProvider>
   );

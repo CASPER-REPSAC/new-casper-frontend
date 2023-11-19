@@ -23,7 +23,6 @@ function LabelInput({
 }: Props) {
   const uniqueId = useId();
   const hasIcon = !!labelIcon;
-
   return (
     <Wrapper>
       {label && (
@@ -44,7 +43,6 @@ function LabelInput({
     </Wrapper>
   );
 }
-export default LabelInput;
 
 interface InputProps {
   $hasError: boolean;
@@ -61,7 +59,11 @@ const Input = styled(DefaultInput)<InputProps>`
         border: 1px solid ${({ theme }) => theme.redError};
       }
     `}
-  padding-left: ${({ $hasIcon }) => ($hasIcon ? '50px' : 'none')};
+  ${({ $hasIcon }) =>
+    $hasIcon &&
+    css`
+      padding-left: 50px !important;
+    `};
 `;
 
 const InputWrapper = styled.div`
@@ -82,3 +84,5 @@ const Icon = styled.div`
   transform: translateY(-50%);
   z-index: 1;
 `;
+
+export default LabelInput;

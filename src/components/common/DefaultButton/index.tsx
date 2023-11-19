@@ -15,9 +15,11 @@ interface DefaultButtonProps extends HTMLAttributes<HTMLButtonElement> {
   full?: boolean;
   color?: ButtonColor;
   active?: boolean;
+  type?: 'button' | 'reset' | 'submit';
 }
 
 function DefaultButton({
+  type = 'button',
   size = 'medium',
   full = false,
   color = 'default',
@@ -26,7 +28,7 @@ function DefaultButton({
 }: DefaultButtonProps) {
   return (
     <ButtonWrapper
-      type="button"
+      type={type}
       $size={size}
       $full={full}
       $color={color}

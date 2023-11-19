@@ -1,25 +1,27 @@
+import { useEffect } from 'react';
 import DefaultButton from '@src/components/common/DefaultButton';
 import { StarIcon, UserIcon } from '@src/components/common/Icons';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
 import { JoinFormData } from '@src/types/joinTypes';
-
 import { REQUIRED_MESSAGE, ERROR_MESSAGE } from '@src/constants/message';
-
 import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';
-import { PATH } from '@src/constants/urls';
-import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 import { ICON_SIZE } from '@src/constants/size';
+import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
 
-function NameForm() {
+interface Props {
+  onNext: () => void;
+}
+
+function NameForm({ onNext }: Props) {
   const {
     register,
-    handleSubmit,
-    watch,
     formState: { errors },
+    setFocus,
+    getValues,
+    handleSubmit,
   } = useFormContext<JoinFormData>();
-  const router = useRouter();
 
   const nameRegister = register('name', {
     required: REQUIRED_MESSAGE.name,
@@ -37,21 +39,17 @@ function NameForm() {
     },
   });
 
-  const onValid = () => {
-    const nextStep = 'id';
-    router.push({
-      pathname: PATH.user.join.url,
-      query: { 'funnel-step': nextStep },
-    });
-  };
-
-  const buttonActive =
+  const isValidValue =
     !errors.name &&
     !errors.nickname &&
-    watch('name') !== '' &&
-    watch('nickname') !== '' &&
-    watch('name') !== undefined &&
-    watch('nickname') !== undefined;
+    getValues('name') !== '' &&
+    getValues('name') !== undefined &&
+    getValues('nickname') !== '' &&
+    getValues('nickname') !== undefined;
+
+  useEffect(() => {
+    setFocus('name');
+  }, [setFocus]);
 
   return (
     <>
@@ -59,23 +57,30 @@ function NameForm() {
         label={INPUT_LABEL.name}
         labelIcon={<UserIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.name}
-        autoComplete="off"
         register={nameRegister}
         hasError={!!errors.name}
+        autoComplete="off"
       />
       <LabelInput
         label={INPUT_LABEL.nickname}
         labelIcon={<StarIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.nickname}
-        autoComplete="off"
         register={nickNameRegister}
         hasError={!!errors.nickname}
+        autoComplete="off"
       />
+      {!isValidValue && (
+        <FormErrorWrapper>
+          {errors.name && <li>{errors.name.message}</li>}
+          {errors.nickname && <li>{errors.nickname.message}</li>}
+        </FormErrorWrapper>
+      )}
       <DefaultButton
+        type="submit"
         size="large"
         color="green"
-        onClick={handleSubmit(onValid)}
-        active={buttonActive}
+        onClick={handleSubmit(onNext)}
+        active={isValidValue}
       >
         다음 단계
       </DefaultButton>
