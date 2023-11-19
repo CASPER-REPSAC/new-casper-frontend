@@ -7,18 +7,19 @@ import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@src/constants/message';
 import { ICON_SIZE } from '@src/constants/size';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 import { EMAIL_REGEX } from '@src/utils/regex';
-import { PATH } from '@src/constants/urls';
-import { useRouter } from 'next/router';
-import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 
-function EmailForm() {
+interface Props {
+  onNext: () => void;
+}
+
+function EmailForm({ onNext }: Props) {
+  const NAME = 'email';
   const {
     register,
-    handleSubmit,
     watch,
     formState: { errors },
   } = useFormContext<JoinFormData>();
-  const router = useRouter();
 
   const emailRegister = register('email', {
     required: REQUIRED_MESSAGE.email,
@@ -28,15 +29,7 @@ function EmailForm() {
     },
   });
 
-  const onValid: SubmitHandler<JoinFormData> = () => {
-    const nextStep = 'name';
-    router.push({
-      pathname: PATH.user.join.url,
-      query: { 'funnel-step': nextStep },
-    });
-  };
-
-  const buttonActive =
+  const isValidValue =
     !errors.email && watch('email') !== '' && watch('email') !== undefined;
 
   return (
@@ -48,17 +41,20 @@ function EmailForm() {
         autoComplete="off"
         register={emailRegister}
         hasError={!!errors.email}
+        onKeyDown={(e) => {
+          if (e.key === 'Enter') onNext();
+        }}
       />
-      {errors.email && (
+      {errors[NAME] && (
         <FormErrorWrapper>
-          <li>{errors.email.message}</li>
+          <li>{errors[NAME].message}</li>
         </FormErrorWrapper>
       )}
       <DefaultButton
         size="large"
         color="green"
-        onClick={handleSubmit(onValid)}
-        active={buttonActive}
+        onClick={onNext}
+        active={isValidValue}
       >
         다음 단계
       </DefaultButton>

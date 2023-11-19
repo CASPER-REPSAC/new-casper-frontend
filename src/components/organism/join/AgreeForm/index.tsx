@@ -1,26 +1,19 @@
 import CheckInput from '@src/components/common/CheckInput';
 import DefaultButton from '@src/components/common/DefaultButton';
 import { JoinFormData } from '@src/types/joinTypes';
-import { PATH } from '@src/constants/urls';
-import { useRouter } from 'next/router';
-import { SubmitHandler, useFormContext } from 'react-hook-form';
+import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
 
-function AgreeForm() {
-  const { register, handleSubmit, watch } = useFormContext<JoinFormData>();
-  const router = useRouter();
-  const agreeRegister = register('agree');
+interface Props {
+  onNext: () => void;
+}
 
-  const onValid: SubmitHandler<JoinFormData> = (data) => {
-    if (!data.agree) return;
-    const nextStep = 'email';
-    router.push({
-      pathname: PATH.user.join.url,
-      query: { 'funnel-step': nextStep },
-    });
-  };
+function AgreeForm({ onNext }: Props) {
+  const NAME = 'agree';
+  const { register, watch } = useFormContext<JoinFormData>();
 
-  const buttonActive = watch('agree') === true && watch('agree') !== undefined;
+  const agreeRegister = register(NAME);
+  const isValidValue = watch(NAME) === true && watch(NAME) !== undefined;
 
   return (
     <>
@@ -42,8 +35,8 @@ function AgreeForm() {
       <DefaultButton
         size="large"
         color="green"
-        onClick={handleSubmit(onValid)}
-        active={buttonActive}
+        onClick={onNext}
+        active={isValidValue}
       >
         다음 단계
       </DefaultButton>
