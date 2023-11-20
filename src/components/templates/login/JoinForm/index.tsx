@@ -1,14 +1,16 @@
 import styled from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
-import DefaultForm from '@src/components/common/DefaultForm';
-import EmailForm from '@src/components/organism/join/EmailForm';
-import NameForm from '@src/components/organism/join/NameForm';
+import DefaultForm from '@src/components/common/defaultTag/DefaultForm';
 import { JoinFormData, StepType } from '@src/types/joinTypes';
-import IdForm from '@src/components/organism/join/IdForm';
-import PasswordForm from '@src/components/organism/join/PasswrodForm';
-import AgreeForm from '@src/components/organism/join/AgreeForm';
 import useJoinMutation from '@src/hooks/apis/useJoinMutation';
 import useFunnel from '@src/hooks/useFunnel';
+import {
+  AgreeForm,
+  EmailForm,
+  IdForm,
+  NameForm,
+  PasswordForm,
+} from '@src/components/organism/join';
 
 function JoinForm() {
   const { mutate } = useJoinMutation();

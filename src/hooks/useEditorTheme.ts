@@ -1,4 +1,4 @@
-import { isDarkState } from '@src/atoms';
+import { isDarkState } from '@src/recoil';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Theme, darkDefaultTheme, lightDefaultTheme } from '@blocknote/react';

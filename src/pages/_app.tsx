@@ -8,13 +8,12 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query';
 import Theme from '@src/components/utilComponents/Theme';
-import AdminLayout from '@src/components/utilComponents/Layout/AdminLayout';
-import PopupWrapper from '@src/components/molecules/PopupWrapper';
+import PopupWrapper from '@src/components/organism/PopupWrapper';
 import PageLoadingPresence from '@src/components/utilComponents/PageLoadingPresence';
 import AutoLoginPresence from '@src/components/utilComponents/AutoLoginPresence';
-import DefaultLayout from '@src/components/utilComponents/Layout/DefaultLayout';
 import { AppPropsWithLayout } from '@src/types/layout';
 import { ADMIN_PATH } from '@src/constants/urls';
+import { AdminLayout, DefaultLayout } from '@src/components/organism/layout';
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();

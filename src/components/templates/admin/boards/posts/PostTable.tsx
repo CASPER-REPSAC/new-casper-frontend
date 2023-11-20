@@ -1,5 +1,5 @@
 import AdminTable from '@src/components/common/AdminTable';
-import CheckInput from '@src/components/common/CheckInput';
+import CheckInput from '@src/components/molecules/Inputs/CheckInput';
 import { ChangeEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
 

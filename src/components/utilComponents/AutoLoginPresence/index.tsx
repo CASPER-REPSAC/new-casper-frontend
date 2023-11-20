@@ -1,4 +1,4 @@
-import { accessTokenState } from '@src/atoms';
+import { accessTokenState } from '@src/recoil';
 import useAutoLoginMutation from '@src/hooks/apis/useAutoLoginMutation';
 import { ReactNode, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';

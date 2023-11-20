@@ -1,9 +1,8 @@
 import {
   detailedMemberPopupState,
   selectedMemberState,
-} from '@src/atoms/memberCardAtoms';
-import MemberCard from '@src/components/molecules/MemberCard';
-import DetailMemberPopup from '@src/components/organism/DetailMemberPopup';
+} from '@src/recoil/memberCardAtoms';
+import { DetailMemberPopup, MemberCard } from '@src/components/organism/member';
 import { MemberProfile } from '@src/types/memberTypes';
 import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';

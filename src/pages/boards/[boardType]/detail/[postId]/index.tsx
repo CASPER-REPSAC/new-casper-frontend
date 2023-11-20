@@ -5,7 +5,7 @@ import { ParsedUrlQuery } from 'querystring';
 import { API_URL, ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
 import { ArticleDetail } from '@src/types/articleTypes';
 import DetailTemplate from '@src/components/templates/boards/DetailTemplate';
-import BoardLayout from '@src/components/utilComponents/Layout/BoardLayout';
+import BoardLayout from '@src/components/organism/layout/BoardLayout';
 import useDeleteArticleMutation from '@src/hooks/apis/boards/useDeleteArticleMutation';
 import useUpdateArticleMutation from '@src/hooks/apis/boards/useUpdateArticleMutation';
 import customAxios from '@src/utils/api';
@@ -17,8 +17,8 @@ import {
   ButtonSection,
   ContentSection,
   TitleSection,
-} from '@src/components/organism/DetailContent';
-import DetailComment from '@src/components/organism/DetailComment';
+} from '@src/components/organism/detailArticle/DetailContent';
+import DetailComment from '@src/components/organism/detailArticle/DetailComment';
 
 interface Props {
   articleDetail: ArticleDetail | null;

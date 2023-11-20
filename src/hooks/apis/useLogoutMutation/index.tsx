@@ -1,4 +1,4 @@
-import { accessTokenState } from '@src/atoms';
+import { accessTokenState } from '@src/recoil';
 import usePopup from '@src/hooks/usePopup';
 import { LOGOUT_API } from '@src/constants/apiUrl';
 import { useMutation } from '@tanstack/react-query';

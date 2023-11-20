@@ -1,13 +1,13 @@
 import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
-import DefaultButton from '@src/components/common/DefaultButton';
-import DefaultForm from '@src/components/common/DefaultForm';
+import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import DefaultForm from '@src/components/common/defaultTag/DefaultForm';
 import usePopup from '@src/hooks/usePopup';
 import { REQUIRED_MESSAGE } from '@src/constants/message';
 import { LoginRequest } from '@src/types/loginTypes';
 import useLoginMutation from '@src/hooks/apis/useLoginMutation';
-import { LockIcon, UserIcon } from '@src/components/common/Icons';
+import { LockIcon, UserIcon } from '@src/components/common/icons';
 import { ICON_SIZE } from '@src/constants/size';
 import { PLACEHOLDER } from '@src/constants/label';
 import { POPUP_DURATION } from '@src/constants/duration';

@@ -1,5 +1,5 @@
 import AdminTable from '@src/components/common/AdminTable';
-import DashboardTable from '@src/components/molecules/AdminTable/DashboardTable';
+import DashboardTable from '@src/components/organism/adminTable/DashboardTable';
 
 function PostLogTable() {
   return (

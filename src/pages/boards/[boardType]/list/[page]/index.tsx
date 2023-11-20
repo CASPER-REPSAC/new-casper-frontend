@@ -4,7 +4,7 @@ import { API_URL, ARTICLE_LIST_API } from '@src/constants/apiUrl';
 import { OnePageOfArticleList } from '@src/types/articleTypes';
 import { ParsedUrlQuery } from 'querystring';
 import Error from '@src/pages/_error';
-import BoardLayout from '@src/components/utilComponents/Layout/BoardLayout';
+import BoardLayout from '@src/components/organism/layout/BoardLayout';
 import { ReactElement } from 'react';
 import customAxios from '@src/utils/api';
 import { BOARD_TYPE } from '@src/constants/mock';

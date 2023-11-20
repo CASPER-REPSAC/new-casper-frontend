@@ -1,7 +1,7 @@
 import { Children, MouseEventHandler, ReactNode, isValidElement } from 'react';
 import styled, { css } from 'styled-components';
-import Title from './Title';
-import SubMenu from './SubMenu';
+import Title from './common/Title';
+import SubMenu from './common/SubMenu';
 
 const SubMenuType = (<SubMenu title="" href="" />).type;
 const TitleType = (<Title />).type;

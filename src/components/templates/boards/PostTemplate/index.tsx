@@ -1,9 +1,9 @@
 import { KeyboardEvent } from 'react';
 import { styled } from 'styled-components';
 import { useForm, FormProvider } from 'react-hook-form';
-import DefaultForm from '@src/components/common/DefaultForm';
+import DefaultForm from '@src/components/common/defaultTag/DefaultForm';
 import { PostReqData } from '@src/types/PostTypes';
-import BoardTypeSelectSection from '@src/components/organism/postForm/BoardTypeSelectSection';
+import BoardTypeSelectSection from '@src/components/organism/postForm/BoardTypeSelecSection';
 import TitleSection from '@src/components/organism/postForm/TitleSection';
 import WriteButtonSection from '@src/components/organism/postForm/WriteButtonSection';
 

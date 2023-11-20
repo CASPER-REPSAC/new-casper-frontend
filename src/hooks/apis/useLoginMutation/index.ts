@@ -1,4 +1,4 @@
-import { accessTokenState } from '@src/atoms';
+import { accessTokenState } from '@src/recoil';
 import usePopup from '@src/hooks/usePopup';
 import { LoginRequest, LoginResponse } from '@src/types/loginTypes';
 import { LOGINT_API } from '@src/constants/apiUrl';

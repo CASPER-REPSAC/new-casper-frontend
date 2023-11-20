@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
+import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
 import TitelSection from '@src/components/templates/home/TitleSection';
 import NoticeSection from '@src/components/templates/home/NoticeSection';
 import PageInfoSection from '@src/components/templates/home/PageInfoSection';

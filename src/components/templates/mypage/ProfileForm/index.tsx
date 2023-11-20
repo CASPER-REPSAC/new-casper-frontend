@@ -1,11 +1,11 @@
 /* eslint-disable react/jsx-props-no-spreading */
 import styled from 'styled-components';
 import { useForm } from 'react-hook-form';
-import DefaultButton from '@src/components/common/DefaultButton';
+import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
 import AvatarInput from '@src/components/molecules/Inputs/AvatarInput';
 import LabelTextarea from '@src/components/molecules/Inputs/LabelTextarea';
 import LabelInput from '@src/components/molecules/Inputs/LabelInput';
-import DefaultForm from '@src/components/common/DefaultForm';
+import DefaultForm from '@src/components/common/defaultTag/DefaultForm';
 import useProfile from '@src/hooks/apis/useProfile';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 

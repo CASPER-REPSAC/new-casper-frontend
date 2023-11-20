@@ -1,4 +1,4 @@
-import { accessTokenState } from '@src/atoms';
+import { accessTokenState } from '@src/recoil';
 import usePopup from '@src/hooks/usePopup';
 import { PostReqData } from '@src/types/PostTypes';
 import { POST_ARTICLE_API } from '@src/constants/apiUrl';

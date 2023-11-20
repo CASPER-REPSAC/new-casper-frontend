@@ -1,7 +1,7 @@
-import DefaultButton from '@src/components/common/DefaultButton';
-import BoardBody from '@src/components/molecules/Board/BoardBody';
-import BoardFooter from '@src/components/molecules/Board/BoardFooter';
-import BoardHeader from '@src/components/molecules/Board/BoardHeader';
+import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import BoardBody from '@src/components/organism/board/BoardBody';
+import BoardFooter from '@src/components/organism/board/BoardFooter';
+import BoardHeader from '@src/components/organism/board/BoardHeader';
 import { OnePageOfArticleList } from '@src/types/articleTypes';
 import { PATH } from '@src/constants/urls';
 import { useRouter } from 'next/router';

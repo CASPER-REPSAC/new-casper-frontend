@@ -1,4 +1,4 @@
-import AdminCenterWrapper from '@src/components/common/AdminCenterWrapper';
+import AdminCenterWrapper from '@src/components/common/centerWrapper/AdminCenterWrapper';
 import NoticeSettingForm from '@src/components/organism/NoticeSettingForm';
 
 function BoardListPage() {

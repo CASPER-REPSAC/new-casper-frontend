@@ -1,4 +1,4 @@
-import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
+import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
 import PostForm from '@src/components/templates/boards/PostTemplate';
 
 /**

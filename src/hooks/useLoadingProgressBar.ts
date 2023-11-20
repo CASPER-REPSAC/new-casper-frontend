@@ -1,4 +1,4 @@
-import { isPageLoadingState } from '@src/atoms';
+import { isPageLoadingState } from '@src/recoil';
 import { useSetRecoilState } from 'recoil';
 
 function useLoadingProgressBar() {

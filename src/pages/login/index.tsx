@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useRecoilValue } from 'recoil';
-import { isDarkState } from '@src/atoms';
+import { isDarkState } from '@src/recoil';
 import LoginForm from '@src/components/templates/login/LoginForm';
 import styled from 'styled-components';
 import { PATH } from '@src/constants/urls';
-import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
-import DefaultButton from '@src/components/common/DefaultButton';
+import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
+import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
 
 export default function Login() {
   const isDark = useRecoilValue(isDarkState);

@@ -1,4 +1,4 @@
-import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/Icons';
+import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/icons';
 import { ICON_SIZE } from '@src/constants/size';
 import { styled } from 'styled-components';
 
