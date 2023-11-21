@@ -27,7 +27,7 @@ function PostTemplate({
     hide: false,
     notice: false,
     title: '',
-    content: null,
+    content: '',
     photo: 'test',
   };
   const methods = useForm<PostReqData>({

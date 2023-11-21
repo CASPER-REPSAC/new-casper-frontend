@@ -3,9 +3,14 @@ import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 function useAllMember() {
-  const queryFn = () => axios.get(ALL_MEMEBER_API);
+  const queryKey = ['allMembers'];
+  const queryFn = async () => {
+    const { data } = await axios.get(ALL_MEMEBER_API);
+    return data;
+  };
 
   return useQuery({
+    queryKey,
     queryFn,
   });
 }
