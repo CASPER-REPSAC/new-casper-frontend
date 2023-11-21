@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import LabelInput from '@src/components/molecules/Inputs/LabelInput';
+import { LabelInput } from '@src/components/molecules/inputs';
 import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
 import DefaultForm from '@src/components/common/defaultTag/DefaultForm';
 import usePopup from '@src/hooks/usePopup';

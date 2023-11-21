@@ -1,4 +1,4 @@
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import { DefaultButton } from '@src/components/common/defaultTag';
 import { MouseEventHandler, ReactNode } from 'react';
 import { styled } from 'styled-components';
 

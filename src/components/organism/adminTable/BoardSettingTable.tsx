@@ -1,8 +1,8 @@
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
-import { useState } from 'react';
 import styled from 'styled-components';
+import { DefaultButton } from '@src/components/common/defaultTag';
+import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import CheckInput from '../../molecules/Inputs/CheckInput';
+import { CheckInput } from '@src/components/molecules/inputs';
 import BoardCategoryCard from './common/BoardCategoryCard';
 
 interface Props {

@@ -11,7 +11,7 @@ import {
 import { detailedMemberPopupState } from '@src/recoil/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
 import { ICON_SIZE } from '@src/constants/size';
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import { DefaultButton } from '@src/components/common/defaultTag';
 
 interface Props {
   memberProfile: MemberProfile;

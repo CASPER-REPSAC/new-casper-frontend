@@ -1,6 +1,6 @@
 import { useFormContext } from 'react-hook-form';
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
-import LabelInput from '@src/components/molecules/Inputs/LabelInput';
+import { DefaultButton } from '@src/components/common/defaultTag';
+import { LabelInput } from '@src/components/molecules/inputs';
 import { JoinFormData } from '@src/types/joinTypes';
 import { PW_REGEX } from '@src/utils/regex';
 import FormErrorWrapper from '@src/components/common/FormErrorWrapper';

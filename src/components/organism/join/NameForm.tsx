@@ -1,7 +1,7 @@
 import { useEffect } from 'react';
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import { DefaultButton } from '@src/components/common/defaultTag';
 import { StarIcon, UserIcon } from '@src/components/common/icons';
-import LabelInput from '@src/components/molecules/Inputs/LabelInput';
+import { LabelInput } from '@src/components/molecules/inputs';
 import { JoinFormData } from '@src/types/joinTypes';
 import { REQUIRED_MESSAGE, ERROR_MESSAGE } from '@src/constants/message';
 import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';

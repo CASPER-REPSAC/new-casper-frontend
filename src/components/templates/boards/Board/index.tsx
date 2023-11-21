@@ -1,12 +1,14 @@
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
-import BoardBody from '@src/components/organism/board/BoardBody';
-import BoardFooter from '@src/components/organism/board/BoardFooter';
-import BoardHeader from '@src/components/organism/board/BoardHeader';
+import { DefaultButton } from '@src/components/common/defaultTag';
 import { OnePageOfArticleList } from '@src/types/articleTypes';
 import { PATH } from '@src/constants/urls';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
 import { styled } from 'styled-components';
+import {
+  BoardBody,
+  BoardFooter,
+  BoardHeader,
+} from '@src/components/organism/board';
 
 interface Props {
   onePageOfArticleList: OnePageOfArticleList | null;

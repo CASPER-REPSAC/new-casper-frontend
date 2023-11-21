@@ -2,7 +2,7 @@ import { memo, useState } from 'react';
 import { styled } from 'styled-components';
 import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
 import NavMenuSection from '@src/components/organism/layout/common/Header/common/BarNavMenuSection';
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import { DefaultButton } from '@src/components/common/defaultTag';
 import { MenuIcon } from '@src/components/common/icons';
 import PageShadow from '@src/components/common/PageShadow';
 import { ICON_SIZE } from '@src/constants/size';

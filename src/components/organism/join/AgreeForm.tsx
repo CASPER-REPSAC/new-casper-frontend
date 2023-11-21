@@ -1,5 +1,5 @@
-import CheckInput from '@src/components/molecules/Inputs/CheckInput';
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import { CheckInput } from '@src/components/molecules/inputs';
+import { DefaultButton } from '@src/components/common/defaultTag';
 import { JoinFormData } from '@src/types/joinTypes';
 import { useFormContext } from 'react-hook-form';
 import styled from 'styled-components';
