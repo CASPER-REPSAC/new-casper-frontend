@@ -1,13 +1,15 @@
 import { styled } from 'styled-components';
 
 const SmallCenterWrapper = styled.div`
-  /* Mobile */
+  max-width: 500px;
+  margin: 0 auto;
 
+  /* Mobile */
   width: 90vw;
 
   /* Tablet */
   @media screen and (min-width: 768px) {
-    width: 90vw;
+    width: 500px;
   }
 
   /* Desktop */
@@ -18,8 +20,6 @@ const SmallCenterWrapper = styled.div`
   @media screen and (min-width: 1440px) {
     width: 500px;
   }
-
-  margin: 0 auto;
 `;
 
 export default SmallCenterWrapper;

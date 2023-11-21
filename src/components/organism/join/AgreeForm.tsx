@@ -32,6 +32,7 @@ function AgreeForm({ onNext }: Props) {
         </Li>
       </Info>
       <DefaultButton
+        full
         type="submit"
         size="large"
         color="green"
