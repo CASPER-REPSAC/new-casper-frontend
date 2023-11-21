@@ -6,7 +6,7 @@ import { ParsedUrlQuery } from 'querystring';
 import Error from '@src/pages/_error';
 import BoardLayout from '@src/components/organism/layout/BoardLayout';
 import { ReactElement } from 'react';
-import customAxios from '@src/utils/api';
+import customAxios from '@src/utils/customAxios';
 import { BOARD_TYPE } from '@src/constants/mock';
 
 /**

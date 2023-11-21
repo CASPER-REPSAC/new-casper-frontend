@@ -1,11 +1,14 @@
+import useArticleDetail from '@src/hooks/apis/boards/useArticleDetail';
 import styled from 'styled-components';
 
 interface Props {
-  title: string;
+  articleId: string;
 }
 
-function TitleSection({ title }: Props) {
-  return <Title>{title}</Title>;
+function TitleSection({ articleId }: Props) {
+  const { data } = useArticleDetail(articleId);
+
+  return <Title>{data?.title}</Title>;
 }
 
 const Title = styled.h1`

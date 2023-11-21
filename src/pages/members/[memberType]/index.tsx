@@ -5,7 +5,7 @@ import { MemberProfile } from '@src/types/memberTypes';
 import MemberLayout from '@src/components/organism/layout/MemberLayout';
 import { ReactElement } from 'react';
 import { ParsedUrlQuery } from 'querystring';
-import customAxios from '@src/utils/api';
+import customAxios from '@src/utils/customAxios';
 import { SsrError } from '@src/types/errorTypes';
 import Error from '@src/pages/_error';
 import { MEMBER_TYPE } from '@src/constants/mock';

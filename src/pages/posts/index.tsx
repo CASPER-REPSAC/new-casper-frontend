@@ -1,15 +1,19 @@
-import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
-import PostForm from '@src/components/templates/boards/PostTemplate';
-
-/**
- *  글 작성 페이지
- */
+import {
+  BoardTypeSelecSection,
+  EditorSection,
+  TitleSection,
+  WriteButtonSection,
+} from '@src/components/organism/postForm';
+import PostTemplate from '@src/components/templates/boards/PostTemplate';
 
 function PostPage() {
   return (
-    <CommonCenterWrapper>
-      <PostForm />
-    </CommonCenterWrapper>
+    <PostTemplate
+      boardTypeSelectSeciton={<BoardTypeSelecSection />}
+      titleSection={<TitleSection />}
+      editorSection={<EditorSection />}
+      buttonSection={<WriteButtonSection />}
+    />
   );
 }
 

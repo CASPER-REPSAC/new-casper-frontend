@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { useFormContext } from 'react-hook-form';
 import { BlockNoteEditor } from '@blocknote/core';
-import { PostReqData } from '@src/types/PostTypes';
 import dynamic from 'next/dynamic';
-import usePopup from '@src/hooks/usePopup';
 import { ERROR_MESSAGE } from '@src/constants/message';
 import { POPUP_DURATION } from '@src/constants/duration';
+import { PostReqData } from '@src/types/PostTypes';
+import { useForm } from 'react-hook-form';
+import usePopup from '@src/hooks/usePopup';
 
 const BlockNote = dynamic(
   () => import('@src/components/organism/editor/BlockNote'),
@@ -15,7 +15,7 @@ const BlockNote = dynamic(
 );
 
 function EditorSection() {
-  const { setValue } = useFormContext<PostReqData>();
+  const { setValue } = useForm<PostReqData>();
   const { openAndDeletePopup } = usePopup();
 
   const onEditorContentChange = async (editor: BlockNoteEditor) => {

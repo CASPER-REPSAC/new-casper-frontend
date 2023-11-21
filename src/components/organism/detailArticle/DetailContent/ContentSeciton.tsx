@@ -4,6 +4,8 @@ import { ERROR_MESSAGE } from '@src/constants/message';
 import { POPUP_DURATION } from '@src/constants/duration';
 import usePopup from '@src/hooks/usePopup';
 import { useFormContext } from 'react-hook-form';
+import { useRecoilValue } from 'recoil';
+import { editableState } from '@src/recoil/detailPageAtoms';
 
 const BlockNote = dynamic(
   () => import('@src/components/organism/editor/BlockNote'),
@@ -13,10 +15,10 @@ const BlockNote = dynamic(
 );
 
 interface Props {
-  editable?: boolean;
   content: string;
 }
-function ContentSection({ editable = false, content }: Props) {
+function ContentSection({ content }: Props) {
+  const editable = useRecoilValue(editableState);
   const { setValue } = useFormContext();
   const { openAndDeletePopup } = usePopup();
 

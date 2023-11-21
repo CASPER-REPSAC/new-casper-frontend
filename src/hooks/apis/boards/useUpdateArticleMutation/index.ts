@@ -8,7 +8,7 @@ import usePopup from '@src/hooks/usePopup';
 import { POPUP_MESSAGE } from '@src/constants/message';
 import { POPUP_DURATION } from '@src/constants/duration';
 
-function useUpdateArticleMutation(id: number | undefined) {
+function useUpdateArticleMutation(id: string) {
   const accessToken = useRecoilValue(accessTokenState);
   const { openAndDeletePopup } = usePopup();
 

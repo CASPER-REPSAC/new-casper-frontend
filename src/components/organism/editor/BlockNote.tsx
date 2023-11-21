@@ -20,6 +20,7 @@ function BlockNote({
   const editor: BlockNoteEditor = useBlockNote({
     onEditorContentChange,
     initialContent,
+    editable,
   });
   const theme = useBlockNoteTheme(editable);
 

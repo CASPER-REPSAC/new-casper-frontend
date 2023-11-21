@@ -1,25 +1,28 @@
-import LabelInput from '@src/components/molecules/Inputs/LabelInput';
-import { PLACEHOLDER } from '@src/constants/label';
-import { PostReqData } from '@src/types/PostTypes';
 import { KeyboardEventHandler } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { styled } from 'styled-components';
+import { PLACEHOLDER } from '@src/constants/label';
+import { PostReqData } from '@src/types/PostTypes';
+import { LabelInput } from '@src/components/molecules/inputs';
 
-interface Props {
-  onKeyDown?: KeyboardEventHandler<HTMLInputElement>;
-}
-
-function TitleSection({ onKeyDown }: Props) {
+function TitleSection() {
   const { register } = useFormContext<PostReqData>();
 
   const titleRegister = register('title', { required: true });
+
+  const focusEditor: KeyboardEventHandler<HTMLInputElement> = (e) => {
+    if (e.key === 'Enter') {
+      // setFocus();
+      e.preventDefault();
+    }
+  };
 
   return (
     <TitleInput
       labelSize="large"
       register={titleRegister}
       placeholder={PLACEHOLDER.title}
-      onKeyDown={onKeyDown}
+      onKeyDown={focusEditor}
     />
   );
 }

@@ -4,16 +4,15 @@ import { POPUP_MESSAGE } from '@src/constants/message';
 import { BOARD_TYPE } from '@src/constants/mock';
 import { PATH } from '@src/constants/urls';
 import usePopup from '@src/hooks/usePopup';
-import { ArticleDetail } from '@src/types/articleTypes';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter } from 'next/router';
 
-function useDeleteArticleMutation(article: ArticleDetail | null) {
-  const { push } = useRouter();
+function useDeleteArticleMutation(id: string) {
+  const { push, query } = useRouter();
   const { openAndDeletePopup } = usePopup();
   const mutationFn = () => {
-    return axios.delete(`${DELETE_ARTICLE_API}/${article?.articleId}`);
+    return axios.delete(`${DELETE_ARTICLE_API}/${id}`);
   };
 
   const onSuccess = () => {
@@ -21,8 +20,8 @@ function useDeleteArticleMutation(article: ArticleDetail | null) {
       message: POPUP_MESSAGE.deleteSuccess,
       duration: POPUP_DURATION.medium,
     });
-
-    switch (article?.boardId) {
+    const { boardId } = query;
+    switch (boardId) {
       case BOARD_TYPE.notice:
         push(`${PATH.boards.notice.url}/list/1`);
         break;

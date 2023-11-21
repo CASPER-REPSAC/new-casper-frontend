@@ -3,9 +3,53 @@ import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Theme, darkDefaultTheme, lightDefaultTheme } from '@blocknote/react';
 import { darkTheme } from '@src/styles/theme';
+import { useTheme } from 'styled-components';
 
 function useBlockNoteTheme(editable: boolean) {
   const isDark = useRecoilValue(isDarkState);
+  const theme = useTheme();
+
+  const blockNotedarkTheme = {
+    ...darkDefaultTheme,
+    componentStyles: () => ({
+      // Adds basic styling to the editor.
+      Editor: {
+        backgroundColor: theme.inputSurface,
+        padding: '1rem 0px',
+        height: '100%',
+        cursor: 'text',
+        borderRadius: '4px',
+      },
+    }),
+
+    colors: {
+      ...darkDefaultTheme.colors,
+      editor: {
+        text: darkTheme.textDefault,
+        background: darkTheme.editorBg,
+      },
+    },
+  } satisfies Theme;
+
+  const blockNoteDarkThemeNoneBg = {
+    ...darkDefaultTheme,
+    componentStyles: () => ({
+      // Adds basic styling to the editor.
+      Editor: {
+        backgroundColor: 'transparent',
+        padding: '1rem 0',
+        height: '100%',
+        cursor: 'text',
+      },
+    }),
+    colors: {
+      ...darkDefaultTheme.colors,
+      editor: {
+        text: 'white',
+        background: 'transparent',
+      },
+    },
+  } satisfies Theme;
 
   const getTheme = useCallback(() => {
     if (isDark && editable) {
@@ -21,58 +65,16 @@ function useBlockNoteTheme(editable: boolean) {
       return lightDefaultTheme;
     }
     return blockNotedarkTheme;
-  }, [isDark, editable]);
+  }, [isDark, editable, blockNotedarkTheme, blockNoteDarkThemeNoneBg]);
 
-  const [theme, setTheme] = useState<Theme>(getTheme);
+  const [blockNoteTheme, setBlockNoteTheme] = useState<Theme>(getTheme);
 
   useEffect(() => {
     const newTheme = getTheme();
-    setTheme(newTheme);
-  }, [editable, setTheme, getTheme]);
+    setBlockNoteTheme(newTheme);
+  }, [getTheme]);
 
-  return theme;
+  return blockNoteTheme;
 }
-
-export const blockNotedarkTheme = {
-  ...darkDefaultTheme,
-  componentStyles: () => ({
-    // Adds basic styling to the editor.
-    Editor: {
-      backgroundColor: darkTheme.editorBg,
-      padding: '1rem 0px',
-      height: '100%',
-      cursor: 'text',
-      borderRadius: '4px',
-    },
-  }),
-
-  colors: {
-    ...darkDefaultTheme.colors,
-    editor: {
-      text: darkTheme.textDefault,
-      background: darkTheme.editorBg,
-    },
-  },
-} satisfies Theme;
-
-export const blockNoteDarkThemeNoneBg = {
-  ...darkDefaultTheme,
-  componentStyles: () => ({
-    // Adds basic styling to the editor.
-    Editor: {
-      backgroundColor: 'transparent',
-      padding: '1rem 0',
-      height: '100%',
-      cursor: 'text',
-    },
-  }),
-  colors: {
-    ...darkDefaultTheme.colors,
-    editor: {
-      text: 'white',
-      background: 'transparent',
-    },
-  },
-} satisfies Theme;
 
 export default useBlockNoteTheme;

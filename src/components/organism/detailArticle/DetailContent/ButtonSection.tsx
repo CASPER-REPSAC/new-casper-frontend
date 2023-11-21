@@ -1,18 +1,32 @@
 import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import useDeleteArticleMutation from '@src/hooks/apis/boards/useDeleteArticleMutation';
+import useUpdateArticleMutation from '@src/hooks/apis/boards/useUpdateArticleMutation';
+import { editableState } from '@src/recoil/detailPageAtoms';
+import { useRouter } from 'next/router';
+import { useFormContext } from 'react-hook-form';
+import { useRecoilState } from 'recoil';
 
-interface Props {
-  editable: boolean;
-  completeModification: () => void;
-  changeEditMode: () => void;
-  deleteArticle: () => void;
-}
+function ButtonSection({ articleId }: { articleId: string }) {
+  const { replace, asPath } = useRouter();
+  const methods = useFormContext();
+  const [editable, setEditable] = useRecoilState(editableState);
+  const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
+  const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
 
-function ButtonSection({
-  editable,
-  completeModification,
-  changeEditMode,
-  deleteArticle,
-}: Props) {
+  const deleteArticle = () => {
+    mutateDeletion();
+  };
+  const changeEditMode = () => {
+    setEditable(true);
+  };
+  const completeModification = () => {
+    mutateUpdate({
+      title: methods.getValues('title'),
+      content: methods.getValues('content'),
+    });
+    setEditable(false);
+    replace(asPath);
+  };
   return (
     <>
       {editable ? (

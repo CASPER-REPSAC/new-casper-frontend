@@ -1,17 +1,31 @@
 import { ArticleDetail } from '@src/types/articleTypes';
-import { ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
 import { useQuery } from '@tanstack/react-query';
+import { API_URL, ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
 import axios from 'axios';
 
-function useArticleDetail() {
-  const queryKey = ['articleDetail'];
-  const queryFn = () => {
-    axios.get<ArticleDetail>(ARTICLE_DETAIL_API);
+export async function getArticleDetail(
+  articleId: string,
+  fromServer: boolean = false,
+) {
+  const url = fromServer
+    ? `${API_URL}${ARTICLE_DETAIL_API}/${articleId}`
+    : `${ARTICLE_DETAIL_API}/${articleId}`;
+
+  const { data } = await axios.get<ArticleDetail>(url);
+  return data;
+}
+
+function useArticleDetail(articleId: string, initialData?: ArticleDetail) {
+  const queryKey = ['articleDetail', articleId];
+  const queryFn = async () => {
+    const data = await getArticleDetail(articleId);
+    return data;
   };
 
   return useQuery({
     queryKey,
     queryFn,
+    initialData,
   });
 }
 
