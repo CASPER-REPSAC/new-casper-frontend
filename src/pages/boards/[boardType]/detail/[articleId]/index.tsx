@@ -70,7 +70,7 @@ export default function ArticleDetailPage({
       <DetailTemplate
         titleSection={<TitleSection articleId={articleId} />}
         titleButtonSection={<ButtonSection articleId={articleId} />}
-        contentSection={<ContentSection content={articleDetail.content} />}
+        contentSection={<ContentSection articleId={articleId} />}
         commentSection={<DetailComment />}
       />
     </FormProvider>

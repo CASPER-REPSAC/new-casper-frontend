@@ -28,7 +28,7 @@ function PageLoadingPresence({ children }: Props) {
     };
   }, [done, start]);
 
-  return <div>{children}</div>;
+  return <>{children}</>;
 }
 
 export default PageLoadingPresence;

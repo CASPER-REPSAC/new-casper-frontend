@@ -7,11 +7,12 @@ export interface PostReqData {
   hide: boolean;
   notice: boolean;
   title: string;
-  content: string | null;
+  content: string;
   photo: string;
 }
 
 export interface UpdateReqData {
+  articleId: string;
   title: string;
   content: string;
 }

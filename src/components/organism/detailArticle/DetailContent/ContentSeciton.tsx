@@ -6,6 +6,7 @@ import usePopup from '@src/hooks/usePopup';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { editableState } from '@src/recoil/detailPageAtoms';
+import useArticleDetail from '@src/hooks/apis/boards/useArticleDetail';
 
 const BlockNote = dynamic(
   () => import('@src/components/organism/editor/BlockNote'),
@@ -15,9 +16,10 @@ const BlockNote = dynamic(
 );
 
 interface Props {
-  content: string;
+  articleId: string;
 }
-function ContentSection({ content }: Props) {
+function ContentSection({ articleId }: Props) {
+  const { data: articleDetail } = useArticleDetail(articleId);
   const editable = useRecoilValue(editableState);
   const { setValue } = useFormContext();
   const { openAndDeletePopup } = usePopup();
@@ -29,15 +31,19 @@ function ContentSection({ content }: Props) {
     } catch {
       openAndDeletePopup({
         message: ERROR_MESSAGE.unknown,
-        duration: POPUP_DURATION.medium,
+        duration: POPUP_DURATION.short,
       });
     }
   };
 
+  const initialContent = articleDetail && JSON.parse(articleDetail.content);
+
+  if (!articleDetail) return <>Loading</>;
+
   return (
     <BlockNote
       editable={editable}
-      initialContent={JSON.parse(content)}
+      initialContent={initialContent}
       onEditorContentChange={onEditorContentChange}
     />
   );

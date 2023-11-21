@@ -1,14 +1,14 @@
-import { accessTokenState } from '@src/recoil';
+import axios, { AxiosError } from 'axios';
+import { useRouter } from 'next/router';
+import { useMutation } from '@tanstack/react-query';
+import { useRecoilValue } from 'recoil';
 import usePopup from '@src/hooks/usePopup';
 import { PostReqData } from '@src/types/PostTypes';
-import { POST_ARTICLE_API } from '@src/constants/apiUrl';
+import { accessTokenState } from '@src/recoil';
 import { PATH } from '@src/constants/urls';
-import { useMutation } from '@tanstack/react-query';
-import axios from 'axios';
-import { useRouter } from 'next/router';
-import { useRecoilValue } from 'recoil';
+import { POST_ARTICLE_API } from '@src/constants/apiUrl';
 import { POPUP_DURATION } from '@src/constants/duration';
-import { POPUP_MESSAGE } from '@src/constants/message';
+import { ERROR_MESSAGE, POPUP_MESSAGE } from '@src/constants/message';
 
 export default function usePostArticleMutation() {
   const { openAndDeletePopup } = usePopup();
@@ -29,8 +29,34 @@ export default function usePostArticleMutation() {
     push(`${PATH.boards.notice.url}/list/1`);
   };
 
+  const onError = (error: AxiosError) => {
+    switch (error.response?.status) {
+      case 400:
+        openAndDeletePopup({
+          message: ERROR_MESSAGE.unknown,
+          duration: POPUP_DURATION.medium,
+        });
+        return;
+
+      case 401:
+        openAndDeletePopup({
+          message: ERROR_MESSAGE.requiredLogin,
+          duration: POPUP_DURATION.medium,
+        });
+        push(PATH.user.login.url);
+        return;
+
+      default:
+        openAndDeletePopup({
+          message: ERROR_MESSAGE.unknown,
+          duration: POPUP_DURATION.medium,
+        });
+    }
+  };
+
   return useMutation({
     mutationFn,
     onSuccess,
+    onError,
   });
 }

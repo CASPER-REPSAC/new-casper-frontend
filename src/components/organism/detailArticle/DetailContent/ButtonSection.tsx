@@ -1,17 +1,18 @@
 import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
+import useArticleDetail from '@src/hooks/apis/boards/useArticleDetail';
 import useDeleteArticleMutation from '@src/hooks/apis/boards/useDeleteArticleMutation';
 import useUpdateArticleMutation from '@src/hooks/apis/boards/useUpdateArticleMutation';
 import { editableState } from '@src/recoil/detailPageAtoms';
-import { useRouter } from 'next/router';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 
 function ButtonSection({ articleId }: { articleId: string }) {
-  const { replace, asPath } = useRouter();
   const methods = useFormContext();
   const [editable, setEditable] = useRecoilState(editableState);
   const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
-  const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
+  const { mutateAsync: mutateUpdateAsync } =
+    useUpdateArticleMutation(articleId);
+  const { refetch } = useArticleDetail(articleId);
 
   const deleteArticle = () => {
     mutateDeletion();
@@ -19,13 +20,14 @@ function ButtonSection({ articleId }: { articleId: string }) {
   const changeEditMode = () => {
     setEditable(true);
   };
-  const completeModification = () => {
-    mutateUpdate({
+  const completeModification = async () => {
+    setEditable(false);
+    await mutateUpdateAsync({
+      articleId,
       title: methods.getValues('title'),
       content: methods.getValues('content'),
     });
-    setEditable(false);
-    replace(asPath);
+    refetch();
   };
   return (
     <>
