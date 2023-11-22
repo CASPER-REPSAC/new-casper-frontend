@@ -1,6 +1,6 @@
 import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
-import PageTitle from '@src/components/organism/PageTitle';
-import MemberSideMenu from '@src/components/organism/sideMenu/MemberSideMenu';
+import PageTitle from '@src/components/molecules/PageTitle';
+import MemberSideMenu from '@src/components/molecules/sideMenu/MemberSideMenu';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { PAGE_TITLE } from '@src/constants/label';

@@ -1,5 +1,5 @@
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
-import usePostArticleMutation from '@src/hooks/apis/boards/usePostArticleMutation';
+import { DefaultButton } from '@src/components/common/defaultTag';
+import { usePostArticleMutation } from '@src/hooks/apis/boards';
 import { PostReqData } from '@src/types/PostTypes';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 import { styled } from 'styled-components';

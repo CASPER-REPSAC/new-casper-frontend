@@ -1,7 +1,7 @@
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
-import FormErrorWrapper from '@src/components/common/FormErrorWrapper';
+import { DefaultButton } from '@src/components/common/defaultTag';
+import { FormErrorWrapper } from '@src/components/common/';
 import { MailIcon } from '@src/components/common/icons';
-import { LabelInput } from '@src/components/molecules/inputs';
+import { LabelInput } from '@src/components/common/featureTag';
 import { JoinFormData } from '@src/types/joinTypes';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@src/constants/message';
 import { ICON_SIZE } from '@src/constants/size';

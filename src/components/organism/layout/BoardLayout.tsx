@@ -1,9 +1,9 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
-import PageTitle from '@src/components/organism/PageTitle';
+import PageTitle from '@src/components/molecules/PageTitle';
 import { PAGE_TITLE } from '@src/constants/label';
-import { BoardSideMenu } from '@src/components/organism/sideMenu';
+import { BoardSideMenu } from '@src/components/molecules/sideMenu';
 
 interface Props {
   children: ReactNode;

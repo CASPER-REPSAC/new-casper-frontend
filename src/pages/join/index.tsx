@@ -5,9 +5,9 @@ import {
   NameForm,
   PasswordForm,
 } from '@src/components/organism/join';
-import JoinTemplate from '@src/components/templates/login/JoinTemplate';
-import useJoinMutation from '@src/hooks/apis/useJoinMutation';
-import useFunnel from '@src/hooks/useFunnel';
+import JoinTemplate from '@src/components/templates/JoinTemplate';
+import { useFunnel } from '@src/hooks';
+import { useJoinMutation } from '@src/hooks/apis/user';
 import { JoinFormData, FunnelStepType } from '@src/types/joinTypes';
 import { FormProvider, useForm } from 'react-hook-form';
 import { styled } from 'styled-components';

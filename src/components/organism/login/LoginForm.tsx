@@ -1,16 +1,15 @@
 import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { LabelInput } from '@src/components/molecules/inputs';
-import DefaultButton from '@src/components/common/defaultTag/DefaultButton';
-import DefaultForm from '@src/components/common/defaultTag/DefaultForm';
-import usePopup from '@src/hooks/usePopup';
-import { REQUIRED_MESSAGE } from '@src/constants/message';
-import { LoginRequest } from '@src/types/loginTypes';
-import useLoginMutation from '@src/hooks/apis/useLoginMutation';
+import { LabelInput } from '@src/components/common/featureTag';
+import { usePopup } from '@src/hooks';
+import { DefaultButton, DefaultForm } from '@src/components/common/defaultTag';
 import { LockIcon, UserIcon } from '@src/components/common/icons';
+import { REQUIRED_MESSAGE } from '@src/constants/message';
 import { ICON_SIZE } from '@src/constants/size';
 import { PLACEHOLDER } from '@src/constants/label';
 import { POPUP_DURATION } from '@src/constants/duration';
+import { useLoginMutation } from '@src/hooks/apis/user';
+import { LoginRequest } from '@src/types/loginTypes';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();

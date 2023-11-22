@@ -1,4 +1,4 @@
-import RadioInput from '@src/components/molecules/inputs/RadioInput';
+import RadioInput from '@src/components/common/featureTag/RadioInput';
 import { BOARD_TYPE } from '@src/constants/mock';
 import { PostReqData } from '@src/types/PostTypes';
 import { useFormContext } from 'react-hook-form';

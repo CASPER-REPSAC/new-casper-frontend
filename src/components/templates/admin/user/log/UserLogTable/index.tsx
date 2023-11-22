@@ -1,4 +1,4 @@
-import AdminTable from '@src/components/common/AdminTable';
+import { AdminTable } from '@src/components/common';
 
 function UserLogTable() {
   return (

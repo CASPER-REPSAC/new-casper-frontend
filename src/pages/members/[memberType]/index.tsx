@@ -1,8 +1,8 @@
-import MembersTemplate from '@src/components/templates/members/MembersTemplate';
+import { MembersTemplate } from '@src/components/templates';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ALL_MEMEBER_API, API_URL } from '@src/constants/apiUrl';
 import { MemberProfile } from '@src/types/memberTypes';
-import MemberLayout from '@src/components/organism/layout/MemberLayout';
+import { MemberLayout } from '@src/components/organism/layout';
 import { ReactElement } from 'react';
 import { ParsedUrlQuery } from 'querystring';
 import customAxios from '@src/utils/customAxios';

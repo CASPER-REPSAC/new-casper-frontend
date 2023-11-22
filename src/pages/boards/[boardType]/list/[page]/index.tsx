@@ -1,17 +1,13 @@
-import Board from '@src/components/templates/boards/Board';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { API_URL, ARTICLE_LIST_API } from '@src/constants/apiUrl';
 import { OnePageOfArticleList } from '@src/types/articleTypes';
 import { ParsedUrlQuery } from 'querystring';
 import Error from '@src/pages/_error';
-import BoardLayout from '@src/components/organism/layout/BoardLayout';
+import { BoardLayout } from '@src/components/organism/layout';
 import { ReactElement } from 'react';
 import customAxios from '@src/utils/customAxios';
 import { BOARD_TYPE } from '@src/constants/mock';
-
-/**
- *  게시판 메인 페이지
- */
+import { Board } from '@src/components/molecules';
 
 interface Params extends ParsedUrlQuery {
   boardType: string;

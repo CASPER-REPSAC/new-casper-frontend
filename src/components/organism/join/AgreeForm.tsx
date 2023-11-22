@@ -1,8 +1,8 @@
-import { CheckInput } from '@src/components/molecules/inputs';
+import { styled } from 'styled-components';
+import { CheckInput } from '@src/components/common/featureTag';
 import { DefaultButton } from '@src/components/common/defaultTag';
 import { JoinFormData } from '@src/types/joinTypes';
 import { useFormContext } from 'react-hook-form';
-import styled from 'styled-components';
 
 interface Props {
   onNext: () => void;

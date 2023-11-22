@@ -3,7 +3,7 @@ import {
   selectedMemberState,
 } from '@src/recoil/memberCardAtoms';
 import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
-import PageShadow from '@src/components/common/PageShadow';
+import { PageShadow } from '@src/components/common';
 import DetailMemberCard from '@src/components/organism/member/DetailMemberCard';
 import { MouseEventHandler } from 'react';
 import { useRecoilValue } from 'recoil';

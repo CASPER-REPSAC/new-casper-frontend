@@ -45,16 +45,19 @@ const sizeCss = css<ButtonWrapperProps>`
         return css`
           font-size: 1.4rem;
           padding: 0.2em 0.6em;
+          min-height: 30px;
         `;
       case 'medium':
         return css`
           font-size: 1.6rem;
           padding: 0.4em 0.8em;
+          min-height: 35px;
         `;
       case 'large':
         return css`
           font-size: 1.8rem;
           padding: 0.8em 1em;
+          min-height: 40px;
         `;
       default:
         return css`

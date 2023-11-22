@@ -1,9 +1,9 @@
 import styled from 'styled-components';
-import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
-import TitelSection from '@src/components/templates/home/TitleSection';
-import NoticeSection from '@src/components/templates/home/NoticeSection';
-import PageInfoSection from '@src/components/templates/home/PageInfoSection';
-import usePagination from '@src/hooks/usePagination';
+import { usePagination } from '@src/hooks';
+import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
+import NoticeSection from '@src/components/organism/home/NoticeSection';
+import TitelSection from '@src/components/organism/home/TitleSection';
+import PageInfoSection from '@src/components/organism/home/PageInfoSection';
 
 function Home() {
   const bgImgs = ['background1.jpg', 'background2.jpg'];

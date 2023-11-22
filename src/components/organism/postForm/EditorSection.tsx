@@ -1,14 +1,14 @@
 import styled from 'styled-components';
-import { BlockNoteEditor } from '@blocknote/core';
 import dynamic from 'next/dynamic';
+import { BlockNoteEditor } from '@blocknote/core';
 import { ERROR_MESSAGE } from '@src/constants/message';
 import { POPUP_DURATION } from '@src/constants/duration';
 import { PostReqData } from '@src/types/PostTypes';
 import { useFormContext } from 'react-hook-form';
-import usePopup from '@src/hooks/usePopup';
+import { usePopup } from '@src/hooks';
 
 const BlockNote = dynamic(
-  () => import('@src/components/organism/editor/BlockNote'),
+  () => import('@src/components/molecules/editor/BlockNote'),
   {
     ssr: false,
   },

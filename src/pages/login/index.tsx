@@ -1,7 +1,9 @@
-import LoginTemplate from '@src/components/templates/login/LoginTemplate';
-import LoginForm from '@src/components/organism/login/LoginForm';
-import LoginLogo from '@src/components/organism/login/LoginLogo';
-import LoginMoreLinks from '@src/components/organism/login/LoginMoreLinks';
+import {
+  LoginForm,
+  LoginLogo,
+  LoginMoreLinks,
+} from '@src/components/organism/login';
+import { LoginTemplate } from '@src/components/templates';
 
 export default function Login() {
   return (

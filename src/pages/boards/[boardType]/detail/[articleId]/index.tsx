@@ -2,14 +2,14 @@ import { ReactElement } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
 import { ParsedUrlQuery } from 'querystring';
-import DetailTemplate from '@src/components/templates/boards/DetailTemplate';
-import BoardLayout from '@src/components/organism/layout/BoardLayout';
+import { DetailTemplate } from '@src/components/templates';
+import { BoardLayout } from '@src/components/organism/layout';
 import {
   ButtonSection,
   ContentSection,
   TitleSection,
-} from '@src/components/organism/detailArticle/DetailContent';
-import DetailComment from '@src/components/organism/detailArticle/DetailComment';
+  DetailComment,
+} from '@src/components/organism/detail';
 import useArticleDetail, {
   getArticleDetail,
 } from '@src/hooks/apis/boards/useArticleDetail';
