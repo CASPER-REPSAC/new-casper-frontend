@@ -3,7 +3,8 @@ import { styled } from 'styled-components';
 function TitelSection() {
   return (
     <Title>
-      <H1>THE CENTER OF SECURITY</H1>
+      <H1>THE CENTER</H1>
+      <H1>of the SECURITY</H1>
       <H2>정보 보안 동아리 CASPER</H2>
     </Title>
   );
@@ -14,7 +15,7 @@ export default TitelSection;
 const Title = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  width: 50vw;
 `;
 const H1 = styled.div`
   font-size: 6rem;
