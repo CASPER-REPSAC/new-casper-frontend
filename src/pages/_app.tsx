@@ -1,17 +1,19 @@
 import '@src/styles/reset.css';
+import { styled } from 'styled-components';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import { RecoilRoot } from 'recoil';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import Theme from '@src/components/utilComponents/Theme';
 import PopupWrapper from '@src/components/organism/PopupWrapper';
-import PageLoadingPresence from '@src/components/utilComponents/PageLoadingPresence';
-import AutoLoginPresence from '@src/components/utilComponents/AutoLoginPresence';
 import { AppPropsWithLayout } from '@src/types/layout';
 import { ADMIN_PATH } from '@src/constants/urls';
 import { AdminLayout, DefaultLayout } from '@src/components/organism/layout';
-import styled from 'styled-components';
+import {
+  AutoLoginPresence,
+  PageLoadingPresence,
+  Theme,
+} from '@src/components/utilComponents';
 
 function App({ Component, pageProps }: AppPropsWithLayout) {
   const router = useRouter();
@@ -30,9 +32,6 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
       const isAdminPage = router.asPath.startsWith(ADMIN_PATH.home.url);
       return isAdminPage ? <AdminLayout>{page}</AdminLayout> : <>{page}</>;
     });
-
-  // const isEmptyProps = Object.keys(pageProps).length === 0;
-  // if (isEmptyProps) return null;
 
   return (
     <QueryClientProvider client={queryClient}>

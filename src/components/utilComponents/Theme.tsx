@@ -1,8 +1,8 @@
 import { ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
 import { createGlobalStyle, ThemeProvider } from 'styled-components';
-import { isDarkState } from '../../../recoil';
-import { darkTheme, lightTheme } from '../../../styles/theme';
+import { isDarkState } from '../../recoil';
+import { darkTheme, lightTheme } from '../../styles/theme';
 
 interface ThemeProps {
   children: ReactNode;
