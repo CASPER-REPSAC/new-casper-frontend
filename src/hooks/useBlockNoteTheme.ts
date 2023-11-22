@@ -33,6 +33,7 @@ const blockNotedarkTheme = {
       backgroundColor: darkTheme.inputSurface,
       padding: '1rem 0px',
       cursor: 'text',
+      height: '100%',
       borderRadius: '4px',
       '.tiptap': {
         background: darkTheme.inputSurface,

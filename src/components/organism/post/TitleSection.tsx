@@ -10,9 +10,8 @@ function TitleSection() {
 
   const titleRegister = register('title', { required: true });
 
-  const focusEditor: KeyboardEventHandler<HTMLInputElement> = (e) => {
+  const preventSubmit: KeyboardEventHandler<HTMLInputElement> = (e) => {
     if (e.key === 'Enter') {
-      // setFocus();
       e.preventDefault();
     }
   };
@@ -22,7 +21,7 @@ function TitleSection() {
       labelSize="large"
       register={titleRegister}
       placeholder={PLACEHOLDER.title}
-      onKeyDown={focusEditor}
+      onKeyDown={preventSubmit}
     />
   );
 }

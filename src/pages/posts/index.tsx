@@ -1,15 +1,23 @@
+import { BlockNoteEditor } from '@blocknote/core';
 import {
   BoardTypeSelecSection,
   EditorSection,
   TitleSection,
   WriteButtonSection,
-} from '@src/components/organism/postForm';
-import PostTemplate from '@src/components/templates/boards/PostTemplate';
+} from '@src/components/organism/post';
+import { PostTemplate } from '@src/components/templates';
+import { usePostArticleMutation } from '@src/hooks/apis/boards';
 import { PostReqData } from '@src/types/PostTypes';
-import { FormProvider, useForm } from 'react-hook-form';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 function PostPage() {
   const methods = useForm<PostReqData>();
+  const { mutate } = usePostArticleMutation();
+  const { handleSubmit } = methods;
+
+  const onValid: SubmitHandler<PostReqData> = async (data) => {
+    mutate(data);
+  };
 
   return (
     <FormProvider {...methods}>
@@ -17,7 +25,7 @@ function PostPage() {
         boardTypeSelectSeciton={<BoardTypeSelecSection />}
         titleSection={<TitleSection />}
         editorSection={<EditorSection />}
-        buttonSection={<WriteButtonSection />}
+        buttonSection={<WriteButtonSection onSubmit={handleSubmit(onValid)} />}
       />
     </FormProvider>
   );
