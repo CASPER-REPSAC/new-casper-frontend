@@ -1,4 +1,3 @@
-import { BlockNoteEditor } from '@blocknote/core';
 import {
   BoardTypeSelecSection,
   EditorSection,
