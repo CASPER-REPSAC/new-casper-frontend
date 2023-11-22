@@ -1,15 +1,32 @@
-import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
-import PostForm from '@src/components/templates/boards/PostTemplate';
-
-/**
- *  글 작성 페이지
- */
+import {
+  BoardTypeSelecSection,
+  EditorSection,
+  TitleSection,
+  WriteButtonSection,
+} from '@src/components/organism/post';
+import { PostTemplate } from '@src/components/templates';
+import { usePostArticleMutation } from '@src/hooks/apis/boards';
+import { PostReqData } from '@src/types/PostTypes';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 function PostPage() {
+  const methods = useForm<PostReqData>();
+  const { mutate } = usePostArticleMutation();
+  const { handleSubmit } = methods;
+
+  const onValid: SubmitHandler<PostReqData> = async (data) => {
+    mutate(data);
+  };
+
   return (
-    <CommonCenterWrapper>
-      <PostForm />
-    </CommonCenterWrapper>
+    <FormProvider {...methods}>
+      <PostTemplate
+        boardTypeSelectSeciton={<BoardTypeSelecSection />}
+        titleSection={<TitleSection />}
+        editorSection={<EditorSection />}
+        buttonSection={<WriteButtonSection onSubmit={handleSubmit(onValid)} />}
+      />
+    </FormProvider>
   );
 }
 

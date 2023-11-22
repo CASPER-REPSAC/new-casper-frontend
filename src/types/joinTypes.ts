@@ -25,7 +25,7 @@ export interface JoinResData {
   nickname: string;
 }
 
-export type StepType =
+export type FunnelStepType =
   | 'agree'
   | 'email'
   | 'name'

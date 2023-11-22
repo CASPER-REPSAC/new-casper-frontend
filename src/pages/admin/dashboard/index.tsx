@@ -1,4 +1,4 @@
-import AdminCenterWrapper from '@src/components/common/AdminCenterWrapper';
+import AdminCenterWrapper from '@src/components/common/centerWrapper/AdminCenterWrapper';
 import CommentLogTable from '@src/components/templates/admin/dashboard/CommentLogTable';
 import FileLogTable from '@src/components/templates/admin/dashboard/FileLogTable';
 import LoginLogTable from '@src/components/templates/admin/dashboard/LoginLogTable';

@@ -1,4 +1,4 @@
-import { popupListState } from '@src/atoms';
+import { popupListState } from '@src/recoil';
 import { Key } from 'react';
 import { useSetRecoilState } from 'recoil';
 

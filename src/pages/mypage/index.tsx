@@ -1,16 +1,26 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import PageTitle from '@src/components/common/PageTitle';
-import CommonCenterWrapper from '@src/components/common/CommonCenterWrapper';
-import ProfileForm from '@src/components/templates/mypage/ProfileForm';
+import { FormProvider, useForm } from 'react-hook-form';
+import { MyPageTemplate } from '@src/components/templates';
+import {
+  ButtonSection,
+  MyAvatarForm,
+  MyInfoForm,
+} from '@src/components/organism/myPage';
+import { useProfile } from '@src/hooks/apis/user';
 
 function MyPage() {
+  const { data, isLoading } = useProfile('ine');
+  const methods = useForm();
+
+  if (!data || isLoading) return <>Loading</>;
+
   return (
-    <>
-      <PageTitle pageTitle="MyPage" />
-      <CommonCenterWrapper>
-        <ProfileForm />
-      </CommonCenterWrapper>
-    </>
+    <FormProvider {...methods}>
+      <MyPageTemplate
+        avartarSection={<MyAvatarForm />}
+        myInfoSection={<MyInfoForm />}
+        buttonSection={<ButtonSection />}
+      />
+    </FormProvider>
   );
 }
 

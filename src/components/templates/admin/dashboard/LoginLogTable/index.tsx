@@ -1,5 +1,6 @@
-import AdminTable from '@src/components/common/AdminTable';
-import DashboardTable from '@src/components/molecules/AdminTable/DashboardTable';
+import { AdminTable } from '@src/components/common';
+
+import DashboardTable from '@src/components/molecules/adminTable/DashboardTable';
 
 function LoginLogTable() {
   return (

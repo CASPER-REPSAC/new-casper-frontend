@@ -14,8 +14,10 @@ export const POPUP_MESSAGE = {
 };
 
 export const ERROR_MESSAGE = {
-  id: 'ID 형식이 올바르지 않습니다.',
-  pw: 'PW 형식이 올바르지 않습니다. [8자리 이상 + 특수문자 1개 이상]',
+  noPermission: '권한이 없어요.',
+  requiredLogin: '로그인이 필요해요.',
+  id: 'ID 형식이 올바르지 않아요.',
+  pw: 'PW 형식이 올바르지 않아요. [8자리 이상 + 특수문자 1개 이상]',
   pwConfirm: 'PW가 일치하지 않습니다.',
   name: '이름이 이상합니다.',
   nickname: '닉네임이 이상합니다.',
