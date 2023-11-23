@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { useRouter } from 'next/router';
 import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/icons';
-import { CircleButton } from '@src/components/common/defaultTag';
+import { CircleButton } from '@src/components/common/featureTag';
 import SCREEN_SIZE from '@src/constants/screenWidth';
 import { ICON_SIZE } from '@src/constants/size';
 import { usePagination, useWindowSize } from '@src/hooks';
@@ -34,9 +34,10 @@ function BoardFooter({ maxPage, curPage }: Props) {
           const onMouseEnter = () => prefetch(href);
           return (
             <CircleButton
+              key={page}
+              $size="small"
               onMouseEnter={onMouseEnter}
               onClick={onClick}
-              key={page}
               $highlight={page === curPage}
             >
               {page}

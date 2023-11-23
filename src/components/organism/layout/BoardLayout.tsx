@@ -35,7 +35,6 @@ const Flex = styled.div`
 `;
 const Main = styled.main`
   flex: auto;
-  overflow: hidden;
 `;
 
 export default BoardLayout;
