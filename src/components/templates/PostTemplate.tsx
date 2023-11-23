@@ -1,8 +1,6 @@
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
-import { useForm, FormProvider } from 'react-hook-form';
-import DefaultForm from '@src/components/common/defaultTag/DefaultForm';
-import { PostReqData } from '@src/types/PostTypes';
+import { DefaultForm } from '@src/components/common/defaultTag';
 import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
 
 interface Props {
@@ -18,32 +16,14 @@ function PostTemplate({
   editorSection,
   buttonSection,
 }: Props) {
-  const defaultValues: PostReqData = {
-    boardId: 'notice_board',
-    category: 'all',
-    createdAt: '1111-01-01',
-    modifiedAt: '1111-01-01',
-    file: false,
-    hide: false,
-    notice: false,
-    title: '',
-    content: '',
-    photo: 'test',
-  };
-  const methods = useForm<PostReqData>({
-    defaultValues,
-  });
-
   return (
     <CommonCenterWrapper>
-      <FormProvider {...methods}>
-        <Form>
-          {boardTypeSelectSeciton}
-          {titleSection}
-          {editorSection}
-          {buttonSection}
-        </Form>
-      </FormProvider>
+      <Form>
+        {boardTypeSelectSeciton}
+        {titleSection}
+        {editorSection}
+        {buttonSection}
+      </Form>
     </CommonCenterWrapper>
   );
 }
