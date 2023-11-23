@@ -73,10 +73,10 @@ function PasswordForm({ onNext }: Props) {
         </FormErrorWrapper>
       )}
       <DefaultButton
+        $size="large"
+        $color="green"
+        $active={isValidValue}
         type="submit"
-        size="large"
-        color="green"
-        active={isValidValue}
         onClick={handleSubmit(onNext)}
       >
         완료

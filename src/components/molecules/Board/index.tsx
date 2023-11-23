@@ -37,7 +37,7 @@ function Board({ onePageOfArticleList }: Props) {
     <Wrapper>
       <BoardHeader />
       <BoardBody articleList={onePageOfArticleList.articleList} />
-      <WriteButton size="small" color="green" onClick={onClickWrite}>
+      <WriteButton $size="small" $color="green" onClick={onClickWrite}>
         작성 하기
       </WriteButton>
       <BoardFooter maxPage={maxPage} curPage={curPage} />

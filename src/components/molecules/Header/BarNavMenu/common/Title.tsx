@@ -8,14 +8,14 @@ interface Props {
 }
 
 function Title({ children, onClick }: Props) {
-  return <Wrapper onClick={onClick}>{children}</Wrapper>;
+  return (
+    <Wrapper $full onClick={onClick}>
+      {children}
+    </Wrapper>
+  );
 }
 
 const Wrapper = styled(DefaultButton)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
   height: 100%;
 `;
 

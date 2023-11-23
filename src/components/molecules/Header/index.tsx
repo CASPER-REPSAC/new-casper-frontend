@@ -1,13 +1,12 @@
 import { memo, useState } from 'react';
 import { styled } from 'styled-components';
 import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
-
 import { DefaultButton } from '@src/components/common/defaultTag';
 import { MenuIcon } from '@src/components/common/icons';
 import { PageShadow } from '@src/components/common';
+import { useWindowSize } from '@src/hooks';
 import { ICON_SIZE } from '@src/constants/size';
 import SCREEN_SIZE from '@src/constants/screenWidth';
-import { useWindowSize } from '@src/hooks';
 import Z_INDEX from '@src/constants/zIndex';
 import HambergerMenuSection from './HambergerMenuSection';
 import LogoSection from './LogoSection';

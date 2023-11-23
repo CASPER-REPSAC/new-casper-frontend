@@ -23,7 +23,7 @@ function BoardSettingTable({ title, categories }: Props) {
       <Section>
         <Title>
           <span>카테고리</span>
-          <DefaultButton size="small">추가하기</DefaultButton>
+          <DefaultButton $size="small">추가하기</DefaultButton>
         </Title>
         <Item>
           <CategoryList>

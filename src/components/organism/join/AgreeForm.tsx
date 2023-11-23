@@ -32,12 +32,12 @@ function AgreeForm({ onNext }: Props) {
         </Li>
       </Info>
       <DefaultButton
-        full
+        $full
+        $size="large"
+        $color="green"
+        $active={isValidValue}
         type="submit"
-        size="large"
-        color="green"
         onClick={handleSubmit(onNext)}
-        active={isValidValue}
       >
         다음 단계
       </DefaultButton>

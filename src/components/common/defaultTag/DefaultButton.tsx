@@ -1,44 +1,17 @@
-import { HTMLAttributes } from 'react';
-import styled, { css } from 'styled-components';
+import { motion } from 'framer-motion';
+import { styled, css } from 'styled-components';
 
-// todo. full, type -> size로 통일
 type ButtonSize = 'small' | 'medium' | 'large';
 type ButtonColor = 'red' | 'green' | 'default';
-interface ButtonWrapperProps {
-  $size: ButtonSize;
-  $full: boolean;
-  $color: ButtonColor;
+
+interface DefaultButtonProps {
+  $size?: ButtonSize;
+  $full?: boolean;
+  $color?: ButtonColor;
   $active?: boolean;
 }
-interface DefaultButtonProps extends HTMLAttributes<HTMLButtonElement> {
-  size?: ButtonSize;
-  full?: boolean;
-  color?: ButtonColor;
-  active?: boolean;
-  type?: 'button' | 'reset' | 'submit';
-}
 
-function DefaultButton({
-  type = 'button',
-  size = 'medium',
-  full = false,
-  color = 'default',
-  active = true,
-  ...props
-}: DefaultButtonProps) {
-  return (
-    <ButtonWrapper
-      type={type}
-      $size={size}
-      $full={full}
-      $color={color}
-      $active={active}
-      {...props}
-    />
-  );
-}
-
-const sizeCss = css<ButtonWrapperProps>`
+const sizeCss = css<DefaultButtonProps>`
   ${({ $size }) => {
     switch ($size) {
       case 'small':
@@ -67,21 +40,19 @@ const sizeCss = css<ButtonWrapperProps>`
     }
   }}
 `;
-const fullCss = css<ButtonWrapperProps>`
+const fullCss = css<DefaultButtonProps>`
   ${({ $full }) =>
     $full &&
     css`
       width: 100%;
     `}
 `;
-
-const inActiveColorCss = css<ButtonWrapperProps>`
+const inActiveColorCss = css<DefaultButtonProps>`
   cursor: not-allowed;
   background-color: ${({ theme }) => theme.notAllowedCorsor};
   color: ${({ theme }) => theme.textWeek};
 `;
-
-const activeColorCss = css<ButtonWrapperProps>`
+const activeColorCss = css<DefaultButtonProps>`
   cursor: pointer;
   color: ${({ theme }) => theme.textDefault};
 
@@ -121,11 +92,11 @@ const activeColorCss = css<ButtonWrapperProps>`
     }
   }};
 `;
-const colorCss = css<ButtonWrapperProps>`
+const colorCss = css<DefaultButtonProps>`
   ${({ $active }) => ($active ? activeColorCss : inActiveColorCss)}
 `;
 
-const ButtonWrapper = styled.button<ButtonWrapperProps>`
+const DefaultButton = styled(motion.button)<DefaultButtonProps>`
   ${sizeCss};
   ${fullCss};
   ${colorCss};
@@ -135,5 +106,11 @@ const ButtonWrapper = styled.button<ButtonWrapperProps>`
   align-items: center;
   border-radius: 3px;
 `;
+
+DefaultButton.defaultProps = {
+  $size: 'medium',
+  $color: 'default',
+  $active: true,
+};
 
 export default DefaultButton;
