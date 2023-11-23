@@ -1,7 +1,10 @@
 import { styled } from 'styled-components';
 import { useRouter } from 'next/router';
-import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/icons';
-import { CircleButton } from '@src/components/common/featureTag';
+import {
+  CircleButton,
+  LeftButton,
+  RightButton,
+} from '@src/components/common/featureTag';
 import SCREEN_SIZE from '@src/constants/screenWidth';
 import { ICON_SIZE } from '@src/constants/size';
 import { usePagination, useWindowSize } from '@src/hooks';
@@ -14,16 +17,24 @@ interface Props {
 function BoardFooter({ maxPage, curPage }: Props) {
   const { query, push, prefetch } = useRouter();
   const { width } = useWindowSize();
-  const { page: footerPage, setNextPage, setPrevPage } = usePagination(maxPage);
 
   const fullPageList = Array.from({ length: maxPage }, (_, idx) => idx + 1);
   const pageInteval = width < SCREEN_SIZE.mobile ? 5 : 10;
+
+  const footerMaxPage = Math.ceil(maxPage / pageInteval);
+  const {
+    page: footerPage,
+    setNextPage,
+    setPrevPage,
+  } = usePagination(footerMaxPage);
   const start = footerPage * pageInteval;
   const pageList = fullPageList.slice(start, start + pageInteval);
 
+  console.log(footerPage, maxPage);
+
   return (
     <TableFooter>
-      <PrevButton size={ICON_SIZE.medium} onClick={setPrevPage} />
+      <LeftButton size={ICON_SIZE.medium} onClick={setPrevPage} />
       <PageButtonSection>
         {pageList.map((page) => {
           const href = `/boards/${query.boardType}/list/${page}`;
@@ -45,7 +56,7 @@ function BoardFooter({ maxPage, curPage }: Props) {
           );
         })}
       </PageButtonSection>
-      <NextButton size={ICON_SIZE.medium} onClick={setNextPage} />
+      <RightButton size={ICON_SIZE.medium} onClick={setNextPage} />
     </TableFooter>
   );
 }
@@ -68,13 +79,6 @@ const PageButtonSection = styled.div`
   @media screen and (max-width: 1024px) {
     gap: 10px;
   }
-`;
-
-const PrevButton = styled(LeftArrowIcon)`
-  cursor: pointer;
-`;
-const NextButton = styled(RightArrowIcon)`
-  cursor: pointer;
 `;
 
 export default BoardFooter;

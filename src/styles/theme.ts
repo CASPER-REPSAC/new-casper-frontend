@@ -15,6 +15,11 @@ export const darkTheme: DefaultTheme = {
   surfaceDefault: COLORS.gray800,
   surfaceAlt: COLORS.gray900,
 
+  inputSurface: COLORS.gray850,
+  pageTitleSurface: COLORS.gray900,
+  notAllowedCorsor: COLORS.gray100,
+  redError: COLORS.red400,
+
   /* 메뉴 색상 */
   menuHover: COLORS.gray800,
   menuActive: COLORS.gray900,
@@ -34,15 +39,9 @@ export const darkTheme: DefaultTheme = {
   redHover: COLORS.red300,
   redActive: COLORS.red500,
 
-  inputSurface: COLORS.gray850,
-
-  pageTitleSurface: COLORS.gray900,
-  boardHover: COLORS.gray700,
-  boardActive: COLORS.gray600,
-
-  notAllowedCorsor: COLORS.gray100,
-
-  redError: COLORS.red400,
+  /* 게시판 색상 */
+  boardHover: COLORS.gray850,
+  boardActive: COLORS.gray900,
 
   /* 에디터 색상 */
   toolbarBg: COLORS.gray900,
