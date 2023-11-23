@@ -17,24 +17,16 @@ interface Props {
 function BoardFooter({ maxPage, curPage }: Props) {
   const { query, push, prefetch } = useRouter();
   const { width } = useWindowSize();
-
-  const fullPageList = Array.from({ length: maxPage }, (_, idx) => idx + 1);
   const pageInteval = width < SCREEN_SIZE.mobile ? 5 : 10;
-
   const footerMaxPage = Math.ceil(maxPage / pageInteval);
-  const {
-    page: footerPage,
-    setNextPage,
-    setPrevPage,
-  } = usePagination(footerMaxPage);
+  const { page: footerPage, paginate } = usePagination(footerMaxPage);
   const start = footerPage * pageInteval;
+  const fullPageList = Array.from({ length: maxPage }, (_, idx) => idx + 1);
   const pageList = fullPageList.slice(start, start + pageInteval);
-
-  console.log(footerPage, maxPage);
 
   return (
     <TableFooter>
-      <LeftButton size={ICON_SIZE.medium} onClick={setPrevPage} />
+      <LeftButton size={ICON_SIZE.medium} onClick={() => paginate(-1)} />
       <PageButtonSection>
         {pageList.map((page) => {
           const href = `/boards/${query.boardType}/list/${page}`;
@@ -56,7 +48,7 @@ function BoardFooter({ maxPage, curPage }: Props) {
           );
         })}
       </PageButtonSection>
-      <RightButton size={ICON_SIZE.medium} onClick={setNextPage} />
+      <RightButton size={ICON_SIZE.medium} onClick={() => paginate(1)} />
     </TableFooter>
   );
 }

@@ -3,21 +3,21 @@ import { styled } from 'styled-components';
 import { CommonCenterWrapper } from '../common/centerWrapper';
 
 interface Props {
-  backgroundImg: string;
+  backgroundSection: ReactNode;
   noticeSection: ReactNode;
   titleSection: ReactNode;
   pageSection: ReactNode;
 }
 
 function HomeTemplate({
-  backgroundImg,
+  backgroundSection,
   noticeSection,
   titleSection,
   pageSection,
 }: Props) {
   return (
     <Wrapper>
-      <Background src={backgroundImg} />
+      {backgroundSection}
       <Body>
         <NoticeSection>{noticeSection}</NoticeSection>
         <TitleSection>{titleSection}</TitleSection>
@@ -26,15 +26,6 @@ function HomeTemplate({
     </Wrapper>
   );
 }
-const Background = styled.img`
-  position: fixed;
-  top: 0;
-  width: 100vw;
-  height: 100vh;
-  filter: brightness(50%);
-  z-index: -1;
-  object-fit: cover;
-`;
 
 const Wrapper = styled.div``;
 const NoticeSection = styled.div``;

@@ -3,14 +3,11 @@ import { styled } from 'styled-components';
 
 interface Props {
   page: number;
-  setPage: {
-    setNextPage: () => void;
-    setPrevPage: () => void;
-  };
+  paginate: (newDirection: number) => void;
   maxPage: number;
 }
 
-function PageInfoSection({ page, setPage, maxPage }: Props) {
+function PageInfoSection({ page, paginate, maxPage }: Props) {
   const PageBar = [];
   for (let i = 0; i < maxPage; i += 1) {
     PageBar.push(
@@ -26,8 +23,8 @@ function PageInfoSection({ page, setPage, maxPage }: Props) {
       </Page>
       <PageBarWapper>
         <PageBarBackground>{PageBar}</PageBarBackground>
-        <LeftButton onClick={setPage.setPrevPage} />
-        <RightButton onClick={setPage.setNextPage} />
+        <LeftButton onClick={() => paginate(-1)} />
+        <RightButton onClick={() => paginate(1)} />
       </PageBarWapper>
     </PageInfoWrapper>
   );
