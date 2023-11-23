@@ -20,11 +20,13 @@ export const darkTheme: DefaultTheme = {
   notAllowedCorsor: COLORS.gray100,
   redError: COLORS.red400,
 
+  /* 헤더 색상 */
+  subMenuSurface: COLORS.gray600,
+  subMenuBorder: COLORS.white,
+
   /* 메뉴 색상 */
   menuHover: COLORS.gray800,
   menuActive: COLORS.gray900,
-  subMenuHover: COLORS.gray200,
-  subMenuActive: COLORS.gray400,
   sideMenuHover: COLORS.gray700,
   sideMenuActive: COLORS.gray700,
   sideMenuHighlight: COLORS.gray500,
@@ -55,6 +57,8 @@ export const darkTheme: DefaultTheme = {
 };
 
 export const lightTheme: DefaultTheme = {
+  // 아직 미지정
+
   purple: COLORS.purple600,
 
   textDefault: '#5F6E76',
@@ -71,7 +75,10 @@ export const lightTheme: DefaultTheme = {
   red100: '#CF222E',
   red200: '#af3f38',
 
-  // 아직 미지정
+  /* 헤더 색상 */
+  subMenuSurface: COLORS.gray200,
+  subMenuBorder: COLORS.gray400,
+
   subMenuHover: COLORS.blueGrey200,
   subMenuActive: COLORS.blueGrey600,
   menuHover: '',

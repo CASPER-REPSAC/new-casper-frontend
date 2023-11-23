@@ -12,8 +12,10 @@ declare module 'styled-components' {
     borderBold: string;
     borderDefault: string;
     white: string;
-    subMenuHover: string;
-    subMenuActive: string;
+
+    subMenuSurface: string;
+    subMenuBorder: string;
+
     menuHover: string;
     menuActive: string;
 

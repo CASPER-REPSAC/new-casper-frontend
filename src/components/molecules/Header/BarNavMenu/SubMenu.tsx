@@ -10,7 +10,7 @@ interface Props {
 function SubMenu({ title, href }: Props) {
   return (
     <Wrapper href={href}>
-      <DefaultButton>{title}</DefaultButton>
+      <DefaultButton $full>{title}</DefaultButton>
     </Wrapper>
   );
 }

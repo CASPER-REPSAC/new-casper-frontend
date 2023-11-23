@@ -1,19 +1,27 @@
-import { Children, MouseEventHandler, ReactNode, isValidElement } from 'react';
-import styled, { css } from 'styled-components';
-import Title from './common/Title';
-import SubMenu from './common/SubMenu';
-
-const SubMenuType = (<SubMenu title="" href="" />).type;
-const TitleType = (<Title />).type;
+import {
+  Children,
+  MouseEventHandler,
+  ReactNode,
+  isValidElement,
+  useState,
+} from 'react';
+import { Variants, motion } from 'framer-motion';
+import { styled } from 'styled-components';
+import Title from './Title';
+import SubMenu from './SubMenu';
 
 const getSubMenus = (children: ReactNode) => {
+  const SubMenuType = (<SubMenu title="" href="" />).type;
   const childrenArray = Children.toArray(children);
   const subMenus = childrenArray.filter(
     (child) => isValidElement(child) && child.type === SubMenuType,
   );
+
+  if (subMenus.length === 0) return null;
   return subMenus;
 };
 const getTitle = (children: ReactNode) => {
+  const TitleType = (<Title />).type;
   const childrenArray = Children.toArray(children);
   const title = childrenArray.filter(
     (child) => isValidElement(child) && child.type === TitleType,
@@ -27,49 +35,64 @@ interface Props {
 }
 
 function BarNavMenu({ children, onClick }: Props) {
+  const [isSubMenuOpen, setSubMenuOpen] = useState(false);
   const subMenus = getSubMenus(children);
   const title = getTitle(children);
 
-  const wrapperSize = subMenus.length === 0 ? 'small' : 'large';
-
   return (
-    <Wrapper onClick={onClick} $size={wrapperSize}>
-      {title}
-      {subMenus && <SubMenuWrapper>{subMenus}</SubMenuWrapper>}
+    <Wrapper
+      onClick={onClick}
+      onMouseEnter={() => setSubMenuOpen(true)}
+      onMouseLeave={() => setSubMenuOpen(false)}
+    >
+      <TitleWrapper>{title}</TitleWrapper>
+
+      {subMenus && isSubMenuOpen && (
+        <SubMenuWrapper
+          variants={subMenuVariants}
+          initial="hidden"
+          animate="visible"
+        >
+          {subMenus.map((subMenu) => (
+            <motion.li variants={itemVariants}>{subMenu}</motion.li>
+          ))}
+        </SubMenuWrapper>
+      )}
     </Wrapper>
   );
 }
+const itemVariants: Variants = {
+  hidden: { x: -10, opacity: 0 },
+  visible: { x: 0, opacity: 1 },
+};
+const subMenuVariants: Variants = {
+  hidden: { scaleY: 0, opacity: 0, transformOrigin: 'top' },
+  visible: {
+    scaleY: 1,
+    opacity: 1,
+    transition: {
+      delayChildren: 0.1,
+      staggerChildren: 0.05,
+    },
+  },
+};
 
-const SubMenuWrapper = styled.div`
-  display: none;
+const SubMenuWrapper = styled(motion.div)`
   flex-direction: column;
   justify-content: center;
   align-items: center;
   padding: 1rem;
+  background-color: ${({ theme }) => theme.subMenuSurface};
+  border-radius: 4px;
+  border: 1px solid ${({ theme }) => theme.subMenuBorder};
 `;
-const Wrapper = styled.div<{ $size: 'small' | 'large' }>`
-  ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return css`
-          width: 80px;
-        `;
-      case 'large':
-        return css`
-          width: 150px;
-        `;
-      default:
-        return css`
-          width: 150px;
-        `;
-    }
-  }};
 
-  &:hover {
-    ${SubMenuWrapper} {
-      display: flex;
-    }
-  }
+const TitleWrapper = styled.div`
+  padding: 10px 30px;
+`;
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 BarNavMenu.SubMenu = SubMenu;

@@ -3,7 +3,7 @@ import { styled } from 'styled-components';
 import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
 import { DefaultButton } from '@src/components/common/defaultTag';
 import { MenuIcon } from '@src/components/common/icons';
-import { PageShadow } from '@src/components/common';
+// import { PageShadow } from '@src/components/common';
 import { useWindowSize } from '@src/hooks';
 import { ICON_SIZE } from '@src/constants/size';
 import SCREEN_SIZE from '@src/constants/screenWidth';
@@ -14,7 +14,6 @@ import LoadingProgressBar from './LoadingProgressBar';
 import BarNavMenuSection from './BarNavMenuSection';
 
 function Header() {
-  const [pageShadow, setPageShadowShow] = useState(false);
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
   const { width } = useWindowSize();
 
@@ -26,35 +25,24 @@ function Header() {
     setHambergerMenuOpen(false);
   };
 
-  const showPageShadow = () => {
-    setPageShadowShow(true);
-  };
-
-  const hidePageShadow = () => {
-    setPageShadowShow(false);
-  };
   return (
     <>
-      {pageShadow && <PageShadow />}
       <Wrapper>
         <CenterWrapper>
           {width < SCREEN_SIZE.tablet && (
-            <DefaultButton onClick={toggleMenu}>
-              <MenuIcon size={ICON_SIZE.large} />
-            </DefaultButton>
-          )}
-          {width < SCREEN_SIZE.tablet && isHambergerMenuOpen && (
-            <HambergerMenuSection onClick={closeMenu} />
+            <>
+              <DefaultButton onClick={toggleMenu}>
+                <MenuIcon size={ICON_SIZE.large} />
+              </DefaultButton>
+              {isHambergerMenuOpen && (
+                <HambergerMenuSection onClick={closeMenu} />
+              )}
+            </>
           )}
 
           <LogoSection />
 
-          {width >= SCREEN_SIZE.tablet && (
-            <BarNavMenuSection
-              onMouseEnter={showPageShadow}
-              onMouseLeave={hidePageShadow}
-            />
-          )}
+          {width >= SCREEN_SIZE.tablet && <BarNavMenuSection />}
         </CenterWrapper>
         <LoadingProgressBar />
       </Wrapper>
