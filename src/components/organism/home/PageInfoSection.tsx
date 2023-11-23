@@ -1,4 +1,5 @@
 import { LeftButton, RightButton } from '@src/components/common/featureTag';
+import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
 
 interface Props {
@@ -9,9 +10,12 @@ interface Props {
 
 function PageInfoSection({ page, paginate, maxPage }: Props) {
   const PageBar = [];
+
   for (let i = 0; i < maxPage; i += 1) {
     PageBar.push(
-      <CurPageBar key={i}>{page === i ? <White /> : null}</CurPageBar>,
+      <CurPageBar key={i}>
+        {page === i && <White layoutId="line" />}
+      </CurPageBar>,
     );
   }
 
@@ -67,7 +71,7 @@ const CurPageBar = styled.div`
   height: 3px;
   width: 100%;
 `;
-const White = styled.div`
+const White = styled(motion.div)`
   width: 100%;
   height: 100%;
   background-color: white;

@@ -4,7 +4,7 @@ function TitelSection() {
   return (
     <Title>
       <H1>THE CENTER</H1>
-      <H1>of the SECURITY</H1>
+      <H1>OF THE SECURITY</H1>
       <H2>정보 보안 동아리 CASPER</H2>
     </Title>
   );
