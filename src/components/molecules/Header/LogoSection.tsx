@@ -12,18 +12,13 @@ function LogoSection() {
 
   const isHome = pathname === PATH.home.url;
   const logoSrc =
-    isDark || isHome ? '/casper_logo_white.png' : '/casper_logo_black.png';
+    isDark || isHome ? '/casper_logo_white.webp' : '/casper_logo_black.webp';
+
+  console.log(logoSrc);
 
   return (
     <Logo onClick={() => push(PATH.home.url)}>
-      <LogoImg
-        src={logoSrc}
-        alt="casper logo"
-        fill
-        sizes="100%"
-        blurDataURL={logoSrc}
-        placeholder="blur"
-      />
+      <LogoImg src={logoSrc} alt="casper logo" fill />
     </Logo>
   );
 }

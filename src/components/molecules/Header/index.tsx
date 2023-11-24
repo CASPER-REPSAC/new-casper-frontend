@@ -1,5 +1,6 @@
 import { memo, useState } from 'react';
 import { styled } from 'styled-components';
+import { AnimatePresence } from 'framer-motion';
 import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
 import { DefaultButton } from '@src/components/common/defaultTag';
 import { MenuIcon } from '@src/components/common/icons';
@@ -33,9 +34,12 @@ function Header() {
               <DefaultButton onClick={toggleMenu}>
                 <MenuIcon size={ICON_SIZE.large} />
               </DefaultButton>
-              {isHambergerMenuOpen && (
-                <HambergerNavigation onClick={closeMenu} />
-              )}
+
+              <AnimatePresence>
+                {isHambergerMenuOpen && (
+                  <HambergerNavigation onClick={closeMenu} />
+                )}
+              </AnimatePresence>
             </>
           )}
 

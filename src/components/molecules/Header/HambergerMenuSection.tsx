@@ -7,6 +7,7 @@ import { DefaultHr } from '@src/components/common/defaultTag';
 import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';
 import { useLogoutMutation } from '@src/hooks/apis/user';
 import { PATH } from '@src/constants/urls';
+import { Variants, motion } from 'framer-motion';
 
 interface Props {
   onClick?: MouseEventHandler<HTMLDivElement>;
@@ -21,7 +22,13 @@ function HambergerNavigation({ onClick }: Props) {
   };
 
   return (
-    <FakeBackground onClick={onClick}>
+    <FakeBackground
+      variants={variants}
+      initial="hidden"
+      exit="hidden"
+      animate="visible"
+      onClick={onClick}
+    >
       <Menu onClick={(e) => e.stopPropagation()}>
         {isLogin ? (
           <>
@@ -68,6 +75,17 @@ function HambergerNavigation({ onClick }: Props) {
   );
 }
 
+const variants: Variants = {
+  visible: {
+    x: 0,
+    opacity: 1,
+    transition: {
+      type: 'tween',
+    },
+  },
+  hidden: { x: '-100vw', opacity: 0 },
+};
+
 const Menu = styled.div`
   align-items: center;
   display: flex;
@@ -81,7 +99,7 @@ const Menu = styled.div`
   gap: 20px;
   position: fixed;
   background: rgba(0, 0, 0, 0.9);
-  backdrop-filter: saturate(180%) blur(15px);
+  backdrop-filter: blur(15px);
   z-index: 3;
 `;
 const Item = styled(Link)`
@@ -90,7 +108,7 @@ const Item = styled(Link)`
   color: ${({ theme }) => theme.textDefault};
   font-weight: lighter;
 `;
-const FakeBackground = styled.div`
+const FakeBackground = styled(motion.div)`
   position: fixed;
   top: 0;
   left: 0;

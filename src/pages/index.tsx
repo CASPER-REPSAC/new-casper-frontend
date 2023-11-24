@@ -8,7 +8,7 @@ import {
 import TitelSection from '@src/components/organism/home/TitleSection';
 
 function Home() {
-  const bgImgs = ['background1.jpg', 'background2.jpg'];
+  const bgImgs = ['background1.webp', 'background2.webp'];
   const maxPage = bgImgs.length;
   const { page, direction, paginate } = usePagination(maxPage);
 
