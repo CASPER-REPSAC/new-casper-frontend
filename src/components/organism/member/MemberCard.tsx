@@ -1,9 +1,9 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { UserIcon } from '@src/components/common/icons';
 import { MemberProfile } from '@src/types/memberTypes';
-import { motion } from 'framer-motion';
+import { Variants, motion } from 'framer-motion';
 import { MouseEventHandler, memo } from 'react';
+import { UserIcon } from './common';
 
 interface Props {
   member: MemberProfile;
@@ -11,23 +11,38 @@ interface Props {
 }
 
 function MemberCard({ member, onClick }: Props) {
-  const { id, name } = member;
-
-  const image = '/test.jpg';
+  const { image, id, name } = member;
 
   return (
-    <Wrapper layoutId={`detail_popup_${id}`}>
+    <Wrapper
+      variants={wrapperVariants}
+      whileHover="animate"
+      layoutId={`detail_popup_${id}`}
+    >
       <Card onClick={onClick} layoutId={`${image}_${id}`}>
         {image ? (
           <ProfileImage src={image} alt="profile image" fill />
         ) : (
-          <StyledUserIcon size={100} />
+          <UserIcon size={100} />
         )}
       </Card>
       <Name>{name}</Name>
     </Wrapper>
   );
 }
+
+const wrapperVariants: Variants = {
+  animate: {
+    scale: 1.1,
+    rotate: 10,
+    transition: {
+      type: 'spring',
+      damping: 30,
+      stiffness: 500,
+    },
+  },
+};
+
 const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
@@ -35,6 +50,8 @@ const Wrapper = styled(motion.div)`
   justify-content: center;
   gap: 10px;
   border: 1px solid ${({ theme }) => theme.borderDefault};
+  border-radius: 6px;
+  overflow: hidden;
   background-color: rgba(0, 0, 0, 0.5);
   backdrop-filter: blur(20px);
 `;
@@ -63,10 +80,6 @@ const Name = styled.div`
   color: ${({ theme }) => theme.textDefault};
   text-align: center;
   pointer-events: none;
-`;
-
-const StyledUserIcon = styled(UserIcon)`
-  color: ${({ theme }) => theme.surfaceDefault};
 `;
 
 export default memo(MemberCard);

@@ -1,12 +1,7 @@
 import { MouseEventHandler, ReactElement } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import {
-  CloseIcon,
-  HomeIcon,
-  MailIcon,
-  UserIcon,
-} from '@src/components/common/icons';
+import { CloseIcon, HomeIcon, MailIcon } from '@src/components/common/icons';
 import { detailedMemberPopupState } from '@src/recoil/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
 import { ICON_SIZE } from '@src/constants/size';
@@ -14,6 +9,7 @@ import { DefaultButton } from '@src/components/common/defaultTag';
 import { motion } from 'framer-motion';
 import { MemberProfile } from '@src/types/memberTypes';
 import Z_INDEX from '@src/constants/zIndex';
+import { UserIcon } from './common';
 
 interface Props {
   selectedMember: MemberProfile;
@@ -31,9 +27,8 @@ function DetailMemberCard({ onClick, selectedMember }: Props) {
 
   if (!selectedMember) return <></>;
 
-  const { name, introduce, nickname, role, homepage, email, id } =
+  const { image, name, introduce, nickname, role, homepage, email, id } =
     selectedMember;
-  const image = '/test.jpg';
 
   return (
     <Wrapper onClick={onClick} layoutId={`detail_popup_${id}`}>
@@ -52,7 +47,7 @@ function DetailMemberCard({ onClick, selectedMember }: Props) {
           {image ? (
             <StyledImage src={image} fill alt="profile image" />
           ) : (
-            <UserIcon />
+            <UserIcon size={100} />
           )}
         </ProfileImage>
         <TextSection>
