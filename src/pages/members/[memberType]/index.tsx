@@ -1,35 +1,25 @@
-import { MembersTemplate } from '@src/components/templates';
+import { useRecoilState } from 'recoil';
 import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { ALL_MEMEBER_API, API_URL } from '@src/constants/apiUrl';
-import { MemberProfile } from '@src/types/memberTypes';
-import { MemberLayout } from '@src/components/organism/layout';
-import { ReactElement } from 'react';
+import { ReactElement, useCallback, useState } from 'react';
 import { ParsedUrlQuery } from 'querystring';
-import customAxios from '@src/utils/customAxios';
-import { SsrError } from '@src/types/errorTypes';
-import Error from '@src/pages/_error';
+import { MembersTemplate } from '@src/components/templates';
+import { MemberLayout } from '@src/components/organism/layout';
 import { MEMBER_TYPE } from '@src/constants/mock';
+import { DetailMemberCard, MemberCard } from '@src/components/organism/member';
+import { detailedMemberPopupState } from '@src/recoil/memberCardAtoms';
+import { useAllMember } from '@src/hooks/apis/user';
+import { getAllMember } from '@src/hooks/apis/user/useAllMember';
+import { MemberProfile } from '@src/types/memberTypes';
 
 interface Props {
-  memberList: MemberProfile[] | null;
-  error: SsrError | null;
+  initialData: { memberList: MemberProfile[] } | undefined;
 }
-
-function Members({
-  memberList,
-  error,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (error) return <Error statusCode={error.statusCode} />;
-  return <MembersTemplate memberList={memberList} />;
-}
-
-Members.getLayout = (page: ReactElement) => <MemberLayout>{page}</MemberLayout>;
 
 interface Params extends ParsedUrlQuery {
   memberType: string;
 }
 
-export const getStaticPaths: GetStaticPaths = () => {
+export const getStaticPaths = (() => {
   const memberTypes = Object.keys(MEMBER_TYPE);
 
   const paths = memberTypes.map((memberType) => {
@@ -40,25 +30,65 @@ export const getStaticPaths: GetStaticPaths = () => {
     paths,
     fallback: false,
   };
-};
+}) satisfies GetStaticPaths;
 
-export const getStaticProps: GetStaticProps<Props, Params> = async (
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  context,
-) => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const { memberType } = context.params!;
-  const { data, error } = await customAxios<{ memberList: MemberProfile[] }>({
-    url: `${API_URL}${ALL_MEMEBER_API}?role=all`,
-  });
+export const getStaticProps = (async () => {
+  // const { memberType } = context.params!;
+  const data = await getAllMember('all', true);
 
   return {
     props: {
-      memberList: data ? data.memberList : null,
-      error,
+      initialData: data,
+      role: 'all',
     },
-    revalidate: 300,
+    revalidate: 60,
   };
-};
+}) satisfies GetStaticProps<Props, Params>;
+
+function Members({
+  initialData,
+  role,
+}: InferGetStaticPropsType<typeof getStaticProps>) {
+  const { data } = useAllMember(role, initialData);
+  const [selectedMember, setSelectedMember] = useState<MemberProfile | null>(
+    null,
+  );
+  const [popupVisible, setPopupVisible] = useRecoilState(
+    detailedMemberPopupState,
+  );
+
+  const openDetailPopup = useCallback(
+    (member: MemberProfile) => {
+      setPopupVisible(true);
+      setSelectedMember(member);
+    },
+    [setPopupVisible, setSelectedMember],
+  );
+
+  return (
+    <MembersTemplate
+      popupSection={
+        selectedMember && popupVisible ? (
+          <DetailMemberCard selectedMember={selectedMember} />
+        ) : (
+          <></>
+        )
+      }
+      memberGridSection={
+        <>
+          {data?.memberList.map((member) => (
+            <MemberCard
+              key={member.id}
+              member={member}
+              onClick={() => openDetailPopup(member)}
+            />
+          ))}
+        </>
+      }
+    />
+  );
+}
+
+Members.getLayout = (page: ReactElement) => <MemberLayout>{page}</MemberLayout>;
 
 export default Members;

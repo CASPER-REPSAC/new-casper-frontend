@@ -17,6 +17,7 @@ const SideMenuWrapper = styled(motion.div).attrs(() => ({
 
   @media screen and (max-width: 1024px) {
     width: 100%;
+    position: static;
   }
 `;
 

@@ -45,5 +45,7 @@ declare module 'styled-components' {
     editorBg: string;
     editorBorder: string;
     toolbarOptionBg: string;
+
+    memberCardSurface: string;
   }
 }

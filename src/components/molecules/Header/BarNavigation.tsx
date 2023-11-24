@@ -8,7 +8,7 @@ import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';
 import BarNavMenu from '@src/components/molecules/Header/BarNavMenu';
 import { useLogoutMutation } from '@src/hooks/apis/user';
 
-function BarNavMenuSection() {
+function BarNaviagtion() {
   const { push } = useRouter();
   const login = useRecoilValue(loginState);
   const { mutate: mutateLogout } = useLogoutMutation();
@@ -34,12 +34,12 @@ function BarNavMenuSection() {
             href={PATH.members.active.url}
           />
           <BarNavMenu.SubMenu
-            title={PATH.members.graduate.name}
-            href={PATH.members.graduate.url}
-          />
-          <BarNavMenu.SubMenu
             title={PATH.members.rest.name}
             href={PATH.members.rest.url}
+          />
+          <BarNavMenu.SubMenu
+            title={PATH.members.graduate.name}
+            href={PATH.members.graduate.url}
           />
         </BarNavMenu>
         <BarNavMenu>
@@ -57,12 +57,12 @@ function BarNavMenuSection() {
             href={`${PATH.boards.full.url}/list/1`}
           />
           <BarNavMenu.SubMenu
-            title={PATH.boards.graduate.name}
-            href={`${PATH.boards.graduate.url}/list/1`}
-          />
-          <BarNavMenu.SubMenu
             title={PATH.boards.associate.name}
             href={`${PATH.boards.associate.url}/list/1`}
+          />
+          <BarNavMenu.SubMenu
+            title={PATH.boards.graduate.name}
+            href={`${PATH.boards.graduate.url}/list/1`}
           />
         </BarNavMenu>
 
@@ -113,4 +113,4 @@ const Wrapper = styled.div`
   align-self: flex-start;
 `;
 
-export default BarNavMenuSection;
+export default BarNaviagtion;

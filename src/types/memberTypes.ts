@@ -1,5 +1,5 @@
 export interface MemberProfile {
-  id: number;
+  id: string;
   role: string;
   name: string;
   nickname: string;

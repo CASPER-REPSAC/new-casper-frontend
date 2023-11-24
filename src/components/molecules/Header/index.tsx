@@ -3,15 +3,14 @@ import { styled } from 'styled-components';
 import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
 import { DefaultButton } from '@src/components/common/defaultTag';
 import { MenuIcon } from '@src/components/common/icons';
-// import { PageShadow } from '@src/components/common';
 import { useWindowSize } from '@src/hooks';
 import { ICON_SIZE } from '@src/constants/size';
 import SCREEN_SIZE from '@src/constants/screenWidth';
 import Z_INDEX from '@src/constants/zIndex';
-import HambergerMenuSection from './HambergerMenuSection';
 import LogoSection from './LogoSection';
 import LoadingProgressBar from './LoadingProgressBar';
-import BarNavMenuSection from './BarNavMenuSection';
+import BarNaviagtion from './BarNavigation';
+import HambergerNavigation from './HambergerMenuSection';
 
 function Header() {
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
@@ -35,14 +34,14 @@ function Header() {
                 <MenuIcon size={ICON_SIZE.large} />
               </DefaultButton>
               {isHambergerMenuOpen && (
-                <HambergerMenuSection onClick={closeMenu} />
+                <HambergerNavigation onClick={closeMenu} />
               )}
             </>
           )}
 
           <LogoSection />
 
-          {width >= SCREEN_SIZE.tablet && <BarNavMenuSection />}
+          {width >= SCREEN_SIZE.tablet && <BarNaviagtion />}
         </CenterWrapper>
         <LoadingProgressBar />
       </Wrapper>

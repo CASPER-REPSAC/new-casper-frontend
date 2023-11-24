@@ -1,61 +1,61 @@
+import Image from 'next/image';
+import styled from 'styled-components';
 import { UserIcon } from '@src/components/common/icons';
 import { MemberProfile } from '@src/types/memberTypes';
-import Image from 'next/image';
-import { MouseEventHandler } from 'react';
-import styled from 'styled-components';
+import { motion } from 'framer-motion';
+import { MouseEventHandler, memo } from 'react';
 
 interface Props {
-  profile: MemberProfile;
+  member: MemberProfile;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function MemberCard({ profile, onClick }: Props) {
-  const { image, name, introduce } = profile;
+function MemberCard({ member, onClick }: Props) {
+  const { id, name } = member;
+
+  const image = '/test.jpg';
 
   return (
-    <Wrapper>
-      <Card onClick={onClick}>
+    <Wrapper layoutId={`detail_popup_${id}`}>
+      <Card onClick={onClick} layoutId={`${image}_${id}`}>
         {image ? (
           <ProfileImage src={image} alt="profile image" fill />
         ) : (
           <StyledUserIcon size={100} />
         )}
-        <Detail>{introduce}</Detail>
       </Card>
       <Name>{name}</Name>
     </Wrapper>
   );
 }
-const Wrapper = styled.div`
+const Wrapper = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 10px;
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(20px);
 `;
-const Card = styled.div`
+
+const Card = styled(motion.div)`
   position: relative;
-  transform: skewX(-14deg);
   height: 200px;
   width: 200px;
-  margin: 0;
   cursor: pointer;
   border-radius: 4px;
-  overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: ${({ theme }) => theme.surfaceAlt};
+  overflow: hidden;
+  object-fit: cover;
 `;
 
 const ProfileImage = styled(Image)`
   opacity: 1;
-  position: relative;
-  z-index: 0;
-  &:hover {
-    opacity: 0.2;
-  }
-  transition: opacity 0.2s ease;
+  object-fit: cover;
 `;
 
 const Name = styled.div`
@@ -65,12 +65,8 @@ const Name = styled.div`
   pointer-events: none;
 `;
 
-const Detail = styled.div`
-  font-size: 2rem;
-`;
-
 const StyledUserIcon = styled(UserIcon)`
   color: ${({ theme }) => theme.surfaceDefault};
 `;
 
-export default MemberCard;
+export default memo(MemberCard);

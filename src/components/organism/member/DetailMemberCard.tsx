@@ -1,6 +1,5 @@
 import { MouseEventHandler, ReactElement } from 'react';
 import Image from 'next/image';
-import { MemberProfile } from '@src/types/memberTypes';
 import styled from 'styled-components';
 import {
   CloseIcon,
@@ -12,62 +11,79 @@ import { detailedMemberPopupState } from '@src/recoil/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
 import { ICON_SIZE } from '@src/constants/size';
 import { DefaultButton } from '@src/components/common/defaultTag';
+import { motion } from 'framer-motion';
+import { MemberProfile } from '@src/types/memberTypes';
+import Z_INDEX from '@src/constants/zIndex';
 
 interface Props {
-  memberProfile: MemberProfile;
+  selectedMember: MemberProfile;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function DetailMemberCard({ memberProfile, onClick }: Props) {
-  const { image, name, introduce, nickname, role, homepage, email } =
-    memberProfile;
+function DetailMemberCard({ onClick, selectedMember }: Props) {
   const setDetailedMemberPopupVisible = useSetRecoilState(
     detailedMemberPopupState,
   );
+
   const closeDetailedMemberPopup = () => {
     setDetailedMemberPopupVisible(false);
   };
 
+  if (!selectedMember) return <></>;
+
+  const { name, introduce, nickname, role, homepage, email, id } =
+    selectedMember;
+  const image = '/test.jpg';
+
   return (
-    <Wrapper onClick={onClick}>
-      <CloseButton>
-        <CloseIcon size={ICON_SIZE.medium} onClick={closeDetailedMemberPopup} />
-      </CloseButton>
-      <ProfileImage>
-        {image ? (
-          <StyledImage src={image} fill alt="profile image" />
-        ) : (
-          <UserIcon size={100} color="black" />
-        )}
-      </ProfileImage>
-      <TextSection>
-        <DetailRow title="정보">
-          <Row>
-            <LargeText>{name}</LargeText>
-            <SmallText>{nickname}</SmallText>
-            <SmallText>{role}</SmallText>
-          </Row>
-        </DetailRow>
+    <Wrapper onClick={onClick} layoutId={`detail_popup_${id}`}>
+      <Header>
+        <DefaultButton
+          $size="small"
+          $color="red"
+          onClick={closeDetailedMemberPopup}
+        >
+          <CloseIcon size={ICON_SIZE.small} />
+        </DefaultButton>
+      </Header>
 
-        <DetailRow title="소개">
-          <MediumText>{introduce}</MediumText>
-        </DetailRow>
-
-        <DetailRow title="소셜 정보">
-          <>
+      <Body>
+        <ProfileImage layoutId={`${image}_${id}`}>
+          {image ? (
+            <StyledImage src={image} fill alt="profile image" />
+          ) : (
+            <UserIcon />
+          )}
+        </ProfileImage>
+        <TextSection>
+          <DetailRow title="정보">
             <Row>
-              <MailIcon size={ICON_SIZE.medium} />
-              <SmallText>{email}</SmallText>
+              <LargeText>{name}</LargeText>
+              <SmallText>{nickname}</SmallText>
+              <SmallText>{role}</SmallText>
             </Row>
-            {homepage && (
+          </DetailRow>
+
+          <DetailRow title="소개">
+            <MediumText>{introduce}</MediumText>
+          </DetailRow>
+
+          <DetailRow title="소셜 정보">
+            <>
               <Row>
-                <HomeIcon size={ICON_SIZE.medium} />
-                <LinkText href={homepage}>{homepage}</LinkText>
+                <MailIcon size={ICON_SIZE.medium} />
+                <SmallText>{email}</SmallText>
               </Row>
-            )}
-          </>
-        </DetailRow>
-      </TextSection>
+              {homepage && (
+                <Row>
+                  <HomeIcon size={ICON_SIZE.medium} />
+                  <LinkText href={homepage}>{homepage}</LinkText>
+                </Row>
+              )}
+            </>
+          </DetailRow>
+        </TextSection>
+      </Body>
     </Wrapper>
   );
 }
@@ -87,25 +103,52 @@ function DetailRow({
   );
 }
 
-const Wrapper = styled.div`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-
-  transform: translate(-50%, -50%);
+const Wrapper = styled(motion.div)`
+  position: relative;
   display: flex;
-  align-items: center;
   flex-direction: column;
-  gap: 50px;
+  align-items: center;
+  gap: 10px;
   width: 90%;
+  border: 1px solid ${({ theme }) => theme.borderDefault};
+  border-radius: 10px;
+  padding: 3rem 5rem;
   max-height: 80vh;
+
   @media screen and (min-width: 768px) {
-    flex-direction: row;
     max-width: 700px;
   }
-`;
 
-const ProfileImage = styled.div`
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(20px);
+    z-index: ${Z_INDEX.detailCardBg};
+  }
+`;
+const Header = styled.div`
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  width: 100%;
+`;
+const Body = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  gap: 7rem;
+  @media screen and (min-width: 768px) {
+    flex-direction: row;
+  }
+`;
+const ProfileImage = styled(motion.div)`
   display: flex;
   align-items: center;
   justify-content: center;
@@ -120,9 +163,8 @@ const ProfileImage = styled.div`
     height: 200px;
   }
 `;
-
-const StyledImage = styled(Image)`
-  object-fit: contain;
+const StyledImage = styled(motion(Image))`
+  object-fit: cover;
 `;
 const TextSection = styled.div`
   display: flex;
@@ -159,18 +201,6 @@ const PointText = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.borderBold};
   padding-bottom: 4px;
   margin-bottom: 0.4em;
-`;
-
-const CloseButton = styled(DefaultButton)`
-  position: absolute;
-  left: 0px;
-  top: 0px;
-
-  @media screen and (min-width: 768px) {
-    top: -50px;
-    right: 0px;
-    left: auto;
-  }
 `;
 
 export default DetailMemberCard;

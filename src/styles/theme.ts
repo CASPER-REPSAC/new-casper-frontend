@@ -54,6 +54,8 @@ export const darkTheme: DefaultTheme = {
   editorBg: COLORS.gray900,
   editorBorder: COLORS.gray700,
   toolbarOptionBg: COLORS.gray400,
+
+  memberCardSurface: 'rgba(0,0,0,0.6)',
 };
 
 export const lightTheme: DefaultTheme = {
@@ -110,4 +112,5 @@ export const lightTheme: DefaultTheme = {
   editorBg: COLORS.gray900,
   editorBorder: COLORS.gray700,
   toolbarOptionBg: COLORS.gray400,
+  memberCardSurface: COLORS.gray100,
 };

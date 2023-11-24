@@ -12,7 +12,7 @@ interface Props {
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 
-function HambergerMenuSection({ onClick }: Props) {
+function HambergerNavigation({ onClick }: Props) {
   const isLogin = useRecoilValue(loginState);
   const { mutate: mutateLogout } = useLogoutMutation();
 
@@ -111,4 +111,4 @@ const LogoutButton = styled.button`
   color: ${({ theme }) => theme.textDefault};
 `;
 
-export default HambergerMenuSection;
+export default HambergerNavigation;
