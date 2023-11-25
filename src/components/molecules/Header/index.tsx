@@ -1,19 +1,22 @@
+import { useRouter } from 'next/router';
 import { memo, useState } from 'react';
 import { styled } from 'styled-components';
 import { AnimatePresence } from 'framer-motion';
 import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
 import { DefaultButton } from '@src/components/common/defaultTag';
 import { MenuIcon } from '@src/components/common/icons';
+import { CasperLogo } from '@src/components/common';
 import { useWindowSize } from '@src/hooks';
 import { ICON_SIZE } from '@src/constants/size';
 import SCREEN_SIZE from '@src/constants/screenWidth';
 import Z_INDEX from '@src/constants/zIndex';
-import LogoSection from './LogoSection';
+import { PATH } from '@src/constants/urls';
 import LoadingProgressBar from './LoadingProgressBar';
 import BarNaviagtion from './BarNavigation';
 import HambergerNavigation from './HambergerMenuSection';
 
 function Header() {
+  const { push } = useRouter();
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
   const { width } = useWindowSize();
 
@@ -43,7 +46,7 @@ function Header() {
             </>
           )}
 
-          <LogoSection />
+          <CasperLogo size="small" onClick={() => push(PATH.home.url)} />
 
           {width >= SCREEN_SIZE.tablet && <BarNaviagtion />}
         </CenterWrapper>

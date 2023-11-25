@@ -1,14 +1,17 @@
-import {
-  LoginForm,
-  LoginLogo,
-  LoginMoreLinks,
-} from '@src/components/organism/login';
+import { CasperLogo } from '@src/components/common';
+import { LoginForm, LoginMoreLinks } from '@src/components/organism/login';
 import { LoginTemplate } from '@src/components/templates';
+import { PATH } from '@src/constants/urls';
+import { useRouter } from 'next/router';
 
 export default function Login() {
+  const { push } = useRouter();
+
   return (
     <LoginTemplate
-      logoSection={<LoginLogo />}
+      logoSection={
+        <CasperLogo size="large" onClick={() => push(PATH.home.url)} />
+      }
       loginFormSection={<LoginForm />}
       linkSection={<LoginMoreLinks />}
     />
