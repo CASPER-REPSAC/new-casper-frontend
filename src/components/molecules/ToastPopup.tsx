@@ -1,5 +1,5 @@
-import { Variants, motion } from 'framer-motion';
 import { styled } from 'styled-components';
+import { Variants, motion } from 'framer-motion';
 
 interface Props {
   message: string;

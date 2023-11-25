@@ -1,9 +1,9 @@
-import { popupListState } from '@src/recoil';
-import { AnimatePresence } from 'framer-motion';
+import { styled } from 'styled-components';
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
-import ToastPopup from '@src/components/molecules/ToastPopup';
-import styled from 'styled-components';
+import { popupListState } from '@src/recoil';
+import { AnimatePresence } from 'framer-motion';
+import { ToastPopup } from '@src/components/molecules';
 import { usePopup } from '@src/hooks';
 
 function PopupWrapper() {
