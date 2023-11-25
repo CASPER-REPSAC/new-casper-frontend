@@ -1,16 +1,26 @@
 import { popupListState } from '@src/recoil';
+import { AnimatePresence } from 'framer-motion';
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
+import ToastPopup from '@src/components/molecules/ToastPopup';
 import styled from 'styled-components';
+import { usePopup } from '@src/hooks';
 
 function PopupWrapper() {
   const popupList = useRecoilValue(popupListState);
+  const { deletePopup } = usePopup();
 
   return (
     <Wrapper>
-      {popupList.map(({ key, message }) => (
-        <ToastPopup key={key}>{message}</ToastPopup>
-      ))}
+      <AnimatePresence mode="popLayout">
+        {popupList.map(({ key, message }) => (
+          <ToastPopup
+            key={key}
+            message={message}
+            onClick={() => deletePopup(key)}
+          />
+        ))}
+      </AnimatePresence>
     </Wrapper>
   );
 }
@@ -23,17 +33,8 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-`;
-
-const ToastPopup = styled.div`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.8rem;
-  width: 200px;
-  min-height: 60px;
-  background-color: ${({ theme }) => theme.surfaceAlt};
-  border: 1px solid ${({ theme }) => theme.white};
+  gap: 1rem;
+  margin-right: 1rem;
 `;
 
 export default memo(PopupWrapper);

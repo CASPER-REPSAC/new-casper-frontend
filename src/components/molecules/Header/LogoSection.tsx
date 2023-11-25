@@ -14,8 +14,6 @@ function LogoSection() {
   const logoSrc =
     isDark || isHome ? '/casper_logo_white.webp' : '/casper_logo_black.webp';
 
-  console.log(logoSrc);
-
   return (
     <Logo onClick={() => push(PATH.home.url)}>
       <LogoImg src={logoSrc} alt="casper logo" fill />

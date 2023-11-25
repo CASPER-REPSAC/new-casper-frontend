@@ -34,5 +34,5 @@ export default function usePopup() {
     }, duration);
   };
 
-  return { openAndDeletePopup };
+  return { openAndDeletePopup, deletePopup };
 }
