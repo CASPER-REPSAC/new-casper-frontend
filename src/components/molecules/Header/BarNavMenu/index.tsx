@@ -54,7 +54,9 @@ function BarNavMenu({ children, onClick }: Props) {
           animate="visible"
         >
           {subMenus.map((subMenu) => (
-            <motion.li variants={itemVariants}>{subMenu}</motion.li>
+            <motion.li key={subMenu.toLocaleString()} variants={itemVariants}>
+              {subMenu}
+            </motion.li>
           ))}
         </SubMenuWrapper>
       )}

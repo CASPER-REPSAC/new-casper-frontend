@@ -1,9 +1,9 @@
-import Link from 'next/link';
 import { MouseEventHandler } from 'react';
 import { useRecoilValue } from 'recoil';
 import { loginState } from '@src/recoil';
 import { styled } from 'styled-components';
 import { DefaultHr } from '@src/components/common/defaultTag';
+import { LinkButton } from '@src/components/common/featureTag';
 import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';
 import { useLogoutMutation } from '@src/hooks/apis/user';
 import { PATH } from '@src/constants/urls';
@@ -32,44 +32,46 @@ function HambergerNavigation({ onClick }: Props) {
       <Menu onClick={(e) => e.stopPropagation()}>
         {isLogin ? (
           <>
-            <Item href={`${PATH.user.mypage.url}`}>
+            <LinkButton href={`${PATH.user.mypage.url}`}>
               <UserIcon />
-            </Item>
+            </LinkButton>
             <LogoutButton type="button" onClick={logout}>
               <LogoutIcon />
             </LogoutButton>
           </>
         ) : (
-          <Item href={`${PATH.user.login.url}`}>
+          <LinkButton href={`${PATH.user.login.url}`}>
             <LoginIcon />
-          </Item>
+          </LinkButton>
         )}
         <Hr />
         <PointText>게시판</PointText>
         <Hr />
-        <Item href={`${PATH.boards.notice.url}/list/1`}>
+        <LinkButton href={`${PATH.boards.notice.url}/list/1`}>
           {PATH.boards.notice.name}
-        </Item>
-        <Item href={`${PATH.boards.full.url}/list/1`}>
+        </LinkButton>
+        <LinkButton href={`${PATH.boards.full.url}/list/1`}>
           {PATH.boards.full.name}
-        </Item>
-        <Item href={`${PATH.boards.associate.url}/list/1`}>
+        </LinkButton>
+        <LinkButton href={`${PATH.boards.associate.url}/list/1`}>
           {PATH.boards.associate.name}
-        </Item>
-        <Item href={`${PATH.boards.graduate.url}/list/1`}>
+        </LinkButton>
+        <LinkButton href={`${PATH.boards.graduate.url}/list/1`}>
           {PATH.boards.graduate.name}
-        </Item>
+        </LinkButton>
         <Hr />
 
         <PointText>멤버</PointText>
         <Hr />
-        <Item href={`${PATH.members.active.url}`}>
+        <LinkButton href={`${PATH.members.active.url}`}>
           {PATH.members.active.name}
-        </Item>
-        <Item href={`${PATH.members.graduate.url}`}>
+        </LinkButton>
+        <LinkButton href={`${PATH.members.graduate.url}`}>
           {PATH.members.graduate.name}
-        </Item>
-        <Item href={`${PATH.members.rest.url}`}>{PATH.members.rest.name}</Item>
+        </LinkButton>
+        <LinkButton href={`${PATH.members.rest.url}`}>
+          {PATH.members.rest.name}
+        </LinkButton>
       </Menu>
     </FakeBackground>
   );
@@ -102,12 +104,7 @@ const Menu = styled.div`
   backdrop-filter: blur(15px);
   z-index: 3;
 `;
-const Item = styled(Link)`
-  font-size: 2.4rem;
-  text-decoration: none;
-  color: ${({ theme }) => theme.textDefault};
-  font-weight: lighter;
-`;
+
 const FakeBackground = styled(motion.div)`
   position: fixed;
   top: 0;

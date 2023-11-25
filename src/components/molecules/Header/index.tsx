@@ -13,7 +13,7 @@ import Z_INDEX from '@src/constants/zIndex';
 import { PATH } from '@src/constants/urls';
 import LoadingProgressBar from './LoadingProgressBar';
 import BarNaviagtion from './BarNavigation';
-import HambergerNavigation from './HambergerMenuSection';
+import HambergerNavigation from './HambergerNavigation';
 
 function Header() {
   const { push } = useRouter();
