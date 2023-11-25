@@ -116,7 +116,7 @@ const PATH = {
       url: 'https://recruit.casper.or.kr/',
     },
   },
-};
+} as const;
 
 Object.freeze(PATH);
 Object.freeze(ADMIN_PATH);

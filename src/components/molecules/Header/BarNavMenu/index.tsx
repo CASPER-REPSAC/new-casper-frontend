@@ -1,43 +1,15 @@
-import {
-  Children,
-  MouseEventHandler,
-  ReactNode,
-  isValidElement,
-  useState,
-} from 'react';
+import { MouseEventHandler, ReactElement, ReactNode, useState } from 'react';
 import { Variants, motion } from 'framer-motion';
 import { styled } from 'styled-components';
-import Title from './Title';
-import SubMenu from './SubMenu';
-
-const getSubMenus = (children: ReactNode) => {
-  const SubMenuType = (<SubMenu title="" href="" />).type;
-  const childrenArray = Children.toArray(children);
-  const subMenus = childrenArray.filter(
-    (child) => isValidElement(child) && child.type === SubMenuType,
-  );
-
-  if (subMenus.length === 0) return null;
-  return subMenus;
-};
-const getTitle = (children: ReactNode) => {
-  const TitleType = (<Title />).type;
-  const childrenArray = Children.toArray(children);
-  const title = childrenArray.filter(
-    (child) => isValidElement(child) && child.type === TitleType,
-  );
-  return title;
-};
 
 interface Props {
   onClick?: MouseEventHandler<HTMLDivElement>;
-  children?: ReactNode;
+  title: ReactNode;
+  subMenus?: ReactElement[];
 }
 
-function BarNavMenu({ children, onClick }: Props) {
+function BarNavMenu({ title, onClick, subMenus }: Props) {
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
-  const subMenus = getSubMenus(children);
-  const title = getTitle(children);
 
   return (
     <Wrapper
@@ -80,9 +52,6 @@ const subMenuVariants: Variants = {
 };
 
 const SubMenuWrapper = styled(motion.div)`
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
   padding: 1rem;
   background-color: ${({ theme }) => theme.subMenuSurface};
   border-radius: 4px;
@@ -92,12 +61,6 @@ const SubMenuWrapper = styled(motion.div)`
 const TitleWrapper = styled.div`
   padding: 10px 30px;
 `;
-const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-
-BarNavMenu.SubMenu = SubMenu;
-BarNavMenu.Title = Title;
+const Wrapper = styled.div``;
 
 export default BarNavMenu;
