@@ -4,7 +4,7 @@ import { loginState } from '@src/recoil';
 import { PATH } from '@src/constants/urls';
 import { ICON_SIZE } from '@src/constants/size';
 import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';
-import BarNavMenu from '@src/components/molecules/Header/BarNavMenu';
+import BarNavMenu from '@src/components/molecules/Header/BarNavigation/BarNavMenu';
 import { useLogoutMutation } from '@src/hooks/apis/user';
 import { LinkButton } from '@src/components/common/featureTag';
 import { DefaultButton } from '@src/components/common/defaultTag';
@@ -27,6 +27,7 @@ function BarNaviagtion() {
   ));
   const intranetMenus = Object.values(extra).map(({ name, url }) => (
     <DefaultButton
+      $full
       onClick={() => {
         window.location.href = url;
       }}

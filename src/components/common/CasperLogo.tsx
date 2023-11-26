@@ -28,6 +28,7 @@ function CasperLogo({ onClick, size = 'medium' }: Props) {
       $size={size}
       variants={variants}
       whileHover="hover"
+      whileTap="tap"
     >
       <StyledImage src={logoSrc} alt="casper logo" fill />
     </Wrapper>
@@ -37,6 +38,10 @@ function CasperLogo({ onClick, size = 'medium' }: Props) {
 const variants: Variants = {
   hover: {
     rotate: 4,
+    scale: 1.1,
+  },
+  tap: {
+    scale: 0.9,
   },
 };
 
