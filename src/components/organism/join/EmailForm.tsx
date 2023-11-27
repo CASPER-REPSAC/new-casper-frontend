@@ -55,10 +55,10 @@ function EmailForm({ onNext }: Props) {
       )}
       <DefaultButton
         type="submit"
-        size="large"
-        color="green"
+        $size="large"
+        $color="green"
         onClick={handleSubmit(onNext)}
-        active={isValidValue}
+        $active={isValidValue}
       >
         다음 단계
       </DefaultButton>

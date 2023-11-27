@@ -8,7 +8,7 @@ interface Props {
 function WriteButtonSection({ onSubmit }: Props) {
   return (
     <Wrapper>
-      <WriteButton size="large" color="green" onClick={onSubmit}>
+      <WriteButton $size="large" $color="green" onClick={onSubmit}>
         작성 하기
       </WriteButton>
     </Wrapper>

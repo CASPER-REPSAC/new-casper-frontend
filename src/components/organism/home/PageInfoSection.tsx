@@ -1,21 +1,21 @@
-import { LeftArrowIcon, RightArrowIcon } from '@src/components/common/icons';
-import { ICON_SIZE } from '@src/constants/size';
+import { LeftButton, RightButton } from '@src/components/common/featureTag';
+import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
 
 interface Props {
   page: number;
-  setPage: {
-    setNextPage: () => void;
-    setPrevPage: () => void;
-  };
+  paginate: (newDirection: number) => void;
   maxPage: number;
 }
 
-function PageInfoSection({ page, setPage, maxPage }: Props) {
+function PageInfoSection({ page, paginate, maxPage }: Props) {
   const PageBar = [];
+
   for (let i = 0; i < maxPage; i += 1) {
     PageBar.push(
-      <CurPageBar key={i}>{page === i ? <White /> : null}</CurPageBar>,
+      <CurPageBar key={i}>
+        {page === i && <White layoutId="line" />}
+      </CurPageBar>,
     );
   }
 
@@ -27,12 +27,8 @@ function PageInfoSection({ page, setPage, maxPage }: Props) {
       </Page>
       <PageBarWapper>
         <PageBarBackground>{PageBar}</PageBarBackground>
-        <LeftButton onClick={setPage.setPrevPage}>
-          <LeftArrowIcon size={ICON_SIZE.small} />
-        </LeftButton>
-        <RightButton onClick={setPage.setNextPage}>
-          <RightArrowIcon size={ICON_SIZE.small} />
-        </RightButton>
+        <LeftButton onClick={() => paginate(-1)} />
+        <RightButton onClick={() => paginate(1)} />
       </PageBarWapper>
     </PageInfoWrapper>
   );
@@ -70,17 +66,12 @@ const PageBarWapper = styled.div`
   flex-direction: row;
   align-items: center;
 `;
-const LeftButton = styled.div`
-  cursor: pointer;
-`;
-const RightButton = styled.div`
-  cursor: pointer;
-`;
+
 const CurPageBar = styled.div`
   height: 3px;
   width: 100%;
 `;
-const White = styled.div`
+const White = styled(motion.div)`
   width: 100%;
   height: 100%;
   background-color: white;

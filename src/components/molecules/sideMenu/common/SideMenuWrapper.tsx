@@ -1,6 +1,13 @@
+import { motion } from 'framer-motion';
 import { styled } from 'styled-components';
 
-const SideMenuWrapper = styled.div`
+const SideMenuWrapper = styled(motion.div).attrs(() => ({
+  layoutRoot: true,
+  layout: true,
+}))`
+  position: sticky;
+  top: 200px;
+
   display: inline;
   flex-direction: column;
   height: 100%;
@@ -10,6 +17,7 @@ const SideMenuWrapper = styled.div`
 
   @media screen and (max-width: 1024px) {
     width: 100%;
+    position: static;
   }
 `;
 

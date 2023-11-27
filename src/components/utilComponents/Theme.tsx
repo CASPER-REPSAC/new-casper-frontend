@@ -21,7 +21,7 @@ function Theme({ children }: ThemeProps) {
 
 const GlobalStyle = createGlobalStyle`
   html{
-    font-size: 7px;
+    font-size: 8px;
     @media screen and (min-width:1024px){
       font-size: 9px;
     }

@@ -31,16 +31,17 @@ function Board({ onePageOfArticleList }: Props) {
     push(PATH.posts.url);
   };
 
-  const maxPage = Math.ceil(onePageOfArticleList.maxPageNum);
-
   return (
     <Wrapper>
       <BoardHeader />
       <BoardBody articleList={onePageOfArticleList.articleList} />
-      <WriteButton size="small" color="green" onClick={onClickWrite}>
+      <WriteButton $size="small" $color="green" onClick={onClickWrite}>
         작성 하기
       </WriteButton>
-      <BoardFooter maxPage={maxPage} curPage={curPage} />
+      <BoardFooter
+        maxPage={onePageOfArticleList.maxPageNum}
+        curPage={curPage}
+      />
     </Wrapper>
   );
 }

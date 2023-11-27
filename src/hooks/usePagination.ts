@@ -1,26 +1,19 @@
 import { useState } from 'react';
 
 function usePagination(maxPage: number) {
-  const [page, setPage] = useState(0);
+  const [[page, direction], setPage] = useState([0, 0]);
 
-  const setNextPage = () => {
-    setPage((cur) => {
-      const nextPage = cur + 1 < maxPage ? cur + 1 : cur;
-      return nextPage;
-    });
-  };
+  const paginate = (newDirection: number) => {
+    const newPage = page + newDirection;
+    if (newPage < 0 || newPage >= maxPage) return;
 
-  const setPrevPage = () => {
-    setPage((cur) => {
-      const prevPage = cur > 0 ? cur - 1 : 0;
-      return prevPage;
-    });
+    setPage([newPage, newDirection]);
   };
 
   return {
     page,
-    setNextPage,
-    setPrevPage,
+    direction,
+    paginate,
   };
 }
 

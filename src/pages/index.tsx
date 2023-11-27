@@ -1,24 +1,26 @@
 import { usePagination } from '@src/hooks';
 import { HomeTemplate } from '@src/components/templates';
-import { NoticeSection, PageInfoSection } from '@src/components/organism/home';
+import {
+  Background,
+  NoticeSection,
+  PageInfoSection,
+} from '@src/components/organism/home';
 import TitelSection from '@src/components/organism/home/TitleSection';
 
 function Home() {
-  const bgImgs = ['background1.jpg', 'background2.jpg'];
+  const bgImgs = ['background1.webp', 'background2.webp'];
   const maxPage = bgImgs.length;
-  const { setNextPage, setPrevPage, page } = usePagination(maxPage);
+  const { page, direction, paginate } = usePagination(maxPage);
 
   return (
     <HomeTemplate
-      backgroundImg={bgImgs[page]}
+      backgroundSection={
+        <Background src={bgImgs[page]} direction={direction} />
+      }
       noticeSection={<NoticeSection />}
       titleSection={<TitelSection />}
       pageSection={
-        <PageInfoSection
-          page={page}
-          setPage={{ setNextPage, setPrevPage }}
-          maxPage={maxPage}
-        />
+        <PageInfoSection page={page} paginate={paginate} maxPage={maxPage} />
       }
     />
   );

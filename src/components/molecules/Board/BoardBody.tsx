@@ -1,6 +1,8 @@
 import { ArticleData } from '@src/types/articleTypes';
+import { Variants, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
+import { DefaultTheme } from 'styled-components/dist/types';
 
 interface Props {
   articleList: ArticleData[] | undefined;
@@ -56,15 +58,24 @@ function Article({
   const href = `/boards/${query.boardType}/detail/${articleId}`;
 
   return (
-    <Tr onMouseEnter={() => prefetch(href)} onClick={() => push(href)}>
+    <MotionTr onMouseEnter={() => prefetch(href)} onClick={() => push(href)}>
       <SmallTd>{articleId}</SmallTd>
       <LargeTd>{title}</LargeTd>
       <MediumTd>{nickname}</MediumTd>
       <MediumTd>{createDate}</MediumTd>
       <SmallTd>{view}</SmallTd>
-    </Tr>
+    </MotionTr>
   );
 }
+
+const trVariants: Variants = {
+  hover: (theme: DefaultTheme) => ({
+    backgroundColor: theme.boardHover,
+  }),
+  tap: (theme: DefaultTheme) => ({
+    backgroundColor: theme.boardActive,
+  }),
+};
 
 const Table = styled.table`
   font-size: 1.6rem;
@@ -82,19 +93,21 @@ const Thead = styled.thead`
 `;
 const Tbody = styled.tbody`
   font-size: 1.6rem;
-  tr:hover td {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.boardHover};
-  }
-  tr:active td {
-    cursor: pointer;
-    background-color: ${({ theme }) => theme.boardActive};
-  }
 `;
+
 const Tr = styled.tr`
   height: 2.4em;
   line-height: 2.4em;
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
+`;
+
+const MotionTr = styled(motion(Tr)).attrs(({ theme }) => ({
+  variants: trVariants,
+  whileHover: 'hover',
+  whileTap: 'tap',
+  custom: theme,
+}))`
+  cursor: pointer;
 `;
 
 const SmallTd = styled.td`

@@ -15,11 +15,18 @@ export const darkTheme: DefaultTheme = {
   surfaceDefault: COLORS.gray800,
   surfaceAlt: COLORS.gray900,
 
+  inputSurface: COLORS.gray850,
+  pageTitleSurface: COLORS.gray900,
+  notAllowedCorsor: COLORS.gray100,
+  redError: COLORS.red400,
+
+  /* 헤더 색상 */
+  subMenuSurface: COLORS.gray600,
+  subMenuBorder: COLORS.white,
+
   /* 메뉴 색상 */
   menuHover: COLORS.gray800,
   menuActive: COLORS.gray900,
-  subMenuHover: COLORS.gray200,
-  subMenuActive: COLORS.gray400,
   sideMenuHover: COLORS.gray700,
   sideMenuActive: COLORS.gray700,
   sideMenuHighlight: COLORS.gray500,
@@ -34,15 +41,9 @@ export const darkTheme: DefaultTheme = {
   redHover: COLORS.red300,
   redActive: COLORS.red500,
 
-  inputSurface: COLORS.gray850,
-
-  pageTitleSurface: COLORS.gray900,
-  boardHover: COLORS.gray700,
-  boardActive: COLORS.gray600,
-
-  notAllowedCorsor: COLORS.gray100,
-
-  redError: COLORS.red400,
+  /* 게시판 색상 */
+  boardHover: COLORS.gray850,
+  boardActive: COLORS.gray900,
 
   /* 에디터 색상 */
   toolbarBg: COLORS.gray900,
@@ -53,9 +54,13 @@ export const darkTheme: DefaultTheme = {
   editorBg: COLORS.gray900,
   editorBorder: COLORS.gray700,
   toolbarOptionBg: COLORS.gray400,
+
+  memberCardSurface: 'rgba(0,0,0,0.6)',
 };
 
 export const lightTheme: DefaultTheme = {
+  // 아직 미지정
+
   purple: COLORS.purple600,
 
   textDefault: '#5F6E76',
@@ -72,7 +77,10 @@ export const lightTheme: DefaultTheme = {
   red100: '#CF222E',
   red200: '#af3f38',
 
-  // 아직 미지정
+  /* 헤더 색상 */
+  subMenuSurface: COLORS.gray200,
+  subMenuBorder: COLORS.gray400,
+
   subMenuHover: COLORS.blueGrey200,
   subMenuActive: COLORS.blueGrey600,
   menuHover: '',
@@ -104,4 +112,5 @@ export const lightTheme: DefaultTheme = {
   editorBg: COLORS.gray900,
   editorBorder: COLORS.gray700,
   toolbarOptionBg: COLORS.gray400,
+  memberCardSurface: COLORS.gray100,
 };

@@ -1,44 +1,32 @@
-import {
-  detailedMemberPopupState,
-  selectedMemberState,
-} from '@src/recoil/memberCardAtoms';
-import { DetailMemberPopup, MemberCard } from '@src/components/organism/member';
-import { MemberProfile } from '@src/types/memberTypes';
-import { useSetRecoilState } from 'recoil';
 import { styled } from 'styled-components';
+import { MouseEventHandler, ReactElement } from 'react';
+import { useRecoilState } from 'recoil';
+import { detailedMemberPopupState } from '@src/recoil/memberCardAtoms';
+import { PageShadow } from '@src/components/common';
 
 interface Props {
-  memberList: MemberProfile[] | null;
+  popupSection: ReactElement;
+  memberGridSection: ReactElement;
 }
 
-function MembersTemplate({ memberList }: Props) {
-  const setDetailedMemberPopupVisible = useSetRecoilState(
+function MembersTemplate({ popupSection, memberGridSection }: Props) {
+  const [popupVisible, setPopupVisible] = useRecoilState(
     detailedMemberPopupState,
   );
-  const setSelectedMember = useSetRecoilState(selectedMemberState);
-  const openDetailPopup = (memberProfile: MemberProfile) => {
-    setDetailedMemberPopupVisible(true);
-    setSelectedMember(memberProfile);
-  };
-  const closeDetailPopup = () => {
-    setDetailedMemberPopupVisible(false);
+
+  const closePopup: MouseEventHandler<HTMLDivElement> = (e) => {
+    if (e.target === e.currentTarget) {
+      setPopupVisible(false);
+    }
   };
 
   return (
     <>
-      <DetailMemberPopup onClick={closeDetailPopup} />
-      <Cards>
-        {memberList &&
-          memberList.map((memberProfile) => {
-            return (
-              <MemberCard
-                key={memberProfile.id}
-                onClick={() => openDetailPopup(memberProfile)}
-                profile={memberProfile}
-              />
-            );
-          })}
-      </Cards>
+      {popupVisible && (
+        <PageShadow onClick={closePopup}>{popupSection}</PageShadow>
+      )}
+
+      <Cards>{memberGridSection}</Cards>
     </>
   );
 }
@@ -62,4 +50,5 @@ const Cards = styled.div`
     width: 840px;
   }
 `;
+
 export default MembersTemplate;

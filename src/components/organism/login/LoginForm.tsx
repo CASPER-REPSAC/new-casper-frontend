@@ -50,10 +50,10 @@ function LoginForm() {
         autoComplete="off"
       />
       <LoginButton
+        $size="large"
+        $color="green"
+        $full
         type="submit"
-        size="large"
-        color="green"
-        full
         onClick={handleSubmit(onValid, onInvalid)}
       >
         로그인

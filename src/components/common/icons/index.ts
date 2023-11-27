@@ -21,6 +21,8 @@ export { BsPencil as PencilIcon } from 'react-icons/bs';
 export {
   MdKeyboardArrowLeft as LeftArrowIcon,
   MdKeyboardArrowRight as RightArrowIcon,
+  MdKeyboardArrowDown as DownArrowIcon,
+  MdKeyboardArrowUp as UpArrowIcon,
 } from 'react-icons/md';
 
 export {

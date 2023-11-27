@@ -34,16 +34,16 @@ function ButtonSection({ articleId }: { articleId: string }) {
   return (
     <>
       {editable ? (
-        <DefaultButton size="small" onClick={completeModification}>
+        <DefaultButton $size="small" onClick={completeModification}>
           완료
         </DefaultButton>
       ) : (
-        <DefaultButton size="small" onClick={changeEditMode}>
+        <DefaultButton $size="small" onClick={changeEditMode}>
           수정
         </DefaultButton>
       )}
 
-      <DefaultButton color="red" size="small" onClick={deleteArticle}>
+      <DefaultButton $color="red" $size="small" onClick={deleteArticle}>
         삭제
       </DefaultButton>
     </>

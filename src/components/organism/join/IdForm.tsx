@@ -51,10 +51,10 @@ function IdForm({ onNext }: Props) {
         </FormErrorWrapper>
       )}
       <DefaultButton
-        size="large"
-        color="green"
+        $size="large"
+        $color="green"
+        $active={isValudValue}
         onClick={onNext}
-        active={isValudValue}
       >
         완료
       </DefaultButton>
