@@ -1,15 +1,4 @@
-/* eslint-disable react/jsx-props-no-spreading */
-import { InputHTMLAttributes } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
 import styled, { css } from 'styled-components';
-
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegisterReturn;
-}
-
-function DefaultInput({ register, ...props }: Props) {
-  return <InputWrapper {...props} {...register} />;
-}
 
 export const DefaultInputStyle = css`
   &:-webkit-autofill,
@@ -35,7 +24,7 @@ export const DefaultInputStyle = css`
   width: 100%;
 `;
 
-export const InputWrapper = styled.input`
+export const DefaultInput = styled.input`
   ${DefaultInputStyle}
 `;
 

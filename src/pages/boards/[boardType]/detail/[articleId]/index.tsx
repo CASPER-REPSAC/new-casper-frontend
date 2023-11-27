@@ -9,6 +9,8 @@ import {
   ContentSection,
   TitleSection,
   DetailComment,
+  AuthorSection,
+  CommentEditorSection,
 } from '@src/components/organism/detail';
 import useArticleDetail, {
   getArticleDetail,
@@ -71,6 +73,8 @@ export default function ArticleDetailPage({
         titleSection={<TitleSection articleId={articleId} />}
         titleButtonSection={<ButtonSection articleId={articleId} />}
         contentSection={<ContentSection articleId={articleId} />}
+        authorSection={<AuthorSection articleId={articleId} />}
+        commentEditorSection={<CommentEditorSection />}
         commentSection={<DetailComment />}
       />
     </FormProvider>

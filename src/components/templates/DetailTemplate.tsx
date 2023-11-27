@@ -6,12 +6,16 @@ interface Props {
   titleButtonSection?: ReactNode;
   contentSection?: ReactNode;
   commentSection?: ReactNode;
+  authorSection?: ReactNode;
+  commentEditorSection?: ReactNode;
 }
 
 function DetailTemplate({
   contentSection,
   titleSection,
   titleButtonSection,
+  commentEditorSection,
+  authorSection,
   commentSection,
 }: Props) {
   return (
@@ -21,13 +25,20 @@ function DetailTemplate({
         <Buttons>{titleButtonSection}</Buttons>
       </TitleSection>
       <ContentSection>{contentSection}</ContentSection>
+      <AuthorSection>{authorSection}</AuthorSection>
       <Hr />
+      <CommentEditorSection>
+        <SectionTitle>댓글</SectionTitle>
+        {commentEditorSection}
+      </CommentEditorSection>
       <CommentSection>{commentSection}</CommentSection>
     </Wrapper>
   );
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  overflow: hidden;
+`;
 const ContentSection = styled.section`
   min-height: 300px;
 `;
@@ -39,11 +50,21 @@ const TitleSection = styled.section`
   margin-bottom: 1rem;
 `;
 const Title = styled.div``;
+const SectionTitle = styled.div`
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+`;
 const Buttons = styled.div`
   display: flex;
   gap: 1rem;
 `;
+const CommentEditorSection = styled.section`
+  margin-bottom: 5rem;
+  overflow: scroll;
+`;
 const CommentSection = styled.section``;
+const AuthorSection = styled.section``;
 const Hr = styled.hr`
   background: ${({ theme }) => theme.borderDefault};
   border: 0;
