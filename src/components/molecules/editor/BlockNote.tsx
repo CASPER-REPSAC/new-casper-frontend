@@ -1,7 +1,11 @@
 'use client';
 
 import '@blocknote/core/style.css';
-import { Block, BlockNoteEditor } from '@blocknote/core';
+import {
+  Block,
+  BlockNoteEditor,
+  uploadToTmpFilesDotOrg_DEV_ONLY,
+} from '@blocknote/core';
 import { BlockNoteView, useBlockNote } from '@blocknote/react';
 import { useBlockNoteTheme } from '@src/hooks';
 
@@ -21,11 +25,11 @@ function BlockNote({
       onEditorContentChange,
       initialContent,
       editable,
+      uploadFile: uploadToTmpFilesDotOrg_DEV_ONLY,
     },
     [initialContent, editable],
   );
   const theme = useBlockNoteTheme(editable);
-
   return (
     <BlockNoteView
       editor={editor}
