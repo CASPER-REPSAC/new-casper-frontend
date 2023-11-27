@@ -34,7 +34,7 @@ function MemberCard({ member, onClick }: Props) {
 const wrapperVariants: Variants = {
   animate: {
     scale: 1.1,
-    rotate: 10,
+    rotate: 4,
     transition: {
       type: 'spring',
       damping: 30,
