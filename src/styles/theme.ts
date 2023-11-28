@@ -7,7 +7,7 @@ export const darkTheme: DefaultTheme = {
 
   textDefault: COLORS.white,
   textStrong: COLORS.white,
-  textWeek: COLORS.gray50,
+  textWeek: COLORS.gray100,
   textPoint: COLORS.white,
 
   borderDefault: COLORS.gray600,
@@ -15,10 +15,13 @@ export const darkTheme: DefaultTheme = {
   surfaceDefault: COLORS.gray800,
   surfaceAlt: COLORS.gray900,
 
-  inputSurface: COLORS.gray850,
   pageTitleSurface: COLORS.gray900,
   notAllowedCorsor: COLORS.gray100,
   redError: COLORS.red400,
+
+  /* input 색상 */
+  inputSurface: COLORS.gray850,
+  disabledInputSurface: COLORS.gray700,
 
   /* 헤더 색상 */
   subMenuSurface: COLORS.gray600,
@@ -77,6 +80,10 @@ export const lightTheme: DefaultTheme = {
   red100: '#CF222E',
   red200: '#af3f38',
 
+  /* input 색상 */
+  inputSurface: COLORS.gray850,
+  disabledInputSurface: COLORS.gray900,
+
   /* 헤더 색상 */
   subMenuSurface: COLORS.gray200,
   subMenuBorder: COLORS.gray400,
@@ -94,7 +101,6 @@ export const lightTheme: DefaultTheme = {
   sideMenuHighlight: '',
   boardHover: COLORS.gray700,
   boardActive: COLORS.gray600,
-  inputSurface: '',
   redButton: '',
   redHover: '',
   redActive: '',

@@ -12,6 +12,11 @@ export const DefaultInputStyle = css`
     outline: none;
     border-color: ${({ theme }) => theme.borderBold};
   }
+  &:disabled {
+    cursor: not-allowed;
+    background-color: ${({ theme }) => theme.disabledInputSurface};
+    color: ${({ theme }) => theme.textWeek};
+  }
   background-color: ${({ theme }) => theme.inputSurface};
   border: 1px solid ${({ theme }) => theme.borderDefault};
   color: ${({ theme }) => theme.textDefault};

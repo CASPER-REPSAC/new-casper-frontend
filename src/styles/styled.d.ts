@@ -13,6 +13,9 @@ declare module 'styled-components' {
     borderDefault: string;
     white: string;
 
+    disabledInputSurface: string;
+    inputSurface: string;
+
     subMenuSurface: string;
     subMenuBorder: string;
 
@@ -34,7 +37,7 @@ declare module 'styled-components' {
     sideMenuHighlight: string;
     boardHover: string;
     boardActive: string;
-    inputSurface: string;
+
     notAllowedCorsor: string;
     redError: string;
     toolbarBg: string;

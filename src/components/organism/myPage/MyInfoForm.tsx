@@ -2,19 +2,26 @@ import { useFormContext } from 'react-hook-form';
 import { LabelInput, LabelTextarea } from '@src/components/common/featureTag';
 import { INPUT_LABEL, PLACEHOLDER } from '@src/constants/label';
 import { Profile } from '@src/types/userTypes';
-import { useProfile } from '@src/hooks/apis/user';
+import { useRecoilValue } from 'recoil';
+import { myProfileState } from '@src/recoil/permissionAtoms';
 
 function MyInfoFrom() {
   const { register } = useFormContext<Profile>();
-  const { data, isLoading } = useProfile('ine');
+  const myProfile = useRecoilValue(myProfileState);
 
   const introduceRegister = register('introduce', { required: true });
   const nameRegister = register('name', { required: true });
   const nicknameRegister = register('nickname', { required: true });
-  const roleRegister = register('role', { required: true });
+  const roleRegister = register('role', { required: true, disabled: true });
   const homepageRegister = register('homepage', { required: true });
 
-  if (!data || isLoading) return <>Loading</>;
+  if (!myProfile)
+    return (
+      <>
+        현재 자동로그인 로직에서 내 정보를 저장할 수 없어요. 개발 중입니다.
+        내정보를 불러 올 수 없다!
+      </>
+    );
 
   return (
     <>
@@ -30,21 +37,21 @@ function MyInfoFrom() {
         {...nameRegister}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
-        defaultValue={data.name}
+        defaultValue={myProfile.name}
       />
       <LabelInput
         label={INPUT_LABEL.nickname}
         {...nicknameRegister}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
-        defaultValue={data.nickname}
+        defaultValue={myProfile.nickname}
       />
       <LabelInput
         label={INPUT_LABEL.role}
         {...roleRegister}
         placeholder={PLACEHOLDER.role}
         autoComplete="off"
-        defaultValue={data.role}
+        defaultValue={myProfile.role}
       />
       <LabelInput
         label={INPUT_LABEL.homepage}
