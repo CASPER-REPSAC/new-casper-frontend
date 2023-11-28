@@ -41,7 +41,7 @@ function IdForm({ onNext }: Props) {
       <LabelInput
         label={INPUT_LABEL.id}
         labelIcon={<UserIcon size={25} />}
-        register={idRegister}
+        {...idRegister}
         placeholder={PLACEHOLDER.id}
         hasError={!!errors.id}
       />

@@ -1,20 +1,22 @@
-import { TextareaHTMLAttributes, useId } from 'react';
+import { ForwardedRef, TextareaHTMLAttributes, forwardRef, useId } from 'react';
 import { styled } from 'styled-components';
-import { UseFormRegisterReturn } from 'react-hook-form';
 import { DefaultTextarea } from '@src/components/common/defaultTag';
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;
-  register: UseFormRegisterReturn;
 }
 
-export default function LabelTextarea({ label, register, ...props }: Props) {
+function LabelTextarea(
+  { label, ...props }: Props,
+
+  ref: ForwardedRef<HTMLTextAreaElement>,
+) {
   const uniqueId = useId();
 
   return (
     <Wrapper>
       <Label htmlFor={uniqueId}>{label}</Label>
-      <DefaultTextarea id={uniqueId} register={register} {...props} />
+      <DefaultTextarea ref={ref} id={uniqueId} {...props} />
     </Wrapper>
   );
 }
@@ -25,3 +27,5 @@ const Label = styled.label`
   font-size: 1.4rem;
   margin-bottom: 0.5em;
 `;
+
+export default forwardRef(LabelTextarea);

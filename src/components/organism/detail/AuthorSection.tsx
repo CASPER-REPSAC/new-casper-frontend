@@ -1,15 +1,18 @@
+import { useArticleDetail } from '@src/hooks/apis/boards';
 import { styled } from 'styled-components';
 
 interface Props {
-  nickname: string;
+  articleId: string;
 }
 
-function AuthorSection({ nickname }: Props) {
+function AuthorSection({ articleId }: Props) {
+  const { data } = useArticleDetail(articleId);
+
   return (
     <AuthorInfo>
       <Avatar />
       <Info>
-        <AuthorName>{nickname}</AuthorName>
+        <AuthorName>{data?.nickname}</AuthorName>
         <Desc>소개글</Desc>
       </Info>
     </AuthorInfo>
@@ -18,7 +21,6 @@ function AuthorSection({ nickname }: Props) {
 
 const AuthorInfo = styled.div`
   display: flex;
-  margin-top: 200px;
   align-items: center;
 `;
 const Avatar = styled.div`

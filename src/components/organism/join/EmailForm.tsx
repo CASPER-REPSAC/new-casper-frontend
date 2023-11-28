@@ -46,7 +46,7 @@ function EmailForm({ onNext }: Props) {
         placeholder={PLACEHOLDER.email}
         autoComplete="off"
         hasError={!!errors.email}
-        register={emailRegister}
+        {...emailRegister}
       />
       {!isValidValue && errors.email && (
         <FormErrorWrapper>

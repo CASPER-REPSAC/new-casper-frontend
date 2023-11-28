@@ -17,7 +17,7 @@ function AgreeForm({ onNext }: Props) {
   return (
     <>
       <CheckInput
-        register={agreeRegister}
+        {...agreeRegister}
         label="개인 정보 수집 이용 동의서 (필수)"
       />
       <Info>

@@ -1,4 +1,4 @@
-import { DefaultInput } from '@src/components/common/defaultTag';
+import { DefaultInput, DefaultSelect } from '@src/components/common/defaultTag';
 import { SearchIcon } from '@src/components/common/icons';
 import { ICON_SIZE } from '@src/constants/size';
 import { useForm } from 'react-hook-form';
@@ -17,7 +17,7 @@ function BoardHeader() {
       </Select>
       <SerachBar>
         <SearchInput
-          register={register('search')}
+          {...register('search')}
           placeholder="검색어를 입력해 주세요."
         />
         <StyledSearchIcon size={ICON_SIZE.small} />
@@ -50,14 +50,9 @@ const StyledSearchIcon = styled(SearchIcon)`
   position: absolute;
   left: 15px;
 `;
-const Select = styled.select`
-  background-color: inherit;
+const Select = styled(DefaultSelect)`
   height: 100%;
-  color: ${({ theme }) => theme.textDefault};
-  font-size: 1.8rem;
   margin-right: 1em;
-  width: 120px;
-  text-align: center;
   border: 1px solid ${({ theme }) => theme.borderDefault};
 `;
 
