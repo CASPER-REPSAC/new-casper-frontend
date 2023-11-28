@@ -17,7 +17,7 @@ function BoardHeader() {
       </Select>
       <SerachBar>
         <SearchInput
-          register={register('search')}
+          {...register('search')}
           placeholder="검색어를 입력해 주세요."
         />
         <StyledSearchIcon size={ICON_SIZE.small} />
