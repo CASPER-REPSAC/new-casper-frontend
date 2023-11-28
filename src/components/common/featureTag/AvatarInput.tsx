@@ -1,19 +1,16 @@
 import { DefaultInput } from '@src/components/common/defaultTag';
-import { InputHTMLAttributes, useId } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
 import { styled } from 'styled-components';
 
-interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegisterReturn;
-}
+interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
-function AvatarInput({ register }: Props) {
+function AvatarInput({ ...props }: Props, ref: ForwardedRef<HTMLInputElement>) {
   const uniqueId = useId();
 
   return (
     <AvatarLabel htmlFor={uniqueId}>
       이미지 변경하기
-      <Avatar id={uniqueId} register={register} type="file" />
+      <Avatar ref={ref} id={uniqueId} type="file" {...props} />
     </AvatarLabel>
   );
 }
@@ -34,4 +31,4 @@ const AvatarLabel = styled.label`
   cursor: pointer;
 `;
 
-export default AvatarInput;
+export default forwardRef(AvatarInput);

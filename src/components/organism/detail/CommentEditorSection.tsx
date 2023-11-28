@@ -11,7 +11,7 @@ function CommentEditorSection() {
   const onValid = () => {};
 
   const textareaAutosize: FormEventHandler<HTMLTextAreaElement> = (e) => {
-    const element = e.target as HTMLTextAreaElement;
+    const element = e.currentTarget;
     element.style.height = 'auto';
     element.style.height = `${element.scrollHeight}px`;
   };
@@ -38,6 +38,9 @@ const ButtonWrapper = styled.div`
 
 const Textarea = styled(DefaultTextarea)`
   margin-bottom: 1rem;
+  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
+  background-color: transparent;
+  padding: 0 1rem 0.8rem 1rem;
   /* background-color: transparent; */
   /* border-bottom: 1px solid ${({ theme }) => theme.inputSurface}; */
 `;

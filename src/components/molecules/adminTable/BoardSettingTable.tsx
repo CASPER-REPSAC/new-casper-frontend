@@ -39,24 +39,24 @@ function BoardSettingTable({ title, categories }: Props) {
           <SubTitle>읽기</SubTitle>
           <CheckBoxWrapper>
             {/* 권한 종류 만큼 생성 */}
-            <CheckInput label="1" register={register('1')} />
-            <CheckInput label="2" register={register('2')} />
+            <CheckInput label="1" {...register('1')} />
+            <CheckInput label="2" {...register('2')} />
           </CheckBoxWrapper>
         </Row>
         <Row>
           <SubTitle>쓰기</SubTitle>
           <CheckBoxWrapper>
             {/* 권한 종류 만큼 생성 */}
-            <CheckInput label="3" register={register('3')} />
-            <CheckInput label="4" register={register('4')} />
+            <CheckInput label="3" {...register('3')} />
+            <CheckInput label="4" {...register('4')} />
           </CheckBoxWrapper>
         </Row>
         <Row>
           <SubTitle>삭제</SubTitle>
           <CheckBoxWrapper>
             {/* 권한 종류 만큼 생성 */}
-            <CheckInput label="5" register={register('5')} />
-            <CheckInput label="6" register={register('6')} />
+            <CheckInput label="5" {...register('5')} />
+            <CheckInput label="6" {...register('6')} />
           </CheckBoxWrapper>
         </Row>
       </Section>

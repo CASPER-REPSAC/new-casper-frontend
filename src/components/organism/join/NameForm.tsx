@@ -57,7 +57,7 @@ function NameForm({ onNext }: Props) {
         label={INPUT_LABEL.name}
         labelIcon={<UserIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.name}
-        register={nameRegister}
+        {...nameRegister}
         hasError={!!errors.name}
         autoComplete="off"
       />
@@ -65,7 +65,7 @@ function NameForm({ onNext }: Props) {
         label={INPUT_LABEL.nickname}
         labelIcon={<StarIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.nickname}
-        register={nickNameRegister}
+        {...nickNameRegister}
         hasError={!!errors.nickname}
         autoComplete="off"
       />

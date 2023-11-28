@@ -39,12 +39,12 @@ function LoginForm() {
     <Form>
       <LabelInput
         labelIcon={<UserIcon size={ICON_SIZE.small} />}
-        register={idRegister}
+        {...idRegister}
         placeholder={PLACEHOLDER.id}
       />
       <LabelInput
         labelIcon={<LockIcon size={ICON_SIZE.small} />}
-        register={pwRegister}
+        {...pwRegister}
         placeholder={PLACEHOLDER.pw}
         type="password"
         autoComplete="off"

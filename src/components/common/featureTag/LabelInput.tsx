@@ -1,6 +1,11 @@
-import { InputHTMLAttributes, ReactNode, useId } from 'react';
+import {
+  ForwardedRef,
+  InputHTMLAttributes,
+  ReactNode,
+  forwardRef,
+  useId,
+} from 'react';
 import { css, styled } from 'styled-components';
-import { UseFormRegisterReturn } from 'react-hook-form';
 import { DefaultInput } from '@src/components/common/defaultTag';
 
 type LabelSizeType = 'small' | 'medium' | 'large';
@@ -8,19 +13,14 @@ type LabelSizeType = 'small' | 'medium' | 'large';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
   labelSize?: LabelSizeType;
-  register: UseFormRegisterReturn;
   labelIcon?: ReactNode;
   hasError?: boolean;
 }
 
-function LabelInput({
-  label,
-  labelSize = 'small',
-  labelIcon,
-  register,
-  hasError = false,
-  ...props
-}: Props) {
+function LabelInput(
+  { label, labelSize = 'small', labelIcon, hasError = false, ...props }: Props,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   const uniqueId = useId();
   const hasIcon = !!labelIcon;
   return (
@@ -33,10 +33,10 @@ function LabelInput({
       <InputWrapper>
         {labelIcon && <Icon>{labelIcon}</Icon>}
         <Input
+          ref={ref}
           $hasIcon={hasIcon}
           $hasError={hasError}
           id={uniqueId}
-          register={register}
           {...props}
         />
       </InputWrapper>
@@ -85,4 +85,4 @@ const Icon = styled.div`
   z-index: 1;
 `;
 
-export default LabelInput;
+export default forwardRef(LabelInput);

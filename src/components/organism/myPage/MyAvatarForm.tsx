@@ -5,7 +5,7 @@ import { useFormContext } from 'react-hook-form';
 function MyAvatarForm() {
   const { register } = useFormContext<Profile>();
 
-  return <AvatarInput register={register('avatar')} />;
+  return <AvatarInput {...register('avatar')} />;
 }
 
 export default MyAvatarForm;

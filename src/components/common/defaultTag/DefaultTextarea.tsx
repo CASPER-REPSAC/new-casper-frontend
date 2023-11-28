@@ -3,10 +3,9 @@ import { DefaultInputStyle } from './DefaultInput';
 
 const DefaultTextarea = styled.textarea.attrs(() => ({
   spellCheck: false,
+  rows: 1,
 }))`
-  ${DefaultInputStyle}
-  padding-top: 10px;
-  padding-bottom: 10px;
+  ${DefaultInputStyle};
   height: auto;
   resize: none;
 `;

@@ -20,35 +20,36 @@ function MyInfoFrom() {
     <>
       <LabelTextarea
         label={INPUT_LABEL.introduce}
-        register={introduceRegister}
+        {...introduceRegister}
         placeholder={PLACEHOLDER.introduce}
         autoComplete="off"
         cols={4}
+        rows={4}
       />
       <LabelInput
         label={INPUT_LABEL.name}
-        register={nameRegister}
+        {...nameRegister}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
         defaultValue={data.name}
       />
       <LabelInput
         label={INPUT_LABEL.nickname}
-        register={nicknameRegister}
+        {...nicknameRegister}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
         defaultValue={data.nickname}
       />
       <LabelInput
         label={INPUT_LABEL.role}
-        register={roleRegister}
+        {...roleRegister}
         placeholder={PLACEHOLDER.role}
         autoComplete="off"
         defaultValue={data.role}
       />
       <LabelInput
         label={INPUT_LABEL.homepage}
-        register={homepageRegister}
+        {...homepageRegister}
         placeholder={PLACEHOLDER.homepage}
         autoComplete="off"
       />

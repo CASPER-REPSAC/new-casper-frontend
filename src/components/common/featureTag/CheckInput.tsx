@@ -1,18 +1,19 @@
-import { InputHTMLAttributes, useId } from 'react';
-import { UseFormRegisterReturn } from 'react-hook-form';
+import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
 import { styled } from 'styled-components';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
-  register: UseFormRegisterReturn;
   label?: string;
 }
 
-function CheckInput({ register, label, ...props }: Props) {
+function CheckInput(
+  { label, ...props }: Props,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
   const uniqueId = useId();
 
   return (
     <Wrapper>
-      <Input id={uniqueId} type="checkbox" {...register} {...props} />
+      <Input ref={ref} id={uniqueId} type="checkbox" {...props} />
       {label && <Label htmlFor={uniqueId}>{label}</Label>}
     </Wrapper>
   );
@@ -31,4 +32,4 @@ const Input = styled.input`
   cursor: pointer;
 `;
 
-export default CheckInput;
+export default forwardRef(CheckInput);

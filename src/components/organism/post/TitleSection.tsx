@@ -19,7 +19,7 @@ function TitleSection() {
   return (
     <TitleInput
       labelSize="large"
-      register={titleRegister}
+      {...titleRegister}
       placeholder={PLACEHOLDER.title}
       onKeyDown={preventSubmit}
     />

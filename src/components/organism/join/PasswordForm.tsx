@@ -51,7 +51,7 @@ function PasswordForm({ onNext }: Props) {
       <LabelInput
         label={INPUT_LABEL.pw}
         labelIcon={<CheckSquareIcon size={ICON_SIZE.small} />}
-        register={pwRegister}
+        {...pwRegister}
         placeholder={PLACEHOLDER.pw}
         type="password"
         autoComplete="off"
@@ -60,7 +60,7 @@ function PasswordForm({ onNext }: Props) {
       <LabelInput
         label={INPUT_LABEL.pwConfirm}
         labelIcon={<CheckSquareIcon size={ICON_SIZE.small} />}
-        register={pwConfirmRegister}
+        {...pwConfirmRegister}
         hasError={!!errors.pwConfirm}
         placeholder={PLACEHOLDER.pwConfirm}
         autoComplete="off"
