@@ -6,4 +6,3 @@ export { default as RadioInput } from './RadioInput';
 export { default as CircleButton } from './CircleButton';
 export { default as LinkButton } from './LinkButton';
 export { LeftButton, RightButton } from './ArrowButton';
-export { default as AutoSizeTextarea } from './AutoSizeTextarea';

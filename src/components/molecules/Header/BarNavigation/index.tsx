@@ -16,17 +16,18 @@ function BarNaviagtion() {
   const { members, boards, extra } = PATH;
 
   const memberMenus = Object.values(members).map(({ name, url }) => (
-    <LinkButton $full href={url}>
+    <LinkButton key={name} $full href={url}>
       {name}
     </LinkButton>
   ));
   const boardsMenus = Object.values(boards).map(({ name, url }) => (
-    <LinkButton $full href={`${url}/list/1`}>
+    <LinkButton key={name} $full href={`${url}/list/1`}>
       {name}
     </LinkButton>
   ));
   const intranetMenus = Object.values(extra).map(({ name, url }) => (
     <DefaultButton
+      key={name}
       $full
       onClick={() => {
         window.location.href = url;
