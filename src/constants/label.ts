@@ -35,4 +35,5 @@ export const PLACEHOLDER = {
   birthday: '생일을 입력해주세요.',
   title: '제목을 입력해주세요.',
   editor: '내용을 입력해주세요.',
+  comment: '댓글을 입력해주세요.',
 };
