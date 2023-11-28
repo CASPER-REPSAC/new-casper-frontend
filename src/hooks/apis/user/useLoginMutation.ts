@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { accessTokenState } from '@src/recoil';
+import { accessTokenState, myProfileState } from '@src/recoil/permissionAtoms';
 import { usePopup } from '@src/hooks';
 import { LoginRequest, LoginResponse } from '@src/types/loginTypes';
 import { LOGINT_API } from '@src/constants/apiUrl';
@@ -12,6 +12,7 @@ import { ERROR_MESSAGE, POPUP_MESSAGE } from '@src/constants/message';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
+  const setMyProfile = useSetRecoilState(myProfileState);
   const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
@@ -25,6 +26,7 @@ export default function useLoginMutation() {
     });
 
     setAccessToken(data.accessToken);
+    setMyProfile(data.myInfo);
     push(PATH.home.url);
   };
 

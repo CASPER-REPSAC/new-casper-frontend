@@ -1,13 +1,13 @@
 import { MouseEventHandler } from 'react';
 import { useRecoilValue } from 'recoil';
-import { loginState } from '@src/recoil';
 import { styled } from 'styled-components';
+import { Variants, motion } from 'framer-motion';
 import { DefaultHr } from '@src/components/common/defaultTag';
 import { LinkButton } from '@src/components/common/featureTag';
 import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';
+import { loginState } from '@src/recoil/permissionAtoms';
 import { useLogoutMutation } from '@src/hooks/apis/user';
 import { PATH } from '@src/constants/urls';
-import { Variants, motion } from 'framer-motion';
 
 interface Props {
   onClick?: MouseEventHandler<HTMLDivElement>;
