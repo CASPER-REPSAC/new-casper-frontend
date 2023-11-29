@@ -4,7 +4,7 @@ import { useMutation } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
 import { usePopup } from '@src/hooks';
 import { PostReqData } from '@src/types/PostTypes';
-import { accessTokenState } from '@src/recoil';
+import { accessTokenState } from '@src/recoil/permissionAtoms';
 import { PATH } from '@src/constants/urls';
 import { POST_ARTICLE_API } from '@src/constants/apiUrl';
 import { POPUP_DURATION } from '@src/constants/duration';

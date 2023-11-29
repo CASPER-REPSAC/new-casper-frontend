@@ -5,3 +5,4 @@ export { default as MembersTemplate } from './MembersTemplate';
 export { default as MyPageTemplate } from './MyPageTemplate';
 export { default as PostTemplate } from './PostTemplate';
 export { default as HomeTemplate } from './HomeTemplate';
+export { default as BoardTemplate } from './BoardTemplate';

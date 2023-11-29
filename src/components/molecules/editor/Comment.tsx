@@ -1,3 +1,4 @@
+import { DefaultButton } from '@src/components/common/defaultTag';
 import styled from 'styled-components';
 
 interface Props {
@@ -15,8 +16,10 @@ function Comment({ name, date, content }: Props) {
           <Name>{name}</Name>
           <Date>{date}</Date>
           <Buttons>
-            <Button>수정</Button>
-            <Button>삭제</Button>
+            <DefaultButton $size="small">수정</DefaultButton>
+            <DefaultButton $size="small" $color="red">
+              삭제
+            </DefaultButton>
           </Buttons>
         </Header>
         <Content>{content}</Content>
@@ -30,7 +33,6 @@ export default Comment;
 const Wrapper = styled.div`
   display: flex;
   padding-bottom: 10px;
-  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   margin-bottom: 10px;
 `;
 const Avatar = styled.div`
@@ -43,17 +45,15 @@ const Body = styled.div`
   display: flex;
   width: 100%;
   flex-direction: column;
-  padding: 5px 20px 5px 20px;
+  padding: 5px 0px 5px 20px;
 `;
 const Header = styled.div`
   display: flex;
   font-size: 1.2rem;
-  align-items: flex-end;
-  margin-bottom: 1em;
+  align-items: flex-start;
 `;
 const Content = styled.div`
   font-size: 1.6rem;
-  justify-self: center;
 `;
 const Name = styled.div`
   font-size: 1.1em;
@@ -63,13 +63,6 @@ const Date = styled.div`
   opacity: 0.8;
 `;
 const Buttons = styled.div`
+  display: flex;
   margin-left: auto;
-`;
-
-const Button = styled.button`
-  font-size: 1.2rem;
-  color: ${({ theme }) => theme.textDefault};
-  background-color: inherit;
-  border: 0;
-  cursor: pointer;
 `;
