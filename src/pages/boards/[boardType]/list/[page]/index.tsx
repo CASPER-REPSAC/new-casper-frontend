@@ -7,7 +7,17 @@ import { BoardLayout } from '@src/components/organism/layout';
 import { ReactElement } from 'react';
 import customAxios from '@src/utils/customAxios';
 import { BOARD_TYPE } from '@src/constants/mock';
-import { Board } from '@src/components/molecules';
+import { BoardTemplate } from '@src/components/templates';
+import {
+  BoardBody,
+  BoardFooter,
+  BoardHeader,
+} from '@src/components/molecules/Board';
+import useOnePageArticleList, {
+  getOnePageArticleList,
+} from '@src/hooks/apis/boards/useOnePageArticleList';
+import { LinkButton } from '@src/components/common/featureTag';
+import { PATH } from '@src/constants/urls';
 
 interface Params extends ParsedUrlQuery {
   boardType: string;
@@ -49,31 +59,49 @@ export const getStaticPaths = (async () => {
 export const getStaticProps = (async (context) => {
   const params = context.params!;
   const { boardType, page } = params;
-
-  const onePageOfArticleListApiUrl = `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/${page}`;
-  const { data, error } = await customAxios<OnePageOfArticleList>({
-    url: onePageOfArticleListApiUrl,
-  });
-
-  if (!data) {
+  if (typeof boardType !== 'string' || typeof page !== 'string')
     return {
-      props: { data: null, error },
       notFound: true,
     };
-  }
 
-  return { props: { data, error }, revalidate: 3 };
+  const data = await getOnePageArticleList(
+    {
+      boardType,
+      page,
+    },
+    true,
+  );
+
+  return { props: { initialData: data, boardType, page }, revalidate: 3 };
 }) satisfies GetStaticProps<{
-  data: OnePageOfArticleList;
+  initialData: OnePageOfArticleList;
+  boardType: string;
+  page: string;
 }>;
 
 function BoardPage({
-  data: onePageOfArticleList,
-  error,
+  initialData,
+  boardType,
+  page,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (error) return <Error statusCode={error.statusCode} />;
+  const { data } = useOnePageArticleList({ boardType, page }, initialData);
 
-  return <Board onePageOfArticleList={onePageOfArticleList} />;
+  if (!data) return <Error statusCode={-1} />;
+
+  return (
+    <BoardTemplate
+      headerSection={<BoardHeader />}
+      bodySection={<BoardBody boardType={boardType} page={page} />}
+      buttonSection={
+        <LinkButton $color="green" $size="medium" href={PATH.posts.url}>
+          작성 하기
+        </LinkButton>
+      }
+      footerSection={
+        <BoardFooter maxPage={data.maxPageNum} curPage={Number(page)} />
+      }
+    />
+  );
 }
 
 BoardPage.getLayout = (page: ReactElement) => {

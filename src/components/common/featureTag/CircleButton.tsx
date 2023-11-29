@@ -6,7 +6,12 @@ interface CircleButtonProps extends DefaultButtonProps {
 }
 
 const CircleButton = styled(DefaultButton)<CircleButtonProps>`
+  display: flex;
+  align-items: center;
+  justify-content: center;
   border-radius: 50%;
+  width: 3rem;
+  height: 3rem;
 
   ${({ $highlight, theme }) =>
     $highlight &&

@@ -6,10 +6,10 @@ interface Props extends LinkProps, DefaultButtonProps {
   children: ReactNode;
 }
 
-function LinkButton({ $size, $full, children, ...props }: Props) {
+function LinkButton({ $size, $color, $full, children, ...props }: Props) {
   return (
     <Link {...props}>
-      <DefaultButton $size={$size} $color="default" $full={$full}>
+      <DefaultButton $size={$size} $color={$color} $full={$full}>
         {children}
       </DefaultButton>
     </Link>

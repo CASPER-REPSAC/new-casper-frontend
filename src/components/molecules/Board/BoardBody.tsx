@@ -1,11 +1,12 @@
-import { ArticleData } from '@src/types/articleTypes';
+import { useOnePageArticleList } from '@src/hooks/apis/boards';
 import { Variants, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';
 import { DefaultTheme } from 'styled-components/dist/types';
 
 interface Props {
-  articleList: ArticleData[] | undefined;
+  boardType: string;
+  page: string;
 }
 
 interface ArticleProps {
@@ -16,7 +17,13 @@ interface ArticleProps {
   createdAt: string;
 }
 
-function BoardBody({ articleList }: Props) {
+function BoardBody({ boardType, page }: Props) {
+  const { data } = useOnePageArticleList({ boardType, page });
+
+  if (!data) return <></>;
+
+  const { articleList } = data;
+
   return (
     <Table>
       <Thead>

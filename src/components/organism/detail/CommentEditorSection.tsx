@@ -29,7 +29,11 @@ function CommentEditorSection() {
 
   return (
     <form onSubmit={handleSubmit(onValid)}>
-      <Textarea {...commentRegister} placeholder={PLACEHOLDER.comment} />
+      <Textarea
+        {...commentRegister}
+        placeholder={PLACEHOLDER.comment}
+        rows={1}
+      />
       <ButtonWrapper>
         <DefaultButton type="submit" $color="green" $size="small">
           추가
@@ -51,6 +55,7 @@ const Textarea = styled(DefaultTextarea)`
   border: 0;
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   padding: 0 1rem 0.8rem 1rem;
+  overflow: hidden;
 `;
 
 export default CommentEditorSection;

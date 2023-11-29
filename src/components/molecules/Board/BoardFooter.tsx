@@ -54,22 +54,26 @@ function BoardFooter({ maxPage, curPage }: Props) {
 }
 
 const TableFooter = styled.div`
-  margin-top: 1rem;
-  position: relative;
   display: flex;
-  width: 100%;
-  max-width: 700px;
-  justify-content: space-between;
+  align-items: center;
+  justify-content: center;
 `;
 
 const PageButtonSection = styled.div`
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
   gap: 20px;
+  width: 250px;
 
-  @media screen and (max-width: 1024px) {
-    gap: 10px;
+  @media screen and (min-width: ${`${SCREEN_SIZE.mobile}px`}) {
+    width: 500px;
+  }
+  @media screen and (min-width: ${`${SCREEN_SIZE.tablet}px`}) {
+    width: 600px;
+  }
+  @media screen and (min-width: ${`${SCREEN_SIZE.desktop}px`}) {
+    width: 600px;
   }
 `;
 
