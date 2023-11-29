@@ -12,7 +12,7 @@ import {
   BoardBody,
   BoardFooter,
   BoardHeader,
-} from '@src/components/molecules/Board';
+} from '@src/components/organism/board';
 import useOnePageArticleList, {
   getOnePageArticleList,
 } from '@src/hooks/apis/boards/useOnePageArticleList';
