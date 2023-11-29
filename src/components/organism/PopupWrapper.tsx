@@ -14,11 +14,9 @@ function PopupWrapper() {
     <Wrapper>
       <AnimatePresence mode="popLayout">
         {popupList.map(({ key, message }) => (
-          <ToastPopup
-            key={key}
-            message={message}
-            onClick={() => deletePopup(key)}
-          />
+          <ToastPopup key={key} onClick={() => deletePopup(key)}>
+            {message}
+          </ToastPopup>
         ))}
       </AnimatePresence>
     </Wrapper>

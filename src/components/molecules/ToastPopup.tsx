@@ -1,27 +1,6 @@
 import { styled } from 'styled-components';
 import { Variants, motion } from 'framer-motion';
 
-interface Props {
-  message: string;
-  onClick: () => void;
-}
-
-function ToastPopup({ message, onClick }: Props) {
-  return (
-    <Wrapper
-      layout
-      variants={popupVariants}
-      initial="hidden"
-      animate="visible"
-      exit="hidden"
-      whileHover="hover"
-      onClick={onClick}
-    >
-      {message}
-    </Wrapper>
-  );
-}
-
 const popupVariants: Variants = {
   hidden: {
     opacity: 0,
@@ -41,7 +20,14 @@ const popupVariants: Variants = {
   },
 };
 
-const Wrapper = styled(motion.div)`
+const ToastPopup = styled(motion.div).attrs(() => ({
+  layout: true,
+  variants: popupVariants,
+  initial: 'hidden',
+  animate: 'visible',
+  exit: 'hidden',
+  whileHover: 'hover',
+}))`
   display: flex;
   justify-content: center;
   align-items: center;

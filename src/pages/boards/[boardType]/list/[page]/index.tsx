@@ -18,6 +18,8 @@ import useOnePageArticleList, {
 } from '@src/hooks/apis/boards/useOnePageArticleList';
 import { LinkButton } from '@src/components/common/featureTag';
 import { PATH } from '@src/constants/urls';
+import { useRecoilValue } from 'recoil';
+import { myProfileState } from '@src/recoil/permissionAtoms';
 
 interface Params extends ParsedUrlQuery {
   boardType: string;
@@ -85,6 +87,9 @@ function BoardPage({
   page,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   const { data } = useOnePageArticleList({ boardType, page }, initialData);
+
+  const a = useRecoilValue(myProfileState);
+  console.log(a);
 
   if (!data) return <Error statusCode={-1} />;
 
