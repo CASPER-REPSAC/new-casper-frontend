@@ -5,7 +5,7 @@ import { usePopup } from 'app/_hooks';
 import { LOGOUT_API } from 'app/_constants/apiUrl';
 import { POPUP_MESSAGE } from 'app/_constants/message';
 import { POPUP_DURATION } from 'app/_constants/duration';
-import { accessTokenState, myProfileState } from 'app/_recoil/permissionAtoms';
+import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
 
 function useLogoutMutation() {
   const [accessToken, setAcessToken] = useRecoilState(accessTokenState);

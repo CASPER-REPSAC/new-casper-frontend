@@ -5,7 +5,7 @@ import { Variants, motion } from 'framer-motion';
 import { DefaultHr } from 'app/_components/common/defaultTag';
 import { LinkButton } from '@src/components/common/featureTag';
 import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';
-import { loginState } from 'app/_recoil/permissionAtoms';
+import { loginState } from 'app/_store/permissionAtoms';
 import { useLogoutMutation } from 'app/_hooks/apis/user';
 import { PATH } from 'app/_constants/urls';
 

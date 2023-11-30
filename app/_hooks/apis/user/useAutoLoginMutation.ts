@@ -6,7 +6,7 @@ import { AutoLoginResponse } from '@src/types/loginTypes';
 import { usePopup } from 'app/_hooks';
 import { PATH } from 'app/_constants/urls';
 import { AUTO_LOGIN_API } from 'app/_constants/apiUrl';
-import { accessTokenState } from 'app/_recoil/permissionAtoms';
+import { accessTokenState } from 'app/_store/permissionAtoms';
 import { ERROR_MESSAGE } from 'app/_constants/message';
 import { POPUP_DURATION } from 'app/_constants/duration';
 

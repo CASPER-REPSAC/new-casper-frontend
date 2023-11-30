@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { popupListState } from 'app/_recoil';
+import { popupListState } from 'app/_store';
 import { AnimatePresence } from 'framer-motion';
 import { ToastPopup } from '@src/components/molecules';
 import { usePopup } from 'app/_hooks';

@@ -1,5 +1,5 @@
 import { PATH } from 'app/_constants/urls';
-import { isDarkState } from 'app/_recoil';
+import { isDarkState } from 'app/_store';
 import { Variants, motion } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';

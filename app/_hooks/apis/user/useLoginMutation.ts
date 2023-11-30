@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
-import { accessTokenState, myProfileState } from 'app/_recoil/permissionAtoms';
+import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
 import { usePopup } from 'app/_hooks';
 import { LoginRequest, LoginResponse } from '@src/types/loginTypes';
 import { LOGINT_API } from 'app/_constants/apiUrl';

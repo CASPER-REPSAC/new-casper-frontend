@@ -2,7 +2,7 @@ import { MouseEventHandler, ReactElement } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { CloseIcon, HomeIcon, MailIcon } from '@src/components/common/icons';
-import { detailedMemberPopupState } from 'app/_recoil/memberCardAtoms';
+import { detailedMemberPopupState } from 'app/_store/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
 import { ICON_SIZE } from 'app/_constants/size';
 import { DefaultButton } from 'app/_components/common/defaultTag';

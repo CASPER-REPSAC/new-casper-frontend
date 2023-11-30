@@ -3,7 +3,7 @@ import { LabelInput, LabelTextarea } from '@src/components/common/featureTag';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
 import { Profile } from '@src/types/userTypes';
 import { useRecoilValue } from 'recoil';
-import { myProfileState } from 'app/_recoil/permissionAtoms';
+import { myProfileState } from 'app/_store/permissionAtoms';
 
 function MyInfoFrom() {
   const { register } = useFormContext<Profile>();

@@ -1,4 +1,4 @@
-import { popupListState } from 'app/_recoil';
+import { popupListState } from 'app/_store';
 import { Key } from 'react';
 import { useSetRecoilState } from 'recoil';
 

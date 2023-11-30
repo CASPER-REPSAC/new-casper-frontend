@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useMutation } from '@tanstack/react-query';
 import { UPDATE_ARTICLE_API } from 'app/_constants/apiUrl';
 import { useRecoilValue } from 'recoil';
-import { accessTokenState } from 'app/_recoil/permissionAtoms';
+import { accessTokenState } from 'app/_store/permissionAtoms';
 import { UpdateReqData } from '@src/types/PostTypes';
 import { usePopup } from 'app/_hooks';
 import { POPUP_MESSAGE } from 'app/_constants/message';

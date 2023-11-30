@@ -1,4 +1,4 @@
-import { isDarkState } from 'app/_recoil';
+import { isDarkState } from 'app/_store';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Theme, darkDefaultTheme, lightDefaultTheme } from '@blocknote/react';

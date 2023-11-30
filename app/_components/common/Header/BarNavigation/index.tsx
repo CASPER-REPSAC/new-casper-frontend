@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useRecoilValue } from 'recoil';
-import { loginState } from 'app/_recoil/permissionAtoms';
+import { loginState } from 'app/_store/permissionAtoms';
 import { PATH } from 'app/_constants/urls';
 import { ICON_SIZE } from 'app/_constants/size';
 import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';

@@ -1,4 +1,4 @@
-import { isPageLoadingState } from 'app/_recoil';
+import { isPageLoadingState } from 'app/_store';
 import { useSetRecoilState } from 'recoil';
 
 function useLoadingProgressBar() {

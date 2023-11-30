@@ -6,7 +6,7 @@ import { MembersTemplate } from '@src/components/templates';
 import { MemberLayout } from '@src/components/organism/layout';
 import { MEMBER_TYPE } from 'app/_constants/mock';
 import { DetailMemberCard, MemberCard } from '@src/components/organism/member';
-import { detailedMemberPopupState } from 'app/_recoil/memberCardAtoms';
+import { detailedMemberPopupState } from 'app/_store/memberCardAtoms';
 import { useAllMember } from 'app/_hooks/apis/user';
 import { getAllMember } from 'app/_hooks/apis/user/useAllMember';
 import { MemberProfile } from '@src/types/memberTypes';

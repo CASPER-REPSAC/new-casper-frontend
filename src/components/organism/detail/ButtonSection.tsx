@@ -4,7 +4,7 @@ import {
   useDeleteArticleMutation,
   useUpdateArticleMutation,
 } from 'app/_hooks/apis/boards';
-import { editableState } from 'app/_recoil/detailPageAtoms';
+import { editableState } from 'app/_store/detailPageAtoms';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
 

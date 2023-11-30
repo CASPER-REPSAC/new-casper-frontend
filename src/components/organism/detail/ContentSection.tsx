@@ -5,7 +5,7 @@ import { POPUP_DURATION } from 'app/_constants/duration';
 import { usePopup } from 'app/_hooks';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { editableState } from 'app/_recoil/detailPageAtoms';
+import { editableState } from 'app/_store/detailPageAtoms';
 import { useArticleDetail } from 'app/_hooks/apis/boards';
 
 const BlockNote = dynamic(

@@ -1,5 +1,5 @@
 import { memo, useCallback, useEffect, useRef, useState } from 'react';
-import { isPageLoadingState } from 'app/_recoil';
+import { isPageLoadingState } from 'app/_store';
 import { useRecoilValue } from 'recoil';
 import { styled } from 'styled-components';
 
