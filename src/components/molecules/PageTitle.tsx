@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { usePathname } from 'next/navigation';
 import styled from 'styled-components';
 
 interface Props {
@@ -6,13 +6,13 @@ interface Props {
 }
 
 function PageTitle({ pageTitle }: Props) {
-  const { asPath, isReady } = useRouter();
-  const path = asPath.replaceAll('/', ' > ');
+  const pathname = usePathname();
+  const path = pathname?.replaceAll('/', ' > ');
 
   return (
     <Wrapper>
       <Title>{pageTitle}</Title>
-      {isReady && <Sub>홈{path}</Sub>}
+      <Sub>{path}</Sub>
     </Wrapper>
   );
 }

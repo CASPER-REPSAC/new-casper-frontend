@@ -12,7 +12,7 @@ function Home() {
     <Wrapper>
       <NoticeSection />
       <TitleSection />
-      <Background backgroundImages={bgImgs} />;
+      <Background backgroundImages={bgImgs} />
     </Wrapper>
   );
 }

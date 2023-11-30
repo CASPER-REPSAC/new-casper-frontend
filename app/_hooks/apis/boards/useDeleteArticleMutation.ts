@@ -6,10 +6,12 @@ import { PATH } from 'app/_constants/urls';
 import { usePopup } from 'app/_hooks';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
-import { useRouter } from 'next/router';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 function useDeleteArticleMutation(id: string) {
-  const { push, query } = useRouter();
+  const { push } = useRouter();
+  const query = useSearchParams();
+
   const { openAndDeletePopup } = usePopup();
   const mutationFn = () => {
     return axios.delete(`${DELETE_ARTICLE_API}/${id}`);
@@ -20,7 +22,12 @@ function useDeleteArticleMutation(id: string) {
       message: POPUP_MESSAGE.deleteSuccess,
       duration: POPUP_DURATION.medium,
     });
-    const { boardId } = query;
+
+    if (!query?.has('boardId')) {
+      return;
+    }
+    const boardId = query.get('boardId');
+
     switch (boardId) {
       case BOARD_TYPE.notice:
         push(`${PATH.boards.notice.url}/list/1`);

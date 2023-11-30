@@ -5,7 +5,7 @@ import { LoginRequest, LoginResponse } from '@src/types/loginTypes';
 import { LOGINT_API } from 'app/_constants/apiUrl';
 import { PATH } from 'app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from 'app/_constants/duration';
 import { ERROR_MESSAGE, POPUP_MESSAGE } from 'app/_constants/message';

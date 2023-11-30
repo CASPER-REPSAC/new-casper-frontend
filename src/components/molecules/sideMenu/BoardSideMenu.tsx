@@ -1,4 +1,4 @@
-import { useRouter } from 'next/router';
+import { useSearchParams } from 'next/navigation';
 import { PATH } from 'app/_constants/urls';
 import React, { useEffect, useState } from 'react';
 import { BOARD_TYPE } from 'app/_constants/mock';
@@ -6,13 +6,15 @@ import { SideMenuLink, SideMenuWrapper } from './common';
 
 function BoardSideMenu() {
   const [highlight, setHighlight] = useState('notice_board');
-  const { query } = useRouter();
+  const searchParams = useSearchParams();
   const { notice, full, associate, graduate } = PATH.boards;
 
   useEffect(() => {
-    if (!query.boardType || typeof query.boardType === 'object') return;
-    setHighlight(query.boardType);
-  }, [setHighlight, query]);
+    const boardType = searchParams?.get('boardType');
+    if (boardType) {
+      setHighlight(boardType);
+    }
+  }, [setHighlight, searchParams]);
 
   return (
     <SideMenuWrapper>

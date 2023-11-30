@@ -1,5 +1,5 @@
 import axios, { AxiosError } from 'axios';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
 import { usePopup } from 'app/_hooks';
