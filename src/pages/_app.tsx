@@ -42,6 +42,7 @@ function App({ Component, pageProps }: AppPropsWithLayout) {
             <PageLoadingPresence>
               <DefaultLayout>
                 {getLayout(<Component {...pageProps} />)}
+                <Component {...pageProps} />
               </DefaultLayout>
             </PageLoadingPresence>
           </Theme>

@@ -29,3 +29,9 @@ export interface ArticleDetail {
   view: number;
   file: boolean;
 }
+
+export type BoardType =
+  | 'notice_board'
+  | 'full_member_board'
+  | 'associate_member_board'
+  | 'graduate_member_board';

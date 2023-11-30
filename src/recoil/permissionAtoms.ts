@@ -6,6 +6,14 @@ export const myProfileState = atom<MyProfile | undefined>({
   default: undefined,
 });
 
+export const roleState = selector({
+  key: 'role',
+  get: ({ get }) => {
+    const myProfile = get(myProfileState);
+    return myProfile?.role;
+  },
+});
+
 export const accessTokenState = atom<string | undefined>({
   key: 'accessToken',
   default: undefined,

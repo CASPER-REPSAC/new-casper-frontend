@@ -1,4 +1,4 @@
-import { ArticleDetail } from '@src/types/articleTypes';
+import { ArticleDetail } from '@src/types/boardTypes';
 import { useQuery } from '@tanstack/react-query';
 import { API_URL, ARTICLE_DETAIL_API } from '@src/constants/apiUrl';
 import axios from 'axios';

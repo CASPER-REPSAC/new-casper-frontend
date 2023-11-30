@@ -6,3 +6,4 @@ export { default as usePagination } from './usePagination';
 export { default as useRedirect } from './useRedirect';
 export { default as usePopup } from './usePopup';
 export { default as useWindowSize } from './useWindowSize';
+export { default as useBoardPermission } from './useBoardPermission';

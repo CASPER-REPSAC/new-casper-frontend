@@ -1,11 +1,7 @@
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from 'next';
-import { API_URL, ARTICLE_LIST_API } from '@src/constants/apiUrl';
-import { OnePageOfArticleList } from '@src/types/articleTypes';
-import { ParsedUrlQuery } from 'querystring';
+import { BoardType } from '@src/types/boardTypes';
 import Error from '@src/pages/_error';
 import { BoardLayout } from '@src/components/organism/layout';
 import { ReactElement } from 'react';
-import customAxios from '@src/utils/customAxios';
 import { BOARD_TYPE } from '@src/constants/mock';
 import { BoardTemplate } from '@src/components/templates';
 import {
@@ -18,79 +14,37 @@ import useOnePageArticleList, {
 } from '@src/hooks/apis/boards/useOnePageArticleList';
 import { LinkButton } from '@src/components/common/featureTag';
 import { PATH } from '@src/constants/urls';
-import { useRecoilValue } from 'recoil';
-import { myProfileState } from '@src/recoil/permissionAtoms';
+import { useBoardPermission } from '@src/hooks';
 
-interface Params extends ParsedUrlQuery {
-  boardType: string;
-  page: string;
-}
-
-export const getStaticPaths = (async () => {
+export async function generateStaticParams() {
   const boardTypes = Object.values(BOARD_TYPE);
-  const paths: { params: Params }[] = [];
 
-  const PromiseMaxPages = boardTypes.map(async (boardType) => {
-    const { data } = await customAxios<OnePageOfArticleList>({
-      method: 'GET',
-      url: `${API_URL}${ARTICLE_LIST_API}/${boardType}/all/1`,
-    });
-
-    if (!data) {
-      return 0;
-    }
-
-    return data.maxPageNum;
-  });
-  const maxPages = await Promise.all(PromiseMaxPages);
-
-  boardTypes.forEach((boardType, idx) => {
-    const maxPage = maxPages[idx];
-    for (let page = 1; page < maxPage + 1; page += 1) {
-      const params = {
+  const params = await Promise.all(
+    boardTypes.map(async (boardType) => {
+      const { maxPageNum } = await getOnePageArticleList(
+        { boardType, page: '1' },
+        true,
+      );
+      const pageList = Array.from({ length: maxPageNum }, (_, idx) => idx + 1);
+      return pageList.map((page) => ({
         boardType,
         page: String(page),
-      };
-      paths.push({ params });
-    }
-  });
-
-  return { paths, fallback: true };
-}) satisfies GetStaticPaths;
-
-export const getStaticProps = (async (context) => {
-  const params = context.params!;
-  const { boardType, page } = params;
-  if (typeof boardType !== 'string' || typeof page !== 'string')
-    return {
-      notFound: true,
-    };
-
-  const data = await getOnePageArticleList(
-    {
-      boardType,
-      page,
-    },
-    true,
+      }));
+    }),
   );
 
-  return { props: { initialData: data, boardType, page }, revalidate: 3 };
-}) satisfies GetStaticProps<{
-  initialData: OnePageOfArticleList;
-  boardType: string;
-  page: string;
-}>;
+  return params;
+}
 
 function BoardPage({
-  initialData,
-  boardType,
-  page,
-}: InferGetStaticPropsType<typeof getStaticProps>) {
-  const { data } = useOnePageArticleList({ boardType, page }, initialData);
+  params: { boardType, page },
+}: {
+  params: { boardType: BoardType; page: string };
+}) {
+  const permission = useBoardPermission(boardType);
+  const { data } = useOnePageArticleList({ boardType, page });
 
-  const a = useRecoilValue(myProfileState);
-  console.log(a);
-
+  if (!permission.read) return <>접근 권한이 없어요!</>;
   if (!data) return <Error statusCode={-1} />;
 
   return (

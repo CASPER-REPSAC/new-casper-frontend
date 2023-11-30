@@ -4,13 +4,13 @@ export interface Profile {
   introduce: string;
   nickname: string;
   email: string;
-  role: string;
+  role: '준회원' | '정회원' | '관리자';
   homepage: string;
 }
 
 export interface MyProfile {
   id: string;
-  role: string;
+  role: '준회원' | '정회원' | '관리자';
   name: string;
   nickname: string;
   email: string;

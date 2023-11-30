@@ -15,13 +15,15 @@ import {
 import useArticleDetail, {
   getArticleDetail,
 } from '@src/hooks/apis/boards/useArticleDetail';
-import { ArticleDetail } from '@src/types/articleTypes';
+import { ArticleDetail, BoardType } from '@src/types/boardTypes';
 import { UpdateReqData } from '@src/types/PostTypes';
 import { BOARD_TYPE } from '@src/constants/mock';
+import { isBoardType } from '@src/utils/typeGuard';
 
 interface Props {
   initialData: ArticleDetail;
   articleId: string;
+  boardType: BoardType;
 }
 interface Params extends ParsedUrlQuery {
   boardType: string;
@@ -48,9 +50,17 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps = (async (context) => {
   const params = context.params!;
-  const { articleId } = params;
+  const { articleId, boardType } = params;
   const data = await getArticleDetail(articleId, true);
-  return { props: { initialData: data, articleId } };
+
+  const boardTypeValid =
+    typeof boardType === 'string' && isBoardType(boardType);
+  if (!boardTypeValid)
+    return {
+      notFound: true,
+    };
+
+  return { props: { initialData: data, articleId, boardType } };
 }) satisfies GetStaticProps<Props, Params>;
 
 export default function ArticleDetailPage({
