@@ -15,8 +15,8 @@ import {
 import useArticleDetail, {
   getArticleDetail,
 } from 'app/_hooks/apis/boards/useArticleDetail';
-import { ArticleDetail, BoardType } from '@src/types/boardTypes';
-import { UpdateReqData } from '@src/types/PostTypes';
+import { ArticleDetail, BoardType } from 'app/_types/boardTypes';
+import { UpdateReqData } from 'app/_types/PostTypes';
 import { BOARD_TYPE } from 'app/_constants/mock';
 import { isBoardType } from '@src/utils/typeGuard';
 

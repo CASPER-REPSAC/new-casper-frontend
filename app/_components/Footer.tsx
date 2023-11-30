@@ -6,7 +6,7 @@ import {
   FacebookIcon,
   GithubIcon,
   InstagramIcon,
-} from '@src/components/common/icons';
+} from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';
 import { FOOTER } from 'app/_constants/label';
 

@@ -1,5 +1,5 @@
-import { DefaultButton } from 'app/_components/common/defaultTag';
-import { CloseIcon } from '@src/components/common/icons';
+import { DefaultButton } from 'app/_components/defaultTag';
+import { CloseIcon } from 'app/_components/icons';
 import { styled } from 'styled-components';
 
 interface Props {

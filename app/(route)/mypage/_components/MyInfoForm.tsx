@@ -1,7 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { LabelInput, LabelTextarea } from '@src/components/common/featureTag';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
-import { Profile } from '@src/types/userTypes';
+import { Profile } from 'app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
 import { myProfileState } from 'app/_store/permissionAtoms';
 

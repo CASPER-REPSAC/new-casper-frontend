@@ -1,5 +1,5 @@
 import { roleState } from 'app/_store/permissionAtoms';
-import { BoardType } from '@src/types/boardTypes';
+import { BoardType } from 'app/_types/boardTypes';
 import { useRecoilValue } from 'recoil';
 
 interface BoardPermission {

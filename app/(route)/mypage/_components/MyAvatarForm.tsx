@@ -1,5 +1,5 @@
 import { AvatarInput } from '@src/components/common/featureTag';
-import { Profile } from '@src/types/userTypes';
+import { Profile } from 'app/_types/userTypes';
 import { useFormContext } from 'react-hook-form';
 
 function MyAvatarForm() {

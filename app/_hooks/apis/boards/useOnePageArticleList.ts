@@ -1,5 +1,5 @@
 import { API_URL, ARTICLE_LIST_API } from 'app/_constants/apiUrl';
-import { OnePageOfArticleList } from '@src/types/boardTypes';
+import { OnePageOfArticleList } from 'app/_types/boardTypes';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 

@@ -3,11 +3,11 @@ import { useRecoilValue } from 'recoil';
 import { loginState } from 'app/_store/permissionAtoms';
 import { PATH } from 'app/_constants/urls';
 import { ICON_SIZE } from 'app/_constants/size';
-import { LoginIcon, LogoutIcon, UserIcon } from '@src/components/common/icons';
-import BarNavMenu from 'app/_components/common/Header/BarNavigation/BarNavMenu';
+import { LoginIcon, LogoutIcon, UserIcon } from 'app/_components/icons';
+import BarNavMenu from 'app/_components/Header/BarNavigation/BarNavMenu';
 import { useLogoutMutation } from 'app/_hooks/apis/user';
 import { LinkButton } from '@src/components/common/featureTag';
-import { DefaultButton } from 'app/_components/common/defaultTag';
+import { DefaultButton } from 'app/_components/defaultTag';
 
 function BarNaviagtion() {
   const login = useRecoilValue(loginState);

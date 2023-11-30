@@ -1,4 +1,4 @@
-import { UserIcon } from '@src/components/common/icons';
+import { UserIcon } from 'app/_components/icons';
 import { styled } from 'styled-components';
 
 const StyledUserIcon = styled(UserIcon)`

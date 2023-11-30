@@ -9,7 +9,7 @@ import { DetailMemberCard, MemberCard } from '@src/components/organism/member';
 import { detailedMemberPopupState } from 'app/_store/memberCardAtoms';
 import { useAllMember } from 'app/_hooks/apis/user';
 import { getAllMember } from 'app/_hooks/apis/user/useAllMember';
-import { MemberProfile } from '@src/types/memberTypes';
+import { MemberProfile } from 'app/_types/memberTypes';
 
 interface Props {
   initialData: { memberList: MemberProfile[] } | undefined;

@@ -2,7 +2,7 @@ import { css, styled } from 'styled-components';
 import {
   DefaultButton,
   DefaultButtonProps,
-} from '../../../../app/_components/common/defaultTag';
+} from '../../../../app/_components/defaultTag';
 
 interface CircleButtonProps extends DefaultButtonProps {
   $highlight: boolean;

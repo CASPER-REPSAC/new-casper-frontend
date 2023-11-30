@@ -1,4 +1,4 @@
-import { JoinReqData, JoinResData } from '@src/types/joinTypes';
+import { JoinReqData, JoinResData } from 'app/_types/joinTypes';
 import { JOIN_API } from 'app/_constants/apiUrl';
 import { PATH } from 'app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';

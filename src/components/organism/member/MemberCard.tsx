@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import styled from 'styled-components';
-import { MemberProfile } from '@src/types/memberTypes';
+import { MemberProfile } from 'app/_types/memberTypes';
 import { Variants, motion } from 'framer-motion';
 import { MouseEventHandler, memo } from 'react';
 import { UserIcon } from './common';

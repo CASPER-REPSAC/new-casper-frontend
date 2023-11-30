@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
 import { usePopup } from 'app/_hooks';
-import { PostReqData } from '@src/types/PostTypes';
+import { PostReqData } from 'app/_types/PostTypes';
 import { accessTokenState } from 'app/_store/permissionAtoms';
 import { PATH } from 'app/_constants/urls';
 import { POST_ARTICLE_API } from 'app/_constants/apiUrl';

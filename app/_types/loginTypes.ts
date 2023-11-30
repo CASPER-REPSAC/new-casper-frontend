@@ -13,4 +13,5 @@ export interface LoginResponse {
 
 export interface AutoLoginResponse {
   accessToken: string;
+  myInfo: MyProfile;
 }

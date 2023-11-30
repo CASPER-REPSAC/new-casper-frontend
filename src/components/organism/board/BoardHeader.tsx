@@ -1,5 +1,5 @@
-import { DefaultInput, DefaultSelect } from 'app/_components/common/defaultTag';
-import { SearchIcon } from '@src/components/common/icons';
+import { DefaultInput, DefaultSelect } from 'app/_components/defaultTag';
+import { SearchIcon } from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';
 import { useForm } from 'react-hook-form';
 import { styled } from 'styled-components';

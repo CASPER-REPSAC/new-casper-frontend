@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
-import { DefaultButton } from 'app/_components/common/defaultTag';
-import { StarIcon, UserIcon } from '@src/components/common/icons';
+import { DefaultButton } from 'app/_components/defaultTag';
+import { StarIcon, UserIcon } from 'app/_components/icons';
 import { LabelInput } from '@src/components/common/featureTag';
-import { JoinFormData } from '@src/types/joinTypes';
+import { JoinFormData } from 'app/_types/joinTypes';
 import { REQUIRED_MESSAGE, ERROR_MESSAGE } from 'app/_constants/message';
 import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';
 import { useFormContext } from 'react-hook-form';

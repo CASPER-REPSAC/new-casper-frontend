@@ -1,10 +1,7 @@
 import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
 import styled from 'styled-components';
-import {
-  DefaultButton,
-  DefaultTextarea,
-} from 'app/_components/common/defaultTag';
+import { DefaultButton, DefaultTextarea } from 'app/_components/defaultTag';
 import { PLACEHOLDER } from 'app/_constants/label';
 import { usePopup } from 'app/_hooks';
 import { POPUP_DURATION } from 'app/_constants/duration';

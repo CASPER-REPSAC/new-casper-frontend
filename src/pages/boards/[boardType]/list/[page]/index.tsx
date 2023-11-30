@@ -1,4 +1,4 @@
-import { BoardType } from '@src/types/boardTypes';
+import { BoardType } from 'app/_types/boardTypes';
 import Error from '@src/pages/_error';
 import { BoardLayout } from '@src/components/organism/layout';
 import { ReactElement } from 'react';

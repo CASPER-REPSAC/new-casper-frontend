@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { CheckInput } from '@src/components/common/featureTag';
-import { DefaultButton } from 'app/_components/common/defaultTag';
-import { JoinFormData } from '@src/types/joinTypes';
+import { DefaultButton } from 'app/_components/defaultTag';
+import { JoinFormData } from 'app/_types/joinTypes';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {

@@ -2,7 +2,7 @@ import { KeyboardEventHandler } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { styled } from 'styled-components';
 import { PLACEHOLDER } from 'app/_constants/label';
-import { PostReqData } from '@src/types/PostTypes';
+import { PostReqData } from 'app/_types/PostTypes';
 import { LabelInput } from '@src/components/common/featureTag';
 
 function TitleSection() {

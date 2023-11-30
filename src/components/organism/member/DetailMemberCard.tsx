@@ -1,13 +1,13 @@
 import { MouseEventHandler, ReactElement } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { CloseIcon, HomeIcon, MailIcon } from '@src/components/common/icons';
+import { CloseIcon, HomeIcon, MailIcon } from 'app/_components/icons';
 import { detailedMemberPopupState } from 'app/_store/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
 import { ICON_SIZE } from 'app/_constants/size';
-import { DefaultButton } from 'app/_components/common/defaultTag';
+import { DefaultButton } from 'app/_components/defaultTag';
 import { motion } from 'framer-motion';
-import { MemberProfile } from '@src/types/memberTypes';
+import { MemberProfile } from 'app/_types/memberTypes';
 import Z_INDEX from 'app/_constants/zIndex';
 import { UserIcon } from './common';
 

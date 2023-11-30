@@ -1,8 +1,8 @@
-import { DefaultButton } from 'app/_components/common/defaultTag';
+import { DefaultButton } from 'app/_components/defaultTag';
 import { FormErrorWrapper } from '@src/components/common/';
-import { MailIcon } from '@src/components/common/icons';
+import { MailIcon } from 'app/_components/icons';
 import { LabelInput } from '@src/components/common/featureTag';
-import { JoinFormData } from '@src/types/joinTypes';
+import { JoinFormData } from 'app/_types/joinTypes';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
 import { ICON_SIZE } from 'app/_constants/size';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';

@@ -1,4 +1,4 @@
-import { BoardType } from '@src/types/boardTypes';
+import { BoardType } from 'app/_types/boardTypes';
 
 // eslint-disable-next-line import/prefer-default-export
 export function isBoardType(str: string): str is BoardType {

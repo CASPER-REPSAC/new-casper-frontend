@@ -1,5 +1,5 @@
 import CommonCenterWrapper from '@src/components/common/centerWrapper/CommonCenterWrapper';
-import PageTitle from '@src/components/molecules/PageTitle';
+import PageTitle from 'app/_components/PageTitle';
 import MemberSideMenu from '@src/components/molecules/sideMenu/MemberSideMenu';
 import { ReactNode } from 'react';
 import styled from 'styled-components';

@@ -1,6 +1,6 @@
 import { FormProvider, useForm } from 'react-hook-form';
 import { styled } from 'styled-components';
-import { FunnelStepType, JoinFormData } from '@src/types/joinTypes';
+import { FunnelStepType, JoinFormData } from 'app/_types/joinTypes';
 import { useFunnel } from 'app/_hooks';
 import { useJoinMutation } from 'app/_hooks/apis/user';
 import {

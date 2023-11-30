@@ -1,6 +1,6 @@
 import { ForwardedRef, TextareaHTMLAttributes, forwardRef, useId } from 'react';
 import { styled } from 'styled-components';
-import { DefaultTextarea } from 'app/_components/common/defaultTag';
+import { DefaultTextarea } from 'app/_components/defaultTag';
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
   label: string;

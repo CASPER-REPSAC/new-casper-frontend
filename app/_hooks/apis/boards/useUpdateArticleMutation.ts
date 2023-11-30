@@ -3,7 +3,7 @@ import { useMutation } from '@tanstack/react-query';
 import { UPDATE_ARTICLE_API } from 'app/_constants/apiUrl';
 import { useRecoilValue } from 'recoil';
 import { accessTokenState } from 'app/_store/permissionAtoms';
-import { UpdateReqData } from '@src/types/PostTypes';
+import { UpdateReqData } from 'app/_types/PostTypes';
 import { usePopup } from 'app/_hooks';
 import { POPUP_MESSAGE } from 'app/_constants/message';
 import { POPUP_DURATION } from 'app/_constants/duration';

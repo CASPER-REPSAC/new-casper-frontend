@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
-import { DefaultForm } from 'app/_components/common/defaultTag';
+import { DefaultForm } from 'app/_components/defaultTag';
 import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
 
 interface Props {

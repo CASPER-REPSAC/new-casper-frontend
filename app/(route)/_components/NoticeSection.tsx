@@ -1,4 +1,4 @@
-import { LightBulbIcon } from '@src/components/common/icons';
+import { LightBulbIcon } from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';
 import { styled } from 'styled-components';
 

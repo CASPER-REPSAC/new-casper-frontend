@@ -1,3 +1,5 @@
+'use client';
+
 export {
   AiOutlineMenu as MenuIcon,
   AiOutlineHome as HomeIcon,

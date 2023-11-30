@@ -6,7 +6,7 @@ import {
   useId,
 } from 'react';
 import { css, styled } from 'styled-components';
-import { DefaultInput } from 'app/_components/common/defaultTag';
+import { DefaultInput } from 'app/_components/defaultTag';
 
 type LabelSizeType = 'small' | 'medium' | 'large';
 

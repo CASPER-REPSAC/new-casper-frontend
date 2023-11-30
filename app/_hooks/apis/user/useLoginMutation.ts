@@ -1,7 +1,7 @@
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
 import { usePopup } from 'app/_hooks';
-import { LoginRequest, LoginResponse } from '@src/types/loginTypes';
+import { LoginRequest, LoginResponse } from 'app/_types/loginTypes';
 import { LOGINT_API } from 'app/_constants/apiUrl';
 import { PATH } from 'app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';

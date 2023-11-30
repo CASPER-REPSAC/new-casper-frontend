@@ -1,4 +1,4 @@
-import { DefaultButton } from 'app/_components/common/defaultTag';
+import { DefaultButton } from 'app/_components/defaultTag';
 import {
   useArticleDetail,
   useDeleteArticleMutation,

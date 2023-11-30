@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { DefaultButton } from 'app/_components/common/defaultTag';
+import { DefaultButton } from 'app/_components/defaultTag';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { CheckInput } from '@src/components/common/featureTag';

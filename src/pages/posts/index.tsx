@@ -6,7 +6,7 @@ import {
 } from '@src/components/organism/post';
 import { PostTemplate } from '@src/components/templates';
 import { usePostArticleMutation } from 'app/_hooks/apis/boards';
-import { PostReqData } from '@src/types/PostTypes';
+import { PostReqData } from 'app/_types/PostTypes';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 
 function PostPage() {

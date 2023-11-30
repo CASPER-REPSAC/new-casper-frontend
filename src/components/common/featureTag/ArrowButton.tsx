@@ -1,7 +1,10 @@
 import { styled, useTheme } from 'styled-components';
 import { Variants, motion } from 'framer-motion';
 import { ICON_SIZE } from 'app/_constants/size';
-import { LeftArrowIcon, RightArrowIcon } from '../icons';
+import {
+  LeftArrowIcon,
+  RightArrowIcon,
+} from '../../../../app/_components/icons';
 
 interface Props {
   onClick: () => void;

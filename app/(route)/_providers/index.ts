@@ -5,3 +5,4 @@ export { default as PageLoadingPresence } from './PageLoadingPresence';
 export { default as RecoilRootWrapper } from './RecoilRootWrapper';
 export { default as QueryWrapper } from './QueryWrapper';
 export { default as ThemeWrapper } from './ThemeWrapper';
+export { default as PopupWrapper } from './PopupWrapper';
