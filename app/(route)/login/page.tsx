@@ -1,6 +1,6 @@
 import { LoginForm, LoginMoreLinks, Logo, PageWrapper } from './_components';
 
-export default function Login() {
+function LoginPage() {
   return (
     <PageWrapper>
       <Logo />
@@ -9,3 +9,5 @@ export default function Login() {
     </PageWrapper>
   );
 }
+
+export default LoginPage;

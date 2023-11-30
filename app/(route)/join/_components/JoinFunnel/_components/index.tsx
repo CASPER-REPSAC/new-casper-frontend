@@ -1,3 +1,5 @@
+'use client';
+
 export { default as AgreeForm } from './AgreeForm';
 export { default as IdForm } from './IdForm';
 export { default as NameForm } from './NameForm';

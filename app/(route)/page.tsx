@@ -5,7 +5,7 @@ import {
   Wrapper,
 } from './_components';
 
-function Home() {
+function HomePage() {
   const bgImgs = ['background1.webp', 'background2.webp'];
 
   return (
@@ -17,4 +17,4 @@ function Home() {
   );
 }
 
-export default Home;
+export default HomePage;
