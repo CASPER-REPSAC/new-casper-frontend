@@ -7,7 +7,7 @@ import {
   uploadToTmpFilesDotOrg_DEV_ONLY,
 } from '@blocknote/core';
 import { BlockNoteView, useBlockNote } from '@blocknote/react';
-import { useBlockNoteTheme } from '@src/hooks';
+import { useBlockNoteTheme } from 'app/_hooks';
 
 interface Props {
   initialContent?: Block[];

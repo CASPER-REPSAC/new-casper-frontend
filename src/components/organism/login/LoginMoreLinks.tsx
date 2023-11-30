@@ -1,6 +1,6 @@
 import Link from 'next/link';
-import { DefaultButton } from '@src/components/common/defaultTag';
-import { PATH } from '@src/constants/urls';
+import { DefaultButton } from 'app/_components/common/defaultTag';
+import { PATH } from 'app/_constants/urls';
 
 function LoginMoreLinks() {
   return (

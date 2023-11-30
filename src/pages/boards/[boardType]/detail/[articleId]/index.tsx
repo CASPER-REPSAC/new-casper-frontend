@@ -14,10 +14,10 @@ import {
 } from '@src/components/organism/detail';
 import useArticleDetail, {
   getArticleDetail,
-} from '@src/hooks/apis/boards/useArticleDetail';
+} from 'app/_hooks/apis/boards/useArticleDetail';
 import { ArticleDetail, BoardType } from '@src/types/boardTypes';
 import { UpdateReqData } from '@src/types/PostTypes';
-import { BOARD_TYPE } from '@src/constants/mock';
+import { BOARD_TYPE } from 'app/_constants/mock';
 import { isBoardType } from '@src/utils/typeGuard';
 
 interface Props {

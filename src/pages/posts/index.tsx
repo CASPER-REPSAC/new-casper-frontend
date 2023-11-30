@@ -5,7 +5,7 @@ import {
   WriteButtonSection,
 } from '@src/components/organism/post';
 import { PostTemplate } from '@src/components/templates';
-import { usePostArticleMutation } from '@src/hooks/apis/boards';
+import { usePostArticleMutation } from 'app/_hooks/apis/boards';
 import { PostReqData } from '@src/types/PostTypes';
 import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
 

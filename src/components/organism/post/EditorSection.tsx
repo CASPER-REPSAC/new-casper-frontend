@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import dynamic from 'next/dynamic';
 import { BlockNoteEditor } from '@blocknote/core';
-import { usePopup } from '@src/hooks';
-import { ERROR_MESSAGE } from '@src/constants/message';
-import { POPUP_DURATION } from '@src/constants/duration';
+import { usePopup } from 'app/_hooks';
+import { ERROR_MESSAGE } from 'app/_constants/message';
+import { POPUP_DURATION } from 'app/_constants/duration';
 import { useFormContext } from 'react-hook-form';
 
 const BlockNote = dynamic(

@@ -1,4 +1,4 @@
-import { useOnePageArticleList } from '@src/hooks/apis/boards';
+import { useOnePageArticleList } from 'app/_hooks/apis/boards';
 import { Variants, motion } from 'framer-motion';
 import { useRouter } from 'next/router';
 import { styled } from 'styled-components';

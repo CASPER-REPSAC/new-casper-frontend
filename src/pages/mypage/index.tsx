@@ -5,7 +5,7 @@ import {
   MyAvatarForm,
   MyInfoForm,
 } from '@src/components/organism/myPage';
-import { useProfile } from '@src/hooks/apis/user';
+import { useProfile } from 'app/_hooks/apis/user';
 
 function MyPage() {
   const { data, isLoading } = useProfile('ine');

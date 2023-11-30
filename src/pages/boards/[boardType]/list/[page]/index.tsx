@@ -2,7 +2,7 @@ import { BoardType } from '@src/types/boardTypes';
 import Error from '@src/pages/_error';
 import { BoardLayout } from '@src/components/organism/layout';
 import { ReactElement } from 'react';
-import { BOARD_TYPE } from '@src/constants/mock';
+import { BOARD_TYPE } from 'app/_constants/mock';
 import { BoardTemplate } from '@src/components/templates';
 import {
   BoardBody,
@@ -11,10 +11,10 @@ import {
 } from '@src/components/organism/board';
 import useOnePageArticleList, {
   getOnePageArticleList,
-} from '@src/hooks/apis/boards/useOnePageArticleList';
+} from 'app/_hooks/apis/boards/useOnePageArticleList';
 import { LinkButton } from '@src/components/common/featureTag';
-import { PATH } from '@src/constants/urls';
-import { useBoardPermission } from '@src/hooks';
+import { PATH } from 'app/_constants/urls';
+import { useBoardPermission } from 'app/_hooks';
 
 export async function generateStaticParams() {
   const boardTypes = Object.values(BOARD_TYPE);

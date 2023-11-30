@@ -1,4 +1,4 @@
-import { DefaultInput } from '@src/components/common/defaultTag';
+import { DefaultInput } from 'app/_components/common/defaultTag';
 import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
 import { styled } from 'styled-components';
 

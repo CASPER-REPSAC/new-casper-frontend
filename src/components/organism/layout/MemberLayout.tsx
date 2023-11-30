@@ -3,7 +3,7 @@ import PageTitle from '@src/components/molecules/PageTitle';
 import MemberSideMenu from '@src/components/molecules/sideMenu/MemberSideMenu';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
-import { PAGE_TITLE } from '@src/constants/label';
+import { PAGE_TITLE } from 'app/_constants/label';
 
 interface Props {
   children: ReactNode;

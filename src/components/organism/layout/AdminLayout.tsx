@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { styled } from 'styled-components';
-import Header from '../../molecules/Header';
+import Header from '../../../../app/_components/common/Header';
 import AdminSideMenu from '../../molecules/sideMenu/AdminSideMenu';
 
 interface Props {

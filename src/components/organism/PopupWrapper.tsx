@@ -1,10 +1,10 @@
 import { styled } from 'styled-components';
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { popupListState } from '@src/recoil';
+import { popupListState } from 'app/_recoil';
 import { AnimatePresence } from 'framer-motion';
 import { ToastPopup } from '@src/components/molecules';
-import { usePopup } from '@src/hooks';
+import { usePopup } from 'app/_hooks';
 
 function PopupWrapper() {
   const popupList = useRecoilValue(popupListState);

@@ -1,6 +1,6 @@
 import { styled, useTheme } from 'styled-components';
 import { Variants, motion } from 'framer-motion';
-import { ICON_SIZE } from '@src/constants/size';
+import { ICON_SIZE } from 'app/_constants/size';
 import { LeftArrowIcon, RightArrowIcon } from '../icons';
 
 interface Props {

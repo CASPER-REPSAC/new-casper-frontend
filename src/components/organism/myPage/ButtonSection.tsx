@@ -1,4 +1,4 @@
-import { DefaultButton } from '@src/components/common/defaultTag';
+import { DefaultButton } from 'app/_components/common/defaultTag';
 
 function ButtonSection() {
   return (

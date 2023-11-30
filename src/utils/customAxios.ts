@@ -1,4 +1,4 @@
-import { ERROR_MESSAGE } from '@src/constants/message';
+import { ERROR_MESSAGE } from 'app/_constants/message';
 import { SsrError } from '@src/types/errorTypes';
 import axios, { AxiosRequestConfig, isAxiosError } from 'axios';
 

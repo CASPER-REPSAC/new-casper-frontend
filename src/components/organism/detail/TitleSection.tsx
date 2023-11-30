@@ -1,4 +1,4 @@
-import { useArticleDetail } from '@src/hooks/apis/boards';
+import { useArticleDetail } from 'app/_hooks/apis/boards';
 import styled from 'styled-components';
 
 interface Props {

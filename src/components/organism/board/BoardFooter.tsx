@@ -5,9 +5,9 @@ import {
   LeftButton,
   RightButton,
 } from '@src/components/common/featureTag';
-import SCREEN_SIZE from '@src/constants/screenWidth';
-import { ICON_SIZE } from '@src/constants/size';
-import { usePagination, useWindowSize } from '@src/hooks';
+import SCREEN_SIZE from 'app/_constants/screenWidth';
+import { ICON_SIZE } from 'app/_constants/size';
+import { usePagination, useWindowSize } from 'app/_hooks';
 
 interface Props {
   maxPage: number;

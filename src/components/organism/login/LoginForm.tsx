@@ -1,14 +1,14 @@
 import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { LabelInput } from '@src/components/common/featureTag';
-import { usePopup } from '@src/hooks';
-import { DefaultButton, DefaultForm } from '@src/components/common/defaultTag';
+import { usePopup } from 'app/_hooks';
+import { DefaultButton, DefaultForm } from 'app/_components/common/defaultTag';
 import { LockIcon, UserIcon } from '@src/components/common/icons';
-import { REQUIRED_MESSAGE } from '@src/constants/message';
-import { ICON_SIZE } from '@src/constants/size';
-import { PLACEHOLDER } from '@src/constants/label';
-import { POPUP_DURATION } from '@src/constants/duration';
-import { useLoginMutation } from '@src/hooks/apis/user';
+import { REQUIRED_MESSAGE } from 'app/_constants/message';
+import { ICON_SIZE } from 'app/_constants/size';
+import { PLACEHOLDER } from 'app/_constants/label';
+import { POPUP_DURATION } from 'app/_constants/duration';
+import { useLoginMutation } from 'app/_hooks/apis/user';
 import { LoginRequest } from '@src/types/loginTypes';
 
 function LoginForm() {

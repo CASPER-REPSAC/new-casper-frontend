@@ -1,7 +1,7 @@
 import AdminSideMenu from '@src/components/molecules/sideMenu/AdminSideMenu/common/common/AdminSideMenu';
-import useHighlight from '@src/hooks/useHighlight';
-import useRedirect from '@src/hooks/useRedirect';
-import { ADMIN_PATH } from '@src/constants/urls';
+import useHighlight from 'app/_hooks/useHighlight';
+import useRedirect from 'app/_hooks/useRedirect';
+import { ADMIN_PATH } from 'app/_constants/urls';
 import { useState } from 'react';
 
 function BoardMenu() {

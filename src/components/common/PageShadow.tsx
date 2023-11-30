@@ -1,4 +1,4 @@
-import Z_INDEX from '@src/constants/zIndex';
+import Z_INDEX from 'app/_constants/zIndex';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MouseEventHandler, ReactElement } from 'react';
 import styled from 'styled-components';

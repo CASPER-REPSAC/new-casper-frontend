@@ -1,4 +1,4 @@
-export { default as NoticeSection } from './NoticeSection';
-export { default as PageInfoSection } from './PageInfoSection';
-export { default as Background } from './Background';
-export { default as TitleSection } from './TitleSection';
+export { default as NoticeSection } from '../../../../app/(route)/_components/NoticeSection';
+export { default as PageInfoSection } from '../../../../app/(route)/_components/Background';
+export { default as Background } from '../../../../app/(route)/_components/Background';
+export { default as TitleSection } from '../../../../app/(route)/_components/TitleSection';

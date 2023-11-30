@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { useFunnel } from '@src/hooks';
+import { useFunnel } from 'app/_hooks';
 import { SmallCenterWrapper } from '@src/components/common/centerWrapper';
 import { ReactNode } from 'react';
 import { FunnelStepType } from '@src/types/joinTypes';

@@ -4,10 +4,10 @@ import styled from 'styled-components';
 import {
   DefaultButton,
   DefaultTextarea,
-} from '@src/components/common/defaultTag';
-import { PLACEHOLDER } from '@src/constants/label';
-import { usePopup } from '@src/hooks';
-import { POPUP_DURATION } from '@src/constants/duration';
+} from 'app/_components/common/defaultTag';
+import { PLACEHOLDER } from 'app/_constants/label';
+import { usePopup } from 'app/_hooks';
+import { POPUP_DURATION } from 'app/_constants/duration';
 
 function CommentEditorSection() {
   const { register, handleSubmit } = useForm();

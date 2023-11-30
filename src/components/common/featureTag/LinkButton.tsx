@@ -1,6 +1,9 @@
 import { ReactNode } from 'react';
 import Link, { LinkProps } from 'next/link';
-import { DefaultButton, DefaultButtonProps } from '../defaultTag';
+import {
+  DefaultButton,
+  DefaultButtonProps,
+} from '../../../../app/_components/common/defaultTag';
 
 interface Props extends LinkProps, DefaultButtonProps {
   children: ReactNode;

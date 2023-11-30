@@ -1,5 +1,8 @@
 import { css, styled } from 'styled-components';
-import { DefaultButton, DefaultButtonProps } from '../defaultTag';
+import {
+  DefaultButton,
+  DefaultButtonProps,
+} from '../../../../app/_components/common/defaultTag';
 
 interface CircleButtonProps extends DefaultButtonProps {
   $highlight: boolean;

@@ -1,12 +1,12 @@
 import dynamic from 'next/dynamic';
 import { BlockNoteEditor } from '@blocknote/core';
-import { ERROR_MESSAGE } from '@src/constants/message';
-import { POPUP_DURATION } from '@src/constants/duration';
-import { usePopup } from '@src/hooks';
+import { ERROR_MESSAGE } from 'app/_constants/message';
+import { POPUP_DURATION } from 'app/_constants/duration';
+import { usePopup } from 'app/_hooks';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { editableState } from '@src/recoil/detailPageAtoms';
-import { useArticleDetail } from '@src/hooks/apis/boards';
+import { editableState } from 'app/_recoil/detailPageAtoms';
+import { useArticleDetail } from 'app/_hooks/apis/boards';
 
 const BlockNote = dynamic(
   () => import('@src/components/molecules/editor/BlockNote'),

@@ -1,7 +1,7 @@
 import { styled } from 'styled-components';
 import { MouseEventHandler, ReactElement } from 'react';
 import { useRecoilState } from 'recoil';
-import { detailedMemberPopupState } from '@src/recoil/memberCardAtoms';
+import { detailedMemberPopupState } from 'app/_recoil/memberCardAtoms';
 import { PageShadow } from '@src/components/common';
 
 interface Props {

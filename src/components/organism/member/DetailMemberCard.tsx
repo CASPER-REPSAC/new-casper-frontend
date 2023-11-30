@@ -2,13 +2,13 @@ import { MouseEventHandler, ReactElement } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { CloseIcon, HomeIcon, MailIcon } from '@src/components/common/icons';
-import { detailedMemberPopupState } from '@src/recoil/memberCardAtoms';
+import { detailedMemberPopupState } from 'app/_recoil/memberCardAtoms';
 import { useSetRecoilState } from 'recoil';
-import { ICON_SIZE } from '@src/constants/size';
-import { DefaultButton } from '@src/components/common/defaultTag';
+import { ICON_SIZE } from 'app/_constants/size';
+import { DefaultButton } from 'app/_components/common/defaultTag';
 import { motion } from 'framer-motion';
 import { MemberProfile } from '@src/types/memberTypes';
-import Z_INDEX from '@src/constants/zIndex';
+import Z_INDEX from 'app/_constants/zIndex';
 import { UserIcon } from './common';
 
 interface Props {

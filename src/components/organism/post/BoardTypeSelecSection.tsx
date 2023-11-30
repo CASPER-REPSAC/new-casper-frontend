@@ -1,4 +1,4 @@
-import { DefaultSelect } from '@src/components/common/defaultTag';
+import { DefaultSelect } from 'app/_components/common/defaultTag';
 import { PostReqData } from '@src/types/PostTypes';
 import { useFormContext } from 'react-hook-form';
 import { styled } from 'styled-components';

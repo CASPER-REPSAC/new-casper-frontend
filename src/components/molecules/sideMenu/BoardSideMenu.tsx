@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router';
-import { PATH } from '@src/constants/urls';
+import { PATH } from 'app/_constants/urls';
 import React, { useEffect, useState } from 'react';
-import { BOARD_TYPE } from '@src/constants/mock';
+import { BOARD_TYPE } from 'app/_constants/mock';
 import { SideMenuLink, SideMenuWrapper } from './common';
 
 function BoardSideMenu() {
