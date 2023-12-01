@@ -1,5 +1,4 @@
 import { AdminCenterWrapper } from 'app/_components/common';
-import { styled } from 'styled-components';
 import {
   CommentLogTable,
   FileLogTable,
@@ -9,21 +8,13 @@ import {
 
 function Dashboard() {
   return (
-    <CenterWrapper>
+    <AdminCenterWrapper>
       <LoginLogTable />
       <FileLogTable />
       <PostLogTable />
       <CommentLogTable />
-    </CenterWrapper>
+    </AdminCenterWrapper>
   );
 }
-
-const CenterWrapper = styled(AdminCenterWrapper)`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 60px;
-`;
 
 export default Dashboard;
