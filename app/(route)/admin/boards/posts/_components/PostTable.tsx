@@ -1,3 +1,5 @@
+'use client';
+
 import { AdminTable, CheckInput } from 'app/_components/common';
 import { ChangeEventHandler } from 'react';
 import { useForm } from 'react-hook-form';

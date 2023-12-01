@@ -1,3 +1,5 @@
+'use client';
+
 import { BoardSettingTable } from 'app/_components/molecules';
 
 function NoticeSettingForm() {
