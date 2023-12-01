@@ -2,8 +2,8 @@
 
 import { LeftButton, RightButton } from 'app/_components/common';
 import { usePagination } from 'app/_hooks';
-import { styled } from 'styled-components';
 import { motion, AnimatePresence, Variants } from 'framer-motion';
+import Image from 'next/image';
 
 interface Props {
   backgroundImages: string[];
@@ -16,39 +16,50 @@ function Background({ backgroundImages }: Props) {
   const PageBar = [];
   for (let i = 0; i < maxPage; i += 1) {
     PageBar.push(
-      <CurPageBar key={i}>
-        {page === i && <White layoutId="line" />}
-      </CurPageBar>,
+      <div key={i} className="h-full w-full">
+        {page === i && (
+          <motion.div className="w-full h-full bg-white" layoutId="line" />
+        )}
+      </div>,
     );
   }
 
   return (
     <>
       <AnimatePresence initial={false} custom={direction}>
-        <Img
+        <MotionImage
+          className="fixed top-0 left-0 w-full h-full -z-10 object-cover brightness-50"
           key={backgroundImages[page]}
           src={backgroundImages[page]}
+          width={1000}
+          height={500}
+          quality={100}
+          alt="background"
+          custom={direction}
           variants={variants}
           initial="enter"
           animate="center"
           exit="exit"
-          custom={direction}
         />
       </AnimatePresence>
-      <PageInfoWrapper>
-        <Page>
-          <CurPage>{page + 1}</CurPage>
-          <MaxPage>/{maxPage}</MaxPage>
-        </Page>
-        <PageBarWapper>
-          <PageBarBackground>{PageBar}</PageBarBackground>
+
+      <div className="flex flex-col">
+        <div className="flex items-end mb-1 gap-2">
+          <div className="text-3xl">{page + 1}</div>
+          <div className="text-2xl opacity-40">/{maxPage}</div>
+        </div>
+
+        <div className="flex flex-row items-center">
+          <div className="flex h-1 w-60 bg-gary-500">{PageBar}</div>
           <LeftButton onClick={() => paginate(-1)} />
           <RightButton onClick={() => paginate(1)} />
-        </PageBarWapper>
-      </PageInfoWrapper>
+        </div>
+      </div>
     </>
   );
 }
+
+const MotionImage = motion(Image);
 
 const variants: Variants = {
   enter: (direction: number) => ({
@@ -69,57 +80,5 @@ const variants: Variants = {
     opacity: 0,
   }),
 };
-
-const Img = styled(motion.img)`
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  filter: brightness(50%);
-  z-index: -1;
-  object-fit: cover;
-`;
-
-const PageBarBackground = styled.div`
-  display: flex;
-  height: 3px;
-  width: 210px;
-  background-color: rgba(255, 255, 255, 0.4);
-  margin-right: 2em;
-`;
-
-const Page = styled.div`
-  display: flex;
-  align-items: flex-end;
-  margin-bottom: 1em;
-`;
-const MaxPage = styled.div`
-  font-size: 2rem;
-  opacity: 0.4;
-`;
-const CurPage = styled.div`
-  font-size: 2.5rem;
-  margin-right: 0.3em;
-`;
-const PageInfoWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const PageBarWapper = styled.div`
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-`;
-
-const CurPageBar = styled.div`
-  height: 3px;
-  width: 100%;
-`;
-const White = styled(motion.div)`
-  width: 100%;
-  height: 100%;
-  background-color: white;
-`;
 
 export default Background;

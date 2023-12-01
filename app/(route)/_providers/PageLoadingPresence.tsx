@@ -1,32 +1,24 @@
-import useLoadingProgressBar from 'app/_hooks/useLoadingProgressBar';
-import { Router } from 'next/router';
+import { isPageLoadingState } from 'app/_store';
+import { usePathname, useSearchParams } from 'next/navigation';
 import { ReactNode, useEffect } from 'react';
+import { useSetRecoilState } from 'recoil';
 
 interface Props {
   children: ReactNode;
 }
 
 function PageLoadingPresence({ children }: Props) {
-  const { done, start } = useLoadingProgressBar();
+  const setIsPageLoading = useSetRecoilState(isPageLoadingState);
+  const pathname = usePathname();
+  const searchParams = useSearchParams();
 
   useEffect(() => {
-    const handleStart = () => {
-      start();
-    };
-    const handleComplete = () => {
-      done();
-    };
-
-    Router.events.on('routeChangeStart', handleStart);
-    Router.events.on('routeChangeComplete', handleComplete);
-    Router.events.on('routeChangeError', handleComplete);
+    setIsPageLoading(false);
 
     return () => {
-      Router.events.off('routeChangeStart', handleStart);
-      Router.events.off('routeChangeComplete', handleComplete);
-      Router.events.off('routeChangeError', handleComplete);
+      setIsPageLoading(true);
     };
-  }, [done, start]);
+  }, [pathname, searchParams, setIsPageLoading]);
 
   return <>{children}</>;
 }

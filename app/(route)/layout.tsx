@@ -1,4 +1,5 @@
 import 'app/_styles/reset.css';
+import 'app/_styles/global.css';
 import { ReactNode } from 'react';
 import StyledComponentsRegistry from 'app/_lib/registry';
 import {
@@ -18,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-gary-800 text-white">
         <QueryWrapper>
           <RecoilRootWrapper>
             <AutoLoginPresence>
