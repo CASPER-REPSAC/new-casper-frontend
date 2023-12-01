@@ -1,5 +1,5 @@
 import { AdminCenterWrapper } from 'app/_components/common';
-import NoticeSettingForm from '@src/components/organism/admin/NoticeSettingForm';
+import NoticeSettingForm from 'app/(route)/admin/_components/NoticeSettingForm';
 
 function BoardListPage() {
   return (
