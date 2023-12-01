@@ -1,4 +1,4 @@
-import BoardSettingTable from 'app/_components/molecules/adminTable/BoardSettingTable';
+import { BoardSettingTable } from 'app/_components/molecules';
 
 function NoticeSettingForm() {
   return (

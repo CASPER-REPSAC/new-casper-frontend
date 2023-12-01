@@ -1,5 +1,5 @@
 import { AdminTable } from 'app/_components/common';
-import DashboardTable from 'app/_components/molecules/adminTable/DashboardTable';
+import { DashboardTable } from 'app/_components/molecules';
 
 function CommentLogTable() {
   return (
