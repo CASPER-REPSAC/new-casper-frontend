@@ -6,7 +6,6 @@ import { MenuIcon } from 'app/_components/icons';
 import { useWindowSize } from 'app/_hooks';
 import { ICON_SIZE } from 'app/_constants/size';
 import SCREEN_SIZE from 'app/_constants/screenWidth';
-import Z_INDEX from 'app/_constants/zIndex';
 import { PATH } from 'app/_constants/urls';
 import LoadingProgressBar from './LoadingProgressBar';
 import BarNaviagtion from './BarNavigation';
@@ -56,9 +55,6 @@ function Header() {
 
 const Wrapper = styled.div`
   display: flex;
-  position: fixed;
-  top: 0;
-  z-index: ${Z_INDEX.header};
   width: 100vw;
   height: 60px;
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};

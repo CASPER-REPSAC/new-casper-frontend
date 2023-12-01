@@ -1,5 +1,4 @@
 import { ReactNode } from 'react';
-import { styled } from 'styled-components';
 import { Footer, Header } from 'app/_components/molecules';
 
 interface Props {
@@ -8,18 +7,12 @@ interface Props {
 
 function DefaultLayout({ children }: Props) {
   return (
-    <DefaultPageWrapper>
+    <div className="flex flex-col h-screen">
       <Header />
-      {children}
+      <main className="flex-1 f">{children}</main>
       <Footer />
-    </DefaultPageWrapper>
+    </div>
   );
 }
-
-const DefaultPageWrapper = styled.div`
-  position: relative;
-  padding: 60px 0 160px;
-  min-height: 100vh;
-`;
 
 export default DefaultLayout;
