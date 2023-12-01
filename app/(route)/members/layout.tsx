@@ -5,7 +5,6 @@ import MemberSideMenu from 'app/_components/molecules/sideMenu/MemberSideMenu';
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { PAGE_TITLE } from 'app/_constants/label';
-import { CommonCenterWrapper } from 'app/_components/common';
 
 interface Props {
   children: ReactNode;
@@ -14,12 +13,12 @@ function MemberLayout({ children }: Props) {
   return (
     <>
       <PageTitle pageTitle={PAGE_TITLE.members} />
-      <CommonCenterWrapper>
+      <div className="common-center">
         <Flex>
           <MemberSideMenu />
           <Main>{children}</Main>
         </Flex>
-      </CommonCenterWrapper>
+      </div>
     </>
   );
 }

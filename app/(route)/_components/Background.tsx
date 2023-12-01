@@ -18,7 +18,7 @@ function Background({ backgroundImages }: Props) {
     PageBar.push(
       <div key={i} className="h-full w-full">
         {page === i && (
-          <motion.div className="w-full h-full bg-white" layoutId="line" />
+          <motion.div className="h-full w-full bg-white" layoutId="line" />
         )}
       </div>,
     );
@@ -28,7 +28,7 @@ function Background({ backgroundImages }: Props) {
     <>
       <AnimatePresence initial={false} custom={direction}>
         <MotionImage
-          className="fixed top-0 left-0 w-full h-full -z-10 object-cover brightness-50"
+          className="fixed left-0 top-0 -z-10 h-full w-full object-cover brightness-50"
           key={backgroundImages[page]}
           src={backgroundImages[page]}
           width={1000}
@@ -44,7 +44,7 @@ function Background({ backgroundImages }: Props) {
       </AnimatePresence>
 
       <div className="flex flex-col">
-        <div className="flex items-end mb-1 gap-2">
+        <div className="mb-1 flex items-end gap-2">
           <div className="text-3xl">{page + 1}</div>
           <div className="text-2xl opacity-40">/{maxPage}</div>
         </div>

@@ -1,8 +1,6 @@
 'use client';
 
 export { default as AdminCenterWrapper } from './centerWrapper/AdminCenterWrapper';
-export { default as CommonCenterWrapper } from './centerWrapper/CommonCenterWrapper';
-export { default as SmallCenterWrapper } from './centerWrapper/SmallCenterWrapper';
 
 export { default as DefaultButton } from './defaultTag/DefaultButton';
 export { default as DefaultForm } from './defaultTag/DefaultForm';

@@ -8,12 +8,11 @@ import {
 } from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';
 import { FOOTER } from 'app/_constants/label';
-import { CommonCenterWrapper } from '../common';
 
 function Footer() {
   return (
     <Wrapper>
-      <Body>
+      <div className="common-center flex h-full items-center justify-between">
         <Sns>
           <GithubIcon size={ICON_SIZE.medium} />
           <FacebookIcon size={ICON_SIZE.medium} />
@@ -26,7 +25,7 @@ function Footer() {
             {FOOTER.copyRight}
           </Span>
         </Info>
-      </Body>
+      </div>
     </Wrapper>
   );
 }
@@ -37,13 +36,6 @@ const Wrapper = styled.div`
   background-color: ${(props) => props.theme.surfaceAlt};
   color: ${(props) => props.theme.textDefault};
   margin-top: 100px;
-`;
-
-const Body = styled(CommonCenterWrapper)`
-  display: flex;
-  height: 100%;
-  align-items: center;
-  justify-content: space-between;
 `;
 
 const Sns = styled.div`

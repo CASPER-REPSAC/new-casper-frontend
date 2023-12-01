@@ -10,7 +10,7 @@ import { PATH } from 'app/_constants/urls';
 import LoadingProgressBar from './LoadingProgressBar';
 import BarNaviagtion from './BarNavigation';
 import HambergerNavigation from './HambergerNavigation';
-import { CasperLogo, CommonCenterWrapper, DefaultButton } from '../../common';
+import { CasperLogo, DefaultButton } from '../../common';
 
 function Header() {
   const { push } = useRouter();
@@ -28,7 +28,7 @@ function Header() {
   return (
     <>
       <Wrapper>
-        <CenterWrapper>
+        <div className="common-center flex h-full items-center justify-between">
           {width < SCREEN_SIZE.tablet && (
             <>
               <DefaultButton onClick={toggleMenu}>
@@ -46,7 +46,7 @@ function Header() {
           <CasperLogo size="small" onClick={() => push(PATH.home.url)} />
 
           {width >= SCREEN_SIZE.tablet && <BarNaviagtion />}
-        </CenterWrapper>
+        </div>
         <LoadingProgressBar />
       </Wrapper>
     </>
@@ -60,13 +60,6 @@ const Wrapper = styled.div`
   border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
   background: rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
-`;
-
-const CenterWrapper = styled(CommonCenterWrapper)`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  height: 100%;
 `;
 
 export default memo(Header);

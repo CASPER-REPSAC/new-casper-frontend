@@ -11,5 +11,12 @@
     "_styles": "Theme"
   },
 
-  "css.lint.unknownAtRules": "ignore"
+  "css.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    "*html": "html",
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }

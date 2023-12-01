@@ -1,10 +1,10 @@
-import { JoinFunnel, PageWrapper } from './_components';
+import { JoinFunnel } from './_components';
 
 function JoinPage() {
   return (
-    <PageWrapper>
+    <div className="small-center absolute-center">
       <JoinFunnel />
-    </PageWrapper>
+    </div>
   );
 }
 

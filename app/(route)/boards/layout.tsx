@@ -3,7 +3,6 @@
 import { ReactNode } from 'react';
 import styled from 'styled-components';
 import { PAGE_TITLE } from 'app/_constants/label';
-import { CommonCenterWrapper } from 'app/_components/common';
 import { BoardSideMenu, PageTitle } from 'app/_components/molecules';
 
 interface Props {
@@ -14,12 +13,12 @@ function BoardLayout({ children }: Props) {
   return (
     <>
       <PageTitle pageTitle={PAGE_TITLE.board} />
-      <CommonCenterWrapper>
+      <div className="common-center">
         <Flex>
           <BoardSideMenu />
           <Main>{children}</Main>
         </Flex>
-      </CommonCenterWrapper>
+      </div>
     </>
   );
 }

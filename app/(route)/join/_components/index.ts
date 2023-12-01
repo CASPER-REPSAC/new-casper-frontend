@@ -1,4 +1,4 @@
 'use client';
 
+// eslint-disable-next-line import/prefer-default-export
 export { default as JoinFunnel } from './JoinFunnel';
-export { default as PageWrapper } from './PageWrapper';

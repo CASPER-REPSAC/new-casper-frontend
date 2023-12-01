@@ -14,3 +14,15 @@
     }
   }
 }
+
+@layer utilities {
+  .common-center {
+    @apply mx-auto w-[90vw] md:w-[760px] lg:w-[1000px] xl:w-[1200px];
+  }
+  .small-center {
+    @apply mx-auto w-[90vw] max-w-[500px];
+  }
+  .absolute-center {
+    @apply absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2;
+  }
+}
