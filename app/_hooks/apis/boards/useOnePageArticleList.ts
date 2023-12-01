@@ -1,28 +1,13 @@
-import { API_URL, ARTICLE_LIST_API } from 'app/_constants/apiUrl';
 import { OnePageOfArticleList } from 'app/_types/boardTypes';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-
-interface Props {
-  boardType: string;
-  category?: string;
-  page: string;
-}
-
-export async function getOnePageArticleList(
-  { boardType, page, category = 'all' }: Props,
-  fromServer: boolean = false,
-) {
-  const url = fromServer
-    ? `${API_URL}${ARTICLE_LIST_API}/${boardType}/${category}/${page}`
-    : `${ARTICLE_LIST_API}/${boardType}/${category}/${page}`;
-
-  const { data } = await axios.get<OnePageOfArticleList>(url);
-  return data;
-}
+import { getOnePageArticleList } from 'app/_service/article';
 
 function useOnePageArticleList(
-  { boardType, page, category = 'all' }: Props,
+  {
+    boardType,
+    page,
+    category = 'all',
+  }: { boardType: string; page: string; category?: string },
   initialData?: OnePageOfArticleList,
 ) {
   const queryKey = ['onePageArticleList', boardType, page];

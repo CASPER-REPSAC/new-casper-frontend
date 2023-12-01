@@ -1,4 +1,4 @@
-import { SmallCenterWrapper } from 'app/_components/centerWrapper';
+import { SmallCenterWrapper } from 'app/_components/common';
 import styled from 'styled-components';
 
 const PageWrapper = styled(SmallCenterWrapper)`

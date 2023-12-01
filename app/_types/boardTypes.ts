@@ -35,3 +35,8 @@ export type BoardType =
   | 'full_member_board'
   | 'associate_member_board'
   | 'graduate_member_board';
+
+export interface BoardListParams {
+  boardType: BoardType;
+  page: string;
+}

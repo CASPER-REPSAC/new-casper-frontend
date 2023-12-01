@@ -1,9 +1,11 @@
 import { useFormContext } from 'react-hook-form';
-import { DefaultButton } from 'app/_components/defaultTag';
-import { LabelInput } from '@src/components/common/featureTag';
+import {
+  DefaultButton,
+  LabelInput,
+  FormErrorWrapper,
+} from 'app/_components/common';
 import { JoinFormData } from 'app/_types/joinTypes';
-import { PW_REGEX } from '@src/utils/regex';
-import { FormErrorWrapper } from '@src/components/common/';
+import { PW_REGEX } from 'app/_utils/regex';
 import { CheckSquareIcon } from 'app/_components/icons';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';

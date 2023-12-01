@@ -1,17 +1,6 @@
-import { ALL_MEMEBER_API, API_URL } from 'app/_constants/apiUrl';
 import { MemberProfile } from 'app/_types/memberTypes';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-
-export async function getAllMember(role: string, fromServer: boolean = false) {
-  const url = fromServer
-    ? `${API_URL}${ALL_MEMEBER_API}?role=${role}`
-    : `${ALL_MEMEBER_API}?role=${role}`;
-
-  const { data } = await axios.get<{ memberList: MemberProfile[] }>(url);
-
-  return data;
-}
+import { getAllMember } from 'app/_service/user';
 
 function useAllMember(
   role: string,

@@ -1,4 +1,4 @@
-import { ClientFormProvider } from 'app/_components';
+import { ClientFormProvider } from 'app/_components/molecules';
 import {
   ButtonSection,
   MyAvatarForm,

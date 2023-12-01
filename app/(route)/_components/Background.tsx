@@ -1,6 +1,6 @@
 'use client';
 
-import { LeftButton, RightButton } from '@src/components/common/featureTag';
+import { LeftButton, RightButton } from 'app/_components/common';
 import { usePagination } from 'app/_hooks';
 import { styled } from 'styled-components';
 import { motion, AnimatePresence, Variants } from 'framer-motion';

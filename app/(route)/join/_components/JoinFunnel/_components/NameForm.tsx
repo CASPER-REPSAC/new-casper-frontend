@@ -1,14 +1,16 @@
 import { useEffect } from 'react';
-import { DefaultButton } from 'app/_components/defaultTag';
+import {
+  DefaultButton,
+  LabelInput,
+  FormErrorWrapper,
+} from 'app/_components/common';
 import { StarIcon, UserIcon } from 'app/_components/icons';
-import { LabelInput } from '@src/components/common/featureTag';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { REQUIRED_MESSAGE, ERROR_MESSAGE } from 'app/_constants/message';
-import { NAME_REGEX, NICKNAME_REGEX } from '@src/utils/regex';
+import { NAME_REGEX, NICKNAME_REGEX } from 'app/_utils/regex';
 import { useFormContext } from 'react-hook-form';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
 import { ICON_SIZE } from 'app/_constants/size';
-import { FormErrorWrapper } from '@src/components/common/';
 
 interface Props {
   onNext: () => void;

@@ -1,8 +1,7 @@
 import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { LabelInput } from '@src/components/common/featureTag';
 import { usePopup } from 'app/_hooks';
-import { DefaultButton, DefaultForm } from 'app/_components/defaultTag';
+import { DefaultButton, DefaultForm, LabelInput } from 'app/_components/common';
 import { LockIcon, UserIcon } from 'app/_components/icons';
 import { REQUIRED_MESSAGE } from 'app/_constants/message';
 import { ICON_SIZE } from 'app/_constants/size';

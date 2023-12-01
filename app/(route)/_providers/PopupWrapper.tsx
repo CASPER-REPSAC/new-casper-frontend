@@ -3,8 +3,8 @@ import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { popupListState } from 'app/_store';
 import { AnimatePresence } from 'framer-motion';
-import { ToastPopup } from '@src/components/molecules';
 import { usePopup } from 'app/_hooks';
+import { ToastPopup } from 'app/_components/molecules';
 
 function PopupWrapper() {
   const popupList = useRecoilValue(popupListState);

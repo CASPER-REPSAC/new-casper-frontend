@@ -1,5 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import { LabelInput, LabelTextarea } from '@src/components/common/featureTag';
+import { LabelInput, LabelTextarea } from 'app/_components/common';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
 import { Profile } from 'app/_types/userTypes';
 import { useRecoilValue } from 'recoil';

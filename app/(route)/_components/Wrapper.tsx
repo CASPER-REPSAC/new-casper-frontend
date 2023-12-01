@@ -1,4 +1,4 @@
-import { CommonCenterWrapper } from '@src/components/common/centerWrapper';
+import { CommonCenterWrapper } from 'app/_components/common';
 import styled from 'styled-components';
 
 const Wrapper = styled(CommonCenterWrapper)`
