@@ -8,7 +8,6 @@ export { default as DefaultHr } from './defaultTag/DefaultHr';
 export { default as DefaultInput } from './defaultTag/DefaultInput';
 export { default as DefaultTextarea } from './defaultTag/DefaultTextarea';
 
-export { default as AvatarInput } from './featureTag/AvatarInput';
 export { default as CheckInput } from './featureTag/CheckInput';
 export { default as LabelInput } from './featureTag/LabelInput';
 export { default as LabelTextarea } from './featureTag/LabelTextarea';

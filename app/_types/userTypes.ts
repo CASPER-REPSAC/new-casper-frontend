@@ -1,5 +1,5 @@
 export interface Profile {
-  avatar: string;
+  avatar: FileList;
   name: string;
   introduce: string;
   nickname: string;
