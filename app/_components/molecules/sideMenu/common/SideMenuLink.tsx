@@ -1,6 +1,5 @@
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { styled } from 'styled-components';
 
 interface Props {
   name: string;
@@ -9,36 +8,20 @@ interface Props {
 }
 function SideMenuLink({ name, highlight, href }: Props) {
   return (
-    <Wrapper href={href} scroll={false}>
+    <Link
+      className="relative flex h-10 items-center p-4 text-lg hover:bg-gray-700"
+      href={href}
+      scroll={false}
+    >
       {name}
-      {highlight && <Highlight layoutId="sideMenuHighlight" />}
-    </Wrapper>
+      {highlight && (
+        <motion.div
+          className="absolute left-0 -z-10 ml-1 h-full w-full border-r-2 border-solid border-r-purple-600 bg-gray-900"
+          layoutId="sideMenuHighlight"
+        />
+      )}
+    </Link>
   );
 }
-
-const Wrapper = styled(Link)`
-  position: relative;
-  display: flex;
-  padding: 1em;
-  height: 40px;
-  font-size: 2rem;
-  align-items: center;
-  &:hover {
-    background-color: ${({ theme }) => theme.sideMenuHover};
-  }
-  text-decoration: none;
-  color: ${(props) => props.theme.textDefault};
-`;
-
-const Highlight = styled(motion.div)`
-  z-index: -1;
-  position: absolute;
-  left: 0px;
-  background-color: ${({ theme }) => theme.surfaceAlt};
-  border-right: 3px solid ${({ theme }) => theme.purple};
-  width: 100%;
-  height: 100%;
-  margin-left: 2px;
-`;
 
 export default SideMenuLink;

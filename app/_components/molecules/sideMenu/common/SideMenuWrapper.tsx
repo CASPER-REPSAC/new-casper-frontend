@@ -1,24 +1,20 @@
 import { motion } from 'framer-motion';
-import { styled } from 'styled-components';
+import { ReactNode } from 'react';
 
-const SideMenuWrapper = styled(motion.div).attrs(() => ({
-  layoutRoot: true,
-  layout: true,
-}))`
-  position: sticky;
-  top: 200px;
+interface Props {
+  children: ReactNode;
+}
 
-  display: inline;
-  flex-direction: column;
-  height: 100%;
-  min-width: 230px;
-  width: 230px;
-  margin-right: 50px;
-
-  @media screen and (max-width: 1024px) {
-    width: 100%;
-    position: static;
-  }
-`;
+function SideMenuWrapper({ children }: Props) {
+  return (
+    <motion.div
+      className="static top-44 h-full  w-full lg:sticky lg:w-60"
+      layoutRoot
+      layout
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 export default SideMenuWrapper;
