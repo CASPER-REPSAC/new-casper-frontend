@@ -1,14 +1,17 @@
-import styled from 'styled-components';
-import { DefaultInputStyle } from './DefaultInput';
+import { TextareaHTMLAttributes } from 'react';
 
-const DefaultTextarea = styled.textarea.attrs(() => ({
-  spellCheck: false,
-}))`
-  ${DefaultInputStyle};
-  height: auto;
-  resize: none;
-  padding-top: 0.6em;
-  padding-bottom: 0.6em;
-`;
+interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+
+function DefaultTextarea({ className = '', ...props }: Props) {
+  const defaultClassName = 'input';
+
+  return (
+    <textarea
+      spellCheck={false}
+      className={`${defaultClassName} ${className}`}
+      {...props}
+    />
+  );
+}
 
 export default DefaultTextarea;
