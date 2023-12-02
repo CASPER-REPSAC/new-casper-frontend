@@ -10,6 +10,9 @@
   .label {
     @apply mb-2 inline-block text-sm;
   }
+  .select {
+    @apply border bg-gray-900;
+  }
 }
 
 .btn-sm {

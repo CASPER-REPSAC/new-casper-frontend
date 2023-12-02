@@ -24,7 +24,7 @@ function LabelInput(
   const hasErrorClassName = `${hasError ? 'border-red-300' : ''}`;
 
   return (
-    <div>
+    <div className="w-full">
       {label && (
         <label className="label" htmlFor={uniqueId}>
           {label}

@@ -6,7 +6,6 @@ export { default as DefaultButton } from './defaultTag/DefaultButton';
 export { default as DefaultLink } from './defaultTag/DefaultLink';
 export { default as DefaultHr } from './defaultTag/DefaultHr';
 export { default as DefaultInput } from './defaultTag/DefaultInput';
-export { default as DefaultSelect } from './defaultTag/DefaultSelect';
 export { default as DefaultTextarea } from './defaultTag/DefaultTextarea';
 
 export { default as AvatarInput } from './featureTag/AvatarInput';
