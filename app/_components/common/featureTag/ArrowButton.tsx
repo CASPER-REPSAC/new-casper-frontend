@@ -1,4 +1,3 @@
-import { styled, useTheme } from 'styled-components';
 import { Variants, motion } from 'framer-motion';
 import { ICON_SIZE } from 'app/_constants/size';
 import { LeftArrowIcon, RightArrowIcon } from '../../icons';
@@ -23,40 +22,33 @@ const variant: Variants = {
 };
 
 export function LeftButton({ onClick, size = ICON_SIZE.medium }: Props) {
-  const theme = useTheme();
   return (
-    <LeftButtonWrapper
+    <motion.button
+      type="button"
+      className="cursor-pointer"
       onClick={onClick}
       variants={variant}
       whileHover="hover"
       whileTap="tap"
       custom="left"
     >
-      <LeftArrowIcon size={size} color={theme.textDefault} />
-    </LeftButtonWrapper>
+      <LeftArrowIcon size={size} className="text-white" />
+    </motion.button>
   );
 }
 
 export function RightButton({ onClick, size = ICON_SIZE.medium }: Props) {
-  const theme = useTheme();
-
   return (
-    <RightButtonWrapper
+    <motion.button
+      type="button"
+      className="cursor-pointer"
       onClick={onClick}
       variants={variant}
       whileHover="hover"
       whileTap="tap"
       custom="right"
     >
-      <RightArrowIcon size={size} color={theme.textDefault} />
-    </RightButtonWrapper>
+      <RightArrowIcon size={size} className="text-white" />
+    </motion.button>
   );
 }
-
-const LeftButtonWrapper = styled(motion.button)`
-  cursor: pointer;
-`;
-
-const RightButtonWrapper = styled(motion.button)`
-  cursor: pointer;
-`;
