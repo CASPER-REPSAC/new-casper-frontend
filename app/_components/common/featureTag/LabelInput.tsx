@@ -26,7 +26,7 @@ function LabelInput(
   return (
     <div>
       {label && (
-        <label className="mb-2 inline-block text-sm" htmlFor={uniqueId}>
+        <label className="label" htmlFor={uniqueId}>
           {label}
         </label>
       )}

@@ -7,6 +7,9 @@
   .input {
     @apply block w-full rounded border border-solid border-gray-500 bg-gray-850 px-4 py-3 focus:outline-none focus:ring-1 focus:ring-inset;
   }
+  .label {
+    @apply mb-2 inline-block text-sm;
+  }
 }
 
 .btn-sm {

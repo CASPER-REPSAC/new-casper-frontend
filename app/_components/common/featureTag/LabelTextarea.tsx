@@ -1,5 +1,4 @@
 import { ForwardedRef, TextareaHTMLAttributes, forwardRef, useId } from 'react';
-import { styled } from 'styled-components';
 import DefaultTextarea from '../defaultTag/DefaultTextarea';
 
 interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
@@ -8,24 +7,18 @@ interface Props extends TextareaHTMLAttributes<HTMLTextAreaElement> {
 
 function LabelTextarea(
   { label, ...props }: Props,
-
   ref: ForwardedRef<HTMLTextAreaElement>,
 ) {
   const uniqueId = useId();
 
   return (
-    <Wrapper>
-      <Label htmlFor={uniqueId}>{label}</Label>
+    <div>
+      <label className="label" htmlFor={uniqueId}>
+        {label}
+      </label>
       <DefaultTextarea ref={ref} id={uniqueId} {...props} />
-    </Wrapper>
+    </div>
   );
 }
-const Wrapper = styled.div``;
-
-const Label = styled.label`
-  display: inline-block;
-  font-size: 1.4rem;
-  margin-bottom: 0.5em;
-`;
 
 export default forwardRef(LabelTextarea);
