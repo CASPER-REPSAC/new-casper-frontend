@@ -19,7 +19,7 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-gary-800 text-white">
+      <body className="bg-gray-800 text-white">
         <QueryWrapper>
           <RecoilRootWrapper>
             <AutoLoginPresence>

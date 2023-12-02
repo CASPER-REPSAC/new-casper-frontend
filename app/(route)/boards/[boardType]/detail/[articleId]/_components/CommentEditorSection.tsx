@@ -32,9 +32,7 @@ function CommentEditorSection() {
         rows={1}
       />
       <ButtonWrapper>
-        <DefaultButton type="submit" $color="green" $size="small">
-          추가
-        </DefaultButton>
+        <DefaultButton type="submit">추가</DefaultButton>
       </ButtonWrapper>
     </form>
   );

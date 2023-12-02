@@ -1,6 +1,6 @@
+import { DefaultLink } from 'app/_components/common';
 import { getOnePageArticleList } from 'app/_service/article';
 import { BoardListParams } from 'app/_types/boardTypes';
-import { LinkButton } from 'app/_components/common';
 import { PATH } from 'app/_constants/urls';
 import {
   BoardBody,
@@ -24,9 +24,9 @@ async function BoardPage({
           <BoardBody articleList={data.articleList} boardType={boardType} />
         }
         buttonSection={
-          <LinkButton $color="green" $size="medium" href={PATH.posts.url}>
+          <DefaultLink theme="green" href={PATH.posts.url}>
             작성 하기
-          </LinkButton>
+          </DefaultLink>
         }
         footerSection={
           <BoardFooter

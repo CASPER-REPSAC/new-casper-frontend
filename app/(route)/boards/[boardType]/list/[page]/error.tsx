@@ -1,7 +1,7 @@
 'use client';
 
-/* eslint-disable no-console */
 import { DefaultButton } from 'app/_components/common';
+/* eslint-disable no-console */
 import { useEffect } from 'react';
 
 interface Props {
@@ -17,9 +17,7 @@ export default function Error({ error, reset }: Props) {
   return (
     <div>
       <h2>알 수 없는 에러가 발생했어요.</h2>
-      <DefaultButton onClick={() => reset()} $color="green">
-        다시 시도하기
-      </DefaultButton>
+      <DefaultButton onClick={() => reset()}>다시 시도하기</DefaultButton>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import { MouseEventHandler } from 'react';
 import { useRecoilValue } from 'recoil';
 import { styled } from 'styled-components';
 import { Variants, motion } from 'framer-motion';
-import { DefaultHr, LinkButton } from 'app/_components/common/';
+import { DefaultHr, DefaultLink } from 'app/_components/common/';
 import { LoginIcon, LogoutIcon, UserIcon } from 'app/_components/icons';
 import { loginState } from 'app/_store/permissionAtoms';
 import { useLogoutMutation } from 'app/_hooks/apis/user';
@@ -31,46 +31,46 @@ function HambergerNavigation({ onClick }: Props) {
       <Menu onClick={(e) => e.stopPropagation()}>
         {isLogin ? (
           <>
-            <LinkButton href={`${PATH.user.mypage.url}`}>
+            <DefaultLink href={`${PATH.user.mypage.url}`}>
               <UserIcon />
-            </LinkButton>
+            </DefaultLink>
             <LogoutButton type="button" onClick={logout}>
               <LogoutIcon />
             </LogoutButton>
           </>
         ) : (
-          <LinkButton href={`${PATH.user.login.url}`}>
+          <DefaultLink href={`${PATH.user.login.url}`}>
             <LoginIcon />
-          </LinkButton>
+          </DefaultLink>
         )}
         <Hr />
         <PointText>게시판</PointText>
         <Hr />
-        <LinkButton href={`${PATH.boards.notice.url}/list/1`}>
+        <DefaultLink href={`${PATH.boards.notice.url}/list/1`}>
           {PATH.boards.notice.name}
-        </LinkButton>
-        <LinkButton href={`${PATH.boards.full.url}/list/1`}>
+        </DefaultLink>
+        <DefaultLink href={`${PATH.boards.full.url}/list/1`}>
           {PATH.boards.full.name}
-        </LinkButton>
-        <LinkButton href={`${PATH.boards.associate.url}/list/1`}>
+        </DefaultLink>
+        <DefaultLink href={`${PATH.boards.associate.url}/list/1`}>
           {PATH.boards.associate.name}
-        </LinkButton>
-        <LinkButton href={`${PATH.boards.graduate.url}/list/1`}>
+        </DefaultLink>
+        <DefaultLink href={`${PATH.boards.graduate.url}/list/1`}>
           {PATH.boards.graduate.name}
-        </LinkButton>
+        </DefaultLink>
         <Hr />
 
         <PointText>멤버</PointText>
         <Hr />
-        <LinkButton href={`${PATH.members.active.url}`}>
+        <DefaultLink href={`${PATH.members.active.url}`}>
           {PATH.members.active.name}
-        </LinkButton>
-        <LinkButton href={`${PATH.members.graduate.url}`}>
+        </DefaultLink>
+        <DefaultLink href={`${PATH.members.graduate.url}`}>
           {PATH.members.graduate.name}
-        </LinkButton>
-        <LinkButton href={`${PATH.members.rest.url}`}>
+        </DefaultLink>
+        <DefaultLink href={`${PATH.members.rest.url}`}>
           {PATH.members.rest.name}
-        </LinkButton>
+        </DefaultLink>
       </Menu>
     </FakeBackground>
   );

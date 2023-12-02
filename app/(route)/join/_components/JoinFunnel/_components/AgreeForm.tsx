@@ -1,5 +1,5 @@
 import { styled } from 'styled-components';
-import { DefaultButton, CheckInput } from 'app/_components/common';
+import { CheckInput } from 'app/_components/common';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { useFormContext } from 'react-hook-form';
 
@@ -30,16 +30,14 @@ function AgreeForm({ onNext }: Props) {
           <Point>보유 및 이용기간:</Point> 회원 탈퇴 시 까지
         </Li>
       </Info>
-      <DefaultButton
-        $full
-        $size="large"
-        $color="green"
-        $active={isValidValue}
+      <button
+        className={`btn btn-green ${!isValidValue && 'btn-disabled'}`}
         type="submit"
+        disabled={!isValidValue}
         onClick={handleSubmit(onNext)}
       >
         다음 단계
-      </DefaultButton>
+      </button>
     </>
   );
 }

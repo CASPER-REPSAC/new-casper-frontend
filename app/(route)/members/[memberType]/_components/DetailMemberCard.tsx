@@ -2,12 +2,12 @@ import { ReactElement } from 'react';
 import Image from 'next/image';
 import styled from 'styled-components';
 import { motion } from 'framer-motion';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { CloseIcon, HomeIcon, MailIcon } from 'app/_components/icons';
 import {
   detailedMemberPopupState,
   selectedMemberState,
 } from 'app/_store/memberCardAtoms';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { DefaultButton } from 'app/_components/common';
 import { ICON_SIZE } from 'app/_constants/size';
 import Z_INDEX from 'app/_constants/zIndex';
@@ -33,11 +33,7 @@ function DetailMemberCard() {
       layoutId={`detail_popup_${id}`}
     >
       <Header>
-        <DefaultButton
-          $size="small"
-          $color="red"
-          onClick={closeDetailedMemberPopup}
-        >
+        <DefaultButton onClick={closeDetailedMemberPopup}>
           <CloseIcon size={ICON_SIZE.small} />
         </DefaultButton>
       </Header>

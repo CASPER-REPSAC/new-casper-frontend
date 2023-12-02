@@ -1,8 +1,4 @@
-import {
-  DefaultButton,
-  FormErrorWrapper,
-  LabelInput,
-} from 'app/_components/common';
+import { FormErrorWrapper, LabelInput } from 'app/_components/common';
 import { UserIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
@@ -31,7 +27,7 @@ function IdForm({ onNext }: Props) {
     },
   });
 
-  const isValudValue =
+  const isValidValue =
     !errors.id && watch('id') !== '' && watch('id') !== undefined;
 
   useEffect(() => {
@@ -52,14 +48,14 @@ function IdForm({ onNext }: Props) {
           <li>{errors.id?.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton
-        $size="large"
-        $color="green"
-        $active={isValudValue}
+      <button
+        className={`btn btn-green ${!isValidValue && 'btn-disabled'}`}
+        type="submit"
+        disabled={!isValidValue}
         onClick={onNext}
       >
-        완료
-      </DefaultButton>
+        다음 단계
+      </button>
     </>
   );
 }

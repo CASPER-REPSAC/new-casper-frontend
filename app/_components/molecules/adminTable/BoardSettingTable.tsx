@@ -17,12 +17,12 @@ function BoardSettingTable({ title, categories }: Props) {
     <Details open={isOpen} onToggle={() => setIsOpen((cur) => !cur)}>
       <Summary>
         <span>{title}</span>
-        {isOpen && <DefaultButton>저장하기</DefaultButton>}
+        {isOpen && <DefaultButton size="sm">저장하기</DefaultButton>}
       </Summary>
       <Section>
         <Title>
           <span>카테고리</span>
-          <DefaultButton $size="small">추가하기</DefaultButton>
+          <DefaultButton size="sm">추가하기</DefaultButton>
         </Title>
         <Item>
           <CategoryList>

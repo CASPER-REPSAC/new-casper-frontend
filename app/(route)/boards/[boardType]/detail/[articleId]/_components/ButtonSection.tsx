@@ -34,17 +34,11 @@ function ButtonSection({ articleId }: { articleId: string }) {
   };
   return (
     <Wrapper>
-      {editable ? (
-        <DefaultButton $size="small" onClick={completeModification}>
-          완료
-        </DefaultButton>
-      ) : (
-        <DefaultButton $size="small" onClick={changeEditMode}>
-          수정
-        </DefaultButton>
-      )}
+      <DefaultButton onClick={editable ? completeModification : changeEditMode}>
+        {editable ? '완료' : '수정'}
+      </DefaultButton>
 
-      <DefaultButton $color="red" $size="small" onClick={deleteArticle}>
+      <DefaultButton theme="red" onClick={deleteArticle}>
         삭제
       </DefaultButton>
     </Wrapper>

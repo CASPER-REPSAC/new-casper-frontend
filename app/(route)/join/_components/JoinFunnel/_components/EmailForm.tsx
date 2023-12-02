@@ -1,8 +1,4 @@
-import {
-  DefaultButton,
-  FormErrorWrapper,
-  LabelInput,
-} from 'app/_components/common';
+import { FormErrorWrapper, LabelInput } from 'app/_components/common';
 import { MailIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
@@ -54,15 +50,14 @@ function EmailForm({ onNext }: Props) {
           <li>{errors.email.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton
+      <button
+        className={`btn btn-green ${!isValidValue && 'btn-disabled'}`}
         type="submit"
-        $size="large"
-        $color="green"
+        disabled={!isValidValue}
         onClick={handleSubmit(onNext)}
-        $active={isValidValue}
       >
         다음 단계
-      </DefaultButton>
+      </button>
     </>
   );
 }

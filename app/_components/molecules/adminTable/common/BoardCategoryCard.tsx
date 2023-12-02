@@ -10,7 +10,7 @@ function BoardCategoryCard({ title }: Props) {
   return (
     <CategoryItem>
       <span>{title}</span>
-      <DefaultButton $size="small" color="red">
+      <DefaultButton size="sm" theme="red">
         <CloseIcon />
       </DefaultButton>
     </CategoryItem>

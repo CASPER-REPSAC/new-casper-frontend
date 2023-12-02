@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
-import {
-  DefaultButton,
-  LabelInput,
-  FormErrorWrapper,
-} from 'app/_components/common';
+import { LabelInput, FormErrorWrapper } from 'app/_components/common';
 import { StarIcon, UserIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { REQUIRED_MESSAGE, ERROR_MESSAGE } from 'app/_constants/message';
@@ -77,15 +73,14 @@ function NameForm({ onNext }: Props) {
           {errors.nickname && <li>{errors.nickname.message}</li>}
         </FormErrorWrapper>
       )}
-      <DefaultButton
-        $size="large"
-        $color="green"
-        $active={isValidValue}
+      <button
+        className={`btn btn-green ${!isValidValue && 'btn-disabled'}`}
         type="submit"
+        disabled={!isValidValue}
         onClick={handleSubmit(onNext)}
       >
         다음 단계
-      </DefaultButton>
+      </button>
     </>
   );
 }

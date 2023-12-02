@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { PATH } from 'app/_constants/urls';
-import { LinkButton } from 'app/_components/common';
+import { DefaultLink } from 'app/_components/common';
 
 function LoginMoreLinks() {
   return (
     <Wrapper>
-      <LinkButton href={PATH.user.join.url}>회원가입</LinkButton>
+      <DefaultLink href={PATH.user.join.url}>회원가입</DefaultLink>
     </Wrapper>
   );
 }

@@ -2,7 +2,6 @@ import { DefaultButton } from 'app/_components/common';
 import { usePostArticleMutation } from 'app/_hooks/apis/boards';
 import { PostReqData } from 'app/_types/PostTypes';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
-import { styled } from 'styled-components';
 
 function WriteButtonSection() {
   const { handleSubmit } = useFormContext<PostReqData>();
@@ -13,19 +12,17 @@ function WriteButtonSection() {
   };
 
   return (
-    <Wrapper>
-      <WriteButton $size="large" $color="green" onClick={handleSubmit(onValid)}>
+    <div className="flex justify-end">
+      <DefaultButton
+        theme="green"
+        className="w-full"
+        size="lg"
+        onClick={handleSubmit(onValid)}
+      >
         작성 하기
-      </WriteButton>
-    </Wrapper>
+      </DefaultButton>
+    </div>
   );
 }
 
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: flex-end;
-`;
-const WriteButton = styled(DefaultButton)`
-  width: 100%;
-`;
 export default WriteButtonSection;

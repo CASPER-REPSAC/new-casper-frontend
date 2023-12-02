@@ -16,10 +16,8 @@ function Comment({ name, date, content }: Props) {
           <Name>{name}</Name>
           <Date>{date}</Date>
           <Buttons>
-            <DefaultButton $size="small">수정</DefaultButton>
-            <DefaultButton $size="small" $color="red">
-              삭제
-            </DefaultButton>
+            <DefaultButton>수정</DefaultButton>
+            <DefaultButton theme="red">삭제</DefaultButton>
           </Buttons>
         </Header>
         <Content>{content}</Content>

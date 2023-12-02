@@ -50,7 +50,7 @@ function Background({ backgroundImages }: Props) {
         </div>
 
         <div className="flex flex-row items-center">
-          <div className="flex h-1 w-60 bg-gary-500">{PageBar}</div>
+          <div className="flex h-1 w-60 bg-gray-500">{PageBar}</div>
           <LeftButton onClick={() => paginate(-1)} />
           <RightButton onClick={() => paginate(1)} />
         </div>

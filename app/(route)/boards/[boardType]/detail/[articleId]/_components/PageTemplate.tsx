@@ -19,7 +19,7 @@ function PageTemplate({
   commentSection,
 }: Props) {
   return (
-    <Wrapper>
+    <div>
       <TitleSection>
         <Title>{titleSection}</Title>
         <Buttons>{titleButtonSection}</Buttons>
@@ -31,11 +31,10 @@ function PageTemplate({
         {commentEditorSection}
       </CommentEditorSection>
       <CommentSection>{commentSection}</CommentSection>
-    </Wrapper>
+    </div>
   );
 }
 
-const Wrapper = styled.div``;
 const ContentSection = styled.section`
   min-height: 300px;
   margin-bottom: 5rem;

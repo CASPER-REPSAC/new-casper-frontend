@@ -1,11 +1,10 @@
-import { styled } from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { loginState } from 'app/_store/permissionAtoms';
 import { PATH } from 'app/_constants/urls';
 import { ICON_SIZE } from 'app/_constants/size';
 import { LoginIcon, LogoutIcon, UserIcon } from 'app/_components/icons';
 import { useLogoutMutation } from 'app/_hooks/apis/user';
-import { LinkButton, DefaultButton } from 'app/_components/common';
+import { DefaultLink, DefaultButton } from 'app/_components/common';
 import BarNavMenu from './BarNavMenu';
 
 function BarNaviagtion() {
@@ -15,19 +14,19 @@ function BarNaviagtion() {
   const { members, boards, extra } = PATH;
 
   const memberMenus = Object.values(members).map(({ name, url }) => (
-    <LinkButton key={name} $full href={url}>
+    <DefaultLink key={name} className="w-full" href={url}>
       {name}
-    </LinkButton>
+    </DefaultLink>
   ));
   const boardsMenus = Object.values(boards).map(({ name, url }) => (
-    <LinkButton key={name} $full href={`${url}/list/1`}>
+    <DefaultLink key={name} className="w-full" href={`${url}/list/1`}>
       {name}
-    </LinkButton>
+    </DefaultLink>
   ));
   const intranetMenus = Object.values(extra).map(({ name, url }) => (
     <DefaultButton
       key={name}
-      $full
+      className="w-full"
       onClick={() => {
         window.location.href = url;
       }}
@@ -37,68 +36,60 @@ function BarNaviagtion() {
   ));
 
   return (
-    <>
-      <Wrapper>
-        {/* <BarNavMenu onClick={() => push(ADMIN_PATH.home.url)}>
+    <div className="flex h-full items-start justify-between ">
+      {/* <BarNavMenu onClick={() => push(ADMIN_PATH.home.url)}>
           <BarNavMenu.Title>ADMIN - 임시</BarNavMenu.Title>
         </BarNavMenu> */}
 
-        <BarNavMenu
-          title={
-            <LinkButton $full href={members.active.url}>
-              Members
-            </LinkButton>
-          }
-          subMenus={memberMenus}
-        />
-        <BarNavMenu
-          title={
-            <LinkButton $full href={`${boards.notice.url}/list/1`}>
-              Boards
-            </LinkButton>
-          }
-          subMenus={boardsMenus}
-        />
-        <BarNavMenu
-          title={<DefaultButton>Intranet</DefaultButton>}
-          subMenus={intranetMenus}
-        />
+      <BarNavMenu
+        title={
+          <DefaultLink className="w-full" href={members.active.url}>
+            Members
+          </DefaultLink>
+        }
+        subMenus={memberMenus}
+      />
+      <BarNavMenu
+        title={
+          <DefaultLink className="w-full" href={`${boards.notice.url}/list/1`}>
+            Boards
+          </DefaultLink>
+        }
+        subMenus={boardsMenus}
+      />
+      <BarNavMenu
+        title={<DefaultButton>Intranet</DefaultButton>}
+        subMenus={intranetMenus}
+      />
 
-        {login ? (
-          <>
-            <BarNavMenu
-              title={
-                <LinkButton $full href={PATH.user.mypage.url}>
-                  <UserIcon size={ICON_SIZE.small} />
-                </LinkButton>
-              }
-            />
-            <BarNavMenu
-              title={
-                <DefaultButton onClick={logout}>
-                  <LogoutIcon size={ICON_SIZE.small} />
-                </DefaultButton>
-              }
-            />
-          </>
-        ) : (
+      {login ? (
+        <>
           <BarNavMenu
             title={
-              <LinkButton $full href={PATH.user.login.url}>
-                <LoginIcon size={ICON_SIZE.small} />
-              </LinkButton>
+              <DefaultLink className="w-full" href={PATH.user.mypage.url}>
+                <UserIcon size={ICON_SIZE.small} />
+              </DefaultLink>
             }
           />
-        )}
-      </Wrapper>
-    </>
+          <BarNavMenu
+            title={
+              <DefaultButton onClick={logout}>
+                <LogoutIcon size={ICON_SIZE.small} />
+              </DefaultButton>
+            }
+          />
+        </>
+      ) : (
+        <BarNavMenu
+          title={
+            <DefaultLink className="w-full" href={PATH.user.login.url}>
+              <LoginIcon size={ICON_SIZE.small} />
+            </DefaultLink>
+          }
+        />
+      )}
+    </div>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-self: flex-start;
-`;
 
 export default BarNaviagtion;

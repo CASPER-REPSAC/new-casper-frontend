@@ -1,6 +1,6 @@
 import { styled } from 'styled-components';
 import { useRouter } from 'next/navigation';
-import { CircleButton, LeftButton, RightButton } from 'app/_components/common';
+import { DefaultButton, LeftButton, RightButton } from 'app/_components/common';
 import SCREEN_SIZE from 'app/_constants/screenWidth';
 import { ICON_SIZE } from 'app/_constants/size';
 import { usePagination, useWindowSize } from 'app/_hooks';
@@ -35,15 +35,16 @@ function BoardFooter({ maxPage, curPage, params }: Props) {
 
           const onMouseEnter = () => prefetch(href);
           return (
-            <CircleButton
+            <DefaultButton
+              className={`${
+                page === curPage && 'border border-solid border-gray-400'
+              }`}
               key={page}
-              $size="small"
               onMouseEnter={onMouseEnter}
               onClick={onClick}
-              $highlight={page === curPage}
             >
               {page}
-            </CircleButton>
+            </DefaultButton>
           );
         })}
       </PageButtonSection>

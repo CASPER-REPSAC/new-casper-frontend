@@ -1,6 +1,5 @@
 import { Variants, motion } from 'framer-motion';
 import { useId } from 'react';
-import { styled } from 'styled-components';
 
 interface Props {
   menus: JSX.Element[];
@@ -9,7 +8,8 @@ interface Props {
 function SubMenu({ menus }: Props) {
   const uniqueId = useId();
   return (
-    <SubMenuWrapper
+    <motion.ul
+      className="border-gray-white rounded border border-solid bg-gray-600 p-2"
       variants={subMenuVariants}
       initial="hidden"
       animate="visible"
@@ -19,7 +19,7 @@ function SubMenu({ menus }: Props) {
           {menu}
         </motion.li>
       ))}
-    </SubMenuWrapper>
+    </motion.ul>
   );
 }
 
@@ -39,12 +39,5 @@ const subMenuVariants: Variants = {
     },
   },
 };
-
-const SubMenuWrapper = styled(motion.ul)`
-  padding: 1rem;
-  background-color: ${({ theme }) => theme.subMenuSurface};
-  border-radius: 4px;
-  border: 1px solid ${({ theme }) => theme.subMenuBorder};
-`;
 
 export default SubMenu;

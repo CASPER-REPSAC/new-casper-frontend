@@ -48,24 +48,20 @@ function LoginForm() {
         type="password"
         autoComplete="off"
       />
-      <LoginButton
-        $size="large"
-        $color="green"
-        $full
+      <DefaultButton
+        theme="green"
+        className="mt-3"
         type="submit"
         onClick={handleSubmit(onValid, onInvalid)}
       >
         로그인
-      </LoginButton>
+      </DefaultButton>
     </Form>
   );
 }
 
 const Form = styled(DefaultForm)`
   gap: 0.5em;
-`;
-const LoginButton = styled(DefaultButton)`
-  margin-top: 1em;
 `;
 
 export default LoginForm;
