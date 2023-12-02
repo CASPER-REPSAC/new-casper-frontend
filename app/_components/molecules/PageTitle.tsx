@@ -1,5 +1,4 @@
 import { usePathname } from 'next/navigation';
-import styled from 'styled-components';
 import { HomeIcon } from '../icons';
 
 interface Props {
@@ -8,44 +7,16 @@ interface Props {
 
 function PageTitle({ pageTitle }: Props) {
   const pathname = usePathname();
-  const path = pathname?.replaceAll('/', ' ↣ ');
+  const path = pathname?.replaceAll('/', ' - ');
 
   return (
-    <Wrapper>
-      <Title>{pageTitle}</Title>
-      <Sub>
+    <div className="flex-center mb-10 h-24 flex-col bg-gray-900">
+      <h1 className="text-4xl">{pageTitle}</h1>
+      <span className="flex items-center gap-2 text-gray-50">
         <HomeIcon /> {path}
-      </Sub>
-    </Wrapper>
+      </span>
+    </div>
   );
 }
-
-const Wrapper = styled.div`
-  background-color: ${({ theme }) => theme.pageTitleSurface};
-  height: 100px;
-  width: 100%;
-  color: ${(props) => props.theme.textStrong};
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 1em;
-  margin-bottom: 5rem;
-
-  @media screen and (min-width: 1024px) {
-    margin-bottom: 4rem;
-    height: 120px;
-  }
-`;
-const Title = styled.div`
-  font-size: 4.8rem;
-`;
-const Sub = styled.div`
-  font-size: 1.6rem;
-  font-weight: lighter;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 
 export default PageTitle;
