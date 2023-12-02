@@ -14,7 +14,6 @@ export { default as CheckInput } from './featureTag/CheckInput';
 export { default as LabelInput } from './featureTag/LabelInput';
 export { default as LabelTextarea } from './featureTag/LabelTextarea';
 export { default as RadioInput } from './featureTag/RadioInput';
-export { default as CircleButton } from './featureTag/CircleButton';
 export { LeftButton, RightButton } from './featureTag/ArrowButton';
 
 export { default as CasperLogo } from './CasperLogo';
