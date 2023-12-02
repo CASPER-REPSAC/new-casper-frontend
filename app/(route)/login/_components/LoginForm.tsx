@@ -1,7 +1,6 @@
-import { styled } from 'styled-components';
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { usePopup } from 'app/_hooks';
-import { DefaultButton, DefaultForm, LabelInput } from 'app/_components/common';
+import { DefaultButton, LabelInput } from 'app/_components/common';
 import { LockIcon, UserIcon } from 'app/_components/icons';
 import { REQUIRED_MESSAGE } from 'app/_constants/message';
 import { ICON_SIZE } from 'app/_constants/size';
@@ -35,7 +34,7 @@ function LoginForm() {
   };
 
   return (
-    <Form>
+    <form className="small-center flex flex-col gap-1">
       <LabelInput
         labelIcon={<UserIcon size={ICON_SIZE.small} />}
         {...idRegister}
@@ -49,19 +48,15 @@ function LoginForm() {
         autoComplete="off"
       />
       <DefaultButton
-        theme="green"
-        className="mt-3"
         type="submit"
+        theme="green"
+        className="mt-3 w-full"
         onClick={handleSubmit(onValid, onInvalid)}
       >
         로그인
       </DefaultButton>
-    </Form>
+    </form>
   );
 }
-
-const Form = styled(DefaultForm)`
-  gap: 0.5em;
-`;
 
 export default LoginForm;

@@ -1,9 +1,5 @@
-import styled from 'styled-components';
-
-const DefaultHr = styled.hr`
-  background: ${({ theme }) => theme.borderDefault};
-  height: 1px;
-  border: 0;
-`;
+function DefaultHr() {
+  return <hr className="border-none bg-gray-100" />;
+}
 
 export default DefaultHr;

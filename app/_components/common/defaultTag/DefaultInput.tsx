@@ -1,36 +1,20 @@
-import styled, { css } from 'styled-components';
+import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 
-export const DefaultInputStyle = css`
-  &:-webkit-autofill,
-  &:-webkit-autofill:hover,
-  &:-webkit-autofill:focus {
-    -webkit-text-fill-color: ${({ theme }) => theme.textDefault};
-    -webkit-box-shadow: 0 0 0px 1000px ${({ theme }) => theme.inputSurface}
-      inset;
-  }
-  &:focus {
-    outline: none;
-    border-color: ${({ theme }) => theme.borderBold};
-  }
-  &:disabled {
-    cursor: not-allowed;
-    background-color: ${({ theme }) => theme.disabledInputSurface};
-    color: ${({ theme }) => theme.textWeek};
-  }
-  background-color: ${({ theme }) => theme.inputSurface};
-  border: 1px solid ${({ theme }) => theme.borderDefault};
-  color: ${({ theme }) => theme.textDefault};
-  border-radius: 3px;
-  padding-left: 10px;
-  padding-right: 10px;
-  font-size: 1.5rem;
-  box-sizing: border-box;
-  height: 50px;
-  width: 100%;
-`;
+interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
-const DefaultInput = styled.input`
-  ${DefaultInputStyle}
-`;
+function DefaultInput(
+  { className, ...props }: Props,
+  ref: ForwardedRef<HTMLInputElement>,
+) {
+  const defaultClassName = 'input';
 
-export default DefaultInput;
+  return (
+    <input
+      ref={ref}
+      className={`${defaultClassName} ${className}`}
+      {...props}
+    />
+  );
+}
+
+export default forwardRef(DefaultInput);
