@@ -18,25 +18,23 @@ function MyAvatarForm() {
   }, [image]);
 
   return (
-    <>
-      <label
-        className="flex-center input relative h-52 w-52 cursor-pointer self-center overflow-hidden rounded-full hover:brightness-75"
-        htmlFor={uniqueId}
-      >
-        {previewSrc ? (
-          <Image className="object-cover" src={previewSrc} alt="preview" fill />
-        ) : (
-          <>이미지 변경하기</>
-        )}
-        <input
-          className="hidden"
-          {...register('avatar')}
-          id={uniqueId}
-          type="file"
-          accept="image/*"
-        />
-      </label>
-    </>
+    <label
+      className="flex-center input relative h-52 w-52 cursor-pointer self-center overflow-hidden rounded-full hover:brightness-75"
+      htmlFor={uniqueId}
+    >
+      {previewSrc ? (
+        <Image className="object-cover" src={previewSrc} alt="preview" fill />
+      ) : (
+        <>이미지 변경하기</>
+      )}
+      <input
+        className="hidden"
+        {...register('avatar')}
+        id={uniqueId}
+        type="file"
+        accept="image/*"
+      />
+    </label>
   );
 }
 
