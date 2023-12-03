@@ -32,6 +32,8 @@ const blockNotedarkTheme = {
     Editor: {
       cursor: 'text',
       height: '100%',
+      paddingTop: '1rem',
+      paddingBottom: '1rem',
       '.tiptap': {
         background: COLORS.gray850,
       },

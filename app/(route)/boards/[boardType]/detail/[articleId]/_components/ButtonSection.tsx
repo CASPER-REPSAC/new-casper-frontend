@@ -7,7 +7,6 @@ import {
 import { editableState } from 'app/_store/detailPageAtoms';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilState } from 'recoil';
-import styled from 'styled-components';
 
 function ButtonSection({ articleId }: { articleId: string }) {
   const methods = useFormContext();
@@ -33,21 +32,19 @@ function ButtonSection({ articleId }: { articleId: string }) {
     refetch();
   };
   return (
-    <Wrapper>
-      <DefaultButton onClick={editable ? completeModification : changeEditMode}>
+    <div className="flex gap-4">
+      <DefaultButton
+        size="sm"
+        onClick={editable ? completeModification : changeEditMode}
+      >
         {editable ? '완료' : '수정'}
       </DefaultButton>
 
-      <DefaultButton theme="red" onClick={deleteArticle}>
+      <DefaultButton size="sm" theme="red" onClick={deleteArticle}>
         삭제
       </DefaultButton>
-    </Wrapper>
+    </div>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  gap: 1rem;
-`;
 
 export default ButtonSection;

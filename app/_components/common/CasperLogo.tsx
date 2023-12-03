@@ -27,7 +27,13 @@ function CasperLogo({ onClick, className: additionalClassName }: Props) {
       whileHover="hover"
       whileTap="tap"
     >
-      <Image className="object-contain" src={logoSrc} alt="casper logo" fill />
+      <Image
+        className="object-contain"
+        sizes="(min-width: 768px) 50vw, 100vw"
+        src={logoSrc}
+        alt="casper logo"
+        fill
+      />
     </motion.div>
   );
 }

@@ -3,8 +3,7 @@
 export { default as BoardSettingTable } from './adminTable/BoardSettingTable';
 export { default as DashboardTable } from './adminTable/DashboardTable';
 
-export { default as BlockNote } from './editor/BlockNote';
-export { default as Comment } from './editor/Comment';
+export { default as BlockNote } from './BlockNote';
 
 export { default as BoardSideMenu } from './sideMenu/BoardSideMenu';
 export { default as MemberSideMenu } from './sideMenu/MemberSideMenu';

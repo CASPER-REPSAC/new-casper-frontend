@@ -1,4 +1,4 @@
-import { styled } from 'styled-components';
+import Avatar from './common/Avatar';
 
 interface Props {
   nickname: string;
@@ -6,36 +6,17 @@ interface Props {
 
 function AuthorSection({ nickname }: Props) {
   return (
-    <AuthorInfo>
-      <Avatar />
-      <Info>
-        <AuthorName>{nickname}</AuthorName>
-        <Desc>소개글</Desc>
-      </Info>
-    </AuthorInfo>
+    <div className="flex items-center gap-8 ">
+      <Avatar className="shrink-0" src="/defaultprofile.webp" />
+      <div className="flex flex-col gap-4">
+        <h1 className="text-2xl">{nickname}</h1>
+        <p className="w-2/3">
+          소개글 소개글소개글소개글 소개글소개글소개글 소개글소개글소개글
+          소개글소개글소개글
+        </p>
+      </div>
+    </div>
   );
 }
-
-const AuthorInfo = styled.div`
-  display: flex;
-  align-items: center;
-`;
-const Avatar = styled.div`
-  width: 100px;
-  height: 100px;
-  background-color: ${({ theme }) => theme.borderDefault};
-  margin-right: 50px;
-`;
-const Info = styled.div`
-  display: flex;
-  flex-direction: column;
-`;
-const AuthorName = styled.h1`
-  font-size: 2.4rem;
-  margin-bottom: 0.5em;
-`;
-const Desc = styled.div`
-  font-size: 2rem;
-`;
 
 export default AuthorSection;

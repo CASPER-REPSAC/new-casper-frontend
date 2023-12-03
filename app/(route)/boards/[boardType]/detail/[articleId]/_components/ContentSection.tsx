@@ -6,13 +6,18 @@ import { usePopup } from 'app/_hooks';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 import { editableState } from 'app/_store/detailPageAtoms';
+import { Skeleton } from 'app/_components/common';
 
-const BlockNote = dynamic(
-  () => import('app/_components/molecules/editor/BlockNote'),
-  {
-    ssr: false,
-  },
-);
+const BlockNote = dynamic(() => import('app/_components/molecules/BlockNote'), {
+  ssr: false,
+  loading: () => (
+    <div className="flex h-full w-full flex-col gap-4 px-12">
+      <Skeleton className="h-6 w-full rounded-full" />
+      <Skeleton className="h-6 w-1/3 rounded-full" />
+      <Skeleton className="h-6 w-1/2 rounded-full" />
+    </div>
+  ),
+});
 
 interface Props {
   articleContent: string;

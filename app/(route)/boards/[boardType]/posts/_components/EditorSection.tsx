@@ -6,13 +6,10 @@ import { POPUP_DURATION } from 'app/_constants/duration';
 import { useFormContext } from 'react-hook-form';
 import { Skeleton } from 'app/_components/common';
 
-const BlockNote = dynamic(
-  () => import('app/_components/molecules/editor/BlockNote'),
-  {
-    ssr: false,
-    loading: () => <Skeleton className="h-full" />,
-  },
-);
+const BlockNote = dynamic(() => import('app/_components/molecules/BlockNote'), {
+  ssr: false,
+  loading: () => <Skeleton className="h-full" />,
+});
 
 function EditorSection() {
   const { setValue } = useFormContext();
