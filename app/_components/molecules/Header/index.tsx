@@ -32,7 +32,10 @@ function Header() {
             <MenuIcon size={ICON_SIZE.large} />
           </DefaultButton>
 
-          <CasperLogo size="small" onClick={() => push(PATH.home.url)} />
+          <CasperLogo
+            className="h-10 w-24 cursor-pointer"
+            onClick={() => push(PATH.home.url)}
+          />
 
           <BarNaviagtion className="hidden lg:flex" />
         </div>
