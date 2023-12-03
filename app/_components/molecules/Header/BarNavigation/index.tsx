@@ -7,7 +7,11 @@ import { useLogoutMutation } from 'app/_hooks/apis/user';
 import { DefaultLink, DefaultButton } from 'app/_components/common';
 import BarNavMenu from './BarNavMenu';
 
-function BarNaviagtion() {
+interface Props {
+  className?: string;
+}
+
+function BarNaviagtion({ className: additionalClassName }: Props) {
   const login = useRecoilValue(loginState);
   const { mutate: mutateLogout } = useLogoutMutation();
   const logout = () => mutateLogout();
@@ -36,7 +40,9 @@ function BarNaviagtion() {
   ));
 
   return (
-    <div className="flex h-full items-start justify-between ">
+    <div
+      className={`flex h-full items-start justify-between ${additionalClassName}`}
+    >
       {/* <BarNavMenu onClick={() => push(ADMIN_PATH.home.url)}>
           <BarNavMenu.Title>ADMIN - 임시</BarNavMenu.Title>
         </BarNavMenu> */}
