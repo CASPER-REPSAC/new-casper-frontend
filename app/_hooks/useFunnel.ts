@@ -20,9 +20,8 @@ function useFunnel<T extends string>(initialStep: T) {
 
   const setFunnelStep = (step: T) => {
     const nextUrl = PATH.user.join.url;
-    const stepQuery = { [QUERY_KEY]: step };
     setStep(step);
-    push(nextUrl, { query: stepQuery });
+    push(`${nextUrl}?${QUERY_KEY}=${step}`);
   };
 
   useEffect(controllFunnelStep, [controllFunnelStep]);

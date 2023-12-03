@@ -1,4 +1,8 @@
-import { FormErrorWrapper, LabelInput } from 'app/_components/common';
+import {
+  DefaultButton,
+  FormErrorWrapper,
+  LabelInput,
+} from 'app/_components/common';
 import { MailIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
@@ -38,26 +42,22 @@ function EmailForm({ onNext }: Props) {
   return (
     <>
       <LabelInput
+        type="email"
         label={INPUT_LABEL.email}
         labelIcon={<MailIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.email}
-        autoComplete="off"
         hasError={!!errors.email}
         {...emailRegister}
       />
-      {!isValidValue && errors.email && (
+
+      {!isValidValue && (
         <FormErrorWrapper>
-          <li>{errors.email.message}</li>
+          <li>{errors.email?.message}</li>
         </FormErrorWrapper>
       )}
-      <button
-        className={`btn btn-green ${!isValidValue && 'btn-disabled'}`}
-        type="submit"
-        disabled={!isValidValue}
-        onClick={handleSubmit(onNext)}
-      >
+      <DefaultButton theme="green" type="submit" onClick={handleSubmit(onNext)}>
         다음 단계
-      </button>
+      </DefaultButton>
     </>
   );
 }

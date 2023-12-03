@@ -1,8 +1,5 @@
 'use client';
 
-export { default as BoardSettingTable } from './adminTable/BoardSettingTable';
-export { default as DashboardTable } from './adminTable/DashboardTable';
-
 export { default as BlockNote } from './BlockNote';
 
 export { default as BoardSideMenu } from './sideMenu/BoardSideMenu';

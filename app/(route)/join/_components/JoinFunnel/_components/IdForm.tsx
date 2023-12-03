@@ -1,10 +1,13 @@
-import { FormErrorWrapper, LabelInput } from 'app/_components/common';
+import {
+  DefaultButton,
+  FormErrorWrapper,
+  LabelInput,
+} from 'app/_components/common';
 import { UserIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
-import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
+import { REQUIRED_MESSAGE } from 'app/_constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
 import { useFormContext } from 'react-hook-form';
-import { ID_REGEX } from 'app/_utils/regex';
 import { useEffect } from 'react';
 
 interface Props {
@@ -21,10 +24,6 @@ function IdForm({ onNext }: Props) {
 
   const idRegister = register('id', {
     required: REQUIRED_MESSAGE.id,
-    pattern: {
-      value: ID_REGEX,
-      message: ERROR_MESSAGE.id,
-    },
   });
 
   const isValidValue =
@@ -48,14 +47,14 @@ function IdForm({ onNext }: Props) {
           <li>{errors.id?.message}</li>
         </FormErrorWrapper>
       )}
-      <button
-        className={`btn btn-green ${!isValidValue && 'btn-disabled'}`}
+      <DefaultButton
+        theme="green"
         type="submit"
         disabled={!isValidValue}
         onClick={onNext}
       >
         다음 단계
-      </button>
+      </DefaultButton>
     </>
   );
 }

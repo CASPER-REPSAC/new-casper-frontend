@@ -1,7 +1,5 @@
-import Z_INDEX from 'app/_constants/zIndex';
 import { AnimatePresence, motion } from 'framer-motion';
 import { MouseEventHandler, ReactElement } from 'react';
-import styled from 'styled-components';
 
 interface Props {
   children?: ReactElement;
@@ -11,28 +9,17 @@ interface Props {
 function PageShadow({ children, onClick }: Props) {
   return (
     <AnimatePresence>
-      <Wrapper
+      <motion.div
+        className="flex-center fixed left-0 top-0 z-pageShadow h-screen w-screen bg-black/70"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         onClick={onClick}
       >
         {children}
-      </Wrapper>
+      </motion.div>
     </AnimatePresence>
   );
 }
 
-const Wrapper = styled(motion.div)`
-  position: fixed;
-  z-index: ${Z_INDEX.pageShadow};
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.7);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
 export default PageShadow;

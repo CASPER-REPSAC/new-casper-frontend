@@ -1,7 +1,5 @@
 'use client';
 
-export { default as AdminCenterWrapper } from './centerWrapper/AdminCenterWrapper';
-
 export { default as DefaultButton } from './defaultTag/DefaultButton';
 export { default as DefaultLink } from './defaultTag/DefaultLink';
 export { default as DefaultHr } from './defaultTag/DefaultHr';

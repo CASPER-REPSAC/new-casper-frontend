@@ -1,5 +1,9 @@
 import { useFormContext } from 'react-hook-form';
-import { LabelInput, FormErrorWrapper } from 'app/_components/common';
+import {
+  LabelInput,
+  FormErrorWrapper,
+  DefaultButton,
+} from 'app/_components/common';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { PW_REGEX } from 'app/_utils/regex';
 import { CheckSquareIcon } from 'app/_components/icons';
@@ -70,14 +74,14 @@ function PasswordForm({ onNext }: Props) {
           {errors.pwConfirm && <li>{errors.pwConfirm.message}</li>}
         </FormErrorWrapper>
       )}
-      <button
-        className={`btn btn-green ${!isValidValue && 'btn-disabled'}`}
+      <DefaultButton
+        theme="green"
         type="submit"
         disabled={!isValidValue}
         onClick={handleSubmit(onNext)}
       >
         다음 단계
-      </button>
+      </DefaultButton>
     </>
   );
 }
