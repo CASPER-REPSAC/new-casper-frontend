@@ -4,5 +4,4 @@ export { default as EditorSection } from './EditorSection';
 export { default as TitleSection } from './TitleSection';
 export { default as WriteButtonSection } from './WriteButtonSection';
 export { default as BoardTypeSelecSection } from './BoardTypeSelecSection';
-export { default as PageWrapper } from './PageWrapper';
 export { default as PostFormProvider } from './PostFormProvider';

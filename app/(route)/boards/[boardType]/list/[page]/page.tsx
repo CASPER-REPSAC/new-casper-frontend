@@ -1,7 +1,6 @@
 import { DefaultLink } from 'app/_components/common';
 import { getOnePageArticleList } from 'app/_service/article';
 import { BoardListParams } from 'app/_types/boardTypes';
-import { PATH } from 'app/_constants/urls';
 import { BoardBody, BoardFooter, BoardHeader } from './_components';
 
 async function BoardPage({
@@ -16,7 +15,7 @@ async function BoardPage({
       <BoardHeader />
       <BoardBody articleList={data.articleList} boardType={boardType} />
       <div className="flex justify-end">
-        <DefaultLink theme="green" href={PATH.posts.url}>
+        <DefaultLink theme="green" href={`/boards/${boardType}/posts`}>
           작성 하기
         </DefaultLink>
       </div>

@@ -12,7 +12,7 @@ function WriteButtonSection() {
   };
 
   return (
-    <div className="flex justify-end">
+    <div className="flex">
       <DefaultButton
         theme="green"
         className="w-full"

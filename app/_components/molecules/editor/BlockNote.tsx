@@ -30,8 +30,10 @@ function BlockNote({
     [initialContent, editable],
   );
   const theme = useBlockNoteTheme(editable);
+
   return (
     <BlockNoteView
+      className="input px-0"
       editor={editor}
       theme={theme}
       onClick={() => editor.focus()}

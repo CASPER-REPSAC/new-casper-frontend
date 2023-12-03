@@ -3,20 +3,19 @@ import {
   EditorSection,
   TitleSection,
   WriteButtonSection,
-  PageWrapper,
   PostFormProvider,
 } from './_components';
 
 function PostPage() {
   return (
-    <PageWrapper>
+    <div className="flex flex-col gap-8">
       <PostFormProvider>
         <BoardTypeSelecSection />
         <TitleSection />
         <EditorSection />
         <WriteButtonSection />
       </PostFormProvider>
-    </PageWrapper>
+    </div>
   );
 }
 

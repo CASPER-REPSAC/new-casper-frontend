@@ -2,7 +2,7 @@ import { isDarkState } from 'app/_store';
 import { useCallback, useEffect, useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { Theme, darkDefaultTheme, lightDefaultTheme } from '@blocknote/react';
-import { darkTheme } from 'app/_styles/theme';
+import COLORS from 'app/_styles/colors';
 
 function useBlockNoteTheme(editable: boolean) {
   const isDark = useRecoilValue(isDarkState);
@@ -30,13 +30,10 @@ const blockNotedarkTheme = {
   ...darkDefaultTheme,
   componentStyles: () => ({
     Editor: {
-      backgroundColor: darkTheme.inputSurface,
-      padding: '1rem 0px',
       cursor: 'text',
       height: '100%',
-      borderRadius: '4px',
       '.tiptap': {
-        background: darkTheme.inputSurface,
+        background: COLORS.gray850,
       },
     },
   }),
@@ -44,8 +41,8 @@ const blockNotedarkTheme = {
   colors: {
     ...darkDefaultTheme.colors,
     editor: {
-      text: darkTheme.textDefault,
-      background: darkTheme.editorBg,
+      text: 'white',
+      background: COLORS.gray850,
     },
   },
 } satisfies Theme;
