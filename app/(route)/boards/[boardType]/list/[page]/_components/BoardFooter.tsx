@@ -1,33 +1,33 @@
-import { styled } from 'styled-components';
 import { useRouter } from 'next/navigation';
 import { DefaultButton, LeftButton, RightButton } from 'app/_components/common';
-import SCREEN_SIZE from 'app/_constants/screenWidth';
 import { ICON_SIZE } from 'app/_constants/size';
-import { usePagination, useWindowSize } from 'app/_hooks';
+import { usePagination } from 'app/_hooks';
 import { BoardListParams } from 'app/_types/boardTypes';
 
 interface Props {
   params: BoardListParams;
   maxPage: number;
-  curPage: number;
 }
 
-function BoardFooter({ maxPage, curPage, params }: Props) {
+function BoardFooter({ maxPage, params: { boardType, page: curPage } }: Props) {
   const { push, prefetch } = useRouter();
-  const { width } = useWindowSize();
-  const pageInteval = width < SCREEN_SIZE.mobile ? 5 : 10;
+  const pageInteval = 10;
   const footerMaxPage = Math.ceil(maxPage / pageInteval);
-  const { page: footerPage, paginate } = usePagination(footerMaxPage);
+  const { page: footerPage, paginate } = usePagination({
+    maxPage: footerMaxPage,
+    initialPage: Math.floor((Number(curPage) - 1) / 10),
+  });
+
   const start = footerPage * pageInteval;
   const fullPageList = Array.from({ length: maxPage }, (_, idx) => idx + 1);
   const pageList = fullPageList.slice(start, start + pageInteval);
 
   return (
-    <TableFooter>
+    <div className="flex-center gap-4">
       <LeftButton size={ICON_SIZE.medium} onClick={() => paginate(-1)} />
-      <PageButtonSection>
+      <div className="flex justify-around md:w-[400px]">
         {pageList.map((page) => {
-          const href = `/boards/${params.boardType}/list/${page}`;
+          const href = `/boards/${boardType}/list/${page}`;
           const onClick = () =>
             push(href, {
               scroll: false,
@@ -37,44 +37,22 @@ function BoardFooter({ maxPage, curPage, params }: Props) {
           return (
             <DefaultButton
               className={`${
-                page === curPage && 'border border-solid border-gray-400'
+                page === Number(curPage) &&
+                'border border-solid border-gray-400'
               }`}
               key={page}
               onMouseEnter={onMouseEnter}
               onClick={onClick}
+              size="sm"
             >
               {page}
             </DefaultButton>
           );
         })}
-      </PageButtonSection>
+      </div>
       <RightButton size={ICON_SIZE.medium} onClick={() => paginate(1)} />
-    </TableFooter>
+    </div>
   );
 }
-
-const TableFooter = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-
-const PageButtonSection = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 20px;
-  width: 250px;
-
-  @media screen and (min-width: ${`${SCREEN_SIZE.mobile}px`}) {
-    width: 500px;
-  }
-  @media screen and (min-width: ${`${SCREEN_SIZE.tablet}px`}) {
-    width: 600px;
-  }
-  @media screen and (min-width: ${`${SCREEN_SIZE.desktop}px`}) {
-    width: 600px;
-  }
-`;
 
 export default BoardFooter;

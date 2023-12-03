@@ -127,6 +127,7 @@ button {
   border: 0;
   background-color: transparent;
   cursor: pointer;
+  box-sizing: border-box;
 }
 a {
   color: inherit; /* 링크 색상을 부모 요소로 상속 */

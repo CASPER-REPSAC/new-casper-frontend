@@ -1,7 +1,7 @@
 'use client';
 
-import { DefaultButton } from 'app/_components/common';
 /* eslint-disable no-console */
+import { DefaultButton } from 'app/_components/common';
 import { useEffect } from 'react';
 
 interface Props {

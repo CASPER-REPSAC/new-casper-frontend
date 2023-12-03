@@ -1,5 +1,3 @@
-'use client';
-
 import { ReactNode } from 'react';
 import { PAGE_TITLE } from 'app/_constants/label';
 import { BoardSideMenu, PageTitle } from 'app/_components/molecules';

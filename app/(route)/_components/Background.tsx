@@ -11,7 +11,7 @@ interface Props {
 
 function Background({ backgroundImages }: Props) {
   const maxPage = backgroundImages.length;
-  const { page, paginate, direction } = usePagination(maxPage);
+  const { page, paginate, direction } = usePagination({ maxPage });
 
   const PageBar = [];
   for (let i = 0; i < maxPage; i += 1) {

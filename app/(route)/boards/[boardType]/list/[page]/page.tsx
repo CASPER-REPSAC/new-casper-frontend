@@ -2,12 +2,7 @@ import { DefaultLink } from 'app/_components/common';
 import { getOnePageArticleList } from 'app/_service/article';
 import { BoardListParams } from 'app/_types/boardTypes';
 import { PATH } from 'app/_constants/urls';
-import {
-  BoardBody,
-  BoardFooter,
-  BoardHeader,
-  PageTemplate,
-} from './_components';
+import { BoardBody, BoardFooter, BoardHeader } from './_components';
 
 async function BoardPage({
   params: { boardType, page },
@@ -17,26 +12,16 @@ async function BoardPage({
   const data = await getOnePageArticleList({ boardType, page }, true);
 
   return (
-    <>
-      <PageTemplate
-        headerSection={<BoardHeader />}
-        bodySection={
-          <BoardBody articleList={data.articleList} boardType={boardType} />
-        }
-        buttonSection={
-          <DefaultLink theme="green" href={PATH.posts.url}>
-            작성 하기
-          </DefaultLink>
-        }
-        footerSection={
-          <BoardFooter
-            maxPage={data.maxPageNum}
-            curPage={Number(page)}
-            params={{ boardType, page }}
-          />
-        }
-      />
-    </>
+    <div className="flex w-full flex-col gap-4">
+      <BoardHeader />
+      <BoardBody articleList={data.articleList} boardType={boardType} />
+      <div className="flex justify-end">
+        <DefaultLink theme="green" href={PATH.posts.url}>
+          작성 하기
+        </DefaultLink>
+      </div>
+      <BoardFooter maxPage={data.maxPageNum} params={{ boardType, page }} />
+    </div>
   );
 }
 

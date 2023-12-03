@@ -1,7 +1,12 @@
 import { useState } from 'react';
 
-function usePagination(maxPage: number) {
-  const [[page, direction], setPage] = useState([0, 0]);
+interface Props {
+  maxPage: number;
+  initialPage?: number;
+}
+
+function usePagination({ maxPage, initialPage = 0 }: Props) {
+  const [[page, direction], setPage] = useState([initialPage, 0]);
 
   const paginate = (newDirection: number) => {
     const newPage = page + newDirection;

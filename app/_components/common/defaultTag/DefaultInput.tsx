@@ -3,15 +3,17 @@ import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
 function DefaultInput(
-  { className, ...props }: Props,
+  { className, disabled, ...props }: Props,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   const defaultClassName = 'input';
+  const disabledClassName = disabled ? 'bg-gray-700 cursor-not-allowed' : '';
 
   return (
     <input
       ref={ref}
-      className={`${defaultClassName} ${className}`}
+      className={`${defaultClassName} ${disabledClassName} ${className}`}
+      disabled={disabled}
       {...props}
     />
   );
