@@ -1,14 +1,18 @@
 import { Variants, motion } from 'framer-motion';
-import { MouseEventHandler, ReactNode } from 'react';
+import { ForwardedRef, MouseEventHandler, ReactNode, forwardRef } from 'react';
 
 interface Props {
   children: ReactNode;
   onClick: MouseEventHandler<HTMLDivElement>;
 }
 
-function ToastPopup({ children, onClick }: Props) {
+function ToastPopup(
+  { children, onClick }: Props,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
   return (
     <motion.div
+      ref={ref}
       className="flex-center min-w-[12rem] cursor-pointer rounded border border-solid border-white bg-gray-700 px-5 py-3 text-lg"
       layout
       variants={popupVariants}
@@ -41,4 +45,4 @@ const popupVariants: Variants = {
     scale: 1.1,
   },
 };
-export default ToastPopup;
+export default forwardRef(ToastPopup);

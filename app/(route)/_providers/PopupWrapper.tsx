@@ -1,4 +1,3 @@
-import { styled } from 'styled-components';
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { popupListState } from 'app/_store';
@@ -11,7 +10,7 @@ function PopupWrapper() {
   const { deletePopup } = usePopup();
 
   return (
-    <Wrapper>
+    <div className="fixed right-0 z-popup mr-4 flex flex-col items-center gap-4">
       <AnimatePresence mode="popLayout">
         {popupList.map(({ key, message }) => (
           <ToastPopup key={key} onClick={() => deletePopup(key)}>
@@ -19,20 +18,8 @@ function PopupWrapper() {
           </ToastPopup>
         ))}
       </AnimatePresence>
-    </Wrapper>
+    </div>
   );
 }
-
-const Wrapper = styled.div`
-  position: fixed;
-  right: 0;
-  top: 70px;
-  z-index: 1;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 1rem;
-  margin-right: 1rem;
-`;
 
 export default memo(PopupWrapper);

@@ -83,6 +83,7 @@ module.exports = {
         memberCardCover: '-1002',
         options: '1001',
         pageShadow: '9001',
+        popup: '9002',
         header: '9008',
         hambergerMenu: '9009',
       },
