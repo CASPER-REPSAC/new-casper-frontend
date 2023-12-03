@@ -1,5 +1,4 @@
 import { ForwardedRef, InputHTMLAttributes, forwardRef, useId } from 'react';
-import { styled } from 'styled-components';
 
 interface Props extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
@@ -12,24 +11,21 @@ function CheckInput(
   const uniqueId = useId();
 
   return (
-    <Wrapper>
-      <Input ref={ref} id={uniqueId} type="checkbox" {...props} />
-      {label && <Label htmlFor={uniqueId}>{label}</Label>}
-    </Wrapper>
+    <div className="flex items-center gap-4">
+      <input
+        className="cursor-pointer "
+        ref={ref}
+        id={uniqueId}
+        type="checkbox"
+        {...props}
+      />
+      {label && (
+        <label className="label m-0 cursor-pointer" htmlFor={uniqueId}>
+          {label}
+        </label>
+      )}
+    </div>
   );
 }
-
-const Wrapper = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 1em;
-`;
-const Label = styled.label`
-  cursor: pointer;
-  font-size: 1.4rem;
-`;
-const Input = styled.input`
-  cursor: pointer;
-`;
 
 export default forwardRef(CheckInput);

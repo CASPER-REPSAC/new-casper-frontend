@@ -1,10 +1,9 @@
 'use client';
 
-import { UserIcon } from 'app/_components/icons';
-import { styled } from 'styled-components';
+import { UserIcon as Icon } from 'app/_components/icons';
 
-const StyledUserIcon = styled(UserIcon)`
-  color: ${({ theme }) => theme.surfaceDefault};
-`;
+function UserIcon() {
+  return <Icon className="text-gray-850" />;
+}
 
-export default StyledUserIcon;
+export default UserIcon;
