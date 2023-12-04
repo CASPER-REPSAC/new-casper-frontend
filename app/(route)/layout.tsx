@@ -1,13 +1,11 @@
 import 'app/_styles/reset.css';
 import 'app/_styles/global.css';
 import { ReactNode } from 'react';
-import StyledComponentsRegistry from 'app/_lib/registry';
 import {
   AutoLoginPresence,
   PopupWrapper,
   QueryWrapper,
   RecoilRootWrapper,
-  ThemeWrapper,
 } from 'app/(route)/_providers';
 import { DefaultLayout } from 'app/_components/layout';
 
@@ -23,12 +21,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <QueryWrapper>
           <RecoilRootWrapper>
             <AutoLoginPresence>
-              <StyledComponentsRegistry>
-                <ThemeWrapper>
-                  <PopupWrapper />
-                  <DefaultLayout>{children}</DefaultLayout>
-                </ThemeWrapper>
-              </StyledComponentsRegistry>
+              <PopupWrapper />
+              <DefaultLayout>{children}</DefaultLayout>
             </AutoLoginPresence>
           </RecoilRootWrapper>
         </QueryWrapper>

@@ -4,7 +4,6 @@ import { AnimatePresence } from 'framer-motion';
 import { MenuIcon } from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';
 import { PATH } from 'app/_constants/urls';
-import LoadingProgressBar from './LoadingProgressBar';
 import BarNaviagtion from './BarNavigation';
 import HambergerNavigation from './HambergerNavigation';
 import { CasperLogo, DefaultButton } from '../../common';
@@ -39,7 +38,6 @@ function Header() {
 
           <BarNaviagtion className="hidden lg:flex" />
         </div>
-        <LoadingProgressBar />
       </div>
     </>
   );
