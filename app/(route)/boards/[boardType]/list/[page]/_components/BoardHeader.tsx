@@ -1,3 +1,5 @@
+'use client';
+
 import { LabelInput } from 'app/_components/common';
 import { SearchIcon } from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';

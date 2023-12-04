@@ -1,14 +1,18 @@
-'use client';
-
-import { ArticleData, BoardType } from 'app/_types/boardTypes';
+import { BoardListParams } from 'app/_types/boardTypes';
+import { getOnePageArticleList } from 'app/_service/article';
 import Article from './Article';
+import BoardBodySkeleton from './BoardBodySkeleton';
 
 interface Props {
-  boardType: BoardType;
-  articleList: ArticleData[];
+  params: BoardListParams;
 }
 
-function BoardBody({ articleList, boardType }: Props) {
+async function BoardBody({ params: { boardType, page } }: Props) {
+  const { articleList } = await getOnePageArticleList(
+    { boardType, page },
+    true,
+  );
+
   return (
     <table className="w-full table-fixed text-base">
       <thead className="h-10  border-b-[1px] border-solid border-gray-300 bg-gray-900 font-bold leading-10">
@@ -38,5 +42,7 @@ function BoardBody({ articleList, boardType }: Props) {
     </table>
   );
 }
+
+BoardBody.Skeleton = BoardBodySkeleton;
 
 export default BoardBody;

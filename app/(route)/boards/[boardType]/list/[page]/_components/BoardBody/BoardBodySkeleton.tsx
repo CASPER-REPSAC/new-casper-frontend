@@ -1,0 +1,48 @@
+'use client';
+
+/* eslint-disable jsx-a11y/control-has-associated-label */
+import { Skeleton } from 'app/_components/common';
+
+function BoardBodySkeleton() {
+  const numOfRows = 10;
+  return (
+    <table className="w-full table-fixed text-base">
+      <thead className="h-10  border-b-[1px] border-solid border-gray-300 bg-gray-900 font-bold leading-10">
+        <tr className="text-center">
+          <td className="w-[7%]">번호</td>
+          <td className="w-[35%]">제목</td>
+          <td className="w-[10%]">작성자</td>
+          <td className="w-[15%]">날짜</td>
+          <td className="w-[10%]">조회수</td>
+        </tr>
+      </thead>
+
+      <tbody>
+        {[...Array(numOfRows)].map((val) => (
+          <tr
+            className="h-10 border-b border-solid border-gray-600 text-center"
+            key={val}
+          >
+            <td className="align-middle" align="center">
+              <Skeleton className="h-4 w-2/3" />
+            </td>
+            <td className="align-middle" align="left">
+              <Skeleton className="h-4 w-2/3" />
+            </td>
+            <td className="align-middle" align="center">
+              <Skeleton className="h-4 w-2/3" />
+            </td>
+            <td className="align-middle" align="center">
+              <Skeleton className="h-4 w-2/3" />
+            </td>
+            <td className="align-middle" align="center">
+              <Skeleton className="h-4 w-2/3" />
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
+}
+
+export default BoardBodySkeleton;

@@ -86,6 +86,16 @@ module.exports = {
         header: '9000',
         popup: '9010',
         hambergerMenu: '9020',
+        loadingBar: '9090',
+      },
+      keyframes: {
+        slide: {
+          '0%': { left: '0' },
+          '100%': { left: '150vw', display: 'none' },
+        },
+      },
+      animation: {
+        slide: 'slide 1s ease',
       },
     },
   },

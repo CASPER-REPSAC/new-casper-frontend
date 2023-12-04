@@ -1,15 +1,17 @@
+'use client';
+
 import { useRouter } from 'next/navigation';
 import { DefaultButton, LeftButton, RightButton } from 'app/_components/common';
 import { ICON_SIZE } from 'app/_constants/size';
 import { usePagination } from 'app/_hooks';
-import { BoardListParams } from 'app/_types/boardTypes';
 
 interface Props {
-  params: BoardListParams;
   maxPage: number;
+  curPage: number;
+  boardType: string;
 }
 
-function BoardFooter({ maxPage, params: { boardType, page: curPage } }: Props) {
+function PageList({ maxPage, curPage, boardType }: Props) {
   const { push, prefetch } = useRouter();
   const pageInteval = 10;
   const footerMaxPage = Math.ceil(maxPage / pageInteval);
@@ -23,7 +25,7 @@ function BoardFooter({ maxPage, params: { boardType, page: curPage } }: Props) {
   const pageList = fullPageList.slice(start, start + pageInteval);
 
   return (
-    <div className="flex-center gap-4">
+    <>
       <LeftButton size={ICON_SIZE.medium} onClick={() => paginate(-1)} />
       <div className="flex justify-around md:w-[400px]">
         {pageList.map((page) => {
@@ -51,8 +53,8 @@ function BoardFooter({ maxPage, params: { boardType, page: curPage } }: Props) {
         })}
       </div>
       <RightButton size={ICON_SIZE.medium} onClick={() => paginate(1)} />
-    </div>
+    </>
   );
 }
 
-export default BoardFooter;
+export default PageList;

@@ -1,3 +1,5 @@
+'use client';
+
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
@@ -28,17 +30,17 @@ function Article({
 
   return (
     <motion.tr
-      className="h-10 cursor-pointer border-b border-solid border-gray-600 text-center leading-10 hover:bg-gray-700"
+      className="h-10  cursor-pointer border-b border-solid border-gray-600 text-center  hover:bg-gray-700"
       onMouseEnter={() => prefetch(href)}
       onClick={() => push(href)}
     >
-      <td>{articleId}</td>
-      <td className="w-8/12 overflow-hidden overflow-ellipsis whitespace-nowrap text-left">
+      <td className="align-middle">{articleId}</td>
+      <td className="w-8/12 overflow-hidden overflow-ellipsis whitespace-nowrap text-left align-middle">
         {title}
       </td>
-      <td>{nickname}</td>
-      <td>{formattedDate}</td>
-      <td>{view}</td>
+      <td className="align-middle">{nickname}</td>
+      <td className="align-middle">{formattedDate}</td>
+      <td className="align-middle">{view}</td>
     </motion.tr>
   );
 }
