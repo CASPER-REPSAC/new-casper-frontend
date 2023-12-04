@@ -7,7 +7,6 @@ import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 
 function BoardHeader() {
-  console.log('HEader');
   const { register } = useForm();
 
   return (
