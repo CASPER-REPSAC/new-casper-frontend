@@ -1,5 +1,5 @@
 import { memo, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { AnimatePresence } from 'framer-motion';
 import { MenuIcon } from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';
@@ -11,6 +11,9 @@ import ThemeToggle from './ThemeToggle';
 
 function Header() {
   const { push } = useRouter();
+  const pathname = usePathname();
+  const isHome = pathname === PATH.home.url;
+
   const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
 
   const toggleMenu = () => {
@@ -26,7 +29,11 @@ function Header() {
       <AnimatePresence>
         {isHambergerMenuOpen && <HambergerNavigation onBgClick={closeMenu} />}
       </AnimatePresence>
-      <div className="sticky top-0 z-header flex h-14 w-screen border-b border-solid border-gray-600  backdrop-blur-lg">
+      <div
+        className={`${
+          isHome ? 'text-white' : 'text-black dark:text-white'
+        } sticky top-0 z-header flex h-14 w-screen border-b border-solid border-gray-600  backdrop-blur-lg`}
+      >
         <div className="common-center flex h-full items-center justify-between">
           <DefaultButton className="block lg:hidden" onClick={toggleMenu}>
             <MenuIcon size={ICON_SIZE.large} />

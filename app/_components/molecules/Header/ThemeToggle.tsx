@@ -1,9 +1,10 @@
 'use client';
 
-import { useTheme } from 'app/_hooks';
+import themeState from 'app/_store/themeAtom';
+import { useSetRecoilState } from 'recoil';
 
 function ThemeToggle() {
-  const { theme, setTheme } = useTheme();
+  const setTheme = useSetRecoilState(themeState);
 
   const toggle = () => {
     const htmlElement = document.querySelector('html');
@@ -16,8 +17,6 @@ function ThemeToggle() {
     htmlElement?.classList.add('dark');
     setTheme('dark');
   };
-
-  console.log(theme);
 
   return (
     <button type="button" onClick={toggle}>

@@ -1,5 +1,6 @@
 import { PATH } from 'app/_constants/urls';
-import { isDarkState } from 'app/_store';
+import themeState from 'app/_store/themeAtom';
+
 import { Variants, motion } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
@@ -12,12 +13,12 @@ interface Props {
 
 function CasperLogo({ onClick, className: additionalClassName }: Props) {
   const pathname = usePathname();
-  const isDark = useRecoilValue(isDarkState);
+  const theme = useRecoilValue(themeState);
   const isHome = pathname === PATH.home.url;
 
   const WHITE_LOGO_SRC = '/casper_logo_white.webp';
   const BLACK_LOGO_SRC = '/casper_logo_black.webp';
-  const logoSrc = isDark || isHome ? WHITE_LOGO_SRC : BLACK_LOGO_SRC;
+  const logoSrc = theme === 'dark' || isHome ? WHITE_LOGO_SRC : BLACK_LOGO_SRC;
 
   return (
     <motion.div

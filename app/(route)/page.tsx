@@ -4,7 +4,7 @@ function HomePage() {
   const bgImgs = ['/background1.webp', '/background2.webp'];
 
   return (
-    <div className="common-center mt-28 flex flex-col gap-16">
+    <div className="common-center mt-28 flex flex-col gap-16 text-white">
       <NoticeSection />
       <TitleSection />
       <Background backgroundImages={bgImgs} />
