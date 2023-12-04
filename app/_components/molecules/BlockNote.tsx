@@ -33,7 +33,7 @@ function BlockNote({
 
   return (
     <BlockNoteView
-      className={`${editable ? 'bg-gray-850' : 'bg-transparent'}`}
+      className={`${editable ? 'bg-gray-800' : 'bg-transparent'}`}
       editor={editor}
       theme={theme}
       onClick={() => editor.focus()}

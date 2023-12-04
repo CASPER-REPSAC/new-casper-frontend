@@ -7,6 +7,7 @@ import { PATH } from 'app/_constants/urls';
 import BarNaviagtion from './BarNavigation';
 import HambergerNavigation from './HambergerNavigation';
 import { CasperLogo, DefaultButton } from '../../common';
+import ThemeToggle from './ThemeToggle';
 
 function Header() {
   const { push } = useRouter();
@@ -35,6 +36,7 @@ function Header() {
             className="h-10 w-24 cursor-pointer"
             onClick={() => push(PATH.home.url)}
           />
+          <ThemeToggle />
 
           <BarNaviagtion className="hidden lg:flex" />
         </div>

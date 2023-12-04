@@ -35,7 +35,7 @@ const blockNotedarkTheme = {
       paddingTop: '1rem',
       paddingBottom: '1rem',
       '.tiptap': {
-        background: COLORS.gray850,
+        background: COLORS.gray800,
       },
     },
   }),
@@ -44,7 +44,7 @@ const blockNotedarkTheme = {
     ...darkDefaultTheme.colors,
     editor: {
       text: 'white',
-      background: COLORS.gray850,
+      background: COLORS.gray800,
     },
   },
 } satisfies Theme;
