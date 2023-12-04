@@ -6,6 +6,7 @@ import {
   PopupWrapper,
   QueryWrapper,
   RecoilRootWrapper,
+  SyncTheme,
 } from 'app/(route)/_providers';
 import { DefaultLayout } from 'app/_components/layout';
 
@@ -17,13 +18,15 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en">
-      <body className="bg-slate-100 dark:bg-gray-800 dark:text-white">
+      <body className="bg-gradient-to-tr from-gray-50 via-sky-50 to-indigo-50 text-slate-600 dark:bg-gray-800 dark:text-white">
         <QueryWrapper>
           <RecoilRootWrapper>
-            <AutoLoginPresence>
-              <PopupWrapper />
-              <DefaultLayout>{children}</DefaultLayout>
-            </AutoLoginPresence>
+            <SyncTheme>
+              <AutoLoginPresence>
+                <PopupWrapper />
+                <DefaultLayout>{children}</DefaultLayout>
+              </AutoLoginPresence>
+            </SyncTheme>
           </RecoilRootWrapper>
         </QueryWrapper>
       </body>

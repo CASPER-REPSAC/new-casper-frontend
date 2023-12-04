@@ -16,7 +16,7 @@ function SideMenuLink({ name, highlight, href }: Props) {
       {name}
       {highlight && (
         <motion.div
-          className="absolute left-0 -z-10 ml-1 h-full w-full border-r-2 border-solid border-r-purple-600 bg-gray-900"
+          className="absolute left-0 -z-10 ml-1 h-full w-full border-r-2 border-solid border-sky-300 bg-slate-200 dark:border-r-sky-600 dark:bg-gray-900"
           layoutId="sideMenuHighlight"
         />
       )}

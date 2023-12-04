@@ -7,7 +7,9 @@ function DefaultInput(
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   const defaultClassName = 'input';
-  const disabledClassName = disabled ? 'bg-gray-700 cursor-not-allowed' : '';
+  const disabledClassName = disabled
+    ? 'bg-slate-300 dark:bg-gray-700 cursor-not-allowed'
+    : '';
 
   return (
     <input

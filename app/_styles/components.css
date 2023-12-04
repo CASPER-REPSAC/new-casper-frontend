@@ -2,10 +2,10 @@
 
 @layer components {
   .btn {
-    @apply cursor-pointer rounded px-4 py-2 text-base hover:bg-gray-900 active:bg-gray-950;
+    @apply cursor-pointer rounded px-4 py-2 text-base hover:bg-slate-200 hover:dark:bg-gray-700;
   }
   .input {
-    @apply block w-full rounded border border-solid border-gray-500 bg-gray-800 px-4 py-3 focus:outline-none focus:ring-1 focus:ring-inset;
+    @apply block w-full rounded border border-solid border-transparent bg-slate-200 px-4 py-3 focus:outline-none focus:ring-1 focus:ring-inset dark:border-gray-500 dark:bg-gray-800;
   }
   .label {
     @apply mb-2 inline-block text-sm;
@@ -23,7 +23,7 @@
 }
 
 .btn-green {
-  @apply bg-green-400 hover:bg-green-300 active:bg-green-500;
+  @apply bg-emerald-200 hover:bg-emerald-300;
 }
 .btn-red {
   @apply bg-red-400 hover:bg-red-300 active:bg-red-500;

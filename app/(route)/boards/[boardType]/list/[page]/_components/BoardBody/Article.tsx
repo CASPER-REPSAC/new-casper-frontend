@@ -30,7 +30,7 @@ function Article({
 
   return (
     <motion.tr
-      className="h-10  cursor-pointer border-b border-solid border-gray-600 text-center  hover:bg-gray-700"
+      className="h-10 cursor-pointer border-b border-solid border-slate-200 text-center dark:border-gray-600 hover:dark:bg-gray-700"
       onMouseEnter={() => prefetch(href)}
       onClick={() => push(href)}
     >
