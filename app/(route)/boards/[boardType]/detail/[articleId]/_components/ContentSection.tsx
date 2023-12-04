@@ -11,7 +11,7 @@ import { Skeleton } from 'app/_components/common';
 const BlockNote = dynamic(() => import('app/_components/molecules/BlockNote'), {
   ssr: false,
   loading: () => (
-    <div className="flex h-full w-full flex-col gap-4 px-12">
+    <div className="flex h-full w-full flex-col gap-4 px-12 pt-4">
       <Skeleton className="h-4 w-full rounded-full" />
       <Skeleton className="h-4 w-1/3 rounded-full" />
       <Skeleton className="h-4 w-1/2 rounded-full" />
