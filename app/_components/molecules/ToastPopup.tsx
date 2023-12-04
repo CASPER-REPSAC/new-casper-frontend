@@ -1,5 +1,31 @@
-import { styled } from 'styled-components';
 import { Variants, motion } from 'framer-motion';
+import { ForwardedRef, MouseEventHandler, ReactNode, forwardRef } from 'react';
+
+interface Props {
+  children: ReactNode;
+  onClick: MouseEventHandler<HTMLDivElement>;
+}
+
+function ToastPopup(
+  { children, onClick }: Props,
+  ref: ForwardedRef<HTMLDivElement>,
+) {
+  return (
+    <motion.div
+      ref={ref}
+      className="flex-center min-w-[12rem] cursor-pointer rounded border border-solid border-white bg-gray-700 px-5 py-3 text-lg"
+      layout
+      variants={popupVariants}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      whileHover="hover"
+      onClick={onClick}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
 const popupVariants: Variants = {
   hidden: {
@@ -19,25 +45,4 @@ const popupVariants: Variants = {
     scale: 1.1,
   },
 };
-
-const ToastPopup = styled(motion.div).attrs(() => ({
-  layout: true,
-  variants: popupVariants,
-  initial: 'hidden',
-  animate: 'visible',
-  exit: 'hidden',
-  whileHover: 'hover',
-}))`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 1.8rem;
-  min-height: 6rem;
-  min-width: 20rem;
-  background-color: ${({ theme }) => theme.surfaceAlt};
-  border: 1px solid ${({ theme }) => theme.white};
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 1rem 2rem;
-`;
-export default ToastPopup;
+export default forwardRef(ToastPopup);

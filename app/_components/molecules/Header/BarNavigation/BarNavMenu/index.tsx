@@ -1,32 +1,28 @@
-import { MouseEventHandler, ReactNode, useState } from 'react';
-import { styled } from 'styled-components';
+import { ReactNode, useState } from 'react';
 import SubMenu from './SubMenu';
 
 interface Props {
-  onClick?: MouseEventHandler<HTMLDivElement>;
   title: ReactNode;
   subMenus?: JSX.Element[];
 }
 
-function BarNavMenu({ title, onClick, subMenus }: Props) {
+function BarNavMenu({ title, subMenus }: Props) {
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
-    <Wrapper
-      onClick={onClick}
+    <div
+      className="relative h-full"
       onMouseEnter={() => setSubMenuOpen(true)}
       onMouseLeave={() => setSubMenuOpen(false)}
     >
-      <TitleWrapper>{title}</TitleWrapper>
-
-      {subMenus && isSubMenuOpen && <SubMenu menus={subMenus} />}
-    </Wrapper>
+      <div className="flex-center relative left-0 top-0 h-full px-8">
+        {title}
+      </div>
+      <div className="absolute left-1/2 w-full -translate-x-1/2">
+        {subMenus && isSubMenuOpen && <SubMenu menus={subMenus} />}
+      </div>
+    </div>
   );
 }
-
-const TitleWrapper = styled.div`
-  padding: 10px 30px;
-`;
-const Wrapper = styled.div``;
 
 export default BarNavMenu;

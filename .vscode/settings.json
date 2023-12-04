@@ -9,5 +9,14 @@
     "_utils": "Utils",
     "(route)": "Routes",
     "_styles": "Theme"
+  },
+
+  "css.lint.unknownAtRules": "ignore",
+  "files.associations": {
+    "*html": "html",
+    "*.css": "tailwindcss"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
   }
 }

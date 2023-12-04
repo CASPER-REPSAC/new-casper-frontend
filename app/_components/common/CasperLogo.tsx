@@ -4,16 +4,13 @@ import { Variants, motion } from 'framer-motion';
 import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
-import styled, { css } from 'styled-components';
-
-type LogoSize = 'small' | 'medium' | 'large';
 
 interface Props {
-  size?: LogoSize;
+  className?: string;
   onClick: () => void;
 }
 
-function CasperLogo({ onClick, size = 'medium' }: Props) {
+function CasperLogo({ onClick, className: additionalClassName }: Props) {
   const pathname = usePathname();
   const isDark = useRecoilValue(isDarkState);
   const isHome = pathname === PATH.home.url;
@@ -23,56 +20,32 @@ function CasperLogo({ onClick, size = 'medium' }: Props) {
   const logoSrc = isDark || isHome ? WHITE_LOGO_SRC : BLACK_LOGO_SRC;
 
   return (
-    <Wrapper
+    <motion.div
+      className={`relative h-14 w-40 ${additionalClassName}`}
       onClick={onClick}
-      $size={size}
       variants={variants}
       whileHover="hover"
       whileTap="tap"
     >
-      <StyledImage src={logoSrc} alt="casper logo" fill />
-    </Wrapper>
+      <Image
+        className="object-contain"
+        sizes="(min-width: 768px) 50vw, 100vw"
+        src={logoSrc}
+        alt="casper logo"
+        fill
+      />
+    </motion.div>
   );
 }
 
 const variants: Variants = {
   hover: {
-    rotate: 4,
+    rotate: -2,
     scale: 1.1,
   },
   tap: {
     scale: 0.9,
   },
 };
-
-const Wrapper = styled(motion.div)<{ $size: LogoSize }>`
-  position: relative;
-  cursor: pointer;
-
-  ${({ $size }) => {
-    switch ($size) {
-      case 'small':
-        return css`
-          width: 100px;
-          height: 50px;
-        `;
-      case 'large':
-        return css`
-          width: 400px;
-          height: 100px;
-        `;
-
-      default:
-        return css`
-          width: 200px;
-          height: 70px;
-        `;
-    }
-  }}
-`;
-
-const StyledImage = styled(Image)`
-  object-fit: contain;
-`;
 
 export default CasperLogo;

@@ -42,25 +42,20 @@ function EmailForm({ onNext }: Props) {
   return (
     <>
       <LabelInput
+        type="email"
         label={INPUT_LABEL.email}
         labelIcon={<MailIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.email}
-        autoComplete="off"
         hasError={!!errors.email}
         {...emailRegister}
       />
-      {!isValidValue && errors.email && (
+
+      {!isValidValue && (
         <FormErrorWrapper>
-          <li>{errors.email.message}</li>
+          <li>{errors.email?.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton
-        type="submit"
-        $size="large"
-        $color="green"
-        onClick={handleSubmit(onNext)}
-        $active={isValidValue}
-      >
+      <DefaultButton theme="green" type="submit" onClick={handleSubmit(onNext)}>
         다음 단계
       </DefaultButton>
     </>

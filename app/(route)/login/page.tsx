@@ -1,12 +1,12 @@
-import { LoginForm, LoginMoreLinks, Logo, PageWrapper } from './_components';
+import { LoginForm, LoginMoreLinks, Logo } from './_components';
 
 function LoginPage() {
   return (
-    <PageWrapper>
+    <div className="small-center absolute-center">
       <Logo />
       <LoginForm />
       <LoginMoreLinks />
-    </PageWrapper>
+    </div>
   );
 }
 

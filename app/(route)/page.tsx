@@ -1,19 +1,14 @@
-import {
-  Background,
-  NoticeSection,
-  TitleSection,
-  Wrapper,
-} from './_components';
+import { Background, NoticeSection, TitleSection } from './_components';
 
 function HomePage() {
-  const bgImgs = ['background1.webp', 'background2.webp'];
+  const bgImgs = ['/background1.webp', '/background2.webp'];
 
   return (
-    <Wrapper>
+    <div className="common-center mt-28 flex flex-col gap-16">
       <NoticeSection />
       <TitleSection />
       <Background backgroundImages={bgImgs} />
-    </Wrapper>
+    </div>
   );
 }
 

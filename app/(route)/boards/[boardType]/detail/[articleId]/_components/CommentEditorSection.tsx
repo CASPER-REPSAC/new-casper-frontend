@@ -1,6 +1,5 @@
 import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
-import styled from 'styled-components';
 import { DefaultButton, DefaultTextarea } from 'app/_components/common';
 import { PLACEHOLDER } from 'app/_constants/label';
 import { usePopup } from 'app/_hooks';
@@ -26,33 +25,19 @@ function CommentEditorSection() {
 
   return (
     <form onSubmit={handleSubmit(onValid)}>
-      <Textarea
+      <DefaultTextarea
+        className="mb-4 resize-none border-0 border-b bg-transparent focus:border-gray-100 focus:ring-0"
         {...commentRegister}
         placeholder={PLACEHOLDER.comment}
         rows={1}
       />
-      <ButtonWrapper>
-        <DefaultButton type="submit" $color="green" $size="small">
+      <div className="flex items-center justify-end">
+        <DefaultButton type="submit" size="sm" theme="green">
           추가
         </DefaultButton>
-      </ButtonWrapper>
+      </div>
     </form>
   );
 }
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-`;
-
-const Textarea = styled(DefaultTextarea)`
-  margin-bottom: 1rem;
-  background-color: transparent;
-  border: 0;
-  border-bottom: 1px solid ${({ theme }) => theme.borderDefault};
-  padding: 0 1rem 0.8rem 1rem;
-  overflow: hidden;
-`;
 
 export default CommentEditorSection;

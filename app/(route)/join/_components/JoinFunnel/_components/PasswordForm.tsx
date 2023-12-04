@@ -1,8 +1,8 @@
 import { useFormContext } from 'react-hook-form';
 import {
-  DefaultButton,
   LabelInput,
   FormErrorWrapper,
+  DefaultButton,
 } from 'app/_components/common';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { PW_REGEX } from 'app/_utils/regex';
@@ -75,13 +75,12 @@ function PasswordForm({ onNext }: Props) {
         </FormErrorWrapper>
       )}
       <DefaultButton
-        $size="large"
-        $color="green"
-        $active={isValidValue}
+        theme="green"
         type="submit"
+        disabled={!isValidValue}
         onClick={handleSubmit(onNext)}
       >
-        완료
+        다음 단계
       </DefaultButton>
     </>
   );

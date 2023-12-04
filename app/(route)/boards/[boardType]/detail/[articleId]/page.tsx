@@ -3,11 +3,9 @@ import { getArticleDetail } from 'app/_service/article';
 import {
   ButtonSection,
   ContentSection,
-  TitleSection,
   DetailComment,
   AuthorSection,
   CommentEditorSection,
-  PageTemplate,
 } from './_components';
 
 export default async function ArticleDetailPage({
@@ -19,14 +17,22 @@ export default async function ArticleDetailPage({
 
   return (
     <ClientFormProvider>
-      <PageTemplate
-        contentSection={<ContentSection articleContent={data.content} />}
-        titleSection={<TitleSection articleTitle={data.title} />}
-        titleButtonSection={<ButtonSection articleId={articleId} />}
-        commentEditorSection={<CommentEditorSection />}
-        authorSection={<AuthorSection nickname={data.nickname} />}
-        commentSection={<DetailComment />}
-      />
+      <div>
+        <div className="mb-4 flex items-center justify-between border-b border-solid border-gray-600">
+          <h1 className="text-6xl">{data.title}</h1>
+          <ButtonSection articleId={articleId} />
+        </div>
+        <div className="mb-8 min-h-[300px]">
+          <ContentSection articleContent={data.content} />
+        </div>
+        <div className="mb-32">
+          <AuthorSection nickname={data.nickname} />
+        </div>
+        <div className="mb-20">
+          <CommentEditorSection />
+        </div>
+        <DetailComment />
+      </div>
     </ClientFormProvider>
   );
 }

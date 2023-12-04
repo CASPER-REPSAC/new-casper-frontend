@@ -1,12 +1,13 @@
-import { styled } from 'styled-components';
+import { ReactNode } from 'react';
 
-const FormErrorWrapper = styled.ul`
-  display: flex;
-  flex-direction: column;
-  gap: 0.6em;
-  color: ${({ theme }) => theme.redError};
-  font-size: 1.4rem;
-  margin: 0;
-`;
+interface Props {
+  children: ReactNode;
+}
+
+function FormErrorWrapper({ children }: Props) {
+  return (
+    <ul className="flex flex-col gap-2 text-sm text-red-300">{children}</ul>
+  );
+}
 
 export default FormErrorWrapper;
