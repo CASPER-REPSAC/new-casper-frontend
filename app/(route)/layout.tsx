@@ -9,7 +9,7 @@ import {
   RecoilRootWrapper,
   ThemeWrapper,
 } from 'app/(route)/_providers';
-import { DefaultLayout } from './_components';
+import { DefaultLayout } from 'app/_components/layout';
 
 export const metadata = {
   title: 'Next.js',
