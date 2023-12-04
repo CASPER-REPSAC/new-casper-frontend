@@ -2,6 +2,7 @@
 
 /* eslint-disable jsx-a11y/control-has-associated-label */
 import { Skeleton } from 'app/_components/common';
+import createNumArr from 'app/_utils/createNumArr';
 
 function BoardBodySkeleton() {
   const numOfRows = 10;
@@ -18,7 +19,7 @@ function BoardBodySkeleton() {
       </thead>
 
       <tbody>
-        {[...Array(numOfRows)].map((val) => (
+        {createNumArr(numOfRows).map((val) => (
           <tr
             className="h-10 border-b border-solid border-gray-600 text-center"
             key={val}

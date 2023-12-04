@@ -3,7 +3,7 @@ interface Props {
 }
 
 function Skeleton({ className: additionalClassName }: Props) {
-  const defaultClassName = 'animate-pulse bg-gray-600/50 rounded-full';
+  const defaultClassName = 'animate-pulse bg-gray-600/50';
   return <div className={`${defaultClassName} ${additionalClassName}`} />;
 }
 
