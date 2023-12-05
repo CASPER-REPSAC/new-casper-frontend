@@ -8,7 +8,6 @@ const localStorageEffect: (key: string) => AtomEffect<'dark' | 'light'> =
     const savedValue = localStorage.getItem(key);
     if (savedValue === 'light' || savedValue === 'dark') {
       setSelf(savedValue);
-      console.log('localStorage, recoil 동기화', savedValue);
     }
 
     onSet((newValue, _, isReset) => {
