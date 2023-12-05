@@ -1,4 +1,3 @@
-import Image from 'next/image';
 import { useRecoilState } from 'recoil';
 import { MemberProfile } from 'app/_types/memberTypes';
 import { Variants, motion } from 'framer-motion';
@@ -7,7 +6,7 @@ import {
   detailedMemberPopupState,
   selectedMemberState,
 } from 'app/_store/memberCardAtoms';
-import UserIcon from './common/UserIcon';
+import UserImage from './common/UserImage';
 
 interface Props {
   member: MemberProfile;
@@ -28,23 +27,18 @@ function MemberCard({ member }: Props) {
 
   return (
     <motion.div
-      className="flex-center flex-col gap-3 overflow-hidden rounded border border-solid border-gray-600 bg-black/50 backdrop-blur"
+      className="flex-center flex-col overflow-hidden rounded border border-solid border-sky-300 bg-white backdrop-blur dark:border-gray-600 dark:bg-black/50"
       variants={wrapperVariants}
       whileHover="animate"
       layoutId={`detail_popup_${id}`}
     >
-      <motion.div
-        className="flex-center relative h-52 w-52 cursor-pointer overflow-hidden rounded bg-gray-900 object-cover"
-        onClick={() => openDetailPopup(member)}
+      <UserImage
+        src={image}
         layoutId={`${image}_${id}`}
-      >
-        {image ? (
-          <Image objectFit="cover" src={image} alt="profile image" fill />
-        ) : (
-          <UserIcon />
-        )}
-      </motion.div>
-      <div className="pointer-events-none text-center">{name}</div>
+        onClick={() => openDetailPopup(member)}
+      />
+
+      <div className="h-full py-2 text-center">{name}</div>
     </motion.div>
   );
 }

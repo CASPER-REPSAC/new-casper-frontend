@@ -7,15 +7,15 @@ import {
 } from 'app/_store/memberCardAtoms';
 import { PageShadow } from 'app/_components/common';
 import DetailPopupHeader from './DetailPopupHeader';
-import DetailPopupImage from './DetailPopupImage';
 import DetailDescription from './DetailDescription';
+import UserImage from '../common/UserImage';
 
 function DetailMemberPopup() {
   const selectedMember = useRecoilValue(selectedMemberState);
   const [visible, setVisible] = useRecoilState(detailedMemberPopupState);
 
   if (!selectedMember || !visible) return <></>;
-  const { id } = selectedMember;
+  const { image, id } = selectedMember;
 
   const closePopup: MouseEventHandler<HTMLDivElement> = (e) => {
     if (e.target === e.currentTarget) setVisible(false);
@@ -24,12 +24,12 @@ function DetailMemberPopup() {
   return (
     <PageShadow onClick={closePopup}>
       <motion.div
-        className="flex w-[80vw] flex-col rounded border border-solid border-gray-600 bg-black p-10 md:max-w-[700px] "
+        className="flex w-[80vw] flex-col rounded border border-solid border-sky-300 bg-white p-10 dark:border-gray-600 dark:bg-black md:max-w-[700px] "
         layoutId={`detail_popup_${id}`}
       >
         <DetailPopupHeader />
         <div className="flex-center w-full flex-col gap-8 lg:flex-row">
-          <DetailPopupImage />
+          <UserImage src={image} layoutId={`${image}_${id}`} />{' '}
           <DetailDescription />
         </div>
       </motion.div>
