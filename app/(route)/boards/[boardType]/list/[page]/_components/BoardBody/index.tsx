@@ -15,7 +15,14 @@ async function BoardBody({ params: { boardType, page } }: Props) {
 
   return (
     <table className="w-full table-fixed text-base">
-      <thead className="h-10 border-b-[1px]  border-solid border-slate-300 bg-slate-200 font-bold leading-10 dark:border-gray-600 dark:bg-gray-900">
+      <thead
+        className="h-10 
+      border-b border-solid border-slate-300 
+      bg-slate-100 
+      font-bold leading-10 
+      dark:border-gray-600 
+      dark:bg-slate-800"
+      >
         <tr className="text-center">
           <td className="w-[7%]">번호</td>
           <td className="w-[35%]">제목</td>

@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 interface ArticleProps {
@@ -29,8 +28,13 @@ function Article({
   });
 
   return (
-    <motion.tr
-      className="h-10 cursor-pointer border-b border-solid border-slate-200 text-center dark:border-gray-600 hover:dark:bg-gray-700"
+    <tr
+      className="h-10 cursor-pointer 
+      border-b border-solid border-slate-200 
+      text-center 
+      hover:bg-sky-100 
+      dark:border-slate-700 
+      dark:hover:bg-slate-800"
       onMouseEnter={() => prefetch(href)}
       onClick={() => push(href)}
     >
@@ -41,7 +45,7 @@ function Article({
       <td className="align-middle">{nickname}</td>
       <td className="align-middle">{formattedDate}</td>
       <td className="align-middle">{view}</td>
-    </motion.tr>
+    </tr>
   );
 }
 

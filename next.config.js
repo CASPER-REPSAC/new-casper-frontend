@@ -3,6 +3,16 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const nextConfig = {
+  experimental: {
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
+  },
   async rewrites() {
     return [
       {

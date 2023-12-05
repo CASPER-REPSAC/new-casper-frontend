@@ -1,10 +1,7 @@
 'use client';
 
-import themeState from 'app/_store/themeAtom';
-
 import { Variants, motion } from 'framer-motion';
-import Image from 'next/image';
-import { useRecoilValue } from 'recoil';
+import CasperLogoIcon from '../../../public/casper_logo.svg';
 
 interface Props {
   className?: string;
@@ -12,27 +9,15 @@ interface Props {
 }
 
 function CasperLogo({ onClick, className: additionalClassName }: Props) {
-  const theme = useRecoilValue(themeState);
-
-  const WHITE_LOGO_SRC = '/casper_logo_white.webp';
-  const BLACK_LOGO_SRC = '/casper_logo_black.webp';
-  const logoSrc = theme === 'dark' ? WHITE_LOGO_SRC : BLACK_LOGO_SRC;
-
   return (
     <motion.div
-      className={`relative h-14 w-40 ${additionalClassName}`}
+      className={`flex-center relative h-14 w-40 ${additionalClassName}`}
       onClick={onClick}
       variants={variants}
       whileHover="hover"
       whileTap="tap"
     >
-      <Image
-        className="object-contain"
-        sizes="(min-width: 768px) 50vw, 100vw"
-        src={logoSrc}
-        alt="casper logo"
-        fill
-      />
+      <CasperLogoIcon className="h-10 w-32 fill-slate-600 dark:fill-white" />
     </motion.div>
   );
 }

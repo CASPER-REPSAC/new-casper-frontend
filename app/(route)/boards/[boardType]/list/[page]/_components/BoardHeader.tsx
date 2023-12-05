@@ -21,7 +21,6 @@ function BoardHeader() {
         labelIcon={<SearchIcon size={ICON_SIZE.small} />}
         {...register('search')}
         placeholder="검색 기능 개발 중이에요."
-        disabled
       />
     </div>
   );

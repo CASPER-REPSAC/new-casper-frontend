@@ -27,7 +27,15 @@ function Header() {
       <AnimatePresence>
         {isHambergerMenuOpen && <HambergerNavigation onBgClick={closeMenu} />}
       </AnimatePresence>
-      <div className="sticky top-0 z-header flex h-14 w-screen text-black backdrop-blur-lg dark:text-slate-500">
+      <div
+        className="dark: sticky top-0 z-header flex h-14 w-screen bg-white shadow 
+        backdrop-blur
+        dark:border-b
+        dark:border-solid
+        dark:border-b-slate-300/10
+        dark:bg-slate-900/10
+        "
+      >
         <div className="common-center flex h-full items-center justify-between">
           <DefaultButton className="block lg:hidden" onClick={toggleMenu}>
             <MenuIcon size={ICON_SIZE.large} />
