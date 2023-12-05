@@ -30,7 +30,7 @@ function AgreeForm({ onNext }: Props) {
         </li>
       </div>
       <DefaultButton
-        theme="green"
+        theme="primary"
         type="submit"
         disabled={!isValidValue}
         onClick={handleSubmit(onNext)}

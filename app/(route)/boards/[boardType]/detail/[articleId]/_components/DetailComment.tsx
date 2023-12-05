@@ -30,7 +30,7 @@ function Comment({ name, date, content }: CommentProps) {
       </div>
       <div className="flex gap-4">
         <DefaultButton size="sm">수정</DefaultButton>
-        <DefaultButton size="sm" theme="red">
+        <DefaultButton size="sm" theme="danger">
           삭제
         </DefaultButton>
       </div>

@@ -32,7 +32,7 @@ function CommentEditorSection() {
         rows={1}
       />
       <div className="flex items-center justify-end">
-        <DefaultButton type="submit" size="sm" theme="green">
+        <DefaultButton type="submit" size="sm" theme="primary">
           추가
         </DefaultButton>
       </div>

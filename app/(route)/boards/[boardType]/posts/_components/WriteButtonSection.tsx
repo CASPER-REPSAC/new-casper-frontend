@@ -14,7 +14,7 @@ function WriteButtonSection() {
   return (
     <div className="flex">
       <DefaultButton
-        theme="green"
+        theme="primary"
         className="w-full"
         size="lg"
         onClick={handleSubmit(onValid)}

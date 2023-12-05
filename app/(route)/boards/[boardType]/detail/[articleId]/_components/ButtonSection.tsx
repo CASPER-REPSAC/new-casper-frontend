@@ -14,8 +14,7 @@ function ButtonSection({ articleId }: { articleId: string }) {
 
   const [editable, setEditable] = useRecoilState(editableState);
   const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
-  const { mutateAsync: mutateUpdateAsync } =
-    useUpdateArticleMutation(articleId);
+  const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
 
   const deleteArticle = () => {
     mutateDeletion();
@@ -24,11 +23,12 @@ function ButtonSection({ articleId }: { articleId: string }) {
     setEditable(true);
   };
   const completeModification = async () => {
-    await mutateUpdateAsync({
+    mutateUpdate({
       articleId,
       title: methods.getValues('title'),
       content: methods.getValues('content'),
     });
+
     setEditable(false);
     refresh();
   };
@@ -42,7 +42,7 @@ function ButtonSection({ articleId }: { articleId: string }) {
         {editable ? '완료' : '수정'}
       </DefaultButton>
 
-      <DefaultButton size="sm" theme="red" onClick={deleteArticle}>
+      <DefaultButton size="sm" theme="danger" onClick={deleteArticle}>
         삭제
       </DefaultButton>
     </div>

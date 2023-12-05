@@ -9,7 +9,7 @@
   }
   .input {
     @apply block
-  w-full 
+    w-full 
     rounded 
     border border-solid border-slate-200 
     bg-white px-4 
@@ -18,7 +18,7 @@
     focus:ring-1 
     focus:ring-inset 
     dark:border-slate-600 
-    dark:bg-transparent;
+    dark:bg-slate-700;
   }
   .label {
     @apply mb-2 inline-block text-sm;

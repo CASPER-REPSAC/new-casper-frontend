@@ -34,7 +34,7 @@ function Article({
       text-center 
       hover:bg-sky-100 
       dark:border-slate-700 
-      dark:hover:bg-slate-800"
+      dark:hover:bg-slate-900/50"
       onMouseEnter={() => prefetch(href)}
       onClick={() => push(href)}
     >

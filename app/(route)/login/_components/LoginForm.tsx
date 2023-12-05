@@ -49,7 +49,7 @@ function LoginForm() {
       />
       <DefaultButton
         type="submit"
-        theme="green"
+        theme="primary"
         className="mt-3 w-full"
         onClick={handleSubmit(onValid, onInvalid)}
       >

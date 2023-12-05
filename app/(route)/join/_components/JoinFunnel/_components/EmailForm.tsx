@@ -55,7 +55,11 @@ function EmailForm({ onNext }: Props) {
           <li>{errors.email?.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton theme="green" type="submit" onClick={handleSubmit(onNext)}>
+      <DefaultButton
+        theme="primary"
+        type="submit"
+        onClick={handleSubmit(onNext)}
+      >
         다음 단계
       </DefaultButton>
     </>

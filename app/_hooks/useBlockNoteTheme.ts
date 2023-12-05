@@ -35,7 +35,7 @@ const blockNotedarkTheme = {
       paddingTop: '1rem',
       paddingBottom: '1rem',
       '.tiptap': {
-        background: COLORS.gray800,
+        background: 'inherit',
       },
     },
   }),

@@ -62,7 +62,7 @@ function NameForm({ onNext }: Props) {
         </FormErrorWrapper>
       )}
       <DefaultButton
-        theme="green"
+        theme="primary"
         type="submit"
         disabled={!isValidValue}
         onClick={handleSubmit(onNext)}

@@ -18,7 +18,7 @@ function BoardPage({
 
       <DefaultLink
         className="ml-auto"
-        theme="green"
+        theme="primary"
         href={`/boards/${boardType}/posts`}
       >
         작성 하기
