@@ -2,13 +2,13 @@ import 'app/_styles/reset.css';
 import 'app/_styles/global.css';
 import { ReactNode } from 'react';
 import {
-  AutoLoginPresence,
   PopupWrapper,
   QueryWrapper,
   RecoilRootWrapper,
 } from 'app/(route)/_providers';
 import { DefaultLayout } from 'app/_components/layout';
 import SyncThemeScript from './_providers/SyncThemeScript';
+import AutoLoginServer from './_providers/AutoLoginProvider/AutoLoginServer';
 
 export const metadata = {
   title: 'Casper',
@@ -35,10 +35,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <QueryWrapper>
           <RecoilRootWrapper>
-            <AutoLoginPresence>
+            {/* @ts-expect-error Async Server Component */}
+            <AutoLoginServer>
               <PopupWrapper />
               <DefaultLayout>{children}</DefaultLayout>
-            </AutoLoginPresence>
+            </AutoLoginServer>
           </RecoilRootWrapper>
         </QueryWrapper>
       </body>

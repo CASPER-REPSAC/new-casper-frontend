@@ -8,7 +8,7 @@ function useAllMember(
 ) {
   const queryKey = ['allMembers', role];
   const queryFn = async () => {
-    const data = await getAllMember(role);
+    const data = await getAllMember(role, true);
     return data;
   };
 

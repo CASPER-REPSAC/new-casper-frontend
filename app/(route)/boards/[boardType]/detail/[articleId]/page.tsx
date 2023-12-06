@@ -13,7 +13,7 @@ export default async function ArticleDetailPage({
 }: {
   params: { articleId: string };
 }) {
-  const data = await getArticleDetail(articleId, true);
+  const data = await getArticleDetail(articleId);
 
   return (
     <ClientFormProvider>

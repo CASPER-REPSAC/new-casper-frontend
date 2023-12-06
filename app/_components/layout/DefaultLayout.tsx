@@ -25,6 +25,8 @@ function DefaultLayout({ children }: Props) {
     }
   }, [theme]);
 
+  console.log('[Default]');
+
   return (
     <div className="flex min-h-screen flex-col">
       <Header />

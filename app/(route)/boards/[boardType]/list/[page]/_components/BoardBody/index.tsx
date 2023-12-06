@@ -8,10 +8,7 @@ interface Props {
 }
 
 async function BoardBody({ params: { boardType, page } }: Props) {
-  const { articleList } = await getOnePageArticleList(
-    { boardType, page },
-    true,
-  );
+  const { articleList } = await getOnePageArticleList({ boardType, page });
 
   return (
     <table className="w-full table-fixed text-base">

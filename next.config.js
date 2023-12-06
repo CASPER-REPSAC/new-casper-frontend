@@ -16,7 +16,7 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
+        source: '/proxy/api/:path*',
         destination: `${API_URL}/api/:path*`,
       },
     ];

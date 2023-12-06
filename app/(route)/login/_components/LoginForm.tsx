@@ -6,19 +6,31 @@ import { REQUIRED_MESSAGE } from 'app/_constants/message';
 import { ICON_SIZE } from 'app/_constants/size';
 import { PLACEHOLDER } from 'app/_constants/label';
 import { POPUP_DURATION } from 'app/_constants/duration';
-import { useLoginMutation } from 'app/_hooks/apis/user';
-import { LoginRequest } from 'app/_types/loginTypes';
+import { LoginRequest, LoginResponse } from 'app/_types/loginTypes';
+import axios from 'axios';
+import { useSetRecoilState } from 'recoil';
+import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
+import { PATH } from 'app/_constants/urls';
+import { useRouter } from 'next/navigation';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();
-  const { mutate: mutateLogin } = useLoginMutation();
+  const setAccessToken = useSetRecoilState(accessTokenState);
+  const setMyProfile = useSetRecoilState(myProfileState);
   const { openAndDeletePopup } = usePopup();
+  const { push } = useRouter();
   const idRegister = register('id', { required: REQUIRED_MESSAGE.id });
   const pwRegister = register('pw', { required: REQUIRED_MESSAGE.pw });
 
-  const onValid: SubmitHandler<LoginRequest> = (data) => {
-    mutateLogin(data);
+  const onValid: SubmitHandler<LoginRequest> = async (data) => {
+    const {
+      data: { myInfo, accessToken },
+    } = await axios.post<LoginResponse>('/api/loginProxy', data);
+    setAccessToken(accessToken);
+    setMyProfile(myInfo);
+    push(PATH.home.url);
   };
+
   const onInvalid: SubmitErrorHandler<LoginRequest> = (errors) => {
     if (errors.id && errors.id.message) {
       openAndDeletePopup({

@@ -13,7 +13,7 @@ function useUpdateArticleMutation(id: string) {
   const { openAndDeletePopup } = usePopup();
 
   const mutationFn = (data: UpdateReqData) =>
-    axios.patch(`${UPDATE_ARTICLE_API}/${id}`, data, {
+    axios.patch(`/proxy${UPDATE_ARTICLE_API}/${id}`, data, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

@@ -5,7 +5,7 @@ export default function useProfile(id: string) {
   const queryKey = ['profile', id];
 
   const queryFn = async () => {
-    const data = await getProfile(id);
+    const data = await getProfile(id, true);
     return data;
   };
 

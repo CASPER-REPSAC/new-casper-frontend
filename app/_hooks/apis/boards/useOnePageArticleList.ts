@@ -13,7 +13,10 @@ function useOnePageArticleList(
   const queryKey = ['onePageArticleList', boardType, page];
 
   const queryFn = async () => {
-    const data = await getOnePageArticleList({ boardType, page, category });
+    const data = await getOnePageArticleList(
+      { boardType, page, category },
+      true,
+    );
     return data;
   };
 

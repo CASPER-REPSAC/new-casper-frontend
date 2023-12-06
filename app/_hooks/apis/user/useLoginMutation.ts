@@ -17,7 +17,7 @@ export default function useLoginMutation() {
   const { openAndDeletePopup } = usePopup();
 
   const mutationFn = (params: LoginRequest) =>
-    axios.post<LoginResponse>(LOGINT_API, params);
+    axios.post<LoginResponse>(`/proxy${LOGINT_API}`, params);
 
   const onLoinSuccess = ({ data }: AxiosResponse<LoginResponse>) => {
     openAndDeletePopup({
