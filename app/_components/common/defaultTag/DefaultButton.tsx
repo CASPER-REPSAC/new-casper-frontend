@@ -23,6 +23,7 @@ function DefaultButton({
       className={`${className} ${additionalClassName}`}
       type={type === 'button' ? 'button' : 'submit'}
       {...restProps}
+      disabled={disabled}
     >
       {children}
     </button>

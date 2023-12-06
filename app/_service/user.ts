@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { cache } from 'react';
 import {
   ALL_MEMEBER_API,
   API_URL,
@@ -7,8 +8,11 @@ import {
 } from 'app/_constants/apiUrl';
 import { Profile } from 'app/_types/userTypes';
 import { MemberProfile } from 'app/_types/memberTypes';
-import { cache } from 'react';
-import { AutoLoginResponse } from 'app/_types/loginTypes';
+import {
+  AutoLoginResponse,
+  LoginRequest,
+  LoginResponse,
+} from 'app/_types/loginTypes';
 
 export const getProfile = cache(async (id: string, proxy: boolean = false) => {
   const url = proxy
@@ -36,6 +40,12 @@ export const postAutoLogin = cache(async () => {
     undefined,
     { withCredentials: true },
   );
+
+  return data;
+});
+
+export const postLogin = cache(async (params: LoginRequest) => {
+  const data = await axios.post<LoginResponse>('/api/loginProxy', params);
 
   return data;
 });

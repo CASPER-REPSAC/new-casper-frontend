@@ -6,29 +6,18 @@ import { REQUIRED_MESSAGE } from 'app/_constants/message';
 import { ICON_SIZE } from 'app/_constants/size';
 import { PLACEHOLDER } from 'app/_constants/label';
 import { POPUP_DURATION } from 'app/_constants/duration';
-import { LoginRequest, LoginResponse } from 'app/_types/loginTypes';
-import axios from 'axios';
-import { useSetRecoilState } from 'recoil';
-import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
-import { PATH } from 'app/_constants/urls';
-import { useRouter } from 'next/navigation';
+import { LoginRequest } from 'app/_types/loginTypes';
+import { useLoginMutation } from 'app/_hooks/apis/user';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();
-  const setAccessToken = useSetRecoilState(accessTokenState);
-  const setMyProfile = useSetRecoilState(myProfileState);
+  const { mutate, isPending } = useLoginMutation();
   const { openAndDeletePopup } = usePopup();
-  const { push } = useRouter();
   const idRegister = register('id', { required: REQUIRED_MESSAGE.id });
   const pwRegister = register('pw', { required: REQUIRED_MESSAGE.pw });
 
   const onValid: SubmitHandler<LoginRequest> = async (data) => {
-    const {
-      data: { myInfo, accessToken },
-    } = await axios.post<LoginResponse>('/api/loginProxy', data);
-    setAccessToken(accessToken);
-    setMyProfile(myInfo);
-    push(PATH.home.url);
+    mutate(data);
   };
 
   const onInvalid: SubmitErrorHandler<LoginRequest> = (errors) => {
@@ -64,6 +53,7 @@ function LoginForm() {
         theme="primary"
         className="mt-3 w-full"
         onClick={handleSubmit(onValid, onInvalid)}
+        disabled={isPending}
       >
         로그인
       </DefaultButton>
