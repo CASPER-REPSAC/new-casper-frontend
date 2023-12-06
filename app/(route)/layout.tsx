@@ -5,10 +5,10 @@ import {
   PopupWrapper,
   QueryWrapper,
   RecoilRootWrapper,
+  SyncThemeScript,
+  AutoLoginPresence,
 } from 'app/(route)/_providers';
 import { DefaultLayout } from 'app/_components/layout';
-import SyncThemeScript from './_providers/SyncThemeScript';
-import AutoLoginServer from './_providers/AutoLoginProvider/AutoLoginServer';
 
 export const metadata = {
   title: 'Casper',
@@ -36,10 +36,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <QueryWrapper>
           <RecoilRootWrapper>
             {/* @ts-expect-error Async Server Component */}
-            <AutoLoginServer>
+            <AutoLoginPresence>
               <PopupWrapper />
               <DefaultLayout>{children}</DefaultLayout>
-            </AutoLoginServer>
+            </AutoLoginPresence>
           </RecoilRootWrapper>
         </QueryWrapper>
       </body>

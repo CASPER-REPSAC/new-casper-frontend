@@ -1,11 +1,10 @@
 import axios from 'axios';
 import { ReactNode } from 'react';
 import { cookies } from 'next/headers';
-import { API_URL, AUTO_LOGIN_API } from 'app/_constants/apiUrl';
-import { AutoLoginResponse } from 'app/_types/loginTypes';
+import { postAutoLogin } from 'app/_service/user';
 import AutoLoginClient from './AutoLoginClient';
 
-async function AutoLoginServer({ children }: { children: ReactNode }) {
+async function AutoLoginPresence({ children }: { children: ReactNode }) {
   const cookieStore = cookies();
   const refreshToken = cookieStore.get('refreshToken');
 
@@ -13,22 +12,17 @@ async function AutoLoginServer({ children }: { children: ReactNode }) {
     axios.defaults.headers.Cookie = `refreshToken=${refreshToken?.value};`;
     const {
       data: { accessToken, myInfo },
-    } = await axios.post<AutoLoginResponse>(
-      `${API_URL}${AUTO_LOGIN_API}`,
-      undefined,
-      { withCredentials: true },
-    );
+    } = await postAutoLogin();
     axios.defaults.headers.common.Authorization = accessToken;
+
     return (
-      <>
-        <AutoLoginClient accessToken={accessToken} myProfile={myInfo}>
-          {children}
-        </AutoLoginClient>
-      </>
+      <AutoLoginClient accessToken={accessToken} myProfile={myInfo}>
+        {children}
+      </AutoLoginClient>
     );
   } catch (e) {
     return <>{children}</>;
   }
 }
 
-export default AutoLoginServer;
+export default AutoLoginPresence;

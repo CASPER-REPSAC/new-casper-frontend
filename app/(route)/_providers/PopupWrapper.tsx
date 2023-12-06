@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { popupListState } from 'app/_store';
