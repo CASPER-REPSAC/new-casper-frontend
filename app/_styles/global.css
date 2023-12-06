@@ -27,11 +27,11 @@
   }
   .input {
     @apply block
+    h-10
     w-full 
     rounded 
     border border-solid border-slate-200 
     bg-white px-4 
-    py-3 
     focus:outline-none 
     focus:ring-1 
     focus:ring-inset 

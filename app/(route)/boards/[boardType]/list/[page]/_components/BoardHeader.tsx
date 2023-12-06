@@ -11,7 +11,7 @@ function BoardHeader() {
 
   return (
     <div className="flex w-full justify-between gap-4">
-      <select className="input w-auto px-4">
+      <select className="input w-28">
         {/* Todo. board_type에 따라서 옵션 변경 */}
         <option value="1">전체</option>
         <option value="2">ex1</option>

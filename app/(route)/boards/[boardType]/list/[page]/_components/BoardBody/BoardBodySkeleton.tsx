@@ -8,7 +8,16 @@ function BoardBodySkeleton() {
   const numOfRows = 10;
   return (
     <table className="w-full table-fixed text-base">
-      <thead className="h-10  border-b-[1px] border-solid border-gray-300 bg-gray-900 font-bold leading-10">
+      <thead
+        className="
+      h-10 
+      border-b border-solid border-slate-300 
+      bg-slate-100 
+      font-bold leading-10 
+      dark:border-gray-600 
+      dark:bg-slate-800
+      "
+      >
         <tr className="text-center">
           <td className="w-[7%]">번호</td>
           <td className="w-[35%]">제목</td>
@@ -21,23 +30,27 @@ function BoardBodySkeleton() {
       <tbody>
         {createNumArr(numOfRows).map((val) => (
           <tr
-            className="h-10 border-b border-solid border-gray-600 text-center"
+            className="h-10 cursor-pointer 
+            border-b border-solid border-slate-200 
+            text-center 
+            dark:border-slate-700 
+            "
             key={val}
           >
             <td className="align-middle" align="center">
-              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-4 w-2/3 rounded" />
             </td>
             <td className="align-middle" align="left">
-              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-4 w-2/3 rounded" />
             </td>
             <td className="align-middle" align="center">
-              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-4 w-2/3 rounded" />
             </td>
             <td className="align-middle" align="center">
-              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-4 w-2/3 rounded" />
             </td>
             <td className="align-middle" align="center">
-              <Skeleton className="h-4 w-2/3" />
+              <Skeleton className="h-4 w-2/3 rounded" />
             </td>
           </tr>
         ))}

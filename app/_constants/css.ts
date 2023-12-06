@@ -1,7 +1,7 @@
 export const BUTTON_SIZE_CSS = {
-  sm: 'btn px-2 py-1 text-sm',
+  sm: 'px-2 py-1 text-sm',
+  m: 'px-4 py-2 text-base',
   lg: 'px-5 py-3 text-lg',
-  m: '',
 };
 
 export const BUTTON_THEME_CSS = {
