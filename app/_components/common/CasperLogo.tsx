@@ -1,7 +1,7 @@
 'use client';
 
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { Variants, motion } from 'framer-motion';
-import CasperLogoIcon from 'public/casper_logo.svg';
 
 interface Props {
   className: string;
@@ -24,9 +24,7 @@ function CasperLogo({ onClick, size = 'sm', className }: Props) {
       whileHover="hover"
       whileTap="tap"
     >
-      <CasperLogoIcon
-        className={`${SIZE_CSS[size]} fill-slate-600 dark:fill-white`}
-      />
+      <div>test</div>
     </motion.div>
   );
 }
