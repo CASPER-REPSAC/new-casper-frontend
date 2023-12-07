@@ -13,12 +13,13 @@ module.exports = {
   theme: {
     extend: {
       zIndex: {
-        header: '9008',
-        detailCardBg: '-1001',
-        memberCardCover: '-1002',
+        memberCardCover: '-1091',
+        detailCardBg: '-1090',
+        highlight: '-1010',
         options: '1001',
         pageShadow: '9001',
         header: '9000',
+        header: '9008',
         popup: '9010',
         hambergerMenu: '9020',
         loadingBar: '9090',
