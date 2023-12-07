@@ -8,7 +8,6 @@ import {
 } from '@blocknote/core';
 import { BlockNoteView, useBlockNote } from '@blocknote/react';
 import { useBlockNoteTheme } from 'app/_hooks';
-import { useEffect } from 'react';
 
 interface Props {
   initialContent?: Block[];
@@ -28,18 +27,14 @@ function BlockNote({
       editable,
       uploadFile: uploadToTmpFilesDotOrg_DEV_ONLY,
     },
-    [initialContent],
+    [initialContent, editable],
   );
   const theme = useBlockNoteTheme(editable);
-
-  useEffect(() => {
-    editor.isEditable = editable;
-  }, [editor, editable]);
 
   return (
     <BlockNoteView
       className={`${
-        editable ? 'input p-0' : 'bg-transparent'
+        editable ? 'p-0' : 'bg-transparent'
       }  h-full cursor-text rounded py-4`}
       editor={editor}
       theme={theme}

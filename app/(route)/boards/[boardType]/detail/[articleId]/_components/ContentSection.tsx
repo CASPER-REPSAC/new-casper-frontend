@@ -42,11 +42,13 @@ function ContentSection({ articleContent }: Props) {
   const initialContent = JSON.parse(articleContent);
 
   return (
-    <BlockNote
-      editable={editable}
-      initialContent={initialContent}
-      onEditorContentChange={onEditorContentChange}
-    />
+    <div className={`${editable ? 'input' : ''} mb-8 min-h-[300px] px-0`}>
+      <BlockNote
+        editable={editable}
+        initialContent={initialContent}
+        onEditorContentChange={onEditorContentChange}
+      />
+    </div>
   );
 }
 

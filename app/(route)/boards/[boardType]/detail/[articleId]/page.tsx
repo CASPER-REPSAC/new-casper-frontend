@@ -22,9 +22,7 @@ export default async function ArticleDetailPage({
           <h1 className="text-6xl">{data.title}</h1>
           <ButtonSection articleId={articleId} />
         </div>
-        <div className="mb-8 min-h-[300px]">
-          <ContentSection articleContent={data.content} />
-        </div>
+        <ContentSection articleContent={data.content} />
         <div className="mb-32">
           <AuthorSection nickname={data.nickname} />
         </div>
