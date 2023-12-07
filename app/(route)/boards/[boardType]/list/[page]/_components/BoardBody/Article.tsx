@@ -21,11 +21,9 @@ function Article({
 }: ArticleProps) {
   const { prefetch, push } = useRouter();
   const href = `/boards/${boardType}/detail/${articleId}`;
-  const formattedDate = new Date(createdAt).toLocaleString('ko-KR', {
-    year: '2-digit',
-    month: '2-digit',
-    day: '2-digit',
-  });
+  const [date] = createdAt.split('T');
+  const [year, month, day] = date.split('-');
+  const formattedDate = `${year.slice(2)}. ${month}. ${day}`;
 
   return (
     <tr
