@@ -7,7 +7,7 @@ function SyncThemeScript() {
     const htmlElement = document.querySelector('html');
 
     switch (savedTheme) {
-      case 'ligth':
+      case 'light':
         htmlElement?.classList.remove('dark');
         break;
       case 'dark':
