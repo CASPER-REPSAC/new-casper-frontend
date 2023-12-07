@@ -32,7 +32,7 @@ export function LeftButton({ onClick, size = ICON_SIZE.medium }: Props) {
       whileTap="tap"
       custom="left"
     >
-      <LeftArrowIcon size={size} className="text-white" />
+      <LeftArrowIcon size={size} />
     </motion.button>
   );
 }
@@ -48,7 +48,7 @@ export function RightButton({ onClick, size = ICON_SIZE.medium }: Props) {
       whileTap="tap"
       custom="right"
     >
-      <RightArrowIcon size={size} className="text-white" />
+      <RightArrowIcon size={size} />
     </motion.button>
   );
 }

@@ -15,7 +15,7 @@ async function BoardBody({ params: { boardType, page } }: Props) {
       <thead
         className="h-10 
       border-b border-solid border-slate-300 
-      bg-slate-100 
+      bg-sky-100 
       font-bold leading-10 
       dark:border-gray-600 
       dark:bg-slate-800"

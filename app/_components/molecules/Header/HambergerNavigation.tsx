@@ -29,7 +29,7 @@ function HambergerNavigation({ onBgClick }: Props) {
         if (e.currentTarget === e.target) onBgClick();
       }}
     >
-      <div className="flex h-screen w-2/3 flex-col items-center gap-4 bg-black/50 pt-10 backdrop-blur-lg">
+      <div className="flex h-screen w-2/3 flex-col items-center gap-4 bg-sky-100/10 pt-10 backdrop-blur-lg dark:bg-black/50">
         {isLogin ? (
           <>
             <DefaultLink href={`${PATH.user.mypage.url}`}>

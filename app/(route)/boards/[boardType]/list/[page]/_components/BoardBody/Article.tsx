@@ -32,7 +32,7 @@ function Article({
       className="h-10 cursor-pointer 
       border-b border-solid border-slate-200 
       text-center 
-      hover:bg-sky-100 
+      hover:bg-slate-100 
       dark:border-slate-700 
       dark:hover:bg-slate-900/50"
       onMouseEnter={() => prefetch(href)}
