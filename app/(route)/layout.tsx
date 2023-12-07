@@ -23,8 +23,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       </head>
       <body
         className="
-        bg-white
+        bg-gradient-to-br
+        from-sky-50
+        via-white
+        to-sky-50
+
         text-slate-600
+
         dark:bg-slate-900
         dark:bg-gradient-to-br
         dark:from-slate-900
