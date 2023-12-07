@@ -13,7 +13,7 @@ function ToastPopup(
   return (
     <motion.div
       ref={ref}
-      className="flex-center min-w-[12rem] cursor-pointer rounded border border-solid border-white bg-gray-700 px-5 py-3 text-lg"
+      className="flex-center min-w-[12rem] cursor-pointer rounded border border-solid border-sky-200 bg-sky-50 px-5 py-3 text-lg dark:border-slate-100 dark:bg-slate-700"
       layout
       variants={popupVariants}
       initial="hidden"

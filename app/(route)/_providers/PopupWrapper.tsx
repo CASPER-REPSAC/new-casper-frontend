@@ -12,7 +12,7 @@ function PopupWrapper() {
   const { deletePopup } = usePopup();
 
   return (
-    <div className="fixed right-0 z-popup mr-4 flex flex-col items-center gap-4">
+    <div className="fixed bottom-14 right-0 z-popup mr-4 flex flex-col items-center gap-4 lg:top-20">
       <AnimatePresence mode="popLayout">
         {popupList.map(({ key, message }) => (
           <ToastPopup key={key} onClick={() => deletePopup(key)}>
