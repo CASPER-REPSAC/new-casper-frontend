@@ -41,10 +41,14 @@ function Header() {
             <MenuIcon size={ICON_SIZE.large} />
           </DefaultButton>
 
-          <CasperLogo
-            className="h-10 w-24 cursor-pointer"
+          <button
+            type="button"
+            aria-label="logo"
+            className="cursor-pointer"
             onClick={() => push(PATH.home.url)}
-          />
+          >
+            <CasperLogo />
+          </button>
           <ThemeToggle />
 
           <BarNaviagtion className="hidden lg:flex" />

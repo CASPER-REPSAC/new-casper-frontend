@@ -7,11 +7,13 @@ function Logo() {
 
   return (
     <div className="flex-center mb-4">
-      <CasperLogo
-        className="cursor-pointer"
-        size="lg"
+      <button
+        type="button"
+        aria-label="logo"
         onClick={() => push(PATH.home.url)}
-      />
+      >
+        <CasperLogo size="lg" />
+      </button>
     </div>
   );
 }
