@@ -7,8 +7,10 @@ import { UpdateReqData } from 'app/_types/PostTypes';
 import { usePopup } from 'app/_hooks';
 import { POPUP_MESSAGE } from 'app/_constants/message';
 import { POPUP_DURATION } from 'app/_constants/duration';
+import { useRouter } from 'next/navigation';
 
 function useUpdateArticleMutation(id: string) {
+  const { refresh } = useRouter();
   const accessToken = useRecoilValue(accessTokenState);
   const { openAndDeletePopup } = usePopup();
 
@@ -24,6 +26,7 @@ function useUpdateArticleMutation(id: string) {
       message: POPUP_MESSAGE.updateSuccess,
       duration: POPUP_DURATION.medium,
     });
+    refresh();
   };
 
   const onError = () => {
