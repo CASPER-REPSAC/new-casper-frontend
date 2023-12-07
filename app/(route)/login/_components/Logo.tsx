@@ -8,7 +8,8 @@ function Logo() {
   return (
     <div className="flex-center mb-4">
       <CasperLogo
-        className="w-64 cursor-pointer"
+        className="cursor-pointer"
+        size="lg"
         onClick={() => push(PATH.home.url)}
       />
     </div>

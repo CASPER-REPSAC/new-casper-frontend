@@ -27,7 +27,7 @@
   }
   .input {
     @apply block
-    h-10
+    h-12
     w-full 
     rounded 
     border border-solid border-slate-200 
