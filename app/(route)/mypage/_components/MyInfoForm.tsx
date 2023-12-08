@@ -15,14 +15,6 @@ function MyInfoFrom() {
   const roleRegister = register('role', { required: true, disabled: true });
   const homepageRegister = register('homepage', { required: true });
 
-  if (!myProfile)
-    return (
-      <>
-        현재 자동로그인 로직에서 내 정보를 저장할 수 없어요. 개발 중입니다.
-        내정보를 불러 올 수 없다!
-      </>
-    );
-
   return (
     <>
       <LabelTextarea
@@ -37,21 +29,21 @@ function MyInfoFrom() {
         {...nameRegister}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
-        defaultValue={myProfile.name}
+        defaultValue={myProfile?.name}
       />
       <LabelInput
         label={INPUT_LABEL.nickname}
         {...nicknameRegister}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
-        defaultValue={myProfile.nickname}
+        defaultValue={myProfile?.nickname}
       />
       <LabelInput
         label={INPUT_LABEL.role}
         {...roleRegister}
         placeholder={PLACEHOLDER.role}
         autoComplete="off"
-        defaultValue={myProfile.role}
+        defaultValue={myProfile?.role}
       />
       <LabelInput
         label={INPUT_LABEL.homepage}
