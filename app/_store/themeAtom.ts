@@ -19,10 +19,26 @@ const localStorageEffect: (key: string) => AtomEffect<'dark' | 'light'> =
     });
   };
 
+const htmlClassEffect: AtomEffect<'dark' | 'light'> = ({ onSet }) => {
+  onSet((newValue, _, isReset) => {
+    if (isReset) {
+      return;
+    }
+
+    const htmlElement = document.querySelector('html');
+    if (newValue === 'dark') {
+      htmlElement?.classList.add('dark');
+    }
+    if (newValue === 'light') {
+      htmlElement?.classList.remove('dark');
+    }
+  });
+};
+
 const themeState = atom<'dark' | 'light'>({
   key: 'theme',
   default: 'dark',
-  effects: [localStorageEffect('theme')],
+  effects: [localStorageEffect('theme'), htmlClassEffect],
 });
 
 export default themeState;
