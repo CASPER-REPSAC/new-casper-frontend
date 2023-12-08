@@ -8,6 +8,6 @@ export const BUTTON_THEME_CSS = {
   primary:
     'bg-indigo-100 text-indigo-600 hover:bg-indigo-200 dark:bg-sky-400 dark:text-white dark:hover:bg-sky-300',
   danger:
-    'bg-red-100 text-red-600hover:bg-red-200dark:bg-red-400dark:text-whitedark:hover:bg-red-300',
+    'bg-red-100 text-red-600 hover:bg-red-200 dark:bg-red-400 dark:text-white dark:hover:bg-red-300',
   default: '',
 };

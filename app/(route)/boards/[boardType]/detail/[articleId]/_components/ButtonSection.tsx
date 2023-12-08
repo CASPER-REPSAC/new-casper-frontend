@@ -4,11 +4,18 @@ import {
   useUpdateArticleMutation,
 } from 'app/_hooks/apis/boards';
 import { editableState } from 'app/_store/detailPageAtoms';
+import { myProfileState } from 'app/_store/permissionAtoms';
 import { useFormContext } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-function ButtonSection({ articleId }: { articleId: string }) {
+interface Props {
+  articleId: string;
+  userId: string;
+}
+
+function ButtonSection({ articleId, userId }: Props) {
   const methods = useFormContext();
+  const myProfile = useRecoilValue(myProfileState);
   const [editable, setEditable] = useRecoilState(editableState);
   const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
   const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
@@ -27,6 +34,10 @@ function ButtonSection({ articleId }: { articleId: string }) {
     });
     setEditable(false);
   };
+
+  if (myProfile?.id !== userId) {
+    return <></>;
+  }
 
   return (
     <div className="flex gap-4">

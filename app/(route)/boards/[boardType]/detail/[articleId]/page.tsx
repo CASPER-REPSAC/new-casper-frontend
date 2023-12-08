@@ -20,7 +20,7 @@ export default async function ArticleDetailPage({
       <div>
         <div className="mb-4 flex items-center justify-between border-b border-solid border-gray-600">
           <h1 className="text-6xl">{data.title}</h1>
-          <ButtonSection articleId={articleId} />
+          <ButtonSection articleId={articleId} userId={data.userId} />
         </div>
         <ContentSection articleContent={data.content} />
         <div className="mb-32">
