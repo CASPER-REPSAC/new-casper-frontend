@@ -1,24 +1,20 @@
 'use client';
 
-import themeState from 'app/_store/themeAtom';
-import { useSetRecoilState } from 'recoil';
+import { MoonIcon, SunIcon } from 'app/_components/icons';
+import { useTheme } from 'app/_hooks';
 
 function ThemeToggleButton() {
-  const setTheme = useSetRecoilState(themeState);
+  const { theme, setTheme } = useTheme();
 
   const toggle = () => {
-    const htmlElement = document.querySelector('html');
-    const isDarkMode = htmlElement?.classList.contains('dark');
-    if (isDarkMode) {
-      setTheme('light');
-      return;
-    }
-    setTheme('dark');
+    const newTheme = theme === 'dark' ? 'light' : 'dark';
+    setTheme(newTheme);
   };
 
   return (
-    <button type="button" onClick={toggle}>
-      toggle
+    <button aria-label="theme_button" type="button" onClick={toggle}>
+      {theme === 'dark' && <MoonIcon />}
+      {theme === 'light' && <SunIcon />}
     </button>
   );
 }

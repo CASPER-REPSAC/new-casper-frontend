@@ -1,10 +1,9 @@
 import { useCallback, useEffect, useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import { Theme, darkDefaultTheme, lightDefaultTheme } from '@blocknote/react';
-import themeState from 'app/_store/themeAtom';
+import useTheme from './useTheme';
 
 function useBlockNoteTheme(editable: boolean) {
-  const theme = useRecoilValue(themeState);
+  const { theme } = useTheme();
 
   const getTheme = useCallback(() => {
     if (theme === 'dark') {

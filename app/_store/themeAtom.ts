@@ -2,11 +2,14 @@ import { AtomEffect, atom } from 'recoil';
 
 const localStorageEffect: (key: string) => AtomEffect<'dark' | 'light'> =
   (key) =>
-  ({ setSelf, onSet }) => {
+  ({ setSelf, onSet, trigger }) => {
     if (typeof window === 'undefined') return;
 
     const savedValue = localStorage.getItem(key);
-    if (savedValue === 'light' || savedValue === 'dark') {
+    if (
+      trigger === 'get' &&
+      (savedValue === 'light' || savedValue === 'dark')
+    ) {
       setSelf(savedValue);
     }
 
