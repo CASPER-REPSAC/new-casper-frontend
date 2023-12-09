@@ -1,4 +1,5 @@
 import { useRecoilValue } from 'recoil';
+import { usePathname } from 'next/navigation';
 import { loginState } from 'app/_store/permissionAtoms';
 import { PATH } from 'app/_constants/urls';
 import { ICON_SIZE } from 'app/_constants/size';
@@ -12,6 +13,7 @@ interface Props {
 }
 
 function BarNaviagtion({ className: additionalClassName }: Props) {
+  const pathname = usePathname();
   const login = useRecoilValue(loginState);
   const { mutate: mutateLogout } = useLogoutMutation();
   const logout = () => mutateLogout();
@@ -48,6 +50,7 @@ function BarNaviagtion({ className: additionalClassName }: Props) {
         </BarNavMenu> */}
 
       <BarNavMenu
+        highlight={pathname.startsWith('/members')}
         title={
           <DefaultLink className="w-full" href={members.active.url}>
             Members
@@ -56,6 +59,7 @@ function BarNaviagtion({ className: additionalClassName }: Props) {
         subMenus={memberMenus}
       />
       <BarNavMenu
+        highlight={pathname.startsWith('/boards')}
         title={
           <DefaultLink className="w-full" href={`${boards.notice.url}/list/1`}>
             Boards
@@ -71,6 +75,7 @@ function BarNaviagtion({ className: additionalClassName }: Props) {
       {login ? (
         <>
           <BarNavMenu
+            highlight={pathname.startsWith(PATH.user.mypage.url)}
             title={
               <DefaultLink className="w-full" href={PATH.user.mypage.url}>
                 <UserIcon size={ICON_SIZE.small} />
@@ -87,6 +92,7 @@ function BarNaviagtion({ className: additionalClassName }: Props) {
         </>
       ) : (
         <BarNavMenu
+          highlight={pathname.startsWith(PATH.user.login.url)}
           title={
             <DefaultLink className="w-full" href={PATH.user.login.url}>
               <LoginIcon size={ICON_SIZE.small} />

@@ -14,7 +14,7 @@ interface Props {
 }
 
 function ButtonSection({ articleId, userId }: Props) {
-  const methods = useFormContext();
+  const { getValues } = useFormContext();
   const myProfile = useRecoilValue(myProfileState);
   const [editable, setEditable] = useRecoilState(editableState);
   const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
@@ -29,8 +29,8 @@ function ButtonSection({ articleId, userId }: Props) {
   const completeModification = async () => {
     mutateUpdate({
       articleId,
-      title: methods.getValues('title'),
-      content: methods.getValues('content'),
+      title: getValues('title'),
+      content: getValues('content'),
     });
     setEditable(false);
   };

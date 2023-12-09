@@ -1,12 +1,14 @@
 import { ReactNode, useState } from 'react';
+import { motion } from 'framer-motion';
 import SubMenu from './SubMenu';
 
 interface Props {
   title: ReactNode;
   subMenus?: JSX.Element[];
+  highlight?: boolean;
 }
 
-function BarNavMenu({ title, subMenus }: Props) {
+function BarNavMenu({ title, subMenus, highlight }: Props) {
   const [isSubMenuOpen, setSubMenuOpen] = useState(false);
 
   return (
@@ -21,6 +23,14 @@ function BarNavMenu({ title, subMenus }: Props) {
       <div className="absolute left-1/2 w-full -translate-x-1/2">
         {subMenus && isSubMenuOpen && <SubMenu menus={subMenus} />}
       </div>
+      {highlight && (
+        <div className="absolute bottom-0 left-1/2 w-full -translate-x-1/2">
+          <motion.div
+            layoutId="nav_highlight"
+            className="mx-auto h-0.5 w-1/3 rounded bg-sky-400 dark:bg-sky-600 "
+          />
+        </div>
+      )}
     </div>
   );
 }
