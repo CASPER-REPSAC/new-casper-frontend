@@ -1,3 +1,5 @@
+'use client';
+
 import { ReactNode, useState } from 'react';
 import { motion } from 'framer-motion';
 import SubMenu from './SubMenu';
@@ -24,12 +26,13 @@ function BarNavMenu({ title, subMenus, highlight }: Props) {
         {subMenus && isSubMenuOpen && <SubMenu menus={subMenus} />}
       </div>
       {highlight && (
-        <div className="absolute bottom-0 left-1/2 w-full -translate-x-1/2">
-          <motion.div
-            layoutId="nav_highlight"
-            className="mx-auto h-0.5 w-1/3 rounded bg-sky-400 dark:bg-sky-600 "
-          />
-        </div>
+        <motion.div
+          layoutId="nav_highlight"
+          className="absolute bottom-0 w-full "
+          style={{ originY: '0px' }}
+        >
+          <motion.div className="mx-auto h-0.5 w-1/3 rounded bg-sky-400 dark:bg-sky-600 " />
+        </motion.div>
       )}
     </div>
   );

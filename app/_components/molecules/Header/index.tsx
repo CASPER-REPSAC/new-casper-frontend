@@ -1,6 +1,6 @@
 import { memo, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import { MenuIcon } from 'app/_components/icons';
 import { ICON_SIZE } from 'app/_constants/size';
 import { PATH } from 'app/_constants/urls';
@@ -27,8 +27,8 @@ function Header() {
       <AnimatePresence>
         {isHambergerMenuOpen && <HambergerNavigation onBgClick={closeMenu} />}
       </AnimatePresence>
-      <div
-        className="dark: sticky top-0 z-header flex h-14 w-screen bg-white shadow 
+      <motion.div
+        className="sticky top-0 z-header flex h-14 w-screen bg-white shadow 
         backdrop-blur
         dark:border-b
         dark:border-solid
@@ -53,7 +53,7 @@ function Header() {
 
           <BarNaviagtion className="hidden lg:flex" />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
