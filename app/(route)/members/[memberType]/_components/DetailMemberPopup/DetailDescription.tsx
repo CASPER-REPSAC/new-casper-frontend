@@ -11,7 +11,7 @@ function DetailDescription() {
   const { name, introduce, nickname, role, homepage, email } = selectedMember;
 
   return (
-    <section className="flex w-full flex-col gap-3">
+    <section className="flex w-full flex-col gap-6">
       <DetailRow title="정보">
         <div className="flex items-center gap-4">
           <div className="text-xl">{name}</div>

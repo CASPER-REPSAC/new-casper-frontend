@@ -9,7 +9,14 @@ function SubMenu({ menus }: Props) {
   const uniqueId = useId();
   return (
     <motion.ul
-      className="border-gray-white rounded border border-solid bg-gray-600 p-2"
+      className="
+      w-max
+        rounded bg-sky-50
+        p-2
+        shadow-lg
+        backdrop-blur-lg
+        dark:bg-slate-950/70
+        "
       variants={subMenuVariants}
       initial="hidden"
       animate="visible"

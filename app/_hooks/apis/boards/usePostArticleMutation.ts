@@ -15,7 +15,7 @@ export default function usePostArticleMutation() {
   const { push } = useRouter();
   const accessToken = useRecoilValue(accessTokenState);
   const mutationFn = (params: PostReqData) =>
-    axios.post(POST_ARTICLE_API, params, {
+    axios.post(`/proxy${POST_ARTICLE_API}`, params, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },

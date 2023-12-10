@@ -6,13 +6,12 @@ function DefaultInput(
   { className, disabled, ...props }: Props,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
-  const defaultClassName = 'input';
-  const disabledClassName = disabled ? 'bg-gray-700 cursor-not-allowed' : '';
+  const disabledClassName = disabled ? 'disabled' : '';
 
   return (
     <input
       ref={ref}
-      className={`${defaultClassName} ${disabledClassName} ${className}`}
+      className={`input ${disabledClassName} ${className}`}
       disabled={disabled}
       {...props}
     />

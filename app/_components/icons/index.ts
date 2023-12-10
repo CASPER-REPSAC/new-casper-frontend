@@ -18,8 +18,6 @@ export {
   AiOutlineCheckSquare as CheckSquareIcon,
 } from 'react-icons/ai';
 
-export { BsPencil as PencilIcon } from 'react-icons/bs';
-
 export {
   MdKeyboardArrowLeft as LeftArrowIcon,
   MdKeyboardArrowRight as RightArrowIcon,
@@ -36,3 +34,5 @@ export {
 } from 'react-icons/lu';
 
 export { HiLightBulb as LightBulbIcon } from 'react-icons/hi';
+export { BsPencil as PencilIcon } from 'react-icons/bs';
+export { FaSun as SunIcon, FaMoon as MoonIcon } from 'react-icons/fa';

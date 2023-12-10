@@ -1,6 +1,5 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 
 interface ArticleProps {
@@ -22,15 +21,18 @@ function Article({
 }: ArticleProps) {
   const { prefetch, push } = useRouter();
   const href = `/boards/${boardType}/detail/${articleId}`;
-  const formattedDate = new Date(createdAt).toLocaleString('ko-KR', {
-    year: '2-digit',
-    month: '2-digit',
-    day: '2-digit',
-  });
+  const [date] = createdAt.split('T');
+  const [year, month, day] = date.split('-');
+  const formattedDate = `${year.slice(2)}. ${month}. ${day}`;
 
   return (
-    <motion.tr
-      className="h-10  cursor-pointer border-b border-solid border-gray-600 text-center  hover:bg-gray-700"
+    <tr
+      className="h-10 cursor-pointer 
+      border-b border-solid border-slate-200 
+      text-center 
+      hover:bg-slate-100 
+      dark:border-slate-700 
+      dark:hover:bg-slate-900/50"
       onMouseEnter={() => prefetch(href)}
       onClick={() => push(href)}
     >
@@ -41,7 +43,7 @@ function Article({
       <td className="align-middle">{nickname}</td>
       <td className="align-middle">{formattedDate}</td>
       <td className="align-middle">{view}</td>
-    </motion.tr>
+    </tr>
   );
 }
 

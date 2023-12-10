@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { popupListState } from 'app/_store';
@@ -10,12 +12,12 @@ function PopupWrapper() {
   const { deletePopup } = usePopup();
 
   return (
-    <div className="fixed right-0 z-popup mr-4 flex flex-col items-center gap-4">
+    <div className="fixed  right-0 top-20 z-popup mr-4 h-auto items-center gap-4 ">
       <AnimatePresence mode="popLayout">
         {popupList.map(({ key, message }) => (
-          <ToastPopup key={key} onClick={() => deletePopup(key)}>
-            {message}
-          </ToastPopup>
+          <div key={key} className="mb-2">
+            <ToastPopup onClick={() => deletePopup(key)}>{message}</ToastPopup>
+          </div>
         ))}
       </AnimatePresence>
     </div>

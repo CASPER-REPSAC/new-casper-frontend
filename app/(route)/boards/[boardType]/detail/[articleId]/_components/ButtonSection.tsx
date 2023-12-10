@@ -4,18 +4,21 @@ import {
   useUpdateArticleMutation,
 } from 'app/_hooks/apis/boards';
 import { editableState } from 'app/_store/detailPageAtoms';
-import { useRouter } from 'next/navigation';
+import { myProfileState } from 'app/_store/permissionAtoms';
 import { useFormContext } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useRecoilValue } from 'recoil';
 
-function ButtonSection({ articleId }: { articleId: string }) {
-  const methods = useFormContext();
-  const { refresh } = useRouter();
+interface Props {
+  articleId: string;
+  userId: string;
+}
 
+function ButtonSection({ articleId, userId }: Props) {
+  const { getValues } = useFormContext();
+  const myProfile = useRecoilValue(myProfileState);
   const [editable, setEditable] = useRecoilState(editableState);
   const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
-  const { mutateAsync: mutateUpdateAsync } =
-    useUpdateArticleMutation(articleId);
+  const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
 
   const deleteArticle = () => {
     mutateDeletion();
@@ -24,17 +27,20 @@ function ButtonSection({ articleId }: { articleId: string }) {
     setEditable(true);
   };
   const completeModification = async () => {
-    await mutateUpdateAsync({
+    mutateUpdate({
       articleId,
-      title: methods.getValues('title'),
-      content: methods.getValues('content'),
+      title: getValues('title'),
+      content: getValues('content'),
     });
     setEditable(false);
-    refresh();
   };
 
+  if (myProfile?.id !== userId) {
+    return <></>;
+  }
+
   return (
-    <div className="flex gap-4">
+    <div className="flex shrink-0 gap-4">
       <DefaultButton
         size="sm"
         onClick={editable ? completeModification : changeEditMode}
@@ -42,7 +48,7 @@ function ButtonSection({ articleId }: { articleId: string }) {
         {editable ? '완료' : '수정'}
       </DefaultButton>
 
-      <DefaultButton size="sm" theme="red" onClick={deleteArticle}>
+      <DefaultButton size="sm" theme="danger" onClick={deleteArticle}>
         삭제
       </DefaultButton>
     </div>

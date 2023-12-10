@@ -13,18 +13,16 @@ export default async function ArticleDetailPage({
 }: {
   params: { articleId: string };
 }) {
-  const data = await getArticleDetail(articleId, true);
+  const data = await getArticleDetail(articleId);
 
   return (
     <ClientFormProvider>
       <div>
-        <div className="mb-4 flex items-center justify-between border-b border-solid border-gray-600">
-          <h1 className="text-6xl">{data.title}</h1>
-          <ButtonSection articleId={articleId} />
+        <div className="mb-4 flex items-center justify-between border-b border-solid border-slate-300 py-2">
+          <h1 className="text-4xl">{data.title}</h1>
+          <ButtonSection articleId={articleId} userId={data.userId} />
         </div>
-        <div className="mb-8 min-h-[300px]">
-          <ContentSection articleContent={data.content} />
-        </div>
+        <ContentSection articleContent={data.content} />
         <div className="mb-32">
           <AuthorSection nickname={data.nickname} />
         </div>

@@ -5,7 +5,7 @@ import { getArticleDetail } from 'app/_service/article';
 function useArticleDetail(articleId: string, initialData?: ArticleDetail) {
   const queryKey = ['articleDetail', articleId];
   const queryFn = async () => {
-    const data = await getArticleDetail(articleId);
+    const data = await getArticleDetail(articleId, true);
     return data;
   };
 

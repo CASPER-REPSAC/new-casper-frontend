@@ -13,7 +13,7 @@ function useLogoutMutation() {
   const { openAndDeletePopup } = usePopup();
 
   const mutationFn = () =>
-    axios.post(LOGOUT_API, undefined, {
+    axios.post(`/proxy${LOGOUT_API}`, undefined, {
       headers: { Authorization: `Bearer ${accessToken}` },
     });
   const onSuccess = () => {

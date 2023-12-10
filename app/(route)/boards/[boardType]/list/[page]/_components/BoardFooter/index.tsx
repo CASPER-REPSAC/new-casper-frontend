@@ -7,10 +7,10 @@ interface Props {
 }
 
 async function BoardFooter({ params: { boardType, page: curPage } }: Props) {
-  const { maxPageNum: maxPage } = await getOnePageArticleList(
-    { boardType, page: curPage },
-    true,
-  );
+  const { maxPageNum: maxPage } = await getOnePageArticleList({
+    boardType,
+    page: curPage,
+  });
 
   return (
     <div className="flex-center gap-4">

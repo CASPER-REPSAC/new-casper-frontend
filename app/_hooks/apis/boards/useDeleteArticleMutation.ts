@@ -14,7 +14,7 @@ function useDeleteArticleMutation(id: string) {
 
   const { openAndDeletePopup } = usePopup();
   const mutationFn = () => {
-    return axios.delete(`${DELETE_ARTICLE_API}/${id}`);
+    return axios.delete(`/proxy${DELETE_ARTICLE_API}/${id}`);
   };
 
   const onSuccess = () => {

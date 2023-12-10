@@ -8,14 +8,18 @@ interface Props {
 }
 
 async function BoardBody({ params: { boardType, page } }: Props) {
-  const { articleList } = await getOnePageArticleList(
-    { boardType, page },
-    true,
-  );
+  const { articleList } = await getOnePageArticleList({ boardType, page });
 
   return (
     <table className="w-full table-fixed text-base">
-      <thead className="h-10  border-b-[1px] border-solid border-gray-300 bg-gray-900 font-bold leading-10">
+      <thead
+        className="h-10 
+      border-b border-solid border-slate-300 
+      bg-sky-100 
+      font-bold leading-10 
+      dark:border-gray-600 
+      dark:bg-slate-800"
+      >
         <tr className="text-center">
           <td className="w-[7%]">번호</td>
           <td className="w-[35%]">제목</td>

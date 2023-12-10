@@ -4,6 +4,7 @@ import { useRouter } from 'next/navigation';
 import { DefaultButton, LeftButton, RightButton } from 'app/_components/common';
 import { ICON_SIZE } from 'app/_constants/size';
 import { usePagination } from 'app/_hooks';
+import { motion } from 'framer-motion';
 
 interface Props {
   maxPage: number;
@@ -38,15 +39,18 @@ function PageList({ maxPage, curPage, boardType }: Props) {
           const onMouseEnter = () => prefetch(href);
           return (
             <DefaultButton
-              className={`${
-                page === Number(curPage) &&
-                'border border-solid border-gray-400'
-              }`}
               key={page}
+              className="relative"
               onMouseEnter={onMouseEnter}
               onClick={onClick}
               size="sm"
             >
+              {page === Number(curPage) && (
+                <motion.div
+                  layoutId={`${boardType}_page_button`}
+                  className="absolute left-0 top-0 -z-10 h-full w-full rounded bg-slate-200 dark:bg-slate-700"
+                />
+              )}
               {page}
             </DefaultButton>
           );

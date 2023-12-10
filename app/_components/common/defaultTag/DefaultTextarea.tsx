@@ -12,7 +12,7 @@ function DefaultTextarea(
     <textarea
       ref={ref}
       spellCheck={false}
-      className={`${defaultClassName} ${className}`}
+      className={`${defaultClassName} h-auto py-3 ${className}`}
       {...props}
     />
   );

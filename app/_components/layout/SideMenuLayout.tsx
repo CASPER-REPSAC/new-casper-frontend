@@ -11,11 +11,9 @@ function SideMenuLayout({ pageTitle, children, sideMenu }: Props) {
   return (
     <>
       <PageTitle pageTitle={pageTitle} />
-      <div className="common-center">
-        <div className="flex w-full flex-col gap-10 lg:flex-row">
-          {sideMenu}
-          <main className="flex-1">{children}</main>
-        </div>
+      <div className="common-center relative mt-10 flex w-full flex-col gap-10 lg:flex-row">
+        {sideMenu}
+        <main className="flex-1">{children}</main>
       </div>
     </>
   );

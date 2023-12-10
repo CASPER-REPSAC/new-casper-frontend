@@ -1,4 +1,3 @@
-import { motion } from 'framer-motion';
 import { ReactNode } from 'react';
 
 interface Props {
@@ -7,13 +6,9 @@ interface Props {
 
 function SideMenuWrapper({ children }: Props) {
   return (
-    <motion.div
-      className="static top-44 h-full  w-full lg:sticky lg:w-60"
-      layoutRoot
-      layout
-    >
+    <div className="static top-32 h-full w-full lg:sticky lg:w-60">
       {children}
-    </motion.div>
+    </div>
   );
 }
 

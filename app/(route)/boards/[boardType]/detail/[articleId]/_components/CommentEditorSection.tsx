@@ -26,13 +26,13 @@ function CommentEditorSection() {
   return (
     <form onSubmit={handleSubmit(onValid)}>
       <DefaultTextarea
-        className="mb-4 resize-none border-0 border-b bg-transparent focus:border-gray-100 focus:ring-0"
+        className="mb-4 resize-none rounded-none border-0 border-b bg-transparent focus:border-indigo-300 focus:ring-0 dark:bg-transparent dark:focus:border-slate-100"
         {...commentRegister}
         placeholder={PLACEHOLDER.comment}
         rows={1}
       />
       <div className="flex items-center justify-end">
-        <DefaultButton type="submit" size="sm" theme="green">
+        <DefaultButton type="submit" size="sm" theme="primary">
           추가
         </DefaultButton>
       </div>

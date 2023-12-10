@@ -28,9 +28,10 @@ function EditorSection() {
   };
 
   return (
-    <div className="h-[500px] overflow-scroll rounded bg-gray-850 p-0">
-      <BlockNote onEditorContentChange={onEditorContentChange} />
-    </div>
+    <BlockNote
+      className="h-[500px] overflow-auto"
+      onEditorContentChange={onEditorContentChange}
+    />
   );
 }
 

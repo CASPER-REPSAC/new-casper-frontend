@@ -48,7 +48,7 @@ function IdForm({ onNext }: Props) {
         </FormErrorWrapper>
       )}
       <DefaultButton
-        theme="green"
+        theme="primary"
         type="submit"
         disabled={!isValidValue}
         onClick={onNext}

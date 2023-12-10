@@ -1,38 +1,23 @@
-import { PATH } from 'app/_constants/urls';
-import { isDarkState } from 'app/_store';
+'use client';
+
 import { Variants, motion } from 'framer-motion';
-import Image from 'next/image';
-import { usePathname } from 'next/navigation';
-import { useRecoilValue } from 'recoil';
+import CasperLogoIcon from 'public/casper_logo.svg';
 
 interface Props {
-  className?: string;
-  onClick: () => void;
+  size?: 'm' | 'sm' | 'lg';
 }
 
-function CasperLogo({ onClick, className: additionalClassName }: Props) {
-  const pathname = usePathname();
-  const isDark = useRecoilValue(isDarkState);
-  const isHome = pathname === PATH.home.url;
+const SIZE_CSS = {
+  sm: 'w-32 h-10',
+  m: 'w-56 h-16',
+  lg: 'w-72 h-20',
+};
 
-  const WHITE_LOGO_SRC = '/casper_logo_white.webp';
-  const BLACK_LOGO_SRC = '/casper_logo_black.webp';
-  const logoSrc = isDark || isHome ? WHITE_LOGO_SRC : BLACK_LOGO_SRC;
-
+function CasperLogo({ size = 'sm' }: Props) {
   return (
-    <motion.div
-      className={`relative h-14 w-40 ${additionalClassName}`}
-      onClick={onClick}
-      variants={variants}
-      whileHover="hover"
-      whileTap="tap"
-    >
-      <Image
-        className="object-contain"
-        sizes="(min-width: 768px) 50vw, 100vw"
-        src={logoSrc}
-        alt="casper logo"
-        fill
+    <motion.div variants={variants} whileHover="hover" whileTap="tap">
+      <CasperLogoIcon
+        className={`${SIZE_CSS[size]} fill-slate-600 dark:fill-white`}
       />
     </motion.div>
   );

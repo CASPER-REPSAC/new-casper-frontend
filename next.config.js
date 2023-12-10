@@ -3,10 +3,27 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const nextConfig = {
+  experimental: {
+    turbo: {
+      rules: {
+        '*.svg': {
+          loaders: ['@svgr/webpack'],
+          as: '*.js',
+        },
+      },
+    },
+  },
+  webpack: (config) => {
+    config.module.rules.push({
+      test: /\.svg$/i,
+      use: ['@svgr/webpack'],
+    });
+    return config;
+  },
   async rewrites() {
     return [
       {
-        source: '/api/:path*',
+        source: '/proxy/api/:path*',
         destination: `${API_URL}/api/:path*`,
       },
     ];

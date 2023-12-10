@@ -1,14 +1,14 @@
-import axios, { AxiosError, AxiosResponse } from 'axios';
+import { AxiosError, AxiosResponse } from 'axios';
 import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
 import { usePopup } from 'app/_hooks';
 import { LoginRequest, LoginResponse } from 'app/_types/loginTypes';
-import { LOGINT_API } from 'app/_constants/apiUrl';
 import { PATH } from 'app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from 'app/_constants/duration';
 import { ERROR_MESSAGE, POPUP_MESSAGE } from 'app/_constants/message';
+import { postLogin } from 'app/_service/user';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -16,8 +16,7 @@ export default function useLoginMutation() {
   const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
-  const mutationFn = (params: LoginRequest) =>
-    axios.post<LoginResponse>(LOGINT_API, params);
+  const mutationFn = (params: LoginRequest) => postLogin(params);
 
   const onLoinSuccess = ({ data }: AxiosResponse<LoginResponse>) => {
     openAndDeletePopup({

@@ -12,7 +12,8 @@ function useJoinMutation() {
   const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
-  const mutationFn = (params: JoinReqData) => axios.post(JOIN_API, params);
+  const mutationFn = (params: JoinReqData) =>
+    axios.post(`/proxy${JOIN_API}`, params);
   const onSuccess = (data: AxiosResponse<JoinResData>) => {
     const { status } = data;
     if (status < 200 || status >= 300) {
