@@ -12,11 +12,14 @@ import { useEffect } from 'react';
 
 interface Props {
   initialContent?: Block[];
+  className?: string;
+
   editable?: boolean;
   onEditorContentChange?: (editor: BlockNoteEditor) => void;
 }
 
 function BlockNote({
+  className: additionalClassName = '',
   editable = true,
   onEditorContentChange,
   initialContent,
@@ -36,8 +39,8 @@ function BlockNote({
   return (
     <BlockNoteView
       className={`${
-        editable ? 'p-0' : 'bg-transparent'
-      }  h-full cursor-text rounded py-4`}
+        editable ? 'input p-0' : 'bg-transparent'
+      }  h-full cursor-text rounded py-4 ${additionalClassName}`}
       editor={editor}
       theme={theme}
       onClick={() => editor.focus()}

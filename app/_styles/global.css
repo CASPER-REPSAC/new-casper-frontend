@@ -48,7 +48,7 @@
 
 @layer utilities {
   .common-center {
-    @apply mx-auto w-[90vw] md:w-[760px] lg:w-[1000px] xl:w-[1400px] 2xl:w-[1400px];
+    @apply mx-auto w-[90vw] md:w-[760px] lg:w-[1000px] xl:w-[1200px] 2xl:w-[1400px];
   }
   .small-center {
     @apply mx-auto w-[90vw] max-w-[500px];

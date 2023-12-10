@@ -40,7 +40,7 @@ function ButtonSection({ articleId, userId }: Props) {
   }
 
   return (
-    <div className="flex gap-4">
+    <div className="flex shrink-0 gap-4">
       <DefaultButton
         size="sm"
         onClick={editable ? completeModification : changeEditMode}
