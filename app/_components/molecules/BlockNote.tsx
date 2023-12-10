@@ -40,7 +40,7 @@ function BlockNote({
     <BlockNoteView
       className={`${
         editable ? 'input p-0' : 'bg-transparent'
-      }  h-full cursor-text rounded py-4 ${additionalClassName}`}
+      }   cursor-text rounded py-4 ${additionalClassName}`}
       editor={editor}
       theme={theme}
       onClick={() => editor.focus()}

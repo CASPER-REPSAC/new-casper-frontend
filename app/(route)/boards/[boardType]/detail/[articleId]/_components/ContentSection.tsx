@@ -44,6 +44,7 @@ function ContentSection({ articleContent }: Props) {
   return (
     <div className="mb-40 min-h-[300px]">
       <BlockNote
+        className="h-full"
         editable={editable}
         initialContent={initialContent}
         onEditorContentChange={onEditorContentChange}
