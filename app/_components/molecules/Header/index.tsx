@@ -28,7 +28,7 @@ function Header() {
         {isHambergerMenuOpen && <HambergerNavigation onBgClick={closeMenu} />}
       </AnimatePresence>
       <motion.div
-        className="sticky top-0 z-header flex h-14 w-screen bg-white shadow 
+        className="sticky top-0 z-header flex h-14 w-full bg-white shadow 
         backdrop-blur
         dark:border-b
         dark:border-solid

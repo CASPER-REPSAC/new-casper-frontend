@@ -9,9 +9,11 @@ function SubMenu({ menus }: Props) {
   const uniqueId = useId();
   return (
     <motion.ul
-      className="rounded
-      bg-sky-50
-        p-2 shadow-lg
+      className="
+      w-max
+        rounded bg-sky-50
+        p-2
+        shadow-lg
         backdrop-blur-lg
         dark:bg-slate-950/70
         "

@@ -19,10 +19,10 @@ function BarNavMenu({ title, subMenus, highlight }: Props) {
       onMouseEnter={() => setSubMenuOpen(true)}
       onMouseLeave={() => setSubMenuOpen(false)}
     >
-      <div className="flex-center relative left-0 top-0 h-full px-8">
+      <div className="flex-center relative left-0 top-0 h-full px-4">
         {title}
       </div>
-      <div className="absolute left-1/2 w-full -translate-x-1/2">
+      <div className="absolute left-1/2 -translate-x-1/2">
         {subMenus && isSubMenuOpen && <SubMenu menus={subMenus} />}
       </div>
       {highlight && (
