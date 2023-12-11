@@ -4,6 +4,7 @@ import {
   ALL_MEMEBER_API,
   API_URL,
   AUTO_LOGIN_API,
+  LOGIN_API,
   MEMBER_API,
 } from 'app/_constants/apiUrl';
 import { Profile } from 'app/_types/userTypes';
@@ -45,7 +46,12 @@ export const postAutoLogin = cache(async () => {
 });
 
 export const postLogin = cache(async (params: LoginRequest) => {
-  const data = await axios.post<LoginResponse>('/api/loginProxy', params);
+  const data = await axios.post<LoginResponse>(`/proxy${LOGIN_API}`, params);
 
   return data;
+});
+
+export const setServerSideAccessToken = cache(async (accessToken: string) => {
+  const res = await axios.post('/api/setAccessToken', { accessToken });
+  return res;
 });

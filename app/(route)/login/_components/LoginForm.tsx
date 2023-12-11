@@ -26,7 +26,9 @@ function LoginForm() {
         message: errors.id.message,
         duration: POPUP_DURATION.medium,
       });
-    } else if (errors.pw && errors.pw.message) {
+      return;
+    }
+    if (errors.pw && errors.pw.message) {
       openAndDeletePopup({
         message: errors.pw.message,
         duration: POPUP_DURATION.medium,

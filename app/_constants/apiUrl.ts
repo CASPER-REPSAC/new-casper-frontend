@@ -1,5 +1,5 @@
 export const API_URL = process.env.NEXT_PUBLIC_API_URL;
-export const LOGINT_API = '/api/user/login';
+export const LOGIN_API = '/api/user/login';
 export const LOGOUT_API = '/api/user/logout';
 export const JOIN_API = '/api/user/join';
 export const WITHDRAWAL_API = '/api/user/withdrawal';

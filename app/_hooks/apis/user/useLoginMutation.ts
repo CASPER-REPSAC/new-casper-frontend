@@ -7,8 +7,8 @@ import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from 'app/_constants/duration';
-import { ERROR_MESSAGE, POPUP_MESSAGE } from 'app/_constants/message';
-import { postLogin } from 'app/_service/user';
+import { POPUP_MESSAGE } from 'app/_constants/message';
+import { postLogin, setServerSideAccessToken } from 'app/_service/user';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -18,7 +18,13 @@ export default function useLoginMutation() {
 
   const mutationFn = (params: LoginRequest) => postLogin(params);
 
-  const onLoinSuccess = ({ data }: AxiosResponse<LoginResponse>) => {
+  const onLoinSuccess = async ({ data }: AxiosResponse<LoginResponse>) => {
+    try {
+      await setServerSideAccessToken(data.accessToken);
+    } catch {
+      throw new Error('setServerSideAccessToken error');
+    }
+
     openAndDeletePopup({
       message: POPUP_MESSAGE.loginSuccess,
       duration: POPUP_DURATION.medium,
@@ -31,7 +37,6 @@ export default function useLoginMutation() {
 
   const onLoinError = (error: AxiosError) => {
     const status = error.response?.status;
-
     switch (status) {
       case 401:
         openAndDeletePopup({
@@ -41,7 +46,7 @@ export default function useLoginMutation() {
         break;
       default:
         openAndDeletePopup({
-          message: ERROR_MESSAGE.unknown,
+          message: error.message,
           duration: POPUP_DURATION.medium,
         });
     }
