@@ -6,8 +6,8 @@ import { ReactNode, useEffect } from 'react';
 import { useSetRecoilState } from 'recoil';
 
 interface Props {
-  accessToken: string;
-  myProfile: MyProfile;
+  accessToken: string | undefined;
+  myProfile: MyProfile | undefined;
   children: ReactNode;
 }
 

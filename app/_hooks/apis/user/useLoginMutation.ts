@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from 'app/_constants/duration';
 import { POPUP_MESSAGE } from 'app/_constants/message';
-import { postLogin, setServerSideAccessToken } from 'app/_service/user';
+import { postLogin } from 'app/_service/user';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -19,12 +19,6 @@ export default function useLoginMutation() {
   const mutationFn = (params: LoginRequest) => postLogin(params);
 
   const onLoinSuccess = async ({ data }: AxiosResponse<LoginResponse>) => {
-    try {
-      await setServerSideAccessToken(data.accessToken);
-    } catch {
-      throw new Error('setServerSideAccessToken error');
-    }
-
     openAndDeletePopup({
       message: POPUP_MESSAGE.loginSuccess,
       duration: POPUP_DURATION.medium,
@@ -32,6 +26,7 @@ export default function useLoginMutation() {
 
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
+
     push(PATH.home.url);
   };
 

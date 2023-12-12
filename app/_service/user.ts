@@ -35,12 +35,12 @@ export const getAllMember = cache(
   },
 );
 
-export const postAutoLogin = cache(async () => {
-  const data = await axios.post<AutoLoginResponse>(
-    `${API_URL}${AUTO_LOGIN_API}`,
-    undefined,
-    { withCredentials: true },
-  );
+export const postAutoLogin = cache(async (proxy: boolean = false) => {
+  const url = proxy ? `/proxy${AUTO_LOGIN_API}` : `${API_URL}${AUTO_LOGIN_API}`;
+
+  const data = await axios.post<AutoLoginResponse>(url, undefined, {
+    withCredentials: true,
+  });
 
   return data;
 });
