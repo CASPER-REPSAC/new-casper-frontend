@@ -40,10 +40,7 @@ export default function useLoginMutation() {
         });
         break;
       default:
-        openAndDeletePopup({
-          message: error.message,
-          duration: POPUP_DURATION.medium,
-        });
+        throw new Error(error.message);
     }
   };
 

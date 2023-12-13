@@ -38,7 +38,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <QueryWrapper>
           <RecoilRootWrapper>
-            {/* @ts-expect-error Async Server Component */}
             <AutoLoginPresence>
               <PopupWrapper />
               <DefaultLayout>{children}</DefaultLayout>
