@@ -2,14 +2,10 @@
 
 /* eslint-disable no-console */
 import { DefaultButton } from 'app/_components/common';
+import { ErrorProps } from 'app/_types/errorTypes';
 import { useEffect } from 'react';
 
-interface Props {
-  error: Error & { digest?: string };
-  reset: () => void;
-}
-
-export default function Error({ error, reset }: Props) {
+export default function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     console.error(error);
   }, [error]);

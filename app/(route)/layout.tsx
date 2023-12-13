@@ -7,7 +7,7 @@ import {
   RecoilRootWrapper,
   SyncThemeScript,
   AutoLoginPresence,
-} from 'app/(route)/_providers';
+} from 'app/_components/providers';
 import { DefaultLayout } from 'app/_components/layout';
 
 export const metadata = {

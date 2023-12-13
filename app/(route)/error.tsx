@@ -1,12 +1,9 @@
 'use client';
 
+import { ErrorProps } from 'app/_types/errorTypes';
 import { useEffect } from 'react';
 
-interface Props {
-  error: Error & { digest?: string };
-  reset: () => void;
-}
-function Error({ error, reset }: Props) {
+function Error({ error, reset }: ErrorProps) {
   useEffect(() => {
     // eslint-disable-next-line no-console
     console.error(error);
