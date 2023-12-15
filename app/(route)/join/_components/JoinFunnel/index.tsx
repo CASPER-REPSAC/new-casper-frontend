@@ -1,5 +1,5 @@
 import { FormProvider, useForm } from 'react-hook-form';
-import { FunnelStepType, JoinFormData } from 'app/_types/joinTypes';
+import { JoinFormData } from 'app/_types/joinTypes';
 import { useFunnel } from 'app/_hooks';
 import { useJoinMutation } from 'app/_hooks/apis/user';
 import {
@@ -12,7 +12,7 @@ import {
 
 function JoinFunnel() {
   const { mutate } = useJoinMutation();
-  const { funnelStep, setFunnelStep } = useFunnel<FunnelStepType>('agree');
+  const { funnelStep, setFunnelStep } = useFunnel('agree');
   const methods = useForm<JoinFormData>();
 
   return (
