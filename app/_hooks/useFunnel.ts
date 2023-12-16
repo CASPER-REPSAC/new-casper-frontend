@@ -4,20 +4,20 @@ import { isFunnelType } from 'app/_utils/typeGuard';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 
-function useFunnel(initialStep: FunnelStepType) {
+function useFunnel() {
   const QUERY_KEY = 'funnel-step';
   const { push } = useRouter();
   const query = useSearchParams();
-  const [funnelStep, setStep] = useState(initialStep);
+  const [funnelStep, setStep] = useState<FunnelStepType>();
 
   const controllFunnelStep = useCallback(() => {
     const funnelStepQuery = query?.get(QUERY_KEY);
     if (funnelStepQuery === null || !isFunnelType(funnelStepQuery)) {
-      setStep(initialStep);
+      setStep('agree');
       return;
     }
     setStep(funnelStepQuery);
-  }, [query, initialStep]);
+  }, [query]);
 
   const setFunnelStep = (step: FunnelStepType) => {
     const nextUrl = `${PATH.user.join.url}?${QUERY_KEY}=${step}`;

@@ -10,7 +10,7 @@ function AgreeForm({ onNext }: Props) {
   const { register, watch, handleSubmit } = useFormContext<JoinFormData>();
 
   const agreeRegister = register('agree');
-  const isValidValue = watch('agree') === true && watch('agree') !== undefined;
+  const isValidValue = watch('agree') === true;
 
   return (
     <>

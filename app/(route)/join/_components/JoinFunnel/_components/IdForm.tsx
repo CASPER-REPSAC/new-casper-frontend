@@ -17,8 +17,7 @@ interface Props {
 function IdForm({ onNext }: Props) {
   const {
     register,
-    watch,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     setFocus,
   } = useFormContext<JoinFormData>();
 
@@ -26,8 +25,7 @@ function IdForm({ onNext }: Props) {
     required: REQUIRED_MESSAGE.id,
   });
 
-  const isValidValue =
-    !errors.id && watch('id') !== '' && watch('id') !== undefined;
+  const isValidValue = !errors.id && dirtyFields.id;
 
   useEffect(() => {
     setFocus('id');

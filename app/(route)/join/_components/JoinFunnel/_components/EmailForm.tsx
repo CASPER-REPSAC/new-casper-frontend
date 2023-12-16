@@ -18,8 +18,7 @@ interface Props {
 function EmailForm({ onNext }: Props) {
   const {
     register,
-    watch,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     setFocus,
     handleSubmit,
   } = useFormContext<JoinFormData>();
@@ -32,8 +31,7 @@ function EmailForm({ onNext }: Props) {
     },
   });
 
-  const isValidValue =
-    !errors.email && watch('email') !== '' && watch('email') !== undefined;
+  const isValidValue = !errors.email && dirtyFields.email;
 
   useEffect(() => {
     setFocus('email');
@@ -58,6 +56,7 @@ function EmailForm({ onNext }: Props) {
       <DefaultButton
         theme="primary"
         type="submit"
+        disabled={!isValidValue}
         onClick={handleSubmit(onNext)}
       >
         다음 단계

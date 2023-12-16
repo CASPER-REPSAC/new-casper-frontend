@@ -18,7 +18,7 @@ interface Props {
 function NameForm({ onNext }: Props) {
   const {
     register,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     setFocus,
     handleSubmit,
   } = useFormContext<JoinFormData>();
@@ -31,7 +31,11 @@ function NameForm({ onNext }: Props) {
     required: REQUIRED_MESSAGE.nickname,
   });
 
-  const isValidValue = !errors.name && !errors.nickname;
+  const isValidValue =
+    !errors.name &&
+    !errors.nickname &&
+    dirtyFields.name &&
+    dirtyFields.nickname;
 
   useEffect(() => {
     setFocus('name');

@@ -19,8 +19,7 @@ function PasswordForm({ onNext }: Props) {
   const {
     register,
     getValues,
-    watch,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     handleSubmit,
   } = useFormContext<JoinFormData>();
 
@@ -41,12 +40,7 @@ function PasswordForm({ onNext }: Props) {
   });
 
   const isValidValue =
-    !errors.pw &&
-    !errors.pwConfirm &&
-    watch('pw') !== '' &&
-    watch('pwConfirm') !== '' &&
-    watch('pw') !== undefined &&
-    watch('pwConfirm') !== undefined;
+    !errors.pw && !errors.pwConfirm && dirtyFields.pw && dirtyFields.pwConfirm;
 
   return (
     <>
