@@ -1,9 +1,5 @@
 import { useFormContext } from 'react-hook-form';
-import {
-  LabelInput,
-  FormErrorWrapper,
-  DefaultButton,
-} from 'app/_components/common';
+import { LabelInput, FormErrorWrapper } from 'app/_components/common';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { PW_REGEX } from 'app/_utils/regex';
 import { CheckSquareIcon } from 'app/_components/icons';
@@ -11,16 +7,11 @@ import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
 import { ICON_SIZE } from 'app/_constants/size';
 
-interface Props {
-  onNext: () => void;
-}
-
-function PasswordForm({ onNext }: Props) {
+function PasswordForm() {
   const {
     register,
     getValues,
     formState: { errors, dirtyFields },
-    handleSubmit,
   } = useFormContext<JoinFormData>();
 
   const pwRegister = register('pw', {
@@ -68,14 +59,6 @@ function PasswordForm({ onNext }: Props) {
           {errors.pwConfirm && <li>{errors.pwConfirm.message}</li>}
         </FormErrorWrapper>
       )}
-      <DefaultButton
-        theme="primary"
-        type="submit"
-        disabled={!isValidValue}
-        onClick={handleSubmit(onNext)}
-      >
-        다음 단계
-      </DefaultButton>
     </>
   );
 }

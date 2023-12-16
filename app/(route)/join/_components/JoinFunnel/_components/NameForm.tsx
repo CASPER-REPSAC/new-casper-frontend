@@ -1,9 +1,5 @@
 import { useEffect } from 'react';
-import {
-  DefaultButton,
-  FormErrorWrapper,
-  LabelInput,
-} from 'app/_components/common';
+import { FormErrorWrapper, LabelInput } from 'app/_components/common';
 import { StarIcon, UserIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { REQUIRED_MESSAGE } from 'app/_constants/message';
@@ -11,16 +7,11 @@ import { useFormContext } from 'react-hook-form';
 import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
 import { ICON_SIZE } from 'app/_constants/size';
 
-interface Props {
-  onNext: () => void;
-}
-
-function NameForm({ onNext }: Props) {
+function NameForm() {
   const {
     register,
     formState: { errors, dirtyFields },
     setFocus,
-    handleSubmit,
   } = useFormContext<JoinFormData>();
 
   const nameRegister = register('name', {
@@ -65,14 +56,6 @@ function NameForm({ onNext }: Props) {
           {errors.nickname && <li>{errors.nickname.message}</li>}
         </FormErrorWrapper>
       )}
-      <DefaultButton
-        theme="primary"
-        type="submit"
-        disabled={!isValidValue}
-        onClick={handleSubmit(onNext)}
-      >
-        다음 단계
-      </DefaultButton>
     </>
   );
 }

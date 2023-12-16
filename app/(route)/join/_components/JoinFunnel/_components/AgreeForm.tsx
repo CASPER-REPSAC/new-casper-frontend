@@ -1,16 +1,11 @@
-import { CheckInput, DefaultButton } from 'app/_components/common';
+import { CheckInput } from 'app/_components/common';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { useFormContext } from 'react-hook-form';
 
-interface Props {
-  onNext: () => void;
-}
+function AgreeForm() {
+  const { register } = useFormContext<JoinFormData>();
 
-function AgreeForm({ onNext }: Props) {
-  const { register, watch, handleSubmit } = useFormContext<JoinFormData>();
-
-  const agreeRegister = register('agree');
-  const isValidValue = watch('agree') === true;
+  const agreeRegister = register('agree', { required: true });
 
   return (
     <>
@@ -29,14 +24,6 @@ function AgreeForm({ onNext }: Props) {
           <strong>보유 및 이용기간:</strong> 회원 탈퇴 시 까지
         </li>
       </div>
-      <DefaultButton
-        theme="primary"
-        type="submit"
-        disabled={!isValidValue}
-        onClick={handleSubmit(onNext)}
-      >
-        다음 단계
-      </DefaultButton>
     </>
   );
 }
