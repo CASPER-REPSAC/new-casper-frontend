@@ -1,5 +1,3 @@
-'use client';
-
 import { DefaultButton } from 'app/_components/common';
 import { useFunnel } from 'app/_hooks';
 import { useJoinMutation } from 'app/_hooks/apis/user';
@@ -18,7 +16,6 @@ function NextButton() {
   const onFinish = () => {
     const { id, pw, name, email, nickname } = getValues();
     mutate({ id, pw, name, email, nickname });
-    console.log('onFish', id, pw, name, email, nickname);
   };
 
   const onNext = () => {

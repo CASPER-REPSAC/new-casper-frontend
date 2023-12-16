@@ -5,13 +5,11 @@ import {
   IdForm,
   NameForm,
   PasswordForm,
+  NextButton,
 } from './_components';
-import NextButton from './_components/NextButton';
 
 function JoinFunnel() {
-  const { funnelStep, nextStep } = useFunnel();
-
-  console.log(nextStep);
+  const { funnelStep } = useFunnel();
 
   return (
     <form className="flex flex-col gap-7">
