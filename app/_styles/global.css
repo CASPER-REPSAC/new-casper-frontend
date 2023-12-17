@@ -3,13 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  .html {
-    font-size: 12px;
+  html {
+    font-size: 14px;
 
     @media screen and (min-width: 1024px) {
-      font-size: 14px;
-    }
-    @media screen and (min-width: 1200px) {
       font-size: 15px;
     }
     @media screen and (min-width: 1536px) {
