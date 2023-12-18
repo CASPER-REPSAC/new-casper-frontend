@@ -32,7 +32,6 @@ function BlockNote({
   const theme = useBlockNoteTheme(editable);
 
   useEffect(() => {
-    console.log(editable);
     editor.isEditable = editable;
   }, [editable, editor]);
 
@@ -40,7 +39,7 @@ function BlockNote({
     <BlockNoteView
       className={`${
         editable ? 'input p-0' : 'bg-transparent'
-      }   cursor-text rounded py-4 ${additionalClassName}`}
+      } cursor-text rounded py-4 ${additionalClassName}`}
       editor={editor}
       theme={theme}
       onClick={() => editor.focus()}
