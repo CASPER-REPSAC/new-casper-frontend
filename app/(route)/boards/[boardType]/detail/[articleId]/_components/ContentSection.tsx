@@ -1,5 +1,13 @@
 import dynamic from 'next/dynamic';
-import { BlockNoteEditor } from '@blocknote/core';
+import {
+  BlockNoteEditor,
+  BlockSchemaFromSpecs,
+  BlockSpecs,
+  InlineContentSchemaFromSpecs,
+  InlineContentSpecs,
+  StyleSchemaFromSpecs,
+  StyleSpecs,
+} from '@blocknote/core';
 import { ERROR_MESSAGE } from 'app/_constants/message';
 import { POPUP_DURATION } from 'app/_constants/duration';
 import { usePopup } from 'app/_hooks';
@@ -27,7 +35,13 @@ function ContentSection({ articleContent }: Props) {
   const { setValue } = useFormContext();
   const { openAndDeletePopup } = usePopup();
 
-  const onEditorContentChange = async (editor: BlockNoteEditor) => {
+  const onEditorContentChange = async (
+    editor: BlockNoteEditor<
+      BlockSchemaFromSpecs<BlockSpecs>,
+      InlineContentSchemaFromSpecs<InlineContentSpecs>,
+      StyleSchemaFromSpecs<StyleSpecs>
+    >,
+  ) => {
     try {
       const curContent = await JSON.stringify(editor.topLevelBlocks);
       setValue('content', curContent);
@@ -45,9 +59,11 @@ function ContentSection({ articleContent }: Props) {
     <div className="mb-40 min-h-[300px]">
       <BlockNote
         className="h-full"
-        editable={editable}
-        initialContent={initialContent}
-        onEditorContentChange={onEditorContentChange}
+        options={{
+          editable,
+          initialContent,
+          onEditorContentChange,
+        }}
       />
     </div>
   );
