@@ -9,8 +9,6 @@ function MyInfoFrom() {
   const { register } = useFormContext<Profile>();
   const myProfile = useRecoilValue(myProfileState);
 
-  console.log(myProfile);
-
   const introduceRegister = register('introduce', { required: true });
   const nameRegister = register('name', { required: true });
   const nicknameRegister = register('nickname', { required: true });
