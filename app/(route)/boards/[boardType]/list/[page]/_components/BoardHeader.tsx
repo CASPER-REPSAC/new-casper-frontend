@@ -18,6 +18,7 @@ function BoardHeader() {
         <option value="3">ex2</option>
       </select>
       <LabelInput
+        autoComplete="off"
         labelIcon={<SearchIcon size={ICON_SIZE.small} />}
         {...register('search')}
         placeholder="검색 기능 개발 중이에요."

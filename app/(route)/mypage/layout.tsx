@@ -1,5 +1,6 @@
-import { PageTitle } from 'app/_components/molecules';
 import { ReactNode } from 'react';
+import { PageTitle } from 'app/_components/molecules';
+import { PAGE_TITLE } from 'app/_constants/label';
 
 interface Props {
   children: ReactNode;
@@ -8,7 +9,7 @@ interface Props {
 function Layout({ children }: Props) {
   return (
     <>
-      <PageTitle pageTitle="MyPage" />
+      <PageTitle pageTitle={PAGE_TITLE.myPage} />
       {children}
     </>
   );

@@ -6,6 +6,7 @@ export const FOOTER = {
 export const PAGE_TITLE = {
   board: 'Boards',
   members: 'Members',
+  myPage: 'My Page',
 };
 
 export const INPUT_LABEL = {
