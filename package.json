@@ -10,25 +10,25 @@
     "postinstall": "husky install"
   },
   "dependencies": {
-    "@blocknote/core": "^0.9.6",
-    "@blocknote/react": "^0.9.6",
+    "@blocknote/core": "^0.10.1",
+    "@blocknote/react": "^0.10.1",
     "@tanstack/react-query": "^5.8.4",
     "@tanstack/react-query-devtools": "^5.8.4",
     "axios": "^1.4.0",
     "framer-motion": "^10.16.5",
-    "next": "^14.0.3",
+    "next": "^14.0.4",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.43.9",
     "react-icons": "^4.8.0",
     "recoil": "^0.7.7",
-    "typescript": "4.9.5"
+    "typescript": "^5.3.3"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@tanstack/eslint-plugin-query": "^4.34.1",
     "@types/node": "18.14.6",
-    "@types/react": "18.0.28",
+    "@types/react": "^18.2.43",
     "@types/react-dom": "18.0.11",
     "@typescript-eslint/eslint-plugin": "^6.5.0",
     "@typescript-eslint/parser": "^6.5.0",

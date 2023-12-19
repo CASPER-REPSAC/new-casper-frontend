@@ -1,45 +1,25 @@
-import { FormProvider, useForm } from 'react-hook-form';
-import { FunnelStepType, JoinFormData } from 'app/_types/joinTypes';
 import { useFunnel } from 'app/_hooks';
-import { useJoinMutation } from 'app/_hooks/apis/user';
 import {
   AgreeForm,
   EmailForm,
   IdForm,
   NameForm,
   PasswordForm,
+  NextButton,
 } from './_components';
 
 function JoinFunnel() {
-  const { mutate } = useJoinMutation();
-  const { funnelStep, setFunnelStep } = useFunnel<FunnelStepType>('agree');
-  const methods = useForm<JoinFormData>();
+  const { funnelStep } = useFunnel();
 
   return (
-    <FormProvider {...methods}>
-      <form className="flex flex-col gap-7">
-        {funnelStep === 'agree' && (
-          <AgreeForm onNext={() => setFunnelStep('email')} />
-        )}
-        {funnelStep === 'email' && (
-          <EmailForm onNext={() => setFunnelStep('name')} />
-        )}
-        {funnelStep === 'name' && (
-          <NameForm onNext={() => setFunnelStep('id')} />
-        )}
-        {funnelStep === 'id' && (
-          <IdForm onNext={() => setFunnelStep('password')} />
-        )}
-        {funnelStep === 'password' && (
-          <PasswordForm
-            onNext={() => {
-              const { id, pw, name, email, nickname } = methods.getValues();
-              mutate({ id, pw, name, email, nickname });
-            }}
-          />
-        )}
-      </form>
-    </FormProvider>
+    <form className="flex flex-col gap-7">
+      {funnelStep === 'agree' && <AgreeForm />}
+      {funnelStep === 'email' && <EmailForm />}
+      {funnelStep === 'name' && <NameForm />}
+      {funnelStep === 'id' && <IdForm />}
+      {funnelStep === 'password' && <PasswordForm />}
+      <NextButton />
+    </form>
   );
 }
 

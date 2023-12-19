@@ -12,7 +12,6 @@ function BoardPage({
     <div className="flex w-full flex-col gap-4">
       <BoardHeader />
       <Suspense fallback={<BoardBody.Skeleton />}>
-        {/* @ts-expect-error Async Server Component */}
         <BoardBody params={{ boardType, page }} />
       </Suspense>
 
@@ -23,7 +22,6 @@ function BoardPage({
       >
         작성 하기
       </DefaultLink>
-      {/* @ts-expect-error Async Server Component */}
       <BoardFooter params={{ boardType, page }} />
     </div>
   );

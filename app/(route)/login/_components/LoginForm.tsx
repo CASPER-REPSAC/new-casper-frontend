@@ -2,7 +2,7 @@ import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { usePopup } from 'app/_hooks';
 import { DefaultButton, LabelInput } from 'app/_components/common';
 import { LockIcon, UserIcon } from 'app/_components/icons';
-import { REQUIRED_MESSAGE } from 'app/_constants/message';
+import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
 import { ICON_SIZE } from 'app/_constants/size';
 import { PLACEHOLDER } from 'app/_constants/label';
 import { POPUP_DURATION } from 'app/_constants/duration';
@@ -26,12 +26,19 @@ function LoginForm() {
         message: errors.id.message,
         duration: POPUP_DURATION.medium,
       });
-    } else if (errors.pw && errors.pw.message) {
+      return;
+    }
+    if (errors.pw && errors.pw.message) {
       openAndDeletePopup({
         message: errors.pw.message,
         duration: POPUP_DURATION.medium,
       });
+      return;
     }
+    openAndDeletePopup({
+      message: ERROR_MESSAGE.unknown,
+      duration: POPUP_DURATION.medium,
+    });
   };
 
   return (

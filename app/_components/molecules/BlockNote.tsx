@@ -2,8 +2,10 @@
 
 import '@blocknote/core/style.css';
 import {
-  Block,
-  BlockNoteEditor,
+  BlockNoteEditorOptions,
+  BlockSpecs,
+  InlineContentSpecs,
+  StyleSpecs,
   uploadToTmpFilesDotOrg_DEV_ONLY,
 } from '@blocknote/core';
 import { BlockNoteView, useBlockNote } from '@blocknote/react';
@@ -11,20 +13,17 @@ import { useBlockNoteTheme } from 'app/_hooks';
 import { useEffect } from 'react';
 
 interface Props {
-  initialContent?: Block[];
   className?: string;
-
-  editable?: boolean;
-  onEditorContentChange?: (editor: BlockNoteEditor) => void;
+  options: Partial<
+    BlockNoteEditorOptions<BlockSpecs, InlineContentSpecs, StyleSpecs>
+  >;
 }
 
 function BlockNote({
   className: additionalClassName = '',
-  editable = true,
-  onEditorContentChange,
-  initialContent,
+  options: { editable = true, onEditorContentChange, initialContent },
 }: Props) {
-  const editor: BlockNoteEditor = useBlockNote({
+  const editor = useBlockNote({
     onEditorContentChange,
     initialContent,
     editable,
@@ -40,7 +39,7 @@ function BlockNote({
     <BlockNoteView
       className={`${
         editable ? 'input p-0' : 'bg-transparent'
-      }   cursor-text rounded py-4 ${additionalClassName}`}
+      } cursor-text rounded py-4 ${additionalClassName}`}
       editor={editor}
       theme={theme}
       onClick={() => editor.focus()}

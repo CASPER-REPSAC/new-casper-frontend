@@ -1,8 +1,4 @@
-import {
-  DefaultButton,
-  FormErrorWrapper,
-  LabelInput,
-} from 'app/_components/common';
+import { FormErrorWrapper, LabelInput } from 'app/_components/common';
 import { UserIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { REQUIRED_MESSAGE } from 'app/_constants/message';
@@ -10,14 +6,9 @@ import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
 import { useFormContext } from 'react-hook-form';
 import { useEffect } from 'react';
 
-interface Props {
-  onNext: () => void;
-}
-
-function IdForm({ onNext }: Props) {
+function IdForm() {
   const {
     register,
-    watch,
     formState: { errors },
     setFocus,
   } = useFormContext<JoinFormData>();
@@ -25,9 +16,6 @@ function IdForm({ onNext }: Props) {
   const idRegister = register('id', {
     required: REQUIRED_MESSAGE.id,
   });
-
-  const isValidValue =
-    !errors.id && watch('id') !== '' && watch('id') !== undefined;
 
   useEffect(() => {
     setFocus('id');
@@ -47,14 +35,6 @@ function IdForm({ onNext }: Props) {
           <li>{errors.id?.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton
-        theme="primary"
-        type="submit"
-        disabled={!isValidValue}
-        onClick={onNext}
-      >
-        다음 단계
-      </DefaultButton>
     </>
   );
 }

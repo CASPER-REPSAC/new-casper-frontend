@@ -7,7 +7,7 @@ import {
   RecoilRootWrapper,
   SyncThemeScript,
   AutoLoginPresence,
-} from 'app/(route)/_providers';
+} from 'app/_components/providers';
 import { DefaultLayout } from 'app/_components/layout';
 
 export const metadata = {
@@ -38,9 +38,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <QueryWrapper>
           <RecoilRootWrapper>
-            {/* @ts-expect-error Async Server Component */}
+            <PopupWrapper />
             <AutoLoginPresence>
-              <PopupWrapper />
               <DefaultLayout>{children}</DefaultLayout>
             </AutoLoginPresence>
           </RecoilRootWrapper>

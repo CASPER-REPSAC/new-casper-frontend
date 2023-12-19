@@ -1,5 +1,6 @@
 'use client';
 
+import formateDate from 'app/_utils/formatDate';
 import { useRouter } from 'next/navigation';
 
 interface ArticleProps {
@@ -21,9 +22,7 @@ function Article({
 }: ArticleProps) {
   const { prefetch, push } = useRouter();
   const href = `/boards/${boardType}/detail/${articleId}`;
-  const [date] = createdAt.split('T');
-  const [year, month, day] = date.split('-');
-  const formattedDate = `${year.slice(2)}. ${month}. ${day}`;
+  const formattedDate = formateDate(createdAt);
 
   return (
     <tr

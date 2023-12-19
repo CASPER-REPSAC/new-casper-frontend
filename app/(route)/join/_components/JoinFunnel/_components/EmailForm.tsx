@@ -1,8 +1,4 @@
-import {
-  DefaultButton,
-  FormErrorWrapper,
-  LabelInput,
-} from 'app/_components/common';
+import { FormErrorWrapper, LabelInput } from 'app/_components/common';
 import { MailIcon } from 'app/_components/icons';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
@@ -12,16 +8,11 @@ import { EMAIL_REGEX } from 'app/_utils/regex';
 import { useFormContext } from 'react-hook-form';
 import { useEffect } from 'react';
 
-interface Props {
-  onNext: () => void;
-}
-function EmailForm({ onNext }: Props) {
+function EmailForm() {
   const {
     register,
-    watch,
-    formState: { errors },
+    formState: { errors, dirtyFields },
     setFocus,
-    handleSubmit,
   } = useFormContext<JoinFormData>();
 
   const emailRegister = register('email', {
@@ -32,8 +23,7 @@ function EmailForm({ onNext }: Props) {
     },
   });
 
-  const isValidValue =
-    !errors.email && watch('email') !== '' && watch('email') !== undefined;
+  const isValidValue = !errors.email && dirtyFields.email;
 
   useEffect(() => {
     setFocus('email');
@@ -55,13 +45,6 @@ function EmailForm({ onNext }: Props) {
           <li>{errors.email?.message}</li>
         </FormErrorWrapper>
       )}
-      <DefaultButton
-        theme="primary"
-        type="submit"
-        onClick={handleSubmit(onNext)}
-      >
-        다음 단계
-      </DefaultButton>
     </>
   );
 }

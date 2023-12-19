@@ -36,3 +36,5 @@ export {
 export { HiLightBulb as LightBulbIcon } from 'react-icons/hi';
 export { BsPencil as PencilIcon } from 'react-icons/bs';
 export { FaSun as SunIcon, FaMoon as MoonIcon } from 'react-icons/fa';
+export { PiSirenFill as SirenIcon } from 'react-icons/pi';
+export { CiCircleCheck as CheckIcon } from 'react-icons/ci';
