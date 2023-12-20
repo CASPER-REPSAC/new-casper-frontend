@@ -1,10 +1,10 @@
-import { JoinFormProvider, JoinFunnel } from './_components';
+import { JoinFormProvider, JoinFunnel, ProgressBar } from './_components';
 
 function JoinPage() {
   return (
     <div className="small-center absolute-center">
       <JoinFormProvider>
-        {/* <ProgressBar /> */}
+        <ProgressBar />
         <JoinFunnel />
       </JoinFormProvider>
     </div>
