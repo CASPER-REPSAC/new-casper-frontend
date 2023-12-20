@@ -29,7 +29,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         to-sky-50
         text-slate-600
         dark:bg-slate-900
-        dark:bg-gradient-to-br
         dark:from-slate-900
         dark:via-sky-950
         dark:to-slate-900

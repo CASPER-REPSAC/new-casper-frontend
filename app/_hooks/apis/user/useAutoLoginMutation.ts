@@ -3,7 +3,7 @@ import { POPUP_DURATION } from 'app/_constants/duration';
 import { ERROR_MESSAGE, POPUP_MESSAGE } from 'app/_constants/message';
 import usePopup from 'app/_hooks/usePopup';
 import { postAutoLogin } from 'app/_service/user';
-import { accessTokenState } from 'app/_store/permissionAtoms';
+import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
 import { ErrorResponse } from 'app/_types/errorTypes';
 import { AutoLoginResponse } from 'app/_types/loginTypes';
 import { AxiosError, AxiosResponse } from 'axios';
@@ -11,12 +11,14 @@ import { useSetRecoilState } from 'recoil';
 
 function useAutoLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
+  const setMyProfile = useSetRecoilState(myProfileState);
   const { openAndDeletePopup } = usePopup();
 
   const mutationFn = () => postAutoLogin(true);
 
   const onSuccess = ({ data }: AxiosResponse<AutoLoginResponse>) => {
     setAccessToken(data.accessToken);
+    setMyProfile(data.myInfo);
     openAndDeletePopup({
       message: POPUP_MESSAGE.autoLoginSuccess,
       duration: POPUP_DURATION.medium,
