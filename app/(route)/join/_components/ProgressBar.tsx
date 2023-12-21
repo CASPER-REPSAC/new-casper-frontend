@@ -17,7 +17,7 @@ function ProgressBar() {
   const passwordComplete = !errors.pw && !!dirtyFields.pw;
 
   return (
-    <div className="flex justify-between">
+    <div className="flex justify-around">
       <Status
         active={funnelStep === 'agree'}
         label="개인 정보 수집 동의"
@@ -55,11 +55,11 @@ interface Props {
 
 function Status({ label, isComplete, active = false }: Props) {
   return (
-    <div className="flex w-7 flex-col items-center ">
+    <div className="relative flex w-7 flex-col items-center">
       {active && (
         <DownArrowIcon
           size={ICON_SIZE.small}
-          className="absolute -top-6 animate-bounce fill-indigo-400 dark:fill-sky-400"
+          className="absolute -top-6 animate-bounce fill-indigo-600 dark:fill-sky-400"
         />
       )}
       <CheckIcon
@@ -70,7 +70,13 @@ function Status({ label, isComplete, active = false }: Props) {
             : 'fill-slate-300 dark:fill-slate-600'
         }`}
       />
-      <span className="w-14 text-xs">{label}</span>
+      <div
+        className={`${
+          active ? 'text-black' : 'text-slate-400'
+        } absolute -bottom-6 w-max text-center text-xs dark:text-slate-600`}
+      >
+        {label}
+      </div>
     </div>
   );
 }
