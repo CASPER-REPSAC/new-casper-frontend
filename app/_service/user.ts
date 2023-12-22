@@ -50,8 +50,3 @@ export const postLogin = cache(async (params: LoginRequest) => {
 
   return data;
 });
-
-export const setServerSideAccessToken = cache(async (accessToken: string) => {
-  const res = await axios.post('/api/setAccessToken', { accessToken });
-  return res;
-});
