@@ -4,18 +4,23 @@ import {
   ARTICLE_LIST_API,
 } from 'app/_constants/apiUrl';
 import { ArticleDetail, OnePageOfArticleList } from 'app/_types/boardTypes';
+import { getAccessToken } from 'app/_utils/cookie';
 import axios from 'axios';
-import { cookies } from 'next/headers';
 
 export async function getArticleDetail(
   articleId: string,
   proxy: boolean = false,
 ) {
+  const accessToken = getAccessToken();
   const url = proxy
     ? `/proxy${ARTICLE_DETAIL_API}/${articleId}`
     : `${API_URL}${ARTICLE_DETAIL_API}/${articleId}`;
 
-  const { data } = await axios.get<ArticleDetail>(url);
+  const { data } = await axios.get<ArticleDetail>(url, {
+    headers: {
+      Authorization: `Bearer ${accessToken}`,
+    },
+  });
   return data;
 }
 
@@ -27,14 +32,13 @@ export async function getOnePageArticleList(
   }: { boardType: string; page: string; category?: string },
   proxy: boolean = false,
 ) {
-  const cookieStore = cookies();
-  const accessToken = cookieStore.get('accessToken');
+  const accessToken = getAccessToken();
   const url = proxy
     ? `/proxy${ARTICLE_LIST_API}/${boardType}/${category}/${page}`
     : `${API_URL}${ARTICLE_LIST_API}/${boardType}/${category}/${page}`;
 
   const { data } = await axios.get<OnePageOfArticleList>(url, {
-    headers: { Authorization: `Bearer ${accessToken?.value}` },
+    headers: { Authorization: `Bearer ${accessToken}` },
   });
 
   return data;
