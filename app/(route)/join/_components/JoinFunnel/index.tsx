@@ -11,13 +11,13 @@ function JoinFunnel() {
   const { funnelStep } = useFunnel();
 
   return (
-    <form className="small-center flex flex-col gap-7">
+    <div className="flex w-full flex-col gap-4">
       {funnelStep === 'agree' && <AgreeForm />}
       {funnelStep === 'email' && <EmailForm />}
       {funnelStep === 'name' && <NameForm />}
       {funnelStep === 'id' && <IdForm />}
       {funnelStep === 'password' && <PasswordForm />}
-    </form>
+    </div>
   );
 }
 

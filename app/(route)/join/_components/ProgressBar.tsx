@@ -20,7 +20,7 @@ function ProgressBar() {
   const passwordComplete = !errors.pw && !!dirtyFields.pw;
 
   return (
-    <div className="flex justify-around">
+    <div className="flex w-full justify-around">
       <Status
         href={{
           pathname: PATH.user.join.url,
@@ -103,7 +103,7 @@ function Status({ href, label, isComplete, active = false }: Props) {
             ? 'text-indigo-600 dark:text-sky-400'
             : 'text-slate-300 dark:text-slate-600'
         }
-        absolute -bottom-6 w-max text-center text-xs dark:text-slate-600`}
+        absolute -bottom-6 w-max text-center text-xs`}
       >
         {label}
       </div>

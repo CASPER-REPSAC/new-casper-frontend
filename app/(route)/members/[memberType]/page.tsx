@@ -18,7 +18,9 @@ interface Props {
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function Members({ params: { memberType } }: Props) {
-  const data = await getAllMember('all', true);
+  const data = await getAllMember(memberType, false);
+
+  console.log(data);
 
   return (
     <>

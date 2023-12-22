@@ -25,10 +25,10 @@ export const getProfile = cache(async (id: string, proxy: boolean = false) => {
 });
 
 export const getAllMember = cache(
-  async (role: string, fromServer: boolean = false) => {
-    const url = fromServer
-      ? `${API_URL}${ALL_MEMEBER_API}?role=${role}`
-      : `${ALL_MEMEBER_API}?role=${role}`;
+  async (role: string, proxy: boolean = false) => {
+    const url = proxy
+      ? `/proxy${ALL_MEMEBER_API}?role=${role}`
+      : `${API_URL}${ALL_MEMEBER_API}?role=${role}`;
 
     const { data } = await axios.get<{ memberList: MemberProfile[] }>(url);
     return data;

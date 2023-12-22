@@ -1,15 +1,19 @@
-import { JoinFormProvider, JoinFunnel, ProgressBar } from './_components';
-import { NextButton } from './_components/JoinFunnel/_components';
+import {
+  JoinFormProvider,
+  JoinFunnel,
+  ProgressBar,
+  NextButton,
+} from './_components';
 
 function JoinPage() {
   return (
     <div className="small-center absolute-center flex flex-col justify-center gap-12">
       <JoinFormProvider>
-        <ProgressBar />
-        <div className="flex min-h-[240px] items-center">
+        <form className="flex min-h-[400px] flex-col items-center justify-between gap-4">
+          <ProgressBar />
           <JoinFunnel />
-        </div>
-        <NextButton />
+          <NextButton />
+        </form>
       </JoinFormProvider>
     </div>
   );
