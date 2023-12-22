@@ -20,8 +20,6 @@ interface Props {
 async function Members({ params: { memberType } }: Props) {
   const data = await getAllMember(memberType, false);
 
-  console.log(data);
-
   return (
     <>
       <DetailMemberCard />

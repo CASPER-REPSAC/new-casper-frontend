@@ -5,6 +5,7 @@ import {
 } from 'app/_constants/apiUrl';
 import { ArticleDetail, OnePageOfArticleList } from 'app/_types/boardTypes';
 import axios from 'axios';
+import { cookies } from 'next/headers';
 
 export async function getArticleDetail(
   articleId: string,
@@ -26,10 +27,15 @@ export async function getOnePageArticleList(
   }: { boardType: string; page: string; category?: string },
   proxy: boolean = false,
 ) {
+  const cookieStore = cookies();
+  const accessToken = cookieStore.get('accessToken');
   const url = proxy
     ? `/proxy${ARTICLE_LIST_API}/${boardType}/${category}/${page}`
     : `${API_URL}${ARTICLE_LIST_API}/${boardType}/${category}/${page}`;
 
-  const { data } = await axios.get<OnePageOfArticleList>(url);
+  const { data } = await axios.get<OnePageOfArticleList>(url, {
+    headers: { Authorization: `Bearer ${accessToken?.value}` },
+  });
+
   return data;
 }
