@@ -10,8 +10,6 @@ function PostFormProvider({ children }: Props) {
   const defaultValues: PostReqData = {
     boardId: 'notice_board',
     category: 'all',
-    createdAt: '1111-01-01',
-    modifiedAt: '1111-01-01',
     file: false,
     hide: false,
     notice: false,
