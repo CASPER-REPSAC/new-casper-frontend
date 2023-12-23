@@ -1,23 +1,32 @@
 import axios from 'axios';
-import { useRecoilState, useSetRecoilState } from 'recoil';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useMutation } from '@tanstack/react-query';
 import { usePopup } from 'app/_hooks';
 import { LOGOUT_API } from 'app/_constants/apiUrl';
 import { POPUP_MESSAGE } from 'app/_constants/message';
 import { POPUP_DURATION } from 'app/_constants/duration';
-import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
+import {
+  accessTokenState,
+  bearerTokenState,
+  myProfileState,
+} from 'app/_store/permissionAtoms';
+import { useRouter } from 'next/navigation';
 
 function useLogoutMutation() {
-  const [accessToken, setAcessToken] = useRecoilState(accessTokenState);
+  const bearerToken = useRecoilValue(bearerTokenState);
+  const setAccessToken = useSetRecoilState(accessTokenState);
   const setMyProfile = useSetRecoilState(myProfileState);
   const { openAndDeletePopup } = usePopup();
+  const { refresh } = useRouter();
 
   const mutationFn = () =>
     axios.post(`/proxy${LOGOUT_API}`, undefined, {
-      headers: { Authorization: `Bearer ${accessToken}` },
+      headers: { Authorization: bearerToken },
     });
+
   const onSuccess = () => {
-    setAcessToken(undefined);
+    refresh();
+    setAccessToken(undefined);
     setMyProfile(undefined);
     openAndDeletePopup({
       message: POPUP_MESSAGE.logoutSuccess,

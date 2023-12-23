@@ -1,12 +1,12 @@
 import { useMutation } from '@tanstack/react-query';
+import { AUTO_LOGIN_API } from 'app/_constants/apiUrl';
 import { POPUP_DURATION } from 'app/_constants/duration';
 import { ERROR_MESSAGE, POPUP_MESSAGE } from 'app/_constants/message';
 import usePopup from 'app/_hooks/usePopup';
-import { postAutoLogin } from 'app/_service/user';
 import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
 import { ErrorResponse } from 'app/_types/errorTypes';
 import { AutoLoginResponse } from 'app/_types/loginTypes';
-import { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useSetRecoilState } from 'recoil';
 
 function useAutoLoginMutation() {
@@ -14,7 +14,8 @@ function useAutoLoginMutation() {
   const setMyProfile = useSetRecoilState(myProfileState);
   const { openAndDeletePopup } = usePopup();
 
-  const mutationFn = () => postAutoLogin(true);
+  const mutationFn = () =>
+    axios.post<AutoLoginResponse>(`/proxy${AUTO_LOGIN_API}`);
 
   const onSuccess = ({ data }: AxiosResponse<AutoLoginResponse>) => {
     setAccessToken(data.accessToken);

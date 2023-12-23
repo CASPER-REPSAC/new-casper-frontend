@@ -1,5 +1,4 @@
 import { BoardListParams } from 'app/_types/boardTypes';
-import { getAccessToken } from 'app/_utils/cookie';
 import { getOnePageArticleList } from 'app/_service/article';
 import Article from './Article';
 import BoardBodySkeleton from './BoardBodySkeleton';
@@ -9,11 +8,7 @@ interface Props {
 }
 
 async function BoardBody({ params: { boardType, page } }: Props) {
-  const accessToken = getAccessToken();
-  const { articleList } = await getOnePageArticleList(
-    { boardType, page },
-    accessToken,
-  );
+  const { articleList } = await getOnePageArticleList({ boardType, page });
 
   return (
     <table className="w-full table-fixed text-base">

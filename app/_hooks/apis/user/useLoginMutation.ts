@@ -1,4 +1,4 @@
-import { AxiosError, AxiosResponse } from 'axios';
+import axios, { AxiosError, AxiosResponse } from 'axios';
 import { accessTokenState, myProfileState } from 'app/_store/permissionAtoms';
 import { usePopup } from 'app/_hooks';
 import { LoginRequest, LoginResponse } from 'app/_types/loginTypes';
@@ -8,7 +8,7 @@ import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from 'app/_constants/duration';
 import { POPUP_MESSAGE } from 'app/_constants/message';
-import { postLogin } from 'app/_service/user';
+import { LOGIN_API } from 'app/_constants/apiUrl';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -16,7 +16,8 @@ export default function useLoginMutation() {
   const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
-  const mutationFn = (params: LoginRequest) => postLogin(params);
+  const mutationFn = (params: LoginRequest) =>
+    axios.post<LoginResponse>(`/proxy${LOGIN_API}`, params);
 
   const onLoinSuccess = async ({ data }: AxiosResponse<LoginResponse>) => {
     openAndDeletePopup({
