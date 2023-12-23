@@ -1,5 +1,7 @@
+import { useRecoilValue } from 'recoil';
 import { BoardListParams } from 'app/_types/boardTypes';
 import { getOnePageArticleList } from 'app/_service/article';
+import { accessTokenState } from 'app/_store/permissionAtoms';
 import PageList from './PageList';
 
 interface Props {
@@ -7,10 +9,14 @@ interface Props {
 }
 
 async function BoardFooter({ params: { boardType, page: curPage } }: Props) {
-  const { maxPageNum: maxPage } = await getOnePageArticleList({
-    boardType,
-    page: curPage,
-  });
+  const accessToken = useRecoilValue(accessTokenState);
+  const { maxPageNum: maxPage } = await getOnePageArticleList(
+    {
+      boardType,
+      page: curPage,
+    },
+    accessToken,
+  );
 
   return (
     <div className="flex-center gap-4">

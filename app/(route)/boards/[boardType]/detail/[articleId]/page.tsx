@@ -1,5 +1,6 @@
 import { ClientFormProvider } from 'app/_components/molecules';
 import { getArticleDetail } from 'app/_service/article';
+import { getAccessToken } from 'app/_utils/cookie';
 import {
   ButtonSection,
   ContentSection,
@@ -13,7 +14,8 @@ export default async function ArticleDetailPage({
 }: {
   params: { articleId: string };
 }) {
-  const data = await getArticleDetail(articleId);
+  const accessToken = getAccessToken();
+  const data = await getArticleDetail(articleId, accessToken);
 
   return (
     <ClientFormProvider>

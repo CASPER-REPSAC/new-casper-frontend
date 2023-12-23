@@ -4,14 +4,13 @@ import {
   ARTICLE_LIST_API,
 } from 'app/_constants/apiUrl';
 import { ArticleDetail, OnePageOfArticleList } from 'app/_types/boardTypes';
-import { getAccessToken } from 'app/_utils/cookie';
 import axios from 'axios';
 
 export async function getArticleDetail(
   articleId: string,
+  accessToken: string | undefined,
   proxy: boolean = false,
 ) {
-  const accessToken = getAccessToken();
   const url = proxy
     ? `/proxy${ARTICLE_DETAIL_API}/${articleId}`
     : `${API_URL}${ARTICLE_DETAIL_API}/${articleId}`;
@@ -30,9 +29,9 @@ export async function getOnePageArticleList(
     page,
     category = 'all',
   }: { boardType: string; page: string; category?: string },
+  accessToken: string | undefined,
   proxy: boolean = false,
 ) {
-  const accessToken = getAccessToken();
   const url = proxy
     ? `/proxy${ARTICLE_LIST_API}/${boardType}/${category}/${page}`
     : `${API_URL}${ARTICLE_LIST_API}/${boardType}/${category}/${page}`;
