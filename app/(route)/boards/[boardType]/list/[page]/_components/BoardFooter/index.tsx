@@ -1,7 +1,6 @@
-import { useRecoilValue } from 'recoil';
 import { BoardListParams } from 'app/_types/boardTypes';
 import { getOnePageArticleList } from 'app/_service/article';
-import { accessTokenState } from 'app/_store/permissionAtoms';
+import { getAccessToken } from 'app/_utils/cookie';
 import PageList from './PageList';
 
 interface Props {
@@ -9,7 +8,7 @@ interface Props {
 }
 
 async function BoardFooter({ params: { boardType, page: curPage } }: Props) {
-  const accessToken = useRecoilValue(accessTokenState);
+  const accessToken = getAccessToken();
   const { maxPageNum: maxPage } = await getOnePageArticleList(
     {
       boardType,
