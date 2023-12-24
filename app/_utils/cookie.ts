@@ -9,5 +9,5 @@ export function getAccessToken() {
 
 export function getBearerToken() {
   const accessToken = getAccessToken();
-  return 'Bearer'.concat(accessToken ?? '');
+  return 'Bearer '.concat(accessToken ?? '');
 }

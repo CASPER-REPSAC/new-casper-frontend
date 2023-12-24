@@ -10,14 +10,12 @@ import {
   bearerTokenState,
   myProfileState,
 } from 'app/_store/permissionAtoms';
-import { useRouter } from 'next/navigation';
 
 function useLogoutMutation() {
   const bearerToken = useRecoilValue(bearerTokenState);
   const setAccessToken = useSetRecoilState(accessTokenState);
   const setMyProfile = useSetRecoilState(myProfileState);
   const { openAndDeletePopup } = usePopup();
-  const { refresh } = useRouter();
 
   const mutationFn = () =>
     axios.post(`/proxy${LOGOUT_API}`, undefined, {
@@ -25,7 +23,6 @@ function useLogoutMutation() {
     });
 
   const onSuccess = () => {
-    refresh();
     setAccessToken(undefined);
     setMyProfile(undefined);
     openAndDeletePopup({

@@ -13,11 +13,13 @@ interface Props {
 }
 
 function BarNaviagtion({ className: additionalClassName }: Props) {
+  const { members, boards, extra } = PATH;
   const pathname = usePathname();
   const login = useRecoilValue(loginState);
   const { mutate: mutateLogout } = useLogoutMutation();
-  const logout = () => mutateLogout();
-  const { members, boards, extra } = PATH;
+  const logout = () => {
+    mutateLogout();
+  };
 
   const memberMenus = Object.values(members).map(({ name, url }) => (
     <DefaultLink key={name} className="w-full" href={url}>
