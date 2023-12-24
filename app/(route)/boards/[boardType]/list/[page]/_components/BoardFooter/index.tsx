@@ -1,6 +1,5 @@
 import { BoardListParams } from 'app/_types/boardTypes';
 import { getOnePageArticleList } from 'app/_service/article';
-import { getAccessToken } from 'app/_utils/cookie';
 import PageList from './PageList';
 
 interface Props {
@@ -8,14 +7,10 @@ interface Props {
 }
 
 async function BoardFooter({ params: { boardType, page: curPage } }: Props) {
-  const accessToken = getAccessToken();
-  const { maxPageNum: maxPage } = await getOnePageArticleList(
-    {
-      boardType,
-      page: curPage,
-    },
-    accessToken,
-  );
+  const { maxPageNum: maxPage } = await getOnePageArticleList({
+    boardType,
+    page: curPage,
+  });
 
   return (
     <div className="flex-center gap-4">
