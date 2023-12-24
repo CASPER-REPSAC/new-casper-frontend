@@ -6,3 +6,8 @@ export function getAccessToken() {
   const accessToken = cookieStore.get('accessToken');
   return accessToken?.value;
 }
+
+export function getBearerToken() {
+  const accessToken = getAccessToken();
+  return 'Bearer'.concat(accessToken ?? '');
+}
