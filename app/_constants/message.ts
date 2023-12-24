@@ -11,6 +11,7 @@ export const POPUP_MESSAGE = {
   failedToLogin: '로그인 실패했어요.',
   failedToLogout: '로그아웃 실패했어요.',
   failedToLoadDetail: '상세 내용을 불러 올 수 없어요.',
+  checkJoinParams: '값을 정확히 입력해주세요.',
 };
 
 export const ERROR_MESSAGE = {

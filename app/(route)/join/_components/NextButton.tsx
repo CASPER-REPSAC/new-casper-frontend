@@ -1,12 +1,15 @@
 import { DefaultButton } from 'app/_components/common';
-import { useFunnel } from 'app/_hooks';
+import { POPUP_DURATION } from 'app/_constants/duration';
+import { POPUP_MESSAGE } from 'app/_constants/message';
+import { useFunnel, usePopup } from 'app/_hooks';
 import { useJoinMutation } from 'app/_hooks/apis/user';
 import { JoinFormData } from 'app/_types/joinTypes';
 import { useFormContext } from 'react-hook-form';
 
 function NextButton() {
+  const { openAndDeletePopup } = usePopup();
+  const { funnelStep, setFunnelStep, nextStep } = useFunnel();
   const { mutate } = useJoinMutation();
-  const { setFunnelStep, nextStep, funnelStep } = useFunnel();
   const {
     getValues,
     formState: { errors, dirtyFields },
@@ -22,8 +25,13 @@ function NextButton() {
     setFunnelStep(nextStep);
   };
 
-  const onClick =
-    nextStep === 'finish' ? handleSubmit(onFinish) : handleSubmit(onNext);
+  const onValid = nextStep === 'finish' ? onFinish : onNext;
+  const onInvalid = () => {
+    openAndDeletePopup({
+      message: POPUP_MESSAGE.checkJoinParams,
+      duration: POPUP_DURATION.medium,
+    });
+  };
 
   const checkValid = () => {
     if (funnelStep === 'agree') {
@@ -59,8 +67,9 @@ function NextButton() {
     <DefaultButton
       theme="primary"
       type="submit"
+      className="w-full"
       disabled={!checkValid()}
-      onClick={onClick}
+      onClick={handleSubmit(onValid, onInvalid)}
     >
       다음 단계
     </DefaultButton>

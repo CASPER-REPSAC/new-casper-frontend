@@ -1,7 +1,6 @@
 'use client';
 
 import useAutoLoginMutation from 'app/_hooks/apis/user/useAutoLoginMutation';
-import useServerSideLoginMutation from 'app/_hooks/apis/user/useServerSideLoginMutation';
 import { accessTokenState } from 'app/_store/permissionAtoms';
 import { parseJwt } from 'app/_utils/jwt';
 import { ReactNode, useCallback, useEffect } from 'react';
@@ -13,17 +12,11 @@ interface Props {
 
 function AutoLoginPresence({ children }: Props) {
   const { mutate: clientLoginMutate } = useAutoLoginMutation();
-  const { mutate: serverLoginMutate } = useServerSideLoginMutation();
   const accessToken = useRecoilValue(accessTokenState);
 
   useEffect(() => {
     clientLoginMutate();
   }, [clientLoginMutate]);
-
-  useEffect(() => {
-    if (!accessToken) return;
-    serverLoginMutate(accessToken);
-  }, [serverLoginMutate, accessToken]);
 
   const slientRefresh = useCallback(() => {
     if (!accessToken) return () => {};

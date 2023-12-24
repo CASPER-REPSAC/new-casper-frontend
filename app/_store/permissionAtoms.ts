@@ -19,6 +19,15 @@ export const accessTokenState = atom<string | undefined>({
   default: undefined,
 });
 
+export const bearerTokenState = selector({
+  key: 'bearerToken',
+  get: ({ get }) => {
+    const accessToken = get(accessTokenState);
+    const bearerToken = `Bearer ${accessToken}`;
+    return bearerToken;
+  },
+});
+
 export const loginState = selector({
   key: 'login',
   get: ({ get }) => {
