@@ -4,18 +4,23 @@ import {
   ARTICLE_LIST_API,
 } from 'app/_constants/apiUrl';
 import { ArticleDetail, OnePageOfArticleList } from 'app/_types/boardTypes';
-import { getAccessToken, getBearerToken } from 'app/_utils/cookie';
-import axios from 'axios';
+import { getBearerToken } from 'app/_utils/cookie';
 
 export async function getArticleDetail(articleId: string) {
   const url = `${API_URL}${ARTICLE_DETAIL_API}/${articleId}`;
-  const accessToken = getAccessToken();
+  const bearerToken = getBearerToken();
 
-  const { data } = await axios.get<ArticleDetail>(url, {
+  const res = await fetch(url, {
     headers: {
-      Authorization: `Bearer ${accessToken}`,
+      Authorization: bearerToken,
+    },
+    next: {
+      tags: ['accessToken'],
     },
   });
+  if (!res.ok) throw new Error('Failed to fetch data');
+  const data: ArticleDetail = await res.json();
+
   return data;
 }
 
@@ -32,7 +37,6 @@ export async function getOnePageArticleList({
   const url = `${API_URL}${ARTICLE_LIST_API}/${boardType}/${category}/${page}`;
 
   const res = await fetch(url, {
-    method: 'GET',
     headers: {
       Authorization: bearerToken,
     },
@@ -40,7 +44,6 @@ export async function getOnePageArticleList({
       tags: ['accessToken'],
     },
   });
-
   if (!res.ok) throw Error('Failed to fetch data');
   const data: OnePageOfArticleList = await res.json();
 
