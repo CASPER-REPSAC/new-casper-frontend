@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { Footer, Header } from 'app/_components/molecules';
+import { Footer, Header } from '@app/_components/molecules';
 
 interface Props {
   children: ReactNode;

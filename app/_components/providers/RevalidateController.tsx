@@ -1,7 +1,7 @@
 'use client';
 
-import useRevalidateMutation from 'app/_hooks/apis/useRevalidateMutation';
-import { accessTokenState } from 'app/_store/permissionAtoms';
+import useRevalidateMutation from '@app/_hooks/apis/useRevalidateMutation';
+import { accessTokenState } from '@app/_store/permissionAtoms';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 

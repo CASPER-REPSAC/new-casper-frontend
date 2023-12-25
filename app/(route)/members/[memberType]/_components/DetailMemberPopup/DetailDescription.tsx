@@ -1,6 +1,6 @@
-import { HomeIcon, MailIcon } from 'app/_components/icons';
-import { ICON_SIZE } from 'app/_constants/size';
-import { selectedMemberState } from 'app/_store/memberCardAtoms';
+import { HomeIcon, MailIcon } from '@app/_components/icons';
+import { ICON_SIZE } from '@app/_constants/size';
+import { selectedMemberState } from '@app/_store/memberCardAtoms';
 import { ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
 

@@ -1,4 +1,4 @@
-import { DefaultButton } from 'app/_components/common';
+import { DefaultButton } from '@app/_components/common';
 import Avatar from './common/Avatar';
 
 function DetailComment() {

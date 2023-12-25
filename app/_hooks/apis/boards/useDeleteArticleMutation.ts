@@ -1,9 +1,9 @@
-import { DELETE_ARTICLE_API } from 'app/_constants/apiUrl';
-import { POPUP_DURATION } from 'app/_constants/duration';
-import { POPUP_MESSAGE } from 'app/_constants/message';
-import { BOARD_TYPE } from 'app/_constants/mock';
-import { PATH } from 'app/_constants/urls';
-import { usePopup } from 'app/_hooks';
+import { DELETE_ARTICLE_API } from '@app/_constants/apiUrl';
+import { POPUP_DURATION } from '@app/_constants/duration';
+import { POPUP_MESSAGE } from '@app/_constants/message';
+import { BOARD_TYPE } from '@app/_constants/mock';
+import { PATH } from '@app/_constants/urls';
+import { usePopup } from '@app/_hooks';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';

@@ -1,5 +1,5 @@
 import { usePathname } from 'next/navigation';
-import { PATH } from 'app/_constants/urls';
+import { PATH } from '@app/_constants/urls';
 import { SideMenuLink, SideMenuWrapper } from './common';
 
 function MemberSideMenu() {

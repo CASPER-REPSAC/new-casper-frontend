@@ -8,24 +8,27 @@ import {
   StyleSchemaFromSpecs,
   StyleSpecs,
 } from '@blocknote/core';
-import { ERROR_MESSAGE } from 'app/_constants/message';
-import { POPUP_DURATION } from 'app/_constants/duration';
-import { usePopup } from 'app/_hooks';
+import { ERROR_MESSAGE } from '@app/_constants/message';
+import { POPUP_DURATION } from '@app/_constants/duration';
+import { usePopup } from '@app/_hooks';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { editableState } from 'app/_store/detailPageAtoms';
-import { Skeleton } from 'app/_components/common';
+import { editableState } from '@app/_store/detailPageAtoms';
+import { Skeleton } from '@app/_components/common';
 
-const BlockNote = dynamic(() => import('app/_components/molecules/BlockNote'), {
-  ssr: false,
-  loading: () => (
-    <div className="flex h-full w-full flex-col gap-4 px-12 pt-4">
-      <Skeleton className="h-4 w-full rounded-full" />
-      <Skeleton className="h-4 w-1/3 rounded-full" />
-      <Skeleton className="h-4 w-1/2 rounded-full" />
-    </div>
-  ),
-});
+const BlockNote = dynamic(
+  () => import('@app/_components/molecules/BlockNote'),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-full w-full flex-col gap-4 px-12 pt-4">
+        <Skeleton className="h-4 w-full rounded-full" />
+        <Skeleton className="h-4 w-1/3 rounded-full" />
+        <Skeleton className="h-4 w-1/2 rounded-full" />
+      </div>
+    ),
+  },
+);
 
 interface Props {
   articleContent: string;

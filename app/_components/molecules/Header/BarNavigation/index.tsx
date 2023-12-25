@@ -1,11 +1,11 @@
 import { useRecoilValue } from 'recoil';
 import { usePathname } from 'next/navigation';
-import { loginState } from 'app/_store/permissionAtoms';
-import { PATH } from 'app/_constants/urls';
-import { ICON_SIZE } from 'app/_constants/size';
-import { LoginIcon, LogoutIcon, UserIcon } from 'app/_components/icons';
-import { useLogoutMutation } from 'app/_hooks/apis/user';
-import { DefaultLink, DefaultButton } from 'app/_components/common';
+import { loginState } from '@app/_store/permissionAtoms';
+import { PATH } from '@app/_constants/urls';
+import { ICON_SIZE } from '@app/_constants/size';
+import { LoginIcon, LogoutIcon, UserIcon } from '@app/_components/icons';
+import { useLogoutMutation } from '@app/_hooks/apis/user';
+import { DefaultLink, DefaultButton } from '@app/_components/common';
 import BarNavMenu from './BarNavMenu';
 
 interface Props {

@@ -1,13 +1,13 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { usePopup } from 'app/_hooks';
-import { DefaultButton, LabelInput } from 'app/_components/common';
-import { LockIcon, UserIcon } from 'app/_components/icons';
-import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
-import { ICON_SIZE } from 'app/_constants/size';
-import { PLACEHOLDER } from 'app/_constants/label';
-import { POPUP_DURATION } from 'app/_constants/duration';
-import { LoginRequest } from 'app/_types/loginTypes';
-import { useLoginMutation } from 'app/_hooks/apis/user';
+import { usePopup } from '@app/_hooks';
+import { DefaultButton, LabelInput } from '@app/_components/common';
+import { LockIcon, UserIcon } from '@app/_components/icons';
+import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@app/_constants/message';
+import { ICON_SIZE } from '@app/_constants/size';
+import { PLACEHOLDER } from '@app/_constants/label';
+import { POPUP_DURATION } from '@app/_constants/duration';
+import { LoginRequest } from '@app/_types/loginTypes';
+import { useLoginMutation } from '@app/_hooks/apis/user';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();

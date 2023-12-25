@@ -1,4 +1,4 @@
-import { MemberProfile } from 'app/_types/memberTypes';
+import { MemberProfile } from '@app/_types/memberTypes';
 import { atom } from 'recoil';
 
 export const detailedMemberPopupState = atom({

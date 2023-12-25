@@ -1,6 +1,6 @@
 'use client';
 
-import formateDate from 'app/_utils/formatDate';
+import formateDate from '@app/_utils/formatDate';
 import { useRouter } from 'next/navigation';
 
 interface ArticleProps {

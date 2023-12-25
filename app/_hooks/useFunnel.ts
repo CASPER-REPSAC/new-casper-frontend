@@ -1,6 +1,6 @@
-import { PATH } from 'app/_constants/urls';
-import { FunnelStepType } from 'app/_types/joinTypes';
-import { isFunnelType } from 'app/_utils/typeGuard';
+import { PATH } from '@app/_constants/urls';
+import { FunnelStepType } from '@app/_types/joinTypes';
+import { isFunnelType } from '@app/_utils/typeGuard';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect, useState } from 'react';
 

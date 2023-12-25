@@ -1,9 +1,9 @@
 import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
-import { DefaultButton, DefaultTextarea } from 'app/_components/common';
-import { PLACEHOLDER } from 'app/_constants/label';
-import { usePopup } from 'app/_hooks';
-import { POPUP_DURATION } from 'app/_constants/duration';
+import { DefaultButton, DefaultTextarea } from '@app/_components/common';
+import { PLACEHOLDER } from '@app/_constants/label';
+import { usePopup } from '@app/_hooks';
+import { POPUP_DURATION } from '@app/_constants/duration';
 
 function CommentEditorSection() {
   const { register, handleSubmit } = useForm();

@@ -1,11 +1,11 @@
 import { useEffect } from 'react';
-import { FormErrorWrapper, LabelInput } from 'app/_components/common';
-import { StarIcon, UserIcon } from 'app/_components/icons';
-import { JoinFormData } from 'app/_types/joinTypes';
-import { REQUIRED_MESSAGE } from 'app/_constants/message';
+import { FormErrorWrapper, LabelInput } from '@app/_components/common';
+import { StarIcon, UserIcon } from '@app/_components/icons';
+import { JoinFormData } from '@app/_types/joinTypes';
+import { REQUIRED_MESSAGE } from '@app/_constants/message';
 import { useFormContext } from 'react-hook-form';
-import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
-import { ICON_SIZE } from 'app/_constants/size';
+import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
+import { ICON_SIZE } from '@app/_constants/size';
 
 function NameForm() {
   const {

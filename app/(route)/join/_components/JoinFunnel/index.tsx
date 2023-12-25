@@ -1,4 +1,4 @@
-import { useFunnel } from 'app/_hooks';
+import { useFunnel } from '@app/_hooks';
 import {
   AgreeForm,
   EmailForm,

@@ -1,4 +1,4 @@
-import { JoinFormData } from 'app/_types/joinTypes';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 

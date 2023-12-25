@@ -1,8 +1,8 @@
 'use client';
 
 /* eslint-disable no-console */
-import { DefaultButton } from 'app/_components/common';
-import { ErrorProps } from 'app/_types/errorTypes';
+import { DefaultButton } from '@app/_components/common';
+import { ErrorProps } from '@app/_types/errorTypes';
 import { useEffect } from 'react';
 
 export default function Error({ error, reset }: ErrorProps) {

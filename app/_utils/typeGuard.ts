@@ -1,5 +1,5 @@
-import { BoardType } from 'app/_types/boardTypes';
-import { FunnelStepType } from 'app/_types/joinTypes';
+import { BoardType } from '@app/_types/boardTypes';
+import { FunnelStepType } from '@app/_types/joinTypes';
 
 // eslint-disable-next-line import/prefer-default-export
 export function isBoardType(str: string): str is BoardType {

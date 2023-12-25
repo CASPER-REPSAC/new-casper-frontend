@@ -1,8 +1,8 @@
 'use client';
 
-import useAutoLoginMutation from 'app/_hooks/apis/user/useAutoLoginMutation';
-import { accessTokenState } from 'app/_store/permissionAtoms';
-import { parseJwt } from 'app/_utils/jwt';
+import useAutoLoginMutation from '@app/_hooks/apis/user/useAutoLoginMutation';
+import { accessTokenState } from '@app/_store/permissionAtoms';
+import { parseJwt } from '@app/_utils/jwt';
 import { ReactNode, useCallback, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 

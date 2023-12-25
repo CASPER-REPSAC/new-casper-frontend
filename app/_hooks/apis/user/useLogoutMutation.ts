@@ -1,15 +1,15 @@
 import axios from 'axios';
 import { useRecoilValue, useSetRecoilState } from 'recoil';
 import { useMutation } from '@tanstack/react-query';
-import { usePopup } from 'app/_hooks';
-import { LOGOUT_API } from 'app/_constants/apiUrl';
-import { POPUP_MESSAGE } from 'app/_constants/message';
-import { POPUP_DURATION } from 'app/_constants/duration';
+import { usePopup } from '@app/_hooks';
+import { LOGOUT_API } from '@app/_constants/apiUrl';
+import { POPUP_MESSAGE } from '@app/_constants/message';
+import { POPUP_DURATION } from '@app/_constants/duration';
 import {
   accessTokenState,
   bearerTokenState,
   myProfileState,
-} from 'app/_store/permissionAtoms';
+} from '@app/_store/permissionAtoms';
 
 function useLogoutMutation() {
   const bearerToken = useRecoilValue(bearerTokenState);

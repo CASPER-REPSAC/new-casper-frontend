@@ -1,6 +1,6 @@
 import { Suspense } from 'react';
-import { DefaultLink } from 'app/_components/common';
-import { BoardListParams } from 'app/_types/boardTypes';
+import { DefaultLink } from '@app/_components/common';
+import { BoardListParams } from '@app/_types/boardTypes';
 import { BoardBody, BoardFooter, BoardHeader } from './_components';
 
 function BoardPage({

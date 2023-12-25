@@ -1,4 +1,4 @@
-import { PostReqData } from 'app/_types/PostTypes';
+import { PostReqData } from '@app/_types/PostTypes';
 import { useId } from 'react';
 import { useFormContext } from 'react-hook-form';
 

@@ -1,8 +1,8 @@
 'use client';
 
 /* eslint-disable jsx-a11y/control-has-associated-label */
-import { Skeleton } from 'app/_components/common';
-import createNumArr from 'app/_utils/createNumArr';
+import { Skeleton } from '@app/_components/common';
+import createNumArr from '@app/_utils/createNumArr';
 
 function BoardBodySkeleton() {
   const numOfRows = 10;

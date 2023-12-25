@@ -4,8 +4,8 @@ import { useRecoilState, useRecoilValue } from 'recoil';
 import {
   detailedMemberPopupState,
   selectedMemberState,
-} from 'app/_store/memberCardAtoms';
-import { PageShadow } from 'app/_components/common';
+} from '@app/_store/memberCardAtoms';
+import { PageShadow } from '@app/_components/common';
 import DetailPopupHeader from './DetailPopupHeader';
 import DetailDescription from './DetailDescription';
 import UserImage from '../common/UserImage';

@@ -1,8 +1,8 @@
-import { CheckIcon, DownArrowIcon } from 'app/_components/icons';
-import { ICON_SIZE } from 'app/_constants/size';
-import { PATH } from 'app/_constants/urls';
-import { useFunnel } from 'app/_hooks';
-import { JoinFormData } from 'app/_types/joinTypes';
+import { CheckIcon, DownArrowIcon } from '@app/_components/icons';
+import { ICON_SIZE } from '@app/_constants/size';
+import { PATH } from '@app/_constants/urls';
+import { useFunnel } from '@app/_hooks';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { Url } from 'next/dist/shared/lib/router/router';
 import Link from 'next/link';
 import { useFormContext } from 'react-hook-form';

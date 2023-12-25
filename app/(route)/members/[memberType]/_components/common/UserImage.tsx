@@ -1,6 +1,6 @@
 'use client';
 
-import { UserIcon } from 'app/_components/icons';
+import { UserIcon } from '@app/_components/icons';
 import { motion } from 'framer-motion';
 import Image from 'next/image';
 

@@ -1,4 +1,4 @@
-import { BUTTON_SIZE_CSS, BUTTON_THEME_CSS } from 'app/_constants/css';
+import { BUTTON_SIZE_CSS, BUTTON_THEME_CSS } from '@app/_constants/css';
 import Link, { LinkProps } from 'next/link';
 import { ReactNode } from 'react';
 

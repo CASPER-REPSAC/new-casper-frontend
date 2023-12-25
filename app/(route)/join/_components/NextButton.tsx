@@ -1,9 +1,9 @@
-import { DefaultButton } from 'app/_components/common';
-import { POPUP_DURATION } from 'app/_constants/duration';
-import { POPUP_MESSAGE } from 'app/_constants/message';
-import { useFunnel, usePopup } from 'app/_hooks';
-import { useJoinMutation } from 'app/_hooks/apis/user';
-import { JoinFormData } from 'app/_types/joinTypes';
+import { DefaultButton } from '@app/_components/common';
+import { POPUP_DURATION } from '@app/_constants/duration';
+import { POPUP_MESSAGE } from '@app/_constants/message';
+import { useFunnel, usePopup } from '@app/_hooks';
+import { useJoinMutation } from '@app/_hooks/apis/user';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { useFormContext } from 'react-hook-form';
 
 function NextButton() {

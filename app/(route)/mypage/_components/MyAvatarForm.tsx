@@ -1,4 +1,4 @@
-import { Profile } from 'app/_types/userTypes';
+import { Profile } from '@app/_types/userTypes';
 import { useFormContext } from 'react-hook-form';
 import { useEffect, useId, useState } from 'react';
 import Image from 'next/image';

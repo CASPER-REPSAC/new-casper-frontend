@@ -1,4 +1,4 @@
-import { MyProfile } from 'app/_types/userTypes';
+import { MyProfile } from '@app/_types/userTypes';
 import { atom, selector } from 'recoil';
 
 export const myProfileState = atom<MyProfile | undefined>({

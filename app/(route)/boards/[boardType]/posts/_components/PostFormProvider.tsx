@@ -1,4 +1,4 @@
-import { PostReqData } from 'app/_types/PostTypes';
+import { PostReqData } from '@app/_types/PostTypes';
 import { ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 

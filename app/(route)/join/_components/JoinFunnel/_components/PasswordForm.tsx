@@ -1,11 +1,11 @@
 import { useFormContext } from 'react-hook-form';
-import { LabelInput, FormErrorWrapper } from 'app/_components/common';
-import { JoinFormData } from 'app/_types/joinTypes';
-import { PW_REGEX } from 'app/_utils/regex';
-import { CheckSquareIcon } from 'app/_components/icons';
-import { ERROR_MESSAGE, REQUIRED_MESSAGE } from 'app/_constants/message';
-import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
-import { ICON_SIZE } from 'app/_constants/size';
+import { LabelInput, FormErrorWrapper } from '@app/_components/common';
+import { JoinFormData } from '@app/_types/joinTypes';
+import { PW_REGEX } from '@app/_utils/regex';
+import { CheckSquareIcon } from '@app/_components/icons';
+import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@app/_constants/message';
+import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
+import { ICON_SIZE } from '@app/_constants/size';
 
 function PasswordForm() {
   const {

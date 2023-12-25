@@ -1,5 +1,5 @@
-import { CasperLogo } from 'app/_components/common';
-import { PATH } from 'app/_constants/urls';
+import { CasperLogo } from '@app/_components/common';
+import { PATH } from '@app/_constants/urls';
 import { useRouter } from 'next/navigation';
 
 function Logo() {
