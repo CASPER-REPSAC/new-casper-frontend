@@ -1,0 +1,10 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DefaultTextarea /> snapshot test 1`] = `
+<div>
+  <textarea
+    class="input h-auto py-3 "
+    spellcheck="false"
+  />
+</div>
+`;
