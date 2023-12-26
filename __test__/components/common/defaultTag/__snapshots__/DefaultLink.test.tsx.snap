@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DefaultLink /> snapshot test 1`] = `
+<div>
+  <a
+    class="block text-center btn px-4 py-2 text-base  undefined"
+    href="https://www.test.com"
+  >
+    Link
+  </a>
+</div>
+`;
