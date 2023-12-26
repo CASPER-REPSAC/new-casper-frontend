@@ -10,7 +10,7 @@ function DefaultButton({
   type,
   children,
   disabled,
-  className: additionalClassName,
+  className: additionalClassName = '',
   theme = 'default',
   size = 'm',
   ...restProps

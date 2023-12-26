@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<DefaultInput /> snapshot test 1`] = `
+<div>
+  <input
+    class="input  "
+    placeholder="값을 입력하세요."
+    value="default value"
+  />
+</div>
+`;
