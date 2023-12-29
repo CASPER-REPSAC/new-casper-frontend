@@ -10,7 +10,15 @@ function usePagination({ maxPage, initialPage = 0 }: Props) {
 
   const paginate = (newDirection: number) => {
     const newPage = page + newDirection;
-    if (newPage < 0 || newPage >= maxPage) return;
+
+    if (newPage < 0) {
+      setPage([0, newDirection]);
+      return;
+    }
+    if (newPage >= maxPage) {
+      setPage([maxPage, newDirection]);
+      return;
+    }
 
     setPage([newPage, newDirection]);
   };
