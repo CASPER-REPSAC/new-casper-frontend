@@ -1,6 +1,8 @@
 import type { Config } from 'jest';
 import nextJest from 'next/jest';
 
+const esModules = ['rehype-parse'];
+
 const createJestConfig = nextJest({
   dir: './',
 });
@@ -15,4 +17,16 @@ const config: Config = {
   },
 };
 
-export default createJestConfig(config);
+const jestConfig = async () => {
+  const configFn = createJestConfig(config);
+  const createdConfig = await configFn();
+
+  return {
+    ...createdConfig,
+    transformIgnorePatterns: esModules.map(
+      (module) => `node_modules/?!(${module})/`,
+    ),
+  };
+};
+
+export default jestConfig;
