@@ -15,6 +15,7 @@ const config: Config = {
     '^@app/(.*)$': '<rootDir>/app/$1',
     '^@public/(.*)$': '<rootDir>/public/$1',
   },
+  verbose: true,
 };
 
 const jestConfig = async () => {
