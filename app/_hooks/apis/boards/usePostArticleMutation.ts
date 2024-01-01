@@ -2,13 +2,13 @@ import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
-import { usePopup } from 'app/_hooks';
-import { PostReqData } from 'app/_types/PostTypes';
-import { accessTokenState } from 'app/_store/permissionAtoms';
-import { PATH } from 'app/_constants/urls';
-import { POST_ARTICLE_API } from 'app/_constants/apiUrl';
-import { POPUP_DURATION } from 'app/_constants/duration';
-import { ERROR_MESSAGE, POPUP_MESSAGE } from 'app/_constants/message';
+import { usePopup } from '@app/_hooks';
+import { PostReqData } from '@app/_types/PostTypes';
+import { accessTokenState } from '@app/_store/permissionAtoms';
+import { PATH } from '@app/_constants/urls';
+import { POST_ARTICLE_API } from '@app/_constants/apiUrl';
+import { POPUP_DURATION } from '@app/_constants/duration';
+import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
 
 export default function usePostArticleMutation() {
   const { openAndDeletePopup } = usePopup();

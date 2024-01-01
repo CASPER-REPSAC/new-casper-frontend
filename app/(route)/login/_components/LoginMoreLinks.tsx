@@ -1,5 +1,5 @@
-import { PATH } from 'app/_constants/urls';
-import { DefaultLink } from 'app/_components/common';
+import { PATH } from '@app/_constants/urls';
+import { DefaultLink } from '@app/_components/common';
 
 function LoginMoreLinks() {
   return (

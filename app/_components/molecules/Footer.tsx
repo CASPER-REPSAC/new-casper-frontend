@@ -3,9 +3,9 @@ import {
   FacebookIcon,
   GithubIcon,
   InstagramIcon,
-} from 'app/_components/icons';
-import { ICON_SIZE } from 'app/_constants/size';
-import { FOOTER } from 'app/_constants/label';
+} from '@app/_components/icons';
+import { ICON_SIZE } from '@app/_constants/size';
+import { FOOTER } from '@app/_constants/label';
 
 function Footer() {
   return (

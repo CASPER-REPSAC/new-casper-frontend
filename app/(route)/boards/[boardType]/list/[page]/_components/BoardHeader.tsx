@@ -1,8 +1,8 @@
 'use client';
 
-import { LabelInput } from 'app/_components/common';
-import { SearchIcon } from 'app/_components/icons';
-import { ICON_SIZE } from 'app/_constants/size';
+import { LabelInput } from '@app/_components/common';
+import { SearchIcon } from '@app/_components/icons';
+import { ICON_SIZE } from '@app/_constants/size';
 import { memo } from 'react';
 import { useForm } from 'react-hook-form';
 

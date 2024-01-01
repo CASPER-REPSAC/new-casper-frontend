@@ -1,9 +1,9 @@
 import { memo, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import { AnimatePresence, motion } from 'framer-motion';
-import { MenuIcon } from 'app/_components/icons';
-import { ICON_SIZE } from 'app/_constants/size';
-import { PATH } from 'app/_constants/urls';
+import { MenuIcon } from '@app/_components/icons';
+import { ICON_SIZE } from '@app/_constants/size';
+import { PATH } from '@app/_constants/urls';
 import BarNaviagtion from './BarNavigation';
 import HambergerNavigation from './HambergerNavigation';
 import { CasperLogo, DefaultButton } from '../../common';

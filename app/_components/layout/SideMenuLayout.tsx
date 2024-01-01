@@ -1,4 +1,4 @@
-import PageTitle from 'app/_components/molecules/PageTitle';
+import PageTitle from '@app/_components/molecules/PageTitle';
 import { ReactNode } from 'react';
 
 interface Props {

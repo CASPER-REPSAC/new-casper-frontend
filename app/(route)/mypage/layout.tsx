@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
-import { PageTitle } from 'app/_components/molecules';
-import { PAGE_TITLE } from 'app/_constants/label';
+import { PageTitle } from '@app/_components/molecules';
+import { PAGE_TITLE } from '@app/_constants/label';
 
 interface Props {
   children: ReactNode;

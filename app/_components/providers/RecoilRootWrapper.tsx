@@ -2,7 +2,7 @@
 
 import { MutableSnapshot, RecoilRoot } from 'recoil';
 import { ReactNode } from 'react';
-import themeState from 'app/_store/themeAtom';
+import themeState from '@app/_store/themeAtom';
 
 function RecoilRootWrapper({ children }: { children: ReactNode }) {
   const initializeState = ({ set }: MutableSnapshot) => {

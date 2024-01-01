@@ -3,7 +3,7 @@ import { ForwardedRef, InputHTMLAttributes, forwardRef } from 'react';
 interface Props extends InputHTMLAttributes<HTMLInputElement> {}
 
 function DefaultInput(
-  { className, disabled, ...props }: Props,
+  { className: additionalClassName = '', disabled, ...props }: Props,
   ref: ForwardedRef<HTMLInputElement>,
 ) {
   const disabledClassName = disabled ? 'disabled' : '';
@@ -11,7 +11,7 @@ function DefaultInput(
   return (
     <input
       ref={ref}
-      className={`input ${disabledClassName} ${className}`}
+      className={`input ${disabledClassName} ${additionalClassName}`}
       disabled={disabled}
       {...props}
     />

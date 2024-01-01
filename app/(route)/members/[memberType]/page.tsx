@@ -1,5 +1,5 @@
-import { getAllMember } from 'app/_service/user';
-import { MEMBER_TYPE } from 'app/_constants/mock';
+import { getAllMember } from '@app/_service/user';
+import { MEMBER_TYPE } from '@app/_constants/mock';
 import { DetailMemberCard, MemberCard } from './_components';
 
 // Todo. Revalidate Tag 이용하기
@@ -16,7 +16,6 @@ interface Props {
   params: { memberType: string };
 }
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 async function Members({ params: { memberType } }: Props) {
   const data = await getAllMember(memberType);
 

@@ -1,4 +1,4 @@
-import { ClientFormProvider } from 'app/_components/molecules';
+import { ClientFormProvider } from '@app/_components/molecules';
 import { ButtonSection, MyAvatarForm, MyInfoForm } from './_components';
 
 async function MyPage() {

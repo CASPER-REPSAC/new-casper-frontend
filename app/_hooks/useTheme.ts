@@ -1,4 +1,4 @@
-import themeState from 'app/_store/themeAtom';
+import themeState from '@app/_store/themeAtom';
 import { useLayoutEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 

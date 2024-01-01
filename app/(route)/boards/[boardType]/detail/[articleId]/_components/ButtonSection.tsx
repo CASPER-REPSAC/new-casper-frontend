@@ -1,10 +1,10 @@
-import { DefaultButton } from 'app/_components/common';
+import { DefaultButton } from '@app/_components/common';
 import {
   useDeleteArticleMutation,
   useUpdateArticleMutation,
-} from 'app/_hooks/apis/boards';
-import { editableState } from 'app/_store/detailPageAtoms';
-import { myProfileState } from 'app/_store/permissionAtoms';
+} from '@app/_hooks/apis/boards';
+import { editableState } from '@app/_store/detailPageAtoms';
+import { myProfileState } from '@app/_store/permissionAtoms';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
 

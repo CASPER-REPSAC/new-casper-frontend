@@ -1,5 +1,5 @@
-import 'app/_styles/reset.css';
-import 'app/_styles/global.css';
+import '@app/_styles/reset.css';
+import '@app/_styles/global.css';
 import { ReactNode } from 'react';
 import {
   PopupWrapper,
@@ -8,8 +8,8 @@ import {
   SyncThemeScript,
   AutoLoginPresence,
   RevalidateController,
-} from 'app/_components/providers';
-import { DefaultLayout } from 'app/_components/layout';
+} from '@app/_components/providers';
+import { DefaultLayout } from '@app/_components/layout';
 
 export const metadata = {
   title: 'Casper',

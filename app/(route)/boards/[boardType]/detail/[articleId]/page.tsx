@@ -1,5 +1,5 @@
-import { ClientFormProvider } from 'app/_components/molecules';
-import { getArticleDetail } from 'app/_service/article';
+import { ClientFormProvider } from '@app/_components/molecules';
+import { getArticleDetail } from '@app/_service/article';
 import {
   ButtonSection,
   ContentSection,

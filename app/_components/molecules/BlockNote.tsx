@@ -9,7 +9,7 @@ import {
   uploadToTmpFilesDotOrg_DEV_ONLY,
 } from '@blocknote/core';
 import { BlockNoteView, useBlockNote } from '@blocknote/react';
-import { useBlockNoteTheme } from 'app/_hooks';
+import { useBlockNoteTheme } from '@app/_hooks';
 import { useEffect } from 'react';
 
 interface Props {

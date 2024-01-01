@@ -1,6 +1,6 @@
-import { DefaultButton } from 'app/_components/common';
-import { usePostArticleMutation } from 'app/_hooks/apis/boards';
-import { PostReqData } from 'app/_types/PostTypes';
+import { DefaultButton } from '@app/_components/common';
+import { usePostArticleMutation } from '@app/_hooks/apis/boards';
+import { PostReqData } from '@app/_types/PostTypes';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
 function WriteButtonSection() {

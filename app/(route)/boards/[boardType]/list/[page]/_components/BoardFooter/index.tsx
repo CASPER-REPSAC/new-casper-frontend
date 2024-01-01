@@ -1,5 +1,5 @@
-import { BoardListParams } from 'app/_types/boardTypes';
-import { getOnePageArticleList } from 'app/_service/article';
+import { BoardListParams } from '@app/_types/boardTypes';
+import { getOnePageArticleList } from '@app/_service/article';
 import PageList from './PageList';
 
 interface Props {

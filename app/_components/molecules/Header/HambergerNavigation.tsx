@@ -1,10 +1,10 @@
 import { useRecoilValue } from 'recoil';
 import { Variants, motion } from 'framer-motion';
-import { DefaultButton, DefaultLink } from 'app/_components/common/';
-import { LoginIcon, LogoutIcon, UserIcon } from 'app/_components/icons';
-import { loginState } from 'app/_store/permissionAtoms';
-import { useLogoutMutation } from 'app/_hooks/apis/user';
-import { PATH } from 'app/_constants/urls';
+import { DefaultButton, DefaultLink } from '@app/_components/common/';
+import { LoginIcon, LogoutIcon, UserIcon } from '@app/_components/icons';
+import { loginState } from '@app/_store/permissionAtoms';
+import { useLogoutMutation } from '@app/_hooks/apis/user';
+import { PATH } from '@app/_constants/urls';
 
 interface Props {
   onBgClick: () => void;

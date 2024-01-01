@@ -1,8 +1,8 @@
-import { FormErrorWrapper, LabelInput } from 'app/_components/common';
-import { UserIcon } from 'app/_components/icons';
-import { JoinFormData } from 'app/_types/joinTypes';
-import { REQUIRED_MESSAGE } from 'app/_constants/message';
-import { INPUT_LABEL, PLACEHOLDER } from 'app/_constants/label';
+import { FormErrorWrapper, LabelInput } from '@app/_components/common';
+import { UserIcon } from '@app/_components/icons';
+import { JoinFormData } from '@app/_types/joinTypes';
+import { REQUIRED_MESSAGE } from '@app/_constants/message';
+import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { useFormContext } from 'react-hook-form';
 import { useEffect } from 'react';
 

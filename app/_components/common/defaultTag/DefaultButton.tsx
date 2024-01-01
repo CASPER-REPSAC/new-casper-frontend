@@ -1,4 +1,4 @@
-import { BUTTON_SIZE_CSS, BUTTON_THEME_CSS } from 'app/_constants/css';
+import { BUTTON_SIZE_CSS, BUTTON_THEME_CSS } from '@app/_constants/css';
 import { ButtonHTMLAttributes } from 'react';
 
 interface Props extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -10,7 +10,7 @@ function DefaultButton({
   type,
   children,
   disabled,
-  className: additionalClassName,
+  className: additionalClassName = '',
   theme = 'default',
   size = 'm',
   ...restProps

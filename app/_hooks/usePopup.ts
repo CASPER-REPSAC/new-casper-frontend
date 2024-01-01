@@ -1,4 +1,4 @@
-import { popupListState } from 'app/_store/popupAtom';
+import { popupListState } from '@app/_store/popupAtom';
 import { Key } from 'react';
 import { useSetRecoilState } from 'recoil';
 
@@ -34,5 +34,5 @@ export default function usePopup() {
     }, duration);
   };
 
-  return { openAndDeletePopup, deletePopup };
+  return { openAndDeletePopup, deletePopup, openPopup };
 }
