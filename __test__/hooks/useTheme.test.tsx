@@ -19,18 +19,21 @@ describe('useTheme', () => {
     },
   );
 
-  test('theme을 변경하면 html class도 변경된다.', () => {
-    const { result } = renderHook(() => useTheme(), {
-      wrapper: ({ children }) => <RecoilRoot>{children}</RecoilRoot>,
-    });
+  test.each<'dark' | 'light'>(['dark', 'light'])(
+    'theme을 %s로 변경하면 html class도 함께 변경된다.',
+    (theme) => {
+      const { result } = renderHook(() => useTheme(), {
+        wrapper: ({ children }) => <RecoilRoot>{children}</RecoilRoot>,
+      });
 
-    act(() => {
-      result.current.setTheme('light');
-    });
+      act(() => {
+        result.current.setTheme(theme);
+      });
 
-    const html = document.querySelector('html');
-    const htmlTheme = html?.classList.contains('dark') ? 'dark' : 'light';
+      const html = document.querySelector('html');
+      const htmlTheme = html?.classList.contains('dark') ? 'dark' : 'light';
 
-    expect(htmlTheme).toBe('light');
-  });
+      expect(htmlTheme).toBe(theme);
+    },
+  );
 });
