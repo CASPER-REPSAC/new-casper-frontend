@@ -4,17 +4,17 @@ function SyncThemeScript() {
   const syncTheme = () => {
     const savedTheme = localStorage.getItem('theme');
 
-    const htmlElement = document.querySelector('html');
+    const htmlElement = document.documentElement;
 
     switch (savedTheme) {
       case 'light':
-        htmlElement?.classList.remove('dark');
+        htmlElement.classList.remove('dark');
         break;
       case 'dark':
-        htmlElement?.classList.add('dark');
+        htmlElement.classList.add('dark');
         break;
       default:
-        htmlElement?.classList.add('dark');
+        htmlElement.classList.remove('dark');
     }
   };
 

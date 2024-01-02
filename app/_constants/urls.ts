@@ -73,6 +73,10 @@ const PATH = {
       name: '졸업생 게시판',
       url: '/boards/graduate_member_board',
     },
+    free: {
+      name: '자유 게시판',
+      url: '/boards/free_board',
+    },
   },
   members: {
     active: {
