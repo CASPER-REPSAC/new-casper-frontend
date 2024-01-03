@@ -27,7 +27,6 @@ export default function useLoginMutation() {
 
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
-
     push(PATH.home.url);
   };
 

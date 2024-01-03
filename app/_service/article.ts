@@ -18,7 +18,11 @@ export async function getArticleDetail(articleId: string) {
       tags: ['accessToken'],
     },
   });
-  if (!res.ok) throw new Error('Failed to fetch data');
+  if (!res.ok) {
+    const body = await res.text();
+    console.log(body);
+    throw new Error('Failed to fetch data');
+  }
   const data: ArticleDetail = await res.json();
 
   return data;
@@ -44,8 +48,10 @@ export async function getOnePageArticleList({
       tags: ['accessToken'],
     },
   });
-  if (!res.ok) throw Error('Failed to fetch data');
+  if (!res.ok) {
+    const errorText = await res.json();
+    throw Error(errorText);
+  }
   const data: OnePageOfArticleList = await res.json();
-
   return data;
 }

@@ -17,7 +17,7 @@ export const INPUT_LABEL = {
   name: '이름',
   nickname: '닉네임',
   birthday: '생일',
-  role: '회원 그룹',
+  role: '회원 권한',
   homepage: '홈페이지',
   introduce: '소개글',
   title: '제목',

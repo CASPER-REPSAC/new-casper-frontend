@@ -10,7 +10,7 @@ export interface Profile {
 
 export interface MyProfile {
   id: string;
-  role: 'associate' | 'full' | 'admin';
+  role: 'associate' | 'active' | 'rest' | 'graduate' | 'admin';
   name: string;
   nickname: string;
   email: string;

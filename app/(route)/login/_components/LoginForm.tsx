@@ -16,8 +16,8 @@ function LoginForm() {
   const idRegister = register('id', { required: REQUIRED_MESSAGE.id });
   const pwRegister = register('pw', { required: REQUIRED_MESSAGE.pw });
 
-  const onValid: SubmitHandler<LoginRequest> = async (data) => {
-    mutate(data);
+  const onValid: SubmitHandler<LoginRequest> = async (params) => {
+    mutate(params);
   };
 
   const onInvalid: SubmitErrorHandler<LoginRequest> = (errors) => {

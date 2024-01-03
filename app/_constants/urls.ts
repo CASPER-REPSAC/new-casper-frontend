@@ -75,7 +75,7 @@ const PATH = {
     },
     free: {
       name: '자유 게시판',
-      url: '/boards/free_board',
+      url: '/boards/freedom_board',
     },
   },
   members: {

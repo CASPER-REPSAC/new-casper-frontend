@@ -3,11 +3,12 @@ import { LabelInput, LabelTextarea } from '@app/_components/common';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { Profile } from '@app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
-import { myProfileState } from '@app/_store/permissionAtoms';
+import { myProfileState, roleState } from '@app/_store/permissionAtoms';
 
 function MyInfoFrom() {
   const { register } = useFormContext<Profile>();
   const myProfile = useRecoilValue(myProfileState);
+  const role = useRecoilValue(roleState);
 
   const introduceRegister = register('introduce', { required: true });
   const nameRegister = register('name', { required: true });
@@ -43,7 +44,7 @@ function MyInfoFrom() {
         {...roleRegister}
         placeholder={PLACEHOLDER.role}
         autoComplete="off"
-        defaultValue={myProfile?.role}
+        defaultValue={role}
       />
       <LabelInput
         label={INPUT_LABEL.homepage}

@@ -18,7 +18,7 @@ function BoardSideMenu() {
         highlight={pathname.startsWith(PATH.boards.notice.url)}
       />
 
-      {(role === 'admin' || role === 'full') && (
+      {(role === '관리자' || role === '정회원') && (
         <SideMenuLink
           href={`${full.url}/list/1`}
           name={full.name}
@@ -26,7 +26,7 @@ function BoardSideMenu() {
         />
       )}
 
-      {(role === 'admin' || role === 'full' || role === 'associate') && (
+      {(role === '관리자' || role === '정회원' || role === '준회원') && (
         <SideMenuLink
           href={`${associate.url}/list/1`}
           name={associate.name}
@@ -34,7 +34,7 @@ function BoardSideMenu() {
         />
       )}
 
-      {(role === 'admin' || role === 'full') && (
+      {(role === '관리자' || role === '정회원') && (
         <SideMenuLink
           href={`${graduate.url}/list/1`}
           name={graduate.name}
