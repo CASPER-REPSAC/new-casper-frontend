@@ -1,18 +1,17 @@
 import { Variants, motion } from 'framer-motion';
-import React, { useId } from 'react';
 
 interface Props {
   menus: JSX.Element;
 }
 
 function SubMenu({ menus }: Props) {
-  const uniqueId = useId();
-
   return (
     <motion.ul
       className="
+      flex
       w-max
-        rounded bg-sky-50
+        flex-col rounded
+        bg-sky-50
         p-2
         shadow-lg
         backdrop-blur-lg
@@ -22,19 +21,10 @@ function SubMenu({ menus }: Props) {
       initial="hidden"
       animate="visible"
     >
-      {React.Children.map(menus, (menu) => (
-        <motion.li key={`${uniqueId}_${menu.key}`} variants={itemVariants}>
-          {menu}
-        </motion.li>
-      ))}
+      {menus}
     </motion.ul>
   );
 }
-
-const itemVariants: Variants = {
-  hidden: { x: -10, opacity: 0 },
-  visible: { x: 0, opacity: 1 },
-};
 
 const subMenuVariants: Variants = {
   hidden: { scaleY: 0, opacity: 0, transformOrigin: 'top' },
