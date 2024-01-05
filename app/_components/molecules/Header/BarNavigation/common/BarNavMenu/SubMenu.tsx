@@ -1,12 +1,13 @@
 import { Variants, motion } from 'framer-motion';
-import { useId } from 'react';
+import React, { useId } from 'react';
 
 interface Props {
-  menus: JSX.Element[];
+  menus: JSX.Element;
 }
 
 function SubMenu({ menus }: Props) {
   const uniqueId = useId();
+
   return (
     <motion.ul
       className="
@@ -21,7 +22,7 @@ function SubMenu({ menus }: Props) {
       initial="hidden"
       animate="visible"
     >
-      {menus.map((menu) => (
+      {React.Children.map(menus, (menu) => (
         <motion.li key={`${uniqueId}_${menu.key}`} variants={itemVariants}>
           {menu}
         </motion.li>

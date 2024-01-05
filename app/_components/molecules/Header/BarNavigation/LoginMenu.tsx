@@ -3,7 +3,7 @@ import { DefaultLink } from '@app/_components/common';
 import { LoginIcon } from '@app/_components/icons';
 import { ICON_SIZE } from '@app/_constants/size';
 import { usePathname } from 'next/navigation';
-import BarNavMenu from './BarNavMenu';
+import BarNavMenu from './common/BarNavMenu';
 
 function LoginMenu() {
   const pathname = usePathname();

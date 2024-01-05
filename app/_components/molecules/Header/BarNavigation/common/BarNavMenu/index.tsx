@@ -6,7 +6,7 @@ import SubMenu from './SubMenu';
 
 interface Props {
   title: ReactNode;
-  subMenus?: JSX.Element[];
+  subMenus?: JSX.Element;
   highlight?: boolean;
 }
 

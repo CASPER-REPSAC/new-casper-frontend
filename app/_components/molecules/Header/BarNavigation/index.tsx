@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil';
-import { loginState } from '@app/_store/permissionAtoms';
+import { loginState, roleState } from '@app/_store/permissionAtoms';
 import MemberMenu from './MemberMenu';
 import BoardMenu from './BoardMenu';
 import IntranetMenu from './IntranetMenu';
@@ -13,6 +13,7 @@ interface Props {
 
 function BarNaviagtion({ className: additionalClassName }: Props) {
   const login = useRecoilValue(loginState);
+  const role = useRecoilValue(roleState);
 
   return (
     <div
@@ -20,7 +21,7 @@ function BarNaviagtion({ className: additionalClassName }: Props) {
     >
       <MemberMenu />
       <BoardMenu />
-      <IntranetMenu />
+      {(role === '관리자' || role === '정회원') && <IntranetMenu />}
 
       {login ? (
         <>

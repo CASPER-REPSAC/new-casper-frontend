@@ -1,24 +1,43 @@
 import { DefaultButton } from '@app/_components/common';
 import { PATH } from '@app/_constants/urls';
-import BarNavMenu from './BarNavMenu';
+import BarNavMenu from './common/BarNavMenu';
 
 function IntranetMenu() {
-  const intranetMenus = Object.values(PATH.extra).map(({ name, url }) => (
-    <DefaultButton
-      key={name}
-      className="w-full"
-      onClick={() => {
-        window.location.href = url;
-      }}
-    >
-      {name}
-    </DefaultButton>
-  ));
+  const {
+    extra: { nas, wiki, recruit },
+  } = PATH;
 
   return (
     <BarNavMenu
       title={<DefaultButton>Intranet</DefaultButton>}
-      subMenus={intranetMenus}
+      subMenus={
+        <>
+          <DefaultButton
+            className="w-full"
+            onClick={() => {
+              window.location.href = nas.url;
+            }}
+          >
+            {nas.name}
+          </DefaultButton>
+          <DefaultButton
+            className="w-full"
+            onClick={() => {
+              window.location.href = wiki.url;
+            }}
+          >
+            {wiki.name}
+          </DefaultButton>
+          <DefaultButton
+            className="w-full"
+            onClick={() => {
+              window.location.href = recruit.url;
+            }}
+          >
+            {recruit.name}
+          </DefaultButton>
+        </>
+      }
     />
   );
 }
