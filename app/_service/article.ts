@@ -19,8 +19,6 @@ export async function getArticleDetail(articleId: string) {
     },
   });
   if (!res.ok) {
-    const body = await res.text();
-    console.log(body);
     throw new Error('Failed to fetch data');
   }
   const data: ArticleDetail = await res.json();
@@ -48,9 +46,10 @@ export async function getOnePageArticleList({
       tags: ['accessToken'],
     },
   });
+
   if (!res.ok) {
-    const errorText = await res.json();
-    throw Error(errorText);
+    console.log('?', res.status);
+    throw Error('failed to fetch');
   }
   const data: OnePageOfArticleList = await res.json();
   return data;
