@@ -9,7 +9,7 @@ function DefaultLayout({ children }: Props) {
   return (
     <div className="flex min-h-screen flex-col">
       <Header />
-      <main className="relative flex-1">{children}</main>
+      <main className="relative flex-1 pb-32">{children}</main>
       <Footer />
     </div>
   );
