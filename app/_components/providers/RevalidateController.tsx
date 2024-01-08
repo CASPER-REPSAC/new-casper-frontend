@@ -1,6 +1,6 @@
 'use client';
 
-import revalidate from '@app/_actions/revalidate';
+import revalidate from '@app/_actions/revalidateTag';
 import { accessTokenState } from '@app/_store/permissionAtoms';
 import { useEffect } from 'react';
 import { useRecoilValue } from 'recoil';

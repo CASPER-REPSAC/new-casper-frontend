@@ -1,7 +1,6 @@
 import { Suspense } from 'react';
-import { DefaultLink } from '@app/_components/common';
 import { BoardListParams } from '@app/_types/boardTypes';
-import { BoardBody, BoardFooter, BoardHeader } from './_components';
+import { BoardBody, BoardFooter, BoardHeader, PostLink } from './_components';
 
 function BoardPage({
   params: { boardType, page },
@@ -15,13 +14,7 @@ function BoardPage({
         <BoardBody params={{ boardType, page }} />
       </Suspense>
 
-      <DefaultLink
-        className="ml-auto"
-        theme="primary"
-        href={`/boards/${boardType}/posts`}
-      >
-        작성 하기
-      </DefaultLink>
+      <PostLink params={{ boardType, page }} />
       <BoardFooter params={{ boardType, page }} />
     </div>
   );

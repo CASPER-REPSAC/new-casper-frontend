@@ -37,7 +37,6 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <QueryWrapper>
           <RecoilRootWrapper>
-            {/* <RevalidateController /> */}
             <PopupWrapper />
             <AutoLoginPresence>
               <DefaultLayout>{children}</DefaultLayout>

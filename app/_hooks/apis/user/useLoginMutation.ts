@@ -2,24 +2,25 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { accessTokenState, myProfileState } from '@app/_store/permissionAtoms';
 import { usePopup } from '@app/_hooks';
 import { LoginRequest, LoginResponse } from '@app/_types/loginTypes';
-import { PATH } from '@app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from '@app/_constants/duration';
 import { POPUP_MESSAGE } from '@app/_constants/message';
 import { LOGIN_API } from '@app/_constants/apiUrl';
+import { redirect, revalidateTag } from '@app/_actions';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
   const setMyProfile = useSetRecoilState(myProfileState);
-  const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
   const mutationFn = (params: LoginRequest) =>
     axios.post<LoginResponse>(`/proxy${LOGIN_API}`, params);
 
   const onLoinSuccess = async ({ data }: AxiosResponse<LoginResponse>) => {
+    await revalidateTag('accessToken');
+    await redirect('/');
+
     openAndDeletePopup({
       message: POPUP_MESSAGE.loginSuccess,
       duration: POPUP_DURATION.medium,
@@ -27,7 +28,6 @@ export default function useLoginMutation() {
 
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
-    push(PATH.home.url);
   };
 
   const onLoinError = (error: AxiosError) => {

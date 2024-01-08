@@ -9,7 +9,11 @@ import {
   PostFormProvider,
 } from './_components';
 
-function PostPage() {
+interface Props {
+  params: { boardType: string };
+}
+
+function PostPage({ params }: Props) {
   const accessToken = getAccessToken();
 
   if (!accessToken) {
@@ -18,8 +22,8 @@ function PostPage() {
 
   return (
     <div className="flex flex-col gap-8">
-      <PostFormProvider>
-        <BoardTypeSelecSection />
+      <PostFormProvider boardType={params.boardType}>
+        <BoardTypeSelecSection defaultValue={params.boardType} />
         <TitleSection />
         <EditorSection />
         <WriteButtonSection />
