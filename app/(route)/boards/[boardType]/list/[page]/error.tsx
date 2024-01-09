@@ -2,17 +2,26 @@
 
 /* eslint-disable no-console */
 import { DefaultButton } from '@app/_components/common';
+import { POPUP_DURATION } from '@app/_constants/duration';
+import { usePopup } from '@app/_hooks';
 import { ErrorProps } from '@app/_types/errorTypes';
 import { useEffect } from 'react';
 
 export default function Error({ error, reset }: ErrorProps) {
+  const { openAndDeletePopup } = usePopup();
+
   useEffect(() => {
-    console.error(error);
-  }, [error]);
+    console.error(error.message);
+
+    openAndDeletePopup({
+      message: error.message,
+      duration: POPUP_DURATION.long,
+    });
+  }, [error, openAndDeletePopup]);
 
   return (
     <div>
-      <h2>알 수 없는 에러가 발생했어요.</h2>
+      <h2>{error.message}</h2>
       <DefaultButton onClick={() => reset()}>다시 시도하기</DefaultButton>
     </div>
   );

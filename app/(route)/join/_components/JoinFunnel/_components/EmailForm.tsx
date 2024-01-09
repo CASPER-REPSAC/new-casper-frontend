@@ -1,7 +1,7 @@
 import { FormErrorWrapper, LabelInput } from '@app/_components/common';
 import { MailIcon } from '@app/_components/icons';
 import { JoinFormData } from '@app/_types/joinTypes';
-import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@app/_constants/message';
+import { INPUT_ERROR, REQUIRED_MESSAGE } from '@app/_constants/message';
 import { ICON_SIZE } from '@app/_constants/size';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { EMAIL_REGEX } from '@app/_utils/regex';
@@ -19,7 +19,7 @@ function EmailForm() {
     required: REQUIRED_MESSAGE.email,
     pattern: {
       value: EMAIL_REGEX,
-      message: ERROR_MESSAGE.email,
+      message: INPUT_ERROR.email,
     },
   });
 

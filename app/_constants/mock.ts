@@ -3,6 +3,7 @@ export const BOARD_TYPE = {
   full: 'full_member_board',
   associate: 'associate_member_board',
   graduate: 'graduate_member_board',
+  freedom: 'freedom_board',
 };
 
 export const MEMBER_TYPE = {

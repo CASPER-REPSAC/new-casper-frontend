@@ -4,6 +4,7 @@ import {
   ARTICLE_LIST_API,
 } from '@app/_constants/apiUrl';
 import { ArticleDetail, OnePageOfArticleList } from '@app/_types/boardTypes';
+import CustomError, { ErrorResponse } from '@app/_types/errorTypes';
 import { getBearerToken } from '@app/_utils/cookie';
 
 export async function getArticleDetail(articleId: string) {
@@ -18,13 +19,13 @@ export async function getArticleDetail(articleId: string) {
       tags: ['accessToken'],
     },
   });
-  if (!res.ok) {
-    const body = await res.text();
-    console.log(body);
-    throw new Error('Failed to fetch data');
-  }
-  const data: ArticleDetail = await res.json();
 
+  if (!res.ok) {
+    const error: ErrorResponse = await res.json();
+    throw new CustomError(error);
+  }
+
+  const data: ArticleDetail = await res.json();
   return data;
 }
 
@@ -48,9 +49,10 @@ export async function getOnePageArticleList({
       tags: ['accessToken'],
     },
   });
+
   if (!res.ok) {
-    const errorText = await res.json();
-    throw Error(errorText);
+    const error: ErrorResponse = await res.json();
+    throw new CustomError(error);
   }
   const data: OnePageOfArticleList = await res.json();
   return data;

@@ -10,6 +10,7 @@ import {
   bearerTokenState,
   myProfileState,
 } from '@app/_store/permissionAtoms';
+import { revalidateTag } from '@app/_actions';
 
 function useLogoutMutation() {
   const bearerToken = useRecoilValue(bearerTokenState);
@@ -22,7 +23,8 @@ function useLogoutMutation() {
       headers: { Authorization: bearerToken },
     });
 
-  const onSuccess = () => {
+  const onSuccess = async () => {
+    await revalidateTag('accessToken');
     setAccessToken(undefined);
     setMyProfile(undefined);
     openAndDeletePopup({

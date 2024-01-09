@@ -2,24 +2,26 @@ import axios, { AxiosError, AxiosResponse } from 'axios';
 import { accessTokenState, myProfileState } from '@app/_store/permissionAtoms';
 import { usePopup } from '@app/_hooks';
 import { LoginRequest, LoginResponse } from '@app/_types/loginTypes';
-import { PATH } from '@app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';
-import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from '@app/_constants/duration';
-import { POPUP_MESSAGE } from '@app/_constants/message';
+import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
 import { LOGIN_API } from '@app/_constants/apiUrl';
+import { redirect, revalidateTag } from '@app/_actions';
+import { ErrorResponse } from '@app/_types/errorTypes';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
   const setMyProfile = useSetRecoilState(myProfileState);
-  const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
   const mutationFn = (params: LoginRequest) =>
     axios.post<LoginResponse>(`/proxy${LOGIN_API}`, params);
 
   const onLoinSuccess = async ({ data }: AxiosResponse<LoginResponse>) => {
+    await revalidateTag('accessToken');
+    await redirect('/');
+
     openAndDeletePopup({
       message: POPUP_MESSAGE.loginSuccess,
       duration: POPUP_DURATION.medium,
@@ -27,20 +29,29 @@ export default function useLoginMutation() {
 
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
-    push(PATH.home.url);
   };
 
-  const onLoinError = (error: AxiosError) => {
-    const status = error.response?.status;
-    switch (status) {
-      case 401:
+  const onLoinError = (error: AxiosError<ErrorResponse>) => {
+    const code = error.response?.data.code;
+    switch (code) {
+      case -101:
         openAndDeletePopup({
-          message: POPUP_MESSAGE.failedToLogin,
+          message: ERROR_MESSAGE['-101'],
+          duration: POPUP_DURATION.medium,
+        });
+        break;
+      case -102:
+        openAndDeletePopup({
+          message: ERROR_MESSAGE['-102'],
           duration: POPUP_DURATION.medium,
         });
         break;
       default:
-        throw new Error(error.message);
+        openAndDeletePopup({
+          message: ERROR_MESSAGE.unknown,
+          duration: POPUP_DURATION.medium,
+        });
+        break;
     }
   };
 

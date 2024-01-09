@@ -12,9 +12,10 @@ export const POPUP_MESSAGE = {
   failedToLogout: '로그아웃 실패했어요.',
   failedToLoadDetail: '상세 내용을 불러 올 수 없어요.',
   checkJoinParams: '값을 정확히 입력해주세요.',
+  unknownError: '알 수 없는 에러',
 };
 
-export const ERROR_MESSAGE = {
+export const INPUT_ERROR = {
   noPermission: '권한이 없어요.',
   requiredLogin: '로그인이 필요해요.',
   id: 'ID 형식이 올바르지 않아요.',
@@ -35,4 +36,17 @@ export const REQUIRED_MESSAGE = {
   nickname: '닉네임을 입력해 주세요.',
   email: '이메일을 입력해 주세요.',
   birthday: '생일을 입력해 주세요.',
+};
+
+export const ERROR_MESSAGE = {
+  '-101': '아이디를 찾을 수 없어요.',
+  '-102': '패스워드가 불일치해요.',
+  '-103': '자동로그인 기한이 만료되었어요.',
+  '-201': '필요한 정보를 모두 입력해주세요.',
+  '-202': '인증 번호(?)가 알맞이 않아요.',
+  '-203': '이미 사용 중인 ID예요.',
+  '-301': '게시판 접근 권한이 없어요.',
+  '-302': '게시판 쓰기 권한이 없어요.',
+  '-303': '게시판 수정/삭제 권한이 없어요.',
+  unknown: '알 수 없는 에러',
 };

@@ -40,7 +40,7 @@ export default function usePostArticleMutation() {
 
       case 401:
         openAndDeletePopup({
-          message: ERROR_MESSAGE.requiredLogin,
+          message: ERROR_MESSAGE.unknown,
           duration: POPUP_DURATION.medium,
         });
         push(PATH.user.login.url);

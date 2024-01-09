@@ -4,11 +4,12 @@ import { FormProvider, useForm } from 'react-hook-form';
 
 interface Props {
   children: ReactNode;
+  boardType: string;
 }
 
-function PostFormProvider({ children }: Props) {
+function PostFormProvider({ children, boardType }: Props) {
   const defaultValues: PostReqData = {
-    boardId: 'notice_board',
+    boardId: boardType,
     category: 'all',
     file: false,
     hide: false,

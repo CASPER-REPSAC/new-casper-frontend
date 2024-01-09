@@ -8,6 +8,7 @@ import { ErrorResponse } from '@app/_types/errorTypes';
 import { AutoLoginResponse } from '@app/_types/loginTypes';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useSetRecoilState } from 'recoil';
+import { revalidateTag } from '@app/_actions';
 
 function useAutoLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -17,7 +18,8 @@ function useAutoLoginMutation() {
   const mutationFn = () =>
     axios.post<AutoLoginResponse>(`/proxy${AUTO_LOGIN_API}`);
 
-  const onSuccess = ({ data }: AxiosResponse<AutoLoginResponse>) => {
+  const onSuccess = async ({ data }: AxiosResponse<AutoLoginResponse>) => {
+    await revalidateTag('accessToken');
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
     openAndDeletePopup({
@@ -27,14 +29,22 @@ function useAutoLoginMutation() {
   };
 
   const onError = ({ response }: AxiosError<ErrorResponse>) => {
-    switch (response?.data.code) {
-      case -100:
+    const code = response?.data.code;
+
+    switch (code) {
+      case -103:
         openAndDeletePopup({
-          message: ERROR_MESSAGE.autoLogin,
+          message: ERROR_MESSAGE['-103'],
           duration: POPUP_DURATION.medium,
         });
         break;
+      case -104:
+        break;
       default:
+        // openAndDeletePopup({
+        //   message: ERROR_MESSAGE.unknown,
+        //   duration: POPUP_DURATION.medium,
+        // });
         break;
     }
   };
