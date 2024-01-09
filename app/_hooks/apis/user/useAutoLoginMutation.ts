@@ -29,14 +29,22 @@ function useAutoLoginMutation() {
   };
 
   const onError = ({ response }: AxiosError<ErrorResponse>) => {
-    switch (response?.data.code) {
-      case -100:
+    const code = response?.data.code;
+
+    switch (code) {
+      case -103:
         openAndDeletePopup({
-          message: ERROR_MESSAGE.autoLogin,
+          message: ERROR_MESSAGE['-103'],
           duration: POPUP_DURATION.medium,
         });
         break;
+      case -104:
+        break;
       default:
+        // openAndDeletePopup({
+        //   message: ERROR_MESSAGE.unknown,
+        //   duration: POPUP_DURATION.medium,
+        // });
         break;
     }
   };

@@ -5,9 +5,10 @@ import { LoginRequest, LoginResponse } from '@app/_types/loginTypes';
 import { useMutation } from '@tanstack/react-query';
 import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from '@app/_constants/duration';
-import { POPUP_MESSAGE } from '@app/_constants/message';
+import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
 import { LOGIN_API } from '@app/_constants/apiUrl';
 import { redirect, revalidateTag } from '@app/_actions';
+import { ErrorResponse } from '@app/_types/errorTypes';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -30,17 +31,27 @@ export default function useLoginMutation() {
     setMyProfile(data.myInfo);
   };
 
-  const onLoinError = (error: AxiosError) => {
-    const status = error.response?.status;
-    switch (status) {
-      case 401:
+  const onLoinError = (error: AxiosError<ErrorResponse>) => {
+    const code = error.response?.data.code;
+    switch (code) {
+      case -101:
         openAndDeletePopup({
-          message: POPUP_MESSAGE.failedToLogin,
+          message: ERROR_MESSAGE['-101'],
+          duration: POPUP_DURATION.medium,
+        });
+        break;
+      case -102:
+        openAndDeletePopup({
+          message: ERROR_MESSAGE['-102'],
           duration: POPUP_DURATION.medium,
         });
         break;
       default:
-        throw new Error(error.message);
+        openAndDeletePopup({
+          message: ERROR_MESSAGE.unknown,
+          duration: POPUP_DURATION.medium,
+        });
+        break;
     }
   };
 

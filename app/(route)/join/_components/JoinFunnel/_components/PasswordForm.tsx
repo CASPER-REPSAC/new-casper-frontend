@@ -3,7 +3,7 @@ import { LabelInput, FormErrorWrapper } from '@app/_components/common';
 import { JoinFormData } from '@app/_types/joinTypes';
 import { PW_REGEX } from '@app/_utils/regex';
 import { CheckSquareIcon } from '@app/_components/icons';
-import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@app/_constants/message';
+import { INPUT_ERROR, REQUIRED_MESSAGE } from '@app/_constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { ICON_SIZE } from '@app/_constants/size';
 
@@ -18,14 +18,14 @@ function PasswordForm() {
     required: REQUIRED_MESSAGE.pw,
     pattern: {
       value: PW_REGEX,
-      message: ERROR_MESSAGE.pw,
+      message: INPUT_ERROR.pw,
     },
   });
   const pwConfirmRegister = register('pwConfirm', {
     required: REQUIRED_MESSAGE.pwConfirm,
     validate: {
       check: (val) => {
-        return getValues('pw') === val || ERROR_MESSAGE.pwConfirm;
+        return getValues('pw') === val || INPUT_ERROR.pwConfirm;
       },
     },
   });
