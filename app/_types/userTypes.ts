@@ -18,3 +18,19 @@ export interface MyProfile {
   homepage: string;
   image: string;
 }
+
+export interface ProfileUpdateReq {
+  pw: string;
+  nickname: string;
+  homepage: string;
+  introduce: string;
+  image: string;
+}
+
+export interface ProfileUpdateRes {
+  id: string;
+  pw: string;
+  email: string;
+  name: string;
+  nickname: string;
+}

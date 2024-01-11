@@ -1,20 +1,20 @@
 import { useFormContext } from 'react-hook-form';
 import { LabelInput, LabelTextarea } from '@app/_components/common';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
-import { Profile } from '@app/_types/userTypes';
+import { MyProfile } from '@app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
 import { myProfileState, roleState } from '@app/_store/permissionAtoms';
 
 function MyInfoFrom() {
-  const { register } = useFormContext<Profile>();
+  const { register } = useFormContext<MyProfile>();
   const myProfile = useRecoilValue(myProfileState);
   const role = useRecoilValue(roleState);
 
-  const introduceRegister = register('introduce', { required: true });
+  const introduceRegister = register('introduce', { required: false });
   const nameRegister = register('name', { required: true });
   const nicknameRegister = register('nickname', { required: true });
   const roleRegister = register('role', { required: true, disabled: true });
-  const homepageRegister = register('homepage', { required: true });
+  const homepageRegister = register('homepage', { required: false });
 
   return (
     <>
