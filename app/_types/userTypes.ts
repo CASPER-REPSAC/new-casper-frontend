@@ -20,7 +20,7 @@ export interface MemberProfile {
   image: string | null;
 }
 
-export interface ProfileUpdateReq {
+export interface ProfileUpdateRequset {
   pw: string;
   nickname: string;
   homepage: string;
@@ -28,7 +28,7 @@ export interface ProfileUpdateReq {
   image: string;
 }
 
-export interface ProfileUpdateRes {
+export interface ProfileUpdateResponse {
   id: string;
   pw: string;
   email: string;
