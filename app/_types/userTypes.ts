@@ -1,13 +1,3 @@
-export interface Profile {
-  avatar: FileList;
-  name: string;
-  introduce: string;
-  nickname: string;
-  email: string;
-  role: 'associate' | 'full' | 'admin';
-  homepage: string;
-}
-
 export interface MyProfile {
   id: string;
   role: 'associate' | 'active' | 'rest' | 'graduate' | 'admin';
@@ -17,6 +7,17 @@ export interface MyProfile {
   introduce: string;
   homepage: string;
   image: string;
+}
+
+export interface MemberProfile {
+  id: string;
+  role: 'associate' | 'active' | 'rest' | 'graduate' | 'admin';
+  name: string;
+  nickname: string;
+  email: string;
+  introduce: string | null;
+  homepage: string | null;
+  image: string | null;
 }
 
 export interface ProfileUpdateReq {

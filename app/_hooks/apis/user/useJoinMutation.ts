@@ -1,4 +1,4 @@
-import { JoinReqData, JoinResData } from '@app/_types/joinTypes';
+import { JoinRequest, JoinResponse } from '@app/_types/joinTypes';
 import { JOIN_API } from '@app/_constants/apiUrl';
 import { PATH } from '@app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';
@@ -12,9 +12,9 @@ function useJoinMutation() {
   const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
-  const mutationFn = (params: JoinReqData) =>
+  const mutationFn = (params: JoinRequest) =>
     axios.post(`/proxy${JOIN_API}`, params);
-  const onSuccess = (data: AxiosResponse<JoinResData>) => {
+  const onSuccess = (data: AxiosResponse<JoinResponse>) => {
     const { status } = data;
     if (status < 200 || status >= 300) {
       return;

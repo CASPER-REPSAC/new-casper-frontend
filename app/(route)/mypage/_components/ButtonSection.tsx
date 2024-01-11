@@ -1,5 +1,5 @@
 import { DefaultButton } from '@app/_components/common';
-import useProfileUpdateMutation from '@app/_hooks/apis/user/useProfileUpdateMutation';
+import { useProfileUpdateMutation } from '@app/_hooks/apis/user';
 import { MyProfile } from '@app/_types/userTypes';
 import { useFormContext } from 'react-hook-form';
 

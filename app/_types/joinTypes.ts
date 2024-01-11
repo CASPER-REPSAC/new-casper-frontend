@@ -9,7 +9,7 @@ export interface JoinFormData {
   agree: boolean;
 }
 
-export interface JoinReqData {
+export interface JoinRequest {
   id: string;
   pw: string;
   email: string;
@@ -17,7 +17,7 @@ export interface JoinReqData {
   nickname: string;
 }
 
-export interface JoinResData {
+export interface JoinResponse {
   id: string;
   pw: string;
   email: string;

@@ -1,6 +1,6 @@
 import { useRecoilState } from 'recoil';
-import { MemberProfile } from '@app/_types/memberTypes';
 import { Variants, motion } from 'framer-motion';
+import { MemberProfile } from '@app/_types/userTypes';
 import { memo, useCallback } from 'react';
 import {
   detailedMemberPopupState,
