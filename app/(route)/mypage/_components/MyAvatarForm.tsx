@@ -1,10 +1,9 @@
-import { Profile } from '@app/_types/userTypes';
 import { useFormContext } from 'react-hook-form';
 import { useEffect, useId, useState } from 'react';
 import Image from 'next/image';
 
 function MyAvatarForm() {
-  const { register, watch } = useFormContext<Profile>();
+  const { register, watch } = useFormContext();
   const [previewSrc, setPreviewSrc] = useState('');
   const uniqueId = useId();
 

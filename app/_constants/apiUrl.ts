@@ -15,3 +15,4 @@ export const AUTO_LOGIN_API = '/api/user/refresh';
 export const ALL_MEMEBER_API = '/api/user/showall'; // + ?role={role}
 export const DELETE_ARTICLE_API = '/api/article/delete'; // + {articleId}
 export const UPDATE_ARTICLE_API = '/api/article/update'; // + {articleId}
+export const PROFILE_UPDATE_API = '/api/user/update';
