@@ -2,17 +2,19 @@ import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
 import { DefaultButton, DefaultTextarea } from '@app/_components/common';
 import { PLACEHOLDER } from '@app/_constants/label';
-import { usePopup } from '@app/_hooks';
-import { POPUP_DURATION } from '@app/_constants/duration';
+import useCommentMutation from '@app/_hooks/apis/boards/useCommentMutation';
+import { CommentRequest } from '@app/_types/boardTypes';
 
-function CommentEditorSection() {
-  const { register, handleSubmit } = useForm();
-  const { openAndDeletePopup } = usePopup();
-  const onValid = () => {
-    openAndDeletePopup({
-      message: '기능 구현 중이에요.',
-      duration: POPUP_DURATION.medium,
-    });
+interface Props {
+  articleId: string;
+}
+
+function CommentEditorSection({ articleId }: Props) {
+  const { mutate } = useCommentMutation(articleId);
+  const { register, handleSubmit } = useForm<CommentRequest>();
+
+  const onValid = ({ text }: CommentRequest) => {
+    mutate({ text });
   };
 
   const textareaAutosize: FormEventHandler<HTMLTextAreaElement> = (e) => {
@@ -21,7 +23,7 @@ function CommentEditorSection() {
     element.style.height = `${element.scrollHeight}px`;
   };
 
-  const commentRegister = register('comment', { onChange: textareaAutosize });
+  const commentRegister = register('text', { onChange: textareaAutosize });
 
   return (
     <form onSubmit={handleSubmit(onValid)}>

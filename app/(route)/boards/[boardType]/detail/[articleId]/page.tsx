@@ -27,7 +27,7 @@ export default async function ArticleDetailPage({
           <AuthorSection nickname={data.nickname} />
         </div>
         <div className="mb-20">
-          <CommentEditorSection />
+          <CommentEditorSection articleId={articleId} />
         </div>
         <DetailComment />
       </div>

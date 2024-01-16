@@ -40,3 +40,7 @@ export interface BoardListParams {
   boardType: BoardType;
   page: string;
 }
+
+export interface CommentRequest {
+  text: string;
+}
