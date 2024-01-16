@@ -13,7 +13,6 @@ function ButtonSection() {
       homepage,
       introduce,
       image,
-      pw: 'Temp Password',
     };
     mutate(params);
   };

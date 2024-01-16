@@ -21,7 +21,6 @@ export interface MemberProfile {
 }
 
 export interface ProfileUpdateRequset {
-  pw: string;
   nickname: string;
   homepage: string;
   introduce: string;
