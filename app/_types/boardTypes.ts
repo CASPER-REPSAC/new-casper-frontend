@@ -44,3 +44,11 @@ export interface BoardListParams {
 export interface CommentRequest {
   text: string;
 }
+export interface CommentResponse {
+  commentId: number;
+  articleId: number;
+  nickname: string;
+  text: string;
+  createdAt: string;
+  modifiedAt: string;
+}

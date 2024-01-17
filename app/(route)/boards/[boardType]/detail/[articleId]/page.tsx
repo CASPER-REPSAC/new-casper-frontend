@@ -29,7 +29,7 @@ export default async function ArticleDetailPage({
         <div className="mb-20">
           <CommentEditorSection articleId={articleId} />
         </div>
-        <DetailComment />
+        <DetailComment articleId={articleId} />
       </div>
     </ClientFormProvider>
   );

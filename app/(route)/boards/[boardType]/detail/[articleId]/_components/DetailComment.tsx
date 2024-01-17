@@ -1,13 +1,20 @@
 import { DefaultButton } from '@app/_components/common';
+import { getCommentList } from '@app/_service/article';
 import Avatar from './common/Avatar';
 
-function DetailComment() {
+interface Props {
+  articleId: string;
+}
+
+async function DetailComment({ articleId }: Props) {
+  const comments = await getCommentList(articleId);
+
   return (
-    <Comment
-      name="박지성"
-      date="2021.12.12 14:12:15"
-      content="댓글 1번입니다."
-    />
+    <div className="flex flex-col gap-4">
+      {comments.map(({ nickname, modifiedAt, text }) => (
+        <Comment name={nickname} date={modifiedAt} content={text} />
+      ))}
+    </div>
   );
 }
 

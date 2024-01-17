@@ -1,3 +1,5 @@
+'use client';
+
 import Avatar from './common/Avatar';
 
 interface Props {

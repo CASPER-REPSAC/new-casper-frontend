@@ -1,5 +1,3 @@
-'use client';
-
 export { default as DetailComment } from './DetailComment';
 export { default as AuthorSection } from './AuthorSection';
 export { default as ContentSection } from './ContentSection';

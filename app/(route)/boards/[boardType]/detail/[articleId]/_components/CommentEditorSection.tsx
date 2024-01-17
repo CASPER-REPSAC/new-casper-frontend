@@ -1,3 +1,5 @@
+'use client';
+
 import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
 import { DefaultButton, DefaultTextarea } from '@app/_components/common';
