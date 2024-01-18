@@ -4,7 +4,7 @@ import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
 import { DefaultButton, DefaultTextarea } from '@app/_components/common';
 import { PLACEHOLDER } from '@app/_constants/label';
-import useCommentMutation from '@app/_hooks/apis/boards/useCommentMutation';
+import { useCommentMutation } from '@app/_hooks/apis/boards';
 import { CommentRequest } from '@app/_types/boardTypes';
 
 interface Props {
@@ -15,7 +15,7 @@ function CommentEditorSection({ articleId }: Props) {
   const { mutate } = useCommentMutation(articleId);
   const { register, handleSubmit } = useForm<CommentRequest>();
 
-  const onValid = ({ text }: CommentRequest) => {
+  const onValid = async ({ text }: CommentRequest) => {
     mutate({ text });
   };
 

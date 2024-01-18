@@ -1,18 +1,27 @@
+'use client';
+
 import { DefaultButton } from '@app/_components/common';
-import { getCommentList } from '@app/_service/article';
+import { useComments } from '@app/_hooks/apis/boards';
 import Avatar from './common/Avatar';
 
 interface Props {
   articleId: string;
 }
 
-async function DetailComment({ articleId }: Props) {
-  const comments = await getCommentList(articleId);
+function DetailComment({ articleId }: Props) {
+  const { data: comments } = useComments(articleId);
+
+  if (!comments) return <>loading..</>;
 
   return (
-    <div className="flex flex-col gap-4">
-      {comments.map(({ nickname, modifiedAt, text }) => (
-        <Comment name={nickname} date={modifiedAt} content={text} />
+    <div className="flex flex-col-reverse gap-4">
+      {comments.map(({ nickname, modifiedAt, text, commentId }) => (
+        <Comment
+          key={commentId}
+          name={nickname}
+          date={modifiedAt}
+          content={text}
+        />
       ))}
     </div>
   );

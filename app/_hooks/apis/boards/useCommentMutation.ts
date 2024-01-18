@@ -3,11 +3,12 @@ import { ERROR_MESSAGE } from '@app/_constants/message';
 import { usePopup } from '@app/_hooks';
 import { bearerTokenState } from '@app/_store/permissionAtoms';
 import { CommentRequest } from '@app/_types/boardTypes';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios, { AxiosRequestConfig } from 'axios';
 import { useRecoilValue } from 'recoil';
 
-function useCommentMutation(id: string) {
+function useCommentMutation(articleId: string) {
+  const queryCache = useQueryClient();
   const { openAndDeletePopup } = usePopup();
   const bearerToken = useRecoilValue(bearerTokenState);
 
@@ -18,7 +19,11 @@ function useCommentMutation(id: string) {
         Authorization: bearerToken,
       },
     };
-    return axios.post(`/proxy/api/article/${id}/comment`, params, config);
+    return axios.post(
+      `/proxy/api/article/${articleId}/comment`,
+      params,
+      config,
+    );
   };
 
   const onSuccess = () => {
@@ -26,6 +31,7 @@ function useCommentMutation(id: string) {
       message: '댓글이 작성 되었어요.',
       duration: POPUP_DURATION.medium,
     });
+    queryCache.invalidateQueries({ queryKey: ['comment', articleId] });
   };
 
   const onError = () => {
