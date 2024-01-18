@@ -6,6 +6,9 @@ import { DefaultButton, DefaultTextarea } from '@app/_components/common';
 import { PLACEHOLDER } from '@app/_constants/label';
 import { useCommentMutation } from '@app/_hooks/apis/boards';
 import { CommentRequest } from '@app/_types/boardTypes';
+import { usePopup } from '@app/_hooks';
+import { POPUP_MESSAGE } from '@app/_constants/message';
+import { POPUP_DURATION } from '@app/_constants/duration';
 
 interface Props {
   articleId: string;
@@ -13,11 +16,8 @@ interface Props {
 
 function CommentEditorSection({ articleId }: Props) {
   const { mutate } = useCommentMutation(articleId);
-  const { register, handleSubmit } = useForm<CommentRequest>();
-
-  const onValid = async ({ text }: CommentRequest) => {
-    mutate({ text });
-  };
+  const { register, handleSubmit, reset } = useForm<CommentRequest>();
+  const { openAndDeletePopup } = usePopup();
 
   const textareaAutosize: FormEventHandler<HTMLTextAreaElement> = (e) => {
     const element = e.currentTarget;
@@ -25,10 +25,24 @@ function CommentEditorSection({ articleId }: Props) {
     element.style.height = `${element.scrollHeight}px`;
   };
 
-  const commentRegister = register('text', { onChange: textareaAutosize });
+  const commentRegister = register('text', {
+    onChange: textareaAutosize,
+    required: true,
+  });
+
+  const onValid = async ({ text }: CommentRequest) => {
+    mutate({ text });
+    reset();
+  };
+  const inValid = () => {
+    openAndDeletePopup({
+      message: POPUP_MESSAGE.requiredComment,
+      duration: POPUP_DURATION.medium,
+    });
+  };
 
   return (
-    <form onSubmit={handleSubmit(onValid)}>
+    <form onSubmit={handleSubmit(onValid, inValid)}>
       <DefaultTextarea
         className="mb-4 resize-none rounded-none border-0 border-b bg-transparent focus:border-indigo-300 focus:ring-0 dark:bg-transparent dark:focus:border-slate-100"
         {...commentRegister}
