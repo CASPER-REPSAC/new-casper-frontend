@@ -8,7 +8,7 @@ interface Props {
   articleId: string;
 }
 
-function DetailComment({ articleId }: Props) {
+function CommentSection({ articleId }: Props) {
   const { data: comments } = useComments(articleId);
 
   if (!comments) return <>loading..</>;
@@ -53,4 +53,4 @@ function Comment({ name, date, content }: CommentProps) {
     </div>
   );
 }
-export default DetailComment;
+export default CommentSection;

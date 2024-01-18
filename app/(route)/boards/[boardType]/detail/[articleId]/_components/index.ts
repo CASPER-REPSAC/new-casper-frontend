@@ -1,4 +1,4 @@
-export { default as DetailComment } from './DetailComment';
+export { default as CommentSection } from './CommentSection';
 export { default as AuthorSection } from './AuthorSection';
 export { default as ContentSection } from './ContentSection';
 export { default as ButtonSection } from './ButtonSection';

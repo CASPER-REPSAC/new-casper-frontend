@@ -3,7 +3,7 @@ import { getArticleDetail } from '@app/_service/article';
 import {
   ButtonSection,
   ContentSection,
-  DetailComment,
+  CommentSection,
   AuthorSection,
   CommentEditorSection,
 } from './_components';
@@ -29,7 +29,7 @@ export default async function ArticleDetailPage({
         <div className="mb-20">
           <CommentEditorSection articleId={articleId} />
         </div>
-        <DetailComment articleId={articleId} />
+        <CommentSection articleId={articleId} />
       </div>
     </ClientFormProvider>
   );
