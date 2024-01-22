@@ -13,12 +13,16 @@ async function BoardBody({ params: { boardType, page } }: Props) {
   return (
     <table className="w-full table-fixed text-base">
       <thead
-        className="h-10 
-      border-b border-solid border-slate-300 
-      bg-sky-100 
-      font-bold leading-10 
-      dark:border-gray-600 
-      dark:bg-slate-800"
+        className=" 
+        hidden
+        h-10
+        border-b
+      border-solid border-slate-300 bg-sky-100 
+      font-bold 
+      leading-10 dark:border-gray-600 
+      dark:bg-slate-800 
+      md:table-header-group
+      "
       >
         <tr className="text-center">
           <td className="w-[7%]">번호</td>

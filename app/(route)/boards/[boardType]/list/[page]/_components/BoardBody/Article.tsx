@@ -11,6 +11,30 @@ interface ArticleProps {
   createdAt: string;
   boardType: string;
 }
+const CLASS_NAME = {
+  tr: `relative
+  flex
+  cursor-pointer
+  border-b
+  border-solid
+  border-slate-200
+  px-4
+  pb-2
+  pt-10
+  text-center
+  hover:bg-slate-100
+  dark:border-slate-700
+  dark:hover:bg-slate-900/50
+  md:table-row
+  md:h-10
+  md:p-0
+  
+  `,
+
+  mainTd:
+    'absolute top-2 w-8/12 overflow-hidden overflow-ellipsis whitespace-nowrap text-left align-middle text-lg md:static',
+  subTd: 'block pr-8 md:pr-0 align-middle opacity-80 md:table-cell ',
+};
 
 function Article({
   articleId,
@@ -26,22 +50,15 @@ function Article({
 
   return (
     <tr
-      className="h-10 cursor-pointer 
-      border-b border-solid border-slate-200 
-      text-center 
-      hover:bg-slate-100 
-      dark:border-slate-700 
-      dark:hover:bg-slate-900/50"
+      className={CLASS_NAME.tr}
       onMouseEnter={() => prefetch(href)}
       onClick={() => push(href)}
     >
-      <td className="align-middle">{articleId}</td>
-      <td className="w-8/12 overflow-hidden overflow-ellipsis whitespace-nowrap text-left align-middle">
-        {title}
-      </td>
-      <td className="align-middle">{nickname}</td>
-      <td className="align-middle">{formattedDate}</td>
-      <td className="align-middle">{view}</td>
+      <td className={CLASS_NAME.subTd}>{articleId}</td>
+      <td className={CLASS_NAME.mainTd}>{title}</td>
+      <td className={CLASS_NAME.subTd}>{nickname}</td>
+      <td className={CLASS_NAME.subTd}>{formattedDate}</td>
+      <td className={CLASS_NAME.subTd}>{view}</td>
     </tr>
   );
 }
