@@ -23,6 +23,7 @@ function MyInfoFrom() {
         {...introduceRegister}
         placeholder={PLACEHOLDER.introduce}
         autoComplete="off"
+        defaultValue={myProfile?.introduce}
         rows={4}
       />
       <LabelInput
