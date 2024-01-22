@@ -20,7 +20,7 @@ function PageNavigator({ interval, params, curPage, maxPage }: Props) {
   const pageList = fullPageList.slice(start, start + interval);
 
   return (
-    <div className="flex w-[400px] justify-center gap-2 md:gap-4">
+    <div className="flex w-[500px] justify-center gap-2 md:gap-4">
       {pageList.map((page) => {
         const href = `/boards/${params.boardType}/list/${page}`;
         const onClick = () =>
