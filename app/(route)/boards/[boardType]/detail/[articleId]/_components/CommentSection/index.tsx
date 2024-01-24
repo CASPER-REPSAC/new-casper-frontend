@@ -1,10 +1,14 @@
 'use client';
 
 import { useRecoilValue } from 'recoil';
-import { DefaultButton } from '@app/_components/common';
+import { FormProvider, useForm } from 'react-hook-form';
 import { useComments } from '@app/_hooks/apis/boards';
 import { myProfileState } from '@app/_store/permissionAtoms';
-import Avatar from './common/Avatar';
+import { useState } from 'react';
+import Avatar from '../common/Avatar';
+import Buttons from './Buttons';
+import Content from './Content';
+import Header from './Header';
 
 interface Props {
   articleId: string;
@@ -16,7 +20,7 @@ function CommentSection({ articleId }: Props) {
   if (!comments) return <>loading..</>;
 
   return (
-    <div className="flex flex-col-reverse gap-4">
+    <div className="flex flex-col-reverse gap-12">
       {comments.map(({ nickname, modifiedAt, text, commentId }) => (
         <Comment
           key={commentId}
@@ -36,30 +40,30 @@ interface CommentProps {
 }
 
 function Comment({ nickname, date, content }: CommentProps) {
+  const [editable, setEditable] = useState(false);
   const myProfile = useRecoilValue(myProfileState);
   const isMyComment = myProfile?.nickname === nickname;
+  const methods = useForm({
+    defaultValues: {
+      comment: content,
+    },
+  });
 
   return (
-    <div className="flex items-start justify-between gap-8">
-      <Avatar className="shrink-0" src="/defaultprofile.webp" />
-      <div className="flex flex-1 flex-col">
-        <div className="mb-2 flex items-end">
-          <span className="mr-4">{nickname}</span>
-          <span className="text-sm font-thin">{date}</span>
+    <FormProvider {...methods}>
+      <div className="flex items-start justify-between gap-8">
+        <Avatar className="shrink-0" src="/defaultprofile.webp" />
+        <div className="flex flex-1 flex-col">
+          <Header nickname={nickname} date={date} />
+          <Content comment={content} editable={editable} />
         </div>
-        <div>{content}</div>
+        <div className="flex gap-4">
+          {isMyComment && (
+            <Buttons editable={editable} setEditable={setEditable} />
+          )}
+        </div>
       </div>
-      <div className="flex gap-4">
-        {isMyComment && (
-          <>
-            <DefaultButton size="sm">수정</DefaultButton>
-            <DefaultButton size="sm" theme="danger">
-              삭제
-            </DefaultButton>
-          </>
-        )}
-      </div>
-    </div>
+    </FormProvider>
   );
 }
 export default CommentSection;

@@ -1,6 +1,5 @@
 'use client';
 
-import { FormEventHandler } from 'react';
 import { useForm } from 'react-hook-form';
 import { DefaultButton, DefaultTextarea } from '@app/_components/common';
 import { PLACEHOLDER } from '@app/_constants/label';
@@ -9,6 +8,7 @@ import { CommentRequest } from '@app/_types/boardTypes';
 import { usePopup } from '@app/_hooks';
 import { POPUP_MESSAGE } from '@app/_constants/message';
 import { POPUP_DURATION } from '@app/_constants/duration';
+import textareaAutosize from '@app/_utils/textareaAutosize';
 
 interface Props {
   articleId: string;
@@ -18,12 +18,6 @@ function CommentEditorSection({ articleId }: Props) {
   const { mutate } = useCommentMutation(articleId);
   const { register, handleSubmit, reset } = useForm<CommentRequest>();
   const { openAndDeletePopup } = usePopup();
-
-  const textareaAutosize: FormEventHandler<HTMLTextAreaElement> = (e) => {
-    const element = e.currentTarget;
-    element.style.height = 'auto';
-    element.style.height = `${element.scrollHeight}px`;
-  };
 
   const commentRegister = register('text', {
     onChange: textareaAutosize,
