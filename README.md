@@ -1,19 +1,22 @@
 # 😀 Introduction
 
+
+### 프로젝트 요약
 캐스퍼의 새로운 홈페이지 개발을 위한 프론트엔드 repository 입니다.
 
-# 협업 공간
-[Notion](https://small-warrior-8dd.notion.site/New-Casper-2203c874dec94cbaa4d6065ba7076606?pvs=4)
+|제목|내용|
+|---|---|
+|사용 기술|Next.js 14 (App router), Typescript, Tailwind CSS, recoil, react-query, framer-motion, react-hook-form|
+|개발 일지|[Blog]([https://small-warrior-8dd.notion.site/New-Casper-2203c874dec94cbaa4d6065ba7076606?pvs=4](https://velog.io/@jijiseong/series/new-casper-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A7%80))|
+|협업 공간|[Notion](https://small-warrior-8dd.notion.site/New-Casper-2203c874dec94cbaa4d6065ba7076606?pvs=4)|
+|개발 기간|2023.04 ~ 진행 중|
 
-# 개발 기간
 
-2023.04 ~ 진행 중
+### 팀원
 
-# Skills
-
-- Next.js 14 (App router)
-- Typescript
-- Tailwind CSS
+|<img src="https://avatars.githubusercontent.com/u/77661228?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/54249015?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/108794308?v=4" width="100" />|
+|---|---|---|
+|[FE - 박지성](https://github.com/jijiseong)|[BE - 우태정](https://github.com/ine9141)|[Server - 차원제](https://github.com/breakpack)|
 
 # 주요기능
 
@@ -28,7 +31,7 @@
     - 정회원: 모든 게시판 접근 가능
     - 준회원: 공지사항, 준회원 게시판, 자유 게시판 접근 가능
     - 비로그인: 공지사항, 자유 게시판 접근 가능
-    - 
+
 ## 게시글 쓰기 페이지
 ![글쓰기](https://github.com/CASPER-REPSAC/new-casper-frontend/assets/77661228/dec22de2-047e-4b27-ab34-7a01c5b008b3)
 
@@ -118,3 +121,4 @@
 ### 기능
 
 - 사용자의 액션에 대한 피드백을 제공합니다.
+- 예외적인 상황 또는 에러 처리에 활용합니다.
