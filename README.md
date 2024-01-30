@@ -7,7 +7,7 @@
 |제목|내용|
 |---|---|
 |사용 기술|Next.js 14 (App router), Typescript, Tailwind CSS, recoil, react-query, framer-motion, react-hook-form|
-|개발 일지|[Blog]([https://small-warrior-8dd.notion.site/New-Casper-2203c874dec94cbaa4d6065ba7076606?pvs=4](https://velog.io/@jijiseong/series/new-casper-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A7%80))|
+|개발 일지|[Blog](https://velog.io/@jijiseong/series/new-casper-%EA%B0%9C%EB%B0%9C-%EC%9D%BC%EC%A7%80)|
 |협업 공간|[Notion](https://small-warrior-8dd.notion.site/New-Casper-2203c874dec94cbaa4d6065ba7076606?pvs=4)|
 |개발 기간|2023.04 ~ 진행 중|
 
