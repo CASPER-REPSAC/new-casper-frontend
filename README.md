@@ -14,3 +14,5 @@
 - Next.js 14 (App router)
 - Typescript
 - Tailwind CSS
+
+![image](https://github.com/CASPER-REPSAC/new-casper-frontend/assets/77661228/b2fd827a-43ac-4c30-91c3-9cd94a1c3033)
