@@ -1,30 +1,20 @@
 import { COMMENT_API } from '@app/_constants/apiUrl';
 import { POPUP_DURATION } from '@app/_constants/duration';
+import { POPUP_MESSAGE } from '@app/_constants/message';
 import { usePopup } from '@app/_hooks';
-import { bearerTokenState } from '@app/_store/permissionAtoms';
-import { CommentModifyRequest } from '@app/_types/boardTypes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
-import { useRecoilValue } from 'recoil';
 
-function useCommentUpdate(articleId: string) {
+function useCommentDelete(articleId: string) {
   const { openAndDeletePopup } = usePopup();
-  const bearerToken = useRecoilValue(bearerTokenState);
-
   const queryClient = useQueryClient();
 
-  const mutationFn = (data: CommentModifyRequest) =>
-    axios.patch(
-      `/proxy${COMMENT_API(articleId)}/${data.commentId}`,
-      { text: data.text },
-      {
-        headers: { Authorization: bearerToken },
-      },
-    );
+  const mutationFn = (commentId: string) =>
+    axios.delete(`/proxy${COMMENT_API(articleId)}/${commentId}`);
 
   const onSuccess = () => {
     openAndDeletePopup({
-      message: '댓글이 수정되었어요.',
+      message: POPUP_MESSAGE.deleteCommentSuccess,
       duration: POPUP_DURATION.medium,
     });
     queryClient.invalidateQueries({ queryKey: ['comment', articleId] });
@@ -32,7 +22,7 @@ function useCommentUpdate(articleId: string) {
 
   const onError = () => {
     openAndDeletePopup({
-      message: '댓글이 수정 실패했어요.',
+      message: POPUP_MESSAGE.failedToDeleteComment,
       duration: POPUP_DURATION.medium,
     });
   };
@@ -40,4 +30,4 @@ function useCommentUpdate(articleId: string) {
   return useMutation({ mutationFn, onSuccess, onError });
 }
 
-export default useCommentUpdate;
+export default useCommentDelete;

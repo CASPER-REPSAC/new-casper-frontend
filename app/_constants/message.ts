@@ -14,6 +14,8 @@ export const POPUP_MESSAGE = {
   checkJoinParams: '값을 정확히 입력해주세요.',
   unknownError: '알 수 없는 에러',
   requiredComment: '댓글을 입력해주세요.',
+  deleteCommentSuccess: '댓글이 삭제되었어요.',
+  failedToDeleteComment: '댓글 삭제가 실패했어요.',
 };
 
 export const INPUT_ERROR = {

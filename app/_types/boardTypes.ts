@@ -41,7 +41,11 @@ export interface BoardListParams {
   page: string;
 }
 
-export interface CommentRequest {
+export interface CommentWriteRequest {
+  text: string;
+}
+
+export interface CommentModifyRequest {
   text: string;
   commentId: string;
 }

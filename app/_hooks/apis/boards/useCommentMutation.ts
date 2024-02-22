@@ -2,7 +2,7 @@ import { POPUP_DURATION } from '@app/_constants/duration';
 import { ERROR_MESSAGE } from '@app/_constants/message';
 import { usePopup } from '@app/_hooks';
 import { bearerTokenState } from '@app/_store/permissionAtoms';
-import { CommentRequest } from '@app/_types/boardTypes';
+import { CommentWriteRequest } from '@app/_types/boardTypes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios, { AxiosRequestConfig } from 'axios';
 import { useRecoilValue } from 'recoil';
@@ -12,8 +12,8 @@ function useCommentMutation(articleId: string) {
   const { openAndDeletePopup } = usePopup();
   const bearerToken = useRecoilValue(bearerTokenState);
 
-  const mutationFn = ({ text }: CommentRequest) => {
-    const params: CommentRequest = { text };
+  const mutationFn = ({ text }: CommentWriteRequest) => {
+    const params: CommentWriteRequest = { text };
     const config: AxiosRequestConfig = {
       headers: {
         Authorization: bearerToken,

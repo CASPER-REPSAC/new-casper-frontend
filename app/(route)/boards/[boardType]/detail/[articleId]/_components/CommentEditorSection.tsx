@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { DefaultButton, DefaultTextarea } from '@app/_components/common';
 import { PLACEHOLDER } from '@app/_constants/label';
 import { useCommentMutation } from '@app/_hooks/apis/boards';
-import { CommentRequest } from '@app/_types/boardTypes';
+import { CommentWriteRequest } from '@app/_types/boardTypes';
 import { usePopup } from '@app/_hooks';
 import { POPUP_MESSAGE } from '@app/_constants/message';
 import { POPUP_DURATION } from '@app/_constants/duration';
@@ -16,7 +16,7 @@ interface Props {
 
 function CommentEditorSection({ articleId }: Props) {
   const { mutate } = useCommentMutation(articleId);
-  const { register, handleSubmit, reset } = useForm<CommentRequest>();
+  const { register, handleSubmit, reset } = useForm<CommentWriteRequest>();
   const { openAndDeletePopup } = usePopup();
 
   const commentRegister = register('text', {
@@ -24,7 +24,7 @@ function CommentEditorSection({ articleId }: Props) {
     required: true,
   });
 
-  const onValid = async ({ text }: CommentRequest) => {
+  const onValid = async ({ text }: CommentWriteRequest) => {
     mutate({ text });
     reset();
   };
