@@ -1,3 +1,5 @@
+'use client';
+
 import { DefaultButton } from '@app/_components/common';
 import {
   useDeleteArticleMutation,

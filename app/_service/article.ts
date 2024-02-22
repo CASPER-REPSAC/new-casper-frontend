@@ -3,7 +3,11 @@ import {
   ARTICLE_DETAIL_API,
   ARTICLE_LIST_API,
 } from '@app/_constants/apiUrl';
-import { ArticleDetail, OnePageOfArticleList } from '@app/_types/boardTypes';
+import {
+  ArticleDetail,
+  CommentResponse,
+  OnePageOfArticleList,
+} from '@app/_types/boardTypes';
 import CustomError, { ErrorResponse } from '@app/_types/errorTypes';
 import { getBearerToken } from '@app/_utils/cookie';
 
@@ -55,5 +59,13 @@ export async function getOnePageArticleList({
     throw new CustomError(error);
   }
   const data: OnePageOfArticleList = await res.json();
+  return data;
+}
+
+export async function getCommentList(
+  articleId: string,
+): Promise<CommentResponse[]> {
+  const res = await fetch(`${API_URL}/api/article/${articleId}/comment`);
+  const data = await res.json();
   return data;
 }

@@ -1,30 +1,42 @@
-import { FormEventHandler } from 'react';
+'use client';
+
 import { useForm } from 'react-hook-form';
 import { DefaultButton, DefaultTextarea } from '@app/_components/common';
 import { PLACEHOLDER } from '@app/_constants/label';
+import { useCommentMutation } from '@app/_hooks/apis/boards';
+import { CommentWriteRequest } from '@app/_types/boardTypes';
 import { usePopup } from '@app/_hooks';
+import { POPUP_MESSAGE } from '@app/_constants/message';
 import { POPUP_DURATION } from '@app/_constants/duration';
+import textareaAutosize from '@app/_utils/textareaAutosize';
 
-function CommentEditorSection() {
-  const { register, handleSubmit } = useForm();
+interface Props {
+  articleId: string;
+}
+
+function CommentEditorSection({ articleId }: Props) {
+  const { mutate } = useCommentMutation(articleId);
+  const { register, handleSubmit, reset } = useForm<CommentWriteRequest>();
   const { openAndDeletePopup } = usePopup();
-  const onValid = () => {
+
+  const commentRegister = register('text', {
+    onChange: textareaAutosize,
+    required: true,
+  });
+
+  const onValid = async ({ text }: CommentWriteRequest) => {
+    mutate({ text });
+    reset();
+  };
+  const inValid = () => {
     openAndDeletePopup({
-      message: '기능 구현 중이에요.',
+      message: POPUP_MESSAGE.requiredComment,
       duration: POPUP_DURATION.medium,
     });
   };
 
-  const textareaAutosize: FormEventHandler<HTMLTextAreaElement> = (e) => {
-    const element = e.currentTarget;
-    element.style.height = 'auto';
-    element.style.height = `${element.scrollHeight}px`;
-  };
-
-  const commentRegister = register('comment', { onChange: textareaAutosize });
-
   return (
-    <form onSubmit={handleSubmit(onValid)}>
+    <form onSubmit={handleSubmit(onValid, inValid)}>
       <DefaultTextarea
         className="mb-4 resize-none rounded-none border-0 border-b bg-transparent focus:border-indigo-300 focus:ring-0 dark:bg-transparent dark:focus:border-slate-100"
         {...commentRegister}

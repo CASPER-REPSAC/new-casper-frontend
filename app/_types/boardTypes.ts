@@ -40,3 +40,20 @@ export interface BoardListParams {
   boardType: BoardType;
   page: string;
 }
+
+export interface CommentWriteRequest {
+  text: string;
+}
+
+export interface CommentModifyRequest {
+  text: string;
+  commentId: string;
+}
+export interface CommentResponse {
+  commentId: number;
+  articleId: number;
+  nickname: string;
+  text: string;
+  createdAt: string;
+  modifiedAt: string;
+}

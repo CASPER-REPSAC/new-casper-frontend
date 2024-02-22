@@ -3,7 +3,7 @@ import { getArticleDetail } from '@app/_service/article';
 import {
   ButtonSection,
   ContentSection,
-  DetailComment,
+  CommentSection,
   AuthorSection,
   CommentEditorSection,
 } from './_components';
@@ -27,9 +27,9 @@ export default async function ArticleDetailPage({
           <AuthorSection nickname={data.nickname} />
         </div>
         <div className="mb-20">
-          <CommentEditorSection />
+          <CommentEditorSection articleId={articleId} />
         </div>
-        <DetailComment />
+        <CommentSection articleId={articleId} />
       </div>
     </ClientFormProvider>
   );

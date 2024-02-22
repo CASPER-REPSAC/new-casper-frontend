@@ -13,6 +13,9 @@ export const POPUP_MESSAGE = {
   failedToLoadDetail: '상세 내용을 불러 올 수 없어요.',
   checkJoinParams: '값을 정확히 입력해주세요.',
   unknownError: '알 수 없는 에러',
+  requiredComment: '댓글을 입력해주세요.',
+  deleteCommentSuccess: '댓글이 삭제되었어요.',
+  failedToDeleteComment: '댓글 삭제가 실패했어요.',
 };
 
 export const INPUT_ERROR = {

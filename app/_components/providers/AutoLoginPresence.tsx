@@ -13,9 +13,10 @@ function AutoLoginPresence() {
   const registerLogin = useCallback(() => {
     if (!accessToken) return () => {};
 
-    const { exp } = parseJwt(accessToken);
-    const now = new Date().getMilliseconds();
-    const refreshTime = exp - now - 6000;
+    const { exp: expireDate } = parseJwt(accessToken);
+    const expireDateMs = expireDate * 1000;
+    const now = new Date().getTime();
+    const refreshTime = expireDateMs - now - 60 * 1000;
 
     const slientRefresh = setTimeout(() => {
       clientLoginMutate();
