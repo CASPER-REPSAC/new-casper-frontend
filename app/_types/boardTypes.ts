@@ -43,6 +43,7 @@ export interface BoardListParams {
 
 export interface CommentRequest {
   text: string;
+  commentId: string;
 }
 export interface CommentResponse {
   commentId: number;

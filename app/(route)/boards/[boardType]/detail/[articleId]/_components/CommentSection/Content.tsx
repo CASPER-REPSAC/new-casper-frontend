@@ -1,4 +1,5 @@
 import { DefaultTextarea } from '@app/_components/common';
+import textareaAutosize from '@app/_utils/textareaAutosize';
 import { useFormContext } from 'react-hook-form';
 
 interface Props {
@@ -9,7 +10,10 @@ interface Props {
 function Content({ comment, editable = false }: Props) {
   const { register } = useFormContext();
 
-  const commentRegister = register('comment', { required: true });
+  const commentRegister = register('comment', {
+    required: true,
+    onChange: textareaAutosize,
+  });
 
   return (
     <>

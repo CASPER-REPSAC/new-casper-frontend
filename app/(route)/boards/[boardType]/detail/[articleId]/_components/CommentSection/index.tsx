@@ -24,6 +24,8 @@ function CommentSection({ articleId }: Props) {
       {comments.map(({ nickname, modifiedAt, text, commentId }) => (
         <Comment
           key={commentId}
+          commentId={commentId}
+          articleId={articleId}
           nickname={nickname}
           date={modifiedAt}
           content={text}
@@ -34,12 +36,20 @@ function CommentSection({ articleId }: Props) {
 }
 
 interface CommentProps {
+  articleId: string;
+  commentId: string;
   nickname: string;
   date: string;
   content: string;
 }
 
-function Comment({ nickname, date, content }: CommentProps) {
+function Comment({
+  articleId,
+  commentId,
+  nickname,
+  date,
+  content,
+}: CommentProps) {
   const [editable, setEditable] = useState(false);
   const myProfile = useRecoilValue(myProfileState);
   const isMyComment = myProfile?.nickname === nickname;
@@ -59,7 +69,12 @@ function Comment({ nickname, date, content }: CommentProps) {
         </div>
         <div className="flex gap-4">
           {isMyComment && (
-            <Buttons editable={editable} setEditable={setEditable} />
+            <Buttons
+              articleId={articleId}
+              commentId={commentId}
+              editable={editable}
+              setEditable={setEditable}
+            />
           )}
         </div>
       </div>
