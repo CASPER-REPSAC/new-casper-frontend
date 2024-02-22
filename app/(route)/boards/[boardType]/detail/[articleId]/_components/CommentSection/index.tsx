@@ -24,7 +24,7 @@ function CommentSection({ articleId }: Props) {
       {comments.map(({ nickname, modifiedAt, text, commentId }) => (
         <Comment
           key={commentId}
-          commentId={commentId}
+          commentId={commentId.toString()}
           articleId={articleId}
           nickname={nickname}
           date={modifiedAt}
