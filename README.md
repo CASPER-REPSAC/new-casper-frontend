@@ -16,7 +16,7 @@
 
 |<img src="https://avatars.githubusercontent.com/u/77661228?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/54249015?v=4" width="100" />|<img src="https://avatars.githubusercontent.com/u/108794308?v=4" width="100" />|
 |---|---|---|
-|[FE - 박지성](https://github.com/jijiseong)|[BE - 우태정](https://github.com/ine9141)|[Server - 차원제](https://github.com/breakpack)|
+|[FE - 박지성](https://github.com/jijiseong)|[BE - 우태정](https://github.com/ine9141)|[만능 도우미 - 차원제](https://github.com/breakpack)|
 
 # 주요기능
 
