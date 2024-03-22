@@ -7,6 +7,7 @@ import {
   RecoilRootWrapper,
   SyncThemeScript,
   AutoLoginPresence,
+  NextUIWrapper,
 } from '@app/_components/providers';
 import { DefaultLayout } from '@app/_components/layout';
 
@@ -37,9 +38,11 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <QueryWrapper>
           <RecoilRootWrapper>
-            <PopupWrapper />
-            <AutoLoginPresence />
-            <DefaultLayout>{children}</DefaultLayout>
+            <NextUIWrapper>
+              <PopupWrapper />
+              <AutoLoginPresence />
+              <DefaultLayout>{children}</DefaultLayout>
+            </NextUIWrapper>
           </RecoilRootWrapper>
         </QueryWrapper>
       </body>
