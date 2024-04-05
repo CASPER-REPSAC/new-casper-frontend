@@ -61,8 +61,5 @@ export interface CommentResponse {
 }
 
 export interface Category {
-  boardNameKey: {
-    boardName: string;
-    subBoardName: string;
-  };
+  categories: string[];
 }
