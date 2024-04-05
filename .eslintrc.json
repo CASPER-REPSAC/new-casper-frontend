@@ -33,6 +33,7 @@
     "react/require-default-props": 0,
     "@tanstack/query/exhaustive-deps": "error",
     "@tanstack/query/prefer-query-object-syntax": "error",
+    "import/prefer-default-export": "off",
     "jsx-a11y/label-has-associated-control": [
       2,
       {

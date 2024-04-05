@@ -57,3 +57,10 @@ export interface CommentResponse {
   createdAt: string;
   modifiedAt: string;
 }
+
+export interface Category {
+  boardNameKey: {
+    boardName: string;
+    subBoardName: string;
+  };
+}
