@@ -21,7 +21,7 @@ async function BoardPage({
     <div className="flex w-full flex-col gap-4">
       <BoardHeader params={{ boardType, page }} />
       <BoardBody articleList={articleList} maxPage={maxPage} />
-      <PostLink params={{ boardType, page }} />
+      <PostLink />
     </div>
   );
 }
