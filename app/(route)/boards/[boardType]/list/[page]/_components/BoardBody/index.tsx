@@ -10,6 +10,9 @@ interface Props {
 async function BoardBody({ params: { boardType, page } }: Props) {
   const { articleList } = await getOnePageArticleList({ boardType, page });
 
+  if (!articleList || articleList.length === 0)
+    return <div className="flex-center h-24">작성된 게시글이 없어요.</div>;
+
   return (
     <table className="w-full table-fixed text-base">
       <thead
