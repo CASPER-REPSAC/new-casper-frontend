@@ -10,10 +10,11 @@ import { useFormContext } from 'react-hook-form';
 function ProgressBar() {
   const { funnelStep } = useFunnel();
   const {
+    getValues,
     formState: { dirtyFields, errors },
   } = useFormContext<JoinFormData>();
 
-  const agreeComplete = !errors.agree && !!dirtyFields.agree;
+  const agreeComplete = getValues('agree');
   const emailComplete = !errors.email && !!dirtyFields.email;
   const idComplete = !errors.id && !!dirtyFields.id;
   const nicknameComplete = !errors.nickname && !!dirtyFields.nickname;

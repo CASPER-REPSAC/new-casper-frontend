@@ -1,9 +1,9 @@
-import { DefaultButton } from '@app/_components/common';
 import { POPUP_DURATION } from '@app/_constants/duration';
 import { POPUP_MESSAGE } from '@app/_constants/message';
 import { useFunnel, usePopup } from '@app/_hooks';
 import { useJoinMutation } from '@app/_hooks/apis/user';
 import { JoinFormData } from '@app/_types/joinTypes';
+import { Button } from '@nextui-org/react';
 import { useFormContext } from 'react-hook-form';
 
 function NextButton() {
@@ -35,7 +35,7 @@ function NextButton() {
 
   const checkValid = () => {
     if (funnelStep === 'agree') {
-      return !errors.agree && dirtyFields.agree;
+      return getValues('agree');
     }
     if (funnelStep === 'email') {
       return !errors.email && dirtyFields.email;
@@ -64,15 +64,16 @@ function NextButton() {
   };
 
   return (
-    <DefaultButton
-      theme="primary"
+    <Button
+      color="primary"
+      size="lg"
       type="submit"
       className="w-full"
-      disabled={!checkValid()}
+      isDisabled={!checkValid()}
       onClick={handleSubmit(onValid, onInvalid)}
     >
       다음 단계
-    </DefaultButton>
+    </Button>
   );
 }
 

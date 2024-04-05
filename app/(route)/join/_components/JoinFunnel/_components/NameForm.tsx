@@ -1,11 +1,12 @@
 import { useEffect } from 'react';
-import { FormErrorWrapper, LabelInput } from '@app/_components/common';
+import { FormErrorWrapper } from '@app/_components/common';
 import { StarIcon, UserIcon } from '@app/_components/icons';
 import { JoinFormData } from '@app/_types/joinTypes';
 import { REQUIRED_MESSAGE } from '@app/_constants/message';
 import { useFormContext } from 'react-hook-form';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { ICON_SIZE } from '@app/_constants/size';
+import { Input } from '@nextui-org/react';
 
 function NameForm() {
   const {
@@ -34,20 +35,24 @@ function NameForm() {
 
   return (
     <>
-      <LabelInput
+      <Input
+        size="lg"
+        isRequired
         label={INPUT_LABEL.name}
-        labelIcon={<UserIcon size={ICON_SIZE.small} />}
+        startContent={<UserIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.name}
         {...nameRegister}
-        hasError={!!errors.name}
+        color={errors.name ? 'danger' : 'default'}
         autoComplete="off"
       />
-      <LabelInput
+      <Input
+        size="lg"
+        isRequired
         label={INPUT_LABEL.nickname}
-        labelIcon={<StarIcon size={ICON_SIZE.small} />}
+        startContent={<StarIcon size={ICON_SIZE.small} />}
         placeholder={PLACEHOLDER.nickname}
         {...nickNameRegister}
-        hasError={!!errors.nickname}
+        color={errors.nickname ? 'danger' : 'default'}
         autoComplete="off"
       />
       {!isValidValue && (

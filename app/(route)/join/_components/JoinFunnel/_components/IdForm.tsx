@@ -1,10 +1,11 @@
-import { FormErrorWrapper, LabelInput } from '@app/_components/common';
+import { FormErrorWrapper } from '@app/_components/common';
 import { UserIcon } from '@app/_components/icons';
 import { JoinFormData } from '@app/_types/joinTypes';
 import { REQUIRED_MESSAGE } from '@app/_constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { useFormContext } from 'react-hook-form';
 import { useEffect } from 'react';
+import { Input } from '@nextui-org/react';
 
 function IdForm() {
   const {
@@ -23,12 +24,14 @@ function IdForm() {
 
   return (
     <>
-      <LabelInput
+      <Input
+        size="lg"
+        isRequired
         label={INPUT_LABEL.id}
-        labelIcon={<UserIcon size={25} />}
+        startContent={<UserIcon size={25} />}
         {...idRegister}
         placeholder={PLACEHOLDER.id}
-        hasError={!!errors.id}
+        color={errors.id ? 'danger' : 'default'}
       />
       {errors.id && (
         <FormErrorWrapper>
