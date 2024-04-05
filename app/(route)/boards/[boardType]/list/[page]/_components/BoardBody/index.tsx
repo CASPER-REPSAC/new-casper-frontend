@@ -42,13 +42,16 @@ function BoardBody({ articleList }: Props) {
               return (
                 <TableRow
                   as={Link}
+                  className="cursor-pointer"
                   href={`/boards/${boardType}/detail/${articleId}`}
                   key={articleId}
                 >
                   <TableCell align="center">{articleId}</TableCell>
-                  <TableCell className="flex items-center">
-                    {hide && <LockIcon className="mr-2 text-primary-300" />}
-                    {title}
+                  <TableCell>
+                    <div className="flex items-center">
+                      {hide && <LockIcon className="mr-2 text-primary-300" />}
+                      {title}
+                    </div>
                   </TableCell>
                   <TableCell>{nickname}</TableCell>
                   <TableCell>{formattedDate}</TableCell>
