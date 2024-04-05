@@ -1,6 +1,5 @@
 'use client';
 
-import { ArticleData, BoardListParams } from '@app/_types/boardTypes';
 import { useParams } from 'next/navigation';
 import {
   Link,
@@ -11,19 +10,31 @@ import {
   TableHeader,
   TableRow,
 } from '@nextui-org/react';
+import { ArticleData, BoardListParams } from '@app/_types/boardTypes';
 import { LockIcon } from '@app/_components/icons';
 import formateDate from '@app/_utils/formatDate';
-import BoardBodySkeleton from './BoardBodySkeleton';
+import PageNav from './PageNav';
 
 interface Props {
   articleList?: ArticleData[];
+  maxPage: number;
 }
 
-function BoardBody({ articleList }: Props) {
+function BoardBody({ articleList, maxPage }: Props) {
   const { boardType } = useParams<BoardListParams>();
 
   return (
-    <Table layout="auto" color="default" selectionMode="single">
+    <Table
+      aria-label="article table"
+      layout="auto"
+      color="default"
+      selectionMode="single"
+      bottomContent={
+        <div className="flex-center">
+          <PageNav maxPage={maxPage} />
+        </div>
+      }
+    >
       <TableHeader>
         <TableColumn align="center">번호</TableColumn>
         <TableColumn>제목</TableColumn>
@@ -65,7 +76,5 @@ function BoardBody({ articleList }: Props) {
     </Table>
   );
 }
-
-BoardBody.Skeleton = BoardBodySkeleton;
 
 export default BoardBody;
