@@ -1,7 +1,7 @@
 'use client';
 
-import { DefaultLink } from '@app/_components/common';
 import { roleState } from '@app/_store/permissionAtoms';
+import { Button, Link } from '@nextui-org/react';
 import { useRecoilValue } from 'recoil';
 
 interface Props {
@@ -10,19 +10,19 @@ interface Props {
 
 function PostLink({ params }: Props) {
   const role = useRecoilValue(roleState);
-
-  if (params.boardType === 'notice_board' && role !== '관리자') {
-    return <></>;
-  }
+  const onlyAdmin = params.boardType === 'notice_board' && role !== '관리자';
 
   return (
-    <DefaultLink
+    <Button
+      as={Link}
+      color="primary"
       className="ml-auto"
-      theme="primary"
+      showAnchorIcon
       href={`/boards/${params.boardType}/posts`}
+      isDisabled={onlyAdmin}
     >
       작성 하기
-    </DefaultLink>
+    </Button>
   );
 }
 

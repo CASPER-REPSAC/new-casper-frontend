@@ -1,3 +1,5 @@
+'use client';
+
 import { PostReqData } from '@app/_types/PostTypes';
 import { Checkbox } from '@nextui-org/react';
 import { useFormContext } from 'react-hook-form';

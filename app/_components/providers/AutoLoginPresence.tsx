@@ -3,11 +3,11 @@
 import useAutoLoginMutation from '@app/_hooks/apis/user/useAutoLoginMutation';
 import { accessTokenState } from '@app/_store/permissionAtoms';
 import { parseJwt } from '@app/_utils/jwt';
-import { useCallback, useEffect } from 'react';
+import { memo, useCallback, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 
 function AutoLoginPresence() {
-  const { mutate: clientLoginMutate } = useAutoLoginMutation();
+  const { mutate: autoLoginMutate } = useAutoLoginMutation();
   const accessToken = useRecoilValue(accessTokenState);
 
   const registerLogin = useCallback(() => {
@@ -19,16 +19,16 @@ function AutoLoginPresence() {
     const refreshTime = expireDateMs - now - 60 * 1000;
 
     const slientRefresh = setTimeout(() => {
-      clientLoginMutate();
+      autoLoginMutate();
     }, refreshTime);
 
     return () => clearTimeout(slientRefresh);
-  }, [accessToken, clientLoginMutate]);
+  }, [accessToken, autoLoginMutate]);
 
-  useEffect(clientLoginMutate, [clientLoginMutate]);
+  useEffect(autoLoginMutate, [autoLoginMutate]);
   useEffect(registerLogin, [registerLogin]);
 
   return <></>;
 }
 
-export default AutoLoginPresence;
+export default memo(AutoLoginPresence);
