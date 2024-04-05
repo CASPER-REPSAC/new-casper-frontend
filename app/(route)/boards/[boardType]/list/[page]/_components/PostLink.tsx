@@ -14,10 +14,10 @@ function PostLink({ params }: Props) {
 
   return (
     <Button
+      type="button"
       as={Link}
       color="primary"
       className="ml-auto"
-      showAnchorIcon
       href={`/boards/${params.boardType}/posts`}
       isDisabled={onlyAdmin}
     >

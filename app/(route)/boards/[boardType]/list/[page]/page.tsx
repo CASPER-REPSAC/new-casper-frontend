@@ -1,4 +1,3 @@
-import { Suspense } from 'react';
 import { BoardListParams } from '@app/_types/boardTypes';
 import { getOnePageArticleList } from '@app/_service/article';
 import { BoardBody, BoardFooter, BoardHeader, PostLink } from './_components';
@@ -8,7 +7,7 @@ async function BoardPage({
 }: {
   params: BoardListParams;
 }) {
-  const { maxPageNum: maxPage } = await getOnePageArticleList({
+  const { maxPageNum: maxPage, articleList } = await getOnePageArticleList({
     boardType,
     page,
   });
@@ -16,10 +15,7 @@ async function BoardPage({
   return (
     <div className="flex w-full flex-col gap-4">
       <BoardHeader />
-      <Suspense fallback={<BoardBody.Skeleton />}>
-        <BoardBody params={{ boardType, page }} />
-      </Suspense>
-
+      <BoardBody articleList={articleList} />
       <PostLink params={{ boardType, page }} />
       <BoardFooter maxPage={maxPage} params={{ boardType, page }} />
     </div>

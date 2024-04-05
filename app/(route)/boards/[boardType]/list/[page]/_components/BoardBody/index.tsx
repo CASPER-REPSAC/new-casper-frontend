@@ -1,59 +1,65 @@
-import { BoardListParams } from '@app/_types/boardTypes';
-import { getOnePageArticleList } from '@app/_service/article';
-import Article from './Article';
+'use client';
+
+import { ArticleData, BoardListParams } from '@app/_types/boardTypes';
+import { useParams } from 'next/navigation';
+import {
+  Link,
+  Table,
+  TableBody,
+  TableCell,
+  TableColumn,
+  TableHeader,
+  TableRow,
+} from '@nextui-org/react';
+import { LockIcon } from '@app/_components/icons';
+import formateDate from '@app/_utils/formatDate';
 import BoardBodySkeleton from './BoardBodySkeleton';
 
 interface Props {
-  params: BoardListParams;
+  articleList?: ArticleData[];
 }
 
-async function BoardBody({ params: { boardType, page } }: Props) {
-  const { articleList } = await getOnePageArticleList({ boardType, page });
-
-  if (!articleList || articleList.length === 0)
-    return <div className="flex-center h-24">작성된 게시글이 없어요.</div>;
+function BoardBody({ articleList }: Props) {
+  const { boardType } = useParams<BoardListParams>();
 
   return (
-    <table className="w-full table-fixed text-base">
-      <thead
-        className=" 
-        hidden
-        h-10
-        border-b
-      border-solid border-slate-300 bg-sky-100 
-      font-bold 
-      leading-10 dark:border-gray-600 
-      dark:bg-slate-800 
-      md:table-header-group
-      "
-      >
-        <tr className="text-center">
-          <td className="w-[7%]">번호</td>
-          <td className="w-[35%]">제목</td>
-          <td className="w-[10%]">작성자</td>
-          <td className="w-[15%]">날짜</td>
-          <td className="w-[10%]">조회수</td>
-        </tr>
-      </thead>
+    <Table layout="auto" color="default" selectionMode="single">
+      <TableHeader>
+        <TableColumn align="center">번호</TableColumn>
+        <TableColumn>제목</TableColumn>
+        <TableColumn>작성자</TableColumn>
+        <TableColumn>날짜</TableColumn>
+        <TableColumn align="center">조회수</TableColumn>
+      </TableHeader>
 
-      <tbody>
-        {articleList &&
-          articleList.map(
-            ({ articleId, title, view, nickname, createdAt, hide }) => (
-              <Article
-                key={articleId}
-                articleId={articleId}
-                boardType={boardType}
-                title={title}
-                view={view}
-                nickname={nickname}
-                createdAt={createdAt}
-                hide={hide}
-              />
-            ),
+      {!articleList || articleList.length === 0 ? (
+        <TableBody emptyContent="게시글이 없어요">{[]}</TableBody>
+      ) : (
+        <TableBody>
+          {articleList.map(
+            ({ articleId, title, view, nickname, createdAt, hide }) => {
+              const formattedDate = formateDate(createdAt);
+              return (
+                <TableRow
+                  as={Link}
+                  href={`/boards/${boardType}/detail/${articleId}`}
+                  key={articleId}
+                >
+                  <TableCell align="center">{articleId}</TableCell>
+                  <TableCell className="flex items-center">
+                    {hide && <LockIcon className="mr-2 text-primary-300" />}
+                    {title}
+                  </TableCell>
+                  <TableCell>{nickname}</TableCell>
+                  <TableCell>{formattedDate}</TableCell>
+                  <TableCell>{view}</TableCell>
+                </TableRow>
+              );
+            },
           )}
-      </tbody>
-    </table>
+        </TableBody>
+      )}
+    </Table>
   );
 }
 

@@ -1,3 +1,5 @@
+import { Params } from 'next/dist/shared/lib/router/utils/route-matcher';
+
 export interface OnePageOfArticleList {
   maxPageNum: number;
   articleList: ArticleData[];
@@ -36,7 +38,7 @@ export type BoardType =
   | 'associate_member_board'
   | 'graduate_member_board';
 
-export interface BoardListParams {
+export interface BoardListParams extends Params {
   boardType: BoardType;
   page: string;
 }
