@@ -1,6 +1,5 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { usePopup } from '@app/_hooks';
-import { DefaultButton, LabelInput } from '@app/_components/common';
 import { LockIcon, UserIcon } from '@app/_components/icons';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@app/_constants/message';
 import { ICON_SIZE } from '@app/_constants/size';
@@ -8,6 +7,7 @@ import { PLACEHOLDER } from '@app/_constants/label';
 import { POPUP_DURATION } from '@app/_constants/duration';
 import { LoginRequest } from '@app/_types/loginTypes';
 import { useLoginMutation } from '@app/_hooks/apis/user';
+import { Button, Input } from '@nextui-org/react';
 
 function LoginForm() {
   const { register, handleSubmit } = useForm<LoginRequest>();
@@ -43,27 +43,30 @@ function LoginForm() {
 
   return (
     <form className="small-center flex flex-col gap-1">
-      <LabelInput
-        labelIcon={<UserIcon size={ICON_SIZE.small} />}
+      <Input
+        size="lg"
+        startContent={<UserIcon size={ICON_SIZE.small} />}
         {...idRegister}
         placeholder={PLACEHOLDER.id}
       />
-      <LabelInput
-        labelIcon={<LockIcon size={ICON_SIZE.small} />}
+      <Input
+        size="lg"
+        startContent={<LockIcon size={ICON_SIZE.small} />}
         {...pwRegister}
         placeholder={PLACEHOLDER.pw}
         type="password"
         autoComplete="off"
       />
-      <DefaultButton
+      <Button
+        size="lg"
+        color="primary"
         type="submit"
-        theme="primary"
         className="mt-3 w-full"
         onClick={handleSubmit(onValid, onInvalid)}
-        disabled={isPending}
+        isLoading={isPending}
       >
         로그인
-      </DefaultButton>
+      </Button>
     </form>
   );
 }
