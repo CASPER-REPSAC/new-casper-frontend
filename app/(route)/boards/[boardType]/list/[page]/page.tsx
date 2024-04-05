@@ -2,14 +2,19 @@ import { BoardListParams } from '@app/_types/boardTypes';
 import { getOnePageArticleList } from '@app/_service/article';
 import { BoardBody, BoardHeader, PostLink } from './_components';
 
+interface Props {
+  params: BoardListParams;
+  searchParams: { category: string };
+}
+
 async function BoardPage({
   params: { boardType, page },
-}: {
-  params: BoardListParams;
-}) {
+  searchParams: { category },
+}: Props) {
   const { maxPageNum: maxPage, articleList } = await getOnePageArticleList({
     boardType,
     page,
+    category,
   });
 
   return (

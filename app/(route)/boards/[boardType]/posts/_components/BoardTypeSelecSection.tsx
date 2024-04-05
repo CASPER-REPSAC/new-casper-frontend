@@ -1,4 +1,5 @@
 import { BOARD_TYPE } from '@app/_constants/mock';
+import useCategory from '@app/_hooks/apis/boards/useCategory';
 import { roleState } from '@app/_store/permissionAtoms';
 import { PostReqData } from '@app/_types/PostTypes';
 import { Select, SelectItem } from '@nextui-org/react';
@@ -19,23 +20,28 @@ function BoardTypeSelectSection({ defaultValue }: { defaultValue: string }) {
     ],
   };
 
-  const { setValue } = useFormContext<PostReqData>();
+  const { setValue, watch } = useFormContext<PostReqData>();
   const role = useRecoilValue(roleState);
+  const { data } = useCategory(watch('boardId'));
 
-  const handleChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
+  const handleBoardIdChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setValue('boardId', e.target.value);
+  };
+  const handleCategoryCahnge: ChangeEventHandler<HTMLSelectElement> = (e) => {
+    setValue('category', e.target.value);
   };
 
   return (
-    <div>
+    <div className="flex gap-4">
       <Select
         label="게시판"
+        isRequired
         aria-label="category select"
         defaultSelectedKeys={[defaultValue]}
         size="lg"
         className="w-40"
         disabledKeys={disableKeys[role]}
-        onChange={handleChange}
+        onChange={handleBoardIdChange}
       >
         <SelectItem key={BOARD_TYPE.notice} value={BOARD_TYPE.notice}>
           공지사항
@@ -53,6 +59,19 @@ function BoardTypeSelectSection({ defaultValue }: { defaultValue: string }) {
           자유 게시판
         </SelectItem>
       </Select>
+      {data && data?.categories.length > 0 && (
+        <Select
+          onChange={handleCategoryCahnge}
+          isRequired
+          label="카테고리"
+          size="lg"
+          className="w-40"
+        >
+          {data.categories.map((category) => (
+            <SelectItem key={category}>{category}</SelectItem>
+          ))}
+        </Select>
+      )}
     </div>
   );
 }
