@@ -7,7 +7,7 @@ function useCategory(boardId: string) {
 
   const queryFn = async () => {
     const { data } = await axios.get<Category>(
-      `/proxy/api/category?board=${boardId}`,
+      `/proxy/api/board/category?board=${boardId}`,
     );
     return data;
   };
