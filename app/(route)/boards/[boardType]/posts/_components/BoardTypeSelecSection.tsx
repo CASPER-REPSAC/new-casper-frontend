@@ -26,7 +26,9 @@ function BoardTypeSelectSection({ defaultValue }: { defaultValue: string }) {
 
   const handleBoardIdChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setValue('boardId', e.target.value);
+    setValue('category', 'all');
   };
+
   const handleCategoryCahnge: ChangeEventHandler<HTMLSelectElement> = (e) => {
     setValue('category', e.target.value);
   };
@@ -62,7 +64,6 @@ function BoardTypeSelectSection({ defaultValue }: { defaultValue: string }) {
       {data && data?.categories.length > 0 && (
         <Select
           onChange={handleCategoryCahnge}
-          isRequired
           label="카테고리"
           size="lg"
           className="w-40"
