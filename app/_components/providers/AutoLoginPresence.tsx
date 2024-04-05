@@ -20,7 +20,6 @@ function AutoLoginPresence() {
 
     const slientRefresh = setTimeout(() => {
       clientLoginMutate();
-      registerLogin();
     }, refreshTime);
 
     return () => clearTimeout(slientRefresh);

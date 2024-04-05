@@ -1,5 +1,6 @@
 'use client';
 
+import { LockIcon } from '@app/_components/icons';
 import formateDate from '@app/_utils/formatDate';
 import { useRouter } from 'next/navigation';
 
@@ -10,6 +11,7 @@ interface ArticleProps {
   nickname: string;
   createdAt: string;
   boardType: string;
+  hide: boolean;
 }
 const CLASS_NAME = {
   tr: `relative
@@ -43,6 +45,7 @@ function Article({
   view,
   nickname,
   createdAt,
+  hide,
 }: ArticleProps) {
   const { prefetch, push } = useRouter();
   const href = `/boards/${boardType}/detail/${articleId}`;
@@ -55,7 +58,12 @@ function Article({
       onClick={() => push(href)}
     >
       <td className={CLASS_NAME.subTd}>{articleId}</td>
-      <td className={CLASS_NAME.mainTd}>{title}</td>
+      <td className={CLASS_NAME.mainTd}>
+        <div className="flex items-center">
+          {title}
+          {hide && <LockIcon className="ml-auto text-primary-300" />}
+        </div>
+      </td>
       <td className={CLASS_NAME.subTd}>{nickname}</td>
       <td className={CLASS_NAME.subTd}>{formattedDate}</td>
       <td className={CLASS_NAME.subTd}>{view}</td>

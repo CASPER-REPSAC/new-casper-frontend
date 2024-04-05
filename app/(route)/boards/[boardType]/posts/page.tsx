@@ -7,6 +7,7 @@ import {
   TitleSection,
   WriteButtonSection,
   PostFormProvider,
+  OptionSection,
 } from './_components';
 
 interface Props {
@@ -24,6 +25,7 @@ function PostPage({ params }: Props) {
     <div className="flex flex-col gap-8">
       <PostFormProvider boardType={params.boardType}>
         <BoardTypeSelecSection defaultValue={params.boardType} />
+        <OptionSection />
         <TitleSection />
         <EditorSection />
         <WriteButtonSection />

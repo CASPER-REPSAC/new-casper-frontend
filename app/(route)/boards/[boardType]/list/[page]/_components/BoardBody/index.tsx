@@ -38,17 +38,20 @@ async function BoardBody({ params: { boardType, page } }: Props) {
 
       <tbody>
         {articleList &&
-          articleList.map(({ articleId, title, view, nickname, createdAt }) => (
-            <Article
-              key={articleId}
-              articleId={articleId}
-              boardType={boardType}
-              title={title}
-              view={view}
-              nickname={nickname}
-              createdAt={createdAt}
-            />
-          ))}
+          articleList.map(
+            ({ articleId, title, view, nickname, createdAt, hide }) => (
+              <Article
+                key={articleId}
+                articleId={articleId}
+                boardType={boardType}
+                title={title}
+                view={view}
+                nickname={nickname}
+                createdAt={createdAt}
+                hide={hide}
+              />
+            ),
+          )}
       </tbody>
     </table>
   );
