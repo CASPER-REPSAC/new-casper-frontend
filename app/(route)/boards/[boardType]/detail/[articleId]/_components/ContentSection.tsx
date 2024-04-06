@@ -1,22 +1,13 @@
 'use client';
 
 import dynamic from 'next/dynamic';
-import {
-  BlockNoteEditor,
-  BlockSchemaFromSpecs,
-  BlockSpecs,
-  InlineContentSchemaFromSpecs,
-  InlineContentSpecs,
-  StyleSchemaFromSpecs,
-  StyleSpecs,
-} from '@blocknote/core';
-import { ERROR_MESSAGE } from '@app/_constants/message';
-import { POPUP_DURATION } from '@app/_constants/duration';
-import { usePopup } from '@app/_hooks';
+import { Block } from '@blocknote/core';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { editableState } from '@app/_store/detailPageAtoms';
+import { editableStateFamily } from '@app/_store/detailPageAtoms';
 import { Skeleton } from '@app/_components/common';
+import { useParams } from 'next/navigation';
+import { BoardDetailParams } from '@app/_types/boardTypes';
 
 const BlockNote = dynamic(
   () => import('@app/_components/molecules/BlockNote'),
@@ -36,26 +27,13 @@ interface Props {
   articleContent: string;
 }
 function ContentSection({ articleContent }: Props) {
-  const editable = useRecoilValue(editableState);
+  const params = useParams<BoardDetailParams>();
+  const editable = useRecoilValue(editableStateFamily(params));
   const { setValue } = useFormContext();
-  const { openAndDeletePopup } = usePopup();
 
-  const onEditorContentChange = async (
-    editor: BlockNoteEditor<
-      BlockSchemaFromSpecs<BlockSpecs>,
-      InlineContentSchemaFromSpecs<InlineContentSpecs>,
-      StyleSchemaFromSpecs<StyleSpecs>
-    >,
-  ) => {
-    try {
-      const curContent = await JSON.stringify(editor.topLevelBlocks);
-      setValue('content', curContent);
-    } catch {
-      openAndDeletePopup({
-        message: ERROR_MESSAGE.unknown,
-        duration: POPUP_DURATION.short,
-      });
-    }
+  const onEditorChange = async (blocks: Block[]) => {
+    const blockString = await JSON.stringify(blocks);
+    setValue('content', blockString);
   };
 
   const initialContent = JSON.parse(articleContent);
@@ -63,12 +41,9 @@ function ContentSection({ articleContent }: Props) {
   return (
     <div className="mb-40 min-h-[300px]">
       <BlockNote
-        className="h-full"
-        options={{
-          editable,
-          initialContent,
-          onEditorContentChange,
-        }}
+        editable={editable}
+        onEditorChange={onEditorChange}
+        initialContent={initialContent}
       />
     </div>
   );

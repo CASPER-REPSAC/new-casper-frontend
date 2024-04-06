@@ -1,6 +1,6 @@
-import { DefaultButton } from '@app/_components/common';
 import { usePostArticleMutation } from '@app/_hooks/apis/boards';
 import { PostReqData } from '@app/_types/PostTypes';
+import { Button } from '@nextui-org/react';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
 function WriteButtonSection() {
@@ -13,14 +13,14 @@ function WriteButtonSection() {
 
   return (
     <div className="flex">
-      <DefaultButton
-        theme="primary"
+      <Button
         className="w-full"
+        color="primary"
         size="lg"
         onClick={handleSubmit(onValid)}
       >
         작성 하기
-      </DefaultButton>
+      </Button>
     </div>
   );
 }

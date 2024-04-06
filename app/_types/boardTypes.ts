@@ -43,6 +43,11 @@ export interface BoardListParams extends Params {
   page: string;
 }
 
+export interface BoardDetailParams extends Params {
+  boardType: BoardType;
+  id: string;
+}
+
 export interface CommentWriteRequest {
   text: string;
 }

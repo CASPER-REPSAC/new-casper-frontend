@@ -1,7 +1,8 @@
-import { atom } from 'recoil';
+import { BoardDetailParams } from '@app/_types/boardTypes';
+import { atomFamily } from 'recoil';
 
 // eslint-disable-next-line import/prefer-default-export
-export const editableState = atom<boolean>({
-  key: 'editable',
+export const editableStateFamily = atomFamily<boolean, BoardDetailParams>({
+  key: 'editableStateFamily',
   default: false,
 });
