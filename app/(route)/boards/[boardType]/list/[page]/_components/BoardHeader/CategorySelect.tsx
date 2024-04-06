@@ -12,7 +12,7 @@ function CategorySelect({ categories }: Props) {
   const { push } = useRouter();
 
   const handleSelectionChange = (e: ChangeEvent<HTMLSelectElement>) => {
-    push(`?category=${e.target.value}`);
+    if (e.target.value) push(`?category=${e.target.value}`);
   };
 
   return (
