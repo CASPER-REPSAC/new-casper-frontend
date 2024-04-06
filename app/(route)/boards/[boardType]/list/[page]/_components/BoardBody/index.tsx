@@ -26,8 +26,8 @@ function BoardBody({ articleList, maxPage }: Props) {
   return (
     <Table
       aria-label="article table"
-      layout="auto"
       color="default"
+      layout="fixed"
       selectionMode="single"
       bottomContent={
         <div className="flex-center">
@@ -36,11 +36,19 @@ function BoardBody({ articleList, maxPage }: Props) {
       }
     >
       <TableHeader>
-        <TableColumn align="center">번호</TableColumn>
-        <TableColumn>제목</TableColumn>
-        <TableColumn>작성자</TableColumn>
-        <TableColumn>날짜</TableColumn>
-        <TableColumn align="center">조회수</TableColumn>
+        <TableColumn className="text-center" width={50}>
+          번호
+        </TableColumn>
+        <TableColumn width={200}>제목</TableColumn>
+        <TableColumn className="text-center" width={100}>
+          작성자
+        </TableColumn>
+        <TableColumn className="text-center" width={100}>
+          날짜
+        </TableColumn>
+        <TableColumn className="text-center" width={50}>
+          조회수
+        </TableColumn>
       </TableHeader>
 
       {!articleList || articleList.length === 0 ? (
@@ -57,16 +65,16 @@ function BoardBody({ articleList, maxPage }: Props) {
                   href={`/boards/${boardType}/detail/${articleId}`}
                   key={articleId}
                 >
-                  <TableCell align="center">{articleId}</TableCell>
-                  <TableCell>
-                    <div className="flex items-center">
+                  <TableCell className="text-center">{articleId}</TableCell>
+                  <TableCell className="flex items-center">
+                    <span>
                       {hide && <LockIcon className="mr-2 text-primary-300" />}
-                      {title}
-                    </div>
+                    </span>
+                    <span className="truncate hover:text-clip">{title}</span>
                   </TableCell>
-                  <TableCell>{nickname}</TableCell>
-                  <TableCell>{formattedDate}</TableCell>
-                  <TableCell>{view}</TableCell>
+                  <TableCell className="text-center">{nickname}</TableCell>
+                  <TableCell className="text-center">{formattedDate}</TableCell>
+                  <TableCell className="text-center">{view}</TableCell>
                 </TableRow>
               );
             },
