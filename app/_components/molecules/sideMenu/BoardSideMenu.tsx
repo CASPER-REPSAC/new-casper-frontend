@@ -1,53 +1,69 @@
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
-import { usePathname } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { PATH } from '@app/_constants/urls';
 import { roleState } from '@app/_store/permissionAtoms';
-import { SideMenuLink, SideMenuWrapper } from './common';
+import { Link, Tab, Tabs } from '@nextui-org/react';
+import { BoardListParams } from '@app/_types/boardTypes';
+import { BOARD_TYPE } from '@app/_constants/mock';
+
+const { notice, full, associate, graduate, free } = PATH.boards;
+const TABS = [
+  {
+    key: BOARD_TYPE.notice,
+    href: `${notice.url}/list/1`,
+    name: notice.name,
+    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
+  },
+  {
+    key: BOARD_TYPE.full,
+    href: `${full.url}/list/1`,
+    name: full.name,
+    accessibleRoles: ['관리자', '정회원'],
+  },
+  {
+    key: BOARD_TYPE.graduate,
+    href: `${graduate.url}/list/1`,
+    name: graduate.name,
+    accessibleRoles: ['관리자', '정회원'],
+  },
+  {
+    key: BOARD_TYPE.associate,
+    href: `${associate.url}/list/1`,
+    name: associate.name,
+    accessibleRoles: ['관리자', '정회원', '준회원'],
+  },
+  {
+    key: BOARD_TYPE.freedom,
+    href: `${free.url}/list/1`,
+    name: free.name,
+    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
+  },
+];
 
 function BoardSideMenu() {
   const role = useRecoilValue(roleState);
-  const pathname = usePathname();
-  const { notice, full, associate, graduate, free } = PATH.boards;
-
+  const { boardType } = useParams<BoardListParams>();
   return (
-    <SideMenuWrapper>
-      <SideMenuLink
-        href={`${notice.url}/list/1`}
-        name={notice.name}
-        highlight={pathname.startsWith(PATH.boards.notice.url)}
-      />
+    <Tabs
+      aria-label="Tabs form"
+      classNames={{
+        tabList: 'flex-col',
+        panel: 'hidden',
+      }}
+      size="lg"
+      selectedKey={boardType}
+    >
+      {TABS.map(({ key, href, name, accessibleRoles }) => {
+        if (!accessibleRoles.includes(role)) return null;
 
-      {(role === '관리자' || role === '정회원') && (
-        <SideMenuLink
-          href={`${full.url}/list/1`}
-          name={full.name}
-          highlight={pathname.startsWith(PATH.boards.full.url)}
-        />
-      )}
-
-      {(role === '관리자' || role === '정회원' || role === '준회원') && (
-        <SideMenuLink
-          href={`${associate.url}/list/1`}
-          name={associate.name}
-          highlight={pathname.startsWith(PATH.boards.associate.url)}
-        />
-      )}
-
-      {(role === '관리자' || role === '정회원') && (
-        <SideMenuLink
-          href={`${graduate.url}/list/1`}
-          name={graduate.name}
-          highlight={pathname.startsWith(PATH.boards.graduate.url)}
-        />
-      )}
-
-      <SideMenuLink
-        href={`${free.url}/list/1`}
-        name={free.name}
-        highlight={pathname.startsWith(PATH.boards.free.url)}
-      />
-    </SideMenuWrapper>
+        return (
+          <Tab as={Link} key={key} href={href}>
+            {name}
+          </Tab>
+        );
+      })}
+    </Tabs>
   );
 }
 
