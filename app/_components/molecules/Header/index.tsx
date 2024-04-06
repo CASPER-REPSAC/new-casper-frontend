@@ -1,61 +1,141 @@
-import { memo, useState } from 'react';
-import { useRouter } from 'next/navigation';
-import { AnimatePresence, motion } from 'framer-motion';
-import { MenuIcon } from '@app/_components/icons';
-import { ICON_SIZE } from '@app/_constants/size';
+'use client';
+
+import { CasperLogo } from '@app/_components/common';
+import {
+  Avatar,
+  Button,
+  Divider,
+  Link,
+  Navbar,
+  NavbarBrand,
+  NavbarContent,
+  NavbarItem,
+  NavbarMenu,
+  NavbarMenuItem,
+  NavbarMenuToggle,
+  Tooltip,
+} from '@nextui-org/react';
+import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { PATH } from '@app/_constants/urls';
-import BarNaviagtion from './BarNavigation';
-import HambergerNavigation from './HambergerNavigation';
-import { CasperLogo, DefaultButton } from '../../common';
-import ThemeToggle from './ThemeToggle';
+import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
+import { useRecoilValue } from 'recoil';
+import {
+  loginState,
+  myProfileState,
+  roleState,
+} from '@app/_store/permissionAtoms';
+import MemberMenu from '../sideMenu/MemberMenu';
+import BoardMenu from '../sideMenu/BoardMenu';
+import UserMenu from '../sideMenu/UserMenu';
+
+const MENU_ITEMS = [
+  {
+    tooltip: <MemberMenu variant="light" />,
+    startWith: '/members',
+    title: 'Members',
+    href: PATH.members.active.url,
+  },
+  {
+    tooltip: <BoardMenu variant="light" />,
+    startWith: '/boards',
+    title: 'Boards',
+    href: `${PATH.boards.notice.url}/list/1`,
+  },
+];
 
 function Header() {
-  const { push } = useRouter();
-
-  const [isHambergerMenuOpen, setHambergerMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setHambergerMenuOpen((cur) => !cur);
-  };
-
-  const closeMenu = () => {
-    setHambergerMenuOpen(false);
-  };
+  const pathname = usePathname();
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const role = useRecoilValue(roleState);
+  const isLoggedIn = useRecoilValue(loginState);
+  const myProfile = useRecoilValue(myProfileState);
 
   return (
-    <>
-      <AnimatePresence>
-        {isHambergerMenuOpen && <HambergerNavigation onBgClick={closeMenu} />}
-      </AnimatePresence>
-      <motion.div
-        className="sticky top-0 z-header flex h-14 w-full bg-white shadow 
-        backdrop-blur
-        dark:border-b
-        dark:border-solid
-        dark:border-b-slate-300/10
-        dark:bg-slate-900/10
-        "
-      >
-        <div className="common-center flex h-full items-center justify-between">
-          <DefaultButton className="block lg:hidden" onClick={toggleMenu}>
-            <MenuIcon size={ICON_SIZE.large} />
-          </DefaultButton>
+    <Navbar
+      isBordered
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
+      classNames={{
+        item: [
+          'flex',
+          'relative',
+          'h-full',
+          'items-center',
+          "data-[active=true]:after:content-['']",
+          'data-[active=true]:after:absolute',
+          'data-[active=true]:after:bottom-0',
+          'data-[active=true]:after:left-0',
+          'data-[active=true]:after:right-0',
+          'data-[active=true]:after:h-[2px]',
+          'data-[active=true]:after:rounded-[2px]',
+          'data-[active=true]:after:bg-primary',
+        ],
+      }}
+    >
+      <NavbarContent className="lg:hidden" justify="start">
+        <NavbarMenuToggle />
+      </NavbarContent>
 
-          <button
-            type="button"
-            aria-label="logo"
-            className="cursor-pointer"
-            onClick={() => push(PATH.home.url)}
-          >
-            <CasperLogo />
-          </button>
-          <ThemeToggle />
+      <NavbarBrand>
+        <CasperLogo />
+      </NavbarBrand>
 
-          <BarNaviagtion className="hidden lg:flex" />
-        </div>
-      </motion.div>
-    </>
+      <NavbarContent className="hidden gap-4 lg:flex" justify="center">
+        {MENU_ITEMS.map(({ startWith, title, tooltip, href }) => (
+          <NavbarItem key={title} isActive={pathname.startsWith(startWith)}>
+            <Tooltip content={tooltip}>
+              <Link color="foreground" href={href}>
+                {title}
+              </Link>
+            </Tooltip>
+          </NavbarItem>
+        ))}
+      </NavbarContent>
+
+      <NavbarContent justify="end">
+        {isLoggedIn ? (
+          <NavbarItem>
+            <Tooltip content={<UserMenu />}>
+              <Link href={PATH.user.mypage.url}>
+                <Avatar src={myProfile?.image} />
+              </Link>
+            </Tooltip>
+          </NavbarItem>
+        ) : (
+          <NavbarItem>
+            <Button color="primary" as={Link} href={PATH.user.login.url}>
+              Login
+            </Button>
+          </NavbarItem>
+        )}
+      </NavbarContent>
+
+      <NavbarMenu>
+        <Divider />
+        <h1 className="text-xl font-bold text-foreground-600">Boards</h1>
+
+        {BOARD_TABS.map(({ name, key, href, accessibleRoles, startWith }) => {
+          if (!accessibleRoles.includes(role)) return null;
+          return (
+            <NavbarMenuItem key={key} isActive={pathname.startsWith(startWith)}>
+              <Link className="w-full" href={href} size="lg">
+                {name}
+              </Link>
+            </NavbarMenuItem>
+          );
+        })}
+        <h1 className="text-xl font-bold text-foreground-600">Members</h1>
+        {MEMBER_TABS.map(({ key, href, name, startWith }) => (
+          <NavbarMenuItem key={key} isActive={pathname.startsWith(startWith)}>
+            <Link className="w-full" href={href} size="lg">
+              {name}
+            </Link>
+          </NavbarMenuItem>
+        ))}
+      </NavbarMenu>
+    </Navbar>
   );
 }
 
-export default memo(Header);
+export default Header;

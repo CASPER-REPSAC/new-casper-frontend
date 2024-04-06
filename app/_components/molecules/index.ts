@@ -2,8 +2,8 @@
 
 export { default as BlockNote } from './BlockNote';
 
-export { default as BoardSideMenu } from './sideMenu/BoardSideMenu';
-export { default as MemberSideMenu } from './sideMenu/MemberSideMenu';
+export { default as BoardMenu } from './sideMenu/BoardMenu';
+export { default as MemberMenu } from './sideMenu/MemberMenu';
 
 export { default as Header } from './Header';
 export { default as Footer } from './Footer';

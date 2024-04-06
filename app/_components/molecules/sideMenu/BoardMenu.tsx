@@ -1,3 +1,5 @@
+'use client';
+
 import { memo } from 'react';
 import { useRecoilValue } from 'recoil';
 import { useParams } from 'next/navigation';
@@ -41,18 +43,24 @@ const TABS = [
   },
 ];
 
-function BoardSideMenu() {
+interface Props {
+  size?: 'lg' | 'sm' | 'md';
+  variant?: 'solid' | 'light' | 'underlined' | 'bordered';
+}
+
+function BoardMenu({ size, variant }: Props) {
   const role = useRecoilValue(roleState);
   const { boardType } = useParams<BoardListParams>();
   return (
     <Tabs
-      aria-label="Tabs form"
+      aria-label="board side menu"
       classNames={{
         tabList: 'flex-col',
         panel: 'hidden',
       }}
-      size="lg"
+      size={size}
       selectedKey={boardType}
+      variant={variant}
     >
       {TABS.map(({ key, href, name, accessibleRoles }) => {
         if (!accessibleRoles.includes(role)) return null;
@@ -67,4 +75,4 @@ function BoardSideMenu() {
   );
 }
 
-export default memo(BoardSideMenu);
+export default memo(BoardMenu);
