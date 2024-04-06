@@ -1,5 +1,6 @@
 import { ClientFormProvider } from '@app/_components/molecules';
 import { getArticleDetail } from '@app/_service/article';
+import { Divider } from '@nextui-org/react';
 import {
   ButtonSection,
   ContentSection,
@@ -18,13 +19,14 @@ export default async function ArticleDetailPage({
   return (
     <ClientFormProvider>
       <div>
-        <div className="mb-4 flex items-center justify-between border-b border-solid border-slate-300 py-2">
-          <h1 className="text-4xl">{data.title}</h1>
+        <div className="flex items-center justify-between py-2">
+          <h1 className="w-full break-all text-4xl">{data.title}</h1>
           <ButtonSection articleId={articleId} userId={data.userId} />
         </div>
+        <Divider />
         <ContentSection articleContent={data.content} />
         <div className="mb-32">
-          <AuthorSection nickname={data.nickname} />
+          <AuthorSection nickname={data.nickname} profile={data.userId} />
         </div>
         <div className="mb-20">
           <CommentEditorSection articleId={articleId} />

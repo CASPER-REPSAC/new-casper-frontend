@@ -7,7 +7,7 @@ import {
 import { editableStateFamily } from '@app/_store/detailPageAtoms';
 import { myProfileState } from '@app/_store/permissionAtoms';
 import { BoardDetailParams } from '@app/_types/boardTypes';
-import { Button } from '@nextui-org/react';
+import { Button, ButtonGroup } from '@nextui-org/react';
 import { useParams } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -46,21 +46,31 @@ function ButtonSection({ articleId, userId }: Props) {
   }
 
   return (
-    <div className="flex shrink-0 gap-4">
+    <ButtonGroup className="flex shrink-0">
       {editable ? (
-        <Button size="sm" color="success" onClick={completeModification}>
+        <Button
+          variant="flat"
+          size="sm"
+          color="success"
+          onClick={completeModification}
+        >
           완료
         </Button>
       ) : (
-        <Button size="sm" color="primary" onClick={changeEditMode}>
+        <Button
+          variant="flat"
+          size="sm"
+          color="primary"
+          onClick={changeEditMode}
+        >
           수정
         </Button>
       )}
 
-      <Button size="sm" color="danger" onClick={deleteArticle}>
+      <Button variant="flat" size="sm" color="danger" onClick={deleteArticle}>
         삭제
       </Button>
-    </div>
+    </ButtonGroup>
   );
 }
 

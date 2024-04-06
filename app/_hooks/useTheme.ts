@@ -3,7 +3,7 @@ import { useLayoutEffect, useState } from 'react';
 import { useRecoilState } from 'recoil';
 
 function useTheme() {
-  const [theme, setTheme] = useState('dark');
+  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
   const [recoilTheme, setRecoilTheme] = useRecoilState(themeState);
 
   useLayoutEffect(() => {
