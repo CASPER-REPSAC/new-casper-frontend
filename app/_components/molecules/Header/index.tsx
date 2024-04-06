@@ -56,7 +56,11 @@ function Header() {
       isBordered
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
+      maxWidth="full"
+      className="common-center "
       classNames={{
+        wrapper: 'p-0',
+        base: 'bg-inherit',
         item: [
           'flex',
           'relative',
@@ -81,7 +85,7 @@ function Header() {
         <CasperLogo />
       </NavbarBrand>
 
-      <NavbarContent className="hidden gap-4 lg:flex" justify="center">
+      <NavbarContent className="hidden gap-8 lg:flex" justify="center">
         {MENU_ITEMS.map(({ startWith, title, tooltip, href }) => (
           <NavbarItem key={title} isActive={pathname.startsWith(startWith)}>
             <Tooltip content={tooltip}>
