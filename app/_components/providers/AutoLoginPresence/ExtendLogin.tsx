@@ -16,12 +16,11 @@ function ExtendLogin() {
     const { exp: expireDate } = parseJwt(accessToken);
     const expireDateMs = expireDate * 1000;
     const now = new Date().getTime();
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const refreshTime = expireDateMs - now - 60 * 1000;
 
     const slientRefresh = setTimeout(() => {
       autoLoginMutate();
-    }, 60 * 1000);
+    }, refreshTime);
 
     return () => clearTimeout(slientRefresh);
   }, [accessToken, autoLoginMutate]);

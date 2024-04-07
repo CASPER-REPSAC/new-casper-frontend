@@ -11,7 +11,7 @@ function MemberLayout({ children }: Props) {
   return (
     <SideMenuLayout
       pageTitle={PAGE_TITLE.members}
-      sideMenu={<MemberMenu size="lg" />}
+      sideMenu={<MemberMenu size="lg" variant="solid" />}
     >
       {children}
     </SideMenuLayout>
