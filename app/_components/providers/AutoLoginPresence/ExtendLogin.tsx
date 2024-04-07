@@ -6,7 +6,7 @@ import { parseJwt } from '@app/_utils/jwt';
 import { memo, useCallback, useEffect } from 'react';
 import { useRecoilValue } from 'recoil';
 
-function AutoLoginPresence() {
+function ExtendLogin() {
   const { mutate: autoLoginMutate } = useAutoLoginMutation();
   const accessToken = useRecoilValue(accessTokenState);
 
@@ -25,10 +25,11 @@ function AutoLoginPresence() {
     return () => clearTimeout(slientRefresh);
   }, [accessToken, autoLoginMutate]);
 
-  useEffect(autoLoginMutate, [autoLoginMutate]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+
   useEffect(registerLogin, [registerLogin]);
 
   return <></>;
 }
 
-export default memo(AutoLoginPresence);
+export default memo(ExtendLogin);

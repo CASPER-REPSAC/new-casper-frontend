@@ -26,6 +26,7 @@ function useAutoLoginMutation() {
       message: POPUP_MESSAGE.autoLoginSuccess,
       duration: POPUP_DURATION.medium,
     });
+    localStorage.setItem('isLoggedIn', 'true');
   };
 
   const onError = ({ response }: AxiosError<ErrorResponse>) => {

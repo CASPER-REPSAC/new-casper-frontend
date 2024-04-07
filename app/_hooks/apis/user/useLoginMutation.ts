@@ -7,26 +7,25 @@ import { useSetRecoilState } from 'recoil';
 import { POPUP_DURATION } from '@app/_constants/duration';
 import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
 import { LOGIN_API } from '@app/_constants/apiUrl';
-import { redirect, revalidateTag } from '@app/_actions';
 import { ErrorResponse } from '@app/_types/errorTypes';
+import { useRouter } from 'next/navigation';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
   const setMyProfile = useSetRecoilState(myProfileState);
+  const { push } = useRouter();
   const { openAndDeletePopup } = usePopup();
 
   const mutationFn = (params: LoginRequest) =>
     axios.post<LoginResponse>(`/proxy${LOGIN_API}`, params);
 
   const onLoinSuccess = async ({ data }: AxiosResponse<LoginResponse>) => {
-    await revalidateTag('accessToken');
-    await redirect('/');
-
     openAndDeletePopup({
       message: POPUP_MESSAGE.loginSuccess,
       duration: POPUP_DURATION.medium,
     });
-
+    push('/');
+    localStorage.setItem('isLoggedIn', 'true');
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
   };
