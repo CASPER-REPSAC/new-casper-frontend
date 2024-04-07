@@ -1,3 +1,4 @@
+import { Suspense } from 'react';
 import {
   JoinFormProvider,
   JoinFunnel,
@@ -11,7 +12,9 @@ function JoinPage() {
       <JoinFormProvider>
         <form className="flex min-h-[400px] flex-col items-center justify-between gap-4">
           <ProgressBar />
-          <JoinFunnel />
+          <Suspense>
+            <JoinFunnel />
+          </Suspense>
           <NextButton />
         </form>
       </JoinFormProvider>

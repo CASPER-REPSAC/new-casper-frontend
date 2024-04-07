@@ -16,7 +16,6 @@ function SyncThemeScript() {
       default:
         htmlElement.classList.remove('dark');
     }
-    alert('test');
   };
 
   const scriptStr = `
