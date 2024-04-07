@@ -1,6 +1,8 @@
 import { useParams } from 'next/navigation';
 import { Link, Tab, Tabs } from '@nextui-org/react';
 import { MEMBER_TABS } from '@app/_constants/menu';
+import { useRecoilValue } from 'recoil';
+import { roleState } from '@app/_store/permissionAtoms';
 
 interface Props {
   size?: 'lg' | 'sm' | 'md';
@@ -8,6 +10,7 @@ interface Props {
 }
 function MemberMenu({ size, variant }: Props) {
   const { memberType } = useParams<{ memberType: string }>();
+  const role = useRecoilValue(roleState);
 
   return (
     <Tabs
@@ -20,7 +23,9 @@ function MemberMenu({ size, variant }: Props) {
       size={size}
       selectedKey={memberType}
     >
-      {MEMBER_TABS.map(({ key, href, name }) => {
+      {MEMBER_TABS.map(({ key, href, name, accessibleRoles }) => {
+        if (!accessibleRoles.includes(role)) return null;
+
         return (
           <Tab as={Link} key={key} href={href}>
             {name}

@@ -8,7 +8,7 @@ import { ErrorResponse } from '@app/_types/errorTypes';
 import { AutoLoginResponse } from '@app/_types/loginTypes';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useSetRecoilState } from 'recoil';
-import { revalidateTag } from 'next/cache';
+import { revalidateTag } from '@app/_actions';
 
 function useAutoLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -20,13 +20,13 @@ function useAutoLoginMutation() {
 
   const onSuccess = async ({ data }: AxiosResponse<AutoLoginResponse>) => {
     await revalidateTag('accessToken');
+    console.log('auto login success');
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
     openAndDeletePopup({
       message: POPUP_MESSAGE.autoLoginSuccess,
       duration: POPUP_DURATION.medium,
     });
-    localStorage.setItem('isLoggedIn', 'true');
   };
 
   const onError = ({ response }: AxiosError<ErrorResponse>) => {

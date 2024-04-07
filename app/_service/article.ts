@@ -23,7 +23,6 @@ export async function getArticleDetail(articleId: string) {
       tags: ['accessToken'],
     },
   });
-
   if (!res.ok) {
     const error: ErrorResponse = await res.json();
     throw new CustomError(error);

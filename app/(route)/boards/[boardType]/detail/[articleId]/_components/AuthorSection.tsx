@@ -9,6 +9,7 @@ interface Props {
 }
 
 function AuthorSection({ nickname, profile, introduce }: Props) {
+  console.log('t?');
   return (
     <div className="flex items-center gap-8 ">
       <User

@@ -1,17 +1,19 @@
 import { HomeIcon, MailIcon } from '@app/_components/icons';
 import { ICON_SIZE } from '@app/_constants/size';
-import { selectedMemberState } from '@app/_store/memberCardAtoms';
+import { MemberProfile } from '@app/_types/userTypes';
+import { Divider } from '@nextui-org/react';
 import { ReactNode } from 'react';
-import { useRecoilValue } from 'recoil';
 
-function DetailDescription() {
-  const selectedMember = useRecoilValue(selectedMemberState);
-
-  if (!selectedMember) return <></>;
-  const { name, introduce, nickname, role, homepage, email } = selectedMember;
-
+function DetailDescription({
+  name,
+  introduce,
+  nickname,
+  role,
+  homepage,
+  email,
+}: MemberProfile) {
   return (
-    <section className="flex w-full flex-col gap-6">
+    <section className="flex w-full flex-col gap-12">
       <DetailRow title="정보">
         <div className="flex items-center gap-4">
           <div className="text-xl">{name}</div>
@@ -21,7 +23,7 @@ function DetailDescription() {
       </DetailRow>
 
       <DetailRow title="소개">
-        <div>{introduce}</div>
+        <p>{introduce}</p>
       </DetailRow>
 
       <DetailRow title="소셜 정보">
@@ -49,9 +51,8 @@ function DetailRow({
 }) {
   return (
     <div>
-      <div className="mb-1 border-b border-solid border-gray-600 pb-1 text-2xl font-bold">
-        {title}
-      </div>
+      <div className="mb-1  pb-1 text-2xl font-bold">{title}</div>
+      <Divider />
       {children}
     </div>
   );

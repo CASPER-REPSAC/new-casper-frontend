@@ -10,4 +10,5 @@ export const MEMBER_TYPE = {
   active: 'active',
   rest: 'rest',
   graduate: 'graduate',
+  all: 'all',
 };

@@ -7,18 +7,28 @@ export const MEMBER_TABS = [
     href: PATH.members.active.url,
     name: PATH.members.active.name,
     startWith: PATH.members.active.url,
+    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
   },
   {
     key: MEMBER_TYPE.rest,
     href: PATH.members.rest.url,
     name: PATH.members.rest.name,
     startWith: PATH.members.rest.url,
+    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
   },
   {
     key: MEMBER_TYPE.graduate,
     href: PATH.members.graduate.url,
     name: PATH.members.graduate.name,
     startWith: PATH.members.graduate.url,
+    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
+  },
+  {
+    key: MEMBER_TYPE.all,
+    href: PATH.members.all.url,
+    name: PATH.members.all.name,
+    startWith: PATH.members.all.url,
+    accessibleRoles: ['관리자'],
   },
 ];
 

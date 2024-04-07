@@ -91,6 +91,10 @@ const PATH = {
       name: '졸업생',
       url: '/members/graduate',
     },
+    all: {
+      name: '전체',
+      url: '/members/all',
+    },
   },
   user: {
     login: {
