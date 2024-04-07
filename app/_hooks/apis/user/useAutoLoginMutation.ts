@@ -8,7 +8,7 @@ import { ErrorResponse } from '@app/_types/errorTypes';
 import { AutoLoginResponse } from '@app/_types/loginTypes';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useSetRecoilState } from 'recoil';
-import { revalidateTag } from '@app/_actions';
+import { revalidateTag } from 'next/cache';
 
 function useAutoLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);

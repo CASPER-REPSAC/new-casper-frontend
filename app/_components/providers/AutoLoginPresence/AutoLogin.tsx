@@ -1,19 +1,16 @@
 'use client';
 
 import useAutoLoginMutation from '@app/_hooks/apis/user/useAutoLoginMutation';
-import { useEffect } from 'react';
+import { memo, useEffect } from 'react';
 
 function AutoLogin() {
   const { mutate: autoLoginMutate } = useAutoLoginMutation();
 
   useEffect(() => {
-    const isLoggedIn = localStorage.getItem('isLoggedIn');
-    if (isLoggedIn) {
-      autoLoginMutate();
-    }
+    autoLoginMutate();
   }, [autoLoginMutate]);
 
   return <></>;
 }
 
-export default AutoLogin;
+export default memo(AutoLogin);

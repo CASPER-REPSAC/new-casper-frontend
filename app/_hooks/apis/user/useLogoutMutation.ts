@@ -31,7 +31,6 @@ function useLogoutMutation() {
       message: POPUP_MESSAGE.logoutSuccess,
       duration: POPUP_DURATION.medium,
     });
-    localStorage.setItem('isLoggedIn', 'false');
   };
 
   const onError = () => {

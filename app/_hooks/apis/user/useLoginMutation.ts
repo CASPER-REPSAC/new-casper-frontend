@@ -9,6 +9,7 @@ import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
 import { LOGIN_API } from '@app/_constants/apiUrl';
 import { ErrorResponse } from '@app/_types/errorTypes';
 import { useRouter } from 'next/navigation';
+import { revalidateTag } from '@app/_actions';
 
 export default function useLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
@@ -20,12 +21,12 @@ export default function useLoginMutation() {
     axios.post<LoginResponse>(`/proxy${LOGIN_API}`, params);
 
   const onLoinSuccess = async ({ data }: AxiosResponse<LoginResponse>) => {
+    await revalidateTag('accessToken');
     openAndDeletePopup({
       message: POPUP_MESSAGE.loginSuccess,
       duration: POPUP_DURATION.medium,
     });
     push('/');
-    localStorage.setItem('isLoggedIn', 'true');
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
   };
