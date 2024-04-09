@@ -1,14 +1,9 @@
-import { useLayoutEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function useTheme() {
-  const localStorageTheme =
-    localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+  const [themeState, setThemeState] = useState<'dark' | 'light'>('light');
 
-  const [themeState, setThemeState] = useState<'dark' | 'light'>(
-    localStorageTheme,
-  );
-
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (themeState === 'light') {
       document.documentElement.classList.remove('dark');
       return;
@@ -18,6 +13,13 @@ function useTheme() {
       document.documentElement.classList.add('dark');
     }
   }, [themeState]);
+
+  useEffect(() => {
+    const theme = localStorage.getItem('theme');
+    if ((theme && theme === 'light') || theme === 'dark') {
+      setThemeState(theme);
+    }
+  }, []);
 
   const setTheme = (theme: 'light' | 'dark') => {
     setThemeState(theme);

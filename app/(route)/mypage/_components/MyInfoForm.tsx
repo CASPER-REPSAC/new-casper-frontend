@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
-import { LabelInput, LabelTextarea } from '@app/_components/common';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { MyProfile } from '@app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
 import { myProfileState, roleState } from '@app/_store/permissionAtoms';
+import { Input, Textarea } from '@nextui-org/react';
 
 function MyInfoFrom() {
   const { register } = useFormContext<MyProfile>();
@@ -15,43 +15,56 @@ function MyInfoFrom() {
   const nicknameRegister = register('nickname', { required: true });
   const roleRegister = register('role', { required: true, disabled: true });
   const homepageRegister = register('homepage', { required: false });
+  const emailRegister = register('email');
 
   return (
     <>
-      <LabelTextarea
+      <Textarea
         label={INPUT_LABEL.introduce}
-        {...introduceRegister}
+        defaultValue={myProfile?.introduce}
         placeholder={PLACEHOLDER.introduce}
         autoComplete="off"
-        defaultValue={myProfile?.introduce}
         rows={4}
+        {...introduceRegister}
       />
-      <LabelInput
+      <Input
         label={INPUT_LABEL.name}
-        {...nameRegister}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
         defaultValue={myProfile?.name}
+        {...nameRegister}
       />
-      <LabelInput
+      <Input
         label={INPUT_LABEL.nickname}
-        {...nicknameRegister}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
         defaultValue={myProfile?.nickname}
+        {...nicknameRegister}
       />
-      <LabelInput
+      <Input
         label={INPUT_LABEL.role}
-        {...roleRegister}
         placeholder={PLACEHOLDER.role}
         autoComplete="off"
         defaultValue={role}
+        isReadOnly
+        isDisabled
+        {...roleRegister}
       />
-      <LabelInput
+      <Input
+        type="url"
         label={INPUT_LABEL.homepage}
-        {...homepageRegister}
+        defaultValue={myProfile?.homepage}
         placeholder={PLACEHOLDER.homepage}
         autoComplete="off"
+        {...homepageRegister}
+      />
+      <Input
+        type="email"
+        label={INPUT_LABEL.email}
+        placeholder={PLACEHOLDER.email}
+        defaultValue={myProfile?.email}
+        autoComplete="off"
+        {...emailRegister}
       />
     </>
   );

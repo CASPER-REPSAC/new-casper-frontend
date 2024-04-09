@@ -38,3 +38,5 @@ export { BsPencil as PencilIcon } from 'react-icons/bs';
 export { FaSun as SunIcon, FaMoon as MoonIcon } from 'react-icons/fa';
 export { PiSirenFill as SirenIcon } from 'react-icons/pi';
 export { CiCircleCheck as CheckIcon } from 'react-icons/ci';
+
+export { IoCameraOutline as CameraIcon } from 'react-icons/io5';

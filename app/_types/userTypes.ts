@@ -20,11 +20,19 @@ export interface MemberProfile {
   image: string | null;
 }
 
+export interface ProfileImageUpdateRequest {
+  profile: File;
+}
+
 export interface ProfileUpdateRequset {
-  nickname: string;
-  homepage: string;
-  introduce: string;
-  image: string;
+  id: string;
+  pw?: string;
+  email?: string;
+  name?: string;
+  nickname?: string;
+  homepage?: string;
+  introduce?: string;
+  profileImgPath?: string;
 }
 
 export interface ProfileUpdateResponse {

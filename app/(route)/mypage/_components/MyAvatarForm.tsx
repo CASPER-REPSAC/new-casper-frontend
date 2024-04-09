@@ -1,6 +1,7 @@
 import { useFormContext } from 'react-hook-form';
 import { useEffect, useId, useState } from 'react';
-import Image from 'next/image';
+import { Avatar } from '@nextui-org/react';
+import { CameraIcon } from '@app/_components/icons';
 
 function MyAvatarForm() {
   const { register, watch } = useFormContext();
@@ -18,14 +19,15 @@ function MyAvatarForm() {
 
   return (
     <label
-      className="flex-center input relative h-52 w-52 cursor-pointer self-center overflow-hidden rounded-full hover:brightness-75"
+      className="flex-center  relative h-52 w-52 cursor-pointer self-center overflow-hidden rounded-full"
       htmlFor={uniqueId}
     >
-      {previewSrc ? (
-        <Image className="object-cover" src={previewSrc} alt="preview" fill />
-      ) : (
-        <>이미지 변경하기</>
-      )}
+      <Avatar
+        className="h-full w-full"
+        src={previewSrc}
+        fallback={<CameraIcon size={30} />}
+      />
+
       <input
         className="hidden"
         {...register('avatar')}
