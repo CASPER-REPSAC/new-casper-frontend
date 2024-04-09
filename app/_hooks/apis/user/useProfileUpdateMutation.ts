@@ -11,8 +11,8 @@ function useProfileUpdateMutation() {
   const { openAndDeletePopup } = usePopup();
   const bearerToken = useRecoilValue(bearerTokenState);
 
-  const mutationFn = (params: ProfileUpdateRequset) =>
-    axios.post(`/proxy${PROFILE_UPDATE_API}`, params, {
+  const mutationFn = async (data: ProfileUpdateRequset) =>
+    axios.post(`/proxy${PROFILE_UPDATE_API}`, data, {
       headers: {
         Authorization: bearerToken,
       },
@@ -20,14 +20,14 @@ function useProfileUpdateMutation() {
 
   const onSuccess = () => {
     openAndDeletePopup({
-      message: '수정 되었습니다.',
+      message: '프로필이 업데이트 되었어요.',
       duration: POPUP_DURATION.medium,
     });
   };
 
   const onError = () => {
     openAndDeletePopup({
-      message: '수정 실패.',
+      message: '프로필 업데이트 실패했어요.',
       duration: POPUP_DURATION.medium,
     });
   };

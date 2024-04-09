@@ -10,7 +10,7 @@ function MyInfoFrom() {
   const myProfile = useRecoilValue(myProfileState);
   const role = useRecoilValue(roleState);
 
-  const introduceRegister = register('introduce', { required: false });
+  const introduceRegister = register('introduce');
   const nameRegister = register('name', { required: true });
   const nicknameRegister = register('nickname', { required: true });
   const roleRegister = register('role', { required: true, disabled: true });
@@ -21,7 +21,6 @@ function MyInfoFrom() {
     <>
       <Textarea
         label={INPUT_LABEL.introduce}
-        defaultValue={myProfile?.introduce}
         placeholder={PLACEHOLDER.introduce}
         autoComplete="off"
         rows={4}
@@ -31,14 +30,14 @@ function MyInfoFrom() {
         label={INPUT_LABEL.name}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
-        defaultValue={myProfile?.name}
+        defaultValue={myProfile.name}
         {...nameRegister}
       />
       <Input
         label={INPUT_LABEL.nickname}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
-        defaultValue={myProfile?.nickname}
+        defaultValue={myProfile.nickname}
         {...nicknameRegister}
       />
       <Input
@@ -53,7 +52,7 @@ function MyInfoFrom() {
       <Input
         type="url"
         label={INPUT_LABEL.homepage}
-        defaultValue={myProfile?.homepage}
+        defaultValue={myProfile.homepage}
         placeholder={PLACEHOLDER.homepage}
         autoComplete="off"
         {...homepageRegister}
@@ -62,7 +61,7 @@ function MyInfoFrom() {
         type="email"
         label={INPUT_LABEL.email}
         placeholder={PLACEHOLDER.email}
-        defaultValue={myProfile?.email}
+        defaultValue={myProfile.email}
         autoComplete="off"
         {...emailRegister}
       />

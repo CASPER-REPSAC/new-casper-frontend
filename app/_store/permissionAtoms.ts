@@ -1,9 +1,18 @@
 import { MyProfile } from '@app/_types/userTypes';
 import { atom, selector } from 'recoil';
 
-export const myProfileState = atom<MyProfile | undefined>({
+export const myProfileState = atom<MyProfile>({
   key: 'myProfile',
-  default: undefined,
+  default: {
+    id: '',
+    role: undefined,
+    name: '',
+    nickname: '',
+    email: '',
+    introduce: '',
+    homepage: '',
+    image: '',
+  },
 });
 
 export const roleState = selector<'손님' | '관리자' | '정회원' | '준회원'>({

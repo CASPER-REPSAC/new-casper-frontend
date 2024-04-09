@@ -1,6 +1,6 @@
 export interface MyProfile {
   id: string;
-  role: 'associate' | 'active' | 'rest' | 'graduate' | 'admin';
+  role: 'associate' | 'active' | 'rest' | 'graduate' | 'admin' | undefined;
   name: string;
   nickname: string;
   email: string;
@@ -20,7 +20,7 @@ export interface MemberProfile {
   image: string | null;
 }
 
-export interface ProfileImageUpdateRequest {
+export interface ProfileImageUploadRequest {
   profile: File;
 }
 
@@ -30,8 +30,20 @@ export interface ProfileUpdateRequset {
   email?: string;
   name?: string;
   nickname?: string;
-  homepage?: string;
   introduce?: string;
+  homepage?: string;
+  profileImgPath?: string;
+}
+
+export interface ProfileUpdateForm {
+  id: string;
+  pw?: string;
+  email?: string;
+  name?: string;
+  nickname?: string;
+  introduce?: string;
+  homepage?: string;
+  profileImg?: FileList;
   profileImgPath?: string;
 }
 
