@@ -20,7 +20,6 @@ function useAutoLoginMutation() {
 
   const onSuccess = async ({ data }: AxiosResponse<AutoLoginResponse>) => {
     await revalidateTag('accessToken');
-    console.log('auto login success');
     setAccessToken(data.accessToken);
     setMyProfile(data.myInfo);
     openAndDeletePopup({

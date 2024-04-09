@@ -5,7 +5,6 @@ import {
   PopupWrapper,
   QueryWrapper,
   RecoilRootWrapper,
-  SyncThemeScript,
   NextUIWrapper,
   AutoLoginPresence,
 } from '@app/_components/providers';
@@ -19,9 +18,6 @@ export const metadata = {
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
     <html lang="en" className="font-sans">
-      <head>
-        <SyncThemeScript />
-      </head>
       <body
         className="
         bg-gradient-to-br

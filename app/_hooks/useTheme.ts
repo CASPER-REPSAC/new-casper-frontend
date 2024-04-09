@@ -1,16 +1,30 @@
-import themeState from '@app/_store/themeAtom';
 import { useLayoutEffect, useState } from 'react';
-import { useRecoilState } from 'recoil';
 
 function useTheme() {
-  const [theme, setTheme] = useState<'dark' | 'light'>('dark');
-  const [recoilTheme, setRecoilTheme] = useRecoilState(themeState);
+  const localStorageTheme =
+    localStorage.getItem('theme') === 'dark' ? 'dark' : 'light';
+
+  const [themeState, setThemeState] = useState<'dark' | 'light'>(
+    localStorageTheme,
+  );
 
   useLayoutEffect(() => {
-    setTheme(recoilTheme);
-  }, [recoilTheme]);
+    if (themeState === 'light') {
+      document.documentElement.classList.remove('dark');
+      return;
+    }
+    if (themeState === 'dark') {
+      localStorage.setItem('theme', 'dark');
+      document.documentElement.classList.add('dark');
+    }
+  }, [themeState]);
 
-  return { theme, setTheme: setRecoilTheme };
+  const setTheme = (theme: 'light' | 'dark') => {
+    setThemeState(theme);
+    localStorage.setItem('theme', theme);
+  };
+
+  return { theme: themeState, setTheme };
 }
 
 export default useTheme;
