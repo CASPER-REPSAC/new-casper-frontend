@@ -20,8 +20,6 @@ import { usePathname } from 'next/navigation';
 import { PATH } from '@app/_constants/urls';
 import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
 import { useRecoilValue } from 'recoil';
-import { MoonIcon, SunIcon } from '@app/_components/icons';
-import { useTheme } from '@app/_hooks';
 import {
   loginState,
   myProfileState,
@@ -30,6 +28,7 @@ import {
 import MemberMenu from '../sideMenu/MemberMenu';
 import BoardMenu from '../sideMenu/BoardMenu';
 import UserMenu from '../sideMenu/UserMenu';
+import DarkModeSwitch from './DarkModeSwitch';
 
 const MENU_ITEMS = [
   {
@@ -47,7 +46,6 @@ const MENU_ITEMS = [
 ];
 
 function Header() {
-  const { theme, setTheme } = useTheme();
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const role = useRecoilValue(roleState);
@@ -84,31 +82,13 @@ function Header() {
       </NavbarContent>
 
       <NavbarBrand>
-        <CasperLogo />
+        <Link href={PATH.home.url}>
+          <CasperLogo />
+        </Link>
       </NavbarBrand>
       <NavbarContent>
         <NavbarItem>
-          {theme === 'light' ? (
-            <Button
-              onClick={() => {
-                setTheme('dark');
-              }}
-              variant="light"
-              color="default"
-            >
-              <SunIcon />
-            </Button>
-          ) : (
-            <Button
-              onClick={() => {
-                setTheme('light');
-              }}
-              variant="light"
-              color="default"
-            >
-              <MoonIcon />
-            </Button>
-          )}
+          <DarkModeSwitch />
         </NavbarItem>
       </NavbarContent>
 
