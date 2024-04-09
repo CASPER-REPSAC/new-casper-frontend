@@ -60,10 +60,9 @@ function Header() {
       isMenuOpen={isMenuOpen}
       onMenuOpenChange={setIsMenuOpen}
       maxWidth="full"
-      className="common-center "
       classNames={{
-        wrapper: 'p-0',
-        base: 'bg-inherit',
+        wrapper: 'p-0 common-center ',
+        base: 'bg-inherit shadow',
         item: [
           'flex',
           'relative',
