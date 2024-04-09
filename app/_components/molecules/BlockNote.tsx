@@ -5,7 +5,7 @@ import '@blocknote/react/style.css';
 
 import { BlockNoteView, useCreateBlockNote } from '@blocknote/react';
 import { Block, PartialBlock } from '@blocknote/core';
-import { useTheme } from '@app/_hooks';
+import { useTheme } from 'next-themes';
 
 interface Props {
   editable?: boolean;
@@ -23,7 +23,7 @@ function BlockNote({ editable = true, onEditorChange, initialContent }: Props) {
         sideMenu={false}
         editor={editor}
         editable={editable}
-        theme={theme}
+        theme={theme === 'light' ? 'light' : 'dark'}
         onChange={() => {
           const allBlocks: Block[] = editor.document;
           onEditorChange(allBlocks);

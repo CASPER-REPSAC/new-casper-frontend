@@ -26,6 +26,7 @@ const BlockNote = dynamic(
 interface Props {
   articleContent: string;
 }
+
 function ContentSection({ articleContent }: Props) {
   const params = useParams<BoardDetailParams>();
   const editable = useRecoilValue(editableStateFamily(params));

@@ -9,7 +9,6 @@ function useTheme() {
       return;
     }
     if (themeState === 'dark') {
-      localStorage.setItem('theme', 'dark');
       document.documentElement.classList.add('dark');
     }
   }, [themeState]);
@@ -19,7 +18,7 @@ function useTheme() {
     if ((theme && theme === 'light') || theme === 'dark') {
       setThemeState(theme);
     }
-  }, []);
+  }, [setThemeState]);
 
   const setTheme = (theme: 'light' | 'dark') => {
     setThemeState(theme);

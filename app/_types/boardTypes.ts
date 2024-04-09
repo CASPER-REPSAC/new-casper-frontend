@@ -17,19 +17,22 @@ export interface ArticleData {
 }
 
 export interface ArticleDetail {
-  articleId: number;
-  userId: string;
-  boardId: string;
-  category: number;
-  createdAt: string;
-  modifiedAt: string;
-  content: string;
-  nickname: string;
-  title: string;
-  hide: boolean;
-  notice: boolean;
-  view: number;
-  file: boolean;
+  article: {
+    articleId: number;
+    userId: string;
+    boardId: string;
+    category: number;
+    createdAt: string;
+    modifiedAt: string;
+    content: string;
+    nickname: string;
+    title: string;
+    hide: boolean;
+    notice: boolean;
+    view: number;
+  };
+
+  files: string[];
 }
 
 export type BoardType =

@@ -9,6 +9,7 @@ import {
   AutoLoginPresence,
 } from '@app/_components/providers';
 import { DefaultLayout } from '@app/_components/layout';
+import { ThemeProvider } from '@app/_components/providers/ThemeProvider';
 
 export const metadata = {
   title: 'Casper',
@@ -17,7 +18,7 @@ export const metadata = {
 
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="font-sans">
+    <html lang="en" className="font-sans" suppressHydrationWarning>
       <body
         className="
         bg-gradient-to-br
@@ -34,11 +35,13 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <QueryWrapper>
           <RecoilRootWrapper>
-            <AutoLoginPresence />
-            <NextUIWrapper>
-              <PopupWrapper />
-              <DefaultLayout>{children}</DefaultLayout>
-            </NextUIWrapper>
+            <ThemeProvider>
+              <AutoLoginPresence />
+              <NextUIWrapper>
+                <PopupWrapper />
+                <DefaultLayout>{children}</DefaultLayout>
+              </NextUIWrapper>
+            </ThemeProvider>
           </RecoilRootWrapper>
         </QueryWrapper>
       </body>
