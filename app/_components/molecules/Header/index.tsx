@@ -25,25 +25,9 @@ import {
   myProfileState,
   roleState,
 } from '@app/_store/permissionAtoms';
-import MemberMenu from '../sideMenu/MemberMenu';
-import BoardMenu from '../sideMenu/BoardMenu';
 import UserMenu from '../sideMenu/UserMenu';
 import DarkModeSwitch from './DarkModeSwitch';
-
-const MENU_ITEMS = [
-  {
-    tooltip: <MemberMenu variant="light" />,
-    startWith: '/members',
-    title: 'Members',
-    href: PATH.members.active.url,
-  },
-  {
-    tooltip: <BoardMenu variant="light" />,
-    startWith: '/boards',
-    title: 'Boards',
-    href: `${PATH.boards.notice.url}/list/1`,
-  },
-];
+import NavSection from './NavSection';
 
 function Header() {
   const pathname = usePathname();
@@ -92,17 +76,7 @@ function Header() {
         </NavbarItem>
       </NavbarContent>
 
-      <NavbarContent className="hidden gap-8 lg:flex" justify="center">
-        {MENU_ITEMS.map(({ startWith, title, tooltip, href }) => (
-          <NavbarItem key={title} isActive={pathname.startsWith(startWith)}>
-            <Tooltip content={tooltip}>
-              <Link color="foreground" href={href}>
-                {title}
-              </Link>
-            </Tooltip>
-          </NavbarItem>
-        ))}
-      </NavbarContent>
+      <NavSection />
 
       <NavbarContent justify="end">
         {isLoggedIn ? (
