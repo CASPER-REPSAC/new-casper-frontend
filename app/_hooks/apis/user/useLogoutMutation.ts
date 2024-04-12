@@ -26,7 +26,16 @@ function useLogoutMutation() {
   const onSuccess = async () => {
     await revalidateTag('accessToken');
     setAccessToken(undefined);
-    setMyProfile(undefined);
+    setMyProfile({
+      id: '',
+      role: undefined,
+      name: '',
+      nickname: '',
+      email: '',
+      introduce: '',
+      homepage: '',
+      image: '',
+    });
     openAndDeletePopup({
       message: POPUP_MESSAGE.logoutSuccess,
       duration: POPUP_DURATION.medium,
