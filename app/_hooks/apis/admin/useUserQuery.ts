@@ -1,9 +1,9 @@
 import { MyProfile } from '@app/_types/userTypes';
-import { useQuery } from '@tanstack/react-query';
+import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
 function useUserQuery(role: string) {
-  const queryKey = ['user-list'];
+  const queryKey = ['user-list', role];
 
   const queryFn = async () => {
     const { data } = await axios.get<{ memberList: MyProfile[] }>(
@@ -29,6 +29,7 @@ function useUserQuery(role: string) {
         },
       );
     },
+    placeholderData: keepPreviousData,
   });
 }
 
