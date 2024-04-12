@@ -36,7 +36,7 @@ function UserTable() {
         <div className="flex gap-4">
           <RoleSelect />
           <Input
-            label="Search"
+            label="검색"
             startContent={<SearchIcon />}
             placeholder="검색기능 개발 중이예요."
           />
