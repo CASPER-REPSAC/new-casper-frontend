@@ -12,7 +12,6 @@ function SearchInput() {
     <>
       <Input
         autoComplete="off"
-        radius="sm"
         startContent={<SearchIcon size={ICON_SIZE.small} />}
         {...register('search')}
         label="검색"

@@ -17,7 +17,7 @@ function CategorySelect({ categories }: Props) {
 
   return (
     <Select
-      radius="sm"
+      disallowEmptySelection
       className="w-28"
       label="카테고리"
       onChange={handleSelectionChange}
