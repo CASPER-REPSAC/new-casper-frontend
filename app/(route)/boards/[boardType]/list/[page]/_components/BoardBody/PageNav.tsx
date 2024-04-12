@@ -1,8 +1,8 @@
 ';use client';
 
 import { BoardListParams } from '@app/_types/boardTypes';
-import { Link, Pagination, PaginationItem } from '@nextui-org/react';
-import { useParams } from 'next/navigation';
+import { Pagination } from '@nextui-org/react';
+import { useParams, useRouter } from 'next/navigation';
 
 interface Props {
   maxPage: number;
@@ -10,19 +10,14 @@ interface Props {
 
 function PageNav({ maxPage }: Props) {
   const { page: pageParma, boardType } = useParams<BoardListParams>();
+  const { push } = useRouter();
 
   return (
     <Pagination
       showControls
       total={maxPage}
       page={Number(pageParma)}
-      renderItem={({ page, ...props }) => (
-        <PaginationItem
-          as={Link}
-          href={`/boards/${boardType}/list/${page}`}
-          {...props}
-        />
-      )}
+      onChange={(page) => push(`/boards/${boardType}/list/${page}`)}
     />
   );
 }

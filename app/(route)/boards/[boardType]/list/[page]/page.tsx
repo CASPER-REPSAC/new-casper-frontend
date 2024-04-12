@@ -17,6 +17,8 @@ async function BoardPage({
     category,
   });
 
+  console.log(articleList, maxPage);
+
   return (
     <div className="flex w-full flex-col gap-4">
       <BoardHeader params={{ boardType, page }} />
