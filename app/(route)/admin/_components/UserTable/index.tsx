@@ -15,7 +15,8 @@ import {
 import { useRecoilValue } from 'recoil';
 import { roleState } from '@app/_store/adminAtoms';
 import { SearchIcon } from '@app/_components/icons';
-import RoleSelect from './RoleSelect';
+import RoleFilterSelect from './RoleFilterSelect';
+import RoleUpdateSelect from './RoleUpdateSelect';
 
 const COLUMNS = [
   { key: 'role', label: '권한' },
@@ -34,7 +35,7 @@ function UserTable() {
       aria-label="유저 목록"
       topContent={
         <div className="flex gap-4">
-          <RoleSelect />
+          <RoleFilterSelect />
           <Input
             label="검색"
             startContent={<SearchIcon />}
@@ -50,9 +51,18 @@ function UserTable() {
         {data
           ? (item) => (
               <TableRow key={item.id}>
-                {(columnKey) => (
-                  <TableCell>{getKeyValue(item, columnKey)}</TableCell>
-                )}
+                {(columnKey) => {
+                  if (columnKey === 'role')
+                    return (
+                      <TableCell>
+                        <RoleUpdateSelect
+                          id={item.id}
+                          defaultValue={getKeyValue(item, columnKey)}
+                        />
+                      </TableCell>
+                    );
+                  return <TableCell>{getKeyValue(item, columnKey)}</TableCell>;
+                }}
               </TableRow>
             )
           : []}

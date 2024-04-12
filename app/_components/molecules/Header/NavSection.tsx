@@ -33,11 +33,17 @@ function NavSection() {
     <NavbarContent className="hidden gap-8 lg:flex" justify="center">
       {MENU_ITEMS.map(({ startWith, title, tooltip, href }) => (
         <NavbarItem key={title} isActive={pathname.startsWith(startWith)}>
-          <Tooltip content={tooltip}>
+          {tooltip ? (
+            <Tooltip content={tooltip}>
+              <Link color="foreground" href={href}>
+                {title}
+              </Link>
+            </Tooltip>
+          ) : (
             <Link color="foreground" href={href}>
               {title}
             </Link>
-          </Tooltip>
+          )}
         </NavbarItem>
       ))}
     </NavbarContent>

@@ -1,11 +1,7 @@
 import UserTable from './_components/UserTable';
 
 function AdminPage() {
-  return (
-    <>
-      <UserTable />
-    </>
-  );
+  return <UserTable />;
 }
 
 export default AdminPage;
