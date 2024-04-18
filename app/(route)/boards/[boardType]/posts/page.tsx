@@ -1,15 +1,14 @@
 import { redirect } from 'next/navigation';
 import { getAccessToken } from '@app/_utils/cookie';
 import { PATH } from '@app/_constants/urls';
-import {
-  BoardTypeSelecSection,
-  EditorSection,
-  TitleSection,
-  WriteButtonSection,
-  PostFormProvider,
-  OptionSection,
-} from './_components';
+
 import FileInputSection from './_components/FileInputSection';
+import PostFormProvider from './_components/PostFormProvider';
+import BoardTypeSelecSection from './_components/BoardTypeSelecSection';
+import TitleSection from './_components/TitleSection';
+import OptionSection from './_components/OptionSection';
+import EditorSection from './_components/EditorSection';
+import WriteButtonSection from './_components/WriteButtonSection';
 
 interface Props {
   params: { boardType: string };

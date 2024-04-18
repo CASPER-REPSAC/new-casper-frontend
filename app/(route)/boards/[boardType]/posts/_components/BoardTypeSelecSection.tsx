@@ -1,3 +1,5 @@
+'use client';
+
 import { BOARD_TYPE } from '@app/_constants/mock';
 import useCategory from '@app/_hooks/apis/boards/useCategory';
 import { roleState } from '@app/_store/permissionAtoms';
@@ -36,6 +38,7 @@ function BoardTypeSelectSection({ defaultValue }: { defaultValue: string }) {
   return (
     <div className="flex gap-4">
       <Select
+        variant="underlined"
         label="게시판"
         isRequired
         aria-label="category select"
@@ -63,6 +66,7 @@ function BoardTypeSelectSection({ defaultValue }: { defaultValue: string }) {
       </Select>
       {data && data?.categories.length > 0 && (
         <Select
+          variant="underlined"
           onChange={handleCategoryCahnge}
           label="카테고리"
           size="lg"

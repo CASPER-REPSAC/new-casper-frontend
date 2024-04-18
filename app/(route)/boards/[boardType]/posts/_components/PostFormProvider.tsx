@@ -1,3 +1,5 @@
+'use client';
+
 import { PostReqData } from '@app/_types/PostTypes';
 import { ReactNode } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
@@ -11,7 +13,6 @@ function PostFormProvider({ children, boardType }: Props) {
   const defaultValues: PostReqData = {
     boardId: boardType,
     category: 'all',
-    file: false,
     hide: false,
     notice: false,
     title: '',

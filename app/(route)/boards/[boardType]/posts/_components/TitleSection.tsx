@@ -1,3 +1,5 @@
+'use client';
+
 import { KeyboardEventHandler } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { PLACEHOLDER } from '@app/_constants/label';
@@ -19,7 +21,7 @@ function TitleSection() {
     <Input
       size="lg"
       {...titleRegister}
-      label="제목"
+      variant="underlined"
       placeholder={PLACEHOLDER.title}
       onKeyDown={preventSubmit}
     />

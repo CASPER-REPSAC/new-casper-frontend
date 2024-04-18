@@ -32,7 +32,8 @@ function FileViewer() {
           className="group flex items-center justify-between rounded-lg px-4 py-1 hover:bg-default-200"
           key={file.name}
         >
-          <span>{file.name}</span>
+          <span className="truncate">{file.name}</span>
+
           <Button
             className="invisible group-hover:visible"
             size="sm"
