@@ -12,9 +12,26 @@ function FileInputSection() {
 
   const fileInputId = useId();
   const [isActive, setIsActive] = useState(false);
-  const { setValue, getValues, watch } = useFormContext<PostReqData>();
-  const preventDefault: DragEventHandler<HTMLLabelElement> = (e) => {
+  const { setValue, getValues } = useFormContext<PostReqData>();
+
+  const onDragOver: DragEventHandler<HTMLLabelElement> = (e) => {
     e.preventDefault();
+  };
+
+  const onDragEnter: DragEventHandler<HTMLLabelElement> = () => {
+    setIsActive(true);
+  };
+
+  const onDragLeave: DragEventHandler<HTMLLabelElement> = ({
+    currentTarget,
+    relatedTarget,
+  }) => {
+    if (
+      relatedTarget instanceof HTMLElement &&
+      currentTarget.contains(relatedTarget)
+    )
+      return;
+    setIsActive(false);
   };
 
   const onDrop: DragEventHandler<HTMLLabelElement> = (e) => {
@@ -48,19 +65,13 @@ function FileInputSection() {
     setValue('file', mergedFileArray);
   };
 
-  const files = watch('file');
-
   return (
     <label
       aria-label="file input"
       htmlFor={fileInputId}
-      onDragOverCapture={() => {
-        setIsActive(true);
-      }}
-      onDragLeaveCapture={() => {
-        setIsActive(false);
-      }}
-      onDragOver={preventDefault}
+      onDragEnter={onDragEnter}
+      onDragLeave={onDragLeave}
+      onDragOver={onDragOver}
       onDrop={onDrop}
       className={`flex-center min-h-44 rounded-lg border-3 border-dashed 
       ${isActive ? ACTIVE_CLASS : DEFAULT_CLASS}`}
@@ -72,7 +83,7 @@ function FileInputSection() {
         type="file"
         multiple
       />
-      <FileViewer files={files || null} />
+      <FileViewer />
     </label>
   );
 }

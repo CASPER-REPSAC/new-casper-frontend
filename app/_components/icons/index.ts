@@ -16,6 +16,7 @@ export {
   AiOutlineGithub as GithubIcon,
   AiOutlineCopyrightCircle as CopyrightIcon,
   AiOutlineCheckSquare as CheckSquareIcon,
+  AiFillFileAdd as FileAddIcon,
 } from 'react-icons/ai';
 
 export {
