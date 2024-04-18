@@ -1,7 +1,7 @@
 export interface PostReqData {
   boardId: string;
   category: string;
-  file: boolean;
+  file?: File[];
   hide: boolean;
   notice: boolean;
   title: string;

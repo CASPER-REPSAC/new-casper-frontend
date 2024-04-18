@@ -9,6 +9,7 @@ import {
   PostFormProvider,
   OptionSection,
 } from './_components';
+import FileInputSection from './_components/FileInputSection';
 
 interface Props {
   params: { boardType: string };
@@ -28,6 +29,7 @@ function PostPage({ params }: Props) {
         <OptionSection />
         <TitleSection />
         <EditorSection />
+        <FileInputSection />
         <WriteButtonSection />
       </PostFormProvider>
     </div>
