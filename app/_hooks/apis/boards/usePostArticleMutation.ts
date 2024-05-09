@@ -14,12 +14,24 @@ export default function usePostArticleMutation() {
   const { openAndDeletePopup } = usePopup();
   const { push } = useRouter();
   const accessToken = useRecoilValue(accessTokenState);
-  const mutationFn = (params: PostReqData) =>
-    axios.post(`/proxy${POST_ARTICLE_API}`, params, {
+
+  const mutationFn = ({ files, ...createArticleDto }: PostReqData) => {
+    const formData = new FormData();
+    const createArticleDtoBlob = new Blob([JSON.stringify(createArticleDto)], {
+      type: 'application/json',
+    });
+
+    files?.forEach((file) => {
+      formData.append('files', file);
+    });
+    formData.append('createArticleDto', createArticleDtoBlob);
+
+    return axios.postForm(`/proxy${POST_ARTICLE_API}`, formData, {
       headers: {
         Authorization: `Bearer ${accessToken}`,
       },
     });
+  };
 
   const onSuccess = () => {
     openAndDeletePopup({

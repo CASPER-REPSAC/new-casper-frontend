@@ -1,12 +1,12 @@
 export interface PostReqData {
   boardId: string;
   category: string;
-  file?: File[];
   hide: boolean;
   notice: boolean;
   title: string;
   content: string;
   photo: string;
+  files?: File[];
 }
 
 export interface UpdateReqData {

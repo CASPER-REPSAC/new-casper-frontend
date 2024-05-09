@@ -38,31 +38,31 @@ function FileInputSection() {
     e.preventDefault();
     const { files } = e.dataTransfer;
     const newFileArray = Array.from(files);
-    const { file: prevFileArray } = getValues();
+    const { files: prevFileArray } = getValues();
 
     if (!prevFileArray) {
-      setValue('file', newFileArray);
+      setValue('files', newFileArray);
       return;
     }
 
     const mergedFileArray = mergeFileArray(prevFileArray, newFileArray);
-    setValue('file', mergedFileArray);
+    setValue('files', mergedFileArray);
     setIsActive(false);
   };
 
   const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { file: prevFileArray } = getValues();
+    const { files: prevFileArray } = getValues();
     const { files: newFileList } = e.target;
     if (!newFileList) return;
     const newFileArray = Array.from(newFileList);
 
     if (!prevFileArray) {
-      setValue('file', newFileArray);
+      setValue('files', newFileArray);
       return;
     }
 
     const mergedFileArray = mergeFileArray(prevFileArray, newFileArray);
-    setValue('file', mergedFileArray);
+    setValue('files', mergedFileArray);
   };
 
   return (

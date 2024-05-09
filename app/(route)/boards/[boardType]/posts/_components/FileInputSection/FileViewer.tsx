@@ -6,7 +6,7 @@ import { useFormContext } from 'react-hook-form';
 
 function FileViewer() {
   const { watch, setValue } = useFormContext<PostReqData>();
-  const files = watch('file');
+  const files = watch('files');
 
   if (!files || files.length === 0)
     return (
@@ -21,7 +21,7 @@ function FileViewer() {
   const removeFile = (e: MouseEvent<HTMLButtonElement>, idx: number) => {
     const copiedFiles = [...files];
     copiedFiles.splice(idx, 1);
-    setValue('file', copiedFiles);
+    setValue('files', copiedFiles);
     e.preventDefault();
   };
 
