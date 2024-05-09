@@ -25,8 +25,9 @@ function BoardBody({ articleList, maxPage }: Props) {
 
   return (
     <Table
+      removeWrapper
       aria-label="article table"
-      color="default"
+      color="primary"
       layout="fixed"
       selectionMode="single"
       bottomContent={

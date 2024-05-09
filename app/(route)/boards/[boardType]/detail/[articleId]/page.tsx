@@ -14,19 +14,21 @@ export default async function ArticleDetailPage({
 }: {
   params: { articleId: string };
 }) {
-  const { article } = await getArticleDetail(articleId);
+  const {
+    article: { title, userId, content, nickname },
+  } = await getArticleDetail(articleId);
 
   return (
     <ClientFormProvider>
       <div>
         <div className="flex items-center justify-between py-2">
-          <h1 className="w-full break-all text-4xl">{article.title}</h1>
-          <ButtonSection articleId={articleId} userId={article.userId} />
+          <h1 className="w-full break-all text-4xl">{title}</h1>
+          <ButtonSection articleId={articleId} userId={userId} />
         </div>
         <Divider />
-        <ContentSection articleContent={article.content} />
+        <ContentSection articleContent={content} />
         <div className="mb-32">
-          <AuthorSection nickname={article.nickname} profile={article.userId} />
+          <AuthorSection nickname={nickname} profile={userId} />
         </div>
         <div className="mb-20">
           <CommentEditorSection articleId={articleId} />

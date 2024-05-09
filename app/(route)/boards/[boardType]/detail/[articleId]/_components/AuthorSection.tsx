@@ -9,6 +9,7 @@ interface Props {
 }
 
 function AuthorSection({ nickname, profile, introduce }: Props) {
+  console.log(profile);
   return (
     <div className="flex items-center gap-8 ">
       <User
@@ -20,7 +21,7 @@ function AuthorSection({ nickname, profile, introduce }: Props) {
         description={introduce}
         avatarProps={{
           showFallback: true,
-          src: profile,
+          src: '',
           size: 'lg',
           isBordered: true,
         }}
