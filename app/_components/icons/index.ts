@@ -4,8 +4,6 @@ export {
   AiOutlineMenu as MenuIcon,
   AiOutlineHome as HomeIcon,
   AiOutlineClose as CloseIcon,
-  AiOutlineLogout as LogoutIcon,
-  AiOutlineLogin as LoginIcon,
   AiOutlineUser as UserIcon,
   AiFillStar as StarIcon,
   AiOutlineSearch as SearchIcon,
@@ -20,6 +18,8 @@ export {
 } from 'react-icons/ai';
 
 export {
+  MdLogout as LogoutIcon,
+  MdLogin as LoginIcon,
   MdKeyboardArrowLeft as LeftArrowIcon,
   MdKeyboardArrowRight as RightArrowIcon,
   MdKeyboardArrowDown as DownArrowIcon,

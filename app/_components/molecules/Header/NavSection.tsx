@@ -44,7 +44,7 @@ function NavSection() {
     <NavigationMenu className="hidden gap-8 lg:flex">
       <NavigationMenuList>
         {MENU_ITEMS.map(({ title, desc, tabs }) => (
-          <NavigationMenuItem>
+          <NavigationMenuItem key={title}>
             <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
             <NavigationMenuContent>
               <div className="flex min-w-96 grid-cols-3 justify-between gap-2 px-8 py-4">

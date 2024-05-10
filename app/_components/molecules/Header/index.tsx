@@ -1,93 +1,40 @@
 'use client';
 
+import Link from 'next/link';
+
+import { Sheet, SheetTrigger } from '@app/_shadcn/components/ui/sheet';
 import { CasperLogo } from '@app/_components/common';
-import {
-  Avatar,
-  Link,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Tooltip,
-} from '@nextui-org/react';
-import { usePathname } from 'next/navigation';
-import { PATH } from '@app/_constants/urls';
-import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
-import { useRecoilValue } from 'recoil';
+import { MenuIcon } from '@app/_components/icons';
 import { Button } from '@app/_shadcn/components/ui/button';
-import {
-  loginState,
-  myProfileState,
-  roleState,
-} from '@app/_store/permissionAtoms';
-import UserMenu from '../sideMenu/UserMenu';
+import { PATH } from '@app/_constants/urls';
 import DarkModeSwitch from './DarkModeSwitch';
 import NavSection from './NavSection';
+import SideNavSheet from './SideNavSheet';
+import UserButton from './UserButton';
 
 function Header() {
-  const pathname = usePathname();
-  // const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const role = useRecoilValue(roleState);
-  const isLoggedIn = useRecoilValue(loginState);
-  const myProfile = useRecoilValue(myProfileState);
-
   return (
-    <Navbar>
-      <NavbarContent className="lg:hidden" justify="start">
-        <NavbarMenuToggle />
-      </NavbarContent>
+    <header className="w-screen shadow">
+      <div className="common-center flex h-16 w-full items-center justify-between">
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button className="lg:hidden" variant="outline">
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+          <SideNavSheet />
+        </Sheet>
 
-      <NavbarBrand>
         <Link href={PATH.home.url}>
           <CasperLogo />
         </Link>
-      </NavbarBrand>
-      <NavbarContent>
-        <NavbarItem>
-          <DarkModeSwitch />
-        </NavbarItem>
-      </NavbarContent>
+        <DarkModeSwitch />
 
-      <NavSection />
+        <NavSection />
 
-      {isLoggedIn ? (
-        <Tooltip content={<UserMenu />}>
-          <Link href={PATH.user.mypage.url}>
-            <Avatar src={myProfile?.image} />
-          </Link>
-        </Tooltip>
-      ) : (
-        <Button color="primary" asChild>
-          <Link href={PATH.user.login.url}>Login</Link>
-        </Button>
-      )}
-
-      <NavbarMenu>
-        <h1 className="text-foreground-600 text-xl font-bold">Boards</h1>
-
-        {BOARD_TABS.map(({ name, key, href, accessibleRoles, startWith }) => {
-          if (!accessibleRoles.includes(role)) return null;
-          return (
-            <NavbarMenuItem key={key} isActive={pathname.startsWith(startWith)}>
-              <Link className="w-full" href={href} size="lg">
-                {name}
-              </Link>
-            </NavbarMenuItem>
-          );
-        })}
-        <h1 className="text-foreground-600 text-xl font-bold">Members</h1>
-        {MEMBER_TABS.map(({ key, href, name, startWith }) => (
-          <NavbarMenuItem key={key} isActive={pathname.startsWith(startWith)}>
-            <Link className="w-full" href={href} size="lg">
-              {name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
+        <UserButton />
+      </div>
+    </header>
   );
 }
 
