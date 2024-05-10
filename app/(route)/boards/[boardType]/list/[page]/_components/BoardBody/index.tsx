@@ -69,7 +69,7 @@ function BoardBody({ articleList, maxPage }: Props) {
                   <TableCell className="text-center">{articleId}</TableCell>
                   <TableCell className="flex items-center">
                     <span>
-                      {hide && <LockIcon className="mr-2 text-primary-300" />}
+                      {hide && <LockIcon className="text-primary-300 mr-2" />}
                     </span>
                     <span className="truncate hover:text-clip">{title}</span>
                   </TableCell>

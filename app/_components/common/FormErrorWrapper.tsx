@@ -6,7 +6,7 @@ interface Props {
 
 function FormErrorWrapper({ children }: Props) {
   return (
-    <ul className="flex flex-col gap-2 text-sm text-danger-400">{children}</ul>
+    <ul className="text-danger-400 flex flex-col gap-2 text-sm">{children}</ul>
   );
 }
 

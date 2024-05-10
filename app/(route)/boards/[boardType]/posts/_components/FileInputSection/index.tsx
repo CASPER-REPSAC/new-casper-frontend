@@ -73,7 +73,7 @@ function FileInputSection() {
       onDragLeave={onDragLeave}
       onDragOver={onDragOver}
       onDrop={onDrop}
-      className={`flex-center min-h-44 rounded-lg border-3 border-dashed 
+      className={`flex-center border-3 min-h-44 rounded-lg border-dashed 
       ${isActive ? ACTIVE_CLASS : DEFAULT_CLASS}`}
     >
       <input

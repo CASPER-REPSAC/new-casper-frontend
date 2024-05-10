@@ -29,7 +29,7 @@ function FileViewer() {
     <div className="flex w-full flex-col gap-1 p-10">
       {files.map((file, idx) => (
         <div
-          className="group flex items-center justify-between rounded-lg px-4 py-1 hover:bg-default-200"
+          className="hover:bg-default-200 group flex items-center justify-between rounded-lg px-4 py-1"
           key={file.name}
         >
           <span className="truncate">{file.name}</span>

@@ -98,7 +98,7 @@ function Header() {
 
       <NavbarMenu>
         <Divider />
-        <h1 className="text-xl font-bold text-foreground-600">Boards</h1>
+        <h1 className="text-foreground-600 text-xl font-bold">Boards</h1>
 
         {BOARD_TABS.map(({ name, key, href, accessibleRoles, startWith }) => {
           if (!accessibleRoles.includes(role)) return null;
@@ -110,7 +110,7 @@ function Header() {
             </NavbarMenuItem>
           );
         })}
-        <h1 className="text-xl font-bold text-foreground-600">Members</h1>
+        <h1 className="text-foreground-600 text-xl font-bold">Members</h1>
         {MEMBER_TABS.map(({ key, href, name, startWith }) => (
           <NavbarMenuItem key={key} isActive={pathname.startsWith(startWith)}>
             <Link className="w-full" href={href} size="lg">

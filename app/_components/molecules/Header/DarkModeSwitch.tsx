@@ -1,5 +1,5 @@
 import { MoonIcon, SunIcon } from '@app/_components/icons';
-import { Switch } from '@nextui-org/react';
+import { Toggle } from '@app/_shadcn/components/ui/toggle';
 import { useTheme } from 'next-themes';
 import { useEffect, useState } from 'react';
 
@@ -12,8 +12,8 @@ function DarkModeSwitch() {
   }, []);
   if (!mounted) return null;
 
-  const onValueChange = (isSelected: boolean) => {
-    if (isSelected) {
+  const toggleTheme = () => {
+    if (theme === 'dark') {
       setTheme('light');
       return;
     }
@@ -21,14 +21,9 @@ function DarkModeSwitch() {
   };
 
   return (
-    <Switch
-      isSelected={theme === 'light'}
-      size="lg"
-      color="primary"
-      startContent={<SunIcon />}
-      endContent={<MoonIcon />}
-      onValueChange={onValueChange}
-    />
+    <Toggle size="sm" onClick={toggleTheme}>
+      {theme === 'light' ? <SunIcon /> : <MoonIcon />}
+    </Toggle>
   );
 }
 
