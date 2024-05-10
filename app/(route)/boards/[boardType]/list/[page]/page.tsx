@@ -1,6 +1,7 @@
 import { BoardListParams } from '@app/_types/boardTypes';
 import { getOnePageArticleList } from '@app/_service/article';
 import { BoardBody, BoardHeader, PostLink } from './_components';
+import PageNav from './_components/PageNav';
 
 interface Props {
   params: BoardListParams;
@@ -20,7 +21,8 @@ async function BoardPage({
   return (
     <div className="flex w-full flex-col gap-4">
       <BoardHeader params={{ boardType, page }} />
-      <BoardBody articleList={articleList} maxPage={maxPage} />
+      <BoardBody articleList={articleList} />
+      <PageNav maxPage={maxPage} />
       <PostLink />
     </div>
   );
