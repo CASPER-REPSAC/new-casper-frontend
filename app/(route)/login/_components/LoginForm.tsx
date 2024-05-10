@@ -58,7 +58,7 @@ function LoginForm() {
           type="submit"
           className="mt-3 w-full"
           onClick={handleSubmit(onValid, onInvalid)}
-          loading={isPending}
+          disabled={isPending}
         >
           로그인
         </Button>
