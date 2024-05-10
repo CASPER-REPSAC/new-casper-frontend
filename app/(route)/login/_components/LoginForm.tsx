@@ -1,16 +1,17 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
 import { usePopup } from '@app/_hooks';
-import { LockIcon, UserIcon } from '@app/_components/icons';
 import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@app/_constants/message';
-import { ICON_SIZE } from '@app/_constants/size';
 import { PLACEHOLDER } from '@app/_constants/label';
 import { POPUP_DURATION } from '@app/_constants/duration';
 import { LoginRequest } from '@app/_types/loginTypes';
 import { useLoginMutation } from '@app/_hooks/apis/user';
-import { Button, Input } from '@nextui-org/react';
+import { Form } from '@app/_shadcn/components/ui/form';
+import { Input } from '@app/_shadcn/components/ui/input';
+import { Button } from '@app/_shadcn/components/ui/button';
 
 function LoginForm() {
-  const { register, handleSubmit } = useForm<LoginRequest>();
+  const methods = useForm<LoginRequest>();
+  const { register, handleSubmit } = methods;
   const { mutate, isPending } = useLoginMutation();
   const { openAndDeletePopup } = usePopup();
   const idRegister = register('id', { required: REQUIRED_MESSAGE.id });
@@ -42,32 +43,27 @@ function LoginForm() {
   };
 
   return (
-    <form className="small-center flex flex-col gap-1">
-      <Input
-        size="lg"
-        startContent={<UserIcon size={ICON_SIZE.small} />}
-        {...idRegister}
-        placeholder={PLACEHOLDER.id}
-      />
-      <Input
-        size="lg"
-        startContent={<LockIcon size={ICON_SIZE.small} />}
-        {...pwRegister}
-        placeholder={PLACEHOLDER.pw}
-        type="password"
-        autoComplete="off"
-      />
-      <Button
-        size="lg"
-        color="primary"
-        type="submit"
-        className="mt-3 w-full"
-        onClick={handleSubmit(onValid, onInvalid)}
-        isLoading={isPending}
-      >
-        로그인
-      </Button>
-    </form>
+    <Form {...methods}>
+      <form className="small-center flex flex-col gap-1">
+        <Input placeholder={PLACEHOLDER.id} {...idRegister} />
+        <Input
+          {...pwRegister}
+          placeholder={PLACEHOLDER.pw}
+          type="password"
+          autoComplete="off"
+        />
+        <Button
+          size="lg"
+          color="primary"
+          type="submit"
+          className="mt-3 w-full"
+          onClick={handleSubmit(onValid, onInvalid)}
+          loading={isPending}
+        >
+          로그인
+        </Button>
+      </form>
+    </Form>
   );
 }
 
