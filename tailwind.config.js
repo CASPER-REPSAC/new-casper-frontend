@@ -1,5 +1,3 @@
-const { fontFamily } = require('tailwindcss/defaultTheme');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: ['class'],
@@ -8,7 +6,7 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-  ],
+	],
   prefix: '',
   theme: {
     container: {
@@ -19,9 +17,6 @@ module.exports = {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ['var(--font-sans)', ...fontFamily.sans],
-      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
@@ -76,19 +71,7 @@ module.exports = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
-      zIndex: {
-        memberCardCover: '-1091',
-        detailCardBg: '-1090',
-        highlight: '-1010',
-        options: '1001',
-        pageShadow: '9001',
-        header: '9000',
-        header: '9008',
-        popup: '9010',
-        hambergerMenu: '9020',
-        loadingBar: '9090',
-      },
     },
   },
   plugins: [require('tailwindcss-animate')],
-};
+}
