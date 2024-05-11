@@ -13,8 +13,8 @@ export function PlateEditor() {
   return (
     <TooltipProvider>
       <DndProvider backend={HTML5Backend}>
-        <div className="min-h-[500px] border">
-          <Plate plugins={plugins} onChange={(v) => console.log(v)}>
+        <Plate plugins={plugins} onChange={(v) => console.log(v)}>
+          <div className="border">
             <FixedToolbar>
               <FixedToolbarButtons />
             </FixedToolbar>
@@ -24,8 +24,8 @@ export function PlateEditor() {
             <FloatingToolbar>
               <FloatingToolbarButtons />
             </FloatingToolbar>
-          </Plate>
-        </div>
+          </div>
+        </Plate>
       </DndProvider>
     </TooltipProvider>
   );
