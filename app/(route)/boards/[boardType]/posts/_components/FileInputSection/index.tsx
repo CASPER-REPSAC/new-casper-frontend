@@ -7,8 +7,8 @@ import { useFormContext } from 'react-hook-form';
 import FileViewer from './FileViewer';
 
 function FileInputSection() {
-  const ACTIVE_CLASS = 'border-primary-200 bg-default-200';
-  const DEFAULT_CLASS = 'border-default-200 bg-default-100';
+  const ACTIVE_CLASS = 'border-slate-400 bg-secondary';
+  const DEFAULT_CLASS = 'border-primary-foreground bg-white';
 
   const fileInputId = useId();
   const [isActive, setIsActive] = useState(false);
@@ -73,7 +73,7 @@ function FileInputSection() {
       onDragLeave={onDragLeave}
       onDragOver={onDragOver}
       onDrop={onDrop}
-      className={`flex-center border-3 min-h-44 rounded-lg border-dashed 
+      className={`flex-center min-h-44 rounded-lg border-4 border-dashed 
       ${isActive ? ACTIVE_CLASS : DEFAULT_CLASS}`}
     >
       <input

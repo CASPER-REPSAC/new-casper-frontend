@@ -4,11 +4,11 @@ export const BOARD_TYPE = {
   associate: 'associate_member_board',
   graduate: 'graduate_member_board',
   freedom: 'freedom_board',
-};
+} as const;
 
 export const MEMBER_TYPE = {
   active: 'active',
   rest: 'rest',
   graduate: 'graduate',
   all: 'all',
-};
+} as const;

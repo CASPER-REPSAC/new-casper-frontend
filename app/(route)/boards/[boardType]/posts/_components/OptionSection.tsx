@@ -1,19 +1,29 @@
 'use client';
 
+import { Checkbox } from '@app/_shadcn/components/ui/checkbox';
+import { Label } from '@app/_shadcn/components/ui/label';
 import { PostReqData } from '@app/_types/PostTypes';
-import { Checkbox } from '@nextui-org/react';
+import { useId } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function OptionSection() {
+  const checkboxId = useId();
   const { watch, setValue } = useFormContext<PostReqData>();
 
   return (
-    <Checkbox
-      isSelected={watch('hide')}
-      onValueChange={(isSelected) => setValue('hide', isSelected)}
+    <Label
+      htmlFor={checkboxId}
+      className="flex-center w-fit cursor-pointer gap-2"
     >
-      비밀글
-    </Checkbox>
+      <Checkbox
+        id={checkboxId}
+        checked={watch('hide')}
+        onCheckedChange={(checked) => {
+          setValue('hide', Boolean(checked));
+        }}
+      />
+      <span>비밀글</span>
+    </Label>
   );
 }
 

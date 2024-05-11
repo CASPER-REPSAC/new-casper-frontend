@@ -3,13 +3,7 @@
 import { PlateEditor } from '@app/_components/molecules/PlateEditor';
 
 function EditorSection() {
-  return (
-    <>
-      <div>
-        <PlateEditor />
-      </div>
-    </>
-  );
+  return <PlateEditor />;
 }
 
 export default EditorSection;
