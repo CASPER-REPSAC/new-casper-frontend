@@ -1,7 +1,5 @@
 'use client';
 
-export { default as BlockNote } from './BlockNote';
-
 export { default as BoardMenu } from './sideMenu/BoardMenu';
 export { default as MemberMenu } from './sideMenu/MemberMenu';
 

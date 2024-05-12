@@ -11,16 +11,13 @@ interface Props {
 
 async function AuthorSection({ articleId }: Props) {
   const {
-    article: { nickname },
+    article: { nickname, profile, introduce },
   } = await getArticleDetail(articleId);
-
-  const profileSrc = '';
-  const introduce = '소개글';
 
   return (
     <div className="flex items-center gap-8 ">
       <Avatar className="flex-center size-20 bg-secondary">
-        <AvatarImage src={profileSrc} />
+        <AvatarImage src={profile} />
         <AvatarFallback>{nickname}</AvatarFallback>
       </Avatar>
       <div>

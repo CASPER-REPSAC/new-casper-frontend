@@ -30,6 +30,8 @@ export interface ArticleDetail {
     hide: boolean;
     notice: boolean;
     view: number;
+    profile: string;
+    introduce: string;
   };
 
   files: { name: string; src: string }[];

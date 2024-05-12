@@ -23,22 +23,20 @@ function BoardBody({ articleList }: Props) {
   const { boardType } = useParams<BoardListParams>();
 
   return (
-    <Table className="table-fixed" aria-label="article table">
-      <TableHeader>
-        <TableRow>
-          <TableHead className="w-1/12 text-center">번호</TableHead>
-          <TableHead>제목</TableHead>
-          <TableHead className="text-center">작성자</TableHead>
-          <TableHead className="text-center">날짜</TableHead>
-          <TableHead className="w-1/12 text-center">조회수</TableHead>
-        </TableRow>
-      </TableHeader>
+    <>
+      <Table className="table-fixed" aria-label="article table">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-1/12 text-center">번호</TableHead>
+            <TableHead>제목</TableHead>
+            <TableHead className="text-center">작성자</TableHead>
+            <TableHead className="text-center">날짜</TableHead>
+            <TableHead className="w-1/12 text-center">조회수</TableHead>
+          </TableRow>
+        </TableHeader>
 
-      {!articleList || articleList.length === 0 ? (
-        <>게시글이 없어요.</>
-      ) : (
         <TableBody>
-          {articleList.map(
+          {articleList?.map(
             ({ articleId, title, view, nickname, createdAt, hide }) => {
               const formattedDate = formateDate(createdAt);
               return (
@@ -66,8 +64,11 @@ function BoardBody({ articleList }: Props) {
             },
           )}
         </TableBody>
+      </Table>
+      {articleList?.length === 0 && (
+        <div className="flex-center h-40">게시글이 없어요. 😭</div>
       )}
-    </Table>
+    </>
   );
 }
 
