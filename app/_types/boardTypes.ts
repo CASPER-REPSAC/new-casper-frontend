@@ -32,7 +32,7 @@ export interface ArticleDetail {
     view: number;
   };
 
-  files: string[];
+  files: { name: string; src: string }[];
 }
 
 export type BoardType =
@@ -66,6 +66,7 @@ export interface CommentResponse {
   text: string;
   createdAt: string;
   modifiedAt: string;
+  profile: string;
 }
 
 export interface Category {

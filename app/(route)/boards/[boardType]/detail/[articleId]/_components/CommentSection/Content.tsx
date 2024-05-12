@@ -1,4 +1,4 @@
-import { DefaultTextarea } from '@app/_components/common';
+import { Textarea } from '@app/_shadcn/components/ui/textarea';
 import textareaAutosize from '@app/_utils/textareaAutosize';
 import { useFormContext } from 'react-hook-form';
 
@@ -18,15 +18,9 @@ function Content({ comment, editable = false }: Props) {
   return (
     <>
       {editable ? (
-        <DefaultTextarea
-          {...commentRegister}
-          readOnly={!editable}
-          className={`resize-none text-base ${
-            editable ? 'border-0 border-b-2 dark:border-b-2' : ' border-0 '
-          } max-h-28 bg-transparent px-0 focus:ring-0 dark:bg-transparent dark:focus:ring-0`}
-        />
+        <Textarea {...commentRegister} />
       ) : (
-        <div className="text-base">{comment}</div>
+        <div className="whitespace-pre text-base">{comment}</div>
       )}
     </>
   );

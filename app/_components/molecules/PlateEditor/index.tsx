@@ -1,4 +1,4 @@
-import { Plate } from '@udecode/plate-common';
+import { Plate, TElement } from '@udecode/plate-common';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { Editor } from '@app/_shadcn/components/plate-ui/editor';
@@ -9,21 +9,44 @@ import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floatin
 import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
 import plugins from './plugin';
 
-export function PlateEditor() {
+interface Props {
+  readOnly?: boolean;
+  initialValue?: TElement[];
+  onValueChange?: (value: TElement[]) => void;
+}
+
+export function PlateEditor({
+  readOnly = false,
+  initialValue,
+  onValueChange,
+}: Props) {
   return (
     <TooltipProvider>
       <DndProvider backend={HTML5Backend}>
-        <Plate plugins={plugins} onChange={(v) => console.log(v)}>
-          <div className="border">
-            <FixedToolbar>
-              <FixedToolbarButtons />
-            </FixedToolbar>
+        <Plate
+          plugins={plugins}
+          initialValue={initialValue}
+          onChange={onValueChange}
+        >
+          <div className={`${!readOnly && 'border'}`}>
+            {!readOnly && (
+              <FixedToolbar>
+                <FixedToolbarButtons />
+              </FixedToolbar>
+            )}
 
-            <Editor variant="ghost" className="h-full px-8" focusRing={false} />
+            <Editor
+              readOnly={readOnly}
+              variant="ghost"
+              className={`h-full ${!readOnly && 'px-8'}`}
+              focusRing={false}
+            />
 
-            <FloatingToolbar>
-              <FloatingToolbarButtons />
-            </FloatingToolbar>
+            {!readOnly && (
+              <FloatingToolbar>
+                <FloatingToolbarButtons />
+              </FloatingToolbar>
+            )}
           </div>
         </Plate>
       </DndProvider>

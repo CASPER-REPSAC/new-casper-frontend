@@ -2,10 +2,14 @@
 
 import { useRecoilValue } from 'recoil';
 import { FormProvider, useForm } from 'react-hook-form';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@app/_shadcn/components/ui/avatar';
 import { useComments } from '@app/_hooks/apis/boards';
 import { myProfileState } from '@app/_store/permissionAtoms';
 import { useState } from 'react';
-import Avatar from '../common/Avatar';
 import Buttons from './Buttons';
 import Content from './Content';
 import Header from './Header';
@@ -17,13 +21,16 @@ interface Props {
 function CommentSection({ articleId }: Props) {
   const { data: comments } = useComments(articleId);
 
+  console.log(comments);
+
   if (!comments) return <>loading..</>;
 
   return (
     <div className="flex flex-col-reverse gap-12">
-      {comments.map(({ nickname, modifiedAt, text, commentId }) => (
+      {comments.map(({ nickname, modifiedAt, text, commentId, profile }) => (
         <Comment
           key={commentId}
+          profile={profile}
           commentId={commentId.toString()}
           articleId={articleId}
           nickname={nickname}
@@ -41,6 +48,7 @@ interface CommentProps {
   nickname: string;
   date: string;
   content: string;
+  profile: string;
 }
 
 function Comment({
@@ -49,6 +57,7 @@ function Comment({
   nickname,
   date,
   content,
+  profile,
 }: CommentProps) {
   const [editable, setEditable] = useState(false);
   const myProfile = useRecoilValue(myProfileState);
@@ -62,7 +71,10 @@ function Comment({
   return (
     <FormProvider {...methods}>
       <div className="flex items-start justify-between gap-8">
-        <Avatar className="shrink-0" src="/defaultprofile.webp" />
+        <Avatar className="size-14">
+          <AvatarImage src={profile} />
+          <AvatarFallback>{nickname}</AvatarFallback>
+        </Avatar>
         <div className="flex flex-1 flex-col">
           <Header nickname={nickname} date={date} />
           <Content comment={content} editable={editable} />
