@@ -16,7 +16,9 @@ function MemberMenu() {
           if (!accessibleRoles.includes(role)) return null;
           return (
             <TabsTrigger asChild key={key} value={key}>
-              <Link href={href}>{name}</Link>
+              <Link className="w-full" href={href}>
+                {name}
+              </Link>
             </TabsTrigger>
           );
         })}

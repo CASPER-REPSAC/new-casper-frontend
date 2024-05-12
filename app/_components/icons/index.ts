@@ -7,7 +7,6 @@ export {
   AiOutlineUser as UserIcon,
   AiFillStar as StarIcon,
   AiOutlineSearch as SearchIcon,
-  AiOutlineMail as MailIcon,
   AiOutlineLock as LockIcon,
   AiOutlineInstagram as InstagramIcon,
   AiOutlineFacebook as FacebookIcon,
@@ -33,6 +32,8 @@ export {
   LuHeading3 as Heading3Icon,
   LuItalic as ItalicIcon,
 } from 'react-icons/lu';
+
+export { CiMail as MailIcon } from 'react-icons/ci';
 
 export { HiLightBulb as LightBulbIcon } from 'react-icons/hi';
 export { BsPencil as PencilIcon } from 'react-icons/bs';
