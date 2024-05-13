@@ -10,7 +10,9 @@ import ButtonSection from './_components/ButtonSection';
 
 function MyPage() {
   const myProfile = useRecoilValue(myProfileState);
-  const methods = useForm<MyProfile>({ defaultValues: myProfile });
+  const methods = useForm<MyProfile>(
+    myProfile ? { defaultValues: myProfile } : undefined,
+  );
 
   return (
     <div className="small-center flex flex-col gap-12">

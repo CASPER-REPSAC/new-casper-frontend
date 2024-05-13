@@ -9,7 +9,7 @@ import { FOOTER } from '@app/_constants/label';
 
 function Footer() {
   return (
-    <div className="h-12 w-full bg-sky-100/75 dark:bg-gray-900">
+    <div className="h-16 w-full border-t">
       <div className="common-center flex h-full items-center justify-between">
         <div className="flex w-28 justify-between">
           <GithubIcon size={ICON_SIZE.medium} />

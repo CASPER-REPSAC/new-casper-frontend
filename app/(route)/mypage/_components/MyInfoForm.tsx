@@ -31,14 +31,14 @@ function MyInfoFrom() {
         label={INPUT_LABEL.name}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
-        defaultValue={myProfile.name}
+        defaultValue={myProfile?.name}
         {...nameRegister}
       />
       <Input
         label={INPUT_LABEL.nickname}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
-        defaultValue={myProfile.nickname}
+        defaultValue={myProfile?.nickname}
         {...nicknameRegister}
       />
       <Input
@@ -53,7 +53,7 @@ function MyInfoFrom() {
       <Input
         type="url"
         label={INPUT_LABEL.homepage}
-        defaultValue={myProfile.homepage}
+        defaultValue={myProfile?.homepage}
         placeholder={PLACEHOLDER.homepage}
         autoComplete="off"
         {...homepageRegister}
@@ -62,7 +62,7 @@ function MyInfoFrom() {
         type="email"
         label={INPUT_LABEL.email}
         placeholder={PLACEHOLDER.email}
-        defaultValue={myProfile.email}
+        defaultValue={myProfile?.email}
         autoComplete="off"
         {...emailRegister}
       />

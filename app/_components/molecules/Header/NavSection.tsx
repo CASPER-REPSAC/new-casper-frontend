@@ -43,33 +43,39 @@ function NavSection() {
   return (
     <NavigationMenu className="hidden gap-8 lg:flex">
       <NavigationMenuList>
-        {MENU_ITEMS.map(({ title, desc, tabs }) => (
+        {MENU_ITEMS.map(({ title, desc, tabs, href }) => (
           <NavigationMenuItem key={title}>
-            <NavigationMenuTrigger>{title}</NavigationMenuTrigger>
-            <NavigationMenuContent>
-              <div className="flex min-w-96 grid-cols-3 justify-between gap-2 px-8 py-4">
-                <div className=" flex w-full flex-col justify-center rounded bg-primary-foreground p-4">
-                  <h1>{title}</h1>
-                  <p className="text-sm font-thin">{desc} </p>
+            <NavigationMenuTrigger>
+              <Link href={href}>{title}</Link>
+            </NavigationMenuTrigger>
+            {tabs && (
+              <NavigationMenuContent>
+                <div className="flex min-w-96 grid-cols-3 justify-between gap-2 px-8 py-4">
+                  <div className=" flex w-full flex-col justify-center rounded bg-primary-foreground p-4">
+                    <h1>{title}</h1>
+                    <p className="text-sm font-thin">{desc} </p>
+                  </div>
+                  <div className="flex  flex-col gap-1">
+                    {tabs.map(
+                      ({ key, href: subHref, name, accessibleRoles }) => {
+                        if (!accessibleRoles.includes(role)) return null;
+                        return (
+                          <Button
+                            key={key}
+                            asChild
+                            size="sm"
+                            variant="ghost"
+                            className="text-left"
+                          >
+                            <Link href={subHref}>{name}</Link>
+                          </Button>
+                        );
+                      },
+                    )}
+                  </div>
                 </div>
-                <div className="flex  flex-col gap-1">
-                  {tabs?.map(({ key, href, name, accessibleRoles }) => {
-                    if (!accessibleRoles.includes(role)) return null;
-                    return (
-                      <Button
-                        key={key}
-                        asChild
-                        size="sm"
-                        variant="ghost"
-                        className="text-left"
-                      >
-                        <Link href={href}>{name}</Link>
-                      </Button>
-                    );
-                  })}
-                </div>
-              </div>
-            </NavigationMenuContent>
+              </NavigationMenuContent>
+            )}
           </NavigationMenuItem>
         ))}
       </NavigationMenuList>

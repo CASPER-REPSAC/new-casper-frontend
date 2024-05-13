@@ -1,30 +1,25 @@
 import useUserAuthUpdateMutation from '@app/_hooks/apis/admin/useUserAuthUpdateMutation';
-import { Select, SelectItem } from '@nextui-org/react';
-import { ChangeEventHandler } from 'react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@app/_shadcn/components/ui/select';
+import { Role } from '@app/_types/userTypes';
 
 interface Props {
   id: string;
-  defaultValue: string;
+  defaultValue: Role;
 }
 
-const ROLES = [
-  {
-    key: 'associate',
-    label: '준회원',
-  },
-  {
-    key: 'active',
-    label: '활동중',
-  },
-  {
-    key: 'rest',
-    label: '휴학생',
-  },
-  {
-    key: 'graduate',
-    label: '졸업생',
-  },
-];
+const SELECT_LABEL = {
+  associate: '준회원',
+  active: '활동중',
+  rest: '휴학생',
+  graduate: '졸업생',
+  admin: '관리자',
+} as const;
 
 function RoleUpdateSelect({ defaultValue, id }: Props) {
   const { mutate, status } = useUserAuthUpdateMutation();
@@ -32,38 +27,34 @@ function RoleUpdateSelect({ defaultValue, id }: Props) {
   const getColor = () => {
     switch (status) {
       case 'error':
-        return 'danger';
+        return 'border-destructive';
       case 'success':
-        return 'success';
+        return 'border-green-300';
       case 'idle':
-        return 'default';
+        return 'border';
       case 'pending':
-        return 'warning';
+        return 'border-yellow-400';
       default:
         return 'default';
     }
   };
 
-  const onChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    const { value } = e.target;
+  const onChange = (value: string) => {
     mutate({ id, role: value });
   };
 
   return (
-    <Select
-      disallowEmptySelection
-      size="sm"
-      color={getColor()}
-      classNames={{ base: 'w-24' }}
-      defaultSelectedKeys={[defaultValue]}
-      isDisabled={defaultValue === 'admin'}
-      onChange={onChange}
-    >
-      {ROLES.map(({ key, label }) => (
-        <SelectItem key={key} value={key}>
-          {label}
-        </SelectItem>
-      ))}
+    <Select onValueChange={onChange}>
+      <SelectTrigger className={getColor()}>
+        <SelectValue placeholder={SELECT_LABEL[defaultValue] || '권한'} />
+      </SelectTrigger>
+      <SelectContent>
+        {Object.entries(SELECT_LABEL).map(([key, label]) => (
+          <SelectItem disabled={key === 'admin'} key={key} value={key}>
+            {label}
+          </SelectItem>
+        ))}
+      </SelectContent>
     </Select>
   );
 }

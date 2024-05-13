@@ -25,16 +25,7 @@ function useLogoutMutation() {
   const onSuccess = async () => {
     await revalidateTag('accessToken');
     setAccessToken(undefined);
-    setMyProfile({
-      id: '',
-      role: undefined,
-      name: '',
-      nickname: '',
-      email: '',
-      introduce: '',
-      homepage: '',
-      image: '',
-    });
+    setMyProfile(null);
     toast({
       description: POPUP_MESSAGE.logoutSuccess,
     });
