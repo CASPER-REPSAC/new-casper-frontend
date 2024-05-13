@@ -1,8 +1,8 @@
 'use client';
 
 import { useProfileUpdateMutation } from '@app/_hooks/apis/user';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { ProfileUpdateForm } from '@app/_types/userTypes';
-import { Button } from '@nextui-org/react';
 import { useFormContext } from 'react-hook-form';
 
 function ButtonSection() {
@@ -15,12 +15,7 @@ function ButtonSection() {
   };
 
   return (
-    <Button
-      color="primary"
-      size="lg"
-      onClick={handleSubmit(onValid)}
-      isLoading={isPending}
-    >
+    <Button size="lg" onClick={handleSubmit(onValid)} disabled={isPending}>
       저장
     </Button>
   );

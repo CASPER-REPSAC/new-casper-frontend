@@ -3,7 +3,8 @@ import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { MyProfile } from '@app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
 import { myProfileState, roleState } from '@app/_store/permissionAtoms';
-import { Input, Textarea } from '@nextui-org/react';
+import { Textarea } from '@app/_shadcn/components/ui/textarea';
+import { Input } from '@app/_shadcn/components/ui/input';
 
 function MyInfoFrom() {
   const { register } = useFormContext<MyProfile>();
@@ -45,8 +46,8 @@ function MyInfoFrom() {
         placeholder={PLACEHOLDER.role}
         autoComplete="off"
         defaultValue={role}
-        isReadOnly
-        isDisabled
+        readOnly
+        disabled
         {...roleRegister}
       />
       <Input

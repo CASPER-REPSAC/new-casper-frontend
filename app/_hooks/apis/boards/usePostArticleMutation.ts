@@ -2,16 +2,19 @@ import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { useRecoilValue } from 'recoil';
-import { usePopup } from '@app/_hooks';
 import { PostReqData } from '@app/_types/PostTypes';
 import { accessTokenState } from '@app/_store/permissionAtoms';
 import { PATH } from '@app/_constants/urls';
 import { POST_ARTICLE_API } from '@app/_constants/apiUrl';
-import { POPUP_DURATION } from '@app/_constants/duration';
-import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
+import {
+  ERROR_MESSAGE,
+  POPUP_MESSAGE,
+  TOAST_TITLE,
+} from '@app/_constants/message';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 export default function usePostArticleMutation() {
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
   const { push } = useRouter();
   const accessToken = useRecoilValue(accessTokenState);
 
@@ -34,9 +37,8 @@ export default function usePostArticleMutation() {
   };
 
   const onSuccess = () => {
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.postSuccess,
-      duration: POPUP_DURATION.medium,
+    toast({
+      description: POPUP_MESSAGE.postSuccess,
     });
     push(`${PATH.boards.notice.url}/list/1`);
   };
@@ -44,24 +46,27 @@ export default function usePostArticleMutation() {
   const onError = (error: AxiosError) => {
     switch (error.response?.status) {
       case 400:
-        openAndDeletePopup({
-          message: ERROR_MESSAGE.unknown,
-          duration: POPUP_DURATION.medium,
+        toast({
+          variant: 'destructive',
+          title: TOAST_TITLE.error,
+          description: ERROR_MESSAGE.unknown,
         });
         return;
 
       case 401:
-        openAndDeletePopup({
-          message: ERROR_MESSAGE.unknown,
-          duration: POPUP_DURATION.medium,
+        toast({
+          variant: 'destructive',
+          title: TOAST_TITLE.error,
+          description: ERROR_MESSAGE.unknown,
         });
         push(PATH.user.login.url);
         return;
 
       default:
-        openAndDeletePopup({
-          message: ERROR_MESSAGE.unknown,
-          duration: POPUP_DURATION.medium,
+        toast({
+          variant: 'destructive',
+          title: TOAST_TITLE.error,
+          description: ERROR_MESSAGE.unknown,
         });
     }
   };

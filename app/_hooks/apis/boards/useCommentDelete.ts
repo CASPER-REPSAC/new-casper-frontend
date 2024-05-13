@@ -1,29 +1,28 @@
 import { COMMENT_API } from '@app/_constants/apiUrl';
-import { POPUP_DURATION } from '@app/_constants/duration';
-import { POPUP_MESSAGE } from '@app/_constants/message';
-import { usePopup } from '@app/_hooks';
+import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
 function useCommentDelete(articleId: string) {
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
   const queryClient = useQueryClient();
 
   const mutationFn = (commentId: string) =>
     axios.delete(`/proxy${COMMENT_API(articleId)}/${commentId}`);
 
   const onSuccess = () => {
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.deleteCommentSuccess,
-      duration: POPUP_DURATION.medium,
+    toast({
+      description: POPUP_MESSAGE.deleteCommentSuccess,
     });
     queryClient.invalidateQueries({ queryKey: ['comment', articleId] });
   };
 
   const onError = () => {
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.failedToDeleteComment,
-      duration: POPUP_DURATION.medium,
+    toast({
+      variant: 'destructive',
+      title: TOAST_TITLE.error,
+      description: POPUP_MESSAGE.failedToDeleteComment,
     });
   };
 

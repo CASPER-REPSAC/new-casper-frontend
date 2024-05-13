@@ -1,13 +1,14 @@
 import { POPUP_DURATION } from '@app/_constants/duration';
-import { POPUP_MESSAGE } from '@app/_constants/message';
-import { useFunnel, usePopup } from '@app/_hooks';
+import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { useFunnel } from '@app/_hooks';
 import { useJoinMutation } from '@app/_hooks/apis/user';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { JoinFormData } from '@app/_types/joinTypes';
 import { Button } from '@nextui-org/react';
 import { useFormContext } from 'react-hook-form';
 
 function NextButton() {
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
   const { funnelStep, setFunnelStep, nextStep } = useFunnel();
   const { mutate } = useJoinMutation();
   const {
@@ -27,8 +28,10 @@ function NextButton() {
 
   const onValid = nextStep === 'finish' ? onFinish : onNext;
   const onInvalid = () => {
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.checkJoinParams,
+    toast({
+      variant: 'destructive',
+      title: TOAST_TITLE.error,
+      description: POPUP_MESSAGE.checkJoinParams,
       duration: POPUP_DURATION.medium,
     });
   };

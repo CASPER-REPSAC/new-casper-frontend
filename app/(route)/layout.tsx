@@ -2,7 +2,6 @@
 import '@app/_styles/global.css';
 import { ReactNode } from 'react';
 import {
-  PopupWrapper,
   QueryWrapper,
   RecoilRootWrapper,
   NextUIWrapper,
@@ -12,6 +11,7 @@ import { DefaultLayout } from '@app/_components/layout';
 import { ThemeProvider } from '@app/_components/providers/ThemeProvider';
 import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@app/_shadcn/lib/utils';
+import { Toaster } from '@app/_shadcn/components/ui/toaster';
 
 export const metadata = {
   title: 'Casper',
@@ -37,8 +37,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
             <ThemeProvider>
               <AutoLoginPresence />
               <NextUIWrapper>
-                <PopupWrapper />
                 <DefaultLayout>{children}</DefaultLayout>
+                <Toaster />
               </NextUIWrapper>
             </ThemeProvider>
           </RecoilRootWrapper>

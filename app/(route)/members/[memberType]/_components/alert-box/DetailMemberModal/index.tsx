@@ -17,7 +17,7 @@ function DetailMemberModal({
   member: { id, image, introduce, nickname, name, role, homepage, email },
 }: Props) {
   return (
-    <div className="flex-center min-w-[600px] flex-col gap-8 lg:flex-row">
+    <div className="flex-center flex-col gap-8 lg:flex-row">
       <Avatar className="h-40 w-40 shrink-0 rounded">
         <AvatarImage src={image || undefined} />
         <AvatarFallback className="rounded">

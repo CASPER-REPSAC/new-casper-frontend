@@ -1,19 +1,22 @@
 import { SubmitErrorHandler, SubmitHandler, useForm } from 'react-hook-form';
-import { usePopup } from '@app/_hooks';
-import { ERROR_MESSAGE, REQUIRED_MESSAGE } from '@app/_constants/message';
+import {
+  ERROR_MESSAGE,
+  REQUIRED_MESSAGE,
+  TOAST_TITLE,
+} from '@app/_constants/message';
 import { PLACEHOLDER } from '@app/_constants/label';
-import { POPUP_DURATION } from '@app/_constants/duration';
 import { LoginRequest } from '@app/_types/loginTypes';
 import { useLoginMutation } from '@app/_hooks/apis/user';
 import { Form } from '@app/_shadcn/components/ui/form';
 import { Input } from '@app/_shadcn/components/ui/input';
 import { Button } from '@app/_shadcn/components/ui/button';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function LoginForm() {
   const methods = useForm<LoginRequest>();
   const { register, handleSubmit } = methods;
   const { mutate, isPending } = useLoginMutation();
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
   const idRegister = register('id', { required: REQUIRED_MESSAGE.id });
   const pwRegister = register('pw', { required: REQUIRED_MESSAGE.pw });
 
@@ -23,22 +26,25 @@ function LoginForm() {
 
   const onInvalid: SubmitErrorHandler<LoginRequest> = (errors) => {
     if (errors.id && errors.id.message) {
-      openAndDeletePopup({
-        message: errors.id.message,
-        duration: POPUP_DURATION.medium,
+      toast({
+        variant: 'destructive',
+        title: TOAST_TITLE.error,
+        description: errors.id.message,
       });
       return;
     }
     if (errors.pw && errors.pw.message) {
-      openAndDeletePopup({
-        message: errors.pw.message,
-        duration: POPUP_DURATION.medium,
+      toast({
+        variant: 'destructive',
+        title: TOAST_TITLE.error,
+        description: errors.pw.message,
       });
       return;
     }
-    openAndDeletePopup({
-      message: ERROR_MESSAGE.unknown,
-      duration: POPUP_DURATION.medium,
+    toast({
+      variant: 'destructive',
+      title: TOAST_TITLE.error,
+      description: ERROR_MESSAGE.unknown,
     });
   };
 
