@@ -10,7 +10,8 @@
     "lint": "next lint",
     "test": "jest",
     "test:watch": "jest --watch",
-    "postinstall": "husky install"
+    "postinstall": "husky install",
+    "check-types": "tsc --noemit"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",

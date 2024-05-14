@@ -29,9 +29,9 @@ function UserButton() {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <Avatar className="cursor-pointer">
-              <AvatarImage src={myProfile.image} />
+              <AvatarImage src={myProfile?.image} />
               <AvatarFallback className="text-xs">
-                {myProfile.nickname}
+                {myProfile?.nickname}
               </AvatarFallback>
             </Avatar>
           </DropdownMenuTrigger>

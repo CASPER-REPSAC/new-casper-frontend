@@ -9,10 +9,7 @@ interface Props {
 
 function BoardLayout({ children }: Props) {
   return (
-    <SideMenuLayout
-      pageTitle={PAGE_TITLE.board}
-      sideMenu={<BoardMenu size="lg" />}
-    >
+    <SideMenuLayout pageTitle={PAGE_TITLE.board} sideMenu={<BoardMenu />}>
       {children}
     </SideMenuLayout>
   );
