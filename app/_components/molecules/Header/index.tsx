@@ -14,7 +14,7 @@ import UserButton from './UserButton';
 
 function Header() {
   return (
-    <header className="w-screen shadow">
+    <header className="sticky top-0 z-50 w-screen bg-white shadow dark:bg-slate-950 dark:shadow-slate-800">
       <div className="common-center flex h-16 w-full items-center justify-between">
         {/* Mobile Menu */}
         <Sheet>

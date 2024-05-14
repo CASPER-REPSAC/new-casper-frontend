@@ -1,11 +1,9 @@
 import { useFunnel } from '@app/_hooks';
-import {
-  AgreeForm,
-  EmailForm,
-  IdForm,
-  NameForm,
-  PasswordForm,
-} from './_components';
+import AgreeForm from './_components/AgreeForm';
+import EmailForm from './_components/EmailForm';
+import NameForm from './_components/NameForm';
+import IdForm from './_components/IdForm';
+import PasswordForm from './_components/PasswordForm';
 
 function JoinFunnel() {
   const { funnelStep } = useFunnel();

@@ -1,8 +1,10 @@
-import { CheckIcon, DownArrowIcon } from '@app/_components/icons';
+import { DownArrowIcon } from '@app/_components/icons';
 import { ICON_SIZE } from '@app/_constants/size';
 import { PATH } from '@app/_constants/urls';
 import { useFunnel } from '@app/_hooks';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { JoinFormData } from '@app/_types/joinTypes';
+import { Check } from 'lucide-react';
 import { Url } from 'next/dist/shared/lib/router/router';
 import Link from 'next/link';
 import { useFormContext } from 'react-hook-form';
@@ -84,26 +86,26 @@ function Status({ href, label, isComplete, active = false }: Props) {
       {active && (
         <DownArrowIcon
           size={ICON_SIZE.small}
-          className="absolute -top-6 animate-bounce fill-indigo-600 dark:fill-sky-400"
+          className="absolute -top-6 animate-bounce fill-primary"
         />
       )}
-      <Link href={href}>
-        <CheckIcon
-          size={ICON_SIZE.medium}
-          className={`${
-            isComplete
-              ? 'fill-indigo-600 dark:fill-sky-400'
-              : 'fill-slate-300 dark:fill-slate-600'
-          }`}
-        />
-      </Link>
+      <Button
+        variant="outline"
+        asChild
+        size="icon"
+        className={`rounded-full ${isComplete && 'border-primary'}`}
+      >
+        <Link href={href}>
+          <Check
+            size={15}
+            className={`${isComplete ? 'text-primary' : 'text-slate-300'}`}
+          />
+        </Link>
+      </Button>
+
       <div
         className={`
-        ${
-          isComplete
-            ? 'text-indigo-600 dark:text-sky-400'
-            : 'text-slate-300 dark:text-slate-600'
-        }
+        ${isComplete ? 'text-primary' : 'text-slate-300'}
         absolute -bottom-6 w-max text-center text-xs`}
       >
         {label}

@@ -2,9 +2,9 @@ import { POPUP_DURATION } from '@app/_constants/duration';
 import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
 import { useFunnel } from '@app/_hooks';
 import { useJoinMutation } from '@app/_hooks/apis/user';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { JoinFormData } from '@app/_types/joinTypes';
-import { Button } from '@nextui-org/react';
 import { useFormContext } from 'react-hook-form';
 
 function NextButton() {
@@ -68,11 +68,10 @@ function NextButton() {
 
   return (
     <Button
-      color="primary"
       size="lg"
       type="submit"
       className="w-full"
-      isDisabled={!checkValid()}
+      disabled={!checkValid()}
       onClick={handleSubmit(onValid, onInvalid)}
     >
       다음 단계
