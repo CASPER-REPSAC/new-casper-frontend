@@ -2,22 +2,23 @@
 
 /* eslint-disable no-console */
 import { DefaultButton } from '@app/_components/common';
-import { POPUP_DURATION } from '@app/_constants/duration';
-import { usePopup } from '@app/_hooks';
+import { TOAST_TITLE } from '@app/_constants/message';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { ErrorProps } from '@app/_types/errorTypes';
 import { useEffect } from 'react';
 
 export default function Error({ error, reset }: ErrorProps) {
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
 
   useEffect(() => {
     console.error(error.message);
 
-    openAndDeletePopup({
-      message: error.message,
-      duration: POPUP_DURATION.long,
+    toast({
+      variant: 'destructive',
+      title: TOAST_TITLE.error,
+      description: error.message,
     });
-  }, [error, openAndDeletePopup]);
+  }, [error, toast]);
 
   return (
     <div>

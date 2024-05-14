@@ -4,10 +4,10 @@ import {
   useDeleteArticleMutation,
   useUpdateArticleMutation,
 } from '@app/_hooks/apis/boards';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { editableStateFamily } from '@app/_store/detailPageAtoms';
 import { myProfileState } from '@app/_store/permissionAtoms';
 import { BoardDetailParams } from '@app/_types/boardTypes';
-import { Button, ButtonGroup } from '@nextui-org/react';
 import { useParams } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilState, useRecoilValue } from 'recoil';
@@ -46,31 +46,21 @@ function ButtonSection({ articleId, userId }: Props) {
   }
 
   return (
-    <ButtonGroup className="flex shrink-0">
+    <div className="flex gap-2">
       {editable ? (
-        <Button
-          variant="flat"
-          size="sm"
-          color="success"
-          onClick={completeModification}
-        >
+        <Button size="sm" variant="secondary" onClick={completeModification}>
           완료
         </Button>
       ) : (
-        <Button
-          variant="flat"
-          size="sm"
-          color="primary"
-          onClick={changeEditMode}
-        >
+        <Button size="sm" onClick={changeEditMode}>
           수정
         </Button>
       )}
 
-      <Button variant="flat" size="sm" color="danger" onClick={deleteArticle}>
+      <Button size="sm" variant="destructive" onClick={deleteArticle}>
         삭제
       </Button>
-    </ButtonGroup>
+    </div>
   );
 }
 

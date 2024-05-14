@@ -1,6 +1,8 @@
+export type Role = 'associate' | 'active' | 'rest' | 'graduate' | 'admin';
+
 export interface MyProfile {
   id: string;
-  role: 'associate' | 'active' | 'rest' | 'graduate' | 'admin' | undefined;
+  role: Role;
   name: string;
   nickname: string;
   email: string;
@@ -11,7 +13,7 @@ export interface MyProfile {
 
 export interface MemberProfile {
   id: string;
-  role: 'associate' | 'active' | 'rest' | 'graduate' | 'admin';
+  role: Role;
   name: string;
   nickname: string;
   email: string;

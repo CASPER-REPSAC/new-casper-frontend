@@ -1,8 +1,11 @@
 import { DELETE_ARTICLE_API } from '@app/_constants/apiUrl';
-import { POPUP_DURATION } from '@app/_constants/duration';
-import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
+import {
+  ERROR_MESSAGE,
+  POPUP_MESSAGE,
+  TOAST_TITLE,
+} from '@app/_constants/message';
 import { PATH } from '@app/_constants/urls';
-import { usePopup } from '@app/_hooks';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { bearerTokenState } from '@app/_store/permissionAtoms';
 import { ErrorResponse } from '@app/_types/errorTypes';
 import { useMutation } from '@tanstack/react-query';
@@ -12,7 +15,7 @@ import { useRecoilValue } from 'recoil';
 
 function useDeleteArticleMutation(id: string) {
   const { push } = useRouter();
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
   const bearerToken = useRecoilValue(bearerTokenState);
 
   const mutationFn = () =>
@@ -23,9 +26,8 @@ function useDeleteArticleMutation(id: string) {
     });
 
   const onSuccess = () => {
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.deleteSuccess,
-      duration: POPUP_DURATION.medium,
+    toast({
+      description: POPUP_MESSAGE.deleteSuccess,
     });
     push(`${PATH.boards.notice.url}/list/1`);
   };
@@ -34,15 +36,17 @@ function useDeleteArticleMutation(id: string) {
     const code = error.response?.data.code;
     switch (code) {
       case -303:
-        openAndDeletePopup({
-          message: ERROR_MESSAGE['-303'],
-          duration: POPUP_DURATION.medium,
+        toast({
+          variant: 'destructive',
+          title: TOAST_TITLE.error,
+          description: ERROR_MESSAGE['-303'],
         });
         break;
       default:
-        openAndDeletePopup({
-          message: ERROR_MESSAGE.unknown,
-          duration: POPUP_DURATION.medium,
+        toast({
+          variant: 'destructive',
+          title: TOAST_TITLE.error,
+          description: ERROR_MESSAGE.unknown,
         });
     }
   };

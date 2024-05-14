@@ -1,6 +1,6 @@
 import { CloseIcon, FileAddIcon } from '@app/_components/icons';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { PostReqData } from '@app/_types/PostTypes';
-import { Button } from '@nextui-org/react';
 import { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -29,16 +29,15 @@ function FileViewer() {
     <div className="flex w-full flex-col gap-1 p-10">
       {files.map((file, idx) => (
         <div
-          className="group flex items-center justify-between rounded-lg px-4 py-1 hover:bg-default-200"
+          className="group flex items-center justify-between rounded-lg px-4 py-1 hover:bg-secondary"
           key={file.name}
         >
           <span className="truncate">{file.name}</span>
 
           <Button
+            variant="destructive"
             className="invisible group-hover:visible"
             size="sm"
-            color="danger"
-            variant="flat"
             onClick={(e) => removeFile(e, idx)}
           >
             <CloseIcon />

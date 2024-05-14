@@ -2,12 +2,16 @@
 
 import { useFormContext } from 'react-hook-form';
 import { useEffect, useId, useState } from 'react';
-import { Avatar } from '@nextui-org/react';
 import { CameraIcon } from '@app/_components/icons';
 import { ProfileUpdateForm } from '@app/_types/userTypes';
 import { useProfileUploadMutation } from '@app/_hooks/apis/user';
 import { useRecoilValue } from 'recoil';
 import { myProfileState } from '@app/_store/permissionAtoms';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@app/_shadcn/components/ui/avatar';
 
 function MyAvatarForm() {
   const { register, watch } = useFormContext<ProfileUpdateForm>();
@@ -28,14 +32,15 @@ function MyAvatarForm() {
 
   return (
     <label
-      className="flex-center  relative h-52 w-52 cursor-pointer self-center overflow-hidden rounded-full"
+      className="flex-center relative h-52 w-52 cursor-pointer self-center overflow-hidden rounded-full"
       htmlFor={uniqueId}
     >
-      <Avatar
-        className="h-full w-full"
-        src={previewSrc || myProfile?.image}
-        fallback={<CameraIcon size={30} />}
-      />
+      <Avatar className="h-full w-full">
+        <AvatarImage src={previewSrc || myProfile?.image} />
+        <AvatarFallback>
+          <CameraIcon size={30} />
+        </AvatarFallback>
+      </Avatar>
 
       <input
         className="hidden"

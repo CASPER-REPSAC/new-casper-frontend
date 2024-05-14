@@ -1,12 +1,13 @@
 import { PATH } from '@app/_constants/urls';
-import { Link } from '@nextui-org/react';
+import { Button } from '@app/_shadcn/components/ui/button';
+import Link from 'next/link';
 
 function LoginMoreLinks() {
   return (
     <div className="flex-center mt-4">
-      <Link color="foreground" isBlock href={PATH.user.join.url}>
-        회원가입
-      </Link>
+      <Button asChild variant="link">
+        <Link href={PATH.user.join.url}>회원가입</Link>
+      </Button>
     </div>
   );
 }

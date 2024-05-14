@@ -1,6 +1,6 @@
 import { PROFILE_UPLOAD_API } from '@app/_constants/apiUrl';
-import { POPUP_DURATION } from '@app/_constants/duration';
-import { usePopup } from '@app/_hooks';
+import { TOAST_TITLE } from '@app/_constants/message';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { bearerTokenState } from '@app/_store/permissionAtoms';
 import {
   ProfileImageUploadRequest,
@@ -12,7 +12,7 @@ import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
 
 function useProfileUploadMutation() {
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
   const bearerToken = useRecoilValue(bearerTokenState);
   const { setValue } = useFormContext<ProfileUpdateForm>();
 
@@ -37,9 +37,10 @@ function useProfileUploadMutation() {
   };
 
   const onError = () => {
-    openAndDeletePopup({
-      message: '이미지 업로드 실패했어요.',
-      duration: POPUP_DURATION.medium,
+    toast({
+      variant: 'destructive',
+      title: TOAST_TITLE.error,
+      description: '이미지 업로드 실패했어요.',
     });
   };
 

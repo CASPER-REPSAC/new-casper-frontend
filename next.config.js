@@ -4,6 +4,16 @@ const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const nextConfig = {
   reactStrictMode: false,
+  images: {
+    remotePatterns: [
+      {
+        hostname: 'build.casper.or.kr',
+      },
+      {
+        hostname: 'lh3.googleusercontent.com',
+      },
+    ],
+  },
 
   experimental: {
     turbo: {

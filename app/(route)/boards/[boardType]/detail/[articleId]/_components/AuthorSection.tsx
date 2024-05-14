@@ -1,31 +1,29 @@
-'use client';
-
-import { User } from '@nextui-org/react';
+import { getArticleDetail } from '@app/_service/article';
+import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+} from '@app/_shadcn/components/ui/avatar';
 
 interface Props {
-  nickname: string;
-  profile?: string;
-  introduce?: string;
+  articleId: string;
 }
 
-function AuthorSection({ nickname, profile, introduce }: Props) {
-  console.log(profile);
+async function AuthorSection({ articleId }: Props) {
+  const {
+    article: { nickname, profile, introduce },
+  } = await getArticleDetail(articleId);
+
   return (
     <div className="flex items-center gap-8 ">
-      <User
-        classNames={{
-          name: 'text-2xl',
-          description: 'text-lg',
-        }}
-        name={nickname}
-        description={introduce}
-        avatarProps={{
-          showFallback: true,
-          src: '',
-          size: 'lg',
-          isBordered: true,
-        }}
-      />
+      <Avatar className="flex-center size-20 bg-secondary">
+        <AvatarImage src={profile} />
+        <AvatarFallback>{nickname}</AvatarFallback>
+      </Avatar>
+      <div>
+        <span className="text-lg font-bold">{nickname}</span>
+        <p>{introduce}</p>
+      </div>
     </div>
   );
 }

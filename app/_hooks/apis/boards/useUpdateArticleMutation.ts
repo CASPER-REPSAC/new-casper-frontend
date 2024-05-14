@@ -4,13 +4,12 @@ import { UPDATE_ARTICLE_API } from '@app/_constants/apiUrl';
 import { useRecoilValue } from 'recoil';
 import { accessTokenState } from '@app/_store/permissionAtoms';
 import { UpdateReqData } from '@app/_types/PostTypes';
-import { usePopup } from '@app/_hooks';
-import { POPUP_MESSAGE } from '@app/_constants/message';
-import { POPUP_DURATION } from '@app/_constants/duration';
+import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useUpdateArticleMutation(id: string) {
   const accessToken = useRecoilValue(accessTokenState);
-  const { openAndDeletePopup } = usePopup();
+  const { toast } = useToast();
 
   const mutationFn = (data: UpdateReqData) =>
     axios.patch(`/proxy${UPDATE_ARTICLE_API}/${id}`, data, {
@@ -20,16 +19,16 @@ function useUpdateArticleMutation(id: string) {
     });
 
   const onSuccess = () => {
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.updateSuccess,
-      duration: POPUP_DURATION.medium,
+    toast({
+      description: POPUP_MESSAGE.updateSuccess,
     });
   };
 
   const onError = () => {
-    openAndDeletePopup({
-      message: POPUP_MESSAGE.failedToUpdate,
-      duration: POPUP_DURATION.medium,
+    toast({
+      variant: 'destructive',
+      title: TOAST_TITLE.error,
+      description: POPUP_MESSAGE.failedToUpdate,
     });
   };
 

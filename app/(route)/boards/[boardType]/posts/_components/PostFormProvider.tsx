@@ -1,15 +1,12 @@
 'use client';
 
 import { PostReqData } from '@app/_types/PostTypes';
-import { ReactNode } from 'react';
+import { useParams } from 'next/navigation';
+import { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
-interface Props {
-  children: ReactNode;
-  boardType: string;
-}
-
-function PostFormProvider({ children, boardType }: Props) {
+function PostFormProvider({ children }: PropsWithChildren) {
+  const { boardType } = useParams<{ boardType: string }>();
   const defaultValues: PostReqData = {
     boardId: boardType,
     category: 'all',

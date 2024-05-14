@@ -1,8 +1,8 @@
 'use client';
 
 import { usePostArticleMutation } from '@app/_hooks/apis/boards';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { PostReqData } from '@app/_types/PostTypes';
-import { Button } from '@nextui-org/react';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
 function WriteButtonSection() {
@@ -20,7 +20,7 @@ function WriteButtonSection() {
         color="primary"
         size="lg"
         onClick={handleSubmit(onValid)}
-        isLoading={isPending}
+        disabled={isPending}
       >
         작성 하기
       </Button>

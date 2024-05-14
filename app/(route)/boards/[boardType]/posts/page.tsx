@@ -10,11 +10,7 @@ import OptionSection from './_components/OptionSection';
 import EditorSection from './_components/EditorSection';
 import WriteButtonSection from './_components/WriteButtonSection';
 
-interface Props {
-  params: { boardType: string };
-}
-
-function PostPage({ params }: Props) {
+function PostPage() {
   const accessToken = getAccessToken();
 
   if (!accessToken) {
@@ -23,8 +19,8 @@ function PostPage({ params }: Props) {
 
   return (
     <div className="flex flex-col gap-8">
-      <PostFormProvider boardType={params.boardType}>
-        <BoardTypeSelecSection defaultValue={params.boardType} />
+      <PostFormProvider>
+        <BoardTypeSelecSection />
         <OptionSection />
         <TitleSection />
         <EditorSection />

@@ -1,125 +1,41 @@
 'use client';
 
+import Link from 'next/link';
+
+import { Sheet, SheetTrigger } from '@app/_shadcn/components/ui/sheet';
 import { CasperLogo } from '@app/_components/common';
-import {
-  Avatar,
-  Button,
-  Divider,
-  Link,
-  Navbar,
-  NavbarBrand,
-  NavbarContent,
-  NavbarItem,
-  NavbarMenu,
-  NavbarMenuItem,
-  NavbarMenuToggle,
-  Tooltip,
-} from '@nextui-org/react';
-import { useState } from 'react';
-import { usePathname } from 'next/navigation';
+import { MenuIcon } from '@app/_components/icons';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { PATH } from '@app/_constants/urls';
-import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
-import { useRecoilValue } from 'recoil';
-import {
-  loginState,
-  myProfileState,
-  roleState,
-} from '@app/_store/permissionAtoms';
-import UserMenu from '../sideMenu/UserMenu';
 import DarkModeSwitch from './DarkModeSwitch';
 import NavSection from './NavSection';
+import SideNavSheet from './SideNavSheet';
+import UserButton from './UserButton';
 
 function Header() {
-  const pathname = usePathname();
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const role = useRecoilValue(roleState);
-  const isLoggedIn = useRecoilValue(loginState);
-  const myProfile = useRecoilValue(myProfileState);
-
   return (
-    <Navbar
-      isBordered
-      isMenuOpen={isMenuOpen}
-      onMenuOpenChange={setIsMenuOpen}
-      maxWidth="full"
-      classNames={{
-        wrapper: 'p-0 common-center ',
-        base: 'bg-inherit shadow',
-        item: [
-          'flex',
-          'relative',
-          'h-full',
-          'items-center',
-          "data-[active=true]:after:content-['']",
-          'data-[active=true]:after:absolute',
-          'data-[active=true]:after:bottom-0',
-          'data-[active=true]:after:left-0',
-          'data-[active=true]:after:right-0',
-          'data-[active=true]:after:h-[2px]',
-          'data-[active=true]:after:rounded-[2px]',
-          'data-[active=true]:after:bg-primary',
-        ],
-      }}
-    >
-      <NavbarContent className="lg:hidden" justify="start">
-        <NavbarMenuToggle />
-      </NavbarContent>
+    <header className="sticky top-0 z-50 w-screen bg-white shadow dark:bg-slate-950 dark:shadow-slate-800">
+      <div className="common-center flex h-16 w-full items-center justify-between">
+        {/* Mobile Menu */}
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button className="lg:hidden" variant="outline">
+              <MenuIcon />
+            </Button>
+          </SheetTrigger>
+          <SideNavSheet />
+        </Sheet>
 
-      <NavbarBrand>
         <Link href={PATH.home.url}>
           <CasperLogo />
         </Link>
-      </NavbarBrand>
-      <NavbarContent>
-        <NavbarItem>
-          <DarkModeSwitch />
-        </NavbarItem>
-      </NavbarContent>
+        <DarkModeSwitch />
 
-      <NavSection />
+        <NavSection />
 
-      <NavbarContent justify="end">
-        {isLoggedIn ? (
-          <NavbarItem>
-            <Tooltip content={<UserMenu />}>
-              <Link href={PATH.user.mypage.url}>
-                <Avatar src={myProfile?.image} />
-              </Link>
-            </Tooltip>
-          </NavbarItem>
-        ) : (
-          <NavbarItem>
-            <Button color="primary" as={Link} href={PATH.user.login.url}>
-              Login
-            </Button>
-          </NavbarItem>
-        )}
-      </NavbarContent>
-
-      <NavbarMenu>
-        <Divider />
-        <h1 className="text-xl font-bold text-foreground-600">Boards</h1>
-
-        {BOARD_TABS.map(({ name, key, href, accessibleRoles, startWith }) => {
-          if (!accessibleRoles.includes(role)) return null;
-          return (
-            <NavbarMenuItem key={key} isActive={pathname.startsWith(startWith)}>
-              <Link className="w-full" href={href} size="lg">
-                {name}
-              </Link>
-            </NavbarMenuItem>
-          );
-        })}
-        <h1 className="text-xl font-bold text-foreground-600">Members</h1>
-        {MEMBER_TABS.map(({ key, href, name, startWith }) => (
-          <NavbarMenuItem key={key} isActive={pathname.startsWith(startWith)}>
-            <Link className="w-full" href={href} size="lg">
-              {name}
-            </Link>
-          </NavbarMenuItem>
-        ))}
-      </NavbarMenu>
-    </Navbar>
+        <UserButton />
+      </div>
+    </header>
   );
 }
 

@@ -9,10 +9,7 @@ interface Props {
 
 function MemberLayout({ children }: Props) {
   return (
-    <SideMenuLayout
-      pageTitle={PAGE_TITLE.members}
-      sideMenu={<MemberMenu size="lg" variant="solid" />}
-    >
+    <SideMenuLayout pageTitle={PAGE_TITLE.members} sideMenu={<MemberMenu />}>
       {children}
     </SideMenuLayout>
   );

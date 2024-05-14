@@ -1,46 +1,42 @@
-import '@app/_styles/reset.css';
+// import '@app/_styles/reset.css';
 import '@app/_styles/global.css';
 import { ReactNode } from 'react';
 import {
-  PopupWrapper,
   QueryWrapper,
   RecoilRootWrapper,
-  NextUIWrapper,
   AutoLoginPresence,
 } from '@app/_components/providers';
 import { DefaultLayout } from '@app/_components/layout';
 import { ThemeProvider } from '@app/_components/providers/ThemeProvider';
+import { Inter as FontSans } from 'next/font/google';
+import { cn } from '@app/_shadcn/lib/utils';
+import { Toaster } from '@app/_shadcn/components/ui/toaster';
 
 export const metadata = {
   title: 'Casper',
   description: 'Changwon National University Casper',
 };
 
+const fontSans = FontSans({
+  subsets: ['latin'],
+  variable: '--font-sans',
+});
+
 export default function RootLayout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en" className="font-sans" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning>
       <body
-        className="
-        bg-gradient-to-br
-        from-sky-50
-        via-white
-        to-sky-50
-        text-slate-600
-        dark:bg-slate-900
-        dark:from-slate-900
-        dark:via-sky-950
-        dark:to-slate-900
-        dark:text-white
-        "
+        className={cn(
+          'min-h-screen bg-background font-sans antialiased',
+          fontSans.variable,
+        )}
       >
         <QueryWrapper>
           <RecoilRootWrapper>
             <ThemeProvider>
               <AutoLoginPresence />
-              <NextUIWrapper>
-                <PopupWrapper />
-                <DefaultLayout>{children}</DefaultLayout>
-              </NextUIWrapper>
+              <DefaultLayout>{children}</DefaultLayout>
+              <Toaster />
             </ThemeProvider>
           </RecoilRootWrapper>
         </QueryWrapper>

@@ -18,6 +18,10 @@ export const POPUP_MESSAGE = {
   failedToDeleteComment: '댓글 삭제가 실패했어요.',
 };
 
+export const TOAST_TITLE = {
+  error: '오류가 발생했어요!',
+};
+
 export const INPUT_ERROR = {
   noPermission: '권한이 없어요.',
   requiredLogin: '로그인이 필요해요.',

@@ -2,15 +2,15 @@
 
 import { MemberProfile } from '@app/_types/userTypes';
 import { memo } from 'react';
+
+import { Card, CardContent, CardFooter } from '@app/_shadcn/components/ui/card';
+
+import { User2Icon } from 'lucide-react';
 import {
   Avatar,
-  Card,
-  CardBody,
-  CardFooter,
-  useDisclosure,
-} from '@nextui-org/react';
-
-import DetailMemberModal from './alert-box/DetailMemberModal';
+  AvatarFallback,
+  AvatarImage,
+} from '@app/_shadcn/components/ui/avatar';
 
 interface Props {
   member: MemberProfile;
@@ -18,25 +18,19 @@ interface Props {
 
 function MemberCard({ member }: Props) {
   const { image, name } = member;
-  const { onOpen, onOpenChange, isOpen } = useDisclosure();
 
   return (
     <>
-      <DetailMemberModal
-        member={member}
-        isOpen={isOpen}
-        onOpenChange={onOpenChange}
-      />
-      <Card isFooterBlurred isPressable onPress={onOpen}>
-        <CardBody>
-          <Avatar
-            className="h-40 w-40"
-            showFallback
-            radius="sm"
-            src={image ?? ''}
-          />
-        </CardBody>
-        <CardFooter className="flex-center">{name}</CardFooter>
+      <Card>
+        <CardContent className="p-4">
+          <Avatar className="size-40 rounded">
+            <AvatarImage src={image || undefined} />
+            <AvatarFallback className="rounded">
+              <User2Icon className="size-20 object-cover text-slate-400" />
+            </AvatarFallback>
+          </Avatar>
+        </CardContent>
+        <CardFooter className="flex-center p-2">{name}</CardFooter>
       </Card>
     </>
   );

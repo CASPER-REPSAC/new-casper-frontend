@@ -1,88 +1,74 @@
 'use client';
 
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
+
 import {
-  Link,
   Table,
   TableBody,
   TableCell,
-  TableColumn,
+  TableHead,
   TableHeader,
   TableRow,
-} from '@nextui-org/react';
+} from '@app/_shadcn/components/ui/table';
 import { ArticleData, BoardListParams } from '@app/_types/boardTypes';
 import { LockIcon } from '@app/_components/icons';
 import formateDate from '@app/_utils/formatDate';
-import PageNav from './PageNav';
 
 interface Props {
   articleList?: ArticleData[];
-  maxPage: number;
 }
 
-function BoardBody({ articleList, maxPage }: Props) {
+function BoardBody({ articleList }: Props) {
   const { boardType } = useParams<BoardListParams>();
 
   return (
-    <Table
-      removeWrapper
-      aria-label="article table"
-      color="primary"
-      layout="fixed"
-      selectionMode="single"
-      bottomContent={
-        <div className="flex-center">
-          <PageNav maxPage={maxPage} />
-        </div>
-      }
-    >
-      <TableHeader>
-        <TableColumn className="text-center" width={50}>
-          번호
-        </TableColumn>
-        <TableColumn width={200}>제목</TableColumn>
-        <TableColumn className="text-center" width={100}>
-          작성자
-        </TableColumn>
-        <TableColumn className="text-center" width={100}>
-          날짜
-        </TableColumn>
-        <TableColumn className="text-center" width={50}>
-          조회수
-        </TableColumn>
-      </TableHeader>
+    <>
+      <Table className="table-fixed" aria-label="article table">
+        <TableHeader>
+          <TableRow>
+            <TableHead className="w-1/12 text-center">번호</TableHead>
+            <TableHead>제목</TableHead>
+            <TableHead className="text-center">작성자</TableHead>
+            <TableHead className="text-center">날짜</TableHead>
+            <TableHead className="w-1/12 text-center">조회수</TableHead>
+          </TableRow>
+        </TableHeader>
 
-      {!articleList || articleList.length === 0 ? (
-        <TableBody emptyContent="게시글이 없어요">{[]}</TableBody>
-      ) : (
         <TableBody>
-          {articleList.map(
+          {articleList?.map(
             ({ articleId, title, view, nickname, createdAt, hide }) => {
               const formattedDate = formateDate(createdAt);
               return (
-                <TableRow
-                  as={Link}
-                  className="cursor-pointer"
-                  href={`/boards/${boardType}/detail/${articleId}`}
+                <Link
                   key={articleId}
+                  href={`/boards/${boardType}/detail/${articleId}`}
+                  legacyBehavior
                 >
-                  <TableCell className="text-center">{articleId}</TableCell>
-                  <TableCell className="flex items-center">
-                    <span>
-                      {hide && <LockIcon className="mr-2 text-primary-300" />}
-                    </span>
-                    <span className="truncate hover:text-clip">{title}</span>
-                  </TableCell>
-                  <TableCell className="text-center">{nickname}</TableCell>
-                  <TableCell className="text-center">{formattedDate}</TableCell>
-                  <TableCell className="text-center">{view}</TableCell>
-                </TableRow>
+                  <TableRow key={articleId} className="cursor-pointer">
+                    <TableCell className="text-center">{articleId}</TableCell>
+                    <TableCell className="flex items-center">
+                      <span>
+                        {hide && <LockIcon className="mr-2 text-primary" />}
+                      </span>
+                      <span className="truncate hover:text-clip">{title}</span>
+                    </TableCell>
+                    <TableCell className="text-center">{nickname}</TableCell>
+                    <TableCell className="text-center">
+                      {formattedDate}
+                    </TableCell>
+                    <TableCell className="text-center">{view}</TableCell>
+                  </TableRow>
+                </Link>
               );
             },
           )}
         </TableBody>
+      </Table>
+      {articleList?.length === 0 && (
+        <div className="flex-center h-40">게시글이 없어요. 😭</div>
       )}
-    </Table>
+    </>
   );
 }
 

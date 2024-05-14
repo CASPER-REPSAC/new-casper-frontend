@@ -3,7 +3,8 @@ import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { MyProfile } from '@app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
 import { myProfileState, roleState } from '@app/_store/permissionAtoms';
-import { Input, Textarea } from '@nextui-org/react';
+import { Textarea } from '@app/_shadcn/components/ui/textarea';
+import { Input } from '@app/_shadcn/components/ui/input';
 
 function MyInfoFrom() {
   const { register } = useFormContext<MyProfile>();
@@ -30,14 +31,14 @@ function MyInfoFrom() {
         label={INPUT_LABEL.name}
         placeholder={PLACEHOLDER.name}
         autoComplete="off"
-        defaultValue={myProfile.name}
+        defaultValue={myProfile?.name}
         {...nameRegister}
       />
       <Input
         label={INPUT_LABEL.nickname}
         placeholder={PLACEHOLDER.nickname}
         autoComplete="off"
-        defaultValue={myProfile.nickname}
+        defaultValue={myProfile?.nickname}
         {...nicknameRegister}
       />
       <Input
@@ -45,14 +46,14 @@ function MyInfoFrom() {
         placeholder={PLACEHOLDER.role}
         autoComplete="off"
         defaultValue={role}
-        isReadOnly
-        isDisabled
+        readOnly
+        disabled
         {...roleRegister}
       />
       <Input
         type="url"
         label={INPUT_LABEL.homepage}
-        defaultValue={myProfile.homepage}
+        defaultValue={myProfile?.homepage}
         placeholder={PLACEHOLDER.homepage}
         autoComplete="off"
         {...homepageRegister}
@@ -61,7 +62,7 @@ function MyInfoFrom() {
         type="email"
         label={INPUT_LABEL.email}
         placeholder={PLACEHOLDER.email}
-        defaultValue={myProfile.email}
+        defaultValue={myProfile?.email}
         autoComplete="off"
         {...emailRegister}
       />

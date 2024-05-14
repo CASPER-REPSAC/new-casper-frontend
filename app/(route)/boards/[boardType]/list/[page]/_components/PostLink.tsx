@@ -1,8 +1,9 @@
 'use client';
 
+import { Button } from '@app/_shadcn/components/ui/button';
 import { roleState } from '@app/_store/permissionAtoms';
 import { BoardListParams } from '@app/_types/boardTypes';
-import { Button, Link } from '@nextui-org/react';
+import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 
@@ -12,15 +13,8 @@ function PostLink() {
   const onlyAdmin = boardType === 'notice_board' && role !== '관리자';
 
   return (
-    <Button
-      type="button"
-      as={Link}
-      color="primary"
-      className="ml-auto"
-      href={`/boards/${boardType}/posts`}
-      isDisabled={onlyAdmin}
-    >
-      작성 하기
+    <Button asChild className="ml-auto" disabled={onlyAdmin}>
+      <Link href={`/boards/${boardType}/posts`}>작성 하기</Link>
     </Button>
   );
 }

@@ -1,6 +1,6 @@
-import { DefaultButton } from '@app/_components/common';
 import useCommentDelete from '@app/_hooks/apis/boards/useCommentDelete';
 import useCommentUpdate from '@app/_hooks/apis/boards/useCommentUpdate';
+import { Button } from '@app/_shadcn/components/ui/button';
 import { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
 
@@ -34,18 +34,18 @@ function Buttons({ articleId, commentId, editable, setEditable }: Props) {
   return (
     <>
       {editable ? (
-        <DefaultButton size="sm" onClick={modifyComment}>
+        <Button size="sm" onClick={modifyComment}>
           완료
-        </DefaultButton>
+        </Button>
       ) : (
-        <DefaultButton size="sm" onClick={changeEditMode}>
+        <Button size="sm" onClick={changeEditMode}>
           수정
-        </DefaultButton>
+        </Button>
       )}
 
-      <DefaultButton size="sm" theme="danger" onClick={deleteComment}>
+      <Button size="sm" variant="destructive" onClick={deleteComment}>
         삭제
-      </DefaultButton>
+      </Button>
     </>
   );
 }

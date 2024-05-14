@@ -4,7 +4,7 @@ import { KeyboardEventHandler } from 'react';
 import { useFormContext } from 'react-hook-form';
 import { PLACEHOLDER } from '@app/_constants/label';
 import { PostReqData } from '@app/_types/PostTypes';
-import { Input } from '@nextui-org/react';
+import { Input } from '@app/_shadcn/components/ui/input';
 
 function TitleSection() {
   const { register } = useFormContext<PostReqData>();
@@ -19,11 +19,10 @@ function TitleSection() {
 
   return (
     <Input
-      size="lg"
+      type="text"
       {...titleRegister}
-      variant="underlined"
       placeholder={PLACEHOLDER.title}
-      onKeyDown={preventSubmit}
+      onSubmit={preventSubmit}
     />
   );
 }

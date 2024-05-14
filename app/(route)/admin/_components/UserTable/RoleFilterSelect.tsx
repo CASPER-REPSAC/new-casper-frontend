@@ -1,6 +1,11 @@
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@app/_shadcn/components/ui/select';
 import { roleState } from '@app/_store/adminAtoms';
-import { Select, SelectItem } from '@nextui-org/react';
-import { ChangeEventHandler } from 'react';
 import { useRecoilState } from 'recoil';
 
 const ROLES = [
@@ -27,24 +32,24 @@ const ROLES = [
 ];
 
 function RoleSelect() {
-  const [role, setRole] = useRecoilState(roleState);
+  const [, setRole] = useRecoilState(roleState);
 
-  const onChange: ChangeEventHandler<HTMLSelectElement> = (e) => {
-    setRole(e.target.value);
+  const onValueChange = (value: string) => {
+    setRole(value);
   };
 
   return (
-    <Select
-      label="권한"
-      className="w-32"
-      defaultSelectedKeys={[role]}
-      onChange={onChange}
-    >
-      {ROLES.map(({ key, label }) => (
-        <SelectItem key={key} value={key}>
-          {label}
-        </SelectItem>
-      ))}
+    <Select onValueChange={onValueChange}>
+      <SelectTrigger className="w-24">
+        <SelectValue placeholder="권한" />
+      </SelectTrigger>
+      <SelectContent>
+        {ROLES.map(({ key, label }) => (
+          <SelectItem key={key} value={key}>
+            {label}
+          </SelectItem>
+        ))}
+      </SelectContent>
     </Select>
   );
 }

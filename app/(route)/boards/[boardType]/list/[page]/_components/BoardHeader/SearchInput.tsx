@@ -1,23 +1,17 @@
 'use client';
 
-import { SearchIcon } from '@app/_components/icons';
-import { ICON_SIZE } from '@app/_constants/size';
-import { Input } from '@nextui-org/react';
+import { Input } from '@app/_shadcn/components/ui/input';
 import { useForm } from 'react-hook-form';
 
 function SearchInput() {
   const { register } = useForm();
 
   return (
-    <>
-      <Input
-        autoComplete="off"
-        startContent={<SearchIcon size={ICON_SIZE.small} />}
-        {...register('search')}
-        label="검색"
-        placeholder="검색 기능 개발 중이에요."
-      />
-    </>
+    <Input
+      autoComplete="off"
+      {...register('search')}
+      placeholder="검색 기능 개발 중이에요."
+    />
   );
 }
 

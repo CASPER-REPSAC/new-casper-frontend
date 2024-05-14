@@ -30,9 +30,11 @@ export interface ArticleDetail {
     hide: boolean;
     notice: boolean;
     view: number;
+    profile: string;
+    introduce: string;
   };
 
-  files: string[];
+  files: { name: string; src: string }[];
 }
 
 export type BoardType =
@@ -66,6 +68,7 @@ export interface CommentResponse {
   text: string;
   createdAt: string;
   modifiedAt: string;
+  profile: string;
 }
 
 export interface Category {

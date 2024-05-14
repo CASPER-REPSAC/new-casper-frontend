@@ -4,12 +4,9 @@ export {
   AiOutlineMenu as MenuIcon,
   AiOutlineHome as HomeIcon,
   AiOutlineClose as CloseIcon,
-  AiOutlineLogout as LogoutIcon,
-  AiOutlineLogin as LoginIcon,
   AiOutlineUser as UserIcon,
   AiFillStar as StarIcon,
   AiOutlineSearch as SearchIcon,
-  AiOutlineMail as MailIcon,
   AiOutlineLock as LockIcon,
   AiOutlineInstagram as InstagramIcon,
   AiOutlineFacebook as FacebookIcon,
@@ -20,6 +17,8 @@ export {
 } from 'react-icons/ai';
 
 export {
+  MdLogout as LogoutIcon,
+  MdLogin as LoginIcon,
   MdKeyboardArrowLeft as LeftArrowIcon,
   MdKeyboardArrowRight as RightArrowIcon,
   MdKeyboardArrowDown as DownArrowIcon,
@@ -33,6 +32,8 @@ export {
   LuHeading3 as Heading3Icon,
   LuItalic as ItalicIcon,
 } from 'react-icons/lu';
+
+export { CiMail as MailIcon } from 'react-icons/ci';
 
 export { HiLightBulb as LightBulbIcon } from 'react-icons/hi';
 export { BsPencil as PencilIcon } from 'react-icons/bs';
