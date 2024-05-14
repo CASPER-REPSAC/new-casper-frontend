@@ -1,5 +1,5 @@
 import { getArticleDetail } from '@app/_service/article';
-import { Divider } from '@nextui-org/react';
+import { Separator } from '@app/_shadcn/components/ui/separator';
 import {
   ButtonSection,
   ContentSection,
@@ -23,11 +23,11 @@ export default async function ArticleDetailPage({
   return (
     <ClientFormProvider>
       <div>
-        <div className="flex items-center justify-between border-b py-2">
+        <div className="flex items-center justify-between py-2">
           <h1 className="w-full break-all text-4xl">{title}</h1>
           <ButtonSection articleId={articleId} userId={userId} />
         </div>
-        <Divider />
+        <Separator className="my-3" />
         {files && files.length > 0 && <FileSection files={files} />}
         <ContentSection articleContent={content} />
         <div className="mb-32">

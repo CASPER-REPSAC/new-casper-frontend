@@ -8,12 +8,12 @@ import {
   NavigationMenuTrigger,
 } from '@app/_shadcn/components/ui/navigation-menu';
 
-import { Link } from '@nextui-org/react';
 import { ADMIN_PATH, PATH } from '@app/_constants/urls';
 import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { useRecoilValue } from 'recoil';
 import { roleState } from '@app/_store/permissionAtoms';
+import Link from 'next/link';
 
 const MENU_ITEMS = [
   {

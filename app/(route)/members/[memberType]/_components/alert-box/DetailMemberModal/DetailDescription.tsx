@@ -1,7 +1,7 @@
 import { HomeIcon, MailIcon } from '@app/_components/icons';
 import { ICON_SIZE } from '@app/_constants/size';
+import { Separator } from '@app/_shadcn/components/ui/separator';
 import { MemberProfile } from '@app/_types/userTypes';
-import { Divider } from '@nextui-org/react';
 import { ReactNode } from 'react';
 
 function DetailDescription({
@@ -56,7 +56,7 @@ function DetailRow({
   return (
     <div>
       <div className="mb-1  pb-1 text-2xl font-bold">{title}</div>
-      <Divider />
+      <Separator />
       {children}
     </div>
   );

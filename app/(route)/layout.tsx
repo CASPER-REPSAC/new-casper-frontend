@@ -4,7 +4,6 @@ import { ReactNode } from 'react';
 import {
   QueryWrapper,
   RecoilRootWrapper,
-  NextUIWrapper,
   AutoLoginPresence,
 } from '@app/_components/providers';
 import { DefaultLayout } from '@app/_components/layout';
@@ -36,10 +35,8 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <RecoilRootWrapper>
             <ThemeProvider>
               <AutoLoginPresence />
-              <NextUIWrapper>
-                <DefaultLayout>{children}</DefaultLayout>
-                <Toaster />
-              </NextUIWrapper>
+              <DefaultLayout>{children}</DefaultLayout>
+              <Toaster />
             </ThemeProvider>
           </RecoilRootWrapper>
         </QueryWrapper>
