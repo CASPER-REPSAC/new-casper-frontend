@@ -1,4 +1,4 @@
-import { useFunnel } from '@app/_hooks';
+import useFunnel from '@app/_hooks/useFunnel';
 import AgreeForm from './_components/AgreeForm';
 import EmailForm from './_components/EmailForm';
 import NameForm from './_components/NameForm';
@@ -7,6 +7,7 @@ import PasswordForm from './_components/PasswordForm';
 
 function JoinFunnel() {
   const { funnelStep } = useFunnel();
+  console.log('hh', funnelStep);
 
   return (
     <div className="flex w-full flex-col gap-4">

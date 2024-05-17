@@ -1,73 +1,49 @@
 import { DownArrowIcon } from '@app/_components/icons';
 import { ICON_SIZE } from '@app/_constants/size';
-import { PATH } from '@app/_constants/urls';
-import { useFunnel } from '@app/_hooks';
+import useFunnel from '@app/_hooks/useFunnel';
+import useFunnelValid from '@app/_hooks/useJoinFormValid';
 import { Button } from '@app/_shadcn/components/ui/button';
-import { JoinFormData } from '@app/_types/joinTypes';
 import { Check } from 'lucide-react';
-import { Url } from 'next/dist/shared/lib/router/router';
-import Link from 'next/link';
-import { useFormContext } from 'react-hook-form';
 
 function ProgressBar() {
-  const { funnelStep } = useFunnel();
-  const {
-    getValues,
-    formState: { dirtyFields, errors },
-  } = useFormContext<JoinFormData>();
-
-  const agreeComplete = getValues('agree');
-  const emailComplete = !errors.email && !!dirtyFields.email;
-  const idComplete = !errors.id && !!dirtyFields.id;
-  const nicknameComplete = !errors.nickname && !!dirtyFields.nickname;
-  const passwordComplete = !errors.pw && !!dirtyFields.pw;
+  const { funnelStep, setFunnelStep } = useFunnel();
+  const agreeFunnelValid = useFunnelValid('agree');
+  const emailFunnelValid = useFunnelValid('email');
+  const idFunnelValid = useFunnelValid('id');
+  const nameFunnelValid = useFunnelValid('name');
+  const passwordFunnelValid = useFunnelValid('password');
 
   return (
     <div className="flex w-full justify-around">
       <Status
-        href={{
-          pathname: PATH.user.join.url,
-          query: { 'funnel-step': 'agree' },
-        }}
+        onClick={() => setFunnelStep('agree')}
         active={funnelStep === 'agree'}
         label="개인 정보 수집 동의"
-        isComplete={agreeComplete}
+        isComplete={agreeFunnelValid}
       />
       <Status
-        href={{
-          pathname: PATH.user.join.url,
-          query: { 'funnel-step': 'email' },
-        }}
+        onClick={() => setFunnelStep('email')}
         active={funnelStep === 'email'}
         label="이메일 인증"
-        isComplete={emailComplete}
+        isComplete={emailFunnelValid}
       />
       <Status
-        href={{
-          pathname: PATH.user.join.url,
-          query: { 'funnel-step': 'name' },
-        }}
+        onClick={() => setFunnelStep('name')}
         active={funnelStep === 'name'}
         label="닉네임 설정"
-        isComplete={nicknameComplete}
+        isComplete={nameFunnelValid}
       />
       <Status
-        href={{
-          pathname: PATH.user.join.url,
-          query: { 'funnel-step': 'id' },
-        }}
+        onClick={() => setFunnelStep('id')}
         active={funnelStep === 'id'}
         label="아이디 설정"
-        isComplete={idComplete}
+        isComplete={idFunnelValid}
       />
       <Status
-        href={{
-          pathname: PATH.user.join.url,
-          query: { 'funnel-step': 'password' },
-        }}
+        onClick={() => setFunnelStep('password')}
         active={funnelStep === 'password'}
         label="패스워드 설정"
-        isComplete={passwordComplete}
+        isComplete={passwordFunnelValid}
       />
     </div>
   );
@@ -77,10 +53,10 @@ interface Props {
   isComplete: boolean;
   label: string;
   active?: boolean;
-  href: Url;
+  onClick?: () => void;
 }
 
-function Status({ href, label, isComplete, active = false }: Props) {
+function Status({ onClick, label, isComplete, active = false }: Props) {
   return (
     <div className="relative flex w-7 flex-col items-center">
       {active && (
@@ -90,17 +66,16 @@ function Status({ href, label, isComplete, active = false }: Props) {
         />
       )}
       <Button
+        type="button"
         variant="outline"
-        asChild
+        onClick={onClick}
         size="icon"
         className={`rounded-full ${isComplete && 'border-primary'}`}
       >
-        <Link href={href}>
-          <Check
-            size={15}
-            className={`${isComplete ? 'text-primary' : 'text-slate-300'}`}
-          />
-        </Link>
+        <Check
+          size={15}
+          className={`${isComplete ? 'text-primary' : 'text-slate-300'}`}
+        />
       </Button>
 
       <div
