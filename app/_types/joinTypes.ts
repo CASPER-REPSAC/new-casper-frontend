@@ -7,6 +7,7 @@ export interface JoinFormData {
   nickname: string;
   profile: FileList;
   agree: boolean;
+  emailKey: string;
 }
 
 export interface JoinRequest {
@@ -15,6 +16,7 @@ export interface JoinRequest {
   email: string;
   name: string;
   nickname: string;
+  emailKey: string;
 }
 
 export interface JoinResponse {

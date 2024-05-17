@@ -31,6 +31,7 @@ export const INPUT_ERROR = {
   name: '이름이 이상합니다.',
   nickname: '닉네임이 이상합니다.',
   email: '이메일 형식이 올바르지 않습니다.',
+  emailKey: '이메일 인증 코드 형식이 올바르지 않습니다.',
   unknown: '알 수 없는 에러',
   autoLogin: '자동 로그인 중 오류가 발생했어요. 개발자에게 문의 부탁드려요.',
 };

@@ -1,8 +1,10 @@
 import { PATH } from '@app/_constants/urls';
+import { funnelState } from '@app/_store/joinAtoms';
 import { FunnelStepType } from '@app/_types/joinTypes';
 import { isFunnelType } from '@app/_utils/typeGuard';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect } from 'react';
+import { useRecoilState } from 'recoil';
 
 function useFunnel() {
   const QUERY_KEY = 'funnel-step';
@@ -15,28 +17,26 @@ function useFunnel() {
     'finish',
   ];
 
-  const { push } = useRouter();
+  const { replace } = useRouter();
   const query = useSearchParams();
-  const [funnelStep, setStep] = useState<FunnelStepType>();
+  const [funnelStep, setStep] = useRecoilState<FunnelStepType>(funnelState);
   const curStepIndex = STEPS.findIndex((step) => step === funnelStep);
   const nextStep = STEPS[curStepIndex + 1];
 
   const setFunnelStep = (step: FunnelStepType) => {
-    const nextUrl = `${PATH.user.join.url}?${QUERY_KEY}=${step}`;
     setStep(step);
-    push(nextUrl);
   };
 
-  const controllFunnelStep = useCallback(() => {
+  const synchronizeFunnelStepAndUrl = useCallback(() => {
     const funnelStepQuery = query?.get(QUERY_KEY);
     if (funnelStepQuery === null || !isFunnelType(funnelStepQuery)) {
-      push(`${PATH.user.join.url}?${QUERY_KEY}=agree`);
+      replace(`${PATH.user.join.url}?${QUERY_KEY}=agree`);
       return;
     }
     setStep(funnelStepQuery);
-  }, [query, push]);
+  }, [query, setStep, replace]);
 
-  useEffect(controllFunnelStep, [controllFunnelStep]);
+  useEffect(synchronizeFunnelStepAndUrl, [synchronizeFunnelStepAndUrl]);
 
   return { funnelStep, setFunnelStep, nextStep };
 }
