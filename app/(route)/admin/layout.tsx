@@ -19,7 +19,7 @@ function Layout({ children }: PropsWithChildren) {
       </div>
     );
 
-  return <div className="common-center mt-20">{children}</div>;
+  return <div className="common-center my-20">{children}</div>;
 }
 
 export default Layout;
