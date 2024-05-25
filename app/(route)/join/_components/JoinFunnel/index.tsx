@@ -7,7 +7,6 @@ import PasswordForm from './_components/PasswordForm';
 
 function JoinFunnel() {
   const { funnelStep } = useFunnel();
-  console.log('hh', funnelStep);
 
   return (
     <div className="flex w-full flex-col gap-4">

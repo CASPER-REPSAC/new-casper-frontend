@@ -1,3 +1,5 @@
+import { BOARD_TYPE } from './mock';
+
 const ADMIN_PATH = {
   home: {
     name: '관리자',
@@ -59,23 +61,23 @@ const PATH = {
   boards: {
     notice: {
       name: '공지사항',
-      url: '/boards/notice_board',
+      url: `/boards/${BOARD_TYPE.notice}`,
     },
     full: {
       name: '정회원 게시판',
-      url: '/boards/full_member_board',
+      url: `/boards/${BOARD_TYPE.full}`,
     },
     associate: {
       name: '준회원 게시판',
-      url: '/boards/associate_member_board',
+      url: `/boards/${BOARD_TYPE.associate}`,
     },
     graduate: {
       name: '졸업생 게시판',
-      url: '/boards/graduate_member_board',
+      url: `/boards/${BOARD_TYPE.graduate}`,
     },
     free: {
       name: '자유 게시판',
-      url: '/boards/freedom_board',
+      url: `/boards/${BOARD_TYPE.freedom}`,
     },
   },
   members: {

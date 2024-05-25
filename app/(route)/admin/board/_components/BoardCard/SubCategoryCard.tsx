@@ -24,7 +24,7 @@ function SubCategoryCard({ boardName, category }: Props) {
   const onPatchClick = () => {
     const { subCategory } = getValues();
     patchMutate({
-      subCategory,
+      subBoardName: subCategory,
       boardName,
       targetSubCategory: category,
     });

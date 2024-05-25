@@ -9,15 +9,15 @@ function usePatchSubCategory() {
     mutationFn: ({
       boardName,
       targetSubCategory,
-      subCategory,
+      subBoardName,
     }: {
       boardName: string;
       targetSubCategory: string;
-      subCategory: string;
+      subBoardName: string;
     }) =>
       axios.patch(`/proxy/api/board/patch/${boardName}/${targetSubCategory}`, {
         boardName,
-        subCategory,
+        subBoardName,
       }),
 
     onSuccess: () => {
