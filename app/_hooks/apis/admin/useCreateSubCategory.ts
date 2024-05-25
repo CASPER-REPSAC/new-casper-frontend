@@ -3,38 +3,31 @@ import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
 
-function usePatchSubCategory() {
+function useCreateSubCategory() {
   const { toast } = useToast();
 
   return useMutation({
     mutationFn: ({
       boardName,
-      targetSubCategory,
       subBoardName,
     }: {
       boardName: string;
-      targetSubCategory: string;
       subBoardName: string;
     }) =>
-      axios.patch(`/proxy/api/board/patch/${boardName}/${targetSubCategory}`, {
+      axios.post(`/proxy/api/board/add`, {
         boardName,
         subBoardName,
       }),
 
-    onSuccess: () => {
-      toast({
-        description: '소분류 수정 성공',
-      });
+    onSuccess() {
+      toast({ description: '소분류 생성 성공' });
       revalidatePath('/admin/board');
     },
 
-    onError: () => {
-      toast({
-        variant: 'destructive',
-        description: '소분류 수정 실패',
-      });
+    onError() {
+      toast({ variant: 'destructive', description: '소분류 생성 성공' });
     },
   });
 }
 
-export default usePatchSubCategory;
+export default useCreateSubCategory;

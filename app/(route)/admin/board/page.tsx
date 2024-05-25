@@ -28,7 +28,6 @@ const getAllSubCategories = async () => {
 
 async function AdminBoardPage() {
   const boardsCategories = await getAllSubCategories();
-  console.log(boardsCategories);
 
   const boardsCategoriesEntries = Object.entries(boardsCategories) as Entries<
     typeof boardsCategories

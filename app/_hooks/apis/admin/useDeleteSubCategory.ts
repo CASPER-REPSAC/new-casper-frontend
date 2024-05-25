@@ -1,3 +1,4 @@
+import { revalidatePath } from '@app/_actions';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
@@ -19,6 +20,7 @@ function useDeleteSubCategory() {
       toast({
         description: '소분류 삭제 성공',
       });
+      revalidatePath('/admin/board');
     },
 
     onError: () => {
