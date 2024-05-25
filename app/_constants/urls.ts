@@ -1,52 +1,10 @@
+import { BOARD_TYPE } from './mock';
+
 const ADMIN_PATH = {
-  home: {
-    name: '관리자',
-    url: '/admin',
-  },
-  dashboard: {
-    name: '대시보드',
-    url: '/admin/dashboard',
-  },
-  users: {
-    url: '/admin/users',
-    name: '사용자',
-    children: {
-      log: {
-        name: '로그',
-        url: '/admin/users/log',
-      },
-      list: {
-        name: '사용자 목록',
-        url: '/admin/users/list',
-      },
-      authority: {
-        name: '권한',
-        url: '/admin/users/authority',
-      },
-    },
-  },
-  boards: {
-    url: '/admin/boards',
-    name: '게시판',
-    children: {
-      boards: { name: '게시판 관리', url: '/admin/boards/list' },
-      posts: { name: '게시글 관리', url: '/admin/boards/posts' },
-      comments: { name: '댓글 관리', url: '/admin/boards/comments' },
-    },
-  },
-  files: {
-    name: '파일',
-    url: '/admin/files',
-  },
-  banner: {
-    name: '배너',
-    url: '/admin/banner',
-  },
-  menu: {
-    name: '메뉴',
-    url: '/admin/menu',
-  },
+  user: '/admin/user',
+  board: '/admin/board',
 };
+
 const PATH = {
   home: {
     name: '홈',
@@ -59,23 +17,23 @@ const PATH = {
   boards: {
     notice: {
       name: '공지사항',
-      url: '/boards/notice_board',
+      url: `/boards/${BOARD_TYPE.notice}`,
     },
     full: {
       name: '정회원 게시판',
-      url: '/boards/full_member_board',
+      url: `/boards/${BOARD_TYPE.full}`,
     },
     associate: {
       name: '준회원 게시판',
-      url: '/boards/associate_member_board',
+      url: `/boards/${BOARD_TYPE.associate}`,
     },
     graduate: {
       name: '졸업생 게시판',
-      url: '/boards/graduate_member_board',
+      url: `/boards/${BOARD_TYPE.graduate}`,
     },
     free: {
       name: '자유 게시판',
-      url: '/boards/freedom_board',
+      url: `/boards/${BOARD_TYPE.freedom}`,
     },
   },
   members: {

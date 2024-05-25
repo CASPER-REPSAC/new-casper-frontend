@@ -1,7 +1,9 @@
 import { BoardListParams } from '@app/_types/boardTypes';
 import { getOnePageArticleList } from '@app/_service/article';
-import { BoardBody, BoardHeader, PostLink } from './_components';
 import PageNav from './_components/PageNav';
+import BoardHeader from './_components/BoardHeader';
+import BoardBody from './_components/BoardBody';
+import PostLink from './_components/PostLink';
 
 interface Props {
   params: BoardListParams;

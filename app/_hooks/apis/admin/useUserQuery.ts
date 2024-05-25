@@ -8,7 +8,7 @@ function useUserQuery(role: string) {
 
   const queryFn = async () => {
     const { data } = await axios.get<{ memberList: MyProfile[] }>(
-      `proxy/api/user/showall?role=${role}`,
+      `/proxy/api/user/showall?role=${role}`,
     );
     return data;
   };
