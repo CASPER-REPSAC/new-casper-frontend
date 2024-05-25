@@ -19,7 +19,7 @@ const MENU_ITEMS = [
   {
     startWith: '/admin',
     title: 'Admin',
-    href: `${ADMIN_PATH.home.url}`,
+    href: `${ADMIN_PATH.user}`,
   },
   {
     startWith: '/members',

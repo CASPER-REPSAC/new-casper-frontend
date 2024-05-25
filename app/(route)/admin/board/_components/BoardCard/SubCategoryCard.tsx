@@ -1,6 +1,7 @@
 'use client';
 
 import { revalidatePath } from '@app/_actions';
+import { ADMIN_PATH } from '@app/_constants/urls';
 import useDeleteSubCategory from '@app/_hooks/apis/admin/useDeleteSubCategory';
 import usePatchSubCategory from '@app/_hooks/apis/admin/usePatchSubCategory';
 import { Button } from '@app/_shadcn/components/ui/button';
@@ -33,7 +34,7 @@ function SubCategoryCard({ boardName, category }: Props) {
   const onDelteClick = () => {
     const { subCategory } = getValues();
     deleteMutate({ targetSubCategory: subCategory, boardName });
-    revalidatePath('/admin/board');
+    revalidatePath(ADMIN_PATH.board);
   };
 
   return (
