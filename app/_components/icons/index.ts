@@ -42,3 +42,4 @@ export { PiSirenFill as SirenIcon } from 'react-icons/pi';
 export { CiCircleCheck as CheckIcon } from 'react-icons/ci';
 
 export { IoCameraOutline as CameraIcon } from 'react-icons/io5';
+export { FcGoogle as GoogleIcon } from 'react-icons/fc';

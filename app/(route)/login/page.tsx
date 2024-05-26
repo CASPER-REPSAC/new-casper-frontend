@@ -1,4 +1,5 @@
 import { LoginForm, LoginMoreLinks, Logo } from './_components';
+import SocialLoginSection from './_components/SocialLoginSection';
 
 function LoginPage() {
   return (
@@ -6,6 +7,7 @@ function LoginPage() {
       <Logo />
       <LoginForm />
       <LoginMoreLinks />
+      <SocialLoginSection />
     </div>
   );
 }
