@@ -26,6 +26,8 @@ async function GoogleLoginLoadingPage({ searchParams: { code } }: Props) {
     code,
   });
 
+  alert('success');
+
   return <>구글로그인 진행중인데요.</>;
 }
 
