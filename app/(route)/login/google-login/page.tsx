@@ -24,9 +24,8 @@ interface Props {
 async function GoogleLoginLoadingPage({ searchParams: { code } }: Props) {
   await axios.post(`${API_URL}/api/user/google`, {
     code,
+    redirectUri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI,
   });
-
-  alert('success');
 
   return <>구글로그인 진행중인데요.</>;
 }
