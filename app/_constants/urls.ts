@@ -1,0 +1,90 @@
+import { BOARD_TYPE } from './mock';
+
+const ADMIN_PATH = {
+  user: '/admin/user',
+  board: '/admin/board',
+};
+
+const PATH = {
+  home: {
+    name: '홈',
+    url: '/',
+  },
+  posts: {
+    name: '글 쓰기',
+    url: '/posts',
+  },
+  boards: {
+    notice: {
+      name: '공지사항',
+      url: `/boards/${BOARD_TYPE.notice}`,
+    },
+    full: {
+      name: '정회원 게시판',
+      url: `/boards/${BOARD_TYPE.full}`,
+    },
+    associate: {
+      name: '준회원 게시판',
+      url: `/boards/${BOARD_TYPE.associate}`,
+    },
+    graduate: {
+      name: '졸업생 게시판',
+      url: `/boards/${BOARD_TYPE.graduate}`,
+    },
+    free: {
+      name: '자유 게시판',
+      url: `/boards/${BOARD_TYPE.freedom}`,
+    },
+  },
+  members: {
+    active: {
+      name: '활동 중',
+      url: '/members/active',
+    },
+    rest: {
+      name: '휴학생',
+      url: '/members/rest',
+    },
+    graduate: {
+      name: '졸업생',
+      url: '/members/graduate',
+    },
+    all: {
+      name: '전체',
+      url: '/members/all',
+    },
+  },
+  user: {
+    login: {
+      name: '로그인',
+      url: '/login',
+    },
+    mypage: {
+      name: '마이페이지',
+      url: '/mypage',
+    },
+    join: {
+      name: '회원가입',
+      url: '/join',
+    },
+  },
+  extra: {
+    nas: {
+      name: 'Nas',
+      url: 'https://nas.casper.or.kr/',
+    },
+    wiki: {
+      name: 'Wiki',
+      url: 'https://www.casper.or.kr/dokuwiki/doku.php',
+    },
+    recruit: {
+      name: 'Recruit',
+      url: 'https://recruit.casper.or.kr/',
+    },
+  },
+} as const;
+
+Object.freeze(PATH);
+Object.freeze(ADMIN_PATH);
+
+export { PATH, ADMIN_PATH };
