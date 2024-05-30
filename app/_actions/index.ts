@@ -4,6 +4,7 @@ import {
   revalidatePath as _revalidatePath,
   revalidateTag as _revalidateTag,
 } from 'next/cache';
+import { cookies } from 'next/headers';
 import { redirect as _redirect } from 'next/navigation';
 
 export async function revalidatePath(path: string) {
@@ -16,4 +17,9 @@ export async function redirect(url: string) {
 
 export async function revalidateTag(tag: string) {
   _revalidateTag(tag);
+}
+
+export async function getRefreshToken() {
+  const refreshToken = cookies().get('refreshToken');
+  return refreshToken;
 }

@@ -19,3 +19,5 @@ export const PROFILE_UPLOAD_API = '/api/user/image';
 export const PROFILE_UPDATE_API = '/api/user/update';
 export const COMMENT_API = (articleId: string) =>
   `/api/article/${articleId}/comment`;
+
+export const GOOGLE_OAUTH = 'https://accounts.google.com/o/oauth2/v2/auth';
