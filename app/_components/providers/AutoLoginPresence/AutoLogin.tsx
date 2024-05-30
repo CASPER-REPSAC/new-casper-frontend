@@ -1,5 +1,6 @@
 'use client';
 
+import { getRefreshToken } from '@app/_actions';
 import useAutoLoginMutation from '@app/_hooks/apis/user/useAutoLoginMutation';
 import { loginState } from '@app/_store/permissionAtoms';
 import { memo, useEffect } from 'react';
@@ -10,9 +11,10 @@ function AutoLogin() {
   const isLoggedIn = useRecoilValue(loginState);
 
   useEffect(() => {
-    if (!isLoggedIn) {
-      autoLoginMutate();
-    }
+    if (isLoggedIn) return;
+    getRefreshToken().then((refreshToken) => {
+      if (refreshToken) autoLoginMutate();
+    });
   }, [isLoggedIn, autoLoginMutate]);
 
   return <></>;
