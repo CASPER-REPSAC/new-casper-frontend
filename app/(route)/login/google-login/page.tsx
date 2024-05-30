@@ -1,14 +1,15 @@
 'use client';
 
-import { useSearchParams } from 'next/navigation';
 import useGoogleLoginMutation from '@app/_hooks/apis/user/useGoogleLoginMutation';
 import { useEffect } from 'react';
 import Spinner from '@app/_components/Spinner';
 
-function GoogleLoginLoadingPage() {
+interface Props {
+  searchParams: { code: string };
+}
+
+function GoogleLoginLoadingPage({ searchParams: { code } }: Props) {
   const { mutate } = useGoogleLoginMutation();
-  const a = useSearchParams();
-  const code = a.get('code');
 
   useEffect(() => {
     if (!code) return;
