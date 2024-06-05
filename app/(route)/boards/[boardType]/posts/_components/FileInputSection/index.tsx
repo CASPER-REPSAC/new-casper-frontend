@@ -8,7 +8,7 @@ import FileViewer from './FileViewer';
 
 function FileInputSection() {
   const ACTIVE_CLASS = 'border-slate-400 bg-secondary';
-  const DEFAULT_CLASS = 'border-primary-foreground bg-white';
+  const DEFAULT_CLASS = 'border-primary-foreground bg-background';
 
   const fileInputId = useId();
   const [isActive, setIsActive] = useState(false);

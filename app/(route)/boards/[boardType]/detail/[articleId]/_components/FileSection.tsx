@@ -23,10 +23,12 @@ function FileSection({ files }: Props) {
             <span>첨부파일 모아보기</span>
           </Button>
         </DropdownMenuTrigger>
-        <DropdownMenuContent>
+        <DropdownMenuContent className="px-4 py-2">
           <DropdownMenuGroup>
             {files.map(({ name, src }) => (
-              <a href={src}>{name}</a>
+              <a href={src} download={name}>
+                {name}
+              </a>
             ))}
           </DropdownMenuGroup>
         </DropdownMenuContent>
