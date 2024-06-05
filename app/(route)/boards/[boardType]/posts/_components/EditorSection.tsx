@@ -9,6 +9,7 @@ function EditorSection() {
   const { setValue } = useFormContext<PostReqData>();
 
   const onValueChange = (value: TElement[]) => {
+    console.log(value);
     const valueString = JSON.stringify(value);
     setValue('content', valueString);
   };

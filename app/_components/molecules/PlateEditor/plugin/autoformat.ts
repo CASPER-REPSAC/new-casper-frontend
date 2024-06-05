@@ -1,4 +1,11 @@
 import { AutoformatRule } from '@udecode/plate-autoformat';
+import {
+  MARK_BOLD,
+  MARK_CODE,
+  MARK_ITALIC,
+  MARK_STRIKETHROUGH,
+  MARK_UNDERLINE,
+} from '@udecode/plate-basic-marks';
 import { ELEMENT_BLOCKQUOTE } from '@udecode/plate-block-quote';
 import { ELEMENT_DEFAULT, insertNodes, setNodes } from '@udecode/plate-common';
 import {
@@ -59,5 +66,30 @@ export const autoformatBlocks: AutoformatRule[] = [
         children: [{ text: '' }],
       });
     },
+  },
+  {
+    mode: 'mark',
+    type: MARK_BOLD,
+    match: '**',
+  },
+  {
+    mode: 'mark',
+    type: MARK_CODE,
+    match: '`',
+  },
+  {
+    mode: 'mark',
+    type: MARK_STRIKETHROUGH,
+    match: '~~',
+  },
+  {
+    mode: 'mark',
+    type: MARK_ITALIC,
+    match: ['*', '_'],
+  },
+  {
+    mode: 'mark',
+    type: MARK_UNDERLINE,
+    match: '__',
   },
 ];
