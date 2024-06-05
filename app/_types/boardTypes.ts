@@ -39,9 +39,10 @@ export interface ArticleDetail {
 
 export type BoardType =
   | 'notice_board'
-  | 'full_member_board'
-  | 'associate_member_board'
-  | 'graduate_member_board';
+  | 'full_board'
+  | 'associate_board'
+  | 'graduate_board'
+  | 'freedom_board';
 
 export interface BoardListParams extends Params {
   boardType: BoardType;
@@ -50,7 +51,7 @@ export interface BoardListParams extends Params {
 
 export interface BoardDetailParams extends Params {
   boardType: BoardType;
-  id: string;
+  articleId: string;
 }
 
 export interface CommentWriteRequest {

@@ -3,6 +3,7 @@ import {
   ARTICLE_DETAIL_API,
   ARTICLE_LIST_API,
 } from '@app/_constants/apiUrl';
+import { ERROR_MESSAGE } from '@app/_constants/message';
 import {
   ArticleDetail,
   CommentResponse,
@@ -23,9 +24,11 @@ export async function getArticleDetail(articleId: string) {
       tags: ['accessToken'],
     },
   });
+
   if (!res.ok) {
     const error: ErrorResponse = await res.json();
-    throw new CustomError(error);
+    if (error.code === -301) throw new Error(ERROR_MESSAGE[error.code]);
+    throw new Error(ERROR_MESSAGE.unknown);
   }
 
   const data: ArticleDetail = await res.json();

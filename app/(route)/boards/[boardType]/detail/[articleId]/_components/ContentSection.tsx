@@ -24,8 +24,6 @@ function ContentSection({ articleContent }: Props) {
 
   const initialValue: TElement[] = JSON.parse(articleContent);
 
-  console.log('articleContent:', articleContent);
-
   return (
     <div className="mb-40 min-h-[300px] py-6">
       <PlateEditor

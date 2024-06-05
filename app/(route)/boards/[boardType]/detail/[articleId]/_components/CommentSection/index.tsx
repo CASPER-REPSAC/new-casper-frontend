@@ -21,8 +21,6 @@ interface Props {
 function CommentSection({ articleId }: Props) {
   const { data: comments } = useComments(articleId);
 
-  console.log(comments);
-
   if (!comments) return <>loading..</>;
 
   return (

@@ -1,5 +1,5 @@
 export interface ErrorProps {
-  error: CustomError & { digest?: string };
+  error: Error & { digest?: string };
   reset: () => void;
 }
 export interface ErrorResponse {
@@ -7,6 +7,9 @@ export interface ErrorResponse {
   message: string;
 }
 
+/**
+ * @deprecated
+ */
 class CustomError extends Error {
   message: string = '';
 
