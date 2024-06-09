@@ -1,5 +1,5 @@
 import { withProps } from '@udecode/cn';
-import { createPlugins, PlateElement } from '@udecode/plate-common';
+import { createPlugins, PlateElement, PlateLeaf } from '@udecode/plate-common';
 import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
 import {
   ELEMENT_H1,
@@ -8,6 +8,7 @@ import {
   ELEMENT_H4,
   ELEMENT_H5,
   ELEMENT_H6,
+  KEYS_HEADING,
 } from '@udecode/plate-heading';
 import { ELEMENT_BLOCKQUOTE } from '@udecode/plate-block-quote';
 import {
@@ -27,6 +28,20 @@ import { createAutoformatPlugin } from '@udecode/plate-autoformat';
 import { createBasicElementsPlugin } from '@udecode/plate-basic-elements';
 
 import { createResetNodePlugin } from '@udecode/plate-reset-node';
+import {
+  createBasicMarksPlugin,
+  MARK_BOLD,
+  MARK_CODE,
+  MARK_ITALIC,
+  MARK_STRIKETHROUGH,
+  MARK_UNDERLINE,
+} from '@udecode/plate-basic-marks';
+import { CodeLeaf } from '@app/_shadcn/components/plate-ui/code-leaf';
+import {
+  createExitBreakPlugin,
+  createSoftBreakPlugin,
+} from '@udecode/plate-break';
+import { ELEMENT_TD } from '@udecode/plate-table';
 import { autoformatBlocks } from './autoformat';
 import { resetNodeRules } from './resetNode';
 
@@ -36,6 +51,7 @@ const plugins = createPlugins(
 
     createHorizontalRulePlugin(),
     createBasicElementsPlugin(),
+    createBasicMarksPlugin(),
     createAutoformatPlugin({
       options: {
         rules: [...autoformatBlocks],
@@ -45,6 +61,43 @@ const plugins = createPlugins(
     createResetNodePlugin({
       options: {
         rules: resetNodeRules,
+      },
+    }),
+    createSoftBreakPlugin({
+      options: {
+        rules: [
+          { hotkey: 'shift+enter' },
+          {
+            hotkey: 'enter',
+            query: {
+              allow: [ELEMENT_BLOCKQUOTE, ELEMENT_TD],
+            },
+          },
+        ],
+      },
+    }),
+
+    createExitBreakPlugin({
+      options: {
+        rules: [
+          {
+            hotkey: 'mod+enter',
+          },
+          {
+            hotkey: 'mod+shift+enter',
+            before: true,
+          },
+          {
+            hotkey: 'enter',
+            query: {
+              start: true,
+              end: true,
+              allow: KEYS_HEADING,
+            },
+            relative: true,
+            level: 1,
+          },
+        ],
       },
     }),
   ],
@@ -63,6 +116,11 @@ const plugins = createPlugins(
         [ELEMENT_PARAGRAPH]: ParagraphElement,
         [ELEMENT_BLOCKQUOTE]: BlockquoteElement,
         [ELEMENT_HR]: HrElement,
+        [MARK_BOLD]: withProps(PlateLeaf, { as: 'strong' }),
+        [MARK_ITALIC]: withProps(PlateLeaf, { as: 'em' }),
+        [MARK_STRIKETHROUGH]: withProps(PlateLeaf, { as: 's' }),
+        [MARK_UNDERLINE]: withProps(PlateLeaf, { as: 'u' }),
+        [MARK_CODE]: CodeLeaf,
       }),
     ),
   },
