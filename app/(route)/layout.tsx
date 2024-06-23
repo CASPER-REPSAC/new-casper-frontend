@@ -11,6 +11,7 @@ import { ThemeProvider } from '@app/_components/providers/ThemeProvider';
 import { Inter as FontSans } from 'next/font/google';
 import { cn } from '@app/_shadcn/lib/utils';
 import { Toaster } from '@app/_shadcn/components/ui/toaster';
+import { TooltipProvider } from '@app/_shadcn/components/ui/tooltip';
 
 export const metadata = {
   title: 'Casper',
@@ -34,8 +35,10 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         <QueryWrapper>
           <RecoilRootWrapper>
             <ThemeProvider>
-              <AutoLoginPresence />
-              <DefaultLayout>{children}</DefaultLayout>
+              <TooltipProvider>
+                <AutoLoginPresence />
+                <DefaultLayout>{children}</DefaultLayout>
+              </TooltipProvider>
               <Toaster />
             </ThemeProvider>
           </RecoilRootWrapper>

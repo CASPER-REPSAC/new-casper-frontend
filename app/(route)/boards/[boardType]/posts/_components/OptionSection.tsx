@@ -5,7 +5,6 @@ import { Label } from '@app/_shadcn/components/ui/label';
 import {
   Tooltip,
   TooltipContent,
-  TooltipProvider,
   TooltipTrigger,
 } from '@app/_shadcn/components/ui/tooltip';
 import { CreateArticleForm } from '@app/_types/PostTypes';
@@ -32,16 +31,14 @@ function OptionSection() {
         />
         <span>과제 제출하기</span>
       </Label>
-      <TooltipProvider>
-        <Tooltip>
-          <TooltipTrigger>
-            <Info size={14} />
-          </TooltipTrigger>
-          <TooltipContent>
-            <p>정회원만 열람할 수 있는 비밀글이 돼요.</p>
-          </TooltipContent>
-        </Tooltip>
-      </TooltipProvider>
+      <Tooltip>
+        <TooltipTrigger>
+          <Info size={14} />
+        </TooltipTrigger>
+        <TooltipContent>
+          <p>정회원만 열람할 수 있는 비밀글이 돼요.</p>
+        </TooltipContent>
+      </Tooltip>
     </section>
   );
 }
