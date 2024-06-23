@@ -6,7 +6,8 @@ export interface PostReqData {
   title: string;
   content: string;
   photo: string;
-  files?: File[];
+  files?: FileList;
+  fileUrls: string[];
 }
 
 export interface UpdateReqData {

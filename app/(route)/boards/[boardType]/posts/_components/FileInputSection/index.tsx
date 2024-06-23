@@ -1,9 +1,16 @@
 'use client';
 
-import { PostReqData } from '@app/_types/PostTypes';
-import mergeFileArray from '@app/_utils/board/mergeFileLists';
-import { ChangeEvent, DragEventHandler, useId, useState } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { PostReqData } from '@app/_types/PostTypes';
+import {
+  ChangeEvent,
+  DragEventHandler,
+  useEffect,
+  useId,
+  useState,
+} from 'react';
+import mergeFileArray from '@app/_utils/board/mergeFileLists';
+import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
 import FileViewer from './FileViewer';
 
 function FileInputSection() {
@@ -12,7 +19,12 @@ function FileInputSection() {
 
   const fileInputId = useId();
   const [isActive, setIsActive] = useState(false);
-  const { setValue, getValues } = useFormContext<PostReqData>();
+  const { setValue, getValues, register } = useFormContext<PostReqData>();
+  const {
+    mutate: fileUploadMutate,
+    isSuccess,
+    data: uploadedFiles,
+  } = useFileUploadMutation();
 
   const onDragOver: DragEventHandler<HTMLLabelElement> = (e) => {
     e.preventDefault();
@@ -36,34 +48,34 @@ function FileInputSection() {
 
   const onDrop: DragEventHandler<HTMLLabelElement> = (e) => {
     e.preventDefault();
+    const dataTransfer = new DataTransfer();
     const { files } = e.dataTransfer;
-    const newFileArray = Array.from(files);
-    const { files: prevFileArray } = getValues();
+    const { files: prevFileList } = getValues();
 
-    if (!prevFileArray) {
-      setValue('files', newFileArray);
+    if (!prevFileList) {
+      setValue('files', files);
       return;
     }
 
+    const prevFileArray = Array.from(prevFileList);
+    const newFileArray = Array.from(files);
     const mergedFileArray = mergeFileArray(prevFileArray, newFileArray);
-    setValue('files', mergedFileArray);
+    mergedFileArray.forEach((file) => dataTransfer.items.add(file));
+    setValue('files', dataTransfer.files);
     setIsActive(false);
   };
 
-  const onChange = (e: ChangeEvent<HTMLInputElement>) => {
-    const { files: prevFileArray } = getValues();
-    const { files: newFileList } = e.target;
-    if (!newFileList) return;
-    const newFileArray = Array.from(newFileList);
-
-    if (!prevFileArray) {
-      setValue('files', newFileArray);
-      return;
-    }
-
-    const mergedFileArray = mergeFileArray(prevFileArray, newFileArray);
-    setValue('files', mergedFileArray);
+  const uploadFiles = (e: ChangeEvent<HTMLInputElement>) => {
+    const { files } = e.currentTarget;
+    if (!files) return;
+    fileUploadMutate({ type: 'article', files });
   };
+
+  const fileRegister = register('files', { onChange: uploadFiles });
+
+  useEffect(() => {
+    if (isSuccess && uploadedFiles) setValue('fileUrls', uploadedFiles.urls);
+  }, [uploadedFiles, isSuccess, setValue]);
 
   return (
     <label
@@ -78,10 +90,10 @@ function FileInputSection() {
     >
       <input
         id={fileInputId}
-        onChange={onChange}
         className="hidden"
         type="file"
         multiple
+        {...fileRegister}
       />
       <FileViewer />
     </label>
