@@ -1,5 +1,7 @@
-export interface PostReqData {
-  boardId: string;
+import { BoardType } from './boardTypes';
+
+export interface CreateArticleForm {
+  boardId: BoardType;
   category: string;
   hide: boolean;
   notice: boolean;
@@ -8,6 +10,16 @@ export interface PostReqData {
   photo: string;
   files?: FileList;
   fileUrls: string[];
+}
+
+export interface CreateArticleRequest {
+  boardId: BoardType;
+  category: string;
+  hide: boolean;
+  notice: boolean;
+  title: string;
+  content: string;
+  urls: string[];
 }
 
 export interface UpdateReqData {

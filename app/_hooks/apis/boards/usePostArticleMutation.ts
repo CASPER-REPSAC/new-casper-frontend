@@ -1,40 +1,25 @@
-import axios, { AxiosError } from 'axios';
+import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
-import { useRecoilValue } from 'recoil';
-import { PostReqData } from '@app/_types/PostTypes';
-import { accessTokenState } from '@app/_store/permissionAtoms';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { PATH } from '@app/_constants/urls';
-import { POST_ARTICLE_API } from '@app/_constants/apiUrl';
 import {
   ERROR_MESSAGE,
   POPUP_MESSAGE,
   TOAST_TITLE,
 } from '@app/_constants/message';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
+import boardService from '@app/_service/boardService';
 
 export default function usePostArticleMutation() {
   const { toast } = useToast();
   const { push } = useRouter();
-  const accessToken = useRecoilValue(accessTokenState);
 
-  const mutationFn = ({ files, ...createArticleDto }: PostReqData) => {
-    const formData = new FormData();
-    const createArticleDtoBlob = new Blob([JSON.stringify(createArticleDto)], {
-      type: 'application/json',
+  const mutationFn = ({ files, fileUrls, ...rest }: CreateArticleForm) =>
+    boardService.createArticle({
+      urls: fileUrls,
+      ...rest,
     });
-
-    files?.forEach((file) => {
-      formData.append('files', file);
-    });
-    formData.append('createArticleDto', createArticleDtoBlob);
-
-    return axios.postForm(`/proxy${POST_ARTICLE_API}`, formData, {
-      headers: {
-        Authorization: `Bearer ${accessToken}`,
-      },
-    });
-  };
 
   const onSuccess = () => {
     toast({

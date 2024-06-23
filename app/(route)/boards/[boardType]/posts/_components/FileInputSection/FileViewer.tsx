@@ -1,11 +1,11 @@
 import { CloseIcon, FileAddIcon } from '@app/_components/icons';
 import { Button } from '@app/_shadcn/components/ui/button';
-import { PostReqData } from '@app/_types/PostTypes';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function FileViewer() {
-  const { watch, setValue } = useFormContext<PostReqData>();
+  const { watch, setValue } = useFormContext<CreateArticleForm>();
   const files = watch('files');
 
   if (!files || files.length === 0)

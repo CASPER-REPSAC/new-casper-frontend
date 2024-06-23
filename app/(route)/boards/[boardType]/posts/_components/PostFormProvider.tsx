@@ -1,13 +1,13 @@
 'use client';
 
-import { PostReqData } from '@app/_types/PostTypes';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { useParams } from 'next/navigation';
 import { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
 
 function PostFormProvider({ children }: PropsWithChildren) {
   const { boardType } = useParams<{ boardType: string }>();
-  const defaultValues: PostReqData = {
+  const defaultValues: CreateArticleForm = {
     boardId: boardType,
     category: 'all',
     hide: false,
@@ -16,7 +16,7 @@ function PostFormProvider({ children }: PropsWithChildren) {
     content: '',
     photo: 'test',
   };
-  const methods = useForm<PostReqData>({ defaultValues });
+  const methods = useForm<CreateArticleForm>({ defaultValues });
 
   return <FormProvider {...methods}>{children}</FormProvider>;
 }

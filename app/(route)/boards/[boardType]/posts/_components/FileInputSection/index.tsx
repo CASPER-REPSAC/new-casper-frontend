@@ -1,7 +1,7 @@
 'use client';
 
 import { useFormContext } from 'react-hook-form';
-import { PostReqData } from '@app/_types/PostTypes';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import {
   ChangeEvent,
   DragEventHandler,
@@ -19,7 +19,7 @@ function FileInputSection() {
 
   const fileInputId = useId();
   const [isActive, setIsActive] = useState(false);
-  const { setValue, getValues, register } = useFormContext<PostReqData>();
+  const { setValue, getValues, register } = useFormContext<CreateArticleForm>();
   const {
     mutate: fileUploadMutate,
     isSuccess,
