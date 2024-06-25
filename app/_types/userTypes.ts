@@ -24,29 +24,31 @@ export interface MemberProfile {
 
 export interface ProfileImageUploadRequest {
   profile: File;
+  userModifyDto: {
+    nickname: string;
+    homepage: string;
+    introduce: string;
+    profileImgPath: string;
+  };
 }
 
 export interface ProfileUpdateRequset {
-  id: string;
-  pw?: string;
-  email?: string;
-  name?: string;
-  nickname?: string;
-  introduce?: string;
-  homepage?: string;
-  profileImgPath?: string;
+  introduce: string;
+  name: string;
+  nickname: string;
+  homepage: string;
+  profileImgPath: string;
 }
 
 export interface ProfileUpdateForm {
-  id: string;
-  pw?: string;
-  email?: string;
-  name?: string;
-  nickname?: string;
-  introduce?: string;
-  homepage?: string;
-  profileImg?: FileList;
-  profileImgPath?: string;
+  profileImg: FileList;
+  profileImgPath: string;
+  introduce: string;
+  name: string;
+  nickname: string;
+  role: Role | '';
+  homepage: string;
+  email: string;
 }
 
 export interface ProfileUpdateResponse {

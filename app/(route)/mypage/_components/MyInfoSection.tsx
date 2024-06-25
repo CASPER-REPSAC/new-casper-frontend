@@ -6,7 +6,7 @@ import { myProfileState, roleState } from '@app/_store/permissionAtoms';
 import { Textarea } from '@app/_shadcn/components/ui/textarea';
 import { Input } from '@app/_shadcn/components/ui/input';
 
-function MyInfoFrom() {
+function MyInfoSection() {
   const { register } = useFormContext<MyProfile>();
   const myProfile = useRecoilValue(myProfileState);
   const role = useRecoilValue(roleState);
@@ -70,4 +70,4 @@ function MyInfoFrom() {
   );
 }
 
-export default MyInfoFrom;
+export default MyInfoSection;

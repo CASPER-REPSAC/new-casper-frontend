@@ -40,6 +40,7 @@ export function PlateEditor({
               variant="ghost"
               className={`h-full ${!readOnly && 'px-8'}`}
               focusRing={false}
+              placeholder="내용을 입력해주세요."
             />
 
             {!readOnly && (

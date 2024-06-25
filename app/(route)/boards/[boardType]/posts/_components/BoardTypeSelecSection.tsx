@@ -8,11 +8,11 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@app/_shadcn/components/ui/select';
-import { PostReqData } from '@app/_types/PostTypes';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { useFormContext } from 'react-hook-form';
 
 function BoardTypeSelectSection() {
-  const { setValue, watch } = useFormContext<PostReqData>();
+  const { setValue, watch } = useFormContext<CreateArticleForm>();
   const { data } = useCategory(watch('boardId'));
 
   const handleCategoryCahnge = (selected: string) => {

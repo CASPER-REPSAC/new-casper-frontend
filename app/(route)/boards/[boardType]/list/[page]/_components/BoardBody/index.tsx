@@ -12,8 +12,10 @@ import {
   TableRow,
 } from '@app/_shadcn/components/ui/table';
 import { ArticleData, BoardListParams } from '@app/_types/boardTypes';
-import { LockIcon } from '@app/_components/icons';
 import formateDate from '@app/_utils/formatDate';
+import { BookOpen } from 'lucide-react';
+import { Tooltip, TooltipContent } from '@app/_shadcn/components/ui/tooltip';
+import { TooltipTrigger } from '@app/_shadcn/components/plate-ui/tooltip';
 
 interface Props {
   articleList?: ArticleData[];
@@ -48,8 +50,20 @@ function BoardBody({ articleList }: Props) {
                   <TableRow key={articleId} className="cursor-pointer">
                     <TableCell className="text-center">{articleId}</TableCell>
                     <TableCell className="flex items-center">
-                      <span>
-                        {hide && <LockIcon className="mr-2 text-primary" />}
+                      <span className="flex-center">
+                        {hide && (
+                          <Tooltip>
+                            <TooltipTrigger>
+                              <BookOpen
+                                className="mr-2 stroke-muted-foreground"
+                                size={15}
+                              />
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              해당 글은 정회원만 열람 가능해요.
+                            </TooltipContent>
+                          </Tooltip>
+                        )}
                       </span>
                       <span className="truncate hover:text-clip">{title}</span>
                     </TableCell>
