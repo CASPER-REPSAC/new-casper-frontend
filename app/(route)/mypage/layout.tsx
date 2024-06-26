@@ -5,6 +5,10 @@ import { getAccessToken } from '@app/_utils/cookie';
 import { PATH } from '@app/_constants/urls';
 import { redirect } from 'next/navigation';
 
+export const metadata = {
+  title: 'Casper - Mypage',
+};
+
 interface Props {
   children: ReactNode;
 }
