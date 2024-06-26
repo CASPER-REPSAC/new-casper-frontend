@@ -1,5 +1,6 @@
 import { Separator } from '@app/_shadcn/components/ui/separator';
 import GoogleLoginButton from './GoogleLoginButton';
+import GithubLoginButton from './GithubLoginButton';
 
 function SocialLoginSection() {
   return (
@@ -11,6 +12,7 @@ function SocialLoginSection() {
       </Separator>
       <div className="flex flex-col gap-2">
         <GoogleLoginButton />
+        <GithubLoginButton />
       </div>
     </section>
   );
