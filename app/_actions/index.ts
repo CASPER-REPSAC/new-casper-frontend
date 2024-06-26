@@ -20,6 +20,11 @@ export async function revalidateTag(tag: string) {
 }
 
 export async function getRefreshToken() {
-  const refreshToken = cookies().get('refreshToken');
+  const refreshToken = cookies().get('refreshToken')?.value;
   return refreshToken;
+}
+
+export async function getAccessToken() {
+  const accessToken = cookies().get('accessToken')?.value;
+  return accessToken;
 }
