@@ -12,7 +12,7 @@ function useProfileUpdateMutation() {
 
   const onSuccess = () => {
     toast({
-      title: TOAST_TITLE.error,
+      title: '프로필 수정',
       description: '프로필이 업데이트 되었어요.',
     });
   };

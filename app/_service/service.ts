@@ -1,3 +1,4 @@
+import { getAccessToken } from '@app/_actions';
 import axios, { AxiosInstance } from 'axios';
 
 class Service {
@@ -22,10 +23,7 @@ class Service {
           newConfig.headers.Authorization = `Bearer ${token}`;
         }
       } else {
-        const token = document.cookie.replace(
-          /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
-          '$1',
-        );
+        const token = await getAccessToken();
         newConfig.baseURL = '/proxy';
         if (token) {
           newConfig.headers.Authorization = `Bearer ${token}`;
