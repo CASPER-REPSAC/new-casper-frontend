@@ -52,6 +52,10 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
           aws-region: ap-northeast-2
 
+      - name: Add Github Actions IP to Security group
+        run: |
+          aws ec2 authorize-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
+
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -65,3 +69,7 @@ jobs:
             sudo docker rm new-casper-frontend
             sudo docker pull ${{ secrets.DOCKER_REPO }}
             sudo docker run -d -p 3000:3000 --name new-casper-frontend ${{ secrets.DOCKER_REPO }}
+
+      - name: Remove Github Actions IP From Security Group
+        run: |
+          aws ec2 revoke-security-group-ingress --group-id ${{ secrets.AWS_SG_ID }} --protocol tcp --port 22 --cidr ${{ steps.ip.outputs.ipv4 }}/32
