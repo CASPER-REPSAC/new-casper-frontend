@@ -1,27 +1,45 @@
 'use client';
 
-import { myProfileState } from '@app/_store/permissionAtoms';
-import { MyProfile } from '@app/_types/userTypes';
-import { FormProvider, useForm } from 'react-hook-form';
+import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
-import MyAvatarForm from './_components/MyAvatarForm';
-import MyInfoForm from './_components/MyInfoForm';
-import ButtonSection from './_components/ButtonSection';
+import { myProfileState } from '@app/_store/permissionAtoms';
+import { PATH } from '@app/_constants/urls';
+import { Button, buttonVariants } from '@app/_shadcn/components/ui/button';
+import MyAvatarInput from './_components/MyAvatarInput';
+import MyInfoSection from './_components/MyInfoSection';
+import ProfileForm from './_components/ProfileForm';
 
 function MyPage() {
   const myProfile = useRecoilValue(myProfileState);
-  const methods = useForm<MyProfile>(
-    myProfile ? { defaultValues: myProfile } : undefined,
-  );
+
+  if (!myProfile)
+    return (
+      <div className="flex-center">
+        <Link
+          href={PATH.user.login.url}
+          className={buttonVariants({ variant: 'default' })}
+        >
+          로그인이 필요해요
+        </Link>
+      </div>
+    );
+
+  const defaultValues = {
+    introduce: myProfile.introduce,
+    name: myProfile.name,
+    nickname: myProfile.nickname,
+    role: myProfile.role,
+    homepage: myProfile.homepage,
+  };
 
   return (
-    <div className="small-center flex flex-col gap-12">
-      <FormProvider {...methods}>
-        <MyAvatarForm />
-        <MyInfoForm />
-        <ButtonSection />
-      </FormProvider>
-    </div>
+    <ProfileForm defaultValues={defaultValues}>
+      <MyAvatarInput />
+      <MyInfoSection />
+      <Button type="submit" size="lg">
+        저장
+      </Button>
+    </ProfileForm>
   );
 }
 

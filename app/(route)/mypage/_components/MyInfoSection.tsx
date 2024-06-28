@@ -1,22 +1,20 @@
 import { useFormContext } from 'react-hook-form';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
-import { MyProfile } from '@app/_types/userTypes';
+import { ProfileUpdateForm } from '@app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
 import { myProfileState, roleState } from '@app/_store/permissionAtoms';
 import { Textarea } from '@app/_shadcn/components/ui/textarea';
 import { Input } from '@app/_shadcn/components/ui/input';
 
-function MyInfoFrom() {
-  const { register } = useFormContext<MyProfile>();
+function MyInfoSection() {
+  const { register } = useFormContext<ProfileUpdateForm>();
   const myProfile = useRecoilValue(myProfileState);
   const role = useRecoilValue(roleState);
 
   const introduceRegister = register('introduce');
   const nameRegister = register('name', { required: true });
   const nicknameRegister = register('nickname', { required: true });
-  const roleRegister = register('role', { required: true, disabled: true });
   const homepageRegister = register('homepage', { required: false });
-  const emailRegister = register('email');
 
   return (
     <>
@@ -42,15 +40,6 @@ function MyInfoFrom() {
         {...nicknameRegister}
       />
       <Input
-        label={INPUT_LABEL.role}
-        placeholder={PLACEHOLDER.role}
-        autoComplete="off"
-        defaultValue={role}
-        readOnly
-        disabled
-        {...roleRegister}
-      />
-      <Input
         type="url"
         label={INPUT_LABEL.homepage}
         defaultValue={myProfile?.homepage}
@@ -59,15 +48,22 @@ function MyInfoFrom() {
         {...homepageRegister}
       />
       <Input
+        label={INPUT_LABEL.role}
+        placeholder={PLACEHOLDER.role}
+        defaultValue={role}
+        readOnly
+        disabled
+      />
+      <Input
         type="email"
         label={INPUT_LABEL.email}
         placeholder={PLACEHOLDER.email}
         defaultValue={myProfile?.email}
-        autoComplete="off"
-        {...emailRegister}
+        readOnly
+        disabled
       />
     </>
   );
 }
 
-export default MyInfoFrom;
+export default MyInfoSection;

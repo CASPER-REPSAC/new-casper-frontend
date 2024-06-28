@@ -10,7 +10,7 @@ interface Props {
 function BoardLayout({ children }: Props) {
   return (
     <SideMenuLayout pageTitle={PAGE_TITLE.board} sideMenu={<BoardMenu />}>
-      {children}
+      <div className="pb-[200px]">{children}</div>
     </SideMenuLayout>
   );
 }

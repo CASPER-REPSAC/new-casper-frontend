@@ -1,3 +1,4 @@
+import { MARK_BOLD } from '@udecode/plate-basic-marks';
 import { ELEMENT_BLOCKQUOTE } from '@udecode/plate-block-quote';
 import {
   isBlockAboveEmpty,
@@ -8,7 +9,7 @@ import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
 import { ResetNodePluginRule } from '@udecode/plate-reset-node';
 
 const resetBlockTypesCommonRule = {
-  types: [ELEMENT_BLOCKQUOTE, ...KEYS_HEADING],
+  types: [ELEMENT_BLOCKQUOTE, ...KEYS_HEADING, MARK_BOLD],
   defaultType: ELEMENT_PARAGRAPH,
 };
 

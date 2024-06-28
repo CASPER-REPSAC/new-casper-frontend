@@ -2,14 +2,14 @@
 
 import { usePostArticleMutation } from '@app/_hooks/apis/boards';
 import { Button } from '@app/_shadcn/components/ui/button';
-import { PostReqData } from '@app/_types/PostTypes';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { SubmitHandler, useFormContext } from 'react-hook-form';
 
 function WriteButtonSection() {
-  const { handleSubmit } = useFormContext<PostReqData>();
+  const { handleSubmit } = useFormContext<CreateArticleForm>();
   const { mutate, isPending } = usePostArticleMutation();
 
-  const onValid: SubmitHandler<PostReqData> = async (data) => {
+  const onValid: SubmitHandler<CreateArticleForm> = async (data) => {
     mutate(data);
   };
 

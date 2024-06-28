@@ -1,0 +1,67 @@
+name: Auto deploy to EC2
+
+on:
+  push:
+    branches: ['main']
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 최신 버전을 다운로드 받습니다.
+        uses: actions/checkout@v4.1.1
+        with:
+          ref: main
+
+      - name: 환경 변수를 설정합니다.
+        run: |
+          echo "NEXT_PUBLIC_API_URL=$NEXT_PUBLIC_API_URL" >> .env
+          echo "NEXT_PUBLIC_GOOGLE_CLIENT_ID=$NEXT_PUBLIC_GOOGLE_CLIENT_ID" >> .env
+          echo "NEXT_PUBLIC_GOOGLE_CLIENT_SECRET=$NEXT_PUBLIC_GOOGLE_CLIENT_SECRET" >> .env
+          echo "NEXT_PUBLIC_GOOGLE_REDIRECT_URI=$NEXT_PUBLIC_GOOGLE_REDIRECT_URI" >> .env
+
+        env:
+          NEXT_PUBLIC_API_URL: ${{ secrets.NEXT_PUBLIC_API_URL }}
+          NEXT_PUBLIC_GOOGLE_CLIENT_ID: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_ID }}
+          NEXT_PUBLIC_GOOGLE_CLIENT_SECRET: ${{ secrets.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET }}
+          NEXT_PUBLIC_GOOGLE_REDIRECT_URI: ${{ secrets.NEXT_PUBLIC_GOOGLE_REDIRECT_URI }}
+
+      - name: 도커 이미지를 생성하고 도커 허브에 업로드합니다.
+        run: |
+          docker login -u $DOCKER_ID -p $DOCKER_TOKEN
+          docker build -t $DOCKER_REPO:latest ./
+          docker push $DOCKER_REPO:latest
+        env:
+          DOCKER_ID: ${{ secrets.DOCKER_ID }}
+          DOCKER_TOKEN: ${{ secrets.DOCKER_TOKEN }}
+          DOCKER_REPO: ${{ secrets.DOCKER_REPO }}
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Get Github Actions IP
+        id: ip
+        uses: haythem/public-ip@v1.2
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_KEY }}
+          aws-region: ap-northeast-2
+
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.AWS_HOST }}
+          username: ${{ secrets.AWS_USERNAME }}
+          key: ${{ secrets.AWS_ACCESS_KEY }}
+          port: 22
+          script: |
+            sudo docker login -u ${{ secrets.DOCKER_ID }} -p ${{ secrets.DOCKER_TOKEN }}
+            sudo docker stop new-casper-frontend
+            sudo docker rm new-casper-frontend
+            sudo docker pull ${{ secrets.DOCKER_REPO }}
+            sudo docker run -d -p 3000:3000 --name new-casper-frontend ${{ secrets.DOCKER_REPO }}
