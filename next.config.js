@@ -3,6 +3,7 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
 
 const nextConfig = {
+  output: 'standalone',
   reactStrictMode: false,
   images: {
     remotePatterns: [
