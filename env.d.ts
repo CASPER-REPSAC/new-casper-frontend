@@ -6,6 +6,9 @@ declare global {
       NEXT_PUBLIC_GOOGLE_REDIRECT_URI: string;
       NEXT_PUBLIC_GOOGLE_CLIENT_ID: string;
       NEXT_PUBLIC_GOOGLE_CLIENT_SECRET: string;
+
+      NEXT_PUBLIC_GITHUB_REDIRECT_URI: string;
+      NEXT_PUBLIC_GITHUB_CLIENT_ID: string;
     }
   }
 }
