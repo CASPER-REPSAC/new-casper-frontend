@@ -10,7 +10,7 @@ function useUserAuthUpdateMutation() {
   const bearerToken = useRecoilValue(bearerTokenState);
   const mutationFn = ({ id, role }: { id: string; role: string }) =>
     axios.post(
-      'proxy/api/user/auth',
+      '/proxy/api/user/auth',
       { id, role },
       {
         headers: {
