@@ -10,7 +10,8 @@ function GoogleLoginButton() {
     clinet_secret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI,
     response_type: 'code',
-    scope: 'https://www.googleapis.com/auth/userinfo.email',
+    scope:
+      'https://www.googleapis.com/auth/userinfo.email https://www.googleapis.com/auth/userinfo.profile',
   };
   const query = new URLSearchParams(queryObject);
 
