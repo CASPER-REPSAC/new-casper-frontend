@@ -31,6 +31,7 @@ function FileSection({ files }: Props) {
               const relativePath = src.split(API_URL)[1];
               return (
                 <Button
+                  key={src}
                   variant="ghost"
                   size="sm"
                   onClick={() =>
