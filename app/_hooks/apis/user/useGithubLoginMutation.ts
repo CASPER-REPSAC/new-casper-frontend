@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
+import { SNS_LAST_LOGIN } from '@app/_constants/localStorage';
 import loginService from '@app/_service/loginService';
 import useOnLogin from './useOnLogin';
 
 function useGithubLoginMutation() {
-  const { onSuccess, onError } = useOnLogin();
+  const { onSuccess: onLoginSuccess, onError } = useOnLogin();
 
   return useMutation({
     mutationFn: ({
@@ -14,7 +15,10 @@ function useGithubLoginMutation() {
       redirectUri: string;
     }) => loginService.loginGithub({ code, redirectUri }),
 
-    onSuccess,
+    onSuccess: (data) => {
+      onLoginSuccess(data);
+      localStorage.setItem(SNS_LAST_LOGIN, 'github');
+    },
     onError,
   });
 }

@@ -1,9 +1,10 @@
 import { useMutation } from '@tanstack/react-query';
+import { SNS_LAST_LOGIN } from '@app/_constants/localStorage';
 import axios from 'axios';
 import useOnLogin from './useOnLogin';
 
 function useGoogleLoginMutation() {
-  const { onSuccess, onError } = useOnLogin();
+  const { onSuccess: onLoginSuccess, onError } = useOnLogin();
 
   return useMutation({
     mutationFn: ({
@@ -18,7 +19,10 @@ function useGoogleLoginMutation() {
         redirectUri,
       }),
 
-    onSuccess,
+    onSuccess: (data) => {
+      onLoginSuccess(data);
+      localStorage.setItem(SNS_LAST_LOGIN, 'google');
+    },
     onError,
   });
 }
