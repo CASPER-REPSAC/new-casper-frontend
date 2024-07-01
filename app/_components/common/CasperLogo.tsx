@@ -25,8 +25,8 @@ function CasperLogo({ size = 'sm' }: Props) {
 
 const variants: Variants = {
   hover: {
-    rotate: -2,
-    scale: 1.1,
+    rotate: -1,
+    scale: 1.05,
   },
   tap: {
     scale: 0.9,
