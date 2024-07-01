@@ -13,8 +13,10 @@ function PostLink() {
   const onlyAdmin = boardType === 'notice_board' && role !== '관리자';
 
   return (
-    <Button asChild className="ml-auto" disabled={onlyAdmin}>
-      <Link href={`/boards/${boardType}/posts`}>작성 하기</Link>
+    <Button className="ml-auto" disabled={onlyAdmin}>
+      <Link className="h-full w-full" href={`/boards/${boardType}/posts`}>
+        작성 하기
+      </Link>
     </Button>
   );
 }
