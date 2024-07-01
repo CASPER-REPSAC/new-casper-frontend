@@ -1,5 +1,6 @@
 'use client';
 
+import useMount from '@app/_hooks/useMount';
 import { DraggableProps as DraggableMotionProps, motion } from 'framer-motion';
 import {
   Braces,
@@ -21,6 +22,7 @@ interface DraggableProps extends PropsWithChildren {
 function Draggable({ children, className, dragConstraints }: DraggableProps) {
   const xRandom = Math.random();
   const yRandom = Math.random();
+  const { isMounted } = useMount();
 
   const x =
     xRandom < 0.5
@@ -32,6 +34,7 @@ function Draggable({ children, className, dragConstraints }: DraggableProps) {
       ? { top: `${yRandom * 100}%` }
       : { bottom: `${(yRandom - 0.5) * 100}%` };
 
+  if (!isMounted) return null;
   return (
     <motion.div
       style={{
