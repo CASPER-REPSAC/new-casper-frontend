@@ -1,5 +1,7 @@
 'use client';
 
+import { API_URL } from '@app/_constants/apiUrl';
+import boardService from '@app/_service/boardService';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   DropdownMenu,
@@ -25,11 +27,20 @@ function FileSection({ files }: Props) {
         </DropdownMenuTrigger>
         <DropdownMenuContent className="px-4 py-2">
           <DropdownMenuGroup>
-            {files.map(({ name, src }) => (
-              <a href={src} download={name}>
-                {name}
-              </a>
-            ))}
+            {files.map(({ name, src }) => {
+              const relativePath = src.split(API_URL)[1];
+              return (
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() =>
+                    boardService.downloadFile({ url: relativePath, name })
+                  }
+                >
+                  {name}
+                </Button>
+              );
+            })}
           </DropdownMenuGroup>
         </DropdownMenuContent>
       </DropdownMenu>
