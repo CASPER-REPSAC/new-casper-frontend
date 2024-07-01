@@ -11,6 +11,7 @@ import {
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import boardService from '@app/_service/boardService';
 import { BoardType } from '@app/_types/boardTypes';
+import { revalidatePath } from '@app/_actions';
 
 export default function usePostArticleMutation() {
   const { toast } = useToast();
@@ -23,11 +24,13 @@ export default function usePostArticleMutation() {
       ...rest,
     });
 
-  const onSuccess = () => {
+  const onSuccess = async () => {
     toast({
       description: POPUP_MESSAGE.postSuccess,
     });
-    push(NEW_PATH.boardList.url({ boardType, page: 1 }));
+    const boardListPath = NEW_PATH.boardList.url({ boardType, page: 1 });
+    await revalidatePath(boardListPath.split('/list')[0]);
+    push(boardListPath);
   };
 
   const onError = (error: AxiosError) => {
