@@ -1,8 +1,8 @@
 import { AxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
+import { useParams, useRouter } from 'next/navigation';
 import { useMutation } from '@tanstack/react-query';
 import { CreateArticleForm } from '@app/_types/PostTypes';
-import { PATH } from '@app/_constants/urls';
+import { NEW_PATH, PATH } from '@app/_constants/urls';
 import {
   ERROR_MESSAGE,
   POPUP_MESSAGE,
@@ -10,10 +10,12 @@ import {
 } from '@app/_constants/message';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import boardService from '@app/_service/boardService';
+import { BoardType } from '@app/_types/boardTypes';
 
 export default function usePostArticleMutation() {
   const { toast } = useToast();
   const { push } = useRouter();
+  const { boardType } = useParams<{ boardType: BoardType }>();
 
   const mutationFn = ({ files, fileUrls, ...rest }: CreateArticleForm) =>
     boardService.createArticle({
@@ -25,7 +27,7 @@ export default function usePostArticleMutation() {
     toast({
       description: POPUP_MESSAGE.postSuccess,
     });
-    push(`${PATH.boards.notice.url}/list/1`);
+    push(NEW_PATH.boardList.url({ boardType, page: 1 }));
   };
 
   const onError = (error: AxiosError) => {

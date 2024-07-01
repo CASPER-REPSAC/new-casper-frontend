@@ -1,8 +1,16 @@
+import { BoardType } from '@app/_types/boardTypes';
 import { BOARD_TYPE } from './mock';
 
 const ADMIN_PATH = {
   user: '/admin/user',
   board: '/admin/board',
+};
+
+const NEW_PATH = {
+  boardList: {
+    url: ({ boardType, page }: { boardType: BoardType; page: number }) =>
+      `/boards/${boardType}/list/${page}`,
+  },
 };
 
 const PATH = {
@@ -87,4 +95,4 @@ const PATH = {
 Object.freeze(PATH);
 Object.freeze(ADMIN_PATH);
 
-export { PATH, ADMIN_PATH };
+export { PATH, ADMIN_PATH, NEW_PATH };
