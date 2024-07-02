@@ -1,4 +1,5 @@
 import { CreateArticleRequest } from '@app/_types/PostTypes';
+import { CommentResponse } from '@app/_types/boardTypes';
 import Service from './service';
 
 class BoardService extends Service {
@@ -17,6 +18,13 @@ class BoardService extends Service {
     link.download = name;
     link.click();
     window.URL.revokeObjectURL(url);
+  }
+
+  async getComments(articleId: number) {
+    const { data } = await this.axiosExtend.get<CommentResponse[]>(
+      `/api/article/${articleId}/comment`,
+    );
+    return data;
   }
 }
 
