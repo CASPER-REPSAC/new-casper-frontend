@@ -19,9 +19,10 @@ interface Props {
 }
 
 function CommentSection({ articleId }: Props) {
-  const { data: comments } = useComments(articleId);
+  const { data: comments } = useComments(Number(articleId));
 
-  if (!comments) return <>loading..</>;
+  console.log(comments);
+  if (!comments) return <></>;
 
   return (
     <div className="flex flex-col-reverse gap-12">

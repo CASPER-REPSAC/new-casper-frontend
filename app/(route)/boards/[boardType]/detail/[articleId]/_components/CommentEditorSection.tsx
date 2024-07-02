@@ -2,7 +2,7 @@
 
 import { useForm } from 'react-hook-form';
 import { PLACEHOLDER } from '@app/_constants/label';
-import { useCommentMutation } from '@app/_hooks/apis/boards';
+import { useCommentMutation, useComments } from '@app/_hooks/apis/boards';
 import { CommentWriteRequest } from '@app/_types/boardTypes';
 import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
 import { Button } from '@app/_shadcn/components/ui/button';
@@ -20,6 +20,7 @@ interface Props {
 function CommentEditorSection({ articleId }: Props) {
   const commentEditorId = useId();
   const isLoggedIn = useRecoilValue(loginState);
+  const { data: comments } = useComments(Number(articleId));
   const { mutate } = useCommentMutation(articleId);
   const { register, handleSubmit, reset } = useForm<CommentWriteRequest>();
   const { toast } = useToast();
@@ -40,17 +41,16 @@ function CommentEditorSection({ articleId }: Props) {
     });
   };
 
-  if (!isLoggedIn) return null;
-
   return (
     <form
       className="flex flex-col gap-4"
       onSubmit={handleSubmit(onValid, inValid)}
     >
       <Label className="text-lg" htmlFor={commentEditorId}>
-        댓글
+        댓글 {comments?.length || 0}개
       </Label>
       <Textarea
+        disabled={!isLoggedIn}
         id={commentEditorId}
         {...commentRegister}
         placeholder={PLACEHOLDER.comment}

@@ -1,15 +1,9 @@
-import { CommentResponse } from '@app/_types/boardTypes';
+import boardService from '@app/_service/boardService';
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
 
-function useComments(articleId: string) {
+function useComments(articleId: number) {
   const queryKey = ['comment', articleId];
-  const queryFn = async () => {
-    const { data } = await axios.get<CommentResponse[]>(
-      `/proxy/api/article/${articleId}/comment`,
-    );
-    return data;
-  };
+  const queryFn = async () => boardService.getComments(articleId);
 
   return useQuery({
     queryKey,
