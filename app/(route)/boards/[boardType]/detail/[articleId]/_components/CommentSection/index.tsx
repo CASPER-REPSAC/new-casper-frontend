@@ -60,6 +60,7 @@ function Comment({
   const [editable, setEditable] = useState(false);
   const myProfile = useRecoilValue(myProfileState);
   const isMyComment = myProfile?.nickname === nickname;
+  const isAdmin = myProfile?.role === 'admin';
   const methods = useForm({
     defaultValues: {
       comment: content,
@@ -78,7 +79,7 @@ function Comment({
           <Content comment={content} editable={editable} />
         </div>
         <div className="flex gap-4">
-          {isMyComment && (
+          {(isMyComment || isAdmin) && (
             <Buttons
               articleId={articleId}
               commentId={commentId}

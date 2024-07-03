@@ -24,6 +24,8 @@ function ButtonSection({ articleId, userId }: Props) {
   const [editable, setEditable] = useRecoilState(editableStateFamily(params));
   const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
   const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
+  const isMine = myProfile?.id === userId;
+  const isAdmin = myProfile?.role === 'admin';
 
   const deleteArticle = () => {
     mutateDeletion();
@@ -41,27 +43,24 @@ function ButtonSection({ articleId, userId }: Props) {
     setEditable(false);
   };
 
-  if (myProfile?.id !== userId) {
-    return <></>;
-  }
+  if (isMine || isAdmin)
+    return (
+      <div className="flex gap-2">
+        {editable ? (
+          <Button size="sm" variant="secondary" onClick={completeModification}>
+            완료
+          </Button>
+        ) : (
+          <Button size="sm" onClick={changeEditMode}>
+            수정
+          </Button>
+        )}
 
-  return (
-    <div className="flex gap-2">
-      {editable ? (
-        <Button size="sm" variant="secondary" onClick={completeModification}>
-          완료
+        <Button size="sm" variant="destructive" onClick={deleteArticle}>
+          삭제
         </Button>
-      ) : (
-        <Button size="sm" onClick={changeEditMode}>
-          수정
-        </Button>
-      )}
-
-      <Button size="sm" variant="destructive" onClick={deleteArticle}>
-        삭제
-      </Button>
-    </div>
-  );
+      </div>
+    );
 }
 
 export default ButtonSection;
