@@ -6,7 +6,7 @@ import useDeleteSubCategory from '@app/_hooks/apis/admin/useDeleteSubCategory';
 import usePatchSubCategory from '@app/_hooks/apis/admin/usePatchSubCategory';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { Input } from '@app/_shadcn/components/ui/input';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   boardName: string;
@@ -16,14 +16,17 @@ interface Props {
 function SubCategoryCard({ boardName, category }: Props) {
   const { mutate: patchMutate } = usePatchSubCategory();
   const { mutate: deleteMutate } = useDeleteSubCategory();
-  const { register, getValues } = useForm<{ subCategory: string }>({
+  const { register, handleSubmit } = useForm<{
+    subCategory: string;
+  }>({
     defaultValues: {
       subCategory: category,
     },
   });
 
-  const onPatchClick = () => {
-    const { subCategory } = getValues();
+  const patchCategory: SubmitHandler<{ subCategory: string }> = ({
+    subCategory,
+  }) => {
     patchMutate({
       subBoardName: subCategory,
       boardName,
@@ -31,8 +34,9 @@ function SubCategoryCard({ boardName, category }: Props) {
     });
   };
 
-  const onDelteClick = () => {
-    const { subCategory } = getValues();
+  const deleteCategory: SubmitHandler<{ subCategory: string }> = ({
+    subCategory,
+  }) => {
     deleteMutate({ targetSubCategory: subCategory, boardName });
     revalidatePath(ADMIN_PATH.board);
   };
@@ -43,10 +47,20 @@ function SubCategoryCard({ boardName, category }: Props) {
       key={category}
     >
       <Input defaultValue={category} {...register('subCategory')} />
-      <Button size="sm" variant="outline" onClick={onPatchClick}>
+      <Button
+        type="submit"
+        size="sm"
+        variant="outline"
+        onSubmit={handleSubmit(patchCategory)}
+      >
         수정
       </Button>
-      <Button size="sm" variant="destructive" onClick={onDelteClick}>
+      <Button
+        type="submit"
+        size="sm"
+        variant="destructive"
+        onClick={handleSubmit(deleteCategory)}
+      >
         삭제
       </Button>
     </div>

@@ -10,7 +10,7 @@ import {
 } from '@app/_shadcn/components/ui/card';
 import { Input } from '@app/_shadcn/components/ui/input';
 import useCreateSubCategory from '@app/_hooks/apis/admin/useCreateSubCategory';
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import SubCategoryCard from './SubCategoryCard';
 
 interface Props {
@@ -19,12 +19,15 @@ interface Props {
 }
 
 function BoardCard({ title, subCategories }: Props) {
-  const { register, getValues } = useForm<{ subCategory: string }>();
+  const { register, handleSubmit } = useForm<{
+    subCategory: string;
+  }>();
   const { mutate } = useCreateSubCategory();
-  const createSubCategoryRegister = register('subCategory');
+  const createSubCategoryRegister = register('subCategory', { required: true });
 
-  const createSubCategory = () => {
-    const { subCategory } = getValues();
+  const createSubCategory: SubmitHandler<{
+    subCategory: string;
+  }> = ({ subCategory }) => {
     mutate({ boardName: title, subBoardName: subCategory });
   };
 
@@ -47,14 +50,18 @@ function BoardCard({ title, subCategories }: Props) {
         </div>
       </CardContent>
       <CardFooter>
-        <div className="ml-auto flex gap-2">
+        <form
+          onSubmit={handleSubmit(createSubCategory)}
+          className="ml-auto flex gap-2"
+        >
           <Input
+            type="text"
             autoComplete="off"
             placeholder="새로운 카테고리를 입력하세요."
             {...createSubCategoryRegister}
           />
-          <Button onClick={createSubCategory}>추가</Button>
-        </div>
+          <Button type="submit">추가</Button>
+        </form>
       </CardFooter>
     </Card>
   );
