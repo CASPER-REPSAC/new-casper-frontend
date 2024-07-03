@@ -58,7 +58,7 @@ class BoardService extends Service {
     articleId: number;
     text: string;
   }) {
-    this.axiosExtend.post(`/proxy/api/article/${articleId}/comment`, { text });
+    this.axiosExtend.post(`/api/article/${articleId}/comment`, { text });
   }
 
   async downloadFiles(urls: string[]) {
