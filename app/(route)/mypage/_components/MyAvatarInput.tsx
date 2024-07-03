@@ -34,8 +34,8 @@ function MyAvatarInput() {
   });
 
   useEffect(() => {
-    if (isSuccess && uploadedFile?.urls[0])
-      setValue('profileImgPath', uploadedFile.urls[0]);
+    if (isSuccess && uploadedFile[0].url)
+      setValue('profileImgPath', uploadedFile[0].url);
   }, [uploadedFile, isSuccess, setValue]);
 
   return (
@@ -44,7 +44,7 @@ function MyAvatarInput() {
       htmlFor={uniqueId}
     >
       <Avatar className="h-full w-full">
-        <AvatarImage src={uploadedFile?.urls[0] || myProfile?.image} />
+        <AvatarImage src={uploadedFile?.[0].url || myProfile?.image} />
         <AvatarFallback>
           {isPending ? <Spinner /> : <CameraIcon size={30} />}
         </AvatarFallback>
