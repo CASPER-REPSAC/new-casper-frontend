@@ -48,7 +48,6 @@ function FileInputSection() {
     const prevFileArray = Array.from(prevFileList);
     const newFileArray = Array.from(newFileList);
     const mergedFileArray = mergeFileArray(prevFileArray, newFileArray);
-    console.log(mergedFileArray);
     mergedFileArray.forEach((file) => dataTransfer.items.add(file));
     return dataTransfer.files;
   };
