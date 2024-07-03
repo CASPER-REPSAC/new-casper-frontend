@@ -16,7 +16,7 @@ export default async function ArticleDetailPage({
   params: { articleId: string };
 }) {
   const {
-    article: { title, userId, content },
+    article: { title, userId, content, createdAt },
     files,
   } = await getArticleDetail(articleId);
 
@@ -28,7 +28,15 @@ export default async function ArticleDetailPage({
           <ButtonSection articleId={articleId} userId={userId} />
         </div>
         <Separator className="my-3" />
-        {files && files.length > 0 && <FileSection files={files} />}
+        <div className="flex w-full justify-between">
+          <span className="text-sm text-muted-foreground">
+            {new Date(createdAt).toLocaleDateString('ko-KR', {
+              hour: '2-digit',
+              minute: '2-digit',
+            })}
+          </span>
+          {files && files.length > 0 && <FileSection files={files} />}
+        </div>
         <ContentSection articleContent={content} />
         <div className="mb-32">
           <AuthorSection articleId={articleId} />
