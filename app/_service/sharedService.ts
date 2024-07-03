@@ -8,9 +8,12 @@ class SharedService extends Service {
       formData.append('files', file);
     });
 
-    const { data } = await this.axiosExtend.postForm<{
-      urls: string[];
-    }>(`/api/file/upload?type=${type}`, formData);
+    const { data } = await this.axiosExtend.postForm<
+      {
+        name: string;
+        url: string;
+      }[]
+    >(`/api/file/upload?type=${type}`, formData);
 
     return data;
   }

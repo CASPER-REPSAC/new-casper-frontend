@@ -18,9 +18,9 @@ export default function usePostArticleMutation() {
   const { push } = useRouter();
   const { boardType } = useParams<{ boardType: BoardType }>();
 
-  const mutationFn = ({ files, fileUrls, ...rest }: CreateArticleForm) =>
+  const mutationFn = ({ files, uploadedFiles, ...rest }: CreateArticleForm) =>
     boardService.createArticle({
-      urls: fileUrls,
+      urls: uploadedFiles.map(({ url }) => url),
       ...rest,
     });
 

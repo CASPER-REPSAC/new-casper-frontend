@@ -9,7 +9,7 @@ import {
   useId,
   useState,
 } from 'react';
-import mergeFileArray from '@app/_utils/board/mergeFileLists';
+import { mergeFileArray, mergeArraysByKey } from '@app/_utils/board/merge';
 import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
 import FileViewer from './FileViewer';
 
@@ -19,12 +19,9 @@ function FileInputSection() {
 
   const fileInputId = useId();
   const [isActive, setIsActive] = useState(false);
-  const { setValue, getValues, register } = useFormContext<CreateArticleForm>();
-  const {
-    mutate: fileUploadMutate,
-    isSuccess,
-    data: uploadedFiles,
-  } = useFileUploadMutation();
+  const { setValue, getValues } = useFormContext<CreateArticleForm>();
+  const { mutate: fileUploadMutate, data: uploadedFiles } =
+    useFileUploadMutation();
 
   const onDragOver: DragEventHandler<HTMLLabelElement> = (e) => {
     e.preventDefault();
@@ -46,36 +43,51 @@ function FileInputSection() {
     setIsActive(false);
   };
 
+  const mergeFileList = (prevFileList: FileList, newFileList: FileList) => {
+    const dataTransfer = new DataTransfer();
+    const prevFileArray = Array.from(prevFileList);
+    const newFileArray = Array.from(newFileList);
+    const mergedFileArray = mergeFileArray(prevFileArray, newFileArray);
+    console.log(mergedFileArray);
+    mergedFileArray.forEach((file) => dataTransfer.items.add(file));
+    return dataTransfer.files;
+  };
+
   const onDrop: DragEventHandler<HTMLLabelElement> = (e) => {
     e.preventDefault();
-    const dataTransfer = new DataTransfer();
     const { files } = e.dataTransfer;
-    const { files: prevFileList } = getValues();
-
-    if (!prevFileList) {
+    const prevFiles = getValues('files');
+    if (!prevFiles) {
       setValue('files', files);
-      return;
+    } else {
+      const mergedFileList = mergeFileList(prevFiles, files);
+      setValue('files', mergedFileList);
     }
-
-    const prevFileArray = Array.from(prevFileList);
-    const newFileArray = Array.from(files);
-    const mergedFileArray = mergeFileArray(prevFileArray, newFileArray);
-    mergedFileArray.forEach((file) => dataTransfer.items.add(file));
-    setValue('files', dataTransfer.files);
     setIsActive(false);
   };
 
-  const uploadFiles = (e: ChangeEvent<HTMLInputElement>) => {
+  const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     const { files } = e.currentTarget;
-    if (!files) return;
+    if (!files || files.length === 0) return;
     fileUploadMutate({ type: 'article', files });
   };
 
-  const fileRegister = register('files', { onChange: uploadFiles });
-
   useEffect(() => {
-    if (isSuccess && uploadedFiles) setValue('fileUrls', uploadedFiles.urls);
-  }, [uploadedFiles, isSuccess, setValue]);
+    if (!uploadedFiles || uploadedFiles.length === 0) return;
+    const prevUploadedFiles = getValues('uploadedFiles');
+    if (!prevUploadedFiles) {
+      setValue('uploadedFiles', uploadedFiles);
+      return;
+    }
+
+    const newUploadedFiles = mergeArraysByKey(
+      prevUploadedFiles,
+      uploadedFiles,
+      ({ name }) => name,
+    );
+
+    setValue('uploadedFiles', newUploadedFiles);
+  }, [uploadedFiles, setValue, getValues]);
 
   return (
     <label
@@ -93,7 +105,7 @@ function FileInputSection() {
         className="hidden"
         type="file"
         multiple
-        {...fileRegister}
+        onChange={onFileChange}
       />
       <FileViewer />
     </label>

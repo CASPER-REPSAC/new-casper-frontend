@@ -29,7 +29,6 @@ function FileSection({ files }: Props) {
           <DropdownMenuGroup>
             {files.map(({ name, src }) => {
               const relativePath = src.split(API_URL)[1];
-              console.log(src);
               return (
                 <Button
                   key={src}

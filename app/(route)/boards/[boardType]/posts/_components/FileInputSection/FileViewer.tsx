@@ -13,10 +13,10 @@ import { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 function FileViewer() {
-  const { watch, setValue } = useFormContext<CreateArticleForm>();
-  const files = watch('files');
+  const { watch, setValue, getValues } = useFormContext<CreateArticleForm>();
+  const uploadedFiles = watch('uploadedFiles');
 
-  if (!files || files.length === 0)
+  if (!uploadedFiles || uploadedFiles.length === 0)
     return (
       <div className="flex flex-col items-center gap-4">
         <FileAddIcon className="size-20" />
@@ -26,12 +26,12 @@ function FileViewer() {
       </div>
     );
 
-  const removeFile = (e: MouseEvent<HTMLButtonElement>, idx: number) => {
-    const dataTranster = new DataTransfer();
-    Array.from(files)
-      .filter((file, index) => index !== idx)
-      .forEach((file) => dataTranster.items.add(file));
-    setValue('files', dataTranster.files);
+  const removeFile = (e: MouseEvent<HTMLButtonElement>, targetName: string) => {
+    const prevUploadedFiles = getValues('uploadedFiles');
+    const filteredUploadedFiles = prevUploadedFiles.filter(
+      ({ name }) => name !== targetName,
+    );
+    setValue('uploadedFiles', filteredUploadedFiles);
     e.preventDefault();
   };
 
@@ -41,26 +41,20 @@ function FileViewer() {
         <TableRow>
           <TableHead>파일 명</TableHead>
           <TableHead>파일 크기</TableHead>
-          <TableHead>마지막 수정 일시</TableHead>
+          <TableHead>삭제</TableHead>
         </TableRow>
       </TableHeader>
       <TableBody>
-        {Array.from(files).map((file, idx) => (
+        {Array.from(uploadedFiles).map((file) => (
           <TableRow className="group" key={file.name}>
             <TableCell className="truncate">{file.name}</TableCell>
-            <TableCell className="truncate">
-              {(file.size / 1_000_000).toFixed(3)} MB
-            </TableCell>
-            <TableCell className="truncate">
-              {new Date(file.lastModified).toLocaleDateString()}
-            </TableCell>
-
+            <TableCell>?? MB</TableCell>
             <TableCell>
               <Button
                 variant="destructive"
                 className="invisible group-hover:visible"
                 size="sm"
-                onClick={(e) => removeFile(e, idx)}
+                onClick={(e) => removeFile(e, file.name)}
               >
                 <CloseIcon />
               </Button>

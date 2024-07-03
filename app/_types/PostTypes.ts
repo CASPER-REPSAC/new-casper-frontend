@@ -8,8 +8,12 @@ export interface CreateArticleForm {
   title: string;
   content: string;
   photo: string;
+
   files?: FileList;
-  fileUrls: string[];
+  uploadedFiles: {
+    name: string;
+    url: string;
+  }[];
 }
 
 export interface CreateArticleRequest {
