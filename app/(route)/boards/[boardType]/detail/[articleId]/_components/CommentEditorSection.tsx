@@ -21,7 +21,7 @@ function CommentEditorSection({ articleId }: Props) {
   const commentEditorId = useId();
   const isLoggedIn = useRecoilValue(loginState);
   const { data: comments } = useComments(Number(articleId));
-  const { mutate } = useCommentMutation(articleId);
+  const { mutate } = useCommentMutation(Number(articleId));
   const { register, handleSubmit, reset } = useForm<CommentWriteRequest>();
   const { toast } = useToast();
 

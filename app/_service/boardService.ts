@@ -37,6 +37,30 @@ class BoardService extends Service {
     this.axiosExtend.delete(`/api/article/${articleId}/comment/${commentId}`);
   }
 
+  async updateComment({
+    articleId,
+    commentId,
+    text,
+  }: {
+    articleId: number;
+    commentId: number;
+    text: string;
+  }) {
+    this.axiosExtend.patch(`/api/article/${articleId}/comment/${commentId}`, {
+      text,
+    });
+  }
+
+  async createComment({
+    articleId,
+    text,
+  }: {
+    articleId: number;
+    text: string;
+  }) {
+    this.axiosExtend.post(`/proxy/api/article/${articleId}/comment`, { text });
+  }
+
   async downloadFiles(urls: string[]) {
     const blobPromiseList = urls.map(async (url) => {
       const { data } = await this.axiosExtend.get<Blob>(url, {

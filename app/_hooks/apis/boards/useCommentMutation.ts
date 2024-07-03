@@ -1,29 +1,15 @@
 import { ERROR_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import boardService from '@app/_service/boardService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { bearerTokenState } from '@app/_store/permissionAtoms';
 import { CommentWriteRequest } from '@app/_types/boardTypes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios, { AxiosRequestConfig } from 'axios';
-import { useRecoilValue } from 'recoil';
 
-function useCommentMutation(articleId: string) {
+function useCommentMutation(articleId: number) {
   const queryCache = useQueryClient();
   const { toast } = useToast();
-  const bearerToken = useRecoilValue(bearerTokenState);
 
-  const mutationFn = ({ text }: CommentWriteRequest) => {
-    const params: CommentWriteRequest = { text };
-    const config: AxiosRequestConfig = {
-      headers: {
-        Authorization: bearerToken,
-      },
-    };
-    return axios.post(
-      `/proxy/api/article/${articleId}/comment`,
-      params,
-      config,
-    );
-  };
+  const mutationFn = ({ text }: CommentWriteRequest) =>
+    boardService.createComment({ articleId, text });
 
   const onSuccess = () => {
     toast({

@@ -60,7 +60,7 @@ export interface CommentWriteRequest {
 
 export interface CommentModifyRequest {
   text: string;
-  commentId: string;
+  commentId: number;
 }
 export interface CommentResponse {
   commentId: number;

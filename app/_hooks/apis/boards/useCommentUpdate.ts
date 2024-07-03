@@ -1,26 +1,16 @@
-import { COMMENT_API } from '@app/_constants/apiUrl';
 import { TOAST_TITLE } from '@app/_constants/message';
+import boardService from '@app/_service/boardService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { bearerTokenState } from '@app/_store/permissionAtoms';
 import { CommentModifyRequest } from '@app/_types/boardTypes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
-import { useRecoilValue } from 'recoil';
 
-function useCommentUpdate(articleId: string) {
+function useCommentUpdate(articleId: number) {
   const { toast } = useToast();
-  const bearerToken = useRecoilValue(bearerTokenState);
 
   const queryClient = useQueryClient();
 
-  const mutationFn = (data: CommentModifyRequest) =>
-    axios.patch(
-      `/proxy${COMMENT_API(articleId)}/${data.commentId}`,
-      { text: data.text },
-      {
-        headers: { Authorization: bearerToken },
-      },
-    );
+  const mutationFn = ({ text, commentId }: CommentModifyRequest) =>
+    boardService.updateComment({ articleId, commentId, text });
 
   const onSuccess = () => {
     toast({
