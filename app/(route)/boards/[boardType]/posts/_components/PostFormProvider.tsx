@@ -16,7 +16,7 @@ function PostFormProvider({ children }: PropsWithChildren) {
     title: '',
     content: '',
     photo: 'test',
-    fileUrls: [],
+    uploadedFiles: [],
     files: undefined,
   };
   const methods = useForm<CreateArticleForm>({ defaultValues });
