@@ -9,8 +9,9 @@ function useCommentUpdate(articleId: number) {
 
   const queryClient = useQueryClient();
 
-  const mutationFn = ({ text, commentId }: CommentModifyRequest) =>
-    boardService.updateComment({ articleId, commentId, text });
+  const mutationFn = async ({ text, commentId }: CommentModifyRequest) => {
+    await boardService.updateComment({ articleId, commentId, text });
+  };
 
   const onSuccess = () => {
     toast({

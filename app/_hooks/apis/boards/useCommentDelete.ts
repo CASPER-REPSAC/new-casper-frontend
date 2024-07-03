@@ -7,9 +7,9 @@ function useCommentDelete(articleId: number) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const mutationFn = (commentId: number) =>
-    boardService.deleteComment({ articleId, commentId });
-
+  const mutationFn = async (commentId: number) => {
+    await boardService.deleteComment({ articleId, commentId });
+  };
   const onSuccess = () => {
     toast({
       description: POPUP_MESSAGE.deleteCommentSuccess,

@@ -8,8 +8,9 @@ function useCommentMutation(articleId: number) {
   const queryCache = useQueryClient();
   const { toast } = useToast();
 
-  const mutationFn = ({ text }: CommentWriteRequest) =>
-    boardService.createComment({ articleId, text });
+  const mutationFn = async ({ text }: CommentWriteRequest) => {
+    await boardService.createComment({ articleId, text });
+  };
 
   const onSuccess = () => {
     toast({
