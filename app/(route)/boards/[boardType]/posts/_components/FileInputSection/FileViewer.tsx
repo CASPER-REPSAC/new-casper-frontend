@@ -1,5 +1,13 @@
 import { CloseIcon, FileAddIcon } from '@app/_components/icons';
 import { Button } from '@app/_shadcn/components/ui/button';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableHeader,
+  TableRow,
+} from '@app/_shadcn/components/ui/table';
 import { CreateArticleForm } from '@app/_types/PostTypes';
 import { MouseEvent } from 'react';
 import { useFormContext } from 'react-hook-form';
@@ -28,25 +36,39 @@ function FileViewer() {
   };
 
   return (
-    <div className="flex w-full flex-col gap-1 p-10">
-      {Array.from(files).map((file, idx) => (
-        <div
-          className="group flex items-center justify-between rounded-lg px-4 py-1 hover:bg-secondary"
-          key={file.name}
-        >
-          <span className="truncate">{file.name}</span>
+    <Table className="mx-auto my-4 w-10/12">
+      <TableHeader>
+        <TableRow>
+          <TableHead>파일 명</TableHead>
+          <TableHead>파일 크기</TableHead>
+          <TableHead>마지막 수정 일시</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {Array.from(files).map((file, idx) => (
+          <TableRow className="group" key={file.name}>
+            <TableCell className="truncate">{file.name}</TableCell>
+            <TableCell className="truncate">
+              {(file.size / 1_000_000).toFixed(3)} MB
+            </TableCell>
+            <TableCell className="truncate">
+              {new Date(file.lastModified).toLocaleDateString()}
+            </TableCell>
 
-          <Button
-            variant="destructive"
-            className="invisible group-hover:visible"
-            size="sm"
-            onClick={(e) => removeFile(e, idx)}
-          >
-            <CloseIcon />
-          </Button>
-        </div>
-      ))}
-    </div>
+            <TableCell>
+              <Button
+                variant="destructive"
+                className="invisible group-hover:visible"
+                size="sm"
+                onClick={(e) => removeFile(e, idx)}
+              >
+                <CloseIcon />
+              </Button>
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   );
 }
 
