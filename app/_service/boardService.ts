@@ -26,6 +26,28 @@ class BoardService extends Service {
     );
     return data;
   }
+
+  async deleteComment({
+    articleId,
+    commentId,
+  }: {
+    articleId: number;
+    commentId: number;
+  }) {
+    this.axiosExtend.delete(`/api/article/${articleId}/comment/${commentId}`);
+  }
+
+  async downloadFiles(urls: string[]) {
+    const blobPromiseList = urls.map(async (url) => {
+      const { data } = await this.axiosExtend.get<Blob>(url, {
+        responseType: 'blob',
+      });
+      return data;
+    });
+
+    const blobs = await Promise.all(blobPromiseList);
+    return blobs;
+  }
 }
 
 const boardService = new BoardService();

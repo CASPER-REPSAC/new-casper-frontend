@@ -1,15 +1,14 @@
-import { COMMENT_API } from '@app/_constants/apiUrl';
 import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import boardService from '@app/_service/boardService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
-import axios from 'axios';
 
-function useCommentDelete(articleId: string) {
+function useCommentDelete(articleId: number) {
   const { toast } = useToast();
   const queryClient = useQueryClient();
 
-  const mutationFn = (commentId: string) =>
-    axios.delete(`/proxy${COMMENT_API(articleId)}/${commentId}`);
+  const mutationFn = (commentId: number) =>
+    boardService.deleteComment({ articleId, commentId });
 
   const onSuccess = () => {
     toast({

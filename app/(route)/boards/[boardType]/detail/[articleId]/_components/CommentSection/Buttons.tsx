@@ -14,7 +14,7 @@ interface Props {
 function Buttons({ articleId, commentId, editable, setEditable }: Props) {
   const { setFocus, getValues } = useFormContext();
   const { mutate: mutateUpdate } = useCommentUpdate(articleId);
-  const { mutate: mutateDelete } = useCommentDelete(articleId);
+  const { mutate: mutateDelete } = useCommentDelete(Number(articleId));
 
   const changeEditMode = () => {
     setEditable(!editable);
@@ -28,7 +28,7 @@ function Buttons({ articleId, commentId, editable, setEditable }: Props) {
   };
 
   const deleteComment = () => {
-    mutateDelete(commentId);
+    mutateDelete(Number(commentId));
   };
 
   return (
