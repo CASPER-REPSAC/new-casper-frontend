@@ -13,7 +13,7 @@ import {
 } from '@app/_shadcn/components/ui/table';
 import { ArticleData, BoardListParams } from '@app/_types/boardTypes';
 import formateDate from '@app/_utils/formatDate';
-import { BookOpen } from 'lucide-react';
+import { BookOpen, MessageCircle, File } from 'lucide-react';
 import { Tooltip, TooltipContent } from '@app/_shadcn/components/ui/tooltip';
 import { TooltipTrigger } from '@app/_shadcn/components/plate-ui/tooltip';
 
@@ -39,7 +39,16 @@ function BoardBody({ articleList }: Props) {
 
         <TableBody>
           {articleList?.map(
-            ({ articleId, title, view, nickname, createdAt, hide }) => {
+            ({
+              articleId,
+              title,
+              view,
+              nickname,
+              createdAt,
+              hide,
+              numOfComments,
+              file,
+            }) => {
               const formattedDate = formateDate(createdAt);
               return (
                 <Link
@@ -66,6 +75,19 @@ function BoardBody({ articleList }: Props) {
                         )}
                       </span>
                       <span className="truncate hover:text-clip">{title}</span>
+                      <div className="ml-auto flex items-center gap-4 text-xs text-muted-foreground">
+                        {numOfComments > 0 && (
+                          <span className="flex items-center gap-1">
+                            <MessageCircle size={14} />
+                            {numOfComments}
+                          </span>
+                        )}
+                        {file && (
+                          <span>
+                            <File size={14} />
+                          </span>
+                        )}
+                      </div>
                     </TableCell>
                     <TableCell className="text-center">{nickname}</TableCell>
                     <TableCell className="text-center">
