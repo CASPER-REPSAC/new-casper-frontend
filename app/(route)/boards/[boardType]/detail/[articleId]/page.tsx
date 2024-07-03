@@ -1,3 +1,5 @@
+import { formatDistanceToNow } from 'date-fns';
+import { ko } from 'date-fns/locale';
 import { getArticleDetail } from '@app/_service/article';
 import { Separator } from '@app/_shadcn/components/ui/separator';
 import {
@@ -30,9 +32,9 @@ export default async function ArticleDetailPage({
         <Separator className="my-3" />
         <div className="flex w-full justify-between">
           <span className="text-sm text-muted-foreground">
-            {new Date(createdAt).toLocaleDateString('ko-KR', {
-              hour: '2-digit',
-              minute: '2-digit',
+            {formatDistanceToNow(new Date(createdAt), {
+              addSuffix: true,
+              locale: ko,
             })}
           </span>
           {files && files.length > 0 && <FileSection files={files} />}
