@@ -49,7 +49,7 @@ jobs:
         id: ip
         run: |
           response=$(curl -s canhazip.com)
-          echo "ip=$response'" >> "$GITHUB_OUTPUT
+          echo "ip=$response" >> "$GITHUB_OUTPUT"
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v1
