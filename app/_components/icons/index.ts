@@ -2,7 +2,6 @@
 
 export {
   AiOutlineMenu as MenuIcon,
-  AiOutlineHome as HomeIcon,
   AiOutlineClose as CloseIcon,
   AiOutlineUser as UserIcon,
   AiFillStar as StarIcon,
@@ -33,8 +32,6 @@ export {
   LuItalic as ItalicIcon,
 } from 'react-icons/lu';
 
-export { CiMail as MailIcon } from 'react-icons/ci';
-
 export { HiLightBulb as LightBulbIcon } from 'react-icons/hi';
 export { BsPencil as PencilIcon } from 'react-icons/bs';
 export { FaSun as SunIcon, FaMoon as MoonIcon } from 'react-icons/fa';
@@ -43,3 +40,5 @@ export { CiCircleCheck as CheckIcon } from 'react-icons/ci';
 
 export { IoCameraOutline as CameraIcon } from 'react-icons/io5';
 export { FcGoogle as GoogleIcon } from 'react-icons/fc';
+
+export { Link as LinkIcon, Mail as MailIcon } from 'lucide-react';

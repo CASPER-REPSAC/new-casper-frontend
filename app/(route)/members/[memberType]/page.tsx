@@ -35,7 +35,7 @@ async function Members({ params: { memberType } }: Props) {
           <DialogTrigger>
             <MemberCard key={member.id} member={member} />
           </DialogTrigger>
-          <DialogContent className="lg:min-w-[700px]">
+          <DialogContent className="px-12 py-8 lg:min-w-[700px]">
             <DetailMemberModal member={member} />
           </DialogContent>
         </Dialog>
