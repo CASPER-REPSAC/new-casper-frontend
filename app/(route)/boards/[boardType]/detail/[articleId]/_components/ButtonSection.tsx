@@ -22,7 +22,9 @@ function ButtonSection({ articleId, userId }: Props) {
   const myProfile = useRecoilValue(myProfileState);
   const params = useParams<BoardDetailParams>();
   const [editable, setEditable] = useRecoilState(editableStateFamily(params));
-  const { mutate: mutateDeletion } = useDeleteArticleMutation(articleId);
+  const { mutate: mutateDeletion } = useDeleteArticleMutation(
+    Number(articleId),
+  );
   const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
   const isMine = myProfile?.id === userId;
   const isAdmin = myProfile?.role === 'admin';

@@ -13,7 +13,7 @@ import axios, { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 
-function useDeleteArticleMutation(id: string) {
+function useDeleteArticleMutation(id: number) {
   const { push } = useRouter();
   const { toast } = useToast();
   const bearerToken = useRecoilValue(bearerTokenState);
