@@ -4,7 +4,7 @@ import axios, { AxiosInstance } from 'axios';
 class Service {
   public axiosExtend: AxiosInstance;
 
-  private baseURL = `${process.env.NEXT_PUBLIC_API_URL}/api/v1`;
+  private baseURL = process.env.NEXT_PUBLIC_API_URL;
 
   constructor() {
     const api = axios.create({
