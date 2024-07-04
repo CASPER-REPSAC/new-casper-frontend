@@ -1,9 +1,5 @@
+import Avatar from '@app/_components/user/Avatar';
 import { getArticleDetail } from '@app/_service/article';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@app/_shadcn/components/ui/avatar';
 
 interface Props {
   articleId: string;
@@ -16,10 +12,14 @@ async function AuthorSection({ articleId }: Props) {
 
   return (
     <div className="flex items-center gap-8 ">
-      <Avatar className="flex-center size-20 bg-secondary">
-        <AvatarImage src={profile} />
-        <AvatarFallback>{nickname}</AvatarFallback>
-      </Avatar>
+      <Avatar
+        className="size-20"
+        rounded
+        src={profile}
+        priority={false}
+        alt="profile"
+        fallback={nickname}
+      />
       <div>
         <span className="text-lg font-bold">{nickname}</span>
         <p>{introduce}</p>

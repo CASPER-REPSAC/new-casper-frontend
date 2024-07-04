@@ -1,11 +1,8 @@
 import { LogoutIcon, UserIcon } from '@app/_components/icons';
+import Avatar from '@app/_components/user/Avatar';
 import { PATH } from '@app/_constants/urls';
 import { useLogoutMutation } from '@app/_hooks/apis/user';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@app/_shadcn/components/ui/avatar';
+
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   DropdownMenu,
@@ -27,13 +24,14 @@ function UserButton() {
     <>
       {isLoggedIn ? (
         <DropdownMenu>
-          <DropdownMenuTrigger asChild>
-            <Avatar className="cursor-pointer">
-              <AvatarImage src={myProfile?.image} />
-              <AvatarFallback className="text-xs">
-                {myProfile?.nickname}
-              </AvatarFallback>
-            </Avatar>
+          <DropdownMenuTrigger>
+            <Avatar
+              src={myProfile?.image}
+              priority={false}
+              alt="profile"
+              fallback={myProfile?.nickname}
+              rounded
+            />
           </DropdownMenuTrigger>
           <DropdownMenuContent className="w-24">
             <DropdownMenuGroup className="gap-4">

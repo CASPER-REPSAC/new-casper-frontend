@@ -6,13 +6,10 @@ import { CameraIcon } from '@app/_components/icons';
 import { ProfileUpdateForm } from '@app/_types/userTypes';
 import { useRecoilValue } from 'recoil';
 import { myProfileState } from '@app/_store/permissionAtoms';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@app/_shadcn/components/ui/avatar';
+
 import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
 import Spinner from '@app/_components/Spinner';
+import Avatar from '@app/_components/user/Avatar';
 
 function MyAvatarInput() {
   const { register, setValue } = useFormContext<ProfileUpdateForm>();
@@ -43,12 +40,13 @@ function MyAvatarInput() {
       className="flex-center relative h-52 w-52 cursor-pointer self-center overflow-hidden rounded-full"
       htmlFor={uniqueId}
     >
-      <Avatar className="h-full w-full">
-        <AvatarImage src={uploadedFile?.[0].url || myProfile?.image} />
-        <AvatarFallback>
-          {isPending ? <Spinner /> : <CameraIcon size={30} />}
-        </AvatarFallback>
-      </Avatar>
+      <Avatar
+        className="h-full w-full"
+        src={uploadedFile?.[0].url || myProfile?.image}
+        fallback={isPending ? <Spinner /> : <CameraIcon size={30} />}
+        rounded={false}
+        alt="profile"
+      />
 
       <input
         className="hidden"

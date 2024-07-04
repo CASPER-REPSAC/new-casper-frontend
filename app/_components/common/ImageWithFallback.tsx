@@ -3,19 +3,20 @@
 import Image, { ImageProps } from 'next/image';
 import { ReactNode, useState } from 'react';
 
-interface Props extends ImageProps {
+interface Props extends Omit<ImageProps, 'src'> {
+  src?: string;
   fallback: ReactNode;
 }
 
-function ImageWithFallback({ fallback, ...props }: Props) {
+function ImageWithFallback({ fallback, src, ...props }: Props) {
   const [imageError, setImageError] = useState(false);
 
   return (
     <>
-      {imageError ? (
+      {!src || imageError ? (
         fallback
       ) : (
-        <Image onError={() => setImageError(true)} {...props} />
+        <Image src={src} onError={() => setImageError(true)} {...props} />
       )}
     </>
   );
