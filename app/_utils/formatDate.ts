@@ -1,7 +1,6 @@
-export default function formateDate(isoDateTimeString: string) {
-  const [date] = isoDateTimeString.split('T');
-  const [year, month, day] = date.split('-');
-  const formattedDate = `${year.slice(2)}. ${month}. ${day}`;
+import { format } from 'date-fns';
 
-  return formattedDate;
+export default function formateDate(isoDateTimeString: string) {
+  const date = new Date(isoDateTimeString);
+  return format(date, 'yy. MM. dd');
 }

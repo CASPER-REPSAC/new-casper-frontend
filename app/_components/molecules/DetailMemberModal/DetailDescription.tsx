@@ -27,9 +27,9 @@ function DetailDescription({
           <span className="text-xs font-thin">닉네임</span>
           <span className="text-xs font-thin">활동 상태</span>
 
-          <span className="">{name}</span>
-          <span className="">{nickname}</span>
-          <span className="">{ROLE[role]}</span>
+          <span>{name}</span>
+          <span>{nickname}</span>
+          <span>{ROLE[role]}</span>
         </div>
       </DetailRow>
 
