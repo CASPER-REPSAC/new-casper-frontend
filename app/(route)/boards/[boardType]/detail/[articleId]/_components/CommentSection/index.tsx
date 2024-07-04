@@ -1,15 +1,12 @@
 'use client';
 
+import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { FormProvider, useForm } from 'react-hook-form';
-import {
-  Avatar,
-  AvatarFallback,
-  AvatarImage,
-} from '@app/_shadcn/components/ui/avatar';
+
 import { useComments } from '@app/_hooks/apis/boards';
 import { myProfileState } from '@app/_store/permissionAtoms';
-import { useState } from 'react';
+import Avatar from '@app/_components/user/Avatar';
 import Buttons from './Buttons';
 import Content from './Content';
 import Header from './Header';
@@ -70,10 +67,14 @@ function Comment({
   return (
     <FormProvider {...methods}>
       <div className="flex items-start justify-between gap-8">
-        <Avatar className="size-14">
-          <AvatarImage src={profile} />
-          <AvatarFallback>{nickname}</AvatarFallback>
-        </Avatar>
+        <Avatar
+          className="size-14"
+          src={profile}
+          fallback={nickname}
+          rounded
+          alt="profile"
+        />
+
         <div className="flex flex-1 flex-col">
           <Header nickname={nickname} date={date} />
           <Content comment={content} editable={editable} />
