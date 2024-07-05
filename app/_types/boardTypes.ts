@@ -14,6 +14,7 @@ export interface ArticleData {
   hide: boolean;
   createdAt: string;
   articleId: number;
+  category: string;
 }
 
 export interface ArticleDetail {

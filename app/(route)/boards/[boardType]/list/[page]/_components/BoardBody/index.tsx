@@ -16,6 +16,7 @@ import formateDate from '@app/_utils/formatDate';
 import { BookOpen, MessageCircle, File } from 'lucide-react';
 import { Tooltip, TooltipContent } from '@app/_shadcn/components/ui/tooltip';
 import { TooltipTrigger } from '@app/_shadcn/components/plate-ui/tooltip';
+import { Badge } from '@app/_shadcn/components/ui/badge';
 
 interface Props {
   articleList?: ArticleData[];
@@ -48,6 +49,7 @@ function BoardBody({ articleList }: Props) {
               hide,
               numOfComments,
               file,
+              category,
             }) => {
               const formattedDate = formateDate(createdAt);
               return (
@@ -59,6 +61,12 @@ function BoardBody({ articleList }: Props) {
                   <TableRow key={articleId} className="cursor-pointer">
                     <TableCell className="text-center">{articleId}</TableCell>
                     <TableCell className="flex items-center">
+                      {category !== 'all' && (
+                        <Badge variant="secondary" className="mr-2">
+                          {category}
+                        </Badge>
+                      )}
+
                       <span className="flex-center">
                         {hide && (
                           <Tooltip>
