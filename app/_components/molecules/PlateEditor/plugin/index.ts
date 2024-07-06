@@ -35,7 +35,13 @@ import {
   MARK_STRIKETHROUGH,
   MARK_UNDERLINE,
 } from '@udecode/plate-basic-marks';
-import { createImagePlugin, ELEMENT_IMAGE } from '@udecode/plate-media';
+import {
+  createImagePlugin,
+  ELEMENT_IMAGE,
+  ELEMENT_MEDIA_EMBED,
+} from '@udecode/plate-media';
+import { createCaptionPlugin } from '@udecode/plate-caption';
+import { createDndPlugin } from '@udecode/plate-dnd';
 import { CodeLeaf } from '@app/_shadcn/components/plate-ui/code-leaf';
 import { ImageElement } from '@app/_shadcn/components/plate-ui/image-element';
 import {
@@ -45,6 +51,7 @@ import {
 import { ELEMENT_TD } from '@udecode/plate-table';
 import { autoformatBlocks } from './autoformat';
 import { resetNodeRules } from './resetNode';
+import { dragOverCursorPlugin } from './dragOverCursorPlugin';
 
 const plugins = createPlugins(
   [
@@ -78,7 +85,14 @@ const plugins = createPlugins(
         ],
       },
     }),
+    createCaptionPlugin({
+      options: { pluginKeys: [ELEMENT_IMAGE, ELEMENT_MEDIA_EMBED] },
+    }),
+    createDndPlugin({
+      options: { enableScroller: true },
+    }),
 
+    dragOverCursorPlugin,
     createExitBreakPlugin({
       options: {
         rules: [

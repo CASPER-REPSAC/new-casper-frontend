@@ -43,6 +43,7 @@
     "@udecode/plate-break": "^33.0.0",
     "@udecode/plate-caption": "^33.0.2",
     "@udecode/plate-common": "^33.0.0",
+    "@udecode/plate-cursor": "^33.0.0",
     "@udecode/plate-dnd": "^33.0.0",
     "@udecode/plate-floating": "^33.0.0",
     "@udecode/plate-font": "^33.0.0",

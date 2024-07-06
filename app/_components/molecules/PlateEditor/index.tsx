@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+import { cn } from '@udecode/cn';
 import { Plate, TElement } from '@udecode/plate-common';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
@@ -7,7 +9,9 @@ import { FixedToolbarButtons } from '@app/_shadcn/components/plate-ui/fixed-tool
 import { FloatingToolbar } from '@app/_shadcn/components/plate-ui/floating-toolbar';
 import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floating-toolbar-buttons';
 import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
+import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
 import plugins from './plugin';
+import Test from './Test';
 
 interface Props {
   readOnly?: boolean;
@@ -20,6 +24,8 @@ export function PlateEditor({
   initialValue,
   onValueChange,
 }: Props) {
+  const containerRef = useRef(null);
+
   return (
     <>
       <TooltipProvider>
@@ -29,7 +35,12 @@ export function PlateEditor({
             initialValue={initialValue}
             onChange={onValueChange}
           >
-            <div className={`${!readOnly && 'border'}`}>
+            <div
+              ref={containerRef}
+              className={cn('relative', !readOnly && 'border')}
+            >
+              <CursorOverlay containerRef={containerRef} />
+
               {!readOnly && (
                 <FixedToolbar>
                   <FixedToolbarButtons />
@@ -49,6 +60,7 @@ export function PlateEditor({
                   <FloatingToolbarButtons />
                 </FloatingToolbar>
               )}
+              <Test />
             </div>
           </Plate>
         </DndProvider>
