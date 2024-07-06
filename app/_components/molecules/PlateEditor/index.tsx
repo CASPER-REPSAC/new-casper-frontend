@@ -11,7 +11,6 @@ import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floatin
 import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
 import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
 import plugins from './plugin';
-import Test from './Test';
 
 interface Props {
   readOnly?: boolean;
@@ -60,7 +59,6 @@ export function PlateEditor({
                   <FloatingToolbarButtons />
                 </FloatingToolbar>
               )}
-              <Test />
             </div>
           </Plate>
         </DndProvider>

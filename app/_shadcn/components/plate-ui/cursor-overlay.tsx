@@ -61,8 +61,6 @@ export function CursorOverlay({ cursors, ...props }: CursorOverlayProps) {
 
   const allCursors = { ...cursors, ...dynamicCursors };
 
-  console.log(dynamicCursors);
-
   return (
     <CursorOverlayPrimitive
       {...props}
