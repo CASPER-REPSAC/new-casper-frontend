@@ -21,36 +21,38 @@ export function PlateEditor({
   onValueChange,
 }: Props) {
   return (
-    <TooltipProvider>
-      <DndProvider backend={HTML5Backend}>
-        <Plate
-          plugins={plugins}
-          initialValue={initialValue}
-          onChange={onValueChange}
-        >
-          <div className={`${!readOnly && 'border'}`}>
-            {!readOnly && (
-              <FixedToolbar>
-                <FixedToolbarButtons />
-              </FixedToolbar>
-            )}
+    <>
+      <TooltipProvider>
+        <DndProvider backend={HTML5Backend}>
+          <Plate
+            plugins={plugins}
+            initialValue={initialValue}
+            onChange={onValueChange}
+          >
+            <div className={`${!readOnly && 'border'}`}>
+              {!readOnly && (
+                <FixedToolbar>
+                  <FixedToolbarButtons />
+                </FixedToolbar>
+              )}
 
-            <Editor
-              readOnly={readOnly}
-              variant="ghost"
-              className={`h-full ${!readOnly && 'px-8'}`}
-              focusRing={false}
-              placeholder="내용을 입력해주세요."
-            />
+              <Editor
+                readOnly={readOnly}
+                variant="ghost"
+                className={`h-full ${!readOnly && 'px-8'}`}
+                focusRing={false}
+                placeholder="내용을 입력해주세요."
+              />
 
-            {!readOnly && (
-              <FloatingToolbar>
-                <FloatingToolbarButtons />
-              </FloatingToolbar>
-            )}
-          </div>
-        </Plate>
-      </DndProvider>
-    </TooltipProvider>
+              {!readOnly && (
+                <FloatingToolbar>
+                  <FloatingToolbarButtons />
+                </FloatingToolbar>
+              )}
+            </div>
+          </Plate>
+        </DndProvider>
+      </TooltipProvider>
+    </>
   );
 }

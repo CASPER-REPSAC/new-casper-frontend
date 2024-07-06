@@ -35,7 +35,9 @@ import {
   MARK_STRIKETHROUGH,
   MARK_UNDERLINE,
 } from '@udecode/plate-basic-marks';
+import { createImagePlugin, ELEMENT_IMAGE } from '@udecode/plate-media';
 import { CodeLeaf } from '@app/_shadcn/components/plate-ui/code-leaf';
+import { ImageElement } from '@app/_shadcn/components/plate-ui/image-element';
 import {
   createExitBreakPlugin,
   createSoftBreakPlugin,
@@ -48,6 +50,7 @@ const plugins = createPlugins(
   [
     // Pick your plugins in https://platejs.org/?builder=true
 
+    createImagePlugin(),
     createHorizontalRulePlugin(),
     createBasicElementsPlugin(),
     createBasicMarksPlugin(),
@@ -119,6 +122,7 @@ const plugins = createPlugins(
       [MARK_STRIKETHROUGH]: withProps(PlateLeaf, { as: 's' }),
       [MARK_UNDERLINE]: withProps(PlateLeaf, { as: 'u' }),
       [MARK_CODE]: CodeLeaf,
+      [ELEMENT_IMAGE]: ImageElement,
     }),
   },
 );

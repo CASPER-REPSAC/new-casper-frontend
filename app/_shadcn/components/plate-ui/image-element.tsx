@@ -18,6 +18,7 @@ export const ImageElement = withHOC(
   withRef<typeof PlateElement>(
     ({ children, className, nodeProps, ...props }, ref) => {
       const { align = 'center', focused, readOnly, selected } = useMediaState();
+
       const width = useResizableStore().get.width();
 
       return (
@@ -49,7 +50,9 @@ export const ImageElement = withHOC(
                   {...nodeProps}
                 />
                 <ResizeHandle
-                  className={mediaResizeHandleVariants({ direction: 'right' })}
+                  className={mediaResizeHandleVariants({
+                    direction: 'right',
+                  })}
                   options={{ direction: 'right' }}
                 />
               </Resizable>

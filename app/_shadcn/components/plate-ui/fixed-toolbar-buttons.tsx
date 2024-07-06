@@ -7,7 +7,8 @@ import {
   MARK_STRIKETHROUGH,
   MARK_UNDERLINE,
 } from '@udecode/plate-basic-marks';
-import { useEditorReadOnly } from '@udecode/plate-common';
+import { useEditorReadOnly, useEditorRef } from '@udecode/plate-common';
+import { MediaToolbarButton } from './media-toolbar-button';
 
 import { Icons } from '../icons';
 
@@ -16,6 +17,7 @@ import { MarkToolbarButton } from './mark-toolbar-button';
 import { ModeDropdownMenu } from './mode-dropdown-menu';
 import { ToolbarGroup } from './toolbar';
 import { TurnIntoDropdownMenu } from './turn-into-dropdown-menu';
+import { ELEMENT_IMAGE } from '@udecode/plate-media';
 
 export function FixedToolbarButtons() {
   const readOnly = useEditorReadOnly();
@@ -58,6 +60,7 @@ export function FixedToolbarButtons() {
               <MarkToolbarButton nodeType={MARK_CODE} tooltip="Code (⌘+E)">
                 <Icons.code />
               </MarkToolbarButton>
+              <MediaToolbarButton nodeType={ELEMENT_IMAGE} />
             </ToolbarGroup>
           </>
         )}
