@@ -25,8 +25,9 @@ function ContentSection({ articleContent }: Props) {
   const initialValue: TElement[] = JSON.parse(articleContent);
 
   return (
-    <div className="mb-40 min-h-[300px] py-6">
+    <div className="mb-40 mt-4">
       <PlateEditor
+        className=" min-h-[300px]"
         readOnly={!editable}
         onValueChange={onValueChange}
         initialValue={initialValue}

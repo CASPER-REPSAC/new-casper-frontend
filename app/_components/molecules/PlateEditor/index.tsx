@@ -16,53 +16,53 @@ interface Props {
   readOnly?: boolean;
   initialValue?: TElement[];
   onValueChange?: (value: TElement[]) => void;
+  className?: string;
 }
 
 export function PlateEditor({
   readOnly = false,
   initialValue,
   onValueChange,
+  className,
 }: Props) {
   const containerRef = useRef(null);
 
   return (
-    <>
-      <TooltipProvider>
-        <DndProvider backend={HTML5Backend}>
-          <Plate
-            plugins={plugins}
-            initialValue={initialValue}
-            onChange={onValueChange}
+    <TooltipProvider>
+      <DndProvider backend={HTML5Backend}>
+        <Plate
+          plugins={plugins}
+          initialValue={initialValue}
+          onChange={onValueChange}
+        >
+          <div
+            ref={containerRef}
+            className={cn('relative', !readOnly && 'border', className)}
           >
-            <div
-              ref={containerRef}
-              className={cn('relative', !readOnly && 'border')}
-            >
-              <CursorOverlay containerRef={containerRef} />
+            <CursorOverlay containerRef={containerRef} />
 
-              {!readOnly && (
-                <FixedToolbar>
-                  <FixedToolbarButtons />
-                </FixedToolbar>
-              )}
+            {!readOnly && (
+              <FixedToolbar>
+                <FixedToolbarButtons />
+              </FixedToolbar>
+            )}
 
-              <Editor
-                readOnly={readOnly}
-                variant="ghost"
-                className={`h-full ${!readOnly && 'px-8'}`}
-                focusRing={false}
-                placeholder="내용을 입력해주세요."
-              />
+            <Editor
+              readOnly={readOnly}
+              variant="ghost"
+              className={`h-full ${!readOnly && 'px-8'}`}
+              focusRing={false}
+              placeholder="내용을 입력해주세요."
+            />
 
-              {!readOnly && (
-                <FloatingToolbar>
-                  <FloatingToolbarButtons />
-                </FloatingToolbar>
-              )}
-            </div>
-          </Plate>
-        </DndProvider>
-      </TooltipProvider>
-    </>
+            {!readOnly && (
+              <FloatingToolbar>
+                <FloatingToolbarButtons />
+              </FloatingToolbar>
+            )}
+          </div>
+        </Plate>
+      </DndProvider>
+    </TooltipProvider>
   );
 }

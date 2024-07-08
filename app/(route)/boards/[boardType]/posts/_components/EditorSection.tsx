@@ -13,7 +13,9 @@ function EditorSection() {
     setValue('content', valueString);
   };
 
-  return <PlateEditor onValueChange={onValueChange} />;
+  return (
+    <PlateEditor onValueChange={onValueChange} className="min-h-[500px]" />
+  );
 }
 
 export default EditorSection;

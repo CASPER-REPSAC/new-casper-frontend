@@ -6,13 +6,14 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: '',
   theme: {
     container: {
       center: true,
       padding: '2rem',
       screens: {
+        // 분기처리: sm, xl, 2xl
         '2xl': '1400px',
       },
     },
@@ -74,4 +75,4 @@ module.exports = {
     },
   },
   plugins: [require('tailwindcss-animate')],
-}
+};

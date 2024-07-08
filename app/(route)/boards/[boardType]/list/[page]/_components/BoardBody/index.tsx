@@ -27,14 +27,18 @@ function BoardBody({ articleList }: Props) {
 
   return (
     <>
-      <Table className="table-fixed" aria-label="article table">
+      <Table aria-label="article table">
         <TableHeader>
           <TableRow>
-            <TableHead className="w-1/12 text-center">번호</TableHead>
+            <TableHead className="text-center">번호</TableHead>
             <TableHead>제목</TableHead>
             <TableHead className="text-center">작성자</TableHead>
-            <TableHead className="text-center">날짜</TableHead>
-            <TableHead className="w-1/12 text-center">조회수</TableHead>
+            <TableHead className="hidden text-center lg:table-cell">
+              날짜
+            </TableHead>
+            <TableHead className="hidden text-center lg:table-cell">
+              조회수
+            </TableHead>
           </TableRow>
         </TableHeader>
 
@@ -62,7 +66,7 @@ function BoardBody({ articleList }: Props) {
                     <TableCell className="text-center">{articleId}</TableCell>
                     <TableCell className="flex items-center">
                       {category !== 'all' && (
-                        <Badge variant="secondary" className="mr-2">
+                        <Badge variant="secondary" className="mr-2 shrink-0">
                           {category}
                         </Badge>
                       )}
@@ -97,11 +101,15 @@ function BoardBody({ articleList }: Props) {
                         )}
                       </div>
                     </TableCell>
-                    <TableCell className="text-center">{nickname}</TableCell>
-                    <TableCell className="text-center">
+                    <TableCell className="truncate text-center">
+                      {nickname}
+                    </TableCell>
+                    <TableCell className="hidden text-center lg:table-cell">
                       {formattedDate}
                     </TableCell>
-                    <TableCell className="text-center">{view}</TableCell>
+                    <TableCell className="hidden text-center lg:table-cell">
+                      {view}
+                    </TableCell>
                   </TableRow>
                 </Link>
               );
