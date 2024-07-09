@@ -13,6 +13,13 @@ class UserService extends Service {
     }>(`/api/user/showall?role=${role}`);
     return data;
   }
+
+  async sendEmailKey(email: string) {
+    const { data } = await this.axiosExtend.post(
+      `/api/mail/send?email=${email}`,
+    );
+    return data;
+  }
 }
 
 const userService = new UserService();
