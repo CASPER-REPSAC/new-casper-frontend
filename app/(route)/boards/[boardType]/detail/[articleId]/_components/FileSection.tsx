@@ -16,7 +16,6 @@ interface Props {
 }
 
 function FileSection({ files }: Props) {
-  console.log(files);
   return (
     <section className="flex justify-end">
       <DropdownMenu>
