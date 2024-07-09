@@ -16,6 +16,7 @@ interface Props {
 }
 
 function FileSection({ files }: Props) {
+  console.log(files);
   return (
     <section className="flex justify-end">
       <DropdownMenu>
@@ -26,7 +27,7 @@ function FileSection({ files }: Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent className="px-4 py-2">
-          <DropdownMenuGroup>
+          <DropdownMenuGroup className="flex flex-col">
             {files.map(({ name, src }) => {
               const relativePath = src.split(API_URL)[1];
               return (

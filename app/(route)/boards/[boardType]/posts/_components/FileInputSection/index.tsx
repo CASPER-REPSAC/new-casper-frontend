@@ -19,7 +19,7 @@ function FileInputSection() {
 
   const fileInputId = useId();
   const [isActive, setIsActive] = useState(false);
-  const { setValue, getValues } = useFormContext<CreateArticleForm>();
+  const { setValue, getValues, register } = useFormContext<CreateArticleForm>();
   const { mutate: fileUploadMutate, data: uploadedFiles } =
     useFileUploadMutation();
 
@@ -63,6 +63,7 @@ function FileInputSection() {
       setValue('files', mergedFileList);
     }
     setIsActive(false);
+    fileUploadMutate({ type: 'article', files });
   };
 
   const onFileChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -70,6 +71,10 @@ function FileInputSection() {
     if (!files || files.length === 0) return;
     fileUploadMutate({ type: 'article', files });
   };
+
+  const fileInputRegister = register('files', {
+    onChange: onFileChange,
+  });
 
   useEffect(() => {
     if (!uploadedFiles || uploadedFiles.length === 0) return;
@@ -104,7 +109,7 @@ function FileInputSection() {
         className="hidden"
         type="file"
         multiple
-        onChange={onFileChange}
+        {...fileInputRegister}
       />
       <FileViewer />
     </label>
