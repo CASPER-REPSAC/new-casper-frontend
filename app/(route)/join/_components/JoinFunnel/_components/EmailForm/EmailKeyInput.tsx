@@ -12,7 +12,7 @@ import {
   InputOTPSlot,
 } from '@app/_shadcn/components/ui/input-otp';
 import { JoinFormData } from '@app/_types/joinTypes';
-import { EMAIL_KEY_REGEX } from '@app/_utils/regex';
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
 import { useFormContext } from 'react-hook-form';
 
 function EmailKeyInput() {
@@ -35,8 +35,9 @@ function EmailKeyInput() {
             <FormControl>
               <InputOTP
                 maxLength={6}
+                inputMode="text"
                 {...field}
-                pattern={EMAIL_KEY_REGEX.source}
+                pattern={REGEXP_ONLY_DIGITS_AND_CHARS}
               >
                 <InputOTPGroup>
                   <InputOTPSlot index={0} />
