@@ -30,7 +30,7 @@ function EmailKeyInput() {
         control={control}
         name="emailKey"
         render={({ field }) => (
-          <FormItem className="">
+          <FormItem>
             <FormLabel>인증 코드</FormLabel>
             <FormControl>
               <InputOTP
