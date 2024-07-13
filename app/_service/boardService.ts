@@ -98,6 +98,13 @@ class BoardService extends Service {
     );
     return data;
   }
+
+  async deleteArticle(id: number) {
+    const { data } = await this.axiosExtend.delete<ArticleDetail>(
+      `/api/article/delete/${id}`,
+    );
+    return data;
+  }
 }
 
 const boardService = new BoardService();

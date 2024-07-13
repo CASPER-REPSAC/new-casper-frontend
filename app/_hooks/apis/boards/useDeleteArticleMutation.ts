@@ -1,35 +1,33 @@
-import { DELETE_ARTICLE_API } from '@app/_constants/apiUrl';
 import {
   ERROR_MESSAGE,
   POPUP_MESSAGE,
   TOAST_TITLE,
 } from '@app/_constants/message';
-import { PATH } from '@app/_constants/urls';
+import { NEW_PATH } from '@app/_constants/urls';
+import boardService from '@app/_service/boardService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { bearerTokenState } from '@app/_store/permissionAtoms';
 import { ErrorResponse } from '@app/_types/errorTypes';
-import { useMutation } from '@tanstack/react-query';
-import axios, { AxiosError } from 'axios';
-import { useRouter } from 'next/navigation';
-import { useRecoilValue } from 'recoil';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { useParams, useRouter } from 'next/navigation';
+import { boardQueryKey } from '../queryKey';
 
 function useDeleteArticleMutation(id: number) {
   const { push } = useRouter();
   const { toast } = useToast();
-  const bearerToken = useRecoilValue(bearerTokenState);
+  const { boardType } = useParams<{ boardType: string }>();
+  const queryClient = useQueryClient();
 
-  const mutationFn = () =>
-    axios.delete(`/proxy${DELETE_ARTICLE_API}/${id}`, {
-      headers: {
-        Authorization: bearerToken,
-      },
-    });
+  const mutationFn = () => boardService.deleteArticle(id);
 
   const onSuccess = () => {
     toast({
       description: POPUP_MESSAGE.deleteSuccess,
     });
-    push(`${PATH.boards.notice.url}/list/1`);
+    queryClient.invalidateQueries({
+      queryKey: boardQueryKey.list({ boardType }),
+    });
+    push(NEW_PATH.boardList.url({ boardType, category: 'all', page: 1 }));
   };
 
   const onError = (error: AxiosError<ErrorResponse>) => {
