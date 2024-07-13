@@ -1,5 +1,5 @@
 import { CreateArticleRequest } from '@app/_types/PostTypes';
-import { CommentResponse } from '@app/_types/boardTypes';
+import { ArticleDetail, CommentResponse } from '@app/_types/boardTypes';
 import Service from './service';
 
 class BoardService extends Service {
@@ -71,6 +71,13 @@ class BoardService extends Service {
 
     const blobs = await Promise.all(blobPromiseList);
     return blobs;
+  }
+
+  async getArticleDetail(id: number) {
+    const { data } = await this.axiosExtend.get<ArticleDetail>(
+      `/api/article/view/${id}`,
+    );
+    return data;
   }
 }
 
