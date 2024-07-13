@@ -11,6 +11,7 @@ import {
 } from '@app/_shadcn/components/ui/pagination';
 import { BoardListParams } from '@app/_types/boardTypes';
 import useArticleListQuery from '@app/_hooks/apis/boards/useArticleListQuery';
+import { NEW_PATH } from '@app/_constants/urls';
 
 function PageNav() {
   const INTERVAL = 7;
@@ -28,7 +29,7 @@ function PageNav() {
   const { maxPageNum: maxPage } = data;
   const curPage = Number(curPageParam);
 
-  const prevPage = curPage - 1 < 1 ? 1 : curPage - 1;
+  const prevPage = curPage - 1 <= 1 ? 1 : curPage - 1;
   const nextPage = curPage + 1 >= maxPage ? maxPage : curPage + 1;
 
   const getCurPageList = () => {
@@ -49,7 +50,11 @@ function PageNav() {
         <PaginationItem>
           <PaginationPrevious
             scroll={false}
-            href={`/boards/${boardType}/list/${prevPage}`}
+            href={NEW_PATH.boardList.url({
+              boardType,
+              page: prevPage,
+              category,
+            })}
           />
         </PaginationItem>
 
@@ -58,7 +63,7 @@ function PageNav() {
             <PaginationLink
               scroll={false}
               isActive={page === curPage}
-              href={`/boards/${boardType}/list/${page}`}
+              href={NEW_PATH.boardList.url({ boardType, page, category })}
             >
               {page}
             </PaginationLink>
@@ -68,7 +73,11 @@ function PageNav() {
         <PaginationItem>
           <PaginationNext
             scroll={false}
-            href={`/boards/${boardType}/list/${nextPage}`}
+            href={NEW_PATH.boardList.url({
+              boardType,
+              page: nextPage,
+              category,
+            })}
           />
         </PaginationItem>
       </PaginationContent>
