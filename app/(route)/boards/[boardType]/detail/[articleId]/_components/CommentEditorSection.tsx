@@ -43,7 +43,7 @@ function CommentEditorSection({ articleId }: Props) {
 
   return (
     <form
-      className="flex flex-col gap-4"
+      className="mb-20 flex flex-col gap-4"
       onSubmit={handleSubmit(onValid, inValid)}
     >
       <Label className="text-lg" htmlFor={commentEditorId}>

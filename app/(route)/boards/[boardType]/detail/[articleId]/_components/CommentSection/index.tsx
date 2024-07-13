@@ -7,6 +7,7 @@ import { FormProvider, useForm } from 'react-hook-form';
 import { useComments } from '@app/_hooks/apis/boards';
 import { myProfileState } from '@app/_store/permissionAtoms';
 import Avatar from '@app/_components/user/Avatar';
+import Spinner from '@app/_components/Spinner';
 import Buttons from './Buttons';
 import Content from './Content';
 import Header from './Header';
@@ -16,8 +17,9 @@ interface Props {
 }
 
 function CommentSection({ articleId }: Props) {
-  const { data: comments } = useComments(Number(articleId));
+  const { data: comments, isLoading } = useComments(Number(articleId));
 
+  if (isLoading) return <Spinner />;
   if (!comments) return <></>;
 
   return (
