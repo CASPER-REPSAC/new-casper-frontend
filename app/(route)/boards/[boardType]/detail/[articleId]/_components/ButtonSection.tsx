@@ -25,7 +25,7 @@ function ButtonSection({ articleId, userId }: Props) {
   const { mutate: mutateDeletion } = useDeleteArticleMutation(
     Number(articleId),
   );
-  const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
+  const { mutate: mutateUpdate } = useUpdateArticleMutation(Number(articleId));
   const isMine = myProfile?.id === userId;
   const isAdmin = myProfile?.role === 'admin';
 

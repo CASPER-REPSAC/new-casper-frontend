@@ -1,8 +1,9 @@
 import boardService from '@app/_service/boardService';
 import { useQuery } from '@tanstack/react-query';
+import { boardQueryKey } from '../queryKey';
 
 export const articleDeatilQueryOption = (id: number) => ({
-  queryKey: ['article', 'detail', id],
+  queryKey: boardQueryKey.detail(id),
   queryFn: () => boardService.getArticleDetail(id),
 });
 

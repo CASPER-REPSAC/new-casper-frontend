@@ -1,8 +1,9 @@
 import boardService from '@app/_service/boardService';
 import { useQuery } from '@tanstack/react-query';
+import { commentQueryKey } from '../queryKey';
 
 function useComments(articleId: number) {
-  const queryKey = ['comment', articleId];
+  const queryKey = commentQueryKey.list(articleId);
   const queryFn = async () => boardService.getComments(articleId);
 
   return useQuery({

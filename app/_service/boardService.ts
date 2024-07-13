@@ -1,4 +1,4 @@
-import { CreateArticleRequest } from '@app/_types/PostTypes';
+import { CreateArticleRequest, UpdateReqData } from '@app/_types/PostTypes';
 import {
   ArticleDetail,
   CommentResponse,
@@ -102,6 +102,20 @@ class BoardService extends Service {
   async deleteArticle(id: number) {
     const { data } = await this.axiosExtend.delete<ArticleDetail>(
       `/api/article/delete/${id}`,
+    );
+    return data;
+  }
+
+  async updateArticle({
+    id,
+    updateData,
+  }: {
+    id: number;
+    updateData: UpdateReqData;
+  }) {
+    const { data } = await this.axiosExtend.patch(
+      `/api/article/update/${id}`,
+      updateData,
     );
     return data;
   }

@@ -10,13 +10,12 @@ import {
 } from '@app/_constants/message';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import boardService from '@app/_service/boardService';
-import { BoardListParams } from '@app/_types/boardTypes';
-import { articleListQueryOption } from './useArticleListQuery';
+import { boardQueryKey } from '../queryKey';
 
 export default function usePostArticleMutation() {
   const { toast } = useToast();
   const { push } = useRouter();
-  const { boardType, category, page } = useParams<BoardListParams>();
+  const { boardType } = useParams<{ boardType: string }>();
   const queryClient = useQueryClient();
 
   const mutationFn = ({ files, uploadedFiles, ...rest }: CreateArticleForm) =>
@@ -34,12 +33,10 @@ export default function usePostArticleMutation() {
       category: 'all',
       page: 1,
     });
-    const { queryKey } = articleListQueryOption({
-      boardType,
-      category,
-      page: Number(page),
+
+    queryClient.invalidateQueries({
+      queryKey: boardQueryKey.list({ boardType }),
     });
-    queryClient.invalidateQueries({ queryKey: queryKey.slice(0, 3) });
     push(boardListPath);
   };
 

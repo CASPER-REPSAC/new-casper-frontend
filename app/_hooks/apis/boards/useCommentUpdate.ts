@@ -3,6 +3,7 @@ import boardService from '@app/_service/boardService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { CommentModifyRequest } from '@app/_types/boardTypes';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { commentQueryKey } from '../queryKey';
 
 function useCommentUpdate(articleId: number) {
   const { toast } = useToast();
@@ -17,7 +18,9 @@ function useCommentUpdate(articleId: number) {
     toast({
       description: '댓글이 수정되었어요.',
     });
-    queryClient.invalidateQueries({ queryKey: ['comment', articleId] });
+    queryClient.invalidateQueries({
+      queryKey: commentQueryKey.list(articleId),
+    });
   };
 
   const onError = () => {

@@ -5,3 +5,9 @@ export const boardQueryKey = {
   lists: () => [...boardQueryKey.all, 'list'],
   list: (filter: object) => [...boardQueryKey.lists(), filter],
 };
+
+export const commentQueryKey = {
+  all: ['comment'],
+  lists: () => [...commentQueryKey.all, 'list'],
+  list: (id: number) => [...commentQueryKey.lists(), id],
+};
