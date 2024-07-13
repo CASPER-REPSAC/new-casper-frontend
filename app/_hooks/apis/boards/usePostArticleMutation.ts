@@ -28,7 +28,11 @@ export default function usePostArticleMutation() {
     toast({
       description: POPUP_MESSAGE.postSuccess,
     });
-    const boardListPath = NEW_PATH.boardList.url({ boardType, page: 1 });
+    const boardListPath = NEW_PATH.boardList.url({
+      boardType,
+      category: 'all',
+      page: 1,
+    });
     await revalidatePath(boardListPath.split('/list')[0]);
     push(boardListPath);
   };

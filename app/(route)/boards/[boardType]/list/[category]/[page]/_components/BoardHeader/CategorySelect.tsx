@@ -1,5 +1,6 @@
 'use client';
 
+import { NEW_PATH } from '@app/_constants/urls';
 import {
   Select,
   SelectContent,
@@ -7,7 +8,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@app/_shadcn/components/ui/select';
-import { useRouter } from 'next/navigation';
+import { BoardListParams } from '@app/_types/boardTypes';
+import { useParams, useRouter } from 'next/navigation';
 
 interface Props {
   categories: string[];
@@ -15,9 +17,17 @@ interface Props {
 
 function CategorySelect({ categories }: Props) {
   const { push } = useRouter();
+  const { boardType, page } = useParams<BoardListParams>();
 
   const handleSelectionChange = (value: string) => {
-    if (value) push(`?category=${value}`);
+    if (value)
+      push(
+        NEW_PATH.boardList.url({
+          boardType,
+          page: Number(page),
+          category: value,
+        }),
+      );
   };
 
   return (

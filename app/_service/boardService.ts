@@ -1,5 +1,9 @@
 import { CreateArticleRequest } from '@app/_types/PostTypes';
-import { ArticleDetail, CommentResponse } from '@app/_types/boardTypes';
+import {
+  ArticleDetail,
+  CommentResponse,
+  OnePageOfArticleList,
+} from '@app/_types/boardTypes';
 import Service from './service';
 
 class BoardService extends Service {
@@ -71,6 +75,21 @@ class BoardService extends Service {
 
     const blobs = await Promise.all(blobPromiseList);
     return blobs;
+  }
+
+  async getArticleList({
+    page,
+    boardType,
+    category = 'all',
+  }: {
+    boardType: string;
+    page: number;
+    category?: string;
+  }) {
+    const { data } = await this.axiosExtend.get<OnePageOfArticleList>(
+      `/api/article/${boardType}/${category}/${page}`,
+    );
+    return data;
   }
 
   async getArticleDetail(id: number) {

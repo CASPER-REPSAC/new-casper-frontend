@@ -1,5 +1,5 @@
 import { BOARD_TYPE, MEMBER_TYPE } from './mock';
-import { PATH } from './urls';
+import { NEW_PATH, PATH } from './urls';
 
 export const MEMBER_TABS = [
   {
@@ -34,38 +34,88 @@ export const MEMBER_TABS = [
 
 export const BOARD_TABS = [
   {
+    name: '공지사항',
+    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
     key: BOARD_TYPE.notice,
-    href: `${PATH.boards.notice.url}/list/1`,
-    name: PATH.boards.notice.name,
-    startWith: PATH.boards.notice.url,
-    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
+    href: NEW_PATH.boardList.url({
+      boardType: BOARD_TYPE.notice,
+      category: 'all',
+      page: 1,
+    }),
+    startWith: NEW_PATH.boardList
+      .url({
+        boardType: BOARD_TYPE.notice,
+        category: 'all',
+        page: 1,
+      })
+      .split('/list')[0],
   },
   {
+    name: '정회원 게시판',
+    accessibleRoles: ['관리자', '정회원'],
     key: BOARD_TYPE.full,
-    href: `${PATH.boards.full.url}/list/1`,
-    name: PATH.boards.full.name,
-    startWith: PATH.boards.full.url,
-    accessibleRoles: ['관리자', '정회원'],
+    href: NEW_PATH.boardList.url({
+      boardType: BOARD_TYPE.full,
+      category: 'all',
+      page: 1,
+    }),
+    startWith: NEW_PATH.boardList
+      .url({
+        boardType: BOARD_TYPE.full,
+        category: 'all',
+        page: 1,
+      })
+      .split('/list')[0],
   },
   {
+    name: '졸업생 게시판',
+    accessibleRoles: ['관리자', '정회원'],
     key: BOARD_TYPE.graduate,
-    href: `${PATH.boards.graduate.url}/list/1`,
-    name: PATH.boards.graduate.name,
-    startWith: PATH.boards.graduate.url,
-    accessibleRoles: ['관리자', '정회원'],
+    href: NEW_PATH.boardList.url({
+      boardType: BOARD_TYPE.graduate,
+      category: 'all',
+      page: 1,
+    }),
+    startWith: NEW_PATH.boardList
+      .url({
+        boardType: BOARD_TYPE.graduate,
+        category: 'all',
+        page: 1,
+      })
+      .split('/list')[0],
   },
   {
-    key: BOARD_TYPE.associate,
-    href: `${PATH.boards.associate.url}/list/1`,
-    name: PATH.boards.associate.name,
-    startWith: PATH.boards.associate.url,
+    name: '준회원 게시판',
     accessibleRoles: ['관리자', '정회원', '준회원'],
+    key: BOARD_TYPE.associate,
+    href: NEW_PATH.boardList.url({
+      boardType: BOARD_TYPE.associate,
+      category: 'all',
+      page: 1,
+    }),
+    startWith: NEW_PATH.boardList
+      .url({
+        boardType: BOARD_TYPE.associate,
+        category: 'all',
+        page: 1,
+      })
+      .split('/list')[0],
   },
   {
-    key: BOARD_TYPE.freedom,
-    href: `${PATH.boards.free.url}/list/1`,
-    name: PATH.boards.free.name,
-    startWith: PATH.boards.free.url,
+    name: '지유게시판',
     accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
+    key: BOARD_TYPE.freedom,
+    href: NEW_PATH.boardList.url({
+      boardType: BOARD_TYPE.freedom,
+      category: 'all',
+      page: 1,
+    }),
+    startWith: NEW_PATH.boardList
+      .url({
+        boardType: BOARD_TYPE.freedom,
+        category: 'all',
+        page: 1,
+      })
+      .split('/list')[0],
   },
 ];

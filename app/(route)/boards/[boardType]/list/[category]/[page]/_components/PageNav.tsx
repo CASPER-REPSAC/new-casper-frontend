@@ -10,14 +10,22 @@ import {
   PaginationPrevious,
 } from '@app/_shadcn/components/ui/pagination';
 import { BoardListParams } from '@app/_types/boardTypes';
+import useArticleListQuery from '@app/_hooks/apis/boards/useArticleListQuery';
 
-interface Props {
-  maxPage: number;
-}
-
-function PageNav({ maxPage }: Props) {
+function PageNav() {
   const INTERVAL = 7;
-  const { page: curPageParam, boardType } = useParams<BoardListParams>();
+  const {
+    page: curPageParam,
+    boardType,
+    category,
+  } = useParams<BoardListParams>();
+  const { data } = useArticleListQuery({
+    page: Number(curPageParam),
+    boardType,
+    category,
+  });
+  if (!data) return null;
+  const { maxPageNum: maxPage } = data;
   const curPage = Number(curPageParam);
 
   const prevPage = curPage - 1 < 1 ? 1 : curPage - 1;

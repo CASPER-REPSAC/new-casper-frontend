@@ -1,4 +1,3 @@
-import { BoardType } from '@app/_types/boardTypes';
 import { BOARD_TYPE } from './mock';
 
 const ADMIN_PATH = {
@@ -8,8 +7,15 @@ const ADMIN_PATH = {
 
 const NEW_PATH = {
   boardList: {
-    url: ({ boardType, page }: { boardType: BoardType; page: number }) =>
-      `/boards/${boardType}/list/${page}`,
+    url: ({
+      boardType,
+      page,
+      category,
+    }: {
+      boardType: string;
+      page: number;
+      category: string;
+    }) => `/boards/${boardType}/list/${category}/${page}`,
   },
 };
 
