@@ -40,10 +40,7 @@ function ProfileForm({ children, defaultValues }: Props) {
 
   return (
     <FormProvider {...methods}>
-      <form
-        onSubmit={handleSubmit(onValid)}
-        className="small-center flex flex-col gap-12"
-      >
+      <form onSubmit={handleSubmit(onValid)} className="flex flex-col gap-12">
         {children}
       </form>
     </FormProvider>

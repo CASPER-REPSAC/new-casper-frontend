@@ -20,7 +20,7 @@ function Layout({ children }: Props) {
   if (!isLoggedIn) return redirect(PATH.user.login.url);
 
   return (
-    <div className="pb-[200px]">
+    <div className="small-center pb-[200px]">
       <PageTitle pageTitle={PAGE_TITLE.myPage} />
       {children}
     </div>
