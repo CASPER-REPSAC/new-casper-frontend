@@ -1,6 +1,11 @@
+import {
+  dehydrate,
+  HydrationBoundary,
+  QueryClient,
+} from '@tanstack/react-query';
+import { articleDeatilQueryOption } from '@app/_hooks/apis/boards/useArticleDetailQuery';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
-import { getArticleDetail } from '@app/_service/article';
 import { Separator } from '@app/_shadcn/components/ui/separator';
 import {
   ButtonSection,
@@ -17,19 +22,23 @@ export default async function ArticleDetailPage({
 }: {
   params: { articleId: string };
 }) {
+  const queryClient = new QueryClient();
+  const options = articleDeatilQueryOption(Number(articleId));
   const {
-    article: { title, userId, content, createdAt },
+    article: { title, userId, createdAt },
     files,
-  } = await getArticleDetail(articleId);
+  } = await queryClient.fetchQuery(options);
 
   return (
-    <ClientFormProvider>
-      <div>
+    <HydrationBoundary state={dehydrate(queryClient)}>
+      <ClientFormProvider>
         <div className="flex items-center justify-between py-2">
           <h1 className="w-full break-all text-4xl">{title}</h1>
           <ButtonSection articleId={articleId} userId={userId} />
         </div>
+
         <Separator className="my-3" />
+
         <div className="flex w-full justify-between">
           <span className="text-sm text-muted-foreground">
             {formatDistanceToNow(new Date(createdAt), {
@@ -39,15 +48,12 @@ export default async function ArticleDetailPage({
           </span>
           {files && files.length > 0 && <FileSection files={files} />}
         </div>
-        <ContentSection articleContent={content} />
-        <div className="mb-32">
-          <AuthorSection articleId={articleId} />
-        </div>
-        <div className="mb-20">
-          <CommentEditorSection articleId={articleId} />
-        </div>
+
+        <ContentSection />
+        <AuthorSection articleId={articleId} />
+        <CommentEditorSection articleId={articleId} />
         <CommentSection articleId={articleId} />
-      </div>
-    </ClientFormProvider>
+      </ClientFormProvider>
+    </HydrationBoundary>
   );
 }

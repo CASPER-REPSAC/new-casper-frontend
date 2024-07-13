@@ -48,6 +48,7 @@ export type BoardType =
 export interface BoardListParams extends Params {
   boardType: BoardType;
   page: string;
+  category: string;
 }
 
 export interface BoardDetailParams extends Params {
@@ -75,4 +76,10 @@ export interface CommentResponse {
 
 export interface Category {
   categories: string[];
+}
+
+export interface ArticleListParams {
+  page: number;
+  boardType: BoardType;
+  category: string;
 }

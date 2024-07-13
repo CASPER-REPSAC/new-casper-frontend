@@ -1,5 +1,9 @@
-import { CreateArticleRequest } from '@app/_types/PostTypes';
-import { CommentResponse } from '@app/_types/boardTypes';
+import { CreateArticleRequest, UpdateReqData } from '@app/_types/PostTypes';
+import {
+  ArticleDetail,
+  CommentResponse,
+  OnePageOfArticleList,
+} from '@app/_types/boardTypes';
 import Service from './service';
 
 class BoardService extends Service {
@@ -71,6 +75,49 @@ class BoardService extends Service {
 
     const blobs = await Promise.all(blobPromiseList);
     return blobs;
+  }
+
+  async getArticleList({
+    page,
+    boardType,
+    category = 'all',
+  }: {
+    boardType: string;
+    page: number;
+    category?: string;
+  }) {
+    const { data } = await this.axiosExtend.get<OnePageOfArticleList>(
+      `/api/article/${boardType}/${category}/${page}`,
+    );
+    return data;
+  }
+
+  async getArticleDetail(id: number) {
+    const { data } = await this.axiosExtend.get<ArticleDetail>(
+      `/api/article/view/${id}`,
+    );
+    return data;
+  }
+
+  async deleteArticle(id: number) {
+    const { data } = await this.axiosExtend.delete<ArticleDetail>(
+      `/api/article/delete/${id}`,
+    );
+    return data;
+  }
+
+  async updateArticle({
+    id,
+    updateData,
+  }: {
+    id: number;
+    updateData: UpdateReqData;
+  }) {
+    const { data } = await this.axiosExtend.patch(
+      `/api/article/update/${id}`,
+      updateData,
+    );
+    return data;
   }
 }
 

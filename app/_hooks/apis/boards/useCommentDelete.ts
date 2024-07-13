@@ -2,6 +2,7 @@ import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
 import boardService from '@app/_service/boardService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { commentQueryKey } from '../queryKey';
 
 function useCommentDelete(articleId: number) {
   const { toast } = useToast();
@@ -14,7 +15,9 @@ function useCommentDelete(articleId: number) {
     toast({
       description: POPUP_MESSAGE.deleteCommentSuccess,
     });
-    queryClient.invalidateQueries({ queryKey: ['comment', articleId] });
+    queryClient.invalidateQueries({
+      queryKey: commentQueryKey.list(articleId),
+    });
   };
 
   const onError = () => {

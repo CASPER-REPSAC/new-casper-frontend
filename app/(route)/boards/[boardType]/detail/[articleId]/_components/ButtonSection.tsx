@@ -1,5 +1,6 @@
 'use client';
 
+import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
 import {
   useDeleteArticleMutation,
   useUpdateArticleMutation,
@@ -25,7 +26,7 @@ function ButtonSection({ articleId, userId }: Props) {
   const { mutate: mutateDeletion } = useDeleteArticleMutation(
     Number(articleId),
   );
-  const { mutate: mutateUpdate } = useUpdateArticleMutation(articleId);
+  const { mutate: mutateUpdate } = useUpdateArticleMutation(Number(articleId));
   const isMine = myProfile?.id === userId;
   const isAdmin = myProfile?.role === 'admin';
 
@@ -58,9 +59,16 @@ function ButtonSection({ articleId, userId }: Props) {
           </Button>
         )}
 
-        <Button size="sm" variant="destructive" onClick={deleteArticle}>
+        <ButtonWithDialogCheck
+          title="게시글 삭제"
+          description="정말 게시글을 삭제하시겠어요?"
+          size="sm"
+          variant="destructive"
+          confirmVariant="destructive"
+          onClick={deleteArticle}
+        >
           삭제
-        </Button>
+        </ButtonWithDialogCheck>
       </div>
     );
 }

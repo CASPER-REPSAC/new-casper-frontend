@@ -1,17 +1,21 @@
+'use client';
+
 import Avatar from '@app/_components/user/Avatar';
-import { getArticleDetail } from '@app/_service/article';
+import useArticleDetailQuery from '@app/_hooks/apis/boards/useArticleDetailQuery';
 
 interface Props {
   articleId: string;
 }
 
-async function AuthorSection({ articleId }: Props) {
-  const {
-    article: { nickname, profile, introduce },
-  } = await getArticleDetail(articleId);
+function AuthorSection({ articleId }: Props) {
+  const { data } = useArticleDetailQuery(Number(articleId));
+
+  if (!data) return <></>;
+
+  const { nickname, profile, introduce } = data.article;
 
   return (
-    <div className="flex items-center gap-8 ">
+    <section className="mb-32 flex items-center gap-8">
       <Avatar
         className="size-20"
         rounded
@@ -24,7 +28,7 @@ async function AuthorSection({ articleId }: Props) {
         <span className="text-lg font-bold">{nickname}</span>
         <p>{introduce}</p>
       </div>
-    </div>
+    </section>
   );
 }
 

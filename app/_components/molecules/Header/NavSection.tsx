@@ -8,12 +8,13 @@ import {
   NavigationMenuTrigger,
 } from '@app/_shadcn/components/ui/navigation-menu';
 
-import { ADMIN_PATH, PATH } from '@app/_constants/urls';
+import { ADMIN_PATH, NEW_PATH, PATH } from '@app/_constants/urls';
 import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { useRecoilValue } from 'recoil';
 import { roleState } from '@app/_store/permissionAtoms';
 import Link from 'next/link';
+import { BOARD_TYPE } from '@app/_constants/mock';
 
 const MENU_ITEMS = [
   {
@@ -33,7 +34,11 @@ const MENU_ITEMS = [
   {
     startWith: '/boards',
     title: 'Boards',
-    href: `${PATH.boards.notice.url}/list/1`,
+    href: NEW_PATH.boardList.url({
+      boardType: BOARD_TYPE.notice,
+      page: 1,
+      category: 'all',
+    }),
     tabs: BOARD_TABS,
     desc: 'Casper 회원들의 소통을 위한 공간이에요.',
     accessibleRoles: ['관리자', '정회원', '준회원', '손님'],

@@ -1,3 +1,4 @@
+import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
 import useCommentDelete from '@app/_hooks/apis/boards/useCommentDelete';
 import useCommentUpdate from '@app/_hooks/apis/boards/useCommentUpdate';
 import { Button } from '@app/_shadcn/components/ui/button';
@@ -43,9 +44,16 @@ function Buttons({ articleId, commentId, editable, setEditable }: Props) {
         </Button>
       )}
 
-      <Button size="sm" variant="destructive" onClick={deleteComment}>
+      <ButtonWithDialogCheck
+        title="댓글 삭제"
+        description="정말 댓글을 삭제하시겠어요?"
+        size="sm"
+        variant="destructive"
+        confirmVariant="destructive"
+        onClick={deleteComment}
+      >
         삭제
-      </Button>
+      </ButtonWithDialogCheck>
     </>
   );
 }

@@ -1,6 +1,6 @@
 import { AxiosError } from 'axios';
 import { useParams, useRouter } from 'next/navigation';
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { CreateArticleForm } from '@app/_types/PostTypes';
 import { NEW_PATH, PATH } from '@app/_constants/urls';
 import {
@@ -10,13 +10,13 @@ import {
 } from '@app/_constants/message';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import boardService from '@app/_service/boardService';
-import { BoardType } from '@app/_types/boardTypes';
-import { revalidatePath } from '@app/_actions';
+import { boardQueryKey } from '../queryKey';
 
 export default function usePostArticleMutation() {
   const { toast } = useToast();
   const { push } = useRouter();
-  const { boardType } = useParams<{ boardType: BoardType }>();
+  const { boardType } = useParams<{ boardType: string }>();
+  const queryClient = useQueryClient();
 
   const mutationFn = ({ files, uploadedFiles, ...rest }: CreateArticleForm) =>
     boardService.createArticle({
@@ -28,8 +28,15 @@ export default function usePostArticleMutation() {
     toast({
       description: POPUP_MESSAGE.postSuccess,
     });
-    const boardListPath = NEW_PATH.boardList.url({ boardType, page: 1 });
-    await revalidatePath(boardListPath.split('/list')[0]);
+    const boardListPath = NEW_PATH.boardList.url({
+      boardType,
+      category: 'all',
+      page: 1,
+    });
+
+    queryClient.invalidateQueries({
+      queryKey: boardQueryKey.list({ boardType }),
+    });
     push(boardListPath);
   };
 
