@@ -20,6 +20,13 @@ class UserService extends Service {
     );
     return data;
   }
+
+  async withdrawal(userId: string) {
+    const { data } = await this.axiosExtend.delete(
+      `/api/user/withdrawal/${userId}`,
+    );
+    return data;
+  }
 }
 
 const userService = new UserService();
