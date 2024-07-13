@@ -13,12 +13,15 @@ import {
   TableRow,
 } from '@app/_shadcn/components/ui/table';
 import { Input } from '@app/_shadcn/components/ui/input';
+import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
+import useWithdrawalMutation from '@app/_hooks/apis/user/useWithdrawalMutation';
 import RoleFilterSelect from './RoleFilterSelect';
 import RoleUpdateSelect from './RoleUpdateSelect';
 
 function UserTable() {
   const roleFilter = useRecoilValue(roleState);
   const { data } = useUserQuery(roleFilter);
+  const { mutate: withdrawMutate } = useWithdrawalMutation();
 
   return (
     <>
@@ -35,6 +38,7 @@ function UserTable() {
             <TableHead>닉네임</TableHead>
             <TableHead>아이디</TableHead>
             <TableHead>이메일</TableHead>
+            <TableHead>회원 탈퇴</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
@@ -47,6 +51,17 @@ function UserTable() {
               <TableCell>{nickname}</TableCell>
               <TableCell>{id}</TableCell>
               <TableCell>{email}</TableCell>
+              <TableCell>
+                <ButtonWithDialogCheck
+                  variant="destructive"
+                  title="회원 탈퇴"
+                  description={`정말 ${id} 계정을 삭제하시겠어요?`}
+                  confirmVariant="destructive"
+                  onClick={() => withdrawMutate(id)}
+                >
+                  탈퇴
+                </ButtonWithDialogCheck>
+              </TableCell>
             </TableRow>
           ))}
         </TableBody>
