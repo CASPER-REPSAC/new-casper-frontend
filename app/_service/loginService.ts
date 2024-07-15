@@ -11,6 +11,20 @@ class LoginService extends Service {
     });
     return data;
   }
+
+  async findPassword(email: string) {
+    const { data } = await this.axiosExtend.post('/api/user/findpw', {
+      email,
+    });
+    return data;
+  }
+
+  async findId(email: string) {
+    const { data } = await this.axiosExtend.post('/api/user/findid', {
+      email,
+    });
+    return data;
+  }
 }
 
 const loginService = new LoginService();

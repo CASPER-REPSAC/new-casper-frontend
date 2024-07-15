@@ -17,6 +17,13 @@ const NEW_PATH = {
       category: string;
     }) => `/boards/${boardType}/list/${category}/${page}`,
   },
+  passwordFind: {
+    url: '/find/password',
+  },
+  idFind: {
+    url: '/find/id',
+  },
+  login: { url: '/login' },
 };
 
 const PATH = {
