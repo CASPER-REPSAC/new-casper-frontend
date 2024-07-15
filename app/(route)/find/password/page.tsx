@@ -1,5 +1,6 @@
 'use client';
 
+import Spinner from '@app/_components/Spinner';
 import { NEW_PATH } from '@app/_constants/urls';
 import useFindPasswordMutation from '@app/_hooks/apis/user/useFindPasswordMutation';
 import {
@@ -15,7 +16,7 @@ import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 function Page() {
-  const { mutate } = useFindPasswordMutation();
+  const { mutate, isPending } = useFindPasswordMutation();
   const { register, handleSubmit } = useForm<{ email: string }>();
 
   const onSubmitValid: SubmitHandler<{
@@ -41,9 +42,12 @@ function Page() {
         <Input
           label="이메일"
           placeholder="가입한 이메일을 입력해주세요."
-          {...(register('email'), { required: true })}
+          {...register('email', { required: true })}
         />
-        <Button type="submit">비밀번호 초기화하기</Button>
+        <Button type="submit" disabled={isPending}>
+          {isPending && <Spinner className="mr-2" />}
+          비밀번호 초기화하기
+        </Button>
         <div className="flex justify-between gap-2">
           <Link
             className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}

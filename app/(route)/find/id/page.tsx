@@ -1,5 +1,6 @@
 'use client';
 
+import Spinner from '@app/_components/Spinner';
 import { NEW_PATH } from '@app/_constants/urls';
 import useFindIdMutation from '@app/_hooks/apis/user/useFindIdMutation';
 import {
@@ -15,7 +16,7 @@ import Link from 'next/link';
 import { SubmitHandler, useForm } from 'react-hook-form';
 
 function Page() {
-  const { mutate } = useFindIdMutation();
+  const { mutate, isPending } = useFindIdMutation();
   const { register, handleSubmit } = useForm<{ email: string }>();
 
   const onSubmitValid: SubmitHandler<{
@@ -43,7 +44,11 @@ function Page() {
           placeholder="가입한 이메일을 입력해주세요."
           {...register('email', { required: true })}
         />
-        <Button type="submit">ID 찾기</Button>
+
+        <Button type="submit" disabled={isPending}>
+          {isPending && <Spinner className="mr-2" />}
+          ID 찾기{' '}
+        </Button>
         <div className="flex justify-between gap-2">
           <Link
             className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}
