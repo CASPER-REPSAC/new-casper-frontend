@@ -6,9 +6,9 @@ class LoginService extends Service {
   }
 
   async updatePassword(newPassword: string) {
-    const { data } = await this.axiosExtend.post('/api/user/pwupdate', {
-      pw: newPassword,
-    });
+    const { data } = await this.axiosExtend.post(
+      `/api/user/pwupdate?pw=${newPassword}`,
+    );
     return data;
   }
 
