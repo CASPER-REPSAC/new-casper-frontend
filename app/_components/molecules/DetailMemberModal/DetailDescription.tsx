@@ -22,14 +22,14 @@ function DetailDescription({
   return (
     <section className="flex w-full flex-col gap-12">
       <DetailRow title="정보">
-        <div className="grid grid-cols-3">
+        <div className="grid grid-cols-3 gap-x-2">
           <span className="text-xs font-thin">이름</span>
-          <span className="text-xs font-thin">닉네임</span>
+          <span className="truncate text-xs font-thin">닉네임</span>
           <span className="text-xs font-thin">활동 상태</span>
 
-          <span>{name}</span>
-          <span>{nickname}</span>
-          <span>{ROLE[role]}</span>
+          <span className="truncate">{name}</span>
+          <span className="truncate">{nickname}</span>
+          <span className="truncate">{ROLE[role]}</span>
         </div>
       </DetailRow>
 

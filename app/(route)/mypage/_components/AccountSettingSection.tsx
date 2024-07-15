@@ -1,9 +1,12 @@
 'use client';
 
 import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
+import { NEW_PATH } from '@app/_constants/urls';
 import useWithdrawalMutation from '@app/_hooks/apis/user/useWithdrawalMutation';
-import { Button } from '@app/_shadcn/components/ui/button';
+import { buttonVariants } from '@app/_shadcn/components/ui/button';
+import { cn } from '@app/_shadcn/lib/utils';
 import { myProfileState } from '@app/_store/permissionAtoms';
+import Link from 'next/link';
 import { useRecoilValue } from 'recoil';
 
 function AccountSettingSection() {
@@ -19,9 +22,12 @@ function AccountSettingSection() {
 
   return (
     <section className="flex justify-end gap-4">
-      <Button className="w-full" variant="secondary">
-        비밀번호 변경(개발 중이에요!)
-      </Button>
+      <Link
+        href={NEW_PATH.passwordUpdate.url}
+        className={cn(buttonVariants({ variant: 'secondary' }), 'w-full')}
+      >
+        비밀번호 변경하러 가기
+      </Link>
       <ButtonWithDialogCheck
         title="회원 탈퇴"
         description="정말 탈퇴하시겠어요?"
@@ -30,7 +36,7 @@ function AccountSettingSection() {
         variant="destructive"
         onClick={onWithdrawalClick}
       >
-        회원 탈퇴
+        회원 탈퇴하기
       </ButtonWithDialogCheck>
     </section>
   );
