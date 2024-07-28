@@ -72,6 +72,7 @@ export interface CommentResponse {
   createdAt: string;
   modifiedAt: string;
   profile: string;
+  id: string;
 }
 
 export interface Category {
