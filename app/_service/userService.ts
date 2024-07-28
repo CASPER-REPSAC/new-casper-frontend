@@ -14,6 +14,13 @@ class UserService extends Service {
     return data;
   }
 
+  async getMember(id: string) {
+    const { data } = await this.axiosExtend.get<MemberProfile>(
+      `/api/user/show?id=${id}`,
+    );
+    return data;
+  }
+
   async sendEmailKey(email: string) {
     const { data } = await this.axiosExtend.post(
       `/api/mail/send?email=${email}`,

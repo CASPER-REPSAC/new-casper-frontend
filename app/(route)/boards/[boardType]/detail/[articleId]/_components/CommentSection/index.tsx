@@ -1,16 +1,8 @@
 'use client';
 
-import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
-import { FormProvider, useForm } from 'react-hook-form';
-
 import { useComments } from '@app/_hooks/apis/boards';
-import { myProfileState } from '@app/_store/permissionAtoms';
-import Avatar from '@app/_components/user/Avatar';
 import Spinner from '@app/_components/Spinner';
-import Buttons from './Buttons';
-import Content from './Content';
-import Header from './Header';
+import Comment from './Comment';
 
 interface Props {
   articleId: string;
@@ -24,75 +16,22 @@ function CommentSection({ articleId }: Props) {
 
   return (
     <div className="flex flex-col-reverse gap-12">
-      {comments.map(({ nickname, modifiedAt, text, commentId, profile }) => (
-        <Comment
-          key={commentId}
-          profile={profile}
-          commentId={commentId.toString()}
-          articleId={articleId}
-          nickname={nickname}
-          date={modifiedAt}
-          content={text}
-        />
-      ))}
+      {comments.map(
+        ({ id, nickname, modifiedAt, text, commentId, profile }) => (
+          <Comment
+            key={commentId}
+            authorId={id}
+            profile={profile}
+            commentId={commentId.toString()}
+            articleId={articleId}
+            nickname={nickname}
+            date={modifiedAt}
+            content={text}
+          />
+        ),
+      )}
     </div>
   );
 }
 
-interface CommentProps {
-  articleId: string;
-  commentId: string;
-  nickname: string;
-  date: string;
-  content: string;
-  profile: string;
-}
-
-function Comment({
-  articleId,
-  commentId,
-  nickname,
-  date,
-  content,
-  profile,
-}: CommentProps) {
-  const [editable, setEditable] = useState(false);
-  const myProfile = useRecoilValue(myProfileState);
-  const isMyComment = myProfile?.nickname === nickname;
-  const isAdmin = myProfile?.role === 'admin';
-  const methods = useForm({
-    defaultValues: {
-      comment: content,
-    },
-  });
-
-  return (
-    <FormProvider {...methods}>
-      <div className="flex items-start justify-between gap-8">
-        <Avatar
-          className="size-14"
-          src={profile}
-          fallback={nickname}
-          rounded
-          alt="profile"
-        />
-
-        <div className="flex flex-1 flex-col">
-          <Header nickname={nickname} date={date} />
-          <Content comment={content} editable={editable} />
-        </div>
-        <div className="flex gap-4">
-          {(isMyComment || isAdmin) && (
-            <Buttons
-              articleId={articleId}
-              commentId={commentId}
-              editable={editable}
-              setEditable={setEditable}
-            />
-          )}
-        </div>
-      </div>
-    </FormProvider>
-  );
-}
 export default CommentSection;

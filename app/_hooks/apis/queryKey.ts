@@ -11,3 +11,11 @@ export const commentQueryKey = {
   lists: () => [...commentQueryKey.all, 'list'],
   list: (id: number) => [...commentQueryKey.lists(), id],
 };
+
+export const memberQueryKey = {
+  all: ['member'],
+  lists: () => [...memberQueryKey.all, 'list'],
+  list: (filter: object) => [...memberQueryKey.lists(), filter],
+  details: () => [...memberQueryKey.all, 'detail'],
+  detail: (id: string) => [...memberQueryKey.details(), id],
+};
