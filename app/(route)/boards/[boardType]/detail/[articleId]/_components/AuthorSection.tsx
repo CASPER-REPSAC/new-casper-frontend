@@ -1,6 +1,6 @@
 'use client';
 
-import Avatar from '@app/_components/user/Avatar';
+import AvatarWithDialog from '@app/_components/user/AvatarWithDialog';
 import useArticleDetailQuery from '@app/_hooks/apis/boards/useArticleDetailQuery';
 
 interface Props {
@@ -16,7 +16,8 @@ function AuthorSection({ articleId }: Props) {
 
   return (
     <section className="mb-32 flex items-center gap-8">
-      <Avatar
+      <AvatarWithDialog
+        id={data.article.userId}
         className="size-20"
         rounded
         src={profile}

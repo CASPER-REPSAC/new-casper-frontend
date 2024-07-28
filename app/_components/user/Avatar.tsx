@@ -4,13 +4,13 @@ import { cn } from '@app/_shadcn/lib/utils';
 import Image, { ImageProps } from 'next/image';
 import { ReactNode, useState } from 'react';
 
-interface Props extends Omit<ImageProps, 'src'> {
+export interface AvatarProps extends Omit<ImageProps, 'src'> {
   src?: string;
   fallback: ReactNode;
   rounded: boolean;
 }
 
-function Avatar({ fallback, rounded, src, className, ...props }: Props) {
+function Avatar({ fallback, rounded, src, className, ...props }: AvatarProps) {
   const [imageError, setImageError] = useState(false);
 
   return (

@@ -4,10 +4,10 @@ import { useState } from 'react';
 import { useRecoilValue } from 'recoil';
 import { FormProvider, useForm } from 'react-hook-form';
 import { myProfileState } from '@app/_store/permissionAtoms';
+import AvatarWithDialog from '@app/_components/user/AvatarWithDialog';
 import Buttons from './Buttons';
 import Content from './Content';
 import Header from './Header';
-import AvatarWithDialog from './AvatarWithDialog';
 
 interface CommentProps {
   authorId: string;
@@ -41,7 +41,14 @@ function Comment({
   return (
     <FormProvider {...methods}>
       <div className="flex items-start justify-between gap-8">
-        <AvatarWithDialog nickname={nickname} profile={profile} id={authorId} />
+        <AvatarWithDialog
+          className="size-14"
+          src={profile || undefined}
+          fallback={nickname}
+          rounded
+          alt="profile"
+          id={authorId}
+        />
 
         <div className="flex flex-1 flex-col">
           <Header nickname={nickname} date={date} />
