@@ -102,7 +102,7 @@ export const BOARD_TABS = [
       .split('/list')[0],
   },
   {
-    name: '지유게시판',
+    name: '자유게시판',
     accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
     key: BOARD_TYPE.freedom,
     href: NEW_PATH.boardList.url({
