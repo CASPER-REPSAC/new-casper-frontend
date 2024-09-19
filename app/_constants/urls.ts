@@ -1,5 +1,11 @@
 import { BOARD_TYPE } from './mock';
 
+const INTRA_PATH = {
+  wiki: 'https://wiki.casper.or.kr',
+  nas: 'https://nas.casper.or.kr',
+  recruit: 'https://recruit.casper.or.kr',
+};
+
 const ADMIN_PATH = {
   user: '/admin/user',
   board: '/admin/board',
@@ -109,5 +115,6 @@ const PATH = {
 
 Object.freeze(PATH);
 Object.freeze(ADMIN_PATH);
+Object.freeze(INTRA_PATH);
 
-export { PATH, ADMIN_PATH, NEW_PATH };
+export { PATH, ADMIN_PATH, NEW_PATH, INTRA_PATH };

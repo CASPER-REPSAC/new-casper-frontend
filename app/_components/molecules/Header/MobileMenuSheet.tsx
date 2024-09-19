@@ -47,19 +47,19 @@ function SideNavSheet() {
         </Link>
       </SheetHeader>
       <h1 className="text-foreground-600 text-xl font-bold">Boards</h1>
-      {BOARD_TABS.map(({ name, key, href, accessibleRoles }) => {
+      {BOARD_TABS.map(({ name, href, accessibleRoles }) => {
         if (!accessibleRoles.includes(role)) return null;
         return (
-          <Link key={key} className="w-full" href={href}>
+          <Link key={name} className="w-full" href={href}>
             {name}
           </Link>
         );
       })}
       <h1 className="text-foreground-600 text-xl font-bold">Members</h1>
-      {MEMBER_TABS.map(({ key, href, name, accessibleRoles }) => {
+      {MEMBER_TABS.map(({ href, name, accessibleRoles }) => {
         if (!accessibleRoles.includes(role)) return null;
         return (
-          <Link key={key} className="w-full" href={href}>
+          <Link key={name} className="w-full" href={href}>
             {name}
           </Link>
         );
