@@ -15,7 +15,7 @@ import {
 } from '@app/_shadcn/components/ui/sheet';
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import { PATH } from '@app/_constants/urls';
+import { ADMIN_PATH, PATH } from '@app/_constants/urls';
 
 function MobileMenuSheet() {
   const [open, setOpen] = useState(false);
@@ -64,6 +64,13 @@ function SideNavSheet() {
           </Link>
         );
       })}
+      {role === '관리자' && (
+        <>
+          <h1 className="text-foreground-600 text-xl font-bold">Admin</h1>
+          <Link href={ADMIN_PATH.board}>board</Link>
+          <Link href={ADMIN_PATH.user}>user</Link>
+        </>
+      )}
     </SheetContent>
   );
 }
