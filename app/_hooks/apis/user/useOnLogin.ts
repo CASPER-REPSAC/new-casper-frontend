@@ -1,5 +1,5 @@
 import { revalidateTag } from '@app/_actions';
-import { ERROR_MESSAGE } from '@app/_constants/message';
+import { getErrorMessage } from '@app/_constants/message';
 import { PATH } from '@app/_constants/urls';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { accessTokenState, myProfileState } from '@app/_store/permissionAtoms';
@@ -25,29 +25,14 @@ function useOnLogin() {
 
   const onError = (error: AxiosError<ErrorResponse>) => {
     const code = error.response?.data.code;
-    switch (code) {
-      case -101:
-        toast({
-          variant: 'destructive',
-          title: '로그인',
-          description: ERROR_MESSAGE['-101'],
-        });
-        break;
-      case -102:
-        toast({
-          variant: 'destructive',
-          title: '로그인',
-          description: ERROR_MESSAGE['-102'],
-        });
-        break;
-      default:
-        toast({
-          variant: 'destructive',
-          title: '로그인',
-          description: ERROR_MESSAGE.unknown,
-        });
-        break;
-    }
+
+    if (!code) throw new Error('Not found error code.');
+
+    toast({
+      variant: 'destructive',
+      title: '로그인',
+      description: getErrorMessage(code),
+    });
   };
 
   return {
