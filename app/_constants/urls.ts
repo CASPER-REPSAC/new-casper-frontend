@@ -43,7 +43,7 @@ const NEW_PATH = {
     }: {
       assignmentId: number;
       submitId: number;
-    }) => `/assigmnet/${assignmentId}/${submitId}/edit`,
+    }) => `/assignment/${assignmentId}/${submitId}/edit`,
   },
   submitDetail: {
     url: ({
@@ -52,7 +52,7 @@ const NEW_PATH = {
     }: {
       assignmentId: number;
       submitId: number;
-    }) => `/assigmnet/${assignmentId}/${submitId}`,
+    }) => `/assignment/${assignmentId}/${submitId}`,
   },
 };
 
