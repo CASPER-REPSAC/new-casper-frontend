@@ -64,6 +64,7 @@ function NavSection() {
           }));
           return (
             <MenuItem
+              key={title}
               title={title}
               desc={desc}
               subMenus={subMenus}
