@@ -3,8 +3,10 @@ import {
   NavigationMenuTrigger,
   NavigationMenuItem,
   NavigationMenuContent,
+  navigationMenuTriggerStyle,
 } from '@app/_shadcn/components/ui/navigation-menu';
 import { roleState } from '@app/_store/permissionAtoms';
+import { NavigationMenuLink } from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 import { ReactNode } from 'react';
 import { useRecoilValue } from 'recoil';
@@ -27,34 +29,42 @@ export default function MenuItem({ title, subMenus, desc, href }: Props) {
 
   return (
     <NavigationMenuItem>
-      <NavigationMenuTrigger>
-        {href ? <Link href={href}>{title}</Link> : title}
-      </NavigationMenuTrigger>
-      {subMenus && (
-        <NavigationMenuContent>
-          <div className="flex min-w-96 grid-cols-3 justify-between gap-2 px-8 py-4">
-            <div className=" flex w-full flex-col justify-center rounded bg-primary-foreground p-4">
-              <h1>{title}</h1>
-              <p className="text-sm font-thin">{desc}</p>
+      {subMenus ? (
+        <>
+          <NavigationMenuTrigger>
+            {href ? <Link href={href}>{title}</Link> : title}
+          </NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <div className="flex min-w-96 grid-cols-3 justify-between gap-2 px-8 py-4">
+              <div className=" flex w-full flex-col justify-center rounded bg-primary-foreground p-4">
+                <h1>{title}</h1>
+                <p className="text-sm font-thin">{desc}</p>
+              </div>
+              <div className="flex flex-col gap-1">
+                {subMenus.map(({ href: subHref, name, accessibleRoles }) => {
+                  if (!accessibleRoles.includes(role)) return null;
+                  return (
+                    <Button
+                      key={name}
+                      asChild
+                      size="sm"
+                      variant="ghost"
+                      className="text-left"
+                    >
+                      <Link href={subHref}>{name}</Link>
+                    </Button>
+                  );
+                })}
+              </div>
             </div>
-            <div className="flex  flex-col gap-1">
-              {subMenus.map(({ href: subHref, name, accessibleRoles }) => {
-                if (!accessibleRoles.includes(role)) return null;
-                return (
-                  <Button
-                    key={name}
-                    asChild
-                    size="sm"
-                    variant="ghost"
-                    className="text-left"
-                  >
-                    <Link href={subHref}>{name}</Link>
-                  </Button>
-                );
-              })}
-            </div>
-          </div>
-        </NavigationMenuContent>
+          </NavigationMenuContent>
+        </>
+      ) : (
+        <Link href={href || '#'} legacyBehavior passHref>
+          <NavigationMenuLink className={navigationMenuTriggerStyle()}>
+            {title}
+          </NavigationMenuLink>
+        </Link>
       )}
     </NavigationMenuItem>
   );
