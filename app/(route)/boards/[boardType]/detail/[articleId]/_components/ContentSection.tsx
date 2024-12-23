@@ -15,6 +15,8 @@ function ContentSection() {
   const { setValue } = useFormContext();
   const { data } = useArticleDetailQuery(Number(params.articleId));
 
+  console.log(data);
+
   if (!data) return null;
 
   const onValueChange = (blocks: TElement[]) => {
@@ -22,7 +24,9 @@ function ContentSection() {
     setValue('content', valueString);
   };
 
-  const initialValue: TElement[] = JSON.parse(data?.article.content);
+  const initialValue: TElement[] = data?.article.content
+    ? JSON.parse(data?.article.content)
+    : undefined;
 
   return (
     <div className="mb-40 mt-4">
