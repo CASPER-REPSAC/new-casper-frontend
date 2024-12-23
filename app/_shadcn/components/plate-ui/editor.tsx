@@ -57,6 +57,7 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
       readOnly,
       size,
       variant,
+      placeholder,
       ...props
     },
     ref,
@@ -77,6 +78,7 @@ const Editor = React.forwardRef<HTMLDivElement, EditorProps>(
           )}
           disableDefaultStyles
           readOnly={disabled ?? readOnly}
+          placeholder={readOnly ? undefined : placeholder}
           {...props}
         />
       </div>
