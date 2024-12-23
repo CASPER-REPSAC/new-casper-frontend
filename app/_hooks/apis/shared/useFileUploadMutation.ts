@@ -11,7 +11,7 @@ function useFileUploadMutation() {
     type,
     files,
   }: {
-    type: 'profile' | 'article';
+    type: 'profile' | 'article' | 'assignment' | 'submit';
     files: FileList;
   }) => {
     const data = await sharedService.uploadFile({ type, files });
@@ -36,7 +36,7 @@ function useFileUploadMutation() {
     }
   };
 
-  return useMutation({ mutationFn, onError });
+  return useMutation({ mutationKey: ['file-upload'], mutationFn, onError });
 }
 
 export default useFileUploadMutation;
