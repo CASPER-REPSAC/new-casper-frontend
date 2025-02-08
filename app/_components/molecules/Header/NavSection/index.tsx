@@ -40,7 +40,7 @@ const MENU_ITEMS = [
   {
     title: 'Assignment',
     desc: '과제 관리 서비스를 사용해보세요.',
-    href: NEW_PATH.assignmentList.url,
+    href: NEW_PATH.assignmentList.url(1),
     accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
   },
   {

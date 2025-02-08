@@ -32,7 +32,7 @@ const NEW_PATH = {
   },
   login: { url: '/login' },
   mypage: { url: '/mypage' },
-  assignmentList: { url: '/assignment' },
+  assignmentList: { url: (page: number) => `/assignment?page=${page}` },
   assignmentDetail: { url: (id: number) => `/assignment/${id}` },
   assignmentCreate: { url: '/assignment/create' },
   assignmentSubmit: { url: '/assignment/submit' },
@@ -56,6 +56,9 @@ const NEW_PATH = {
   },
 };
 
+/**
+ * @deprecated NEW_PATH 사용 권장
+ */
 const PATH = {
   home: {
     name: '홈',
@@ -117,6 +120,12 @@ const PATH = {
     join: {
       name: '회원가입',
       url: '/join',
+    },
+  },
+  assignment: {
+    list: {
+      name: '과제 목록',
+      url: (page: number) => `/assignment/${page}`,
     },
   },
   extra: {

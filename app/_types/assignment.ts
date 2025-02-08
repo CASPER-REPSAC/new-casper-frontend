@@ -5,8 +5,26 @@ export const assignmentCreateFormSchema = z.object({
   category: z.string(),
   description: z.string(),
   deadline: z.string(),
-  files: z.instanceof(FileList).optional(),
+  files: z
+    .array(
+      z.object({
+        file: z.custom<File>(),
+        name: z.string(),
+        url: z.string(),
+      }),
+    )
+    .optional(),
 });
+
+export type Assignment = {
+  assignmentId: 1;
+  title: string;
+  category: string;
+  deadline: string;
+  userId: string;
+  name: string;
+  progress: string;
+};
 
 export type AssignmentCreateFormType = z.infer<
   typeof assignmentCreateFormSchema

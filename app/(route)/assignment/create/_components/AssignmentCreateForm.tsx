@@ -20,25 +20,31 @@ import {
 import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
 import Spinner from '@app/_components/Spinner';
 import { Check, CircleOff } from 'lucide-react';
-import { useMutationState } from '@tanstack/react-query';
 import { format } from 'date-fns';
+import { ChangeEventHandler } from 'react';
+import assignmentService from '@app/_service/assignmentService';
+import { useRouter } from 'next/navigation';
+import { NEW_PATH } from '@app/_constants/urls';
 
 export default function AssignmentCreateForm() {
   const methods = useForm<AssignmentCreateFormType>({
     resolver: zodResolver(assignmentCreateFormSchema),
   });
-  const { formState, handleSubmit } = methods;
+  const { formState, handleSubmit, getValues } = methods;
+  const { push } = useRouter();
 
-  const uploadedFiles = useMutationState({
-    filters: { mutationKey: ['file-upload'], status: 'success' },
-    select: (mutation) => mutation.state.data,
-  });
-
-  const onValid: SubmitHandler<AssignmentCreateFormType> = (data) => {
+  const onValid: SubmitHandler<AssignmentCreateFormType> = async (data) => {
     const { files, deadline, ...rest } = data;
-    // const uploadedFileUrls = uploadedFiles?.map(({ url }) => url);
+    const uploadedFiles = getValues('files');
+    const uploadedFileUrls = uploadedFiles?.map(({ url }) => url);
+    await assignmentService.createAssignment({
+      ...rest,
+      urls: uploadedFileUrls,
+      deadline,
+    });
+    push(NEW_PATH.assignmentList.url(1));
   };
-  console.log(formState.errors, formState.isValid);
+
   return (
     <FormProvider {...methods}>
       <form className="space-y-4" onSubmit={handleSubmit(onValid)}>
@@ -134,15 +140,25 @@ function FileInput() {
     isError,
   } = useFileUploadMutation();
 
-  const { register } = useFormContext();
-  const filesRegister = register('files', {
-    onChange: (e) => {
-      const { files } = e.currentTarget;
-      if (!files) return;
-      console.log('mutate!');
-      fileUploadMutate({ type: 'assignment', files });
-    },
-  });
+  const { setValue } = useFormContext<AssignmentCreateFormType>();
+
+  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
+    const { files } = e.currentTarget;
+    if (!files) return;
+    fileUploadMutate(
+      { type: 'assignment', files },
+      {
+        onSuccess: (uploadedFiles) => {
+          const reulstFiles = uploadedFiles.map(({ name, url }, index) => ({
+            name,
+            url,
+            file: files[index],
+          }));
+          setValue('files', reulstFiles, { shouldValidate: true });
+        },
+      },
+    );
+  };
 
   return (
     <div className="space-y-2">
@@ -153,7 +169,7 @@ function FileInput() {
           type="file"
           multiple
           className="flex-grow"
-          {...filesRegister}
+          onChange={onChange}
         />
         {isPending && <Spinner />}
         {isSuccess && <Check />}

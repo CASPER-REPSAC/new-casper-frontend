@@ -18,42 +18,18 @@ import {
   StarIcon,
 } from 'lucide-react';
 import { NEW_PATH } from '@app/_constants/urls';
+import assignmentService from '@app/_service/assignmentService';
 
-export default function AssignmentListPage() {
-  const assignments = [
-    {
-      id: 1,
-      title: 'React 기초',
-      dueDate: '2023-07-15',
-      subject: '프론트엔드',
-      author: '김교수',
-      status: 'submitted',
-    },
-    {
-      id: 2,
-      title: 'Next.js App Router',
-      dueDate: '2023-07-20',
-      subject: '웹 개발',
-      author: '이교수',
-      status: 'in_progress',
-    },
-    {
-      id: 3,
-      title: 'TypeScript 심화',
-      dueDate: '2023-07-10',
-      subject: '프로그래밍 언어',
-      author: '박교수',
-      status: 'expired',
-    },
-    {
-      id: 3,
-      title: 'TypeScript 심화',
-      dueDate: '2023-07-10',
-      subject: '프로그래밍 언어',
-      author: '박교수',
-      status: 'graded',
-    },
-  ];
+interface Props {
+  searchParams: { page: string };
+}
+
+export default async function AssignmentListPage({ searchParams }: Props) {
+  const assignments = await assignmentService.getAssignmentList(
+    Number(searchParams.page),
+  );
+
+  console.log(assignments);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -99,38 +75,40 @@ export default function AssignmentListPage() {
         </Button>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {assignments.map((assignment) => (
-          <Card
-            key={assignment.id}
-            className="overflow-hidden transition-shadow hover:shadow-lg"
-          >
-            <CardHeader>
-              <div className="flex items-start justify-between">
-                <CardTitle className="text-xl">{assignment.title}</CardTitle>
-                {getStatusBadge(assignment.status)}
-              </div>
-              <CardDescription>{assignment.subject}</CardDescription>
-            </CardHeader>
-            <CardContent className="pt-2">
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex items-center text-sm">
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {assignment.dueDate}
+        {assignments.AssignmentList.map(
+          ({ assignmentId, name, title, progress, category, deadline }) => (
+            <Card
+              key={assignmentId}
+              className="overflow-hidden transition-shadow hover:shadow-lg"
+            >
+              <CardHeader>
+                <div className="flex items-start justify-between">
+                  <CardTitle className="text-xl">{title}</CardTitle>
+                  {getStatusBadge(progress)}
                 </div>
-              </div>
-              <div className="mb-4 flex items-center text-sm text-muted-foreground">
-                <UserIcon className="mr-2 h-4 w-4" />
-                작성자: {assignment.author}
-              </div>
-              <Button asChild variant="secondary" className="w-full">
-                <Link href={NEW_PATH.assignmentDetail.url(assignment.id)}>
-                  <BookOpenIcon className="mr-2 h-4 w-4" />
-                  상세 보기
-                </Link>
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
+                <CardDescription>{category}</CardDescription>
+              </CardHeader>
+              <CardContent className="pt-2">
+                <div className="mb-4 flex items-center justify-between">
+                  <div className="flex items-center text-sm">
+                    <CalendarIcon className="mr-2 h-4 w-4" />
+                    {deadline}
+                  </div>
+                </div>
+                <div className="mb-4 flex items-center text-sm text-muted-foreground">
+                  <UserIcon className="mr-2 h-4 w-4" />
+                  작성자: {name}
+                </div>
+                <Button asChild variant="secondary" className="w-full">
+                  <Link href={NEW_PATH.assignmentDetail.url(assignmentId)}>
+                    <BookOpenIcon className="mr-2 h-4 w-4" />
+                    상세 보기
+                  </Link>
+                </Button>
+              </CardContent>
+            </Card>
+          ),
+        )}
       </div>
     </div>
   );
