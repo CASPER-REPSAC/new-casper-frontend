@@ -29,8 +29,6 @@ export default async function AssignmentListPage({ searchParams }: Props) {
     Number(searchParams.page),
   );
 
-  console.log(assignments);
-
   const getStatusBadge = (status: string) => {
     switch (status) {
       case 'submitted':

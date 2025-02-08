@@ -15,8 +15,6 @@ function ContentSection() {
   const { setValue } = useFormContext();
   const { data } = useArticleDetailQuery(Number(params.articleId));
 
-  console.log(data);
-
   if (!data) return null;
 
   const onValueChange = (blocks: TElement[]) => {
