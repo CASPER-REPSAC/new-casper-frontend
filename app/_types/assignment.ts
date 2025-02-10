@@ -17,7 +17,7 @@ export const assignmentCreateFormSchema = z.object({
 });
 
 export type Assignment = {
-  assignmentId: 1;
+  assignmentId: number;
   title: string;
   category: string;
   deadline: string;

@@ -31,28 +31,28 @@ export default async function AssignmentListPage({ searchParams }: Props) {
 
   const getStatusBadge = (status: string) => {
     switch (status) {
-      case 'submitted':
+      case '제출완료':
         return (
           <Badge variant="secondary" className="ml-2">
             <CheckCircleIcon className="mr-1 h-3 w-3" />
             제출완료
           </Badge>
         );
-      case 'in_progress':
+      case '진행중':
         return (
           <Badge variant="default" className="ml-2">
             <ClockIcon className="mr-1 h-3 w-3" />
             진행중
           </Badge>
         );
-      case 'expired':
+      case '마감됨':
         return (
           <Badge variant="destructive" className="ml-2">
             <XCircleIcon className="mr-1 h-3 w-3" />
             마감됨
           </Badge>
         );
-      case 'graded':
+      case '채점완료':
         return (
           <Badge variant="secondary" className="ml-2">
             <StarIcon className="mr-1 h-3 w-3" />
