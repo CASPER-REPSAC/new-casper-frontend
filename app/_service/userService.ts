@@ -1,5 +1,9 @@
 import { cache } from 'react';
-import { MemberProfile, ProfileUpdateRequset } from '@app/_types/userTypes';
+import {
+  MemberProfile,
+  MyProfile,
+  ProfileUpdateRequset,
+} from '@app/_types/userTypes';
 import Service from './service';
 
 class UserService extends Service {
@@ -32,6 +36,11 @@ class UserService extends Service {
     const { data } = await this.axiosExtend.delete(
       `/api/user/withdrawal/${userId}`,
     );
+    return data;
+  }
+
+  async getMyInfo() {
+    const { data } = await this.axiosExtend.get<MyProfile>(`/api/user/me`);
     return data;
   }
 }

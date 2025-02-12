@@ -35,7 +35,10 @@ const NEW_PATH = {
   assignmentList: { url: (page: number) => `/assignment?page=${page}` },
   assignmentDetail: { url: (id: number) => `/assignment/${id}` },
   assignmentCreate: { url: '/assignment/create' },
-  assignmentSubmit: { url: '/assignment/submit' },
+  assignmentSubmit: {
+    url: ({ assignmentId }: { assignmentId: number }) =>
+      `/assignment/submit?assignmentId=${assignmentId}`,
+  },
   assignmentEdit: {
     url: ({
       assignmentId,
@@ -52,7 +55,7 @@ const NEW_PATH = {
     }: {
       assignmentId: number;
       submitId: number;
-    }) => `/assignment/${assignmentId}/${submitId}`,
+    }) => `/assignment/submit/${assignmentId}/${submitId}`,
   },
 };
 

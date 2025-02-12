@@ -23,11 +23,21 @@ import { NEW_PATH } from '@app/_constants/urls';
 import { useParams } from 'next/navigation';
 import { useRecoilValue } from 'recoil';
 import { roleState } from '@app/_store/permissionAtoms';
+import { useAssignmentDetail } from '@app/_hooks/apis/assignment/useAssignment';
+import Spinner from '@app/_components/Spinner';
 
 export default function SubmitList() {
   const role = useRecoilValue(roleState);
+  const params = useParams<{ assignmentId: string; submitId: string }>();
 
-  const params = useParams<{ assignmentId: string }>();
+  const { data: assignmentDetail, isLoading } = useAssignmentDetail(
+    Number(params.assignmentId),
+  );
+
+  console.log(assignmentDetail?.submit);
+
+  if (isLoading) return <Spinner />;
+
   const submissions = [
     {
       id: 1,

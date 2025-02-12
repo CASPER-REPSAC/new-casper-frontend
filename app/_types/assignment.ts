@@ -26,6 +26,20 @@ export type Assignment = {
   progress: string;
 };
 
+export type AssignmentDetail = {
+  submit: [];
+  assignment: {
+    assignmentId: number;
+    title: string;
+    category: string;
+    description: string;
+    deadline: string;
+    userId: string;
+    name: string;
+  };
+  assignmentFiles: [];
+};
+
 export type AssignmentCreateFormType = z.infer<
   typeof assignmentCreateFormSchema
 >;
