@@ -25,7 +25,7 @@ interface Props {
 }
 
 export default async function AssignmentListPage({ searchParams }: Props) {
-  const assignments = await assignmentService.getAssignmentList(
+  const { assignments } = await assignmentService.getAssignmentList(
     Number(searchParams.page),
   );
 
@@ -73,7 +73,7 @@ export default async function AssignmentListPage({ searchParams }: Props) {
         </Button>
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-        {assignments.AssignmentList.map(
+        {assignments.map(
           ({ assignmentId, name, title, progress, category, deadline }) => (
             <Card
               key={assignmentId}

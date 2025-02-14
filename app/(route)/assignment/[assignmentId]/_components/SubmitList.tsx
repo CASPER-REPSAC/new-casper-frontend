@@ -34,33 +34,17 @@ export default function SubmitList() {
     Number(params.assignmentId),
   );
 
-  console.log(assignmentDetail?.submit);
-
   if (isLoading) return <Spinner />;
 
-  const submissions = [
-    {
-      id: 1,
-      name: '김철수',
-      submittedAt: '2023-07-10',
-      score: 0,
-      file: 'kim_submission.pdf',
-    },
-    {
-      id: 2,
-      name: '이영희',
-      submittedAt: '2023-07-12',
-      score: 0,
-      file: 'lee_submission.pdf',
-    },
-    {
-      id: 3,
-      name: '박지성',
-      submittedAt: '2023-07-14',
-      score: 0,
-      file: 'park_submission.pdf',
-    },
-  ];
+  const submissions: {
+    id: number;
+    name: string;
+    submittedAt: string;
+    score: number;
+    file: string;
+  }[] = assignmentDetail?.submits || [];
+
+  console.log(submissions);
 
   if (!(role === '정회원' || role === '관리자')) return null;
   return (
@@ -86,6 +70,13 @@ export default function SubmitList() {
             </TableRow>
           </TableHeader>
           <TableBody>
+            {submissions.length === 0 && (
+              <TableRow>
+                <TableCell colSpan={5} className="text-center">
+                  제출자가 없습니다.
+                </TableCell>
+              </TableRow>
+            )}
             {submissions.map((submission) => (
               <TableRow key={submission.id}>
                 <TableCell className="font-medium">{submission.name}</TableCell>

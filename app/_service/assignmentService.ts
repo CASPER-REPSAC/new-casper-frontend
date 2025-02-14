@@ -16,8 +16,8 @@ class AssignmentService extends Service {
 
   async getAssignmentList(page: number) {
     const { data } = await this.axiosExtend.get<{
-      maxPageNum: number;
-      AssignmentList: Assignment[];
+      maxPage: number;
+      assignments: Assignment[];
     }>(`${BASE_PATH}/list/${page}`);
     return data;
   }
@@ -32,6 +32,13 @@ class AssignmentService extends Service {
   async getSubmitList(assignmentId: number, submitId: number) {
     const { data } = await this.axiosExtend.get(
       `${BASE_PATH}/submit/${assignmentId}/submit/${submitId}`,
+    );
+    return data;
+  }
+
+  async getSubmitDetail(assignmentId: number, submitId: number) {
+    const { data } = await this.axiosExtend.get(
+      `${BASE_PATH}/${assignmentId}/submit/${submitId}`,
     );
     return data;
   }

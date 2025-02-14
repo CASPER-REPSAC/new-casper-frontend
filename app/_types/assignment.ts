@@ -27,7 +27,7 @@ export type Assignment = {
 };
 
 export type AssignmentDetail = {
-  submit: [];
+  submits: [];
   assignment: {
     assignmentId: number;
     title: string;
@@ -37,7 +37,7 @@ export type AssignmentDetail = {
     userId: string;
     name: string;
   };
-  assignmentFiles: [];
+  files: [];
 };
 
 export type AssignmentCreateFormType = z.infer<
