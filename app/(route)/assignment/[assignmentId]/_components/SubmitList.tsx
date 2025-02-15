@@ -21,32 +21,27 @@ import { Input } from '@app/_shadcn/components/ui/input';
 import { Badge } from '@app/_shadcn/components/ui/badge';
 import { NEW_PATH } from '@app/_constants/urls';
 import { useParams } from 'next/navigation';
-import { useRecoilValue } from 'recoil';
-import { roleState } from '@app/_store/permissionAtoms';
 import { useAssignmentDetail } from '@app/_hooks/apis/assignment/useAssignment';
 import Spinner from '@app/_components/Spinner';
+import { formatDate } from 'date-fns';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 export default function SubmitList() {
-  const role = useRecoilValue(roleState);
+  const { data: myInfo } = useMyInfo();
   const params = useParams<{ assignmentId: string; submitId: string }>();
 
-  const { data: assignmentDetail, isLoading } = useAssignmentDetail(
-    Number(params.assignmentId),
-  );
+  const { data: assignmentDetail, isLoading } = useAssignmentDetail({
+    assignmentId: Number(params.assignmentId),
+  });
 
   if (isLoading) return <Spinner />;
 
-  const submissions: {
-    id: number;
-    name: string;
-    submittedAt: string;
-    score: number;
-    file: string;
-  }[] = assignmentDetail?.submits || [];
+  const submissions = assignmentDetail?.submits || [];
 
-  console.log(submissions);
+  if (myInfo?.role === 'associate') return null;
+  console.log(myInfo);
+  if (!myInfo) return null;
 
-  if (!(role === '정회원' || role === '관리자')) return null;
   return (
     <Card className="mx-auto max-w-4xl">
       <CardHeader>
@@ -78,13 +73,18 @@ export default function SubmitList() {
               </TableRow>
             )}
             {submissions.map((submission) => (
-              <TableRow key={submission.id}>
+              <TableRow key={submission.submitId}>
                 <TableCell className="font-medium">{submission.name}</TableCell>
-                <TableCell>{submission.submittedAt}</TableCell>
+                <TableCell>
+                  {formatDate(
+                    new Date(submission.submitDate),
+                    'M월 dd일 HH:mm',
+                  )}
+                </TableCell>
                 <TableCell>
                   <Input
                     type="number"
-                    value={submission.score}
+                    value={submission.score ?? 0}
                     className="w-20"
                     min="0"
                     max="100"
@@ -93,7 +93,7 @@ export default function SubmitList() {
                 <TableCell>
                   <Button variant="outline" size="sm">
                     <DownloadIcon className="mr-2 h-4 w-4" />
-                    {submission.file}
+                    {submission.urls.length}
                   </Button>
                 </TableCell>
                 <TableCell className="text-right">
@@ -101,7 +101,7 @@ export default function SubmitList() {
                     <Link
                       href={NEW_PATH.submitDetail.url({
                         assignmentId: Number(params.assignmentId),
-                        submitId: submission.id,
+                        submitId: submission.submitId,
                       })}
                     >
                       상세보기

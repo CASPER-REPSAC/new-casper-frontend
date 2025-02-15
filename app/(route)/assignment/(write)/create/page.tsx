@@ -1,4 +1,4 @@
-import AssignmentCreateForm from './_components/AssignmentCreateForm';
+import AssignmentCreateForm from '../_components/AssignmentCreateForm';
 
 export default function CreateAssignmentPage() {
   return (

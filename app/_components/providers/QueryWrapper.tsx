@@ -1,3 +1,5 @@
+'use client';
+
 import {
   isServer,
   QueryClient,
@@ -10,7 +12,7 @@ function makeQueryClient() {
   return new QueryClient({
     defaultOptions: {
       queries: {
-        staleTime: 60 * 1000,
+        staleTime: 0,
       },
     },
   });

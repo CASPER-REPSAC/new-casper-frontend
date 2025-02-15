@@ -24,16 +24,16 @@ export function useCreateAssignment() {
   });
 }
 
-export function useAssignmentDetail(assignmentId: number) {
+export function useAssignmentDetail({
+  assignmentId,
+  enabled = true,
+}: {
+  assignmentId: number;
+  enabled?: boolean;
+}) {
   return useQuery({
     queryKey: ['assignment', 'detail', assignmentId],
     queryFn: () => assignmentService.getAssignmentDetail(assignmentId),
-  });
-}
-
-export function useSubmitList(assignmentId: number, submitId: number) {
-  return useQuery({
-    queryKey: ['submit', 'list', assignmentId, submitId],
-    queryFn: () => assignmentService.getSubmitList(assignmentId, submitId),
+    enabled,
   });
 }

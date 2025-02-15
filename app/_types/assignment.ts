@@ -27,7 +27,13 @@ export type Assignment = {
 };
 
 export type AssignmentDetail = {
-  submits: [];
+  submits: {
+    name: string;
+    score: number | null;
+    submitDate: string;
+    submitId: number;
+    urls: string[];
+  }[];
   assignment: {
     assignmentId: number;
     title: string;
@@ -36,6 +42,20 @@ export type AssignmentDetail = {
     deadline: string;
     userId: string;
     name: string;
+  };
+  files: { src: string; name: string }[];
+};
+
+export type SubmitDetail = {
+  submit: {
+    submitId: number;
+    assignmentId: number;
+    userId: string;
+    name: string;
+    submitDate: string;
+    content: string | null;
+    score: number | null;
+    feedback: string | null;
   };
   files: [];
 };

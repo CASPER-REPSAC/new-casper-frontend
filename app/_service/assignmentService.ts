@@ -1,17 +1,21 @@
-import { Assignment, AssignmentDetail } from '@app/_types/assignment';
+import {
+  Assignment,
+  AssignmentDetail,
+  SubmitDetail,
+} from '@app/_types/assignment';
 import Service from './service';
 
 const BASE_PATH = '/api/assignment';
 
 class AssignmentService extends Service {
-  createAssignment(data: {
+  async createAssignment(data: {
     title: string;
     category: string;
     description: string;
     deadline: string;
     urls?: string[];
   }) {
-    this.axiosExtend.post(`${BASE_PATH}/create`, data);
+    return this.axiosExtend.post(`${BASE_PATH}/create`, data);
   }
 
   async getAssignmentList(page: number) {
@@ -37,7 +41,7 @@ class AssignmentService extends Service {
   }
 
   async getSubmitDetail(assignmentId: number, submitId: number) {
-    const { data } = await this.axiosExtend.get(
+    const { data } = await this.axiosExtend.get<SubmitDetail>(
       `${BASE_PATH}/${assignmentId}/submit/${submitId}`,
     );
     return data;
@@ -56,6 +60,22 @@ class AssignmentService extends Service {
       },
     );
     return { submitId: 1 };
+  }
+
+  async updateAssignment(params: {
+    assignmentId: number;
+    title: string;
+    category: string;
+    description: string;
+    deadline: string;
+    urls?: string[];
+  }) {
+    console.log('test', params);
+    await this.axiosExtend.patch(
+      `${BASE_PATH}/edit/${params.assignmentId}`,
+      params,
+    );
+    console.log('test2');
   }
 }
 

@@ -40,13 +40,8 @@ const NEW_PATH = {
       `/assignment/submit?assignmentId=${assignmentId}`,
   },
   assignmentEdit: {
-    url: ({
-      assignmentId,
-      submitId,
-    }: {
-      assignmentId: number;
-      submitId: number;
-    }) => `/assignment/${assignmentId}/${submitId}/edit`,
+    url: (assignmentId: number) =>
+      `/assignment/edit?assignmentId=${assignmentId}`,
   },
   submitDetail: {
     url: ({
