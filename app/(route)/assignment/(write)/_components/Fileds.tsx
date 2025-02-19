@@ -1,6 +1,6 @@
-import Spinner from '@app/_components/Spinner';
-import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
+import DndFileInput from '@app/_components/common/DndFileInput';
 import {
+  FormControl,
   FormField,
   FormItem,
   FormLabel,
@@ -10,13 +10,10 @@ import { Input } from '@app/_shadcn/components/ui/input';
 import { Textarea } from '@app/_shadcn/components/ui/textarea';
 import { AssignmentCreateFormType } from '@app/_types/assignment';
 import { format, parseISO } from 'date-fns';
-import { Check, CircleOff } from 'lucide-react';
-import { ChangeEventHandler } from 'react';
 import { useFormContext } from 'react-hook-form';
 
 export function TitleInput() {
-  const { control, watch } = useFormContext<AssignmentCreateFormType>();
-  console.log(watch('title'));
+  const { control } = useFormContext<AssignmentCreateFormType>();
   return (
     <FormField
       control={control}
@@ -109,32 +106,7 @@ export function DeadlineInput() {
 }
 
 export function FileInput() {
-  const {
-    mutate: fileUploadMutate,
-    isPending,
-    isSuccess,
-    isError,
-  } = useFileUploadMutation();
-
-  const { setValue, control } = useFormContext<AssignmentCreateFormType>();
-
-  const onChange: ChangeEventHandler<HTMLInputElement> = (e) => {
-    const { files } = e.currentTarget;
-    if (!files) return;
-    fileUploadMutate(
-      { type: 'assignment', files },
-      {
-        onSuccess: (uploadedFiles) => {
-          const reulstFiles = uploadedFiles.map(({ name, url }, index) => ({
-            name,
-            url,
-            file: files[index],
-          }));
-          setValue('files', reulstFiles, { shouldValidate: true });
-        },
-      },
-    );
-  };
+  const { control } = useFormContext<AssignmentCreateFormType>();
 
   return (
     <FormField
@@ -144,16 +116,14 @@ export function FileInput() {
         <FormItem className="space-y-2">
           <FormLabel>첨부 파일</FormLabel>
           <div className="flex items-center space-x-2">
-            <Input
-              ref={field.ref}
-              type="file"
-              multiple
-              className="flex-grow"
-              onChange={onChange}
-            />
-            {isPending && <Spinner />}
-            {isSuccess && <Check />}
-            {isError && <CircleOff />}
+            <FormControl ref={field.ref}>
+              <DndFileInput
+                onFileViewerChange={(files) => field.onChange(files)}
+                files={
+                  field.value?.map(({ name, url }) => ({ name, url })) || []
+                }
+              />
+            </FormControl>
           </div>
         </FormItem>
       )}

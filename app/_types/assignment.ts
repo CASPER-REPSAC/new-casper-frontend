@@ -32,7 +32,8 @@ export type AssignmentDetail = {
     score: number | null;
     submitDate: string;
     submitId: number;
-    urls: string[];
+    files: { src: string; name: string }[];
+    userId: string;
   }[];
   assignment: {
     assignmentId: number;
@@ -57,7 +58,7 @@ export type SubmitDetail = {
     score: number | null;
     feedback: string | null;
   };
-  files: [];
+  files: { src: string; name: string }[];
 };
 
 export type AssignmentCreateFormType = z.infer<

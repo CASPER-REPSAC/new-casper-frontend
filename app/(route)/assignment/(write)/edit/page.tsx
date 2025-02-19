@@ -20,6 +20,7 @@ async function AssignmentEditPage({
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
+      <h1 className="text-2xl">과제 수정</h1>
       <AssignmentEditForm />
     </HydrationBoundary>
   );

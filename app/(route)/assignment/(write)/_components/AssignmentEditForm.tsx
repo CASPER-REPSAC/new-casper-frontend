@@ -77,8 +77,12 @@ function AssignmentEditForm() {
         <DescriptionInput />
         <DeadlineInput />
         <FileInput />
-        <Button type="submit" className="w-full" disabled={!formState.isValid}>
-          과제 생성
+        <Button
+          type="submit"
+          className="w-full"
+          disabled={!formState.isValid || formState.isSubmitting}
+        >
+          과제 수정
         </Button>
       </form>
     </FormProvider>

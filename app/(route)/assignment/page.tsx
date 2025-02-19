@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { NEW_PATH } from '@app/_constants/urls';
 import assignmentService from '@app/_service/assignmentService';
+import { formatDate } from 'date-fns';
 
 interface Props {
   searchParams: { page: string };
@@ -90,7 +91,7 @@ export default async function AssignmentListPage({ searchParams }: Props) {
                 <div className="mb-4 flex items-center justify-between">
                   <div className="flex items-center text-sm">
                     <CalendarIcon className="mr-2 h-4 w-4" />
-                    {deadline}
+                    {formatDate(deadline, 'yyyy-MM-dd HH:mm')} 마감
                   </div>
                 </div>
                 <div className="mb-4 flex items-center text-sm text-muted-foreground">

@@ -1,7 +1,13 @@
 import Service from './service';
 
 class SharedService extends Service {
-  async uploadFile({ type, files }: { type: string; files: FileList }) {
+  async uploadFile({
+    type,
+    files,
+  }: {
+    type: string;
+    files: FileList | File[];
+  }) {
     const formData = new FormData();
 
     Array.from(files).forEach((file) => {

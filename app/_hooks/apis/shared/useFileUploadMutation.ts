@@ -12,7 +12,7 @@ function useFileUploadMutation() {
     files,
   }: {
     type: 'profile' | 'article' | 'assignment' | 'submit';
-    files: FileList;
+    files: FileList | File[];
   }) => {
     const data = await sharedService.uploadFile({ type, files });
     return data;

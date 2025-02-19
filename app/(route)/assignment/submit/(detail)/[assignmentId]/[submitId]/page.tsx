@@ -4,21 +4,25 @@ import {
   QueryClient,
 } from '@tanstack/react-query';
 import assignmentService from '@app/_service/assignmentService';
+import { submitQueryKey } from '@app/_hooks/apis/queryKey';
 import SubmissionDetailCard from './_components/SubmissionDetailCard';
 import FeedbackSection from './_components/FeedbackSection';
 
-export default function SubmissionDetailPage({
+export default async function SubmissionDetailPage({
   params,
 }: {
-  params: { id: string; submissionId: string };
+  params: { assignmentId: string; submitId: string };
 }) {
   const queryClient = new QueryClient();
-  queryClient.prefetchQuery({
-    queryKey: ['submitDetail', Number(params.id), Number(params.submissionId)],
+  await queryClient.prefetchQuery({
+    queryKey: submitQueryKey.detail({
+      assignmentId: Number(params.assignmentId),
+      submitId: Number(params.submitId),
+    }),
     queryFn: () =>
       assignmentService.getSubmitDetail(
-        Number(params.id),
-        Number(params.submissionId),
+        Number(params.assignmentId),
+        Number(params.submitId),
       ),
   });
 

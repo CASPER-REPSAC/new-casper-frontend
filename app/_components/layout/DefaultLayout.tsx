@@ -7,11 +7,9 @@ interface Props {
 
 function DefaultLayout({ children }: Props) {
   return (
-    <div className="flex flex-col overflow-x-hidden">
+    <div className="flex flex-col">
       <Header />
-      <main className="relative min-h-screen flex-1 overflow-x-hidden">
-        {children}
-      </main>
+      <main className="relative min-h-screen flex-1">{children}</main>
       <Footer />
     </div>
   );
