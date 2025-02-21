@@ -9,6 +9,9 @@ import { AxiosError, AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
 import { useSetRecoilState } from 'recoil';
 
+/**
+ * @deprecated useMyInfo 사용하여 로그인 정보 불러와주세요
+ */
 function useOnLogin() {
   const { toast } = useToast();
   const { push } = useRouter();
