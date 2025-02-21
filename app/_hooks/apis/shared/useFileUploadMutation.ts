@@ -4,6 +4,8 @@ import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 
+export type UploadType = 'profile' | 'article' | 'assignment' | 'submit';
+
 function useFileUploadMutation() {
   const { toast } = useToast();
 
@@ -11,8 +13,8 @@ function useFileUploadMutation() {
     type,
     files,
   }: {
-    type: 'profile' | 'article';
-    files: FileList;
+    type: UploadType;
+    files: FileList | File[];
   }) => {
     const data = await sharedService.uploadFile({ type, files });
     return data;
@@ -36,7 +38,7 @@ function useFileUploadMutation() {
     }
   };
 
-  return useMutation({ mutationFn, onError });
+  return useMutation({ mutationKey: ['file-upload'], mutationFn, onError });
 }
 
 export default useFileUploadMutation;

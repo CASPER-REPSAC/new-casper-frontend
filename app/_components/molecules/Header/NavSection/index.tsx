@@ -14,14 +14,12 @@ import MenuItem from './ui/MenuItem';
 
 const MENU_ITEMS = [
   {
-    startWith: '/admin',
     title: 'Admin',
     href: `${ADMIN_PATH.user}`,
     desc: '관리자',
     accessibleRoles: ['관리자'],
   },
   {
-    startWith: '/members',
     title: 'Members',
     href: PATH.members.active.url,
     tabs: MEMBER_TABS,
@@ -29,7 +27,6 @@ const MENU_ITEMS = [
     accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
   },
   {
-    startWith: '/boards',
     title: 'Boards',
     href: NEW_PATH.boardList.url({
       boardType: BOARD_TYPE.notice,
@@ -41,7 +38,12 @@ const MENU_ITEMS = [
     accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
   },
   {
-    startWith: '/boards',
+    title: 'Assignment',
+    desc: '과제 관리 서비스를 사용해보세요.',
+    href: NEW_PATH.assignmentList.url(1),
+    accessibleRoles: ['관리자', '정회원', '준회원', '손님'],
+  },
+  {
     title: 'Intra',
     tabs: INTRA_TABS,
     desc: 'Casper의 서비스를 이용해보세요.',
