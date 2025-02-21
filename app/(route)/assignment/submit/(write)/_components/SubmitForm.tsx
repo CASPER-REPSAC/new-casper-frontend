@@ -135,15 +135,13 @@ export function SubmitEditForm() {
   const form = useForm<z.infer<typeof formSchema>>({
     defaultValues: {
       content: submitDetail?.submit.content ?? '',
-      files: submitDetail?.files.map((file) => ({
-        name: file.name,
-        url: file.src,
-      })),
+      files: submitDetail?.files,
     },
     resolver: zodResolver(formSchema),
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
+    console.log(data);
     if (!assignmentId) {
       toast({
         variant: 'destructive',
@@ -164,8 +162,6 @@ export function SubmitEditForm() {
   const onInvalid: SubmitErrorHandler<z.infer<typeof formSchema>> = (error) => {
     console.log(error);
   };
-
-  console.log(form.watch());
 
   return (
     <Form {...form}>

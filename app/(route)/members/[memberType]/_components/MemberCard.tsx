@@ -12,6 +12,7 @@ interface Props {
 
 function MemberCard({ member }: Props) {
   const { image, name } = member;
+  console.log(image);
 
   return (
     <Card>
