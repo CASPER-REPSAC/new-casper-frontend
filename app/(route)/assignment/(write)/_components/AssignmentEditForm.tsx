@@ -76,7 +76,7 @@ function AssignmentEditForm() {
         <CategoryInput />
         <DescriptionInput />
         <DeadlineInput />
-        <FileInput />
+        <FileInput type="assignment" />
         <Button
           type="submit"
           className="w-full"

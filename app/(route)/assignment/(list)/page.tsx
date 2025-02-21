@@ -20,6 +20,7 @@ import {
 import { NEW_PATH } from '@app/_constants/urls';
 import assignmentService from '@app/_service/assignmentService';
 import { formatDate } from 'date-fns';
+import CreateButton from './_components/CreateButton';
 
 interface Props {
   searchParams: { page: string };
@@ -69,9 +70,7 @@ export default async function AssignmentListPage({ searchParams }: Props) {
     <div className="container mx-auto px-4 py-12">
       <div className="mb-8 flex items-center justify-between">
         <h1 className="text-4xl font-bold">과제 목록</h1>
-        <Button asChild>
-          <Link href={NEW_PATH.assignmentCreate.url}>새 과제 만들기</Link>
-        </Button>
+        <CreateButton />
       </div>
       <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {assignments.map(

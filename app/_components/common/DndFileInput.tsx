@@ -9,17 +9,21 @@ import {
 
 import { DragEventHandler, useId, useState, MouseEvent } from 'react';
 import { Button } from '@app/_shadcn/components/ui/button';
-
-import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
+import { cn } from '@app/_shadcn/lib/utils';
+import useFileUploadMutation, {
+  UploadType,
+} from '@app/_hooks/apis/shared/useFileUploadMutation';
 import { CloseIcon, FileAddIcon } from '../icons';
 import Spinner from '../Spinner';
 
 interface Props {
+  type: UploadType;
   onFileViewerChange: (files: { name: string; url: string }[]) => void;
   files: { name: string; url: string }[];
+  size?: 'sm' | 'md';
 }
 
-function DndFileInput({ onFileViewerChange, files }: Props) {
+function DndFileInput({ type, onFileViewerChange, files, size = 'md' }: Props) {
   const ACTIVE_CLASS = 'border-slate-400 bg-secondary';
   const DEFAULT_CLASS = 'border-primary-foreground bg-background';
   const { mutate: fileUploadMutate, isPending } = useFileUploadMutation();
@@ -50,7 +54,7 @@ function DndFileInput({ onFileViewerChange, files }: Props) {
   const uploadFiles = (newFiles: FileList) => {
     if (files.some((file) => file.name === newFiles[0].name)) return;
     fileUploadMutate(
-      { type: 'assignment', files: newFiles },
+      { type, files: newFiles },
       {
         onSuccess: (uploadedFiles) =>
           onFileViewerChange([...files, ...uploadedFiles]),
@@ -88,7 +92,11 @@ function DndFileInput({ onFileViewerChange, files }: Props) {
           uploadFiles(e.target.files);
         }}
       />
-      <FileViewer files={files} onRemoveFiles={onFileViewerChange} />
+      <FileViewer
+        files={files}
+        onRemoveFiles={onFileViewerChange}
+        size={size}
+      />
       {isPending && <Spinner />}
     </label>
   );
@@ -97,9 +105,11 @@ function DndFileInput({ onFileViewerChange, files }: Props) {
 function FileViewer({
   files,
   onRemoveFiles,
+  size = 'md',
 }: {
   files: { name: string; url: string }[];
   onRemoveFiles: (removedFiles: { name: string; url: string }[]) => void;
+  size?: 'sm' | 'md';
 }) {
   if (!files || files.length === 0)
     return (
@@ -129,7 +139,10 @@ function FileViewer({
       </TableHeader>
       <TableBody>
         {Array.from(files).map((file) => (
-          <TableRow className="group" key={file.name}>
+          <TableRow
+            className={cn('group', size === 'sm' && 'h-4')}
+            key={file.name}
+          >
             <TableCell className="truncate">{file.name}</TableCell>
             <TableCell>
               <Button

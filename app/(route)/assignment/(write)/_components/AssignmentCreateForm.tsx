@@ -27,7 +27,12 @@ export default function AssignmentCreateForm() {
   const { push } = useRouter();
 
   const { mutate: createAssignmentMutate } = useMutation({
-    mutationFn: assignmentService.createAssignment,
+    mutationFn: (
+      data: Parameters<typeof assignmentService.createAssignment>[0],
+    ) => assignmentService.createAssignment(data),
+    onSuccess: () => {
+      push(NEW_PATH.assignmentList.url(1));
+    },
   });
 
   const onValid: SubmitHandler<AssignmentCreateFormType> = async (data) => {
@@ -42,8 +47,6 @@ export default function AssignmentCreateForm() {
     };
 
     createAssignmentMutate(body);
-
-    push(NEW_PATH.assignmentList.url(1));
   };
 
   return (
@@ -53,7 +56,7 @@ export default function AssignmentCreateForm() {
         <CategoryInput />
         <DescriptionInput />
         <DeadlineInput />
-        <FileInput />
+        <FileInput type="assignment" />
         <Button type="submit" className="w-full" disabled={!formState.isValid}>
           과제 생성
         </Button>

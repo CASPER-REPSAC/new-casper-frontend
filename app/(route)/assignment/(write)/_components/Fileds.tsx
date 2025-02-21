@@ -1,4 +1,5 @@
 import DndFileInput from '@app/_components/common/DndFileInput';
+import { UploadType } from '@app/_hooks/apis/shared/useFileUploadMutation';
 import {
   FormControl,
   FormField,
@@ -105,7 +106,7 @@ export function DeadlineInput() {
   );
 }
 
-export function FileInput() {
+export function FileInput({ type }: { type: UploadType }) {
   const { control } = useFormContext<AssignmentCreateFormType>();
 
   return (
@@ -118,10 +119,12 @@ export function FileInput() {
           <div className="flex items-center space-x-2">
             <FormControl ref={field.ref}>
               <DndFileInput
+                type={type}
                 onFileViewerChange={(files) => field.onChange(files)}
                 files={
                   field.value?.map(({ name, url }) => ({ name, url })) || []
                 }
+                size="sm"
               />
             </FormControl>
           </div>
