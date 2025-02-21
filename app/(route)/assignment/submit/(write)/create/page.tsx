@@ -1,5 +1,7 @@
 import { SubmitCreateForm } from '../_components/SubmitForm';
 
+export const dynamic = 'force-dynamic';
+
 function SubmitCreatePage() {
   return (
     <div className="container mx-auto max-w-2xl px-4 py-12">
