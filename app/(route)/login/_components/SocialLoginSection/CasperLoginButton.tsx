@@ -1,13 +1,10 @@
 'use client';
 
 import CasperPLog from '@app/_components/common/CasperPLog';
-import LastLoginBadge from '@app/_components/common/LastLoginBadge';
 import { CASPER_OAUTH } from '@app/_constants/apiUrl';
-import useSnsLastLogin from '@app/_hooks/useSnsLastLogin';
 import { Button } from '@app/_shadcn/components/ui/button';
 
 function CasperLoginButton() {
-  const { lastLogin } = useSnsLastLogin();
   const queryObject = {
     redirect_uri: process.env.NEXT_PUBLIC_CASPER_REDIRECT_URI,
     client_id: 'sQI42oqkBP8h25YUGdE9laQHyqH2QdSt54TsQWCk',
@@ -29,7 +26,6 @@ function CasperLoginButton() {
     >
       <CasperPLog variant="black" size={24} />
       <span className="text-base">Casper SSO로 계속하기</span>
-      {lastLogin === 'github' && <LastLoginBadge />}
     </Button>
   );
 }

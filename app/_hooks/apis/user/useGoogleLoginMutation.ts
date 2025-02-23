@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import { SNS_LAST_LOGIN } from '@app/_constants/localStorage';
 import axios from 'axios';
 import useOnLogin from './useOnLogin';
 
@@ -21,7 +20,6 @@ function useGoogleLoginMutation() {
 
     onSuccess: (data) => {
       onLoginSuccess(data);
-      localStorage.setItem(SNS_LAST_LOGIN, 'google');
     },
     onError,
   });

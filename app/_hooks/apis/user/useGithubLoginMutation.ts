@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import { SNS_LAST_LOGIN } from '@app/_constants/localStorage';
 import loginService from '@app/_service/loginService';
 import useOnLogin from './useOnLogin';
 
@@ -17,7 +16,6 @@ function useGithubLoginMutation() {
 
     onSuccess: (data) => {
       onLoginSuccess(data);
-      localStorage.setItem(SNS_LAST_LOGIN, 'github');
     },
     onError,
   });
