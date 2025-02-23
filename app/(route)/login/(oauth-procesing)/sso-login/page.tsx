@@ -18,5 +18,5 @@ export default async function SsoLoginPage({
     redirect(NEW_PATH.home.url);
   }
 
-  return <div>SsoLoginPage</div>;
+  return <div>이 페이지가 보인다면 안되는데..</div>;
 }
