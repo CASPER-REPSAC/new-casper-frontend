@@ -5,6 +5,10 @@ class LoginService extends Service {
     return this.axiosExtend.post('/api/user/github', { code, redirectUri });
   }
 
+  loginCasper({ code, redirectUri }: { code: string; redirectUri: string }) {
+    return this.axiosExtend.post('/api/user/sso', { code, redirectUri });
+  }
+
   async updatePassword(newPassword: string) {
     const { data } = await this.axiosExtend.post(
       `/api/user/pwupdate?pw=${newPassword}`,

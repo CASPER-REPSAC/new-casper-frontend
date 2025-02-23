@@ -22,3 +22,4 @@ export const COMMENT_API = (articleId: string) =>
 
 export const GOOGLE_OAUTH = 'https://accounts.google.com/o/oauth2/v2/auth';
 export const GITHUB_OAUTH = 'https://github.com/login/oauth/authorize';
+export const CASPER_OAUTH = 'https://sso.casper.or.kr/application/o/authorize/';

@@ -12,6 +12,7 @@ const ADMIN_PATH = {
 };
 
 const NEW_PATH = {
+  home: { url: '/' },
   boardList: {
     url: ({
       boardType,
