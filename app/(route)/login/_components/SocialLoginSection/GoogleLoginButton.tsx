@@ -1,16 +1,12 @@
 'use client';
 
-import LastLoginBadge from '@app/_components/common/LastLoginBadge';
 import { GoogleIcon } from '@app/_components/icons';
 import { GOOGLE_OAUTH } from '@app/_constants/apiUrl';
-import useSnsLastLogin from '@app/_hooks/useSnsLastLogin';
 import { Button } from '@app/_shadcn/components/ui/button';
 
 function GoogleLoginButton() {
-  const { lastLogin } = useSnsLastLogin();
   const queryObject = {
     client_id: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_ID,
-    clinet_secret: process.env.NEXT_PUBLIC_GOOGLE_CLIENT_SECRET,
     redirect_uri: process.env.NEXT_PUBLIC_GOOGLE_REDIRECT_URI,
     response_type: 'code',
     scope:
@@ -31,7 +27,6 @@ function GoogleLoginButton() {
     >
       <GoogleIcon size={24} />
       <span className="text-base">구글 계정으로 계속하기</span>
-      {lastLogin === 'google' && <LastLoginBadge />}
     </Button>
   );
 }
