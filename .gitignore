@@ -36,3 +36,5 @@ next-env.d.ts
 
 # pnpm
 .pnpm-store/
+
+env.local
