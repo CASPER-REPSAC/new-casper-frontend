@@ -11,6 +11,8 @@ declare global {
 
       NEXT_PUBLIC_GITHUB_REDIRECT_URI: string;
       NEXT_PUBLIC_GITHUB_CLIENT_ID: string;
+
+      NEXT_PUBLIC_CASPER_REDIRECT_URI: string;
     }
   }
 }

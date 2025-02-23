@@ -9,7 +9,7 @@ import { Button } from '@app/_shadcn/components/ui/button';
 function CasperLoginButton() {
   const { lastLogin } = useSnsLastLogin();
   const queryObject = {
-    redirect_uri: 'https://www.casper.or.kr/login/sso-login',
+    redirect_uri: process.env.NEXT_PUBLIC_CASPER_REDIRECT_URI,
     client_id: 'sQI42oqkBP8h25YUGdE9laQHyqH2QdSt54TsQWCk',
     response_type: 'code',
     scope: 'email openid profile offline_access',

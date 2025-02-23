@@ -1,20 +1,22 @@
+import { NEW_PATH } from '@app/_constants/urls';
 import loginService from '@app/_service/loginService';
+import { redirect } from 'next/navigation';
 
-async function SsoLoginPage({
+export default async function SsoLoginPage({
   searchParams,
 }: {
   searchParams: { code: string };
 }) {
   const { code } = searchParams;
 
-  const response = await loginService.loginCasper({
+  const { data } = await loginService.loginCasper({
     code,
-    redirectUri: 'https://www.casper.or.kr/login/sso-login',
+    redirectUri: process.env.NEXT_PUBLIC_CASPER_REDIRECT_URI,
   });
 
-  console.log(response);
+  if (data.success) {
+    redirect(NEW_PATH.home.url);
+  }
 
   return <div>SsoLoginPage</div>;
 }
-
-export default SsoLoginPage;
