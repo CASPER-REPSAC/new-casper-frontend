@@ -20,7 +20,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { isAxiosError } from 'axios';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { SubmitErrorHandler, useForm, useFormContext } from 'react-hook-form';
+import { useForm, useFormContext } from 'react-hook-form';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -141,7 +141,6 @@ export function SubmitEditForm() {
   });
 
   const onSubmit = (data: z.infer<typeof formSchema>) => {
-    console.log(data);
     if (!assignmentId) {
       toast({
         variant: 'destructive',
@@ -159,15 +158,11 @@ export function SubmitEditForm() {
     });
   };
 
-  const onInvalid: SubmitErrorHandler<z.infer<typeof formSchema>> = (error) => {
-    console.log(error);
-  };
-
   return (
     <Form {...form}>
       <form
         className="flex flex-col gap-3"
-        onSubmit={form.handleSubmit(onSubmit, onInvalid)}
+        onSubmit={form.handleSubmit(onSubmit)}
       >
         <ContentField />
         <FileInputField type="submit" />
