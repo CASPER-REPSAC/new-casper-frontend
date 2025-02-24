@@ -41,7 +41,7 @@ const MENU_ITEMS = [
     title: 'Assignment',
     desc: '과제 관리 서비스를 사용해보세요.',
     href: NEW_PATH.assignmentList.url(1),
-    accessibleRoles: ['admin', 'active', 'graduate', 'associate', 'guest'],
+    accessibleRoles: ['admin', 'active', 'graduate', 'associate'],
   },
   {
     title: 'Intra',
