@@ -37,7 +37,7 @@ function MobileMenuSheet() {
 
 function SideNavSheet() {
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role;
+  const role = myProfile?.role || 'NOT_LOGGED_IN';
 
   return (
     <SheetContent side="left" className="flex flex-col">
@@ -48,7 +48,7 @@ function SideNavSheet() {
       </SheetHeader>
       <h1 className="text-foreground-600 text-xl font-bold">Boards</h1>
       {BOARD_TABS.map(({ name, href, accessibleRoles }) => {
-        if (!role || !accessibleRoles.includes(role)) return null;
+        if (!accessibleRoles.includes(role)) return null;
         return (
           <Link key={name} className="w-full" href={href}>
             {name}
@@ -57,7 +57,7 @@ function SideNavSheet() {
       })}
       <h1 className="text-foreground-600 text-xl font-bold">Members</h1>
       {MEMBER_TABS.map(({ href, name, accessibleRoles }) => {
-        if (!role || !accessibleRoles.includes(role)) return null;
+        if (!accessibleRoles.includes(role)) return null;
         return (
           <Link key={name} className="w-full" href={href}>
             {name}

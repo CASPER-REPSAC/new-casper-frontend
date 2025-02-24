@@ -9,14 +9,14 @@ import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 function BoardMenu() {
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role;
+  const role = myProfile?.role || 'NOT_LOGGED_IN';
   const { boardType } = useParams<{ boardType: string }>();
 
   return (
     <Tabs value={boardType}>
       <TabsList className="flex h-fit flex-col gap-2 ">
         {BOARD_TABS.map(({ key, name, href, accessibleRoles }) => {
-          if (!role || !accessibleRoles.includes(role)) return null;
+          if (!accessibleRoles.includes(role)) return null;
           return (
             <TabsTrigger asChild key={key} value={key}>
               <Link href={href} className="w-full">

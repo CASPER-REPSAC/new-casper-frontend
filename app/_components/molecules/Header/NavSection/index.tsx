@@ -53,13 +53,13 @@ const MENU_ITEMS = [
 
 function NavSection() {
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role;
+  const role = myProfile?.role || 'NOT_LOGGED_IN';
 
   return (
     <NavigationMenu className="hidden gap-8 lg:flex">
       <NavigationMenuList>
         {MENU_ITEMS.map(({ title, desc, tabs, href, accessibleRoles }) => {
-          if (!role || !accessibleRoles.includes(role)) return null;
+          if (!accessibleRoles.includes(role)) return null;
           const subMenus = tabs?.filter((tab) => ({
             name: tab.name,
             href: tab.href,

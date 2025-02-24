@@ -25,7 +25,7 @@ interface Props {
 
 export default function MenuItem({ title, subMenus, desc, href }: Props) {
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role;
+  const role = myProfile?.role || 'NOT_LOGGED_IN';
 
   return (
     <NavigationMenuItem>
@@ -42,7 +42,7 @@ export default function MenuItem({ title, subMenus, desc, href }: Props) {
               </div>
               <div className="flex flex-col gap-1">
                 {subMenus.map(({ href: subHref, name, accessibleRoles }) => {
-                  if (!role || !accessibleRoles.includes(role)) return null;
+                  if (!accessibleRoles.includes(role)) return null;
                   return (
                     <Button
                       key={name}
