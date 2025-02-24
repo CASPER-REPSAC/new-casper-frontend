@@ -37,7 +37,7 @@ function MobileMenuSheet() {
 
 function SideNavSheet() {
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role || 'NOT_LOGGED_IN';
+  const role = myProfile?.role || 'guest';
 
   return (
     <SheetContent side="left" className="flex flex-col">

@@ -25,7 +25,7 @@ interface Props {
 
 export default function MenuItem({ title, subMenus, desc, href }: Props) {
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role || 'NOT_LOGGED_IN';
+  const role = myProfile?.role || 'guest';
 
   return (
     <NavigationMenuItem>

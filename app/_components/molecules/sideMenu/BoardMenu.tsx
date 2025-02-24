@@ -9,7 +9,7 @@ import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 function BoardMenu() {
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role || 'NOT_LOGGED_IN';
+  const role = myProfile?.role || 'guest';
   const { boardType } = useParams<{ boardType: string }>();
 
   return (

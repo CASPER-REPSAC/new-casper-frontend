@@ -7,7 +7,7 @@ import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 function MemberMenu() {
   const { memberType } = useParams<{ memberType: string }>();
   const { data: myProfile } = useMyInfo();
-  const role = myProfile?.role || 'NOT_LOGGED_IN';
+  const role = myProfile?.role || 'guest';
 
   return (
     <Tabs value={memberType}>
