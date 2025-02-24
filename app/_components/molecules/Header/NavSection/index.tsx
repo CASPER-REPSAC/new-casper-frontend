@@ -7,9 +7,9 @@ import {
 
 import { ADMIN_PATH, NEW_PATH, PATH } from '@app/_constants/urls';
 import { BOARD_TABS, INTRA_TABS, MEMBER_TABS } from '@app/_constants/menu';
-import { useRecoilValue } from 'recoil';
-import { roleState } from '@app/_store/permissionAtoms';
 import { BOARD_TYPE } from '@app/_constants/mock';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+
 import MenuItem from './ui/MenuItem';
 
 const MENU_ITEMS = [
@@ -52,13 +52,14 @@ const MENU_ITEMS = [
 ];
 
 function NavSection() {
-  const role = useRecoilValue(roleState);
+  const { data: myProfile } = useMyInfo();
+  const role = myProfile?.role;
 
   return (
     <NavigationMenu className="hidden gap-8 lg:flex">
       <NavigationMenuList>
         {MENU_ITEMS.map(({ title, desc, tabs, href, accessibleRoles }) => {
-          if (!accessibleRoles.includes(role)) return null;
+          if (!role || !accessibleRoles.includes(role)) return null;
           const subMenus = tabs?.filter((tab) => ({
             name: tab.name,
             href: tab.href,

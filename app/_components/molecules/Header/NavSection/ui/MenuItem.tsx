@@ -5,11 +5,10 @@ import {
   NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from '@app/_shadcn/components/ui/navigation-menu';
-import { roleState } from '@app/_store/permissionAtoms';
 import { NavigationMenuLink } from '@radix-ui/react-navigation-menu';
 import Link from 'next/link';
 import { ReactNode } from 'react';
-import { useRecoilValue } from 'recoil';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 interface Props {
   title: ReactNode;
@@ -25,7 +24,8 @@ interface Props {
 }
 
 export default function MenuItem({ title, subMenus, desc, href }: Props) {
-  const role = useRecoilValue(roleState);
+  const { data: myProfile } = useMyInfo();
+  const role = myProfile?.role;
 
   return (
     <NavigationMenuItem>
@@ -42,7 +42,7 @@ export default function MenuItem({ title, subMenus, desc, href }: Props) {
               </div>
               <div className="flex flex-col gap-1">
                 {subMenus.map(({ href: subHref, name, accessibleRoles }) => {
-                  if (!accessibleRoles.includes(role)) return null;
+                  if (!role || !accessibleRoles.includes(role)) return null;
                   return (
                     <Button
                       key={name}

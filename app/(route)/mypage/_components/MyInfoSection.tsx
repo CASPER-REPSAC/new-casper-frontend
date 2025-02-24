@@ -1,16 +1,13 @@
 import { useFormContext } from 'react-hook-form';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { ProfileUpdateForm } from '@app/_types/userTypes';
-import { useRecoilValue } from 'recoil';
-import { myProfileState, roleState } from '@app/_store/permissionAtoms';
 import { Textarea } from '@app/_shadcn/components/ui/textarea';
 import { Input } from '@app/_shadcn/components/ui/input';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 function MyInfoSection() {
   const { register } = useFormContext<ProfileUpdateForm>();
-  const myProfile = useRecoilValue(myProfileState);
-  const role = useRecoilValue(roleState);
-
+  const { data: myProfile } = useMyInfo();
   const introduceRegister = register('introduce');
   const nameRegister = register('name', { required: true });
   const nicknameRegister = register('nickname', { required: true });
@@ -50,7 +47,7 @@ function MyInfoSection() {
       <Input
         label={INPUT_LABEL.role}
         placeholder={PLACEHOLDER.role}
-        defaultValue={role}
+        defaultValue={myProfile?.role}
         readOnly
         disabled
       />

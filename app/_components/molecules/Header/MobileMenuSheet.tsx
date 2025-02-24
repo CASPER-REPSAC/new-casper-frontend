@@ -2,9 +2,7 @@
 
 import { CasperLogo } from '@app/_components/common';
 import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
-import { roleState } from '@app/_store/permissionAtoms';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
 import { MenuIcon } from '@app/_components/icons';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
@@ -16,6 +14,7 @@ import {
 import { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
 import { ADMIN_PATH, PATH } from '@app/_constants/urls';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 function MobileMenuSheet() {
   const [open, setOpen] = useState(false);
@@ -37,7 +36,8 @@ function MobileMenuSheet() {
 }
 
 function SideNavSheet() {
-  const role = useRecoilValue(roleState);
+  const { data: myProfile } = useMyInfo();
+  const role = myProfile?.role;
 
   return (
     <SheetContent side="left" className="flex flex-col">
@@ -48,7 +48,7 @@ function SideNavSheet() {
       </SheetHeader>
       <h1 className="text-foreground-600 text-xl font-bold">Boards</h1>
       {BOARD_TABS.map(({ name, href, accessibleRoles }) => {
-        if (!accessibleRoles.includes(role)) return null;
+        if (!role || !accessibleRoles.includes(role)) return null;
         return (
           <Link key={name} className="w-full" href={href}>
             {name}
@@ -57,14 +57,14 @@ function SideNavSheet() {
       })}
       <h1 className="text-foreground-600 text-xl font-bold">Members</h1>
       {MEMBER_TABS.map(({ href, name, accessibleRoles }) => {
-        if (!accessibleRoles.includes(role)) return null;
+        if (!role || !accessibleRoles.includes(role)) return null;
         return (
           <Link key={name} className="w-full" href={href}>
             {name}
           </Link>
         );
       })}
-      {role === '관리자' && (
+      {role === 'admin' && (
         <>
           <h1 className="text-foreground-600 text-xl font-bold">Admin</h1>
           <Link href={ADMIN_PATH.board}>board</Link>

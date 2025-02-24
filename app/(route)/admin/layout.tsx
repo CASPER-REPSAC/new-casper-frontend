@@ -2,18 +2,19 @@
 
 import Link from 'next/link';
 import { PropsWithChildren } from 'react';
-import { useRecoilValue } from 'recoil';
 import { Button } from '@app/_shadcn/components/ui/button';
-import { roleState } from '@app/_store/permissionAtoms';
 import { Tabs, TabsList, TabsTrigger } from '@app/_shadcn/components/ui/tabs';
 import { usePathname } from 'next/navigation';
 import { ADMIN_PATH } from '@app/_constants/urls';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 function Layout({ children }: PropsWithChildren) {
-  const role = useRecoilValue(roleState);
+  const { data: myProfile } = useMyInfo();
+
+  const role = myProfile?.role;
   const pathname = usePathname();
 
-  if (role !== '관리자')
+  if (role !== 'admin')
     return (
       <div className="flex-center h-screen flex-col gap-2">
         관리자만 접근 가능해요

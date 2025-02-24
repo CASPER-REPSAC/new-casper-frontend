@@ -4,8 +4,7 @@ import { useFormContext } from 'react-hook-form';
 import { ChangeEvent, useEffect, useId } from 'react';
 import { CameraIcon } from '@app/_components/icons';
 import { ProfileUpdateForm } from '@app/_types/userTypes';
-import { useRecoilValue } from 'recoil';
-import { myProfileState } from '@app/_store/permissionAtoms';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
 import Spinner from '@app/_components/Spinner';
@@ -14,7 +13,7 @@ import Avatar from '@app/_components/user/Avatar';
 function MyAvatarInput() {
   const { register, setValue } = useFormContext<ProfileUpdateForm>();
   const uniqueId = useId();
-  const myProfile = useRecoilValue(myProfileState);
+  const { data: myProfile } = useMyInfo();
   const {
     data: uploadedFile,
     mutate: fileUploadMutate,

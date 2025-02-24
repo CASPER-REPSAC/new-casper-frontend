@@ -5,13 +5,12 @@ import { NEW_PATH } from '@app/_constants/urls';
 import useWithdrawalMutation from '@app/_hooks/apis/user/useWithdrawalMutation';
 import { buttonVariants } from '@app/_shadcn/components/ui/button';
 import { cn } from '@app/_shadcn/lib/utils';
-import { myProfileState } from '@app/_store/permissionAtoms';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 function AccountSettingSection() {
   const { mutate: withdrawMutate } = useWithdrawalMutation();
-  const myProfile = useRecoilValue(myProfileState);
+  const { data: myProfile } = useMyInfo();
 
   const onWithdrawalClick = () => {
     if (!myProfile?.id) {

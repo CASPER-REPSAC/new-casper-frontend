@@ -1,20 +1,19 @@
 'use client';
 
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
-import { myProfileState } from '@app/_store/permissionAtoms';
 import { Separator } from '@app/_shadcn/components/ui/separator';
 import { PATH } from '@app/_constants/urls';
 import { Button, buttonVariants } from '@app/_shadcn/components/ui/button';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+
 import MyAvatarInput from './_components/MyAvatarInput';
 import MyInfoSection from './_components/MyInfoSection';
 import ProfileForm from './_components/ProfileForm';
 import AccountSettingSection from './_components/AccountSettingSection';
 
 function MyPage() {
-  const myProfile = useRecoilValue(myProfileState);
-
-  if (!myProfile)
+  const { isLoggedIn, data: myInfo } = useMyInfo();
+  if (!isLoggedIn)
     return (
       <div className="flex-center">
         <Link
@@ -27,11 +26,11 @@ function MyPage() {
     );
 
   const defaultValues = {
-    introduce: myProfile.introduce,
-    name: myProfile.name,
-    nickname: myProfile.nickname,
-    role: myProfile.role,
-    homepage: myProfile.homepage,
+    introduce: myInfo?.introduce,
+    name: myInfo?.name,
+    nickname: myInfo?.nickname,
+    role: myInfo?.role,
+    homepage: myInfo?.homepage,
   };
 
   return (

@@ -7,11 +7,11 @@ import {
 } from '@app/_hooks/apis/boards';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { editableStateFamily } from '@app/_store/detailPageAtoms';
-import { myProfileState } from '@app/_store/permissionAtoms';
 import { BoardDetailParams } from '@app/_types/boardTypes';
 import { useParams } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
-import { useRecoilState, useRecoilValue } from 'recoil';
+import { useRecoilState } from 'recoil';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 interface Props {
   articleId: string;
@@ -20,7 +20,8 @@ interface Props {
 
 function ButtonSection({ articleId, userId }: Props) {
   const { getValues } = useFormContext();
-  const myProfile = useRecoilValue(myProfileState);
+  const { data: myProfile } = useMyInfo();
+
   const params = useParams<BoardDetailParams>();
   const [editable, setEditable] = useRecoilState(editableStateFamily(params));
   const { mutate: mutateDeletion } = useDeleteArticleMutation(

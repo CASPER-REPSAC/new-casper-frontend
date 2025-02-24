@@ -1,7 +1,7 @@
 import { useMutation } from '@tanstack/react-query';
 import { AUTO_LOGIN_API } from '@app/_constants/apiUrl';
 import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
-import { accessTokenState, myProfileState } from '@app/_store/permissionAtoms';
+import { accessTokenState } from '@app/_store/permissionAtoms';
 import { ErrorResponse } from '@app/_types/errorTypes';
 import { AutoLoginResponse } from '@app/_types/loginTypes';
 import axios, { AxiosError, AxiosResponse } from 'axios';
@@ -11,7 +11,6 @@ import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useAutoLoginMutation() {
   const setAccessToken = useSetRecoilState(accessTokenState);
-  const setMyProfile = useSetRecoilState(myProfileState);
   const { toast } = useToast();
 
   const mutationFn = () =>
@@ -20,7 +19,6 @@ function useAutoLoginMutation() {
   const onSuccess = async ({ data }: AxiosResponse<AutoLoginResponse>) => {
     await revalidateTag('accessToken');
     setAccessToken(data.accessToken);
-    setMyProfile(data.myInfo);
     toast({
       title: '로그인',
       description: POPUP_MESSAGE.autoLoginSuccess,

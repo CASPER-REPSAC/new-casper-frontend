@@ -3,7 +3,8 @@ import { MyProfile } from '@app/_types/userTypes';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 
-function useUserQuery(role: string) {
+function useUserQuery(role?: string) {
+  const enabled = role !== undefined;
   const queryKey = [QUERY_KEY.adminUserList, role];
 
   const queryFn = async () => {
@@ -14,6 +15,7 @@ function useUserQuery(role: string) {
   };
 
   return useQuery({
+    enabled,
     queryFn,
     queryKey,
     select: (_data) => {
