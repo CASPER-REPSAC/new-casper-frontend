@@ -24,7 +24,7 @@ const MENU_ITEMS = [
     href: PATH.members.active.url,
     tabs: MEMBER_TABS,
     desc: 'Casper 정회원 멤버들의 소개를 확인해보세요.',
-    accessibleRoles: ['admin', 'active', 'associate', 'guest'],
+    accessibleRoles: ['admin', 'active', 'graduate', 'associate', 'guest'],
   },
   {
     title: 'Boards',
@@ -35,25 +35,27 @@ const MENU_ITEMS = [
     }),
     tabs: BOARD_TABS,
     desc: 'Casper 회원들의 소통을 위한 공간이에요.',
-    accessibleRoles: ['admin', 'active', 'associate', 'guest'],
+    accessibleRoles: ['admin', 'active', 'graduate', 'associate', 'guest'],
   },
   {
     title: 'Assignment',
     desc: '과제 관리 서비스를 사용해보세요.',
     href: NEW_PATH.assignmentList.url(1),
-    accessibleRoles: ['admin', 'active', 'associate', 'guest'],
+    accessibleRoles: ['admin', 'active', 'graduate', 'associate', 'guest'],
   },
   {
     title: 'Intra',
     tabs: INTRA_TABS,
     desc: 'Casper의 서비스를 이용해보세요.',
-    accessibleRoles: ['admin', 'active'],
+    accessibleRoles: ['admin', 'active', 'graduate'],
   },
 ];
 
 function NavSection() {
   const { data: myProfile } = useMyInfo();
   const role = myProfile?.role || 'guest';
+
+  console.log(role);
 
   return (
     <NavigationMenu className="hidden gap-8 lg:flex">
