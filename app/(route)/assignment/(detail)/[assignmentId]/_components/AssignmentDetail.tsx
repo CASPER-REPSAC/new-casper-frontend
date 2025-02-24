@@ -77,7 +77,9 @@ export default function AssignmentDetail({ assignmentId }: Props) {
           <CardTitle className="mb-2 text-2xl">{assignment.title}</CardTitle>
           {isAuthor && (
             <EditAndDeleteMenu
-              editHref={NEW_PATH.assignmentEdit.url(assignment.assignmentId)}
+              onEdit={() =>
+                push(NEW_PATH.assignmentEdit.url(assignment.assignmentId))
+              }
               onDelete={deleteAssignment}
             />
           )}
