@@ -27,7 +27,7 @@ import { formatDate, differenceInMilliseconds, parseISO } from 'date-fns';
 import { useEffect, useState } from 'react';
 import { HOUR, MINUTE, SECOND } from '@app/_constants/time';
 import FileAttachment from '@app/_components/common/FileAttaachment';
-import MoreOptionMenu from '@app/_components/common/MoreOptionMenu';
+import EditAndDeleteMenu from '@app/_components/common/EditAndDeleteMenu';
 import { useMutation } from '@tanstack/react-query';
 import assignmentService from '@app/_service/assignmentService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
@@ -76,7 +76,7 @@ export default function AssignmentDetail({ assignmentId }: Props) {
         <div className="flex items-center justify-between">
           <CardTitle className="mb-2 text-2xl">{assignment.title}</CardTitle>
           {isAuthor && (
-            <MoreOptionMenu
+            <EditAndDeleteMenu
               editHref={NEW_PATH.assignmentEdit.url(assignment.assignmentId)}
               onDelete={deleteAssignment}
             />

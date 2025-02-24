@@ -1,10 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-import { useRecoilValue } from 'recoil';
 import { FormProvider, useForm } from 'react-hook-form';
-import { myProfileState } from '@app/_store/permissionAtoms';
 import AvatarWithDialog from '@app/_components/user/AvatarWithDialog';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+
 import Buttons from './Buttons';
 import Content from './Content';
 import Header from './Header';
@@ -29,9 +29,9 @@ function Comment({
   profile,
 }: CommentProps) {
   const [editable, setEditable] = useState(false);
-  const myProfile = useRecoilValue(myProfileState);
-  const isMyComment = myProfile?.nickname === nickname;
-  const isAdmin = myProfile?.role === 'admin';
+  const { data: myInfo } = useMyInfo();
+  const isMyComment = myInfo?.nickname === nickname;
+  const isAdmin = myInfo?.role === 'admin';
   const methods = useForm({
     defaultValues: {
       comment: content,
@@ -54,7 +54,7 @@ function Comment({
           <Header nickname={nickname} date={date} />
           <Content comment={content} editable={editable} />
         </div>
-        <div className="flex gap-4">
+        <div className="flex gap-2">
           {(isMyComment || isAdmin) && (
             <Buttons
               articleId={articleId}

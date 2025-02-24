@@ -7,11 +7,11 @@ import { CommentWriteRequest } from '@app/_types/boardTypes';
 import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { Textarea } from '@app/_shadcn/components/ui/textarea';
-import { useRecoilValue } from 'recoil';
-import { loginState } from '@app/_store/permissionAtoms';
+
 import { Label } from '@app/_shadcn/components/ui/label';
 import { useId } from 'react';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 interface Props {
   articleId: string;
@@ -19,7 +19,7 @@ interface Props {
 
 function CommentEditorSection({ articleId }: Props) {
   const commentEditorId = useId();
-  const isLoggedIn = useRecoilValue(loginState);
+  const { isLoggedIn } = useMyInfo();
   const { data: comments } = useComments(Number(articleId));
   const { mutate } = useCommentMutation(Number(articleId));
   const { register, handleSubmit, reset } = useForm<CommentWriteRequest>();
