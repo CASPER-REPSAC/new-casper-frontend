@@ -9,14 +9,10 @@ export default async function SsoLoginPage({
 }) {
   const { code } = searchParams;
 
-  const { data } = await loginService.loginCasper({
+  await loginService.loginCasper({
     code,
     redirectUri: process.env.NEXT_PUBLIC_CASPER_REDIRECT_URI,
   });
 
-  if (data.success) {
-    redirect(NEW_PATH.home.url);
-  }
-
-  return null;
+  redirect(NEW_PATH.home.url);
 }
