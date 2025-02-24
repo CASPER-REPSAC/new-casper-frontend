@@ -9,6 +9,10 @@ class LoginService extends Service {
     return this.axiosExtend.post('/api/user/sso', { code, redirectUri });
   }
 
+  loginGoogle({ code, redirectUri }: { code: string; redirectUri: string }) {
+    return this.axiosExtend.post('/api/user/google', { code, redirectUri });
+  }
+
   async updatePassword(newPassword: string) {
     const { data } = await this.axiosExtend.post(
       `/api/user/pwupdate?pw=${newPassword}`,
@@ -28,6 +32,10 @@ class LoginService extends Service {
       email,
     });
     return data;
+  }
+
+  logout() {
+    return this.axiosExtend.post('/api/user/logout');
   }
 }
 

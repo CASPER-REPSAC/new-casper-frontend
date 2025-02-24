@@ -5,7 +5,7 @@ import { LOGIN_API } from '@app/_constants/apiUrl';
 import useOnLogin from './useOnLogin';
 
 export default function useLoginMutation() {
-  const { onSuccess, onError } = useOnLogin();
+  const { onSuccess, onError, onSettled } = useOnLogin();
 
   const mutationFn = (params: LoginRequest) =>
     axios.post<LoginResponse>(`/proxy${LOGIN_API}`, params);
@@ -14,5 +14,6 @@ export default function useLoginMutation() {
     mutationFn,
     onSuccess,
     onError,
+    onSettled,
   });
 }

@@ -2,7 +2,7 @@ import { useMutation } from '@tanstack/react-query';
 import loginService from '@app/_service/loginService';
 import useOnLogin from './useOnLogin';
 
-function useGoogleLoginMutation() {
+function useCasperLoginMutation() {
   const { onSuccess, onError, onSettled } = useOnLogin();
 
   return useMutation({
@@ -12,7 +12,7 @@ function useGoogleLoginMutation() {
     }: {
       code: string;
       redirectUri: string;
-    }) => loginService.loginGoogle({ code, redirectUri }),
+    }) => loginService.loginCasper({ code, redirectUri }),
 
     onSuccess,
     onError,
@@ -20,4 +20,4 @@ function useGoogleLoginMutation() {
   });
 }
 
-export default useGoogleLoginMutation;
+export default useCasperLoginMutation;

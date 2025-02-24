@@ -1,31 +1,18 @@
-import axios from 'axios';
-import { useRecoilValue, useSetRecoilState } from 'recoil';
-import { useMutation } from '@tanstack/react-query';
-import { LOGOUT_API } from '@app/_constants/apiUrl';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
-import {
-  accessTokenState,
-  bearerTokenState,
-  myProfileState,
-} from '@app/_store/permissionAtoms';
+
 import { revalidateTag } from '@app/_actions';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
+import loginService from '@app/_service/loginService';
 
 function useLogoutMutation() {
-  const bearerToken = useRecoilValue(bearerTokenState);
-  const setAccessToken = useSetRecoilState(accessTokenState);
-  const setMyProfile = useSetRecoilState(myProfileState);
   const { toast } = useToast();
+  const queryClient = useQueryClient();
 
-  const mutationFn = () =>
-    axios.post(`/proxy${LOGOUT_API}`, undefined, {
-      headers: { Authorization: bearerToken },
-    });
+  const mutationFn = () => loginService.logout();
 
   const onSuccess = async () => {
     await revalidateTag('accessToken');
-    setAccessToken(undefined);
-    setMyProfile(null);
     toast({
       description: POPUP_MESSAGE.logoutSuccess,
     });
@@ -39,10 +26,15 @@ function useLogoutMutation() {
     });
   };
 
+  const onSettled = () => {
+    queryClient.invalidateQueries({ queryKey: ['me'] });
+  };
+
   return useMutation({
     mutationFn,
     onSuccess,
     onError,
+    onSettled,
   });
 }
 

@@ -13,6 +13,7 @@ function makeQueryClient() {
     defaultOptions: {
       queries: {
         staleTime: 0,
+        retry: false,
       },
     },
   });

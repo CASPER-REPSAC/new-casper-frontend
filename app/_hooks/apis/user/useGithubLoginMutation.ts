@@ -3,7 +3,7 @@ import loginService from '@app/_service/loginService';
 import useOnLogin from './useOnLogin';
 
 function useGithubLoginMutation() {
-  const { onSuccess: onLoginSuccess, onError } = useOnLogin();
+  const { onSuccess, onError, onSettled } = useOnLogin();
 
   return useMutation({
     mutationFn: ({
@@ -14,10 +14,9 @@ function useGithubLoginMutation() {
       redirectUri: string;
     }) => loginService.loginGithub({ code, redirectUri }),
 
-    onSuccess: (data) => {
-      onLoginSuccess(data);
-    },
+    onSuccess,
     onError,
+    onSettled,
   });
 }
 

@@ -2,6 +2,7 @@ import { LogoutIcon, UserIcon } from '@app/_components/icons';
 import Avatar from '@app/_components/user/Avatar';
 import { PATH } from '@app/_constants/urls';
 import { useLogoutMutation } from '@app/_hooks/apis/user';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
@@ -11,14 +12,14 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@app/_shadcn/components/ui/dropdown-menu';
-import { loginState, myProfileState } from '@app/_store/permissionAtoms';
 import Link from 'next/link';
-import { useRecoilValue } from 'recoil';
 
 function UserButton() {
-  const isLoggedIn = useRecoilValue(loginState);
-  const myProfile = useRecoilValue(myProfileState);
   const { mutate } = useLogoutMutation();
+
+  const { data: myInfo, status } = useMyInfo();
+
+  const isLoggedIn = status === 'success' && !!myInfo;
 
   return (
     <>
@@ -26,10 +27,10 @@ function UserButton() {
         <DropdownMenu>
           <DropdownMenuTrigger>
             <Avatar
-              src={myProfile?.image}
+              src={myInfo?.image}
               priority={false}
               alt="profile"
-              fallback={myProfile?.nickname}
+              fallback={myInfo?.nickname}
               rounded
             />
           </DropdownMenuTrigger>

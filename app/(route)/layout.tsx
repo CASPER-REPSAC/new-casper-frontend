@@ -1,11 +1,7 @@
 // import '@app/_styles/reset.css';
 import '@app/_styles/global.css';
 import { ReactNode } from 'react';
-import {
-  QueryWrapper,
-  RecoilRootWrapper,
-  AutoLoginPresence,
-} from '@app/_components/providers';
+import { QueryWrapper, RecoilRootWrapper } from '@app/_components/providers';
 import { DefaultLayout } from '@app/_components/layout';
 import { ThemeProvider } from '@app/_components/providers/ThemeProvider';
 import { Inter as FontSans } from 'next/font/google';
@@ -36,7 +32,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
           <RecoilRootWrapper>
             <ThemeProvider>
               <TooltipProvider>
-                <AutoLoginPresence />
+                {/* <AutoLoginPresence /> */}
                 <DefaultLayout>{children}</DefaultLayout>
               </TooltipProvider>
               <Toaster />
