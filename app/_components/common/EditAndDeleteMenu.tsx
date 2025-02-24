@@ -8,7 +8,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@app/_shadcn/components/ui/dropdown-menu';
-import Link from 'next/link';
 import {
   Dialog,
   DialogTrigger,
@@ -21,11 +20,11 @@ import {
 } from '@app/_shadcn/components/ui/dialog';
 
 interface Props {
-  editHref: string;
+  onEdit: () => void;
   onDelete: () => void;
 }
 
-export default function MoreOptionMenu({ editHref, onDelete }: Props) {
+export default function EditAndDeleteMenu({ onEdit, onDelete }: Props) {
   return (
     <Dialog>
       <DropdownMenu>
@@ -35,9 +34,7 @@ export default function MoreOptionMenu({ editHref, onDelete }: Props) {
           </Button>
         </DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuItem asChild>
-            <Link href={editHref}>수정 하기</Link>
-          </DropdownMenuItem>
+          <DropdownMenuItem onSelect={onEdit}>수정 하기</DropdownMenuItem>
           <DialogTrigger asChild>
             <DropdownMenuItem className="text-destructive">
               삭제 하기

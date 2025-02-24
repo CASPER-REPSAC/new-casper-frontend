@@ -20,7 +20,7 @@ import FileAttachment from '@app/_components/common/FileAttaachment';
 import { useMutation } from '@tanstack/react-query';
 import assignmentService from '@app/_service/assignmentService';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import MoreOptionMenu from '@app/_components/common/MoreOptionMenu';
+import EditAndDeleteMenu from '@app/_components/common/EditAndDeleteMenu';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 export default function SubmissionDetailCard() {
@@ -118,11 +118,15 @@ function KebabMenu() {
   });
 
   return (
-    <MoreOptionMenu
-      editHref={NEW_PATH.submitEdit.url({
-        assignmentId: Number(params.assignmentId),
-        submitId: Number(params.submitId),
-      })}
+    <EditAndDeleteMenu
+      onEdit={() =>
+        push(
+          NEW_PATH.submitEdit.url({
+            assignmentId: Number(params.assignmentId),
+            submitId: Number(params.submitId),
+          }),
+        )
+      }
       onDelete={() => deleteSubmit()}
     />
   );

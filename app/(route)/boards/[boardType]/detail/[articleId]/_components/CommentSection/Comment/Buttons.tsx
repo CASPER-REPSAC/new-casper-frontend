@@ -1,4 +1,4 @@
-import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
+import EditAndDeleteMenu from '@app/_components/common/EditAndDeleteMenu';
 import useCommentDelete from '@app/_hooks/apis/boards/useCommentDelete';
 import useCommentUpdate from '@app/_hooks/apis/boards/useCommentUpdate';
 import { Button } from '@app/_shadcn/components/ui/button';
@@ -35,25 +35,12 @@ function Buttons({ articleId, commentId, editable, setEditable }: Props) {
   return (
     <>
       {editable ? (
-        <Button size="sm" onClick={modifyComment}>
+        <Button variant="secondary" size="sm" onClick={modifyComment}>
           완료
         </Button>
       ) : (
-        <Button size="sm" onClick={changeEditMode}>
-          수정
-        </Button>
+        <EditAndDeleteMenu onEdit={changeEditMode} onDelete={deleteComment} />
       )}
-
-      <ButtonWithDialogCheck
-        title="댓글 삭제"
-        description="정말 댓글을 삭제하시겠어요?"
-        size="sm"
-        variant="destructive"
-        confirmVariant="destructive"
-        onClick={deleteComment}
-      >
-        삭제
-      </ButtonWithDialogCheck>
     </>
   );
 }
