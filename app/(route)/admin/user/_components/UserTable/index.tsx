@@ -1,5 +1,6 @@
 'use client';
 
+import { useRecoilValue } from 'recoil';
 import useUserQuery from '@app/_hooks/apis/admin/useUserQuery';
 
 import {
@@ -10,16 +11,16 @@ import {
   TableHeader,
   TableRow,
 } from '@app/_shadcn/components/ui/table';
+import { roleState } from '@app/_store/adminAtoms';
 import { Input } from '@app/_shadcn/components/ui/input';
 import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
 import useWithdrawalMutation from '@app/_hooks/apis/user/useWithdrawalMutation';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import RoleFilterSelect from './RoleFilterSelect';
 import RoleUpdateSelect from './RoleUpdateSelect';
 
 function UserTable() {
-  const { data: myProfile } = useMyInfo();
-  const { data } = useUserQuery(myProfile?.role);
+  const selectedRole = useRecoilValue(roleState);
+  const { data } = useUserQuery(selectedRole);
   const { mutate: withdrawMutate } = useWithdrawalMutation();
 
   return (
