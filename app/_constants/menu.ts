@@ -173,7 +173,7 @@ export const MENU_ITEMS = [
       category: 'all',
     }),
     tabs: BOARD_TABS,
-    desc: 'Casper 회원들의 소통을 위한 공간이에요.?',
+    desc: 'Casper 회원들의 소통을 위한 공간이에요',
     accessibleRoles: ALL_ROLES,
   },
   {
