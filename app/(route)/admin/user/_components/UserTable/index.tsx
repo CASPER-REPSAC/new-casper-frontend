@@ -1,6 +1,6 @@
 'use client';
 
-import { useRecoilValue } from 'recoil';
+import { useAtomValue } from 'jotai';
 import useUserQuery from '@app/_hooks/apis/admin/useUserQuery';
 import useWithdrawalMutation from '@app/_hooks/apis/user/useWithdrawalMutation';
 import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
@@ -18,7 +18,7 @@ import RoleFilterSelect from './RoleFilterSelect';
 import RoleUpdateSelect from './RoleUpdateSelect';
 
 function UserTable() {
-  const selectedRole = useRecoilValue(roleState);
+  const selectedRole = useAtomValue(roleState);
   const { data } = useUserQuery(selectedRole);
   const { mutate: withdrawMutate } = useWithdrawalMutation();
 

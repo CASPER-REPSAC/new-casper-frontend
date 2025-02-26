@@ -1,5 +1,6 @@
-import { useRecoilState } from 'recoil';
+import { useSetAtom } from 'jotai';
 import { roleState } from '@app/_store/adminAtoms';
+import { Role } from '@app/_types/userTypes';
 import {
   Select,
   SelectContent,
@@ -32,10 +33,10 @@ const ROLES = [
 ];
 
 function RoleSelect() {
-  const [, setRole] = useRecoilState(roleState);
+  const setRole = useSetAtom(roleState);
 
   const onValueChange = (value: string) => {
-    setRole(value);
+    setRole(value as Role);
   };
 
   return (

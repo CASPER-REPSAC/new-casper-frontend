@@ -1,6 +1,4 @@
-import { atom } from 'recoil';
+import { atom } from 'jotai';
+import { Role } from '@app/_types/userTypes';
 
-export const roleState = atom({
-  default: 'all',
-  key: 'roleState',
-});
+export const roleState = atom<Role | 'guest'>('guest');

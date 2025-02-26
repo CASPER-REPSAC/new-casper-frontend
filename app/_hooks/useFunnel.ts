@@ -1,6 +1,6 @@
+import { useAtom } from 'jotai';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useCallback, useEffect } from 'react';
-import { useRecoilState } from 'recoil';
 import { funnelState } from '@app/_store/joinAtoms';
 import { isFunnelType } from '@app/_utils/typeGuard';
 import { PATH } from '@app/_constants/urls';
@@ -19,7 +19,7 @@ function useFunnel() {
 
   const { replace } = useRouter();
   const query = useSearchParams();
-  const [funnelStep, setStep] = useRecoilState<FunnelStepType>(funnelState);
+  const [funnelStep, setStep] = useAtom<FunnelStepType>(funnelState);
   const curStepIndex = STEPS.findIndex((step) => step === funnelStep);
   const nextStep = STEPS[curStepIndex + 1];
 

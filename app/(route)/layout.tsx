@@ -2,7 +2,7 @@
 import { Inter as FontSans } from 'next/font/google';
 import { ReactNode } from 'react';
 import { DefaultLayout } from '@app/_components/layout';
-import { QueryWrapper, RecoilRootWrapper } from '@app/_components/providers';
+import { QueryWrapper } from '@app/_components/providers';
 import { ThemeProvider } from '@app/_components/providers/ThemeProvider';
 import '@app/_styles/global.css';
 import { Toaster } from '@app/_shadcn/components/ui/toaster';
@@ -29,15 +29,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <QueryWrapper>
-          <RecoilRootWrapper>
-            <ThemeProvider>
-              <TooltipProvider>
-                {/* <AutoLoginPresence /> */}
-                <DefaultLayout>{children}</DefaultLayout>
-              </TooltipProvider>
-              <Toaster />
-            </ThemeProvider>
-          </RecoilRootWrapper>
+          <ThemeProvider>
+            <TooltipProvider>
+              <DefaultLayout>{children}</DefaultLayout>
+            </TooltipProvider>
+            <Toaster />
+          </ThemeProvider>
         </QueryWrapper>
       </body>
     </html>

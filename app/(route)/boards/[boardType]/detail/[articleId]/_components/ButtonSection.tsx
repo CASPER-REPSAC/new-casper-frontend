@@ -1,8 +1,8 @@
 'use client';
 
+import { useAtom } from 'jotai';
 import { useParams } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
 import {
   useDeleteArticleMutation,
   useUpdateArticleMutation,
@@ -23,7 +23,10 @@ function ButtonSection({ articleId, userId }: Props) {
   const { data: myProfile } = useMyInfo();
 
   const params = useParams<BoardDetailParams>();
-  const [editable, setEditable] = useRecoilState(editableStateFamily(params));
+  const [editable, setEditable] = useAtom(
+    editableStateFamily({ id: params, editable: false }),
+  );
+  // const [editable, setEditable] = useRecoilState(editableStateFamily(params));
   const { mutate: mutateDeletion } = useDeleteArticleMutation(
     Number(articleId),
   );
