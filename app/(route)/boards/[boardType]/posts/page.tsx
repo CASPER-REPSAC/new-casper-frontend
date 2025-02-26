@@ -4,7 +4,6 @@ import { PATH } from '@app/_constants/urls';
 import BoardTypeSelecSection from './_components/BoardTypeSelecSection';
 import EditorSection from './_components/EditorSection';
 import FileInputSection from './_components/FileInputSection';
-import OptionSection from './_components/OptionSection';
 import PostFormProvider from './_components/PostFormProvider';
 import TitleSection from './_components/TitleSection';
 import WriteButtonSection from './_components/WriteButtonSection';
@@ -20,7 +19,6 @@ function PostPage() {
     <div className="flex flex-col gap-8">
       <PostFormProvider>
         <BoardTypeSelecSection />
-        <OptionSection />
         <TitleSection />
         <EditorSection />
         <FileInputSection />
