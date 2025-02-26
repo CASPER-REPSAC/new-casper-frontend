@@ -23,12 +23,13 @@ import {
 import CreateButton from './_components/CreateButton';
 
 interface Props {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }
 
-export default async function AssignmentListPage({ searchParams }: Props) {
+export default async function AssignmentListPage(props: Props) {
+  const searchParams = await props.searchParams;
   const { assignments } = await assignmentService.getAssignmentList(
-    Number(searchParams.page),
+    Number(searchParams.page) || 1,
   );
 
   const getStatusBadge = (status: string) => {

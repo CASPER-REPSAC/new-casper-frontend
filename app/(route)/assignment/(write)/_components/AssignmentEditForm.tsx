@@ -38,7 +38,7 @@ function AssignmentEditForm() {
       })),
     },
   });
-  const { formState, handleSubmit, getValues } = methods;
+  const { formState, handleSubmit } = methods;
   const router = useRouter();
   const { mutate: updateAssignmentMutate } = useMutation({
     mutationFn: async (
@@ -53,15 +53,18 @@ function AssignmentEditForm() {
   });
 
   const onValid: SubmitHandler<AssignmentCreateFormType> = async ({
-    files,
     deadline,
-    ...rest
+    title,
+    category,
+    description,
+    files,
   }) => {
-    const uploadedFiles = getValues('files');
-    const uploadedFileUrls = uploadedFiles?.map(({ url }) => url);
+    const uploadedFileUrls = files?.map(({ url }) => url);
 
     updateAssignmentMutate({
-      ...rest,
+      title,
+      category,
+      description,
       urls: uploadedFileUrls,
       deadline,
       assignmentId: Number(assignmentId),

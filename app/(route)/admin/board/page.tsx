@@ -37,6 +37,7 @@ async function AdminBoardPage() {
     <section className="flex flex-col gap-4">
       {boardsCategoriesEntries.map(([boardKey, subCateogories]) => (
         <BoardCard
+          key={boardKey}
           title={BOARD_TYPE[boardKey]}
           subCategories={subCateogories}
         />

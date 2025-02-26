@@ -8,13 +8,14 @@ import { submitQueryKey } from '@app/_hooks/apis/queryKey';
 import { SubmitEditForm } from '../_components/SubmitForm';
 
 interface Props {
-  searchParams: {
+  searchParams: Promise<{
     submitId: string;
     assignmentId: string;
-  };
+  }>;
 }
 
-async function EditPage({ searchParams }: Props) {
+async function EditPage(props: Props) {
+  const searchParams = await props.searchParams;
   const assignmentId = Number(searchParams.assignmentId);
   const submitId = Number(searchParams.submitId);
   const queryClient = new QueryClient();

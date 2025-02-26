@@ -1,14 +1,20 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, use } from 'react';
 import useGoogleLoginMutation from '@app/_hooks/apis/user/useGoogleLoginMutation';
 import Spinner from '@app/_components/Spinner';
 
 interface Props {
-  searchParams: { code: string };
+  searchParams: Promise<{ code: string }>;
 }
 
-function GoogleLoginLoadingPage({ searchParams: { code } }: Props) {
+function GoogleLoginLoadingPage(props: Props) {
+  const searchParams = use(props.searchParams);
+
+  const {
+    code
+  } = searchParams;
+
   const { mutate } = useGoogleLoginMutation();
 
   useEffect(() => {

@@ -1,6 +1,5 @@
 'use client';
 
-/* eslint-disable no-console */
 import { useEffect } from 'react';
 import { TOAST_TITLE } from '@app/_constants/message';
 import { ErrorProps } from '@app/_types/errorTypes';
@@ -11,8 +10,6 @@ export default function Error({ error, reset }: ErrorProps) {
   const { toast } = useToast();
 
   useEffect(() => {
-    console.error(error.message);
-
     toast({
       variant: 'destructive',
       title: TOAST_TITLE.error,

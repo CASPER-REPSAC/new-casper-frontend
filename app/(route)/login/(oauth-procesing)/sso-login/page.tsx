@@ -1,16 +1,22 @@
 'use client';
 
-import { useEffect } from 'react';
+import { useEffect, use } from 'react';
 import useCasperLoginMutation from '@app/_hooks/apis/user/useCasperLoginMutation';
 import Spinner from '@app/_components/Spinner';
 
 interface Props {
-  searchParams: { code: string };
+  searchParams: Promise<{ code: string }>;
 }
 
 let isInit = false;
 
-function GoogleLoginLoadingPage({ searchParams: { code } }: Props) {
+function GoogleLoginLoadingPage(props: Props) {
+  const searchParams = use(props.searchParams);
+
+  const {
+    code
+  } = searchParams;
+
   const { mutate } = useCasperLoginMutation();
 
   useEffect(() => {

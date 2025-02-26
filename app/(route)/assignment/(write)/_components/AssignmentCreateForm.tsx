@@ -36,12 +36,14 @@ export default function AssignmentCreateForm() {
   });
 
   const onValid: SubmitHandler<AssignmentCreateFormType> = async (data) => {
-    const { files, deadline, ...rest } = data;
+    const { deadline, title, category, description } = data;
     const uploadedFiles = getValues('files');
     const uploadedFileUrls = uploadedFiles?.map(({ url }) => url);
 
     const body = {
-      ...rest,
+      title,
+      category,
+      description,
       urls: uploadedFileUrls,
       deadline,
     };

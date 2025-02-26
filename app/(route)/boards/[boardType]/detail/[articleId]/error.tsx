@@ -15,7 +15,6 @@ function Error({ error, reset }: ErrorProps) {
   const { mutate } = useDeleteArticleMutation(Number(articleId));
   const { data: myProfile } = useMyInfo();
   useEffect(() => {
-    // eslint-disable-next-line no-console
     console.error(error);
   }, [error]);
 

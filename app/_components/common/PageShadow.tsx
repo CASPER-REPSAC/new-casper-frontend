@@ -1,8 +1,8 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { MouseEventHandler, ReactElement } from 'react';
+import { MouseEventHandler, ReactNode } from 'react';
 
 interface Props {
-  children?: ReactElement;
+  children?: ReactNode;
   onClick?: MouseEventHandler<HTMLDivElement>;
 }
 

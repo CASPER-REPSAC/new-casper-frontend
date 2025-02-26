@@ -18,10 +18,16 @@ export function generateStaticParams() {
 }
 
 interface Props {
-  params: { memberType: string };
+  params: Promise<{ memberType: string }>;
 }
 
-async function Members({ params: { memberType } }: Props) {
+async function Members(props: Props) {
+  const params = await props.params;
+
+  const {
+    memberType
+  } = params;
+
   const data = await userService.getAllMember(memberType);
 
   return (

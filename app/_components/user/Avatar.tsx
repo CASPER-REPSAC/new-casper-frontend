@@ -31,6 +31,7 @@ function Avatar({ fallback, rounded, src, className, ...props }: AvatarProps) {
           fill
           sizes="100%"
           {...props}
+          alt={props.alt || 'avatar'}
         />
       )}
     </div>

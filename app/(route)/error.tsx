@@ -1,14 +1,8 @@
 'use client';
 
-import { useEffect } from 'react';
 import { ErrorProps } from '@app/_types/errorTypes';
 
-function Error({ error, reset }: ErrorProps) {
-  useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.error(error);
-  }, [error]);
-
+function Error({ reset }: ErrorProps) {
   return (
     <div>
       <h2>Something went wrong!</h2>

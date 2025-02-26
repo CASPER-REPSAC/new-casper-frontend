@@ -7,11 +7,12 @@ import {
 import AssignmentDetail from './_components/AssignmentDetail';
 import SubmitList from './_components/SubmitList';
 
-export default async function AssignmentDetailPage({
-  params,
-}: {
-  params: { assignmentId: string };
-}) {
+export default async function AssignmentDetailPage(
+  props: {
+    params: Promise<{ assignmentId: string }>;
+  }
+) {
+  const params = await props.params;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['assignment', 'detail', Number(params.assignmentId)],

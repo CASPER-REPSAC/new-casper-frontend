@@ -6,11 +6,12 @@ import {
 } from '@tanstack/react-query';
 import AssignmentEditForm from '../_components/AssignmentEditForm';
 
-async function AssignmentEditPage({
-  searchParams,
-}: {
-  searchParams: { assignmentId: string };
-}) {
+async function AssignmentEditPage(
+  props: {
+    searchParams: Promise<{ assignmentId: string }>;
+  }
+) {
+  const searchParams = await props.searchParams;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: ['assignment', 'detail', Number(searchParams.assignmentId)],

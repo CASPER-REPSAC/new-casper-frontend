@@ -18,10 +18,23 @@ export default function usePostArticleMutation() {
   const { boardType } = useParams<{ boardType: string }>();
   const queryClient = useQueryClient();
 
-  const mutationFn = ({ files, uploadedFiles, ...rest }: CreateArticleForm) =>
+  const mutationFn = ({
+    uploadedFiles,
+    boardId,
+    category,
+    hide,
+    notice,
+    title,
+    content,
+  }: CreateArticleForm) =>
     boardService.createArticle({
       urls: uploadedFiles.map(({ url }) => url),
-      ...rest,
+      boardId,
+      category,
+      hide,
+      notice,
+      title,
+      content,
     });
 
   const onSuccess = async () => {
