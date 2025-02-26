@@ -1,16 +1,22 @@
 'use client';
 
-import { useEffect } from 'react';
-import Spinner from '@app/_components/Spinner';
+import { useEffect, use } from 'react';
 import useGithubLoginMutation from '@app/_hooks/apis/user/useGithubLoginMutation';
+import Spinner from '@app/_components/Spinner';
 
 interface Props {
-  searchParams: { code?: string; error?: string; error_description?: string };
+  searchParams: Promise<{ code?: string; error?: string; error_description?: string }>;
 }
 
-function GithubLoginLoadingPage({
-  searchParams: { code, error, error_description },
-}: Props) {
+function GithubLoginLoadingPage(props: Props) {
+  const searchParams = use(props.searchParams);
+
+  const {
+    code,
+    error,
+    error_description
+  } = searchParams;
+
   const { mutate } = useGithubLoginMutation();
 
   useEffect(() => {

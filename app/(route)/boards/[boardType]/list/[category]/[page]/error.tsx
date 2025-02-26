@@ -1,18 +1,15 @@
 'use client';
 
-/* eslint-disable no-console */
+import { useEffect } from 'react';
 import { TOAST_TITLE } from '@app/_constants/message';
+import { ErrorProps } from '@app/_types/errorTypes';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { ErrorProps } from '@app/_types/errorTypes';
-import { useEffect } from 'react';
 
 export default function Error({ error, reset }: ErrorProps) {
   const { toast } = useToast();
 
   useEffect(() => {
-    console.error(error.message);
-
     toast({
       variant: 'destructive',
       title: TOAST_TITLE.error,

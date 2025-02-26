@@ -1,21 +1,20 @@
 'use client';
 
-import { ERROR_MESSAGE } from '@app/_constants/message';
-import { useDeleteArticleMutation } from '@app/_hooks/apis/boards';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
-import { Button } from '@app/_shadcn/components/ui/button';
-import { BoardDetailParams } from '@app/_types/boardTypes';
-import { ErrorProps } from '@app/_types/errorTypes';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import { useEffect } from 'react';
+import { useDeleteArticleMutation } from '@app/_hooks/apis/boards';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+import { ERROR_MESSAGE } from '@app/_constants/message';
+import { BoardDetailParams } from '@app/_types/boardTypes';
+import { ErrorProps } from '@app/_types/errorTypes';
+import { Button } from '@app/_shadcn/components/ui/button';
 
 function Error({ error, reset }: ErrorProps) {
   const { boardType, articleId } = useParams<BoardDetailParams>();
   const { mutate } = useDeleteArticleMutation(Number(articleId));
   const { data: myProfile } = useMyInfo();
   useEffect(() => {
-    // eslint-disable-next-line no-console
     console.error(error);
   }, [error]);
 

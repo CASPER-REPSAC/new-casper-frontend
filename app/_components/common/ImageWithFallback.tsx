@@ -16,7 +16,12 @@ function ImageWithFallback({ fallback, src, ...props }: Props) {
       {!src || imageError ? (
         fallback
       ) : (
-        <Image src={src} onError={() => setImageError(true)} {...props} />
+        <Image
+          src={src}
+          onError={() => setImageError(true)}
+          {...props}
+          alt={props.alt || 'image'}
+        />
       )}
     </>
   );

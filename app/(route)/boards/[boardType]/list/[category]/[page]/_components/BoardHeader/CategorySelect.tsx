@@ -1,6 +1,8 @@
 'use client';
 
+import { useParams, useRouter } from 'next/navigation';
 import { NEW_PATH } from '@app/_constants/urls';
+import { BoardListParams } from '@app/_types/boardTypes';
 import {
   Select,
   SelectContent,
@@ -8,8 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@app/_shadcn/components/ui/select';
-import { BoardListParams } from '@app/_types/boardTypes';
-import { useParams, useRouter } from 'next/navigation';
 
 interface Props {
   categories: string[];

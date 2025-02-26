@@ -3,12 +3,6 @@
 import { EllipsisVerticalIcon } from 'lucide-react';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from '@app/_shadcn/components/ui/dropdown-menu';
-import {
   Dialog,
   DialogTrigger,
   DialogContent,
@@ -18,6 +12,12 @@ import {
   DialogFooter,
   DialogClose,
 } from '@app/_shadcn/components/ui/dialog';
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@app/_shadcn/components/ui/dropdown-menu';
 
 interface Props {
   onEdit: () => void;

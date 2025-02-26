@@ -1,17 +1,19 @@
 'use client';
 
-import { useFormContext } from 'react-hook-form';
-import { useRecoilValue } from 'recoil';
-import { editableStateFamily } from '@app/_store/detailPageAtoms';
-import { useParams } from 'next/navigation';
-import { BoardDetailParams } from '@app/_types/boardTypes';
-import { PlateEditor } from '@app/_components/molecules/PlateEditor';
 import { TElement } from '@udecode/plate-common';
+import { useAtomValue } from 'jotai';
+import { useParams } from 'next/navigation';
+import { useFormContext } from 'react-hook-form';
 import useArticleDetailQuery from '@app/_hooks/apis/boards/useArticleDetailQuery';
+import { PlateEditor } from '@app/_components/molecules/PlateEditor';
+import { editableStateFamily } from '@app/_store/detailPageAtoms';
+import { BoardDetailParams } from '@app/_types/boardTypes';
 
 function ContentSection() {
   const params = useParams<BoardDetailParams>();
-  const editable = useRecoilValue(editableStateFamily(params));
+  const editable = useAtomValue(
+    editableStateFamily({ id: params, editable: false }),
+  );
   const { setValue } = useFormContext();
   const { data } = useArticleDetailQuery(Number(params.articleId));
 

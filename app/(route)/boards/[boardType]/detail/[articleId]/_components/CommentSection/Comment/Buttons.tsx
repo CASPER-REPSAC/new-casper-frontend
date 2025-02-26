@@ -1,9 +1,9 @@
-import EditAndDeleteMenu from '@app/_components/common/EditAndDeleteMenu';
-import useCommentDelete from '@app/_hooks/apis/boards/useCommentDelete';
-import useCommentUpdate from '@app/_hooks/apis/boards/useCommentUpdate';
-import { Button } from '@app/_shadcn/components/ui/button';
 import { Dispatch, SetStateAction } from 'react';
 import { useFormContext } from 'react-hook-form';
+import useCommentDelete from '@app/_hooks/apis/boards/useCommentDelete';
+import useCommentUpdate from '@app/_hooks/apis/boards/useCommentUpdate';
+import EditAndDeleteMenu from '@app/_components/common/EditAndDeleteMenu';
+import { Button } from '@app/_shadcn/components/ui/button';
 
 interface Props {
   articleId: string;

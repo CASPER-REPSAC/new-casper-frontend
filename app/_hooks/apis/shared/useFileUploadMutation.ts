@@ -1,8 +1,8 @@
-import { TOAST_TITLE } from '@app/_constants/message';
 import sharedService from '@app/_service/sharedService';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
+import { TOAST_TITLE } from '@app/_constants/message';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 export type UploadType = 'profile' | 'article' | 'assignment' | 'submit';
 

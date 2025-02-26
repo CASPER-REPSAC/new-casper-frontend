@@ -1,12 +1,12 @@
+import { revalidateTag } from '@app/_actions';
 import { useMutation } from '@tanstack/react-query';
-import { AUTO_LOGIN_API } from '@app/_constants/apiUrl';
-import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
-import { accessTokenState } from '@app/_store/permissionAtoms';
-import { ErrorResponse } from '@app/_types/errorTypes';
-import { AutoLoginResponse } from '@app/_types/loginTypes';
 import axios, { AxiosError, AxiosResponse } from 'axios';
 import { useSetRecoilState } from 'recoil';
-import { revalidateTag } from '@app/_actions';
+import { accessTokenState } from '@app/_store/permissionAtoms';
+import { AUTO_LOGIN_API } from '@app/_constants/apiUrl';
+import { ERROR_MESSAGE, POPUP_MESSAGE } from '@app/_constants/message';
+import { ErrorResponse } from '@app/_types/errorTypes';
+import { AutoLoginResponse } from '@app/_types/loginTypes';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useAutoLoginMutation() {

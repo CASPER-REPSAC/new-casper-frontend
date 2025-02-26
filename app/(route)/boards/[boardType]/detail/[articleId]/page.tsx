@@ -3,9 +3,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { articleDeatilQueryOption } from '@app/_hooks/apis/boards/useArticleDetailQuery';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { articleDeatilQueryOption } from '@app/_hooks/apis/boards/useArticleDetailQuery';
 import { Separator } from '@app/_shadcn/components/ui/separator';
 import {
   ButtonSection,
@@ -17,11 +17,13 @@ import {
 import ClientFormProvider from './_components/ClientFormProvider';
 import FileSection from './_components/FileSection';
 
-export default async function ArticleDetailPage({
-  params: { articleId },
-}: {
-  params: { articleId: string };
+export default async function ArticleDetailPage(props: {
+  params: Promise<{ articleId: string }>;
 }) {
+  const params = await props.params;
+
+  const { articleId } = params;
+
   const queryClient = new QueryClient();
   const options = articleDeatilQueryOption(Number(articleId));
   const {

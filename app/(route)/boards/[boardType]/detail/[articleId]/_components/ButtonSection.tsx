@@ -1,17 +1,17 @@
 'use client';
 
-import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
+import { useAtom } from 'jotai';
+import { useParams } from 'next/navigation';
+import { useFormContext } from 'react-hook-form';
 import {
   useDeleteArticleMutation,
   useUpdateArticleMutation,
 } from '@app/_hooks/apis/boards';
-import { Button } from '@app/_shadcn/components/ui/button';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+import ButtonWithDialogCheck from '@app/_components/common/WithDialogCheck';
 import { editableStateFamily } from '@app/_store/detailPageAtoms';
 import { BoardDetailParams } from '@app/_types/boardTypes';
-import { useParams } from 'next/navigation';
-import { useFormContext } from 'react-hook-form';
-import { useRecoilState } from 'recoil';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+import { Button } from '@app/_shadcn/components/ui/button';
 
 interface Props {
   articleId: string;
@@ -23,7 +23,10 @@ function ButtonSection({ articleId, userId }: Props) {
   const { data: myProfile } = useMyInfo();
 
   const params = useParams<BoardDetailParams>();
-  const [editable, setEditable] = useRecoilState(editableStateFamily(params));
+  const [editable, setEditable] = useAtom(
+    editableStateFamily({ id: params, editable: false }),
+  );
+  // const [editable, setEditable] = useRecoilState(editableStateFamily(params));
   const { mutate: mutateDeletion } = useDeleteArticleMutation(
     Number(articleId),
   );

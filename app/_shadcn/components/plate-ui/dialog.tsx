@@ -1,10 +1,8 @@
 'use client';
 
-import * as React from 'react';
-
 import * as DialogPrimitive from '@radix-ui/react-dialog';
 import { cn, createPrimitiveElement, withCn, withRef } from '@udecode/cn';
-
+import * as React from 'react';
 import { Icons } from '../icons';
 
 export const Dialog = DialogPrimitive.Root;

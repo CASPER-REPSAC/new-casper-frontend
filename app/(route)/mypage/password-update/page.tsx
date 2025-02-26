@@ -1,11 +1,11 @@
 'use client';
 
-import { INPUT_ERROR, REQUIRED_MESSAGE } from '@app/_constants/message';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import useUpdatePasswordMutation from '@app/_hooks/apis/user/useUpdatePassworMutation';
+import { PW_REGEX } from '@app/_utils/regex';
+import { INPUT_ERROR, REQUIRED_MESSAGE } from '@app/_constants/message';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { Input } from '@app/_shadcn/components/ui/input';
-import { PW_REGEX } from '@app/_utils/regex';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface UpdatePasswordForm {
   newPassword: string;

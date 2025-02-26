@@ -1,12 +1,12 @@
-import { POPUP_DURATION } from '@app/_constants/duration';
-import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { useFormContext } from 'react-hook-form';
 import { useJoinMutation } from '@app/_hooks/apis/user';
 import useFunnel from '@app/_hooks/useFunnel';
 import useFunnelValid from '@app/_hooks/useJoinFormValid';
+import { POPUP_DURATION } from '@app/_constants/duration';
+import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { JoinFormData } from '@app/_types/joinTypes';
-import { useFormContext } from 'react-hook-form';
 
 function NextButton() {
   const { funnelStep, setFunnelStep, nextStep } = useFunnel();

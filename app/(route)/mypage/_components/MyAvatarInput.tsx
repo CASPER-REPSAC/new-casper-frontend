@@ -1,14 +1,13 @@
 'use client';
 
-import { useFormContext } from 'react-hook-form';
 import { ChangeEvent, useEffect, useId } from 'react';
-import { CameraIcon } from '@app/_components/icons';
-import { ProfileUpdateForm } from '@app/_types/userTypes';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
-
+import { useFormContext } from 'react-hook-form';
 import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import Spinner from '@app/_components/Spinner';
+import { CameraIcon } from '@app/_components/icons';
 import Avatar from '@app/_components/user/Avatar';
+import { ProfileUpdateForm } from '@app/_types/userTypes';
 
 function MyAvatarInput() {
   const { register, setValue } = useFormContext<ProfileUpdateForm>();

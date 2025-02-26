@@ -1,7 +1,7 @@
-import { cookies } from 'next/headers';
+import { cookies, type UnsafeUnwrappedCookies } from 'next/headers';
 
 export function getAccessToken() {
-  const cookieStore = cookies();
+  const cookieStore = (cookies() as unknown as UnsafeUnwrappedCookies);
   const accessToken = cookieStore.get('accessToken');
   return accessToken?.value;
 }

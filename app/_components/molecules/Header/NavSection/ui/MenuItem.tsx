@@ -1,3 +1,7 @@
+import { NavigationMenuLink } from '@radix-ui/react-navigation-menu';
+import Link from 'next/link';
+import { ReactNode } from 'react';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   NavigationMenuTrigger,
@@ -5,10 +9,6 @@ import {
   NavigationMenuContent,
   navigationMenuTriggerStyle,
 } from '@app/_shadcn/components/ui/navigation-menu';
-import { NavigationMenuLink } from '@radix-ui/react-navigation-menu';
-import Link from 'next/link';
-import { ReactNode } from 'react';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 interface Props {
   title: ReactNode;

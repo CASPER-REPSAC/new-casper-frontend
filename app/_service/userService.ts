@@ -43,6 +43,10 @@ class UserService extends Service {
     const { data } = await this.axiosExtend.get<MyProfile>(`/api/user/me`);
     return data;
   }
+
+  async updateUserAuth(id: string, role: string) {
+    return this.axiosExtend.post('/api/user/auth', { id, role });
+  }
 }
 
 const userService = new UserService();

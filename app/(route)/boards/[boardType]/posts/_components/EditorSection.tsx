@@ -1,9 +1,9 @@
 'use client';
 
-import { PlateEditor } from '@app/_components/molecules/PlateEditor';
-import { CreateArticleForm } from '@app/_types/PostTypes';
 import { TElement } from '@udecode/plate-common';
 import { useFormContext } from 'react-hook-form';
+import { PlateEditor } from '@app/_components/molecules/PlateEditor';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 
 function EditorSection() {
   const { setValue } = useFormContext<CreateArticleForm>();

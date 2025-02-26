@@ -1,7 +1,7 @@
-import QUERY_KEY from '@app/_constants/query-key';
-import { MyProfile } from '@app/_types/userTypes';
 import { keepPreviousData, useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import QUERY_KEY from '@app/_constants/query-key';
+import { MyProfile } from '@app/_types/userTypes';
 
 function useUserQuery(role?: string) {
   const enabled = role !== undefined;

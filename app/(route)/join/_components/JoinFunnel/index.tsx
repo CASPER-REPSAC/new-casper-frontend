@@ -1,8 +1,8 @@
 import useFunnel from '@app/_hooks/useFunnel';
 import AgreeForm from './_components/AgreeForm';
 import EmailForm from './_components/EmailForm';
-import NameForm from './_components/NameForm';
 import IdForm from './_components/IdForm';
+import NameForm from './_components/NameForm';
 import PasswordForm from './_components/PasswordForm';
 
 function JoinFunnel() {

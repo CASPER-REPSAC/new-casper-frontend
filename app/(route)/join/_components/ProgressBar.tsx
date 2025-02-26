@@ -1,9 +1,9 @@
-import { DownArrowIcon } from '@app/_components/icons';
-import { ICON_SIZE } from '@app/_constants/size';
+import { Check } from 'lucide-react';
 import useFunnel from '@app/_hooks/useFunnel';
 import useFunnelValid from '@app/_hooks/useJoinFormValid';
+import { DownArrowIcon } from '@app/_components/icons';
+import { ICON_SIZE } from '@app/_constants/size';
 import { Button } from '@app/_shadcn/components/ui/button';
-import { Check } from 'lucide-react';
 
 function ProgressBar() {
   const { funnelStep, setFunnelStep } = useFunnel();

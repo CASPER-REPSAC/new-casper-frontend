@@ -1,7 +1,6 @@
-import React from 'react';
-
 import { cn, withRef } from '@udecode/cn';
 import { PlateElement } from '@udecode/plate-common';
+import React from 'react';
 import { useFocused, useSelected } from 'slate-react';
 
 export const HrElement = withRef<typeof PlateElement>(
@@ -19,12 +18,12 @@ export const HrElement = withRef<typeof PlateElement>(
             className={cn(
               'h-0.5 cursor-pointer rounded-sm border-none bg-muted bg-clip-content',
               selected && focused && 'ring-2 ring-ring ring-offset-2',
-              className
+              className,
             )}
           />
         </div>
         {children}
       </PlateElement>
     );
-  }
+  },
 );

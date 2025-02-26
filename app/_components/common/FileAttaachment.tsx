@@ -1,3 +1,4 @@
+import { DownloadIcon } from 'lucide-react';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   DropdownMenu,
@@ -6,7 +7,6 @@ import {
   DropdownMenuTrigger,
 } from '@app/_shadcn/components/ui/dropdown-menu';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { DownloadIcon } from 'lucide-react';
 
 type Props = {
   files: { name: string; src: string }[];
@@ -19,7 +19,7 @@ export default function FileAttachment({ files, size = 'default' }: Props) {
   const handleDownloadError = async (downloadFn: () => Promise<void>) => {
     try {
       await downloadFn();
-    } catch (error) {
+    } catch {
       toast({
         title: '파일 다운로드 오류',
         description: '알 수 없는 에러가 발생했어요.\n개발자에게 문의 해주세요.',

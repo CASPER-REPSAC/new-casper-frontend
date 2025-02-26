@@ -1,8 +1,8 @@
 import { revalidatePath } from '@app/_actions';
-import { ADMIN_PATH } from '@app/_constants/urls';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { ADMIN_PATH } from '@app/_constants/urls';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useDeleteSubCategory() {
   const { toast } = useToast();

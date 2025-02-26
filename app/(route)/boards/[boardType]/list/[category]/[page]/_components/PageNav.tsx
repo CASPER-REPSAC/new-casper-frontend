@@ -1,6 +1,9 @@
 'use client';
 
 import { useParams } from 'next/navigation';
+import useArticleListQuery from '@app/_hooks/apis/boards/useArticleListQuery';
+import { NEW_PATH } from '@app/_constants/urls';
+import { BoardListParams } from '@app/_types/boardTypes';
 import {
   Pagination,
   PaginationContent,
@@ -9,9 +12,6 @@ import {
   PaginationNext,
   PaginationPrevious,
 } from '@app/_shadcn/components/ui/pagination';
-import { BoardListParams } from '@app/_types/boardTypes';
-import useArticleListQuery from '@app/_hooks/apis/boards/useArticleListQuery';
-import { NEW_PATH } from '@app/_constants/urls';
 
 function PageNav() {
   const INTERVAL = 7;

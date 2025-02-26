@@ -1,6 +1,6 @@
-import { FunnelStepType, JoinFormData } from '@app/_types/joinTypes';
 import { useMutationState } from '@tanstack/react-query';
 import { useFormContext } from 'react-hook-form';
+import { FunnelStepType, JoinFormData } from '@app/_types/joinTypes';
 
 function useFunnelValid(step: FunnelStepType) {
   const {

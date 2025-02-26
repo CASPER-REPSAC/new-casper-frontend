@@ -1,3 +1,8 @@
+import { DragEventHandler, useId, useState, MouseEvent } from 'react';
+import useFileUploadMutation, {
+  UploadType,
+} from '@app/_hooks/apis/shared/useFileUploadMutation';
+import { Button } from '@app/_shadcn/components/ui/button';
 import {
   Table,
   TableBody,
@@ -6,15 +11,9 @@ import {
   TableHeader,
   TableRow,
 } from '@app/_shadcn/components/ui/table';
-
-import { DragEventHandler, useId, useState, MouseEvent } from 'react';
-import { Button } from '@app/_shadcn/components/ui/button';
 import { cn } from '@app/_shadcn/lib/utils';
-import useFileUploadMutation, {
-  UploadType,
-} from '@app/_hooks/apis/shared/useFileUploadMutation';
-import { CloseIcon, FileAddIcon } from '../icons';
 import Spinner from '../Spinner';
+import { CloseIcon, FileAddIcon } from '../icons';
 
 interface Props {
   type: UploadType;

@@ -1,3 +1,6 @@
+import { useSetAtom } from 'jotai';
+import { roleState } from '@app/_store/adminAtoms';
+import { Role } from '@app/_types/userTypes';
 import {
   Select,
   SelectContent,
@@ -5,8 +8,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@app/_shadcn/components/ui/select';
-import { roleState } from '@app/_store/adminAtoms';
-import { useRecoilState } from 'recoil';
 
 const ROLES = [
   {
@@ -32,10 +33,10 @@ const ROLES = [
 ];
 
 function RoleSelect() {
-  const [, setRole] = useRecoilState(roleState);
+  const setRole = useSetAtom(roleState);
 
   const onValueChange = (value: string) => {
-    setRole(value);
+    setRole(value as Role);
   };
 
   return (

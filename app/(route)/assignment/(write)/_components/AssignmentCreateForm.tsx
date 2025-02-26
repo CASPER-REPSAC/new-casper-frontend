@@ -1,16 +1,16 @@
 'use client';
 
-import { Button } from '@app/_shadcn/components/ui/button';
-import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import assignmentService from '@app/_service/assignmentService';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useMutation } from '@tanstack/react-query';
+import { useRouter } from 'next/navigation';
+import { FormProvider, SubmitHandler, useForm } from 'react-hook-form';
+import { NEW_PATH } from '@app/_constants/urls';
 import {
   AssignmentCreateFormType,
   assignmentCreateFormSchema,
 } from '@app/_types/assignment';
-import assignmentService from '@app/_service/assignmentService';
-import { useRouter } from 'next/navigation';
-import { NEW_PATH } from '@app/_constants/urls';
-import { useMutation } from '@tanstack/react-query';
+import { Button } from '@app/_shadcn/components/ui/button';
 import {
   TitleInput,
   CategoryInput,
@@ -36,12 +36,14 @@ export default function AssignmentCreateForm() {
   });
 
   const onValid: SubmitHandler<AssignmentCreateFormType> = async (data) => {
-    const { files, deadline, ...rest } = data;
+    const { deadline, title, category, description } = data;
     const uploadedFiles = getValues('files');
     const uploadedFileUrls = uploadedFiles?.map(({ url }) => url);
 
     const body = {
-      ...rest,
+      title,
+      category,
+      description,
       urls: uploadedFileUrls,
       deadline,
     };

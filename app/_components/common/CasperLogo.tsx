@@ -1,7 +1,7 @@
 'use client';
 
-import { Variants, motion } from 'framer-motion';
 import CasperLogoIcon from '@public/casper_logo.svg';
+import { Variants, motion } from 'framer-motion';
 
 interface Props {
   size?: 'm' | 'sm' | 'lg';

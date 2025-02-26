@@ -1,7 +1,7 @@
-import { LinkIcon, MailIcon } from '@app/_components/icons';
-import { Separator } from '@app/_shadcn/components/ui/separator';
-import { MemberProfile } from '@app/_types/userTypes';
 import { ReactNode } from 'react';
+import { LinkIcon, MailIcon } from '@app/_components/icons';
+import { MemberProfile } from '@app/_types/userTypes';
+import { Separator } from '@app/_shadcn/components/ui/separator';
 
 function DetailDescription({
   name,

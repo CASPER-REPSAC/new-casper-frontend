@@ -1,6 +1,6 @@
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import axios from 'axios';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useEmailKeyVerifiactionMutation() {
   const { toast } = useToast();

@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { cn } from '@udecode/cn';
 import { createZustandStore } from '@udecode/plate-common';
 import {
@@ -8,6 +6,7 @@ import {
   type CursorOverlayProps,
   type CursorProps,
 } from '@udecode/plate-cursor';
+import React from 'react';
 
 export const cursorStore = createZustandStore('cursor')({
   cursors: {},

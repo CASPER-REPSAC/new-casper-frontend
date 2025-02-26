@@ -1,6 +1,6 @@
-import { Category } from '@app/_types/boardTypes';
 import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
+import { Category } from '@app/_types/boardTypes';
 
 function useCategory(boardId: string) {
   const queryKey = ['category', boardId];

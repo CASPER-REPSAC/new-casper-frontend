@@ -1,15 +1,15 @@
+import boardService from '@app/_service/boardService';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { AxiosError } from 'axios';
+import { useParams, useRouter } from 'next/navigation';
 import {
   ERROR_MESSAGE,
   POPUP_MESSAGE,
   TOAST_TITLE,
 } from '@app/_constants/message';
 import { NEW_PATH } from '@app/_constants/urls';
-import boardService from '@app/_service/boardService';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { ErrorResponse } from '@app/_types/errorTypes';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { AxiosError } from 'axios';
-import { useParams, useRouter } from 'next/navigation';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { boardQueryKey } from '../queryKey';
 
 function useDeleteArticleMutation(id: number) {

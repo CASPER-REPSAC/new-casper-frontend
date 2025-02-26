@@ -1,7 +1,5 @@
 'use client';
 
-import { useFormContext } from 'react-hook-form';
-import { CreateArticleForm } from '@app/_types/PostTypes';
 import {
   ChangeEvent,
   DragEventHandler,
@@ -9,8 +7,10 @@ import {
   useId,
   useState,
 } from 'react';
-import { mergeFileArray, mergeArraysByKey } from '@app/_utils/board/merge';
+import { useFormContext } from 'react-hook-form';
 import useFileUploadMutation from '@app/_hooks/apis/shared/useFileUploadMutation';
+import { mergeFileArray, mergeArraysByKey } from '@app/_utils/board/merge';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import FileViewer from './FileViewer';
 
 function FileInputSection() {

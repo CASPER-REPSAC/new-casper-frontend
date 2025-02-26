@@ -1,5 +1,3 @@
-import React, { useEffect } from 'react';
-
 import {
   isSelectionExpanded,
   useEditorSelector,
@@ -11,10 +9,9 @@ import {
   floatingMediaActions,
   useFloatingMediaSelectors,
 } from '@udecode/plate-media';
+import React, { useEffect } from 'react';
 import { useReadOnly, useSelected } from 'slate-react';
-
 import { Icons } from '../icons';
-
 import { Button, buttonVariants } from './button';
 import { inputVariants } from './input';
 import { Popover, PopoverAnchor, PopoverContent } from './popover';

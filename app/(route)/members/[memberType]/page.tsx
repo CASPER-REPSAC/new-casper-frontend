@@ -1,12 +1,12 @@
+import userService from '@app/_service/userService';
+import { MEMBER_TYPE } from '@app/_constants/mock';
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
 } from '@app/_shadcn/components/ui/dialog';
-import userService from '@app/_service/userService';
-import { MEMBER_TYPE } from '@app/_constants/mock';
-import MemberCard from './_components/MemberCard';
 import DetailMemberModal from '../../../_components/molecules/DetailMemberModal';
+import MemberCard from './_components/MemberCard';
 
 export const revalidate = 600;
 
@@ -18,10 +18,16 @@ export function generateStaticParams() {
 }
 
 interface Props {
-  params: { memberType: string };
+  params: Promise<{ memberType: string }>;
 }
 
-async function Members({ params: { memberType } }: Props) {
+async function Members(props: Props) {
+  const params = await props.params;
+
+  const {
+    memberType
+  } = params;
+
   const data = await userService.getAllMember(memberType);
 
   return (

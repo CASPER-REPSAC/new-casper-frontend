@@ -1,8 +1,9 @@
+import { atom } from 'jotai';
+import { atomFamily } from 'jotai/utils';
 import { BoardDetailParams } from '@app/_types/boardTypes';
-import { atomFamily } from 'recoil';
 
-// eslint-disable-next-line import/prefer-default-export
-export const editableStateFamily = atomFamily<boolean, BoardDetailParams>({
-  key: 'editableStateFamily',
-  default: false,
-});
+export const editableStateFamily = atomFamily(
+  ({ editable }: { id: BoardDetailParams; editable: boolean }) =>
+    atom(editable),
+  (a, b) => a.id === b.id,
+);

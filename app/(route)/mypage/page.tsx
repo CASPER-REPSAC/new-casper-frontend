@@ -1,15 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { Separator } from '@app/_shadcn/components/ui/separator';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import { PATH } from '@app/_constants/urls';
 import { Button, buttonVariants } from '@app/_shadcn/components/ui/button';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
-
+import { Separator } from '@app/_shadcn/components/ui/separator';
+import AccountSettingSection from './_components/AccountSettingSection';
 import MyAvatarInput from './_components/MyAvatarInput';
 import MyInfoSection from './_components/MyInfoSection';
 import ProfileForm from './_components/ProfileForm';
-import AccountSettingSection from './_components/AccountSettingSection';
 
 function MyPage() {
   const { isLoggedIn, data: myInfo } = useMyInfo();

@@ -17,7 +17,8 @@ class Service {
 
       if (isServer) {
         const { cookies } = await import('next/headers');
-        const token = cookies().get('accessToken')?.value;
+        const cookieStore = await cookies();
+        const token = cookieStore.get('accessToken')?.value;
 
         if (token) {
           newConfig.headers.Authorization = `Bearer ${token}`;

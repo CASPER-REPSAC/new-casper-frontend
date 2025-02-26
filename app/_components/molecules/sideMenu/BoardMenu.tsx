@@ -1,11 +1,11 @@
 'use client';
 
-import { memo } from 'react';
 import Link from 'next/link';
+import { useParams } from 'next/navigation';
+import { memo } from 'react';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import { BOARD_TABS } from '@app/_constants/menu';
 import { Tabs, TabsList, TabsTrigger } from '@app/_shadcn/components/ui/tabs';
-import { useParams } from 'next/navigation';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 
 function BoardMenu() {
   const { data: myProfile } = useMyInfo();

@@ -1,9 +1,9 @@
+import Link from 'next/link';
+import { useLogoutMutation } from '@app/_hooks/apis/user';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import { LogoutIcon, UserIcon } from '@app/_components/icons';
 import Avatar from '@app/_components/user/Avatar';
 import { PATH } from '@app/_constants/urls';
-import { useLogoutMutation } from '@app/_hooks/apis/user';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
-
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   DropdownMenu,
@@ -12,7 +12,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@app/_shadcn/components/ui/dropdown-menu';
-import Link from 'next/link';
 
 function UserButton() {
   const { mutate } = useLogoutMutation();

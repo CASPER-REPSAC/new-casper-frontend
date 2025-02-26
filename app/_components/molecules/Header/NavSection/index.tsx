@@ -1,13 +1,11 @@
 'use client';
 
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+import { MENU_ITEMS } from '@app/_constants/menu';
 import {
   NavigationMenu,
   NavigationMenuList,
 } from '@app/_shadcn/components/ui/navigation-menu';
-
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
-import { MENU_ITEMS } from '@app/_constants/menu';
-
 import MenuItem from './ui/MenuItem';
 
 function NavSection() {

@@ -1,10 +1,8 @@
-import React from 'react';
-
 import { cn, withRef } from '@udecode/cn';
 import { PlateElement, withHOC } from '@udecode/plate-common';
 import { Image, useMediaState } from '@udecode/plate-media';
 import { ResizableProvider } from '@udecode/plate-resizable';
-
+import React from 'react';
 import {
   Resizable,
   ResizeHandle,

@@ -1,8 +1,8 @@
 import { memo } from 'react';
 import { API_URL } from '@app/_constants/apiUrl';
 import { BoardListParams, Category } from '@app/_types/boardTypes';
-import SearchInput from './SearchInput';
 import CategorySelect from './CategorySelect';
+import SearchInput from './SearchInput';
 
 interface Props {
   params: BoardListParams;

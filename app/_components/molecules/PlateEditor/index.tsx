@@ -1,15 +1,15 @@
-import { useRef } from 'react';
 import { cn } from '@udecode/cn';
 import { Plate, TElement } from '@udecode/plate-common';
+import { useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
+import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
 import { Editor } from '@app/_shadcn/components/plate-ui/editor';
 import { FixedToolbar } from '@app/_shadcn/components/plate-ui/fixed-toolbar';
 import { FixedToolbarButtons } from '@app/_shadcn/components/plate-ui/fixed-toolbar-buttons';
 import { FloatingToolbar } from '@app/_shadcn/components/plate-ui/floating-toolbar';
 import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floating-toolbar-buttons';
 import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
-import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
 import plugins from './plugin';
 
 interface Props {

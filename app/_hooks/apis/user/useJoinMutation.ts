@@ -1,10 +1,10 @@
-import { JoinRequest, JoinResponse } from '@app/_types/joinTypes';
-import { JOIN_API } from '@app/_constants/apiUrl';
-import { PATH } from '@app/_constants/urls';
 import { useMutation } from '@tanstack/react-query';
 import axios, { AxiosResponse } from 'axios';
 import { useRouter } from 'next/navigation';
+import { JOIN_API } from '@app/_constants/apiUrl';
 import { POPUP_MESSAGE } from '@app/_constants/message';
+import { PATH } from '@app/_constants/urls';
+import { JoinRequest, JoinResponse } from '@app/_types/joinTypes';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useJoinMutation() {

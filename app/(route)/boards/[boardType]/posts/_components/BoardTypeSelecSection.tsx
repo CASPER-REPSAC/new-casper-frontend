@@ -1,6 +1,8 @@
 'use client';
 
+import { useFormContext } from 'react-hook-form';
 import useCategory from '@app/_hooks/apis/boards/useCategory';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import {
   Select,
   SelectContent,
@@ -8,8 +10,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@app/_shadcn/components/ui/select';
-import { CreateArticleForm } from '@app/_types/PostTypes';
-import { useFormContext } from 'react-hook-form';
 
 function BoardTypeSelectSection() {
   const { setValue, watch } = useFormContext<CreateArticleForm>();

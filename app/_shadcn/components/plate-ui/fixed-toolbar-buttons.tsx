@@ -1,5 +1,3 @@
-import React from 'react';
-
 import {
   MARK_BOLD,
   MARK_CODE,
@@ -8,16 +6,15 @@ import {
   MARK_UNDERLINE,
 } from '@udecode/plate-basic-marks';
 import { useEditorReadOnly, useEditorRef } from '@udecode/plate-common';
-import { MediaToolbarButton } from './media-toolbar-button';
-
+import { ELEMENT_IMAGE } from '@udecode/plate-media';
+import React from 'react';
 import { Icons } from '../icons';
-
 import { InsertDropdownMenu } from './insert-dropdown-menu';
 import { MarkToolbarButton } from './mark-toolbar-button';
+import { MediaToolbarButton } from './media-toolbar-button';
 import { ModeDropdownMenu } from './mode-dropdown-menu';
 import { ToolbarGroup } from './toolbar';
 import { TurnIntoDropdownMenu } from './turn-into-dropdown-menu';
-import { ELEMENT_IMAGE } from '@udecode/plate-media';
 
 export function FixedToolbarButtons() {
   const readOnly = useEditorReadOnly();

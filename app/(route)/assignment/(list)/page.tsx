@@ -1,13 +1,5 @@
-import Link from 'next/link';
-import { Button } from '@app/_shadcn/components/ui/button';
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-} from '@app/_shadcn/components/ui/card';
-import { Badge } from '@app/_shadcn/components/ui/badge';
+import assignmentService from '@app/_service/assignmentService';
+import { formatDate } from 'date-fns';
 import {
   CalendarIcon,
   BookOpenIcon,
@@ -17,18 +9,27 @@ import {
   XCircleIcon,
   StarIcon,
 } from 'lucide-react';
+import Link from 'next/link';
 import { NEW_PATH } from '@app/_constants/urls';
-import assignmentService from '@app/_service/assignmentService';
-import { formatDate } from 'date-fns';
+import { Badge } from '@app/_shadcn/components/ui/badge';
+import { Button } from '@app/_shadcn/components/ui/button';
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+} from '@app/_shadcn/components/ui/card';
 import CreateButton from './_components/CreateButton';
 
 interface Props {
-  searchParams: { page: string };
+  searchParams: Promise<{ page: string }>;
 }
 
-export default async function AssignmentListPage({ searchParams }: Props) {
+export default async function AssignmentListPage(props: Props) {
+  const searchParams = await props.searchParams;
   const { assignments } = await assignmentService.getAssignmentList(
-    Number(searchParams.page),
+    Number(searchParams.page) || 1,
   );
 
   const getStatusBadge = (status: string) => {

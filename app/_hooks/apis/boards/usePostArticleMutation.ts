@@ -1,15 +1,15 @@
+import boardService from '@app/_service/boardService';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useParams, useRouter } from 'next/navigation';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { CreateArticleForm } from '@app/_types/PostTypes';
-import { NEW_PATH, PATH } from '@app/_constants/urls';
 import {
   ERROR_MESSAGE,
   POPUP_MESSAGE,
   TOAST_TITLE,
 } from '@app/_constants/message';
+import { NEW_PATH, PATH } from '@app/_constants/urls';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import boardService from '@app/_service/boardService';
 import { boardQueryKey } from '../queryKey';
 
 export default function usePostArticleMutation() {
@@ -18,10 +18,23 @@ export default function usePostArticleMutation() {
   const { boardType } = useParams<{ boardType: string }>();
   const queryClient = useQueryClient();
 
-  const mutationFn = ({ files, uploadedFiles, ...rest }: CreateArticleForm) =>
+  const mutationFn = ({
+    uploadedFiles,
+    boardId,
+    category,
+    hide,
+    notice,
+    title,
+    content,
+  }: CreateArticleForm) =>
     boardService.createArticle({
       urls: uploadedFiles.map(({ url }) => url),
-      ...rest,
+      boardId,
+      category,
+      hide,
+      notice,
+      title,
+      content,
     });
 
   const onSuccess = async () => {

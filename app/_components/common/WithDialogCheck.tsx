@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, ButtonProps } from '@app/_shadcn/components/ui/button';
 import {
   Dialog,
   DialogClose,
@@ -8,7 +9,6 @@ import {
   DialogTitle,
   DialogTrigger,
 } from '@app/_shadcn/components/ui/dialog';
-import { Button, ButtonProps } from '@app/_shadcn/components/ui/button';
 
 interface Props extends ButtonProps {
   title: string;

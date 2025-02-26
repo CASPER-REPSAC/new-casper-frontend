@@ -1,18 +1,19 @@
+import assignmentService from '@app/_service/assignmentService';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import assignmentService from '@app/_service/assignmentService';
 import { submitQueryKey } from '@app/_hooks/apis/queryKey';
-import SubmissionDetailCard from './_components/SubmissionDetailCard';
 import FeedbackSection from './_components/FeedbackSection';
+import SubmissionDetailCard from './_components/SubmissionDetailCard';
 
-export default async function SubmissionDetailPage({
-  params,
-}: {
-  params: { assignmentId: string; submitId: string };
-}) {
+export default async function SubmissionDetailPage(
+  props: {
+    params: Promise<{ assignmentId: string; submitId: string }>;
+  }
+) {
+  const params = await props.params;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: submitQueryKey.detail({

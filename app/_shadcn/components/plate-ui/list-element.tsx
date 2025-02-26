@@ -1,8 +1,7 @@
-import React from 'react';
-
 import { withRef, withVariants } from '@udecode/cn';
 import { PlateElement } from '@udecode/plate-common';
 import { cva } from 'class-variance-authority';
+import React from 'react';
 
 const listVariants = cva('m-0 ps-6', {
   variants: {
@@ -26,5 +25,5 @@ export const ListElement = withRef<typeof ListElementVariants>(
         <Component>{children}</Component>
       </ListElementVariants>
     );
-  }
+  },
 );

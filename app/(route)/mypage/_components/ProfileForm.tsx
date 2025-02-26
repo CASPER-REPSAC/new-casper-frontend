@@ -1,14 +1,14 @@
 'use client';
 
+import { ReactNode } from 'react';
 import {
   DefaultValues,
   FormProvider,
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { ProfileUpdateForm } from '@app/_types/userTypes';
 import useProfileUpdateMutation from '@app/_hooks/apis/user/useProfileUpdateMutation';
-import { ReactNode } from 'react';
+import { ProfileUpdateForm } from '@app/_types/userTypes';
 
 interface Props {
   children: ReactNode;

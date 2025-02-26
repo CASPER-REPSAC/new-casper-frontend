@@ -5,16 +5,24 @@ import {
 } from '@tanstack/react-query';
 import { articleListQueryOption } from '@app/_hooks/apis/boards/useArticleListQuery';
 import { BoardListParams } from '@app/_types/boardTypes';
-import BoardHeader from './_components/BoardHeader';
 import BoardBody from './_components/BoardBody';
-import PostLink from './_components/PostLink';
+import BoardHeader from './_components/BoardHeader';
 import PageNav from './_components/PageNav';
+import PostLink from './_components/PostLink';
 
 interface Props {
-  params: BoardListParams;
+  params: Promise<BoardListParams>;
 }
 
-async function BoardPage({ params: { boardType, page, category } }: Props) {
+async function BoardPage(props: Props) {
+  const params = await props.params;
+
+  const {
+    boardType,
+    page,
+    category
+  } = params;
+
   const queryClient = new QueryClient();
   const options = articleListQueryOption({
     page: Number(page),

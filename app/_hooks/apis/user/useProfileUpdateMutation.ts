@@ -1,8 +1,8 @@
-import { TOAST_TITLE } from '@app/_constants/message';
 import userService from '@app/_service/userService';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { ProfileUpdateRequset } from '@app/_types/userTypes';
 import { useMutation } from '@tanstack/react-query';
+import { TOAST_TITLE } from '@app/_constants/message';
+import { ProfileUpdateRequset } from '@app/_types/userTypes';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useProfileUpdateMutation() {
   const { toast } = useToast();
