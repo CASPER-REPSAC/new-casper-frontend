@@ -1,16 +1,19 @@
 import { cn } from '@udecode/cn';
-import { Plate, TElement } from '@udecode/plate-common';
+import { TElement } from '@udecode/plate-common';
+import { Plate, PlateContent } from '@udecode/plate/react';
 import { useRef } from 'react';
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
-import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
-import { Editor } from '@app/_shadcn/components/plate-ui/editor';
-import { FixedToolbar } from '@app/_shadcn/components/plate-ui/fixed-toolbar';
-import { FixedToolbarButtons } from '@app/_shadcn/components/plate-ui/fixed-toolbar-buttons';
-import { FloatingToolbar } from '@app/_shadcn/components/plate-ui/floating-toolbar';
-import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floating-toolbar-buttons';
-import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
-import plugins from './plugin';
+// import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
+// import { FixedToolbar } from '@app/_shadcn/components/plate-ui/fixed-toolbar';
+// import { FixedToolbarButtons } from '@app/_shadcn/components/plate-ui/fixed-toolbar-buttons';
+// import { FloatingToolbar } from '@app/_shadcn/components/plate-ui/floating-toolbar';
+// import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floating-toolbar-buttons';
+// import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
+import { Editor, EditorContainer } from './plate-ui/editor';
+import { useCreateEditor } from './use-create-editor';
+
+// import plugins from './plugin';
 
 interface Props {
   readOnly?: boolean;
@@ -21,48 +24,55 @@ interface Props {
 
 export function PlateEditor({
   readOnly = false,
-  initialValue,
-  onValueChange,
+  // initialValue,
+  // onValueChange,
   className,
 }: Props) {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const editor = useCreateEditor();
 
   return (
-    <TooltipProvider>
-      <DndProvider backend={HTML5Backend}>
-        <Plate
-          plugins={plugins}
-          initialValue={initialValue}
-          onChange={onValueChange}
+    // <TooltipProvider>
+    <DndProvider backend={HTML5Backend}>
+      <Plate
+        editor={editor}
+        // plugins={plugins}
+        // initialValue={initialValue}
+        // onChange={onValueChange}
+      >
+        <div
+          ref={containerRef}
+          className={cn('relative', !readOnly && 'border', className)}
         >
-          <div
-            ref={containerRef}
-            className={cn('relative', !readOnly && 'border', className)}
-          >
-            <CursorOverlay containerRef={containerRef} />
-
+          {/* <CursorOverlay containerRef={containerRef} /> */}
+          {/* 
             {!readOnly && (
               <FixedToolbar>
                 <FixedToolbarButtons />
               </FixedToolbar>
-            )}
+            )} */}
+          <PlateContent placeholder="내용을 입력해주세요."></PlateContent>
 
-            <Editor
+          <EditorContainer>
+            <Editor variant="demo" placeholder="Type..." />
+          </EditorContainer>
+          {/* <Editor
               readOnly={readOnly}
               variant="ghost"
               className={`h-full ${!readOnly && 'px-8'}`}
               focusRing={false}
               placeholder="내용을 입력해주세요."
-            />
+            /> */}
 
-            {!readOnly && (
-              <FloatingToolbar>
-                <FloatingToolbarButtons />
-              </FloatingToolbar>
-            )}
-          </div>
-        </Plate>
-      </DndProvider>
-    </TooltipProvider>
+          {/* {!readOnly && (
+            <FloatingToolbar>
+              <FloatingToolbarButtons />
+            </FloatingToolbar>
+          )} */}
+        </div>
+      </Plate>
+    </DndProvider>
+    // </TooltipProvider>
   );
 }

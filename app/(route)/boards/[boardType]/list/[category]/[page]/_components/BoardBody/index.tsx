@@ -6,7 +6,6 @@ import { useParams } from 'next/navigation';
 import useArticleListQuery from '@app/_hooks/apis/boards/useArticleListQuery';
 import formateDate from '@app/_utils/formatDate';
 import { BoardListParams } from '@app/_types/boardTypes';
-import { TooltipTrigger } from '@app/_shadcn/components/plate-ui/tooltip';
 import { Badge } from '@app/_shadcn/components/ui/badge';
 import {
   Table,
@@ -16,7 +15,11 @@ import {
   TableHeader,
   TableRow,
 } from '@app/_shadcn/components/ui/table';
-import { Tooltip, TooltipContent } from '@app/_shadcn/components/ui/tooltip';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@app/_shadcn/components/ui/tooltip';
 
 function BoardBody() {
   const params = useParams<BoardListParams>();
