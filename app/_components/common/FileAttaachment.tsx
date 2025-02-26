@@ -1,3 +1,4 @@
+import { DownloadIcon } from 'lucide-react';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   DropdownMenu,
@@ -6,7 +7,6 @@ import {
   DropdownMenuTrigger,
 } from '@app/_shadcn/components/ui/dropdown-menu';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
-import { DownloadIcon } from 'lucide-react';
 
 type Props = {
   files: { name: string; src: string }[];

@@ -1,7 +1,7 @@
 'use client';
 
-import { RecoilRoot } from 'recoil';
 import { ReactNode } from 'react';
+import { RecoilRoot } from 'recoil';
 
 function RecoilRootWrapper({ children }: { children: ReactNode }) {
   return <RecoilRoot>{children}</RecoilRoot>;

@@ -1,9 +1,8 @@
-import * as React from 'react';
-import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
-
-import { cn } from 'app/_shadcn/lib/utils';
 import { ButtonProps, buttonVariants } from 'app/_shadcn/components/ui/button';
+import { cn } from 'app/_shadcn/lib/utils';
+import { ChevronLeft, ChevronRight, MoreHorizontal } from 'lucide-react';
 import Link from 'next/link';
+import * as React from 'react';
 
 const Pagination = ({ className, ...props }: React.ComponentProps<'nav'>) => (
   <nav

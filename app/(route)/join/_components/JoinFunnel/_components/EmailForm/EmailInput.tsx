@@ -1,12 +1,12 @@
+import { useFormContext } from 'react-hook-form';
+import useSendEmailKeyMutation from '@app/_hooks/apis/user/useSendEmailKeyMutation';
 import Spinner from '@app/_components/Spinner';
+import { EMAIL_REGEX } from '@app/_utils/regex';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { INPUT_ERROR, REQUIRED_MESSAGE } from '@app/_constants/message';
-import useSendEmailKeyMutation from '@app/_hooks/apis/user/useSendEmailKeyMutation';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { Input } from '@app/_shadcn/components/ui/input';
-import { JoinFormData } from '@app/_types/joinTypes';
-import { EMAIL_REGEX } from '@app/_utils/regex';
-import { useFormContext } from 'react-hook-form';
 
 function EmailInput() {
   const { register, getValues } = useFormContext<JoinFormData>();

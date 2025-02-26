@@ -1,5 +1,9 @@
 'use client';
 
+import { Info } from 'lucide-react';
+import { useId } from 'react';
+import { useFormContext } from 'react-hook-form';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { Checkbox } from '@app/_shadcn/components/ui/checkbox';
 import { Label } from '@app/_shadcn/components/ui/label';
 import {
@@ -7,10 +11,6 @@ import {
   TooltipContent,
   TooltipTrigger,
 } from '@app/_shadcn/components/ui/tooltip';
-import { CreateArticleForm } from '@app/_types/PostTypes';
-import { Info } from 'lucide-react';
-import { useId } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 function OptionSection() {
   const checkboxId = useId();

@@ -1,13 +1,13 @@
 'use client';
 
+import { TElement } from '@udecode/plate-common';
+import { useParams } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
 import { useRecoilValue } from 'recoil';
-import { editableStateFamily } from '@app/_store/detailPageAtoms';
-import { useParams } from 'next/navigation';
-import { BoardDetailParams } from '@app/_types/boardTypes';
-import { PlateEditor } from '@app/_components/molecules/PlateEditor';
-import { TElement } from '@udecode/plate-common';
 import useArticleDetailQuery from '@app/_hooks/apis/boards/useArticleDetailQuery';
+import { PlateEditor } from '@app/_components/molecules/PlateEditor';
+import { editableStateFamily } from '@app/_store/detailPageAtoms';
+import { BoardDetailParams } from '@app/_types/boardTypes';
 
 function ContentSection() {
   const params = useParams<BoardDetailParams>();

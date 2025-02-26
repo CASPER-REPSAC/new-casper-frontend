@@ -1,5 +1,5 @@
-import PageTitle from '@app/_components/molecules/PageTitle';
 import { ReactNode } from 'react';
+import PageTitle from '@app/_components/molecules/PageTitle';
 
 interface Props {
   pageTitle: string;

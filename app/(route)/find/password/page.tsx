@@ -1,8 +1,11 @@
 'use client';
 
+import { Terminal } from 'lucide-react';
+import Link from 'next/link';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import useFindPasswordMutation from '@app/_hooks/apis/user/useFindPasswordMutation';
 import Spinner from '@app/_components/Spinner';
 import { NEW_PATH } from '@app/_constants/urls';
-import useFindPasswordMutation from '@app/_hooks/apis/user/useFindPasswordMutation';
 import {
   Alert,
   AlertDescription,
@@ -11,9 +14,6 @@ import {
 import { Button, buttonVariants } from '@app/_shadcn/components/ui/button';
 import { Input } from '@app/_shadcn/components/ui/input';
 import { cn } from '@app/_shadcn/lib/utils';
-import { Terminal } from 'lucide-react';
-import Link from 'next/link';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 function Page() {
   const { mutate, isPending } = useFindPasswordMutation();

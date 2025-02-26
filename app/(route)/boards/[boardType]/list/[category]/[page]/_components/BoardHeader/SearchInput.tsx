@@ -1,7 +1,7 @@
 'use client';
 
-import { Input } from '@app/_shadcn/components/ui/input';
 import { useForm } from 'react-hook-form';
+import { Input } from '@app/_shadcn/components/ui/input';
 
 function SearchInput() {
   const { register } = useForm();

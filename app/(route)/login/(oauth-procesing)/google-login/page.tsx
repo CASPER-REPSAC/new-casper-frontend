@@ -1,7 +1,7 @@
 'use client';
 
-import useGoogleLoginMutation from '@app/_hooks/apis/user/useGoogleLoginMutation';
 import { useEffect } from 'react';
+import useGoogleLoginMutation from '@app/_hooks/apis/user/useGoogleLoginMutation';
 import Spinner from '@app/_components/Spinner';
 
 interface Props {

@@ -1,8 +1,8 @@
 'use client';
 
+import Link from 'next/link';
 import { NEW_PATH } from '@app/_constants/urls';
 import { Button } from '@app/_shadcn/components/ui/button';
-import Link from 'next/link';
 
 function Error() {
   return (

@@ -1,8 +1,8 @@
 'use client';
 
 import { memo } from 'react';
-import ExtendLogin from './ExtendLogin';
 import AutoLogin from './AutoLogin';
+import ExtendLogin from './ExtendLogin';
 
 function AutoLoginPresence() {
   return (

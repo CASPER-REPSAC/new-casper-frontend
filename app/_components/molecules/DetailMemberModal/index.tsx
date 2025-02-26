@@ -1,9 +1,9 @@
 'use client';
 
 import { User2Icon } from 'lucide-react';
-import Avatar from '@app/_components/user/Avatar';
 import useMemberQuery from '@app/_hooks/apis/user/useMemeberQuery';
 import Spinner from '@app/_components/Spinner';
+import Avatar from '@app/_components/user/Avatar';
 import DetailDescription from './DetailDescription';
 
 interface Props {

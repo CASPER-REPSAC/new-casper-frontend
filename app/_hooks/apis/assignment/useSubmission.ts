@@ -1,5 +1,5 @@
-import { useQuery } from '@tanstack/react-query';
 import assignmentService from '@app/_service/assignmentService';
+import { useQuery } from '@tanstack/react-query';
 import { submitQueryKey } from '../queryKey';
 
 export function useSubmissionDetail({

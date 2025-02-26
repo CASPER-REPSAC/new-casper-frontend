@@ -1,23 +1,19 @@
 'use client';
 
-import React from 'react';
-
+import { cn, withRef } from '@udecode/cn';
 import type {
   ClassNames,
   PlateElementProps,
   TEditor,
 } from '@udecode/plate-common';
-import type { DropTargetMonitor } from 'react-dnd';
-
-import { cn, withRef } from '@udecode/cn';
 import {
   type DragItemNode,
   useDraggable,
   useDraggableState,
 } from '@udecode/plate-dnd';
-
+import React from 'react';
+import type { DropTargetMonitor } from 'react-dnd';
 import { Icons } from '../icons';
-
 import { Tooltip, TooltipContent, TooltipTrigger } from './tooltip';
 
 export interface DraggableProps

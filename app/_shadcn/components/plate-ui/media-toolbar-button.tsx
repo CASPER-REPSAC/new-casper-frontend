@@ -1,14 +1,11 @@
-import React from 'react';
-
 import { withRef } from '@udecode/cn';
 import {
   type ELEMENT_IMAGE,
   type ELEMENT_MEDIA_EMBED,
   useMediaToolbarButton,
 } from '@udecode/plate-media';
-
+import React from 'react';
 import { Icons } from '../icons';
-
 import { ToolbarButton } from './toolbar';
 
 export const MediaToolbarButton = withRef<

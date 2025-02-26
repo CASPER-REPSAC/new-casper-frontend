@@ -2,9 +2,8 @@
 
 import { useState } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
-import AvatarWithDialog from '@app/_components/user/AvatarWithDialog';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
-
+import AvatarWithDialog from '@app/_components/user/AvatarWithDialog';
 import Buttons from './Buttons';
 import Content from './Content';
 import Header from './Header';

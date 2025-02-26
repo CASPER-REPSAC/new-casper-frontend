@@ -1,9 +1,9 @@
+import { redirect } from 'next/navigation';
 import { ReactNode } from 'react';
 import { PageTitle } from '@app/_components/molecules';
-import { PAGE_TITLE } from '@app/_constants/label';
 import { getAccessToken } from '@app/_utils/cookie';
+import { PAGE_TITLE } from '@app/_constants/label';
 import { PATH } from '@app/_constants/urls';
-import { redirect } from 'next/navigation';
 
 export const metadata = {
   title: 'Casper - Mypage',

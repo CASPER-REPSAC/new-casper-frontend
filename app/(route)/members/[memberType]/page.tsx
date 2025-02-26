@@ -1,12 +1,12 @@
+import userService from '@app/_service/userService';
+import { MEMBER_TYPE } from '@app/_constants/mock';
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
 } from '@app/_shadcn/components/ui/dialog';
-import userService from '@app/_service/userService';
-import { MEMBER_TYPE } from '@app/_constants/mock';
-import MemberCard from './_components/MemberCard';
 import DetailMemberModal from '../../../_components/molecules/DetailMemberModal';
+import MemberCard from './_components/MemberCard';
 
 export const revalidate = 600;
 

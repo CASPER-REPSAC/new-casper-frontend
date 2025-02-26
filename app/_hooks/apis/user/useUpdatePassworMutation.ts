@@ -1,8 +1,8 @@
-import { NEW_PATH } from '@app/_constants/urls';
 import loginService from '@app/_service/loginService';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation } from '@tanstack/react-query';
 import { useRouter } from 'next/navigation';
+import { NEW_PATH } from '@app/_constants/urls';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 function useUpdatePasswordMutation() {
   const { toast } = useToast();

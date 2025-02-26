@@ -1,9 +1,9 @@
+import assignmentService from '@app/_service/assignmentService';
 import {
   dehydrate,
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import assignmentService from '@app/_service/assignmentService';
 import AssignmentEditForm from '../_components/AssignmentEditForm';
 
 async function AssignmentEditPage({

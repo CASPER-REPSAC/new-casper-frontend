@@ -1,6 +1,6 @@
-import { Textarea } from '@app/_shadcn/components/ui/textarea';
-import textareaAutosize from '@app/_utils/textareaAutosize';
 import { useFormContext } from 'react-hook-form';
+import textareaAutosize from '@app/_utils/textareaAutosize';
+import { Textarea } from '@app/_shadcn/components/ui/textarea';
 
 interface Props {
   comment: string;

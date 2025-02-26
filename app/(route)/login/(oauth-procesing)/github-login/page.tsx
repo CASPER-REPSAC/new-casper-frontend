@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import Spinner from '@app/_components/Spinner';
 import useGithubLoginMutation from '@app/_hooks/apis/user/useGithubLoginMutation';
+import Spinner from '@app/_components/Spinner';
 
 interface Props {
   searchParams: { code?: string; error?: string; error_description?: string };

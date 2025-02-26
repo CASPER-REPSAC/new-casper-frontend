@@ -1,10 +1,10 @@
 'use client';
 
-import { memo } from 'react';
 import { User2Icon } from 'lucide-react';
+import { memo } from 'react';
+import Avatar from '@app/_components/user/Avatar';
 import { MemberProfile } from '@app/_types/userTypes';
 import { Card, CardContent, CardFooter } from '@app/_shadcn/components/ui/card';
-import Avatar from '@app/_components/user/Avatar';
 
 interface Props {
   member: MemberProfile;

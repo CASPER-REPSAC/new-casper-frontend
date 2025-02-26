@@ -1,4 +1,7 @@
+import { MouseEvent } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { CloseIcon, FileAddIcon } from '@app/_components/icons';
+import { CreateArticleForm } from '@app/_types/PostTypes';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   Table,
@@ -8,9 +11,6 @@ import {
   TableHeader,
   TableRow,
 } from '@app/_shadcn/components/ui/table';
-import { CreateArticleForm } from '@app/_types/PostTypes';
-import { MouseEvent } from 'react';
-import { useFormContext } from 'react-hook-form';
 
 function FileViewer() {
   const { watch, setValue, getValues } = useFormContext<CreateArticleForm>();

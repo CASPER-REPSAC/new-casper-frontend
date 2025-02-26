@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
-import { FormErrorWrapper } from '@app/_components/common';
-import { JoinFormData } from '@app/_types/joinTypes';
-import { REQUIRED_MESSAGE } from '@app/_constants/message';
 import { useFormContext } from 'react-hook-form';
+import { FormErrorWrapper } from '@app/_components/common';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
+import { REQUIRED_MESSAGE } from '@app/_constants/message';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { Input } from '@app/_shadcn/components/ui/input';
 
 function NameForm() {

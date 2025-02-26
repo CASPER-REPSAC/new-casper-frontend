@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { cn } from '@udecode/cn';
 import {
   type UseVirtualFloatingOptions,
@@ -17,9 +15,8 @@ import {
   useFloatingLinkInsert,
   useFloatingLinkInsertState,
 } from '@udecode/plate-link';
-
+import React from 'react';
 import { Icons } from '../icons';
-
 import { buttonVariants } from './button';
 import { inputVariants } from './input';
 import { popoverVariants } from './popover';

@@ -1,17 +1,16 @@
 'use client';
 
-import { useForm } from 'react-hook-form';
-import { PLACEHOLDER } from '@app/_constants/label';
-import { useCommentMutation, useComments } from '@app/_hooks/apis/boards';
-import { CommentWriteRequest } from '@app/_types/boardTypes';
-import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
-import { Button } from '@app/_shadcn/components/ui/button';
-import { Textarea } from '@app/_shadcn/components/ui/textarea';
-
-import { Label } from '@app/_shadcn/components/ui/label';
 import { useId } from 'react';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
+import { useForm } from 'react-hook-form';
+import { useCommentMutation, useComments } from '@app/_hooks/apis/boards';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+import { PLACEHOLDER } from '@app/_constants/label';
+import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { CommentWriteRequest } from '@app/_types/boardTypes';
+import { Button } from '@app/_shadcn/components/ui/button';
+import { Label } from '@app/_shadcn/components/ui/label';
+import { Textarea } from '@app/_shadcn/components/ui/textarea';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 interface Props {
   articleId: string;

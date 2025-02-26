@@ -1,4 +1,5 @@
 import useUserAuthUpdateMutation from '@app/_hooks/apis/admin/useUserAuthUpdateMutation';
+import { Role } from '@app/_types/userTypes';
 import {
   Select,
   SelectContent,
@@ -6,7 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@app/_shadcn/components/ui/select';
-import { Role } from '@app/_types/userTypes';
 
 interface Props {
   id: string;

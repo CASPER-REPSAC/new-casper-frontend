@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
+import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
 import { ProfileUpdateForm } from '@app/_types/userTypes';
-import { Textarea } from '@app/_shadcn/components/ui/textarea';
 import { Input } from '@app/_shadcn/components/ui/input';
-import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+import { Textarea } from '@app/_shadcn/components/ui/textarea';
 
 function MyInfoSection() {
   const { register } = useFormContext<ProfileUpdateForm>();

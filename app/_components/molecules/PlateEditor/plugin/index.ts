@@ -1,6 +1,22 @@
 import { withProps } from '@udecode/cn';
+import { createAutoformatPlugin } from '@udecode/plate-autoformat';
+import { createBasicElementsPlugin } from '@udecode/plate-basic-elements';
+import {
+  createBasicMarksPlugin,
+  MARK_BOLD,
+  MARK_CODE,
+  MARK_ITALIC,
+  MARK_STRIKETHROUGH,
+  MARK_UNDERLINE,
+} from '@udecode/plate-basic-marks';
+import { ELEMENT_BLOCKQUOTE } from '@udecode/plate-block-quote';
+import {
+  createExitBreakPlugin,
+  createSoftBreakPlugin,
+} from '@udecode/plate-break';
+import { createCaptionPlugin } from '@udecode/plate-caption';
 import { createPlugins, PlateElement, PlateLeaf } from '@udecode/plate-common';
-import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
+import { createDndPlugin } from '@udecode/plate-dnd';
 import {
   ELEMENT_H1,
   ELEMENT_H2,
@@ -10,48 +26,30 @@ import {
   ELEMENT_H6,
   KEYS_HEADING,
 } from '@udecode/plate-heading';
-import { ELEMENT_BLOCKQUOTE } from '@udecode/plate-block-quote';
 import {
   createHorizontalRulePlugin,
   ELEMENT_HR,
 } from '@udecode/plate-horizontal-rule';
 import { ELEMENT_UL, ELEMENT_OL, ELEMENT_LI } from '@udecode/plate-list';
-
-import { BlockquoteElement } from '@app/_shadcn/components/plate-ui/blockquote-element';
-import { HrElement } from '@app/_shadcn/components/plate-ui/hr-element';
-import { HeadingElement } from '@app/_shadcn/components/plate-ui/heading-element';
-import { ListElement } from '@app/_shadcn/components/plate-ui/list-element';
-import { withDraggables } from '@app/_shadcn/components/plate-ui/with-draggables';
-import { ParagraphElement } from '@app/_shadcn/components/plate-ui/paragraph-element';
-import { createAutoformatPlugin } from '@udecode/plate-autoformat';
-import { createBasicElementsPlugin } from '@udecode/plate-basic-elements';
-
-import { createResetNodePlugin } from '@udecode/plate-reset-node';
-import {
-  createBasicMarksPlugin,
-  MARK_BOLD,
-  MARK_CODE,
-  MARK_ITALIC,
-  MARK_STRIKETHROUGH,
-  MARK_UNDERLINE,
-} from '@udecode/plate-basic-marks';
 import {
   createImagePlugin,
   ELEMENT_IMAGE,
   ELEMENT_MEDIA_EMBED,
 } from '@udecode/plate-media';
-import { createCaptionPlugin } from '@udecode/plate-caption';
-import { createDndPlugin } from '@udecode/plate-dnd';
-import { CodeLeaf } from '@app/_shadcn/components/plate-ui/code-leaf';
-import { ImageElement } from '@app/_shadcn/components/plate-ui/image-element';
-import {
-  createExitBreakPlugin,
-  createSoftBreakPlugin,
-} from '@udecode/plate-break';
+import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
+import { createResetNodePlugin } from '@udecode/plate-reset-node';
 import { ELEMENT_TD } from '@udecode/plate-table';
+import { BlockquoteElement } from '@app/_shadcn/components/plate-ui/blockquote-element';
+import { CodeLeaf } from '@app/_shadcn/components/plate-ui/code-leaf';
+import { HeadingElement } from '@app/_shadcn/components/plate-ui/heading-element';
+import { HrElement } from '@app/_shadcn/components/plate-ui/hr-element';
+import { ImageElement } from '@app/_shadcn/components/plate-ui/image-element';
+import { ListElement } from '@app/_shadcn/components/plate-ui/list-element';
+import { ParagraphElement } from '@app/_shadcn/components/plate-ui/paragraph-element';
+import { withDraggables } from '@app/_shadcn/components/plate-ui/with-draggables';
 import { autoformatBlocks } from './autoformat';
-import { resetNodeRules } from './resetNode';
 import { dragOverCursorPlugin } from './dragOverCursorPlugin';
+import { resetNodeRules } from './resetNode';
 
 const plugins = createPlugins(
   [

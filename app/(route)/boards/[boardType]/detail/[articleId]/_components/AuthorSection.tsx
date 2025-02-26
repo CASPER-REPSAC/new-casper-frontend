@@ -1,7 +1,7 @@
 'use client';
 
-import AvatarWithDialog from '@app/_components/user/AvatarWithDialog';
 import useArticleDetailQuery from '@app/_hooks/apis/boards/useArticleDetailQuery';
+import AvatarWithDialog from '@app/_components/user/AvatarWithDialog';
 
 interface Props {
   articleId: string;

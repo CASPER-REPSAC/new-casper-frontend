@@ -1,6 +1,6 @@
 import boardService from '@app/_service/boardService';
-import { ArticleListParams } from '@app/_types/boardTypes';
 import { useQuery } from '@tanstack/react-query';
+import { ArticleListParams } from '@app/_types/boardTypes';
 import { boardQueryKey } from '../queryKey';
 
 export const articleListQueryOption = ({

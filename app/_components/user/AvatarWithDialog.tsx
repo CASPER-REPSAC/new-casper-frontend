@@ -1,16 +1,16 @@
 'use client';
 
+import userService from '@app/_service/userService';
+import { useQueryClient } from '@tanstack/react-query';
+import { memberQueryKey } from '@app/_hooks/apis/queryKey';
 import DetailMemberModal from '@app/_components/molecules/DetailMemberModal';
 import Avatar, { AvatarProps } from '@app/_components/user/Avatar';
-import { memberQueryKey } from '@app/_hooks/apis/queryKey';
-import userService from '@app/_service/userService';
+import { MemberProfile } from '@app/_types/userTypes';
 import {
   Dialog,
   DialogContent,
   DialogTrigger,
 } from '@app/_shadcn/components/ui/dialog';
-import { MemberProfile } from '@app/_types/userTypes';
-import { useQueryClient } from '@tanstack/react-query';
 
 interface Props extends AvatarProps {
   id: MemberProfile['id'];

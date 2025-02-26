@@ -3,9 +3,9 @@ import {
   HydrationBoundary,
   QueryClient,
 } from '@tanstack/react-query';
-import { articleDeatilQueryOption } from '@app/_hooks/apis/boards/useArticleDetailQuery';
 import { formatDistanceToNow } from 'date-fns';
 import { ko } from 'date-fns/locale';
+import { articleDeatilQueryOption } from '@app/_hooks/apis/boards/useArticleDetailQuery';
 import { Separator } from '@app/_shadcn/components/ui/separator';
 import {
   ButtonSection,

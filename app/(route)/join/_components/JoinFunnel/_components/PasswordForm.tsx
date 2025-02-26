@@ -1,9 +1,9 @@
 import { useFormContext } from 'react-hook-form';
 import { FormErrorWrapper } from '@app/_components/common';
-import { JoinFormData } from '@app/_types/joinTypes';
 import { PW_REGEX } from '@app/_utils/regex';
-import { INPUT_ERROR, REQUIRED_MESSAGE } from '@app/_constants/message';
 import { INPUT_LABEL, PLACEHOLDER } from '@app/_constants/label';
+import { INPUT_ERROR, REQUIRED_MESSAGE } from '@app/_constants/message';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { Input } from '@app/_shadcn/components/ui/input';
 
 function PasswordForm() {

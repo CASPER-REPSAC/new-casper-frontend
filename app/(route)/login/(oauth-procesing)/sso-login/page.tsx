@@ -1,8 +1,8 @@
 'use client';
 
 import { useEffect } from 'react';
-import Spinner from '@app/_components/Spinner';
 import useCasperLoginMutation from '@app/_hooks/apis/user/useCasperLoginMutation';
+import Spinner from '@app/_components/Spinner';
 
 interface Props {
   searchParams: { code: string };

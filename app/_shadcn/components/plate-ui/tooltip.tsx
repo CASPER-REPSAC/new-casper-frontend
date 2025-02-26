@@ -1,9 +1,8 @@
 'use client';
 
-import React from 'react';
-
 import * as TooltipPrimitive from '@radix-ui/react-tooltip';
 import { withCn, withProps } from '@udecode/cn';
+import React from 'react';
 
 export const TooltipProvider = TooltipPrimitive.Provider;
 
@@ -17,7 +16,7 @@ export const TooltipContent = withCn(
   withProps(TooltipPrimitive.Content, {
     sideOffset: 4,
   }),
-  'z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md'
+  'z-50 overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-sm text-popover-foreground shadow-md',
 );
 
 export function withTooltip<
@@ -38,7 +37,7 @@ export function withTooltip<
     } & React.ComponentPropsWithoutRef<T>
   >(function ExtendComponent(
     { tooltip, tooltipContentProps, tooltipProps, ...props },
-    ref
+    ref,
   ) {
     const [mounted, setMounted] = React.useState(false);
 

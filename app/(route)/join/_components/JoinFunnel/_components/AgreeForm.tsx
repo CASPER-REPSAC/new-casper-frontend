@@ -1,8 +1,8 @@
-import { Card } from '@app/_shadcn/components/ui/card';
-import { Checkbox } from '@app/_shadcn/components/ui/checkbox';
-import { JoinFormData } from '@app/_types/joinTypes';
 import { useId } from 'react';
 import { useFormContext } from 'react-hook-form';
+import { JoinFormData } from '@app/_types/joinTypes';
+import { Card } from '@app/_shadcn/components/ui/card';
+import { Checkbox } from '@app/_shadcn/components/ui/checkbox';
 
 function AgreeForm() {
   const checkBoxId = useId();

@@ -1,12 +1,12 @@
 'use client';
 
 import { revalidatePath } from '@app/_actions';
-import { ADMIN_PATH } from '@app/_constants/urls';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import useDeleteSubCategory from '@app/_hooks/apis/admin/useDeleteSubCategory';
 import usePatchSubCategory from '@app/_hooks/apis/admin/usePatchSubCategory';
+import { ADMIN_PATH } from '@app/_constants/urls';
 import { Button } from '@app/_shadcn/components/ui/button';
 import { Input } from '@app/_shadcn/components/ui/input';
-import { SubmitHandler, useForm } from 'react-hook-form';
 
 interface Props {
   boardName: string;

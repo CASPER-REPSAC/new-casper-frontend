@@ -1,7 +1,5 @@
 'use client';
 
-import React from 'react';
-
 import { cn, withRef } from '@udecode/cn';
 import { PortalBody, useComposedRef } from '@udecode/plate-common';
 import {
@@ -11,7 +9,7 @@ import {
   useFloatingToolbar,
   useFloatingToolbarState,
 } from '@udecode/plate-floating';
-
+import React from 'react';
 import { Toolbar } from './toolbar';
 
 export const FloatingToolbar = withRef<
@@ -54,7 +52,7 @@ export const FloatingToolbar = withRef<
     <PortalBody>
       <Toolbar
         className={cn(
-          'absolute z-50 whitespace-nowrap border bg-popover px-1 opacity-100 shadow-md print:hidden'
+          'absolute z-50 whitespace-nowrap border bg-popover px-1 opacity-100 shadow-md print:hidden',
         )}
         ref={ref}
         {...rootProps}

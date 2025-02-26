@@ -1,8 +1,8 @@
 'use client';
 
-import { cn } from '@app/_shadcn/lib/utils';
 import Image, { ImageProps } from 'next/image';
 import { ReactNode, useState } from 'react';
+import { cn } from '@app/_shadcn/lib/utils';
 
 export interface AvatarProps extends Omit<ImageProps, 'src'> {
   src?: string;

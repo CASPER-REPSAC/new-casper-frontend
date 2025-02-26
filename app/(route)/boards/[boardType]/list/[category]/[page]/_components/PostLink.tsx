@@ -1,10 +1,10 @@
 'use client';
 
-import { Button } from '@app/_shadcn/components/ui/button';
-import { BoardListParams } from '@app/_types/boardTypes';
 import Link from 'next/link';
 import { useParams } from 'next/navigation';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
+import { BoardListParams } from '@app/_types/boardTypes';
+import { Button } from '@app/_shadcn/components/ui/button';
 
 function PostLink() {
   const { boardType } = useParams<BoardListParams>();

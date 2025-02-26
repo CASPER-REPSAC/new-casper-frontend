@@ -1,7 +1,7 @@
-import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
 import boardService from '@app/_service/boardService';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { commentQueryKey } from '../queryKey';
 
 function useCommentDelete(articleId: number) {

@@ -1,7 +1,7 @@
 'use client';
 
-import { ErrorProps } from '@app/_types/errorTypes';
 import { useEffect } from 'react';
+import { ErrorProps } from '@app/_types/errorTypes';
 
 function Error({ error, reset }: ErrorProps) {
   useEffect(() => {

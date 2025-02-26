@@ -1,13 +1,12 @@
 import { redirect } from 'next/navigation';
 import { getAccessToken } from '@app/_utils/cookie';
 import { PATH } from '@app/_constants/urls';
-
-import FileInputSection from './_components/FileInputSection';
-import PostFormProvider from './_components/PostFormProvider';
 import BoardTypeSelecSection from './_components/BoardTypeSelecSection';
-import TitleSection from './_components/TitleSection';
-import OptionSection from './_components/OptionSection';
 import EditorSection from './_components/EditorSection';
+import FileInputSection from './_components/FileInputSection';
+import OptionSection from './_components/OptionSection';
+import PostFormProvider from './_components/PostFormProvider';
+import TitleSection from './_components/TitleSection';
 import WriteButtonSection from './_components/WriteButtonSection';
 
 function PostPage() {

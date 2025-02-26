@@ -1,11 +1,11 @@
+import assignmentService from '@app/_service/assignmentService';
 import {
   QueryClient,
   HydrationBoundary,
   dehydrate,
 } from '@tanstack/react-query';
-import assignmentService from '@app/_service/assignmentService';
-import SubmitList from './_components/SubmitList';
 import AssignmentDetail from './_components/AssignmentDetail';
+import SubmitList from './_components/SubmitList';
 
 export default async function AssignmentDetailPage({
   params,

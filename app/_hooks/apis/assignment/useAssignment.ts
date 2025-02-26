@@ -1,6 +1,6 @@
 import assignmentService from '@app/_service/assignmentService';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { useMutation, useQuery } from '@tanstack/react-query';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 export function useCreateAssignment() {
   const { toast } = useToast();

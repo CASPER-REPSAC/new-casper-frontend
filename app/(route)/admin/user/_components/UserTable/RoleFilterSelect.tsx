@@ -1,3 +1,5 @@
+import { useRecoilState } from 'recoil';
+import { roleState } from '@app/_store/adminAtoms';
 import {
   Select,
   SelectContent,
@@ -5,8 +7,6 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@app/_shadcn/components/ui/select';
-import { roleState } from '@app/_store/adminAtoms';
-import { useRecoilState } from 'recoil';
 
 const ROLES = [
   {

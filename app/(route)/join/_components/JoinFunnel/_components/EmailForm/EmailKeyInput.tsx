@@ -1,4 +1,7 @@
+import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
+import { useFormContext } from 'react-hook-form';
 import useEmailKeyVerifiactionMutation from '@app/_hooks/apis/user/useEmailKeyVerifiactionMutation';
+import { JoinFormData } from '@app/_types/joinTypes';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   FormControl,
@@ -11,9 +14,6 @@ import {
   InputOTPGroup,
   InputOTPSlot,
 } from '@app/_shadcn/components/ui/input-otp';
-import { JoinFormData } from '@app/_types/joinTypes';
-import { REGEXP_ONLY_DIGITS_AND_CHARS } from 'input-otp';
-import { useFormContext } from 'react-hook-form';
 
 function EmailKeyInput() {
   const { control, getValues } = useFormContext<JoinFormData>();

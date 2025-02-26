@@ -19,7 +19,7 @@ export const inputVariants = cva(
         ghost: 'border-none focus-visible:ring-transparent',
       },
     },
-  }
+  },
 );
 
 export const Input = withVariants('input', inputVariants, ['variant', 'h']);

@@ -1,8 +1,8 @@
-import QUERY_KEY from '@app/_constants/query-key';
-import { bearerTokenState } from '@app/_store/permissionAtoms';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 import { useRecoilValue } from 'recoil';
+import { bearerTokenState } from '@app/_store/permissionAtoms';
+import QUERY_KEY from '@app/_constants/query-key';
 
 function useUserAuthUpdateMutation() {
   const queryClient = useQueryClient();

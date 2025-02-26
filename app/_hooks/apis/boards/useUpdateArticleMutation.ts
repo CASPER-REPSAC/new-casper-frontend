@@ -1,8 +1,8 @@
-import { useMutation, useQueryClient } from '@tanstack/react-query';
-import { UpdateReqData } from '@app/_types/PostTypes';
-import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
-import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import boardService from '@app/_service/boardService';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { POPUP_MESSAGE, TOAST_TITLE } from '@app/_constants/message';
+import { UpdateReqData } from '@app/_types/PostTypes';
+import { useToast } from '@app/_shadcn/components/ui/use-toast';
 import { boardQueryKey } from '../queryKey';
 
 function useUpdateArticleMutation(id: number) {

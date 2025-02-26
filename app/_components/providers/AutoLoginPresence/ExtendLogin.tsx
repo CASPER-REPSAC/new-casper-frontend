@@ -1,10 +1,10 @@
 'use client';
 
+import { memo, useEffect } from 'react';
+import { useRecoilValue } from 'recoil';
 import useAutoLoginMutation from '@app/_hooks/apis/user/useAutoLoginMutation';
 import { accessTokenState } from '@app/_store/permissionAtoms';
 import { parseJwt } from '@app/_utils/jwt';
-import { memo, useEffect } from 'react';
-import { useRecoilValue } from 'recoil';
 
 function ExtendLogin() {
   const { mutate: autoLoginMutate } = useAutoLoginMutation();

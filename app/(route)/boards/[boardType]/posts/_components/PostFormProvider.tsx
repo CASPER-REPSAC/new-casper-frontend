@@ -1,10 +1,10 @@
 'use client';
 
-import { CreateArticleForm } from '@app/_types/PostTypes';
-import { BoardType } from '@app/_types/boardTypes';
 import { useParams } from 'next/navigation';
 import { PropsWithChildren } from 'react';
 import { FormProvider, useForm } from 'react-hook-form';
+import { CreateArticleForm } from '@app/_types/PostTypes';
+import { BoardType } from '@app/_types/boardTypes';
 
 function PostFormProvider({ children }: PropsWithChildren) {
   const { boardType } = useParams<{ boardType: string }>();

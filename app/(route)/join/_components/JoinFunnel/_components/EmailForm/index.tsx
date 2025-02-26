@@ -1,10 +1,10 @@
+import { useMutationState } from '@tanstack/react-query';
+import { useEffect } from 'react';
+import { useFormContext } from 'react-hook-form';
 import { FormErrorWrapper } from '@app/_components/common';
 import { JoinFormData } from '@app/_types/joinTypes';
-import { useMutationState } from '@tanstack/react-query';
-import { useFormContext } from 'react-hook-form';
-import { useEffect } from 'react';
-import EmailKeyInput from './EmailKeyInput';
 import EmailInput from './EmailInput';
+import EmailKeyInput from './EmailKeyInput';
 
 function EmailForm() {
   const {
