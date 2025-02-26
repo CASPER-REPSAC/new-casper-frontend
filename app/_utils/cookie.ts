@@ -1,12 +1,12 @@
-import { cookies, type UnsafeUnwrappedCookies } from 'next/headers';
+import { cookies } from 'next/headers';
 
-export function getAccessToken() {
-  const cookieStore = (cookies() as unknown as UnsafeUnwrappedCookies);
+export async function getAccessToken() {
+  const cookieStore = await cookies();
   const accessToken = cookieStore.get('accessToken');
   return accessToken?.value;
 }
 
-export function getBearerToken() {
-  const accessToken = getAccessToken();
+export async function getBearerToken() {
+  const accessToken = await getAccessToken();
   return 'Bearer '.concat(accessToken ?? '');
 }

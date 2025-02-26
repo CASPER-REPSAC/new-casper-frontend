@@ -1,6 +1,6 @@
 'use client';
 
-import { TElement } from '@udecode/plate-common';
+import { TElement } from '@udecode/plate';
 import { useAtomValue } from 'jotai';
 import { useParams } from 'next/navigation';
 import { useFormContext } from 'react-hook-form';
@@ -34,7 +34,7 @@ function ContentSection() {
         className=" min-h-[300px]"
         readOnly={!editable}
         onValueChange={onValueChange}
-        initialValue={initialValue}
+        value={initialValue}
       />
     </div>
   );

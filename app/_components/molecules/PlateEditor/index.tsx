@@ -1,15 +1,7 @@
 import { cn } from '@udecode/cn';
-import { TElement } from '@udecode/plate-common';
-import { Plate, PlateContent } from '@udecode/plate/react';
+import { TElement } from '@udecode/plate';
+import { Plate } from '@udecode/plate/react';
 import { useRef } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-// import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
-// import { FixedToolbar } from '@app/_shadcn/components/plate-ui/fixed-toolbar';
-// import { FixedToolbarButtons } from '@app/_shadcn/components/plate-ui/fixed-toolbar-buttons';
-// import { FloatingToolbar } from '@app/_shadcn/components/plate-ui/floating-toolbar';
-// import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floating-toolbar-buttons';
-// import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
 import { Editor, EditorContainer } from './plate-ui/editor';
 import { useCreateEditor } from './use-create-editor';
 
@@ -17,33 +9,32 @@ import { useCreateEditor } from './use-create-editor';
 
 interface Props {
   readOnly?: boolean;
-  initialValue?: TElement[];
+  value?: TElement[];
   onValueChange?: (value: TElement[]) => void;
   className?: string;
 }
 
 export function PlateEditor({
   readOnly = false,
-  // initialValue,
-  // onValueChange,
+  value = [],
+  onValueChange,
   className,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const editor = useCreateEditor();
+  const editor = useCreateEditor(value);
 
   return (
-    // <TooltipProvider>
-    <DndProvider backend={HTML5Backend}>
+    <div data-registry="plate">
       <Plate
         editor={editor}
-        // plugins={plugins}
-        // initialValue={initialValue}
-        // onChange={onValueChange}
+        onValueChange={({ value }) => {
+          onValueChange?.(value);
+        }}
       >
         <div
           ref={containerRef}
-          className={cn('relative', !readOnly && 'border', className)}
+          className={cn('relative', !readOnly && 'border rounded', className)}
         >
           {/* <CursorOverlay containerRef={containerRef} /> */}
           {/* 
@@ -52,10 +43,14 @@ export function PlateEditor({
                 <FixedToolbarButtons />
               </FixedToolbar>
             )} */}
-          <PlateContent placeholder="내용을 입력해주세요."></PlateContent>
 
           <EditorContainer>
-            <Editor variant="demo" placeholder="Type..." />
+            <Editor
+              className={cn(!readOnly && 'px-4', className)}
+              readOnly={readOnly}
+              variant="default"
+              placeholder="내용을 입력해주세요."
+            />
           </EditorContainer>
           {/* <Editor
               readOnly={readOnly}
@@ -72,7 +67,6 @@ export function PlateEditor({
           )} */}
         </div>
       </Plate>
-    </DndProvider>
-    // </TooltipProvider>
+    </div>
   );
 }

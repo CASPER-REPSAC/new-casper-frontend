@@ -1,7 +1,7 @@
-import { createExitBreakPlugin } from '@udecode/plate-break';
-import { KEYS_HEADING } from '@udecode/plate-heading';
+import { ExitBreakPlugin } from '@udecode/plate-break/react';
+import { HEADING_LEVELS } from '@udecode/plate-heading';
 
-export const exitBreakPlugin = createExitBreakPlugin({
+export const exitBreakPlugin = ExitBreakPlugin.configure({
   options: {
     rules: [
       {
@@ -16,7 +16,7 @@ export const exitBreakPlugin = createExitBreakPlugin({
         query: {
           start: true,
           end: true,
-          allow: KEYS_HEADING,
+          allow: HEADING_LEVELS,
         },
         relative: true,
         level: 1,

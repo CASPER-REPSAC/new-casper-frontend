@@ -1,27 +1,46 @@
-import { MARK_BOLD } from '@udecode/plate-basic-marks';
-import { ELEMENT_BLOCKQUOTE } from '@udecode/plate-block-quote';
 import {
-  isBlockAboveEmpty,
-  isSelectionAtBlockStart,
-} from '@udecode/plate-common';
-import { KEYS_HEADING } from '@udecode/plate-heading';
-import { ELEMENT_PARAGRAPH } from '@udecode/plate-paragraph';
-import { ResetNodePluginRule } from '@udecode/plate-reset-node';
+  BoldPlugin,
+  ItalicPlugin,
+  StrikethroughPlugin,
+} from '@udecode/plate-basic-marks/react';
+import { BlockquotePlugin } from '@udecode/plate-block-quote/react';
+import { HEADING_KEYS } from '@udecode/plate-heading';
+import { ResetNodePlugin } from '@udecode/plate-reset-node/react';
+import { ParagraphPlugin } from '@udecode/plate/react';
 
 const resetBlockTypesCommonRule = {
-  types: [ELEMENT_BLOCKQUOTE, ...KEYS_HEADING, MARK_BOLD],
-  defaultType: ELEMENT_PARAGRAPH,
+  types: [
+    BlockquotePlugin.key,
+    HEADING_KEYS.h1,
+    HEADING_KEYS.h2,
+    HEADING_KEYS.h3,
+  ],
+  defaultType: ParagraphPlugin.key,
 };
 
-export const resetNodeRules: ResetNodePluginRule[] = [
-  {
-    ...resetBlockTypesCommonRule,
-    hotkey: 'Enter',
-    predicate: isBlockAboveEmpty,
+const resetMarkTypesCommonRule = {
+  types: [ItalicPlugin.key, StrikethroughPlugin.key, BoldPlugin.key],
+  defaultType: ParagraphPlugin.key,
+};
+
+export const resetNodePlugin = ResetNodePlugin.configure({
+  options: {
+    rules: [
+      {
+        ...resetBlockTypesCommonRule,
+        hotkey: 'Enter',
+        predicate: (editor) => editor.api.isEmpty(),
+      },
+      {
+        ...resetBlockTypesCommonRule,
+        hotkey: 'Backspace',
+        predicate: (editor) => editor.api.isAt({ start: true }),
+      },
+      {
+        ...resetMarkTypesCommonRule,
+        hotkey: ['Space', 'Enter'],
+        predicate: (editor) => editor.api.isAt({ start: true }),
+      },
+    ],
   },
-  {
-    ...resetBlockTypesCommonRule,
-    hotkey: 'Backspace',
-    predicate: isSelectionAtBlockStart,
-  },
-];
+});
