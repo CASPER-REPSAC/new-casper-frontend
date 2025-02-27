@@ -1,5 +1,7 @@
+'use client';
+
 import { withRef, withVariants } from '@udecode/cn';
-import { PlateElement } from '@udecode/plate-common';
+import { PlateElement } from '@udecode/plate/react';
 import { cva } from 'class-variance-authority';
 import React from 'react';
 
@@ -11,18 +13,14 @@ const listVariants = cva('m-0 ps-6', {
     },
   },
 });
-
 const ListElementVariants = withVariants(PlateElement, listVariants, [
   'variant',
 ]);
-
 export const ListElement = withRef<typeof ListElementVariants>(
   ({ children, variant = 'ul', ...props }, ref) => {
-    const Component = variant!;
-
     return (
-      <ListElementVariants asChild ref={ref} variant={variant} {...props}>
-        <Component>{children}</Component>
+      <ListElementVariants ref={ref} as={variant!} variant={variant} {...props}>
+        {children}
       </ListElementVariants>
     );
   },

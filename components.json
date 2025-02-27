@@ -13,5 +13,17 @@
   "aliases": {
     "components": "app/_shadcn/components",
     "utils": "app/_shadcn/lib/utils"
+  },
+  "iconLibrary": "lucide",
+  "registries": {
+    "plate": {
+      "tailwind": {
+        "baseColor": "neutral"
+      },
+      "aliases": {
+        "ui": "@/components/plate-ui"
+      },
+      "url": "https://platejs.org/r"
+    }
   }
 }

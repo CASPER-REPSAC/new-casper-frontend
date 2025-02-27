@@ -15,20 +15,11 @@ class Service {
       const newConfig = { ...config };
       const isServer = typeof window === 'undefined';
 
-      if (isServer) {
-        const { cookies } = await import('next/headers');
-        const cookieStore = await cookies();
-        const token = cookieStore.get('accessToken')?.value;
+      const token = await getAccessToken();
+      newConfig.headers.Authorization = token ? `Bearer ${token}` : undefined;
 
-        if (token) {
-          newConfig.headers.Authorization = `Bearer ${token}`;
-        }
-      } else {
-        const token = await getAccessToken();
+      if (!isServer) {
         newConfig.baseURL = '/proxy';
-        if (token) {
-          newConfig.headers.Authorization = `Bearer ${token}`;
-        }
       }
 
       return newConfig;

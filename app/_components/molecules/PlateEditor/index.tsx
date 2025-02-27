@@ -1,68 +1,63 @@
 import { cn } from '@udecode/cn';
-import { Plate, TElement } from '@udecode/plate-common';
+import { TElement } from '@udecode/plate';
+import { Plate } from '@udecode/plate/react';
 import { useRef } from 'react';
-import { DndProvider } from 'react-dnd';
-import { HTML5Backend } from 'react-dnd-html5-backend';
-import { CursorOverlay } from '@app/_shadcn/components/plate-ui/cursor-overlay';
-import { Editor } from '@app/_shadcn/components/plate-ui/editor';
-import { FixedToolbar } from '@app/_shadcn/components/plate-ui/fixed-toolbar';
-import { FixedToolbarButtons } from '@app/_shadcn/components/plate-ui/fixed-toolbar-buttons';
-import { FloatingToolbar } from '@app/_shadcn/components/plate-ui/floating-toolbar';
-import { FloatingToolbarButtons } from '@app/_shadcn/components/plate-ui/floating-toolbar-buttons';
-import { TooltipProvider } from '@app/_shadcn/components/plate-ui/tooltip';
-import plugins from './plugin';
+import { Editor, EditorContainer } from './plate-ui/editor';
+import { useCreateEditor } from './use-create-editor';
 
 interface Props {
   readOnly?: boolean;
-  initialValue?: TElement[];
+  value?: TElement[];
   onValueChange?: (value: TElement[]) => void;
   className?: string;
 }
 
 export function PlateEditor({
   readOnly = false,
-  initialValue,
+  value = [],
   onValueChange,
   className,
 }: Props) {
-  const containerRef = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const editor = useCreateEditor(value);
 
   return (
-    <TooltipProvider>
-      <DndProvider backend={HTML5Backend}>
-        <Plate
-          plugins={plugins}
-          initialValue={initialValue}
-          onChange={onValueChange}
+    <div data-registry="plate">
+      <Plate
+        editor={editor}
+        onValueChange={({ value }) => {
+          onValueChange?.(value);
+        }}
+      >
+        <div
+          ref={containerRef}
+          className={cn('relative', !readOnly && 'border rounded', className)}
         >
-          <div
-            ref={containerRef}
-            className={cn('relative', !readOnly && 'border', className)}
-          >
-            <CursorOverlay containerRef={containerRef} />
-
+          {/* <CursorOverlay containerRef={containerRef} /> */}
+          {/* 
             {!readOnly && (
               <FixedToolbar>
                 <FixedToolbarButtons />
               </FixedToolbar>
-            )}
+            )} */}
 
+          <EditorContainer>
             <Editor
+              className={cn(!readOnly && 'px-4', className)}
               readOnly={readOnly}
-              variant="ghost"
-              className={`h-full ${!readOnly && 'px-8'}`}
-              focusRing={false}
-              placeholder="내용을 입력해주세요."
+              variant="default"
+              placeholder={`마크 다운 문법을 사용해 내용을 작성해보세요. \n\n# Heading 1\n## Heading 2\n### Heading 3\n\n**Bold**\n*Italic* \n\n- list\n1. numbered list  \n\n> blockquote`}
             />
+          </EditorContainer>
 
-            {!readOnly && (
-              <FloatingToolbar>
-                <FloatingToolbarButtons />
-              </FloatingToolbar>
-            )}
-          </div>
-        </Plate>
-      </DndProvider>
-    </TooltipProvider>
+          {/* {!readOnly && (
+            <FloatingToolbar>
+              <FloatingToolbarButtons />
+            </FloatingToolbar>
+          )} */}
+        </div>
+      </Plate>
+    </div>
   );
 }

@@ -1,6 +1,6 @@
 'use client';
 
-import { TElement } from '@udecode/plate-common';
+import { TElement } from '@udecode/plate';
 import { useFormContext } from 'react-hook-form';
 import { PlateEditor } from '@app/_components/molecules/PlateEditor';
 import { CreateArticleForm } from '@app/_types/PostTypes';

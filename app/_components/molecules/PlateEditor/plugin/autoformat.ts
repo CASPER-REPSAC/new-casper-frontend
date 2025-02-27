@@ -1,95 +1,197 @@
-import { AutoformatRule } from '@udecode/plate-autoformat';
+'use client';
+
+import type { SlateEditor } from '@udecode/plate';
+import { ElementApi } from '@udecode/plate';
+import type {
+  AutoformatBlockRule,
+  AutoformatRule,
+} from '@udecode/plate-autoformat';
+import { autoformatArrow } from '@udecode/plate-autoformat';
+import { AutoformatPlugin } from '@udecode/plate-autoformat/react';
 import {
-  MARK_BOLD,
-  MARK_CODE,
-  MARK_ITALIC,
-  MARK_STRIKETHROUGH,
-  MARK_UNDERLINE,
-} from '@udecode/plate-basic-marks';
-import { ELEMENT_BLOCKQUOTE } from '@udecode/plate-block-quote';
-import { ELEMENT_DEFAULT, insertNodes, setNodes } from '@udecode/plate-common';
+  BoldPlugin,
+  CodePlugin,
+  ItalicPlugin,
+  StrikethroughPlugin,
+  UnderlinePlugin,
+} from '@udecode/plate-basic-marks/react';
+import { BlockquotePlugin } from '@udecode/plate-block-quote/react';
+import { HEADING_KEYS } from '@udecode/plate-heading';
 import {
-  ELEMENT_H1,
-  ELEMENT_H2,
-  ELEMENT_H3,
-  ELEMENT_H4,
-  ELEMENT_H5,
-  ELEMENT_H6,
-} from '@udecode/plate-heading';
-import { ELEMENT_HR } from '@udecode/plate-horizontal-rule';
+  INDENT_LIST_KEYS,
+  ListStyleType,
+  toggleIndentList,
+} from '@udecode/plate-indent-list';
+import { toggleList, unwrapList } from '@udecode/plate-list';
+import {
+  BulletedListPlugin,
+  ListItemPlugin,
+  NumberedListPlugin,
+} from '@udecode/plate-list/react';
+
+export const format = (editor: SlateEditor, customFormatting: () => void) => {
+  if (editor.selection) {
+    const parentEntry = editor.api.parent(editor.selection);
+
+    if (!parentEntry) return;
+
+    const [node] = parentEntry;
+
+    if (ElementApi.isElement(node)) {
+      customFormatting();
+    }
+  }
+};
+
+export const formatList = (editor: SlateEditor, elementType: string) => {
+  format(editor, () =>
+    toggleList(editor, {
+      type: elementType,
+    }),
+  );
+};
+
+export const autoformatMarks: AutoformatRule[] = [
+  {
+    match: '**',
+    mode: 'mark',
+    type: BoldPlugin.key,
+  },
+  {
+    match: '__',
+    mode: 'mark',
+    type: UnderlinePlugin.key,
+  },
+  {
+    match: '*',
+    mode: 'mark',
+    type: ItalicPlugin.key,
+  },
+  {
+    match: '_',
+    mode: 'mark',
+    type: ItalicPlugin.key,
+  },
+  {
+    match: '~~',
+    mode: 'mark',
+    type: StrikethroughPlugin.key,
+  },
+
+  {
+    match: '`',
+    mode: 'mark',
+    type: CodePlugin.key,
+  },
+];
 
 export const autoformatBlocks: AutoformatRule[] = [
   {
-    mode: 'block',
-    type: ELEMENT_H1,
     match: '# ',
+    mode: 'block',
+    type: HEADING_KEYS.h1,
   },
   {
-    mode: 'block',
-    type: ELEMENT_H2,
     match: '## ',
+    mode: 'block',
+    type: HEADING_KEYS.h2,
   },
   {
-    mode: 'block',
-    type: ELEMENT_H3,
     match: '### ',
+    mode: 'block',
+    type: HEADING_KEYS.h3,
   },
   {
-    mode: 'block',
-    type: ELEMENT_H4,
-    match: '#### ',
-  },
-  {
-    mode: 'block',
-    type: ELEMENT_H5,
-    match: '##### ',
-  },
-  {
-    mode: 'block',
-    type: ELEMENT_H6,
-    match: '###### ',
-  },
-  {
-    mode: 'block',
-    type: ELEMENT_BLOCKQUOTE,
     match: '> ',
-  },
-
-  {
     mode: 'block',
-    type: ELEMENT_HR,
-    match: ['---', '—-', '___ '],
+    type: BlockquotePlugin.key,
+  },
+];
+
+export const preFormat: AutoformatBlockRule['preFormat'] = (editor) =>
+  unwrapList(editor);
+
+export const autoformatLists: AutoformatRule[] = [
+  {
+    match: ['- '],
+    mode: 'block',
+    preFormat,
+    type: ListItemPlugin.key,
+    format: (editor) => formatList(editor, BulletedListPlugin.key),
+  },
+  {
+    match: [String.raw`^\d+\.$ `, String.raw`^\d+\)$ `],
+    matchByRegex: true,
+    mode: 'block',
+    preFormat,
+    type: ListItemPlugin.key,
+    format: (editor) => formatList(editor, NumberedListPlugin.key),
+  },
+];
+
+export const autoformatIndentLists: AutoformatRule[] = [
+  {
+    match: ['* ', '- '],
+    mode: 'block',
+    type: 'list',
     format: (editor) => {
-      setNodes(editor, { type: ELEMENT_HR });
-      insertNodes(editor, {
-        type: ELEMENT_DEFAULT,
-        children: [{ text: '' }],
+      editor.tf.setNodes({
+        listStyleType: ListStyleType.Disc,
+      });
+      toggleIndentList(editor, {
+        listStyleType: ListStyleType.Disc,
       });
     },
   },
   {
-    mode: 'mark',
-    type: MARK_BOLD,
-    match: '**',
+    match: [String.raw`^\d+\.$ `, String.raw`^\d+\)$ `],
+    matchByRegex: true,
+    mode: 'block',
+    type: 'list',
+    format: (editor) =>
+      toggleIndentList(editor, {
+        listStyleType: ListStyleType.Decimal,
+      }),
   },
   {
-    mode: 'mark',
-    type: MARK_CODE,
-    match: '`',
+    match: ['[] '],
+    mode: 'block',
+    type: 'list',
+    format: (editor) => {
+      toggleIndentList(editor, {
+        listStyleType: INDENT_LIST_KEYS.todo,
+      });
+      editor.tf.setNodes({
+        checked: false,
+        listStyleType: INDENT_LIST_KEYS.todo,
+      });
+    },
   },
   {
-    mode: 'mark',
-    type: MARK_STRIKETHROUGH,
-    match: '~~',
-  },
-  {
-    mode: 'mark',
-    type: MARK_ITALIC,
-    match: ['*', '_'],
-  },
-  {
-    mode: 'mark',
-    type: MARK_UNDERLINE,
-    match: '__',
+    match: ['[x] '],
+    mode: 'block',
+    type: 'list',
+    format: (editor) => {
+      toggleIndentList(editor, {
+        listStyleType: INDENT_LIST_KEYS.todo,
+      });
+      editor.tf.setNodes({
+        checked: true,
+        listStyleType: INDENT_LIST_KEYS.todo,
+      });
+    },
   },
 ];
+
+export const autoformatPlugin = AutoformatPlugin.configure({
+  options: {
+    enableUndoOnDelete: true,
+    rules: [
+      ...autoformatBlocks,
+      ...autoformatMarks,
+      ...autoformatArrow,
+      ...autoformatLists,
+      // ...autoformatIndentLists,
+    ],
+  },
+});
