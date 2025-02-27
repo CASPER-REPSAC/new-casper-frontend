@@ -117,7 +117,7 @@ export const BOARD_TABS = [
   },
   {
     name: '준회원 게시판',
-    accessibleRoles: CASPER_MEMBER_AND_ABOVE,
+    accessibleRoles: LOGIN_USER_AND_ABOVE,
     key: BOARD_TYPE.associate,
     href: NEW_PATH.boardList.url({
       boardType: BOARD_TYPE.associate,
