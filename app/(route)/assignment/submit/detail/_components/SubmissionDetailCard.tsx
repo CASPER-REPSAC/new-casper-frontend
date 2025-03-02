@@ -4,7 +4,7 @@ import assignmentService from '@app/_service/assignmentService';
 import { useMutation } from '@tanstack/react-query';
 import { formatDate } from 'date-fns';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useSubmissionDetail } from '@app/_hooks/apis/assignment/useSubmission';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import EditAndDeleteMenu from '@app/_components/common/EditAndDeleteMenu';
@@ -24,13 +24,12 @@ import { Textarea } from '@app/_shadcn/components/ui/textarea';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
 
 export default function SubmissionDetailCard() {
-  const params = useParams<{
-    assignmentId: string;
-    submitId: string;
-  }>();
+  const searchParams = useSearchParams();
+  const assignmentId = searchParams.get('assignmentId');
+  const submitId = searchParams.get('submitId');
   const { data } = useSubmissionDetail({
-    assignmentId: Number(params.assignmentId),
-    submitId: Number(params.submitId),
+    assignmentId: Number(assignmentId),
+    submitId: Number(submitId),
   });
 
   const { data: myInfo } = useMyInfo();
@@ -80,9 +79,7 @@ export default function SubmissionDetailCard() {
       </CardContent>
       <CardFooter className="flex flex-col gap-2">
         <Button asChild size="lg" className="w-full" variant="outline">
-          <Link
-            href={NEW_PATH.assignmentDetail.url(Number(params.assignmentId))}
-          >
+          <Link href={NEW_PATH.assignmentDetail.url(Number(assignmentId))}>
             과제로 돌아가기
           </Link>
         </Button>
@@ -92,23 +89,22 @@ export default function SubmissionDetailCard() {
 }
 
 function KebabMenu() {
-  const params = useParams<{
-    assignmentId: string;
-    submitId: string;
-  }>();
+  const searchParams = useSearchParams();
+  const assignmentId = Number(searchParams.get('assignmentId'));
+  const submitId = Number(searchParams.get('submitId'));
   const { toast } = useToast();
   const { push } = useRouter();
   const { mutate: deleteSubmit } = useMutation({
     mutationFn: () =>
       assignmentService.deleteSubmit({
-        assignmentId: Number(params.assignmentId),
-        submitId: Number(params.submitId),
+        assignmentId,
+        submitId,
       }),
     onSuccess: () => {
       toast({
         title: '제출 삭제 완료',
       });
-      push(NEW_PATH.assignmentDetail.url(Number(params.assignmentId)));
+      push(NEW_PATH.assignmentDetail.url(assignmentId));
     },
     onError: () => {
       toast({
@@ -122,8 +118,8 @@ function KebabMenu() {
       onEdit={() =>
         push(
           NEW_PATH.submitEdit.url({
-            assignmentId: Number(params.assignmentId),
-            submitId: Number(params.submitId),
+            assignmentId,
+            submitId,
           }),
         )
       }

@@ -10,7 +10,7 @@ import {
   ArrowLeftIcon,
 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAssignmentDetail } from '@app/_hooks/apis/assignment/useAssignment';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
@@ -163,7 +163,8 @@ function ActionButton({
   isSubmitted: boolean;
   isAuthor: boolean;
 }) {
-  const { assignmentId } = useParams();
+  const searchParams = useSearchParams();
+  const assignmentId = searchParams.get('assignmentId');
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4">

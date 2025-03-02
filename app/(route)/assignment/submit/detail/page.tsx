@@ -8,23 +8,18 @@ import { submitQueryKey } from '@app/_hooks/apis/queryKey';
 import FeedbackSection from './_components/FeedbackSection';
 import SubmissionDetailCard from './_components/SubmissionDetailCard';
 
-export default async function SubmissionDetailPage(
-  props: {
-    params: Promise<{ assignmentId: string; submitId: string }>;
-  }
-) {
-  const params = await props.params;
+export default async function SubmissionDetailPage(props: {
+  searchParams: Promise<{ assignmentId: string; submitId: string }>;
+}) {
+  const { assignmentId, submitId } = await props.searchParams;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
     queryKey: submitQueryKey.detail({
-      assignmentId: Number(params.assignmentId),
-      submitId: Number(params.submitId),
+      assignmentId: Number(assignmentId),
+      submitId: Number(submitId),
     }),
     queryFn: () =>
-      assignmentService.getSubmitDetail(
-        Number(params.assignmentId),
-        Number(params.submitId),
-      ),
+      assignmentService.getSubmitDetail(Number(assignmentId), Number(submitId)),
   });
 
   return (
