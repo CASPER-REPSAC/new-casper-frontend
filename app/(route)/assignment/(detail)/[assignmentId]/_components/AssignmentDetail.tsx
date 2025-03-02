@@ -90,12 +90,12 @@ export default function AssignmentDetail({ assignmentId }: Props) {
 
         <div className="flex items-center justify-between text-xl font-semibold">
           {isDeadline ? (
-            <Badge variant="destructive">마감됨</Badge>
+            <Badge variant="secondary">마감됨</Badge>
           ) : (
-            <div className="flex items-center ">
-              <CalendarIcon className="text-blue-500" />
+            <div className="flex gap-2 items-center ">
+              <CalendarIcon />
               <span>
-                마감일: <CountDown deadline={deadline} />
+                마감일 <CountDown deadline={deadline} />
               </span>
             </div>
           )}
