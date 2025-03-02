@@ -22,6 +22,13 @@ import {
 export default function AssignmentCreateForm() {
   const methods = useForm<AssignmentCreateFormType>({
     resolver: zodResolver(assignmentCreateFormSchema),
+    defaultValues: {
+      title: '',
+      category: '',
+      description: '',
+      deadline: '',
+      files: [],
+    },
   });
   const { formState, handleSubmit, getValues } = methods;
   const { push } = useRouter();
