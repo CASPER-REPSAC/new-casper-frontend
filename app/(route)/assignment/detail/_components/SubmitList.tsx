@@ -153,10 +153,11 @@ export default function SubmitList() {
                         <Input
                           type="number"
                           className="w-20"
+                          readOnly={myInfo.role === 'associate'}
                           min="0"
                           max="100"
                           {...field}
-                          value={field.value ?? ''}
+                          value={field.value ?? '채점 전'}
                           onChange={(e) => {
                             field.onChange(Number(e.target.value));
                           }}

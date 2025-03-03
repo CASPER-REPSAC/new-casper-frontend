@@ -10,6 +10,7 @@ import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import EditAndDeleteMenu from '@app/_components/common/EditAndDeleteMenu';
 import FileAttachment from '@app/_components/common/FileAttaachment';
 import { NEW_PATH } from '@app/_constants/urls';
+import { SubmitDetail } from '@app/_types/assignment';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   Card,
@@ -32,9 +33,11 @@ export default function SubmissionDetailCard() {
     submitId: Number(submitId),
   });
 
+  console.log(data);
+
   const { data: myInfo } = useMyInfo();
 
-  if (!data) return 'null1';
+  if (!data) return '데이터 없음';
 
   const { submit, files } = data;
   const isMine = myInfo?.id === submit?.userId;
@@ -76,6 +79,7 @@ export default function SubmissionDetailCard() {
         </div>
 
         {files.length > 0 && <FileAttachment files={files} />}
+        {myInfo?.id === submit.userId && <FeedbackSection submit={submit} />}
       </CardContent>
       <CardFooter className="flex flex-col gap-2">
         <Button asChild size="lg" className="w-full" variant="outline">
@@ -125,5 +129,32 @@ function KebabMenu() {
       }
       onDelete={() => deleteSubmit()}
     />
+  );
+}
+
+function FeedbackSection({ submit }: { submit: SubmitDetail['submit'] }) {
+  return (
+    <>
+      <div>
+        <Label className="text-lg font-semibold">채점 정보</Label>
+        {submit.score !== null ? (
+          <div>{submit.score}</div>
+        ) : (
+          <div className="italic text-foreground-600">
+            아직 채점이 되지 않았어요.
+          </div>
+        )}
+      </div>
+
+      <div>
+        <Label className="text-lg font-semibold">피드백</Label>
+        <Textarea
+          value={submit?.feedback || ''}
+          readOnly
+          className="mt-1"
+          rows={6}
+        />
+      </div>
+    </>
   );
 }

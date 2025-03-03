@@ -86,7 +86,7 @@ export default function AssignmentDetail({ assignmentId }: Props) {
       </CardHeader>
       <CardContent className="flex flex-col gap-4 ">
         <p className=" text-gray-600">{assignment.description}</p>
-        <FileAttachment files={files} />
+        {files.length > 0 && <FileAttachment files={files} />}
 
         <div className="flex items-center justify-between text-xl font-semibold">
           {isDeadline ? (
