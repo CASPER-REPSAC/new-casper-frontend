@@ -14,6 +14,8 @@ interface Props {
   }>;
 }
 
+export const dynamic = 'force-dynamic';
+
 async function EditPage(props: Props) {
   const searchParams = await props.searchParams;
   const assignmentId = Number(searchParams.assignmentId);

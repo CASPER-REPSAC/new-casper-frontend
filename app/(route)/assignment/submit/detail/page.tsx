@@ -8,6 +8,8 @@ import { submitQueryKey } from '@app/_hooks/apis/queryKey';
 import FeedbackSection from './_components/FeedbackSection';
 import SubmissionDetailCard from './_components/SubmissionDetailCard';
 
+export const dynamic = 'force-dynamic';
+
 export default async function SubmissionDetailPage(props: {
   searchParams: Promise<{ assignmentId: string; submitId: string }>;
 }) {

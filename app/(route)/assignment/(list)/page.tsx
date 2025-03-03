@@ -26,6 +26,8 @@ interface Props {
   searchParams: Promise<{ page: string }>;
 }
 
+export const dynamic = 'force-dynamic';
+
 export default async function AssignmentListPage(props: Props) {
   const searchParams = await props.searchParams;
   const { assignments } = await assignmentService.getAssignmentList(

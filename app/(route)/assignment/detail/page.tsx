@@ -7,6 +7,8 @@ import {
 import AssignmentDetail from './_components/AssignmentDetail';
 import SubmitList from './_components/SubmitList';
 
+export const dynamic = 'force-dynamic';
+
 export default async function AssignmentDetailPage(props: {
   searchParams: Promise<{ assignmentId: string }>;
 }) {
