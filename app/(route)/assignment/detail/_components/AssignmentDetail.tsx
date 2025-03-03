@@ -10,7 +10,7 @@ import {
   ArrowLeftIcon,
 } from 'lucide-react';
 import Link from 'next/link';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { useAssignmentDetail } from '@app/_hooks/apis/assignment/useAssignment';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
@@ -86,7 +86,7 @@ export default function AssignmentDetail({ assignmentId }: Props) {
       </CardHeader>
       <CardContent className="flex flex-col gap-4 ">
         <p className=" text-gray-600">{assignment.description}</p>
-        <FileAttachment files={files} />
+        {files.length > 0 && <FileAttachment files={files} />}
 
         <div className="flex items-center justify-between text-xl font-semibold">
           {isDeadline ? (
@@ -163,7 +163,8 @@ function ActionButton({
   isSubmitted: boolean;
   isAuthor: boolean;
 }) {
-  const { assignmentId } = useParams();
+  const searchParams = useSearchParams();
+  const assignmentId = searchParams.get('assignmentId');
 
   return (
     <div className="flex w-full flex-col items-center justify-center gap-4">

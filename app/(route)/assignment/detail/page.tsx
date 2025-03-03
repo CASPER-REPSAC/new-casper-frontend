@@ -7,23 +7,21 @@ import {
 import AssignmentDetail from './_components/AssignmentDetail';
 import SubmitList from './_components/SubmitList';
 
-export default async function AssignmentDetailPage(
-  props: {
-    params: Promise<{ assignmentId: string }>;
-  }
-) {
-  const params = await props.params;
+export default async function AssignmentDetailPage(props: {
+  searchParams: Promise<{ assignmentId: string }>;
+}) {
+  const searchParams = await props.searchParams;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery({
-    queryKey: ['assignment', 'detail', Number(params.assignmentId)],
+    queryKey: ['assignment', 'detail', Number(searchParams.assignmentId)],
     queryFn: () =>
-      assignmentService.getAssignmentDetail(Number(params.assignmentId)),
+      assignmentService.getAssignmentDetail(Number(searchParams.assignmentId)),
   });
 
   return (
     <HydrationBoundary state={dehydrate(queryClient)}>
       <div className="container mx-auto px-4 py-12">
-        <AssignmentDetail assignmentId={Number(params.assignmentId)} />
+        <AssignmentDetail assignmentId={Number(searchParams.assignmentId)} />
         <SubmitList />
       </div>
     </HydrationBoundary>

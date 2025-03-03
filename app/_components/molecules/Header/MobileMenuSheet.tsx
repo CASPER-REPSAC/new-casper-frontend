@@ -7,7 +7,7 @@ import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
 import { CasperLogo } from '@app/_components/common';
 import { MenuIcon } from '@app/_components/icons';
 import { BOARD_TABS, MEMBER_TABS } from '@app/_constants/menu';
-import { ADMIN_PATH, PATH } from '@app/_constants/urls';
+import { ADMIN_PATH, NEW_PATH, PATH } from '@app/_constants/urls';
 import { Button } from '@app/_shadcn/components/ui/button';
 import {
   Sheet,
@@ -46,7 +46,15 @@ function SideNavSheet() {
           <CasperLogo />
         </Link>
       </SheetHeader>
+
       <h1 className="text-foreground-600 text-xl font-bold">Boards</h1>
+      {role === 'admin' && (
+        <>
+          <h1 className="text-foreground-600 text-xl font-bold">Admin</h1>
+          <Link href={ADMIN_PATH.board}>board</Link>
+          <Link href={ADMIN_PATH.user}>user</Link>
+        </>
+      )}
       {BOARD_TABS.map(({ name, href, accessibleRoles }) => {
         if (!accessibleRoles.includes(role)) return null;
         return (
@@ -64,13 +72,10 @@ function SideNavSheet() {
           </Link>
         );
       })}
-      {role === 'admin' && (
-        <>
-          <h1 className="text-foreground-600 text-xl font-bold">Admin</h1>
-          <Link href={ADMIN_PATH.board}>board</Link>
-          <Link href={ADMIN_PATH.user}>user</Link>
-        </>
-      )}
+
+      <h1 className="text-foreground-600 text-xl font-bold">Assignment</h1>
+      <Link href={NEW_PATH.assignmentList.url(1)}>과제 목록</Link>
+      <Link href={NEW_PATH.assignmentCreate.url}>과제 생성</Link>
     </SheetContent>
   );
 }

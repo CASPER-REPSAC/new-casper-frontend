@@ -22,7 +22,7 @@ export function TitleInput() {
       render={({ field }) => (
         <FormItem className="space-y-2">
           <FormLabel>제목</FormLabel>
-          <Input {...field} />
+          <Input {...field} placeholder="과제의 제목을 입력하세요." />
           <FormMessage />
         </FormItem>
       )}
@@ -40,7 +40,11 @@ export function CategoryInput() {
       render={({ field }) => (
         <FormItem className="space-y-2">
           <FormLabel>과목</FormLabel>
-          <Input placeholder="과제의 과목을 입력하세요" {...field} />
+          <Input
+            placeholder="과제의 과목을 입력하세요.
+          "
+            {...field}
+          />
           <FormMessage />
         </FormItem>
       )}
@@ -59,7 +63,7 @@ export function DescriptionInput() {
         <FormItem className="space-y-2">
           <FormLabel>설명</FormLabel>
           <Textarea
-            placeholder="과제에 대한 상세 설명을 입력하세요"
+            placeholder="과제에 대한 상세 설명을 입력하세요."
             rows={4}
             {...field}
           />

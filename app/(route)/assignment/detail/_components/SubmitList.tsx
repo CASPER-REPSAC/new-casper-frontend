@@ -5,7 +5,7 @@ import { useMutation } from '@tanstack/react-query';
 import { formatDate } from 'date-fns';
 import { DownloadIcon, UserIcon } from 'lucide-react';
 import Link from 'next/link';
-import { useParams } from 'next/navigation';
+import { useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { useAssignmentDetail } from '@app/_hooks/apis/assignment/useAssignment';
 import useMyInfo from '@app/_hooks/apis/user/useMyInfo';
@@ -35,7 +35,8 @@ import { useToast } from '@app/_shadcn/components/ui/use-toast';
 export default function SubmitList() {
   const { data: myInfo } = useMyInfo();
 
-  const params = useParams<{ assignmentId: string; submitId: string }>();
+  const searchParams = useSearchParams();
+  const assignmentId = searchParams.get('assignmentId');
 
   const { toast } = useToast();
 
@@ -46,7 +47,7 @@ export default function SubmitList() {
   });
 
   const { data: assignmentDetail, isLoading } = useAssignmentDetail({
-    assignmentId: Number(params.assignmentId),
+    assignmentId: Number(assignmentId),
   });
 
   const scores: { [submitId: string]: number } = {};
@@ -152,10 +153,11 @@ export default function SubmitList() {
                         <Input
                           type="number"
                           className="w-20"
+                          readOnly={myInfo.role === 'associate'}
                           min="0"
                           max="100"
                           {...field}
-                          value={field.value ?? ''}
+                          value={field.value ?? '채점 전'}
                           onChange={(e) => {
                             field.onChange(Number(e.target.value));
                           }}
@@ -170,7 +172,7 @@ export default function SubmitList() {
                     <Button asChild variant="outline" size="sm">
                       <Link
                         href={NEW_PATH.submitDetail.url({
-                          assignmentId: Number(params.assignmentId),
+                          assignmentId: Number(assignmentId),
                           submitId: submission.submitId,
                         })}
                       >

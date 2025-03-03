@@ -4,7 +4,7 @@ import assignmentService from '@app/_service/assignmentService';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useMutation } from '@tanstack/react-query';
 import { SaveIcon } from 'lucide-react';
-import { useParams, useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
 import { useSubmissionDetail } from '@app/_hooks/apis/assignment/useSubmission';
@@ -35,12 +35,9 @@ const formSchema = z.object({
 
 function FeedbackSection() {
   const { data: myInfo } = useMyInfo();
-  const params = useParams<{
-    assignmentId: string;
-    submitId: string;
-  }>();
-  const assignmentId = Number(params.assignmentId);
-  const submitId = Number(params.submitId);
+  const searchParams = useSearchParams();
+  const assignmentId = Number(searchParams.get('assignmentId'));
+  const submitId = Number(searchParams.get('submitId'));
   const { data } = useSubmissionDetail({
     assignmentId,
     submitId,
