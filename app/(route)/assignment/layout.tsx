@@ -1,5 +1,6 @@
 import { Suspense } from 'react';
 import Skeleton from '@app/_components/common/Skeleton';
+import AssignmentBreadcrumb from './_components/AssignmentBreadcrumb';
 
 function AssignmentLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,8 +12,9 @@ function AssignmentLayout({ children }: { children: React.ReactNode }) {
           </div>
         }
       >
-        {children}
+        <AssignmentBreadcrumb />
       </Suspense>
+      {children}
     </>
   );
 }
