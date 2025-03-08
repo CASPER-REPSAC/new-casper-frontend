@@ -20,6 +20,7 @@ import {
   CardDescription,
 } from '@app/_shadcn/components/ui/card';
 import { cn } from '@app/_shadcn/lib/utils';
+import CommonPagination from './_components/CommonPagination';
 import CreateButton from './_components/CreateButton';
 
 interface Props {
@@ -28,7 +29,7 @@ interface Props {
 
 export default async function AssignmentListPage(props: Props) {
   const searchParams = await props.searchParams;
-  const { assignments } = await assignmentService.getAssignmentList(
+  const { assignments, maxPage } = await assignmentService.getAssignmentList(
     Number(searchParams.page) || 1,
   );
 
@@ -62,11 +63,11 @@ export default async function AssignmentListPage(props: Props) {
 
   return (
     <div className="container mx-auto px-4 py-12">
-      <div className="mb-8 flex items-center justify-between">
+      <section className="mb-8 flex items-center justify-between">
         <h1 className="text-4xl font-bold">과제 목록</h1>
         <CreateButton />
-      </div>
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      </section>
+      <section className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {assignments.map(
           ({ assignmentId, name, title, progress, category, deadline }) => {
             const isEnded = compareAsc(deadline, new Date()) < 0;
@@ -113,7 +114,14 @@ export default async function AssignmentListPage(props: Props) {
             );
           },
         )}
-      </div>
+      </section>
+      <CommonPagination
+        currentPage={Number(searchParams.page)}
+        totalItems={maxPage * 10}
+        itemsPerPage={10}
+        getHref={(page) => NEW_PATH.assignmentList.url(page)}
+        className="my-8"
+      />
     </div>
   );
 }
