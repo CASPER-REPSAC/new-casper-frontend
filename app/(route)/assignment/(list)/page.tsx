@@ -20,7 +20,7 @@ import {
   CardDescription,
 } from '@app/_shadcn/components/ui/card';
 import { cn } from '@app/_shadcn/lib/utils';
-import CommonPagination from './_components/CommonPagination';
+import CommonPagination from '../../../_components/common/CommonPagination';
 import CreateButton from './_components/CreateButton';
 
 interface Props {
