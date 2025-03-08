@@ -30,7 +30,7 @@ export default function RootLayout({ children }: { children: ReactNode }) {
       >
         <QueryWrapper>
           <ThemeProvider>
-            <TooltipProvider>
+            <TooltipProvider delayDuration={50}>
               <DefaultLayout>{children}</DefaultLayout>
             </TooltipProvider>
             <Toaster />

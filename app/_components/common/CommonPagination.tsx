@@ -1,10 +1,10 @@
-import { ChevronLeft, ChevronRight } from 'lucide-react';
-import Link from 'next/link';
 import {
   Pagination,
   PaginationContent,
   PaginationItem,
   PaginationLink,
+  PaginationNext,
+  PaginationPrevious,
 } from '@app/_shadcn/components/ui/pagination';
 import { cn } from '@app/_shadcn/lib/utils';
 
@@ -49,15 +49,11 @@ export default function CommonPagination({
   return (
     <Pagination className={className}>
       <PaginationContent>
-        <PaginationItem>
-          <Link
-            replace={replace}
-            className={cn(!prevActive && 'text-slate-300 pointer-events-none')}
-            href={prevHref}
-          >
-            <ChevronLeft />
-          </Link>
-        </PaginationItem>
+        <PaginationPrevious
+          replace={replace}
+          href={prevHref}
+          className={cn(!prevActive && 'text-slate-300 pointer-events-none')}
+        />
 
         {pageLabelList.map((page) => (
           <PaginationItem key={page}>
@@ -70,16 +66,11 @@ export default function CommonPagination({
             </PaginationLink>
           </PaginationItem>
         ))}
-
-        <PaginationItem>
-          <Link
-            replace={replace}
-            className={cn(!nextActive && 'text-slate-300 pointer-events-none')}
-            href={nextHref}
-          >
-            <ChevronRight />
-          </Link>
-        </PaginationItem>
+        <PaginationNext
+          replace={replace}
+          href={nextHref}
+          className={cn(!nextActive && 'text-slate-300 pointer-events-none')}
+        />
       </PaginationContent>
     </Pagination>
   );
