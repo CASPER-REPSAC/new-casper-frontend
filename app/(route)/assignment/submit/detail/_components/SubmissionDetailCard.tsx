@@ -140,9 +140,7 @@ function FeedbackSection({ submit }: { submit: SubmitDetail['submit'] }) {
         {submit.score !== null ? (
           <div>{submit.score}</div>
         ) : (
-          <div className="italic text-foreground-600">
-            아직 채점이 되지 않았어요.
-          </div>
+          <div className="italic text-black/50">아직 채점되지 않았어요.</div>
         )}
       </div>
 

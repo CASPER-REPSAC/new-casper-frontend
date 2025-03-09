@@ -26,7 +26,7 @@ export default function AssignmentCreateForm() {
       title: '',
       category: '',
       description: '',
-      deadline: '',
+      deadline: new Date().toISOString(),
       files: [],
     },
   });

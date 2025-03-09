@@ -17,7 +17,6 @@ function PageNav() {
     boardType,
     category,
   });
-  console.log(data);
   if (!data) return null;
   const { maxPageNum: maxPage } = data;
   const curPage = Number(curPageParam);

@@ -24,7 +24,7 @@ class AssignmentService extends Service {
     const { data } = await this.axiosExtend.get<{
       maxPage: number;
       assignments: Assignment[];
-    }>(`/api/assignment/list/${page}`);
+    }>(`/api/assignment/list/${page}?limit=6`);
     return data;
   }
 
