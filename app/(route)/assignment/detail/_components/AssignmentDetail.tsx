@@ -69,7 +69,6 @@ export default function AssignmentDetail({ assignmentId }: Props) {
 
   const mySubmit = submits?.find((submit) => submit.userId === myInfo?.id);
 
-  console.log(isAdmin);
   return (
     <Card className="mx-auto mb-8 max-w-4xl">
       <CardHeader>

@@ -23,7 +23,6 @@ import { ListElement } from './plate-ui/list-element';
 import plugins from './plugin';
 
 export const useCreateEditor = (value: TElement[]) => {
-  console.log(value);
   return usePlateEditor({
     override: {
       components: {
