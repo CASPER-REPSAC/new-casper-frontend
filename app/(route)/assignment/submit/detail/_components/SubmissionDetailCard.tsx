@@ -33,8 +33,6 @@ export default function SubmissionDetailCard() {
     submitId: Number(submitId),
   });
 
-  console.log(data);
-
   const { data: myInfo } = useMyInfo();
 
   if (!data) return '데이터 없음';

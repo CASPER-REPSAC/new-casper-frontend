@@ -62,18 +62,20 @@ export default function AssignmentDetail({ assignmentId }: Props) {
   if (!assignmentDetail) return <> 데이터 없음 </>;
 
   const isAuthor = myInfo?.id === assignmentDetail.assignment.userId;
+  const isAdmin = myInfo?.role === 'admin';
   const { files, assignment, submits } = assignmentDetail;
   const deadline = parseISO(assignment.deadline);
   const isDeadline = deadline < new Date();
 
   const mySubmit = submits?.find((submit) => submit.userId === myInfo?.id);
 
+  console.log(isAdmin);
   return (
     <Card className="mx-auto mb-8 max-w-4xl">
       <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="mb-2 text-2xl">{assignment.title}</CardTitle>
-          {isAuthor && (
+          {(isAuthor || isAdmin) && (
             <EditAndDeleteMenu
               onEdit={() =>
                 push(NEW_PATH.assignmentEdit.url(assignment.assignmentId))
