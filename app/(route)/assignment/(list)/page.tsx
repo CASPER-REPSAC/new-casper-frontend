@@ -30,8 +30,11 @@ interface Props {
 export default async function AssignmentListPage(props: Props) {
   const searchParams = await props.searchParams;
   const page = searchParams.page ? Number(searchParams.page) : 1;
-  const { assignments, maxPage } =
-    await assignmentService.getAssignmentList(page);
+  const {
+    items: assignments,
+    totalItems,
+    currentPage,
+  } = await assignmentService.getAssignmentList(page);
 
   const getStatusBadge = (status: string) => {
     switch (status) {
@@ -116,8 +119,8 @@ export default async function AssignmentListPage(props: Props) {
         )}
       </section>
       <CommonPagination
-        currentPage={page}
-        totalItems={maxPage * 10}
+        currentPage={currentPage}
+        totalItems={totalItems}
         itemsPerPage={10}
         getHref={(page) => NEW_PATH.assignmentList.url(page)}
         className="my-8"

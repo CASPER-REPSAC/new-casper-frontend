@@ -1,9 +1,10 @@
 import { CreateArticleRequest, UpdateReqData } from '@app/_types/PostTypes';
 import {
+  ArticleData,
   ArticleDetail,
   CommentResponse,
-  OnePageOfArticleList,
 } from '@app/_types/boardTypes';
+import { Pagination } from '@app/_types/common';
 import Service from './service';
 
 class BoardService extends Service {
@@ -86,7 +87,7 @@ class BoardService extends Service {
     page: number;
     category?: string;
   }) {
-    const { data } = await this.axiosExtend.get<OnePageOfArticleList>(
+    const { data } = await this.axiosExtend.get<Pagination<ArticleData>>(
       `/api/article/${boardType}/${category}/${page}`,
     );
     return data;

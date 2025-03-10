@@ -29,10 +29,10 @@ function BoardBody() {
     category: params.category,
   });
 
-  if (!data || data.articleList.length === 0)
+  if (!data || data.items.length === 0)
     return <div className="flex-center h-40">게시글이 없어요. 😭</div>;
 
-  const { articleList } = data;
+  const { items: articleList } = data;
   return (
     <Table aria-label="article table">
       <TableHeader>

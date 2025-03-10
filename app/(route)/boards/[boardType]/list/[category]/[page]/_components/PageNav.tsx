@@ -18,13 +18,12 @@ function PageNav() {
     category,
   });
   if (!data) return null;
-  const { maxPageNum: maxPage } = data;
-  const curPage = Number(curPageParam);
+  const { totalItems, currentPage } = data;
 
   return (
     <CommonPagination
-      currentPage={curPage}
-      totalItems={maxPage * 10}
+      currentPage={currentPage}
+      totalItems={totalItems}
       itemsPerPage={10}
       getHref={(page) => NEW_PATH.boardList.url({ boardType, page, category })}
     />

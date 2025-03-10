@@ -3,6 +3,7 @@ import {
   AssignmentDetail,
   SubmitDetail,
 } from '@app/_types/assignment';
+import { Pagination } from '@app/_types/common';
 import Service from './service';
 
 class AssignmentService extends Service {
@@ -21,10 +22,9 @@ class AssignmentService extends Service {
   }
 
   async getAssignmentList(page: number) {
-    const { data } = await this.axiosExtend.get<{
-      maxPage: number;
-      assignments: Assignment[];
-    }>(`/api/assignment/list/${page}?limit=6`);
+    const { data } = await this.axiosExtend.get<Pagination<Assignment>>(
+      `/api/assignment/list/${page}?limit=6`,
+    );
     return data;
   }
 
