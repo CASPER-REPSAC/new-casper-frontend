@@ -91,7 +91,7 @@ function AssignmentBreadcrumb() {
             <BreadcrumbItem key={item.label}>
               <BreadcrumbLink
                 asChild
-                className={cn(item.isActive && 'text-black font-bold')}
+                className={cn(item.isActive && 'text-primary font-bold')}
               >
                 <Link href={item.href}>{item.label}</Link>
               </BreadcrumbLink>
