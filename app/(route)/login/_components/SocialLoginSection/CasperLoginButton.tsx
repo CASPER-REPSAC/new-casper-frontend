@@ -24,7 +24,7 @@ function CasperLoginButton() {
       className="flex gap-4"
       onClick={redirectToOauth}
     >
-      <CasperPLog variant="black" size={24} />
+      <CasperPLog size={24} />
       <span className="text-base">Casper SSO로 계속하기</span>
     </Button>
   );
