@@ -126,7 +126,7 @@ export default async function AssignmentListPage(props: Props) {
       <CommonPagination
         currentPage={currentPage}
         totalItems={totalItems}
-        itemsPerPage={10}
+        itemsPerPage={6}
         getHref={(page) => NEW_PATH.assignmentList.url(page)}
         className="my-8"
       />
