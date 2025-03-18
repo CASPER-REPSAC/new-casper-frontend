@@ -1,7 +1,6 @@
 import assignmentService from '@app/_service/assignmentService';
-import { compareAsc, formatDate } from 'date-fns';
+import { compareAsc } from 'date-fns';
 import {
-  CalendarIcon,
   BookOpenIcon,
   UserIcon,
   CheckCircleIcon,
@@ -22,6 +21,7 @@ import {
 import { cn } from '@app/_shadcn/lib/utils';
 import CommonPagination from '../../../_components/common/CommonPagination';
 import CreateButton from './_components/CreateButton';
+import DeadlineSection from './_components/DeadlineSection';
 
 interface Props {
   searchParams: Promise<{ page: string }>;
@@ -63,7 +63,7 @@ export default async function AssignmentListPage(props: Props) {
         return null;
     }
   };
-
+  console.log(assignments[0]);
   return (
     <div className="container mx-auto px-4 py-12">
       <section className="mb-8 flex items-center justify-between">
@@ -82,7 +82,7 @@ export default async function AssignmentListPage(props: Props) {
                   key={assignmentId}
                   className={cn(
                     'overflow-hidden transition-shadow hover:shadow-lg',
-                    isEnded && 'opacity-50 bg-slate-100/40',
+                    isEnded && 'opacity-50 bg-primary/10',
                   )}
                 >
                   <CardHeader>
@@ -94,16 +94,7 @@ export default async function AssignmentListPage(props: Props) {
                   </CardHeader>
                   <CardContent className="pt-2">
                     <div className="mb-4 flex items-center justify-between">
-                      <div className="flex items-center text-sm">
-                        <CalendarIcon className="mr-2 h-4 w-4" />
-                        {formatDate(deadline, 'yyyy-MM-dd HH:mm')} 마감
-                        {isEnded && (
-                          <Badge variant="secondary" className="ml-2">
-                            <XCircleIcon className="mr-1 h-3 w-3" />
-                            마감됨
-                          </Badge>
-                        )}
-                      </div>
+                      <DeadlineSection deadline={deadline} isEnded={isEnded} />
                     </div>
                     <div className="mb-4 flex items-center text-sm text-muted-foreground">
                       <UserIcon className="mr-2 h-4 w-4" />
