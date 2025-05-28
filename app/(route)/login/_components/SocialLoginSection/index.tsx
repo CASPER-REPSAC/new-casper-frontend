@@ -13,8 +13,6 @@ function SocialLoginSection() {
       </Separator>
       <div className="flex flex-col gap-2">
         <CasperLoginButton />
-        <GoogleLoginButton />
-        <GithubLoginButton />
       </div>
     </section>
   );
