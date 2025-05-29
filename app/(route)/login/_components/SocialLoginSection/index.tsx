@@ -1,7 +1,7 @@
 import { Separator } from '@app/_shadcn/components/ui/separator';
 import CasperLoginButton from './CasperLoginButton';
-import GithubLoginButton from './GithubLoginButton';
-import GoogleLoginButton from './GoogleLoginButton';
+// import GithubLoginButton from './GithubLoginButton';
+// import GoogleLoginButton from './GoogleLoginButton';
 
 function SocialLoginSection() {
   return (
