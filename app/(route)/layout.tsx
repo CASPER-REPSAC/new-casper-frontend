@@ -29,7 +29,12 @@ export default function RootLayout({ children }: { children: ReactNode }) {
         )}
       >
         <QueryWrapper>
-          <ThemeProvider>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <TooltipProvider delayDuration={50}>
               <DefaultLayout>{children}</DefaultLayout>
             </TooltipProvider>
