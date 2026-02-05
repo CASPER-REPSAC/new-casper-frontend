@@ -3,7 +3,6 @@
 import Link from 'next/link';
 import { CasperLogo } from '@app/_components/common';
 import { PATH } from '@app/_constants/urls';
-import DarkModeSwitch from './DarkModeSwitch';
 import MobileMenuSheet from './MobileMenuSheet';
 import NavSection from './NavSection';
 import UserButton from './UserButton';
@@ -17,7 +16,6 @@ function Header() {
         <Link href={PATH.home.url}>
           <CasperLogo />
         </Link>
-        <DarkModeSwitch />
 
         <NavSection />
 

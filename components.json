@@ -10,20 +10,15 @@
     "cssVariables": true,
     "prefix": "tw-"
   },
+  "iconLibrary": "lucide",
   "aliases": {
-    "components": "app/_shadcn/components",
+    "components": "app/_shadcn/components/ui",
     "utils": "app/_shadcn/lib/utils"
   },
-  "iconLibrary": "lucide",
   "registries": {
-    "plate": {
-      "tailwind": {
-        "baseColor": "neutral"
-      },
-      "aliases": {
-        "ui": "@/components/plate-ui"
-      },
-      "url": "https://platejs.org/r"
-    }
+    "@plate": {
+      "url": "https://platejs.org/r/{name}"
+    },
+    "@react-bits": "https://reactbits.dev/r/{name}.json"
   }
 }

@@ -1,118 +1,26 @@
 'use client';
 
-import { DraggableProps as DraggableMotionProps, motion } from 'framer-motion';
-import {
-  Braces,
-  Code,
-  EqualNot,
-  Ghost,
-  Key,
-  LockIcon,
-  LockOpenIcon,
-} from 'lucide-react';
-import { PropsWithChildren, useRef } from 'react';
-import { twMerge } from 'tailwind-merge';
-import useMount from '@app/_hooks/useMount';
-
-interface DraggableProps extends PropsWithChildren {
-  className?: string;
-  dragConstraints?: DraggableMotionProps['dragConstraints'];
-}
-
-function Draggable({ children, className, dragConstraints }: DraggableProps) {
-  const xRandom = Math.random();
-  const yRandom = Math.random();
-  const { isMounted } = useMount();
-
-  const x =
-    xRandom < 0.5
-      ? { left: `${xRandom * 100}%` }
-      : { right: `${(xRandom - 0.5) * 100}%` };
-
-  const y =
-    yRandom < 0.5
-      ? { top: `${yRandom * 100}%` }
-      : { bottom: `${(yRandom - 0.5) * 100}%` };
-
-  if (!isMounted) return null;
-  return (
-    <motion.div
-      style={{
-        position: 'absolute',
-        ...x,
-        ...y,
-      }}
-      className={twMerge('cursor-pointer', className)}
-      drag
-      dragConstraints={dragConstraints}
-    >
-      {children}
-    </motion.div>
-  );
-}
-
-function DragPlayGround() {
-  const wrapperRef = useRef<HTMLDivElement>(null);
-  const SIZE = {
-    sm: 120,
-    m: 180,
-    lg: 240,
-  };
-
-  const elements = [
-    {
-      id: 'lock',
-      icon: <LockIcon className="rotate-6" size={SIZE.m} />,
-    },
-    {
-      id: 'not-equal',
-      icon: <EqualNot size={SIZE.sm} />,
-    },
-
-    {
-      id: 'lock-open',
-      icon: <LockOpenIcon className="-rotate-12" size={SIZE.m} />,
-    },
-    {
-      id: 'ghost',
-      icon: <Ghost strokeWidth={1.5} size={SIZE.lg} />,
-    },
-    {
-      id: 'Braces',
-      icon: <Braces size={SIZE.sm} />,
-    },
-
-    {
-      id: 'Code',
-      icon: <Code size={SIZE.sm} />,
-    },
-    {
-      id: 'Key',
-      icon: <Key size={SIZE.sm} />,
-    },
-  ];
-
-  return (
-    <motion.div ref={wrapperRef} className="relative m-10 h-screen">
-      {elements.map(({ id, icon }) => (
-        <Draggable key={id} dragConstraints={wrapperRef}>
-          {icon}
-        </Draggable>
-      ))}
-    </motion.div>
-  );
-}
+import FuzzyText from '@app/_shadcn/components/ui/FuzzyText';
+import LetterGlitch from '@app/_shadcn/components/ui/LetterGlitch';
 
 function HomePage() {
   return (
     <>
-      <div className="common-center lg:absolute-center flex-center mt-24 w-full flex-col text-center lg:mt-0">
-        <h1 className="text-6xl font-bold">WELCOME!</h1>
-        <div className="h-full w-full text-6xl font-bold text-sky-300">
-          CASPER
+      <div className=" w-screen h-screen flex-center">
+        <div className="absolute top-0 left-0 w-full h-full opacity-50">
+          <LetterGlitch
+            characters="Welcome to Casper!"
+            glitchSpeed={100}
+            centerVignette={false}
+            outerVignette={true}
+            smooth={true}
+          />
+        </div>
+        <div className="flex flex-col gap-2">
+          <FuzzyText className="relative z-10">Welcome to</FuzzyText>
+          <FuzzyText className="relative z-10">Casper!</FuzzyText>
         </div>
       </div>
-      <DragPlayGround />
     </>
   );
 }

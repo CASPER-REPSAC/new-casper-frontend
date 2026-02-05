@@ -1,31 +1,36 @@
 import { useTheme } from 'next-themes';
-import { useEffect, useState } from 'react';
-import { Skeleton } from '@app/_components/common';
-import { MoonIcon, SunIcon } from '@app/_components/icons';
+import { MoonIcon } from '@app/_components/icons';
 import { Toggle } from '@app/_shadcn/components/ui/toggle';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from '@app/_shadcn/components/ui/tooltip';
+
+const LIGHT_MODE_DISABLED_MESSAGE = '라이트 모드는 앞으로 제공되지 않습니다.';
 
 function DarkModeSwitch() {
-  const [mounted, setMounted] = useState(false);
   const { theme, setTheme } = useTheme();
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  const isLightModeRestricted = true;
+  const isDisabled = isLightModeRestricted && theme === 'dark';
 
   const toggleTheme = () => {
+    if (isDisabled) return;
     const newTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
   };
 
   return (
     <>
-      {mounted ? (
-        <Toggle size="sm" onClick={toggleTheme}>
-          {theme === 'light' ? <SunIcon /> : <MoonIcon />}
-        </Toggle>
-      ) : (
-        <Skeleton className="h-8 w-8 rounded" />
-      )}
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <Toggle size="sm" onClick={toggleTheme}>
+            <MoonIcon />
+          </Toggle>
+        </TooltipTrigger>
+        <TooltipContent>{LIGHT_MODE_DISABLED_MESSAGE}</TooltipContent>
+      </Tooltip>
     </>
   );
 }
