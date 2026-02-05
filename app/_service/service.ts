@@ -1,5 +1,6 @@
 import { getAccessToken } from '@app/_actions';
 import axios, { AxiosInstance } from 'axios';
+import refreshTokenController from './refreshController';
 
 class Service {
   public axiosExtend: AxiosInstance;
@@ -24,6 +25,42 @@ class Service {
 
       return newConfig;
     });
+
+    api.interceptors.response.use(
+      (response) => response,
+      async (error) => {
+        const originalRequest = error.config;
+
+        if (error.response?.status !== 401) {
+          return Promise.reject(error);
+        }
+
+        if (originalRequest?.url?.includes('/api/user/refresh')) {
+          return Promise.reject(error);
+        }
+
+        if (originalRequest._retry) {
+          return Promise.reject(error);
+        }
+
+        const retryPromise = refreshTokenController.addFailedRequest(() =>
+          api.request({
+            ...originalRequest,
+            _retry: true,
+          }),
+        );
+
+        await refreshTokenController
+          .executeRefreshOnce(() => api.post('/api/user/refresh'))
+          .then();
+
+        if (refreshTokenController.isRefreshing) {
+          refreshTokenController.retryFailedRequests();
+        }
+
+        return retryPromise;
+      },
+    );
 
     this.axiosExtend = api;
   }
