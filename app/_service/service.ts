@@ -31,7 +31,7 @@ class Service {
       async (error) => {
         const originalRequest = error.config;
 
-        if (error.response?.status !== 401) {
+        if (error.response?.status !== 401 || error.response?.status !== 403) {
           return Promise.reject(error);
         }
 
