@@ -12,7 +12,10 @@ class RefreshTokenController<RequestResponse, RefreshResponse> {
     resolve: (value: RequestResponse) => void;
     reject: (error: unknown) => void;
   }[] = [];
-  private refreshPromise: Promise<RefreshResponse> | null;
+  private refreshPromise: Promise<{
+    executed: boolean;
+    data: RefreshResponse;
+  }> | null;
 
   constructor() {
     this.isRefreshing = false;
@@ -44,21 +47,24 @@ class RefreshTokenController<RequestResponse, RefreshResponse> {
   public executeRefreshOnce = async (
     requestFn: () => Promise<RefreshResponse>,
   ) => {
-    if (this.isRefreshing) return this.refreshPromise;
+    if (this.isRefreshing) {
+      await this.refreshPromise;
+      return { executed: false, data: null };
+    }
 
     this.isRefreshing = true;
 
     this.refreshPromise = (async () => {
       try {
-        const res = await requestFn();
-        return res;
+        const data = await requestFn();
+        return { executed: true, data };
       } finally {
         this.isRefreshing = false;
         this.refreshPromise = null;
       }
     })();
 
-    return this.refreshPromise;
+    return { executed: true, data: null };
   };
 
   public get _isRefreshing_onlyForTest(): boolean {

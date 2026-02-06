@@ -55,6 +55,14 @@ class Service {
           await refreshTokenController.retryFailedRequests();
         }
 
+        const { executed } = await refreshTokenController.executeRefreshOnce(
+          () => api.post('/api/user/refresh'),
+        );
+
+        if (executed) {
+          refreshTokenController.retryFailedRequests();
+        }
+
         return retryPromise;
       },
     );
