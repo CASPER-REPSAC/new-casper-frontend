@@ -1,7 +1,7 @@
 import { useQueryClient } from '@tanstack/react-query';
 import { AxiosError } from 'axios';
 import { useRouter } from 'next/navigation';
-import { getErrorMessage } from '@app/_constants/message';
+import { ERROR_MESSAGE, getErrorMessage } from '@app/_constants/message';
 import { PATH } from '@app/_constants/urls';
 import { ErrorResponse } from '@app/_types/errorTypes';
 import { useToast } from '@app/_shadcn/components/ui/use-toast';
@@ -16,24 +16,22 @@ function useOnLogin() {
   const queryClient = useQueryClient();
 
   const onSuccess = async () => {
-    push(PATH.home.url);
     toast({ title: '로그인', description: '로그인 성공했어요' });
   };
 
   const onError = (error: AxiosError<ErrorResponse>) => {
     const code = error.response?.data.code;
 
-    if (!code) throw new Error('Not found error code.');
-
     toast({
       variant: 'destructive',
       title: '로그인',
-      description: getErrorMessage(code),
+      description: code ? getErrorMessage(code) : ERROR_MESSAGE.unknown,
     });
   };
 
   const onSettled = () => {
     queryClient.invalidateQueries({ queryKey: ['me'] });
+    push(PATH.home.url);
   };
 
   return {
