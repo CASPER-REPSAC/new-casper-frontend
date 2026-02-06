@@ -43,11 +43,16 @@ class Service {
           return Promise.reject(error);
         }
 
-        const retryPromise = refreshTokenController.addFailedRequest(() =>
-          api.request({
-            ...originalRequest,
-            _retry: true,
-          }),
+        const retryPromise = refreshTokenController.addFailedRequest(
+          async () => {
+            const newConfig = { ...originalRequest, _retry: true };
+            const token = await getAccessToken();
+            newConfig.headers.Authorization = token
+              ? `Bearer ${token}`
+              : undefined;
+
+            return api.request(newConfig);
+          },
         );
 
         const { executed } = await refreshTokenController.executeRefreshOnce(
