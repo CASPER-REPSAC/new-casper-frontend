@@ -50,11 +50,6 @@ class Service {
           }),
         );
 
-        if (!refreshTokenController.isRefreshing) {
-          await api.post('/api/user/refresh');
-          await refreshTokenController.retryFailedRequests();
-        }
-
         const { executed } = await refreshTokenController.executeRefreshOnce(
           () => api.post('/api/user/refresh'),
         );
