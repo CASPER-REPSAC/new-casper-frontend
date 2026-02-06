@@ -51,6 +51,8 @@ class Service {
               ? `Bearer ${token}`
               : undefined;
 
+            console.log('newConfig', newConfig);
+
             return api.request(newConfig);
           },
         );
@@ -60,7 +62,7 @@ class Service {
         );
 
         if (executed) {
-          refreshTokenController.retryFailedRequests();
+          await refreshTokenController.retryFailedRequests();
         }
 
         return retryPromise;

@@ -64,7 +64,7 @@ class RefreshTokenController<RequestResponse, RefreshResponse> {
       }
     })();
 
-    return { executed: true, data: null };
+    return this.refreshPromise;
   };
 
   public get _isRefreshing_onlyForTest(): boolean {
